@@ -1,6 +1,6 @@
 # ADS BOX Agency website
 
-Public website for ADS BOX: services, knowledge articles and contact. Served by GitHub Pages at https://agency.adsbox.biz.
+Public website for ADS BOX: services, knowledge articles and contact. Served by GitHub Pages at https://adsbox.agency.
 
 ## Editing
 
