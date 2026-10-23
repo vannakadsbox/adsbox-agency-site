@@ -243,57 +243,156 @@ section[id] { scroll-margin-top: 90px; }
 footer { background: var(--band); color: var(--band-muted); }
 footer .wrap { padding-block: 28px 88px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 14px; }
 footer img { height: 22px; width: auto; }
+
+/* ===== Redesign ===== */
+:root { --ink: #0c1430; --violet: #6c5cff; }
+.hdr { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 8; background: var(--surface); border-bottom: 1px solid var(--line); }
+.hdr-in { display: flex; align-items: center; gap: 20px; padding-block: 12px; }
+.menu { display: flex; align-items: center; gap: 2px; margin-left: auto; }
+.mlink { color: var(--fg); text-decoration: none; font-weight: 500; font-size: 15px; padding: 8px 10px; border-radius: 8px; white-space: nowrap; display: inline-block; }
+.mlink:hover, .dd:focus-within > .mlink { background: var(--chip); color: var(--blue); }
+.dd { position: relative; }
+.dd > .mlink::after { content: ""; display: inline-block; width: 6px; height: 6px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg); margin-left: 8px; vertical-align: 3px; }
+.dd-menu { position: absolute; top: 100%; left: 0; min-width: 240px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 6px; box-shadow: 0 16px 40px rgba(10, 20, 60, .14); display: none; }
+.dd:hover .dd-menu, .dd:focus-within .dd-menu { display: grid; }
+.dd-menu a { color: var(--fg); text-decoration: none; padding: 9px 12px; border-radius: 8px; font-size: 15px; }
+.dd-menu a:hover { background: var(--chip); color: var(--blue); }
+.hdr-tools { display: flex; align-items: center; gap: 10px; }
+.btn-tg { display: inline-flex; align-items: center; gap: 8px; background: #229ed9; color: #fff; text-decoration: none; font-weight: 600; font-size: 14px; padding: 8px 14px; border-radius: 999px; white-space: nowrap; }
+.btn-tg:hover { background: #1b8bc0; }
+.btn-tg svg, .btn svg { width: 18px; height: 18px; flex: none; }
+.burger { display: none; width: 42px; height: 42px; border: 1px solid var(--line); background: var(--surface); border-radius: 10px; cursor: pointer; padding: 10px; flex-direction: column; justify-content: space-between; }
+.burger span { display: block; height: 2px; background: var(--fg); border-radius: 2px; }
+.drawer { border-top: 1px solid var(--line); background: var(--surface); }
+.drawer-in { display: grid; padding-block: 8px 16px; }
+.drawer-in a:not(.btn-tg) { color: var(--fg); text-decoration: none; font-size: 17px; font-weight: 500; padding: 12px 4px; border-bottom: 1px solid var(--line); }
+.drawer-in .btn-tg { justify-self: start; margin-top: 14px; font-size: 16px; padding: 10px 18px; }
+@media (max-width: 1140px) { .menu { display: none; } .burger { display: flex; } .hdr-tools { margin-left: auto; } }
+@media (max-width: 520px) { .hide-md { display: none; } .brand img { height: 22px; } }
+@media (min-width: 1141px) { .drawer { display: none; } }
+
+.hero2 { background: radial-gradient(900px 420px at 85% 10%, rgba(108,92,255,.45), transparent 60%), radial-gradient(700px 400px at 10% 100%, rgba(0,89,224,.45), transparent 60%), var(--ink); color: #fff; }
+.hero2-in { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; padding-block: 64px 72px; }
+.hero2-text { min-width: 0; }
+.hero2 h1 { font-family: var(--font-body); font-weight: 700; font-size: clamp(30px, 4.6vw, 52px); line-height: 1.4; }
+:lang(en) .hero2 h1 { font-family: var(--font-display); font-weight: 800; line-height: 1.2; }
+.hero2 p { color: #c8d3f2; font-size: 18px; max-width: 34em; margin: 16px 0 0; }
+.ticks { list-style: none; padding: 0; margin: 24px 0 0; display: flex; flex-wrap: wrap; gap: 10px 20px; color: #dfe6ff; font-size: 15px; }
+.ticks li::before { content: "✓"; color: #3ccf8e; font-weight: 800; margin-right: 8px; }
+.hero2 .btn-primary { background: #fff; color: #1c4b9b; }
+.hero2-media { position: relative; min-width: 0; padding-bottom: 56px; }
+.hero-app { box-shadow: 0 30px 60px rgba(0,0,0,.4); border: 1px solid rgba(255,255,255,.08); }
+.hero-ai { position: absolute; right: -8px; bottom: 0; width: min(330px, 85%); padding: 8px; box-shadow: 0 20px 40px rgba(0,0,0,.45); border: 1px solid rgba(255,255,255,.08); }
+@media (max-width: 900px) { .hero2-in { grid-template-columns: 1fr; padding-block: 44px 52px; gap: 32px; } .hero-ai { right: 0; } }
+
+.about { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: start; }
+.about > * { min-width: 0; }
+.about h2 { font-size: clamp(24px, 3.4vw, 34px); font-weight: 700; margin-top: 6px; }
+.about-text p { color: var(--muted); font-size: 17px; margin: 14px 0 0; }
+.vals { display: grid; gap: 12px; }
+.val { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+.val h3 { font-size: 18px; font-weight: 600; }
+.val p { color: var(--muted); margin: 4px 0 0; }
+@media (max-width: 820px) { .about { grid-template-columns: 1fr; gap: 24px; } }
+
+.faq-wrap { max-width: 860px; }
+.faqs { display: grid; gap: 10px; }
+.faq { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 4px 18px; }
+.faq summary { cursor: pointer; font-weight: 600; font-size: 17px; padding: 12px 0; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; color: var(--blue); font-size: 22px; line-height: 1; }
+.faq[open] summary::after { content: "–"; }
+.faq p { color: var(--muted); margin: 0 0 14px; }
+
+.cta-band { background: linear-gradient(120deg, #1c4b9b, #4b3fd6); color: #fff; }
+.cta-in { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; padding-block: 44px; }
+.cta-in h2 { font-size: clamp(24px, 3.4vw, 34px); font-weight: 700; }
+.cta-in p { color: #dbe3ff; margin: 6px 0 0; }
+.cta-band .btn-primary { background: #fff; color: #1c4b9b; }
+
+.ftr { background: var(--ink); color: #b9c4e4; }
+.ftr-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.3fr; gap: 32px; padding-block: 48px 32px; }
+.ftr-grid > * { min-width: 0; }
+.ftr h3 { color: #fff; font-size: 15px; font-weight: 600; margin-bottom: 12px; }
+.ftr-brand p { margin: 14px 0 0; max-width: 28em; }
+.ftr-links { display: grid; gap: 8px; }
+.ftr-links a, .ftr-links span { color: #b9c4e4; text-decoration: none; font-size: 15px; word-break: break-word; }
+.ftr-links a:hover { color: #fff; }
+.ftr-bottom { border-top: 1px solid rgba(255,255,255,.1); padding-block: 18px 92px; font-size: 13px; }
+@media (max-width: 860px) { .ftr-grid { grid-template-columns: 1fr 1fr; } .ftr-brand { grid-column: 1 / -1; } }
+@media (max-width: 460px) { .ftr-grid { grid-template-columns: 1fr; } }
+section[id], footer[id] { scroll-margin-top: 80px; }
+body::before { background: var(--surface); }
 </style>
 
 </head>
 <body>
-<header class="top">
-  <div class="wrap">
-    <a class="brand" href="#home" aria-label="ADS BOX">
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a class="brand" href="#home" aria-label="ADS BOX home">
       <img class="logo-light" src="assets/logo-word.png" alt="ADS BOX" width="140" height="26">
       <img class="logo-dark" src="assets/logo-word-white.png" alt="ADS BOX" width="140" height="26">
     </a>
-    <nav class="nav" aria-label="Main">
-      <a class="hide-sm" href="#why" data-kh="ចំណុចពិសេស" data-en="Why us">ចំណុចពិសេស</a>
-      <a href="#services" data-kh="សេវាកម្ម" data-en="Services">សេវាកម្ម</a>
-      <a href="#knowledge" data-kh="ចំណេះដឹង" data-en="Knowledge">ចំណេះដឹង</a>
-      <a class="hide-sm" href="#contact" data-kh="ទំនាក់ទំនង" data-en="Contact">ទំនាក់ទំនង</a>
+    <nav class="menu" aria-label="Main">
+        <a href="#about" class="mlink" data-kh="អំពីយើង" data-en="About">អំពីយើង</a>
+        <div class="dd"><a href="#services" data-filter="all" class="mlink" data-kh="សេវាកម្ម" data-en="Services">សេវាកម្ម</a><div class="dd-menu"><a href="#services" data-filter="boost" data-kh="ផ្សព្វផ្សាយ និង Boost" data-en="Boost &amp; ads">ផ្សព្វផ្សាយ និង Boost</a><a href="#services" data-filter="design" data-kh="រចនា និងវេបសាយ" data-en="Design &amp; website">រចនា និងវេបសាយ</a><a href="#services" data-filter="care" data-kh="ថែទាំផេក និងគណនី" data-en="Page &amp; account care">ថែទាំផេក និងគណនី</a><a href="#services" data-filter="live" data-kh="លក់ Live និងមេរៀន" data-en="Live selling &amp; training">លក់ Live និងមេរៀន</a></div></div>
+        <a href="#system" class="mlink" data-kh="ប្រព័ន្ធ ADS BOX" data-en="ADS BOX system">ប្រព័ន្ធ ADS BOX</a>
+        <a href="#results" class="mlink" data-kh="លទ្ធផល" data-en="Results">លទ្ធផល</a>
+        <a href="#knowledge" class="mlink" data-kh="ចំណេះដឹង" data-en="Knowledge">ចំណេះដឹង</a>
+        <a href="#faq" class="mlink" data-kh="សំណួរ" data-en="FAQ">សំណួរ</a>
+        <a href="#contact" class="mlink" data-kh="ទំនាក់ទំនង" data-en="Contact">ទំនាក់ទំនង</a>
+    </nav>
+    <div class="hdr-tools">
       <span class="lang" role="group" aria-label="Language">
         <button type="button" id="lang-kh" aria-pressed="true">ខ្មែរ</button>
         <button type="button" id="lang-en" aria-pressed="false">EN</button>
       </span>
+      <a class="btn-tg hide-md" href="https://t.me/vannakdm" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13 1.4 11.5c-1-.3-1-1 .2-1.5L20.5 2.9c.9-.3 1.6.2 1.4 1.4z"/></svg><span data-kh="ឆាត Telegram" data-en="Telegram">ឆាត Telegram</span></a>
+      <button type="button" class="burger" id="burger" aria-expanded="false" aria-controls="drawer" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="drawer" id="drawer" hidden>
+    <nav class="wrap drawer-in" aria-label="Mobile">
+      <a href="#about" data-kh="អំពីយើង" data-en="About">អំពីយើង</a><a href="#services" data-kh="សេវាកម្ម" data-en="Services">សេវាកម្ម</a><a href="#system" data-kh="ប្រព័ន្ធ ADS BOX" data-en="ADS BOX system">ប្រព័ន្ធ ADS BOX</a><a href="#results" data-kh="លទ្ធផល" data-en="Results">លទ្ធផល</a><a href="#knowledge" data-kh="ចំណេះដឹង" data-en="Knowledge">ចំណេះដឹង</a><a href="#faq" data-kh="សំណួរ" data-en="FAQ">សំណួរ</a><a href="#contact" data-kh="ទំនាក់ទំនង" data-en="Contact">ទំនាក់ទំនង</a>
+      <a class="btn-tg" href="https://t.me/vannakdm" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13 1.4 11.5c-1-.3-1-1 .2-1.5L20.5 2.9c.9-.3 1.6.2 1.4 1.4z"/></svg><span data-kh="ឆាតតាម Telegram" data-en="Chat on Telegram">ឆាតតាម Telegram</span></a>
     </nav>
   </div>
 </header>
 
 <main id="home-view">
-  <section class="hero" id="home">
-    <div class="wrap">
-      <div>
+  <section class="hero2" id="home">
+    <div class="wrap hero2-in">
+      <div class="hero2-text">
         <span class="tagline">Top 1 Boost Post &amp; Live in Cambodia</span>
-        <h1 data-kh="ជួយអាជីវកម្មរបស់អ្នក លក់ដាច់តាមអនឡាញ" data-en="Sell more online, with one team behind your page">ជួយអាជីវកម្មរបស់អ្នក លក់ដាច់តាមអនឡាញ</h1>
-        <p data-kh="Boost ផេក និង TikTok រចនារូបភាព ថែទាំផេក រៀបចំកន្លែង Live និងមេរៀនលក់អនឡាញ សម្រាប់អ្នកលក់នៅកម្ពុជា។" data-en="Facebook and TikTok boosting, design, page care, live studio setup and online selling courses for sellers in Cambodia.">Boost ផេក និង TikTok រចនារូបភាព ថែទាំផេក រៀបចំកន្លែង Live និងមេរៀនលក់អនឡាញ សម្រាប់អ្នកលក់នៅកម្ពុជា។</p>
+        <h1 data-kh="ក្រុមជំនាញ Boost ដែលតាមដានលុយរបស់អ្នក រាល់ថ្ងៃ" data-en="The boost team that watches your money every day">ក្រុមជំនាញ Boost ដែលតាមដានលុយរបស់អ្នក រាល់ថ្ងៃ</h1>
+        <p data-kh="Boost Post, Boost Live និង TikTok ដោយក្រុមការងារជំនាញ និងប្រព័ន្ធ AI ផ្ទាល់ខ្លួន ដើម្បីឲ្យបងប្អូនទទួលបាន Order ច្រើន ក្នុងតម្លៃទាប។" data-en="Boost Post, Boost Live and TikTok, run by a specialist team and our own AI system, so you get more orders at a lower cost.">Boost Post, Boost Live និង TikTok ដោយក្រុមការងារជំនាញ និងប្រព័ន្ធ AI ផ្ទាល់ខ្លួន ដើម្បីឲ្យបងប្អូនទទួលបាន Order ច្រើន ក្នុងតម្លៃទាប។</p>
         <div class="cta">
-          <a class="btn btn-primary" href="#services" data-kh="មើលសេវាកម្ម" data-en="See services">មើលសេវាកម្ម</a>
-          <a class="btn btn-ghost" href="https://t.me/vannakdm" target="_blank" rel="noopener" data-kh="ឆាតតាម Telegram" data-en="Chat on Telegram">ឆាតតាម Telegram</a>
+          <a class="btn btn-primary" href="https://t.me/vannakdm" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13 1.4 11.5c-1-.3-1-1 .2-1.5L20.5 2.9c.9-.3 1.6.2 1.4 1.4z"/></svg><span data-kh="ឆាតតាម Telegram" data-en="Chat on Telegram">ឆាតតាម Telegram</span></a>
+          <a class="btn btn-ghost" href="#services" data-kh="មើលសេវាកម្ម" data-en="See services">មើលសេវាកម្ម</a>
+        </div>
+        <ul class="ticks">
+          <li><span data-kh="របាយការណ៍រាល់ថ្ងៃ" data-en="Daily reports">របាយការណ៍រាល់ថ្ងៃ</span></li>
+          <li><span data-kh="AI តាមដាន Boost" data-en="AI watches every boost">AI តាមដាន Boost</span></li>
+          <li><span data-kh="Project Manager ផ្ទាល់" data-en="Your own project manager">Project Manager ផ្ទាល់</span></li>
+        </ul>
+      </div>
+      <div class="hero2-media" aria-label="Example of the ADS BOX system">
+        <div class="app hero-app">
+          <div class="app-bar"><span><span class="app-dot"></span><b>ADS BOX</b></span><span><span data-kh="ថ្ងៃនេះ" data-en="Today">ថ្ងៃនេះ</span></span></div>
+          <div class="app-grid">
+            <div class="app-card"><div class="app-k"><span data-kh="ចំណាយ" data-en="Spend">ចំណាយ</span></div><div class="app-v">$84.20</div></div>
+            <div class="app-card"><div class="app-k">Orders</div><div class="app-v">112</div></div>
+            <div class="app-card"><div class="app-k"><span data-kh="ក្នុងមួយ Order" data-en="Per order">ក្នុងមួយ Order</span></div><div class="app-v good">$0.75</div></div>
+          </div>
+          <div class="app-bars" aria-hidden="true"><i style="height:38%"></i><i style="height:50%"></i><i style="height:45%"></i><i style="height:58%"></i><i style="height:70%"></i><i style="height:64%"></i><i class="on" style="height:86%"></i><i class="on" style="height:100%"></i></div>
+        </div>
+        <div class="app hero-ai">
+          <div class="app-card ai">
+            <div class="app-k">✨ <span data-kh="ផែនការថ្ងៃនេះពី AI" data-en="Today's plan from AI">ផែនការថ្ងៃនេះពី AI</span></div>
+            <div style="margin-top:4px"><span data-kh="ផ្អាក Post ទី ២ ហើយបង្កើនថវិកា Live ម៉ោង ៧ យប់។" data-en="Pause post #2 and raise the 7 PM Live budget.">ផ្អាក Post ទី ២ ហើយបង្កើនថវិកា Live ម៉ោង ៧ យប់។</span></div>
+          </div>
         </div>
       </div>
-      <aside class="slip" aria-label="Example boost report">
-        <div class="slip-head">
-          <div><strong>Boost Post</strong><br><span data-kh="របាយការណ៍ ៧ ថ្ងៃ" data-en="7-day report">របាយការណ៍ ៧ ថ្ងៃ</span></div>
-          <span class="pill" data-kh="ឧទាហរណ៍" data-en="Example">ឧទាហរណ៍</span>
-        </div>
-        <dl>
-          <div><dt data-kh="ថវិកា" data-en="Budget">ថវិកា</dt><dd>$5<small data-kh="/ថ្ងៃ" data-en="/day">/ថ្ងៃ</small></dd></div>
-          <div><dt data-kh="អ្នកឃើញ" data-en="Reach">អ្នកឃើញ</dt><dd>18,400</dd></div>
-          <div><dt data-kh="សារពីអតិថិជន" data-en="Customer messages">សារពីអតិថិជន</dt><dd>126</dd></div>
-          <div><dt data-kh="ថ្លៃក្នុងមួយសារ" data-en="Cost per message">ថ្លៃក្នុងមួយសារ</dt><dd>$0.28</dd></div>
-        </dl>
-        <div class="bars" aria-hidden="true">
-          <span style="height:30%"></span><span style="height:42%"></span><span style="height:38%"></span><span style="height:55%"></span><span style="height:63%"></span><span class="hi" style="height:88%"></span><span class="hi" style="height:100%"></span>
-        </div>
-        <div class="slip-foot" data-kh="សារពីអតិថិជនក្នុងមួយថ្ងៃ ពីថ្ងៃទី ១ ដល់ ៧" data-en="Customer messages per day, day 1 to 7">សារពីអតិថិជនក្នុងមួយថ្ងៃ ពីថ្ងៃទី ១ ដល់ ៧</div>
-      </aside>
     </div>
   </section>
 
@@ -306,10 +405,22 @@ footer img { height: 22px; width: auto; }
     </div>
   </section>
 
-  <section class="block" id="why">
+  <section class="block" id="about">
+    <div class="wrap about">
+      <div class="about-text">
+        <div class="eyebrow" data-kh="អំពីយើង" data-en="About us">អំពីយើង</div>
+        <h2 data-kh="អំពី ADS BOX" data-en="About ADS BOX">អំពី ADS BOX</h2>
+        <p data-kh="ADS BOX ជាក្រុមជំនាញផ្សព្វផ្សាយអនឡាញ ដែលជួយអ្នកលក់នៅកម្ពុជា ឲ្យទទួលបាន Order ច្រើនពី Boost Post, Boost Live និង TikTok ក្នុងតម្លៃសមរម្យ។ យើងប្រើទាំងជំនាញក្រុមការងារ និងប្រព័ន្ធ AI ផ្ទាល់ខ្លួន ដើម្បីតាមដានរាល់ដុល្លារដែលបងប្អូនចំណាយ។" data-en="ADS BOX is an online advertising team that helps sellers in Cambodia get more orders from Boost Post, Boost Live and TikTok at a fair cost. We combine a skilled team with our own AI system to track every dollar you spend.">ADS BOX ជាក្រុមជំនាញផ្សព្វផ្សាយអនឡាញ ដែលជួយអ្នកលក់នៅកម្ពុជា ឲ្យទទួលបាន Order ច្រើនពី Boost Post, Boost Live និង TikTok ក្នុងតម្លៃសមរម្យ។ យើងប្រើទាំងជំនាញក្រុមការងារ និងប្រព័ន្ធ AI ផ្ទាល់ខ្លួន ដើម្បីតាមដានរាល់ដុល្លារដែលបងប្អូនចំណាយ។</p>
+      </div>
+      <div class="vals"><div class="val"><h3 data-kh="ថ្លៃក្នុងមួយ Order ជាគោលដៅ" data-en="We aim at cost per order">ថ្លៃក្នុងមួយ Order ជាគោលដៅ</h3><p data-kh="យើងវាស់លទ្ធផលដោយចំនួន Order មិនមែនចំនួន Like ទេ។" data-en="We measure success in orders, not likes.">យើងវាស់លទ្ធផលដោយចំនួន Order មិនមែនចំនួន Like ទេ។</p></div><div class="val"><h3 data-kh="តម្លាភាពពេញលេញ" data-en="Full transparency">តម្លាភាពពេញលេញ</h3><p data-kh="បងប្អូនឃើញការចំណាយ និង Order របស់ខ្លួនរាល់ថ្ងៃ។" data-en="You see your own spend and orders every day.">បងប្អូនឃើញការចំណាយ និង Order របស់ខ្លួនរាល់ថ្ងៃ។</p></div><div class="val"><h3 data-kh="មានអ្នកទទួលខុសត្រូវច្បាស់" data-en="Someone clearly in charge">មានអ្នកទទួលខុសត្រូវច្បាស់</h3><p data-kh="Project Manager ម្នាក់មើលការខុសត្រូវ Page របស់បងប្អូន ហើយតាមដានរហូត។" data-en="One project manager looks after your page and follows it through.">Project Manager ម្នាក់មើលការខុសត្រូវ Page របស់បងប្អូន ហើយតាមដានរហូត។</p></div></div>
+    </div>
+  </section>
+
+
+  <section class="block alt" id="system">
     <div class="wrap">
       <div class="sec-head"><div>
-        <div class="eyebrow" data-kh="ចំណុចពិសេស" data-en="Why ADS BOX">ចំណុចពិសេស</div>
+        <div class="eyebrow" data-kh="ប្រព័ន្ធ ADS BOX" data-en="ADS BOX system">ប្រព័ន្ធ ADS BOX</div>
         <h2 data-kh="ចំណុចពិសេសរបស់ ADS BOX" data-en="What makes ADS BOX different">ចំណុចពិសេសរបស់ ADS BOX</h2>
         <p data-kh="យើងមិនត្រឹមតែ Boost ឲ្យទេ។ យើងមានប្រព័ន្ធ និងក្រុមការងារ ដែលតាមដានលុយរបស់បងប្អូនរាល់ថ្ងៃ។" data-en="We don't just boost and walk away. We have a system and a team that watch your money every day.">យើងមិនត្រឹមតែ Boost ឲ្យទេ។ យើងមានប្រព័ន្ធ និងក្រុមការងារ ដែលតាមដានលុយរបស់បងប្អូនរាល់ថ្ងៃ។</p>
       </div></div>
@@ -411,7 +522,7 @@ footer img { height: 22px; width: auto; }
     </div>
   </section>
 
-  <section class="block alt" id="results">
+  <section class="block" id="results">
     <div class="wrap">
       <div class="sec-head"><div>
         <div class="eyebrow" data-kh="លទ្ធផលពិត" data-en="Real results">លទ្ធផលពិត</div>
@@ -441,7 +552,7 @@ footer img { height: 22px; width: auto; }
     </div>
   </section>
 
-  <section class="block" id="services">
+  <section class="block alt" id="services">
     <div class="wrap">
       <div class="sec-head">
         <div>
@@ -465,7 +576,7 @@ footer img { height: 22px; width: auto; }
     </div>
   </section>
 
-  <section class="block alt" id="how">
+  <section class="block" id="how">
     <div class="wrap">
       <div class="sec-head"><div>
         <div class="eyebrow" data-kh="របៀបកម្ម៉ង់" data-en="How to order">របៀបកម្ម៉ង់</div>
@@ -479,7 +590,7 @@ footer img { height: 22px; width: auto; }
     </div>
   </section>
 
-  <section class="block" id="knowledge">
+  <section class="block alt" id="knowledge">
     <div class="wrap">
       <div class="sec-head"><div>
         <div class="eyebrow" data-kh="ចំណេះដឹង" data-en="Knowledge">ចំណេះដឹង</div>
@@ -489,17 +600,23 @@ footer img { height: 22px; width: auto; }
     </div>
   </section>
 
-  <section class="block alt" id="contact">
-    <div class="wrap">
+  <section class="block" id="faq">
+    <div class="wrap faq-wrap">
       <div class="sec-head"><div>
-        <div class="eyebrow" data-kh="ទំនាក់ទំនង" data-en="Contact">ទំនាក់ទំនង</div>
-        <h2 data-kh="សួរយើងបានគ្រប់ពេល" data-en="Ask us anytime">សួរយើងបានគ្រប់ពេល</h2>
+        <div class="eyebrow" data-kh="សំណួរ" data-en="FAQ">សំណួរ</div>
+        <h2 data-kh="សំណួរដែលអតិថិជនសួរញឹកញាប់" data-en="Questions customers often ask">សំណួរដែលអតិថិជនសួរញឹកញាប់</h2>
       </div></div>
-      <div class="contact">
-        <div class="c-card"><div class="label">Telegram</div><a href="https://t.me/vannakdm" target="_blank" rel="noopener">t.me/vannakdm</a></div>
-        <div class="c-card"><div class="label">Facebook</div><a href="https://www.facebook.com/adsbox.agency" target="_blank" rel="noopener">facebook.com/adsbox.agency</a></div>
-        <div class="c-card"><div class="label" data-kh="អ៊ីមែល" data-en="Email">អ៊ីមែល</div><span class="val">support@adsbox.biz</span></div>
+      <div class="faqs"><details class="faq"><summary><span data-kh="តើកម្ម៉ង់សេវាកម្មយ៉ាងដូចម្តេច?" data-en="How do I order?">តើកម្ម៉ង់សេវាកម្មយ៉ាងដូចម្តេច?</span></summary><p data-kh="ចុចប៊ូតុង Order ឬឆាតតាម Telegram ហើយផ្ញើតំណភ្ជាប់ Page របស់បងប្អូន។ ក្រុមយើងនឹងណែនាំសេវាកម្ម និងតម្លៃដែលសមស្រប។" data-en="Tap Order or chat with us on Telegram and send your Page link. Our team will suggest the right service and price.">ចុចប៊ូតុង Order ឬឆាតតាម Telegram ហើយផ្ញើតំណភ្ជាប់ Page របស់បងប្អូន។ ក្រុមយើងនឹងណែនាំសេវាកម្ម និងតម្លៃដែលសមស្រប។</p></details><details class="faq"><summary><span data-kh="តើបង់ប្រាក់តាមរបៀបណា?" data-en="How do I pay?">តើបង់ប្រាក់តាមរបៀបណា?</span></summary><p data-kh="បង់តាម ABA ឬ KHQR។ បន្ទាប់ពីបង់ សូមផ្ញើរូបភាពវិក្កយបត្រ តាម Telegram។" data-en="Pay by ABA or KHQR, then send us the payment slip on Telegram.">បង់តាម ABA ឬ KHQR។ បន្ទាប់ពីបង់ សូមផ្ញើរូបភាពវិក្កយបត្រ តាម Telegram។</p></details><details class="faq"><summary><span data-kh="តើខ្ញុំដឹងលទ្ធផលពេលណា?" data-en="When do I see results?">តើខ្ញុំដឹងលទ្ធផលពេលណា?</span></summary><p data-kh="ប្រព័ន្ធផ្ញើរបាយការណ៍ការចំណាយ និង Order ជូនរាល់ថ្ងៃ ដូច្នេះបងប្អូនដឹងលទ្ធផលជារៀងរាល់ថ្ងៃ។" data-en="The system sends you a spend and order report every day, so you know your results daily.">ប្រព័ន្ធផ្ញើរបាយការណ៍ការចំណាយ និង Order ជូនរាល់ថ្ងៃ ដូច្នេះបងប្អូនដឹងលទ្ធផលជារៀងរាល់ថ្ងៃ។</p></details><details class="faq"><summary><span data-kh="តើធានាចំនួន Order ទេ?" data-en="Do you guarantee orders?">តើធានាចំនួន Order ទេ?</span></summary><p data-kh="ចំនួន Order អាស្រ័យលើផលិតផល តម្លៃ និងរូបភាព។ យើងមិនសន្យាចំនួនជាក់លាក់ទេ ប៉ុន្តែយើងតាមដានរាល់ថ្ងៃ ហើយកែតម្រូវភ្លាមៗ ដើម្បីឲ្យថ្លៃក្នុងមួយ Order ទាបបំផុត។" data-en="Orders depend on your product, price and photos. We don't promise an exact number, but we check every day and adjust quickly to keep your cost per order low.">ចំនួន Order អាស្រ័យលើផលិតផល តម្លៃ និងរូបភាព។ យើងមិនសន្យាចំនួនជាក់លាក់ទេ ប៉ុន្តែយើងតាមដានរាល់ថ្ងៃ ហើយកែតម្រូវភ្លាមៗ ដើម្បីឲ្យថ្លៃក្នុងមួយ Order ទាបបំផុត។</p></details><details class="faq"><summary><span data-kh="តើមានប្រព័ន្ធជួយលក់ Live ទេ?" data-en="Do you have a system for Live selling?">តើមានប្រព័ន្ធជួយលក់ Live ទេ?</span></summary><p data-kh="មាន។ ប្រព័ន្ធ ADS BOX នៅ adsbox.biz ចាប់ Order ពី Comment ដោយស្វ័យប្រវត្តិ ហើយមានគម្រោងប្រើឥតគិតថ្លៃ។" data-en="Yes. The ADS BOX system at adsbox.biz catches orders from Live comments automatically, and there is a free plan.">មាន។ ប្រព័ន្ធ ADS BOX នៅ adsbox.biz ចាប់ Order ពី Comment ដោយស្វ័យប្រវត្តិ ហើយមានគម្រោងប្រើឥតគិតថ្លៃ។</p></details></div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="wrap cta-in">
+      <div>
+        <h2 data-kh="ត្រៀមលក់ដាច់ជាងមុនហើយឬនៅ?" data-en="Ready to sell more?">ត្រៀមលក់ដាច់ជាងមុនហើយឬនៅ?</h2>
+        <p data-kh="ផ្ញើតំណភ្ជាប់ Page របស់បងប្អូនមកយើង ហើយយើងនឹងណែនាំជំហានដំបូង។" data-en="Send us your Page link and we'll suggest the first step.">ផ្ញើតំណភ្ជាប់ Page របស់បងប្អូនមកយើង ហើយយើងនឹងណែនាំជំហានដំបូង។</p>
       </div>
+      <a class="btn btn-primary" href="https://t.me/vannakdm" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13 1.4 11.5c-1-.3-1-1 .2-1.5L20.5 2.9c.9-.3 1.6.2 1.4 1.4z"/></svg><span data-kh="ឆាតតាម Telegram" data-en="Chat on Telegram">ឆាតតាម Telegram</span></a>
     </div>
   </section>
 </main>
@@ -510,11 +627,22 @@ footer img { height: 22px; width: auto; }
 
 <a class="float-tg" href="https://t.me/vannakdm" target="_blank" rel="noopener" aria-label="Chat on Telegram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13 1.4 11.5c-1-.3-1-1 .2-1.5L20.5 2.9c.9-.3 1.6.2 1.4 1.4z"/></svg><span data-kh="ឆាតជាមួយយើង" data-en="Chat with us">ឆាតជាមួយយើង</span></a>
 
-<footer>
-  <div class="wrap">
-    <img src="assets/logo-word-white.png" alt="ADS BOX" width="118" height="22">
-    <span>© 2026 ADS BOX · Phnom Penh, Cambodia</span>
+<footer class="ftr" id="contact">
+  <div class="wrap ftr-grid">
+    <div class="ftr-brand">
+      <img src="assets/logo-word-white.png" alt="ADS BOX" width="150" height="28">
+      <p data-kh="ក្រុមជំនាញ Boost Post និង Live សម្រាប់អ្នកលក់នៅកម្ពុជា។" data-en="The Boost Post &amp; Live team for sellers in Cambodia.">ក្រុមជំនាញ Boost Post និង Live សម្រាប់អ្នកលក់នៅកម្ពុជា។</p>
+    </div>
+    <div><h3 data-kh="ម៉ឺនុយ" data-en="Menu">ម៉ឺនុយ</h3><div class="ftr-links"><a href="#about" data-kh="អំពីយើង" data-en="About">អំពីយើង</a><a href="#services" data-kh="សេវាកម្ម" data-en="Services">សេវាកម្ម</a><a href="#system" data-kh="ប្រព័ន្ធ ADS BOX" data-en="ADS BOX system">ប្រព័ន្ធ ADS BOX</a><a href="#results" data-kh="លទ្ធផល" data-en="Results">លទ្ធផល</a><a href="#knowledge" data-kh="ចំណេះដឹង" data-en="Knowledge">ចំណេះដឹង</a><a href="#faq" data-kh="សំណួរ" data-en="FAQ">សំណួរ</a></div></div>
+    <div><h3 data-kh="សេវាកម្ម" data-en="Services">សេវាកម្ម</h3><div class="ftr-links"><a href="#services" data-filter="boost" data-kh="ផ្សព្វផ្សាយ និង Boost" data-en="Boost &amp; ads">ផ្សព្វផ្សាយ និង Boost</a><a href="#services" data-filter="design" data-kh="រចនា និងវេបសាយ" data-en="Design &amp; website">រចនា និងវេបសាយ</a><a href="#services" data-filter="care" data-kh="ថែទាំផេក និងគណនី" data-en="Page &amp; account care">ថែទាំផេក និងគណនី</a><a href="#services" data-filter="live" data-kh="លក់ Live និងមេរៀន" data-en="Live selling &amp; training">លក់ Live និងមេរៀន</a></div></div>
+    <div><h3 data-kh="ទំនាក់ទំនង" data-en="Contact">ទំនាក់ទំនង</h3><div class="ftr-links">
+      <a href="https://t.me/vannakdm" target="_blank" rel="noopener">Telegram · t.me/vannakdm</a>
+      <a href="https://www.facebook.com/adsbox.agency" target="_blank" rel="noopener">Facebook · adsbox.agency</a>
+      <span>support@adsbox.biz</span>
+      <a href="https://adsbox.biz/" target="_blank" rel="noopener" data-kh="ប្រព័ន្ធ ADS BOX (adsbox.biz)" data-en="ADS BOX system (adsbox.biz)">ប្រព័ន្ធ ADS BOX (adsbox.biz)</a>
+    </div></div>
   </div>
+  <div class="wrap ftr-bottom">© 2026 ADS BOX · Cambodia</div>
 </footer>
 
 <script src="services.js"></script>
@@ -612,6 +740,14 @@ footer img { height: 22px; width: auto; }
     filter = b.getAttribute("data-f"); renderTabs(); renderServices();
   });
   window.addEventListener("hashchange", route);
+  var burger = document.getElementById("burger"), drawer = document.getElementById("drawer");
+  function setDrawer(open) { drawer.hidden = !open; burger.setAttribute("aria-expanded", open); }
+  burger.addEventListener("click", function () { setDrawer(drawer.hidden); });
+  drawer.addEventListener("click", function (e) { if (e.target.closest("a")) setDrawer(false); });
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest("[data-filter]"); if (!a) return;
+    filter = a.getAttribute("data-filter"); renderTabs(); renderServices();
+  });
   applyLang();
   route();
 })();
