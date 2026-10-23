@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="km">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<meta property="og:title" content="ADS BOX Agency">
+<meta property="og:description" content="Boost, design, page care and live-selling setup for sellers in Cambodia.">
+<meta property="og:image" content="assets/logo.png">
+<title>ADS BOX Agency</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="ADS BOX: Facebook and TikTok boosting, design, page care, live-selling setup and online selling courses for Cambodian businesses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap">
+<style>
+/* Layout: a navy brand band up top, then a light working page; services read like a price board grouped by need, knowledge reads like a short magazine. */
+:root {
+  --navy: #1c4b9b;
+  --blue: #0059e0;
+  --bg: #f6f8fc;
+  --surface: #ffffff;
+  --fg: #0f1a2e;
+  --muted: #55627a;
+  --line: #dfe5f0;
+  --chip: #e8eefb;
+  --band: #1c4b9b;
+  --band-fg: #ffffff;
+  --band-muted: #c9d6f2;
+  --ok: #128a5a;
+  --font-display: "Sora", "Kantumruy Pro", system-ui, sans-serif;
+  --font-body: "Kantumruy Pro", "Noto Sans Khmer", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b1222; --surface: #121c33; --fg: #e8edf8; --muted: #9aa8c4; --line: #24324f;
+    --chip: #1a2a4d; --band: #0f2756; --band-fg: #ffffff; --band-muted: #a9bce6; --blue: #4d8dff; --ok: #3ccf8e;
+    color-scheme: dark;
+  }
+  :root:not([data-theme="light"]) .logo-light { display: none; }
+  :root:not([data-theme="light"]) .logo-dark { display: block; }
+}
+:root[data-theme="dark"] {
+  --bg: #0b1222; --surface: #121c33; --fg: #e8edf8; --muted: #9aa8c4; --line: #24324f;
+  --chip: #1a2a4d; --band: #0f2756; --band-fg: #ffffff; --band-muted: #a9bce6; --blue: #4d8dff; --ok: #3ccf8e;
+  color-scheme: dark;
+}
+:root[data-theme="dark"] .logo-light { display: none; }
+:root[data-theme="dark"] .logo-dark { display: block; }
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 16px; line-height: 1.7; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface); }
+a { color: var(--blue); }
+h1, h2, h3 { text-wrap: balance; line-height: 1.3; margin: 0; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; border-radius: 4px; }
+
+/* Header */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; gap: 16px; padding-block: 12px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.brand img { height: 26px; width: auto; }
+.logo-dark { display: none; }
+.nav { display: flex; gap: 4px; margin-left: auto; flex-wrap: wrap; align-items: center; }
+.nav a { color: var(--fg); text-decoration: none; font-weight: 500; padding: 6px 10px; border-radius: 8px; }
+.nav a:hover { background: var(--chip); }
+.lang { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+.lang button { font: inherit; font-size: 13px; font-weight: 600; border: 0; background: transparent; color: var(--muted); padding: 4px 12px; cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--navy); color: #fff; }
+@media (max-width: 640px) { .nav a.hide-sm { display: none; } }
+
+/* Hero */
+.hero { background: var(--band); color: var(--band-fg); }
+.hero .wrap { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center; padding-block: 56px 64px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(30px, 5vw, 50px); font-weight: 800; letter-spacing: -0.01em; }
+:lang(km) .hero h1 { font-family: var(--font-body); font-weight: 700; line-height: 1.45; }
+.hero p { color: var(--band-muted); font-size: 18px; max-width: 34em; margin: 16px 0 0; }
+.cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; font: inherit; font-weight: 600; text-decoration: none; border-radius: 10px; padding: 10px 18px; border: 1px solid transparent; cursor: pointer; }
+.btn-primary { background: #ffffff; color: #1c4b9b; }
+.btn-primary:hover { background: #e8eefb; }
+.btn-ghost { border-color: rgba(255,255,255,.45); color: #ffffff; }
+.btn-ghost:hover { background: rgba(255,255,255,.1); }
+
+/* Campaign slip in hero: the kind of report a boost client receives */
+.slip { background: var(--surface); color: var(--fg); border-radius: 16px; padding: 20px; box-shadow: 0 20px 50px rgba(5, 20, 60, .35); max-width: 420px; justify-self: end; width: 100%; }
+.slip-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 13px; color: var(--muted); }
+.slip-head strong { color: var(--fg); font-size: 15px; }
+.pill { font-size: 12px; font-weight: 600; padding: 2px 10px; border-radius: 999px; background: var(--chip); color: var(--blue); white-space: nowrap; }
+.slip dl { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 16px; margin: 18px 0 0; }
+.slip dt { font-size: 12px; color: var(--muted); }
+.slip dd { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 22px; font-variant-numeric: tabular-nums; }
+.slip dd small { font-size: 13px; color: var(--ok); font-family: var(--font-body); margin-left: 4px; }
+.bars { display: flex; align-items: flex-end; gap: 6px; height: 56px; margin-top: 18px; padding-top: 6px; border-top: 1px dashed var(--line); }
+.bars span { flex: 1; background: var(--chip); border-radius: 4px 4px 0 0; }
+.bars span.hi { background: var(--blue); }
+.slip-foot { font-size: 12px; color: var(--muted); margin-top: 10px; }
+
+@media (max-width: 820px) {
+  .hero .wrap { grid-template-columns: 1fr; padding-block: 40px 48px; }
+  .slip { justify-self: start; }
+}
+
+/* Sections */
+section.block { padding-block: 64px; }
+.eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--blue); }
+.sec-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; margin-bottom: 28px; }
+.sec-head h2 { font-size: clamp(24px, 3.4vw, 34px); font-weight: 700; margin-top: 6px; }
+.sec-head p { color: var(--muted); margin: 8px 0 0; max-width: 40em; }
+
+/* Services */
+.tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+.tabs button { font: inherit; font-weight: 500; font-size: 15px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); padding: 6px 14px; border-radius: 999px; cursor: pointer; }
+.tabs button[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: #fff; }
+.svc-group { margin-bottom: 36px; }
+.svc-group h3 { font-size: 18px; font-weight: 600; color: var(--muted); margin-bottom: 12px; }
+.svc-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 14px; }
+.svc { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.svc h4 { margin: 0; font-size: 17px; font-weight: 600; line-height: 1.45; }
+.svc p { margin: 0; color: var(--muted); font-size: 15px; flex: 1; }
+.svc-foot { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 8px; padding-top: 12px; border-top: 1px solid var(--line); }
+.price { font-weight: 600; font-variant-numeric: tabular-nums; }
+.price.ask { color: var(--muted); font-weight: 500; font-size: 14px; }
+.order { font: inherit; font-size: 14px; font-weight: 600; color: #fff; background: var(--navy); border-radius: 8px; padding: 6px 14px; text-decoration: none; white-space: nowrap; }
+.order:hover { background: var(--blue); }
+
+/* Software promo */
+.soft { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 24px; display: grid; grid-template-columns: auto 1fr auto; gap: 20px; align-items: center; }
+.soft img { width: 64px; height: auto; }
+.soft h3 { font-size: 20px; }
+.soft p { margin: 4px 0 0; color: var(--muted); }
+.soft .btn { background: var(--navy); color: #fff; }
+@media (max-width: 700px) { .soft { grid-template-columns: 1fr; } }
+
+/* Steps */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; counter-reset: step; list-style: none; padding: 0; margin: 0; }
+.steps li { counter-increment: step; border-top: 3px solid var(--navy); padding-top: 14px; min-width: 0; }
+.steps li::before { content: counter(step); font-family: var(--font-display); font-weight: 800; font-size: 28px; color: var(--blue); display: block; }
+.steps h3 { font-size: 18px; font-weight: 600; margin-top: 4px; }
+.steps p { color: var(--muted); margin: 6px 0 0; }
+@media (max-width: 700px) { .steps { grid-template-columns: 1fr; } }
+
+/* Knowledge */
+.alt { background: var(--surface); border-block: 1px solid var(--line); }
+.posts { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 24px; }
+.post { display: flex; flex-direction: column; gap: 8px; text-decoration: none; color: inherit; padding-bottom: 16px; border-bottom: 1px solid var(--line); min-width: 0; }
+.post .meta { display: flex; gap: 10px; align-items: center; font-size: 13px; color: var(--muted); }
+.post h3 { font-size: 20px; font-weight: 600; line-height: 1.45; }
+.post:hover h3 { color: var(--blue); }
+.post p { margin: 0; color: var(--muted); }
+.read { font-weight: 600; color: var(--blue); font-size: 15px; }
+
+/* Article view */
+.article { max-width: 720px; margin: 0 auto; padding-block: 40px 72px; }
+.back { font: inherit; background: none; border: 0; color: var(--blue); font-weight: 600; cursor: pointer; padding: 0; }
+.article h1 { font-size: clamp(26px, 4vw, 38px); font-weight: 700; margin: 16px 0 10px; line-height: 1.4; }
+.article .meta { color: var(--muted); font-size: 14px; display: flex; gap: 10px; align-items: center; }
+.article .body p { margin: 0 0 16px; font-size: 17px; }
+.article .body h2 { font-size: 21px; font-weight: 600; margin: 28px 0 8px; }
+.article .ask-box { margin-top: 32px; background: var(--chip); border-radius: 14px; padding: 20px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+
+/* Contact & footer */
+.contact { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 14px; }
+.c-card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px; min-width: 0; }
+.c-card .label { font-size: 13px; color: var(--muted); }
+.c-card a, .c-card .val { font-weight: 600; font-size: 17px; word-break: break-word; text-decoration: none; }
+footer { background: var(--band); color: var(--band-muted); }
+footer .wrap { padding-block: 28px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 14px; }
+footer img { height: 22px; width: auto; }
+</style>
+
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#home" aria-label="ADS BOX">
+      <img class="logo-light" src="assets/logo-word.png" alt="ADS BOX" width="140" height="26">
+      <img class="logo-dark" src="assets/logo-word-white.png" alt="ADS BOX" width="140" height="26">
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#services" data-kh="សេវាកម្ម" data-en="Services">សេវាកម្ម</a>
+      <a href="#knowledge" data-kh="ចំណេះដឹង" data-en="Knowledge">ចំណេះដឹង</a>
+      <a class="hide-sm" href="#contact" data-kh="ទំនាក់ទំនង" data-en="Contact">ទំនាក់ទំនង</a>
+      <span class="lang" role="group" aria-label="Language">
+        <button type="button" id="lang-kh" aria-pressed="true">ខ្មែរ</button>
+        <button type="button" id="lang-en" aria-pressed="false">EN</button>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main id="home-view">
+  <section class="hero" id="home">
+    <div class="wrap">
+      <div>
+        <h1 data-kh="ជួយអាជីវកម្មរបស់អ្នក លក់ដាច់តាមអនឡាញ" data-en="Sell more online, with one team behind your page">ជួយអាជីវកម្មរបស់អ្នក លក់ដាច់តាមអនឡាញ</h1>
+        <p data-kh="Boost ផេក និង TikTok រចនារូបភាព ថែទាំផេក រៀបចំកន្លែង Live និងមេរៀនលក់អនឡាញ សម្រាប់អ្នកលក់នៅកម្ពុជា។" data-en="Facebook and TikTok boosting, design, page care, live studio setup and online selling courses for sellers in Cambodia.">Boost ផេក និង TikTok រចនារូបភាព ថែទាំផេក រៀបចំកន្លែង Live និងមេរៀនលក់អនឡាញ សម្រាប់អ្នកលក់នៅកម្ពុជា។</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#services" data-kh="មើលសេវាកម្ម" data-en="See services">មើលសេវាកម្ម</a>
+          <a class="btn btn-ghost" href="https://t.me/Dornsovandara" target="_blank" rel="noopener" data-kh="ឆាតតាម Telegram" data-en="Chat on Telegram">ឆាតតាម Telegram</a>
+        </div>
+      </div>
+      <aside class="slip" aria-label="Example boost report">
+        <div class="slip-head">
+          <div><strong>Boost Post</strong><br><span data-kh="របាយការណ៍ ៧ ថ្ងៃ" data-en="7-day report">របាយការណ៍ ៧ ថ្ងៃ</span></div>
+          <span class="pill" data-kh="ឧទាហរណ៍" data-en="Example">ឧទាហរណ៍</span>
+        </div>
+        <dl>
+          <div><dt data-kh="ថវិកា" data-en="Budget">ថវិកា</dt><dd>$5<small data-kh="/ថ្ងៃ" data-en="/day">/ថ្ងៃ</small></dd></div>
+          <div><dt data-kh="អ្នកឃើញ" data-en="Reach">អ្នកឃើញ</dt><dd>18,400</dd></div>
+          <div><dt data-kh="សារពីអតិថិជន" data-en="Customer messages">សារពីអតិថិជន</dt><dd>126</dd></div>
+          <div><dt data-kh="ថ្លៃក្នុងមួយសារ" data-en="Cost per message">ថ្លៃក្នុងមួយសារ</dt><dd>$0.28</dd></div>
+        </dl>
+        <div class="bars" aria-hidden="true">
+          <span style="height:30%"></span><span style="height:42%"></span><span style="height:38%"></span><span style="height:55%"></span><span style="height:63%"></span><span class="hi" style="height:88%"></span><span class="hi" style="height:100%"></span>
+        </div>
+        <div class="slip-foot" data-kh="សារពីអតិថិជនក្នុងមួយថ្ងៃ ពីថ្ងៃទី ១ ដល់ ៧" data-en="Customer messages per day, day 1 to 7">សារពីអតិថិជនក្នុងមួយថ្ងៃ ពីថ្ងៃទី ១ ដល់ ៧</div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="block" id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="eyebrow" data-kh="សេវាកម្ម" data-en="Services">សេវាកម្ម</div>
+          <h2 data-kh="ជ្រើសរើសសេវាកម្មដែលអ្នកត្រូវការ" data-en="Pick the service you need">ជ្រើសរើសសេវាកម្មដែលអ្នកត្រូវការ</h2>
+          <p data-kh="ចុច “កម្ម៉ង់” ដើម្បីឆាតជាមួយក្រុមយើងតាម Telegram។ យើងនឹងប្រាប់តម្លៃ និងរយៈពេលច្បាស់លាស់។" data-en="Tap “Order” to chat with our team on Telegram. We'll confirm the price and timing with you.">ចុច “កម្ម៉ង់” ដើម្បីឆាតជាមួយក្រុមយើងតាម Telegram។ យើងនឹងប្រាប់តម្លៃ និងរយៈពេលច្បាស់លាស់។</p>
+        </div>
+      </div>
+      <div class="tabs" id="tabs" role="group" aria-label="Filter services"></div>
+      <div id="svc-groups"></div>
+
+      <div class="soft">
+        <img class="logo-light" src="assets/logo-mark.png" alt="" width="64" height="66">
+        <img class="logo-dark" src="assets/logo-mark-white.png" alt="" width="64" height="66">
+        <div>
+          <h3 data-kh="ប្រព័ន្ធ ADS BOX សម្រាប់លក់ Live" data-en="ADS BOX live-selling system">ប្រព័ន្ធ ADS BOX សម្រាប់លក់ Live</h3>
+          <p data-kh="ចាប់ការកម្ម៉ង់ពី Comment ដោយស្វ័យប្រវត្តិ ឆ្លើយសារ Messenger និងបោះពុម្ពស្ទីគ័រដឹកជញ្ជូន។ ប្រើឥតគិតថ្លៃបាន។" data-en="Catch orders from Live comments automatically, reply on Messenger and print shipping stickers. Free plan available.">ចាប់ការកម្ម៉ង់ពី Comment ដោយស្វ័យប្រវត្តិ ឆ្លើយសារ Messenger និងបោះពុម្ពស្ទីគ័រដឹកជញ្ជូន។ ប្រើឥតគិតថ្លៃបាន។</p>
+        </div>
+        <a class="btn" href="https://adsbox.biz/" target="_blank" rel="noopener" data-kh="សាកល្បងនៅ adsbox.biz" data-en="Try it at adsbox.biz">សាកល្បងនៅ adsbox.biz</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt" id="how">
+    <div class="wrap">
+      <div class="sec-head"><div>
+        <div class="eyebrow" data-kh="របៀបកម្ម៉ង់" data-en="How to order">របៀបកម្ម៉ង់</div>
+        <h2 data-kh="បីជំហាន ងាយស្រួល" data-en="Three simple steps">បីជំហាន ងាយស្រួល</h2>
+      </div></div>
+      <ol class="steps">
+        <li><h3 data-kh="ជ្រើសរើសសេវាកម្ម" data-en="Choose a service">ជ្រើសរើសសេវាកម្ម</h3><p data-kh="ចុច “កម្ម៉ង់” លើសេវាកម្មដែលអ្នកចង់បាន។" data-en="Tap “Order” on the service you want.">ចុច “កម្ម៉ង់” លើសេវាកម្មដែលអ្នកចង់បាន។</p></li>
+        <li><h3 data-kh="ឆាតជាមួយក្រុមយើង" data-en="Chat with our team">ឆាតជាមួយក្រុមយើង</h3><p data-kh="ផ្ញើតំណភ្ជាប់ផេក ឬប៉ុស្ត៍របស់អ្នក ហើយយើងប្រាប់តម្លៃច្បាស់។" data-en="Send your page or post link and we confirm the price.">ផ្ញើតំណភ្ជាប់ផេក ឬប៉ុស្ត៍របស់អ្នក ហើយយើងប្រាប់តម្លៃច្បាស់។</p></li>
+        <li><h3 data-kh="បង់ប្រាក់ ហើយយើងចាប់ផ្តើម" data-en="Pay and we start">បង់ប្រាក់ ហើយយើងចាប់ផ្តើម</h3><p data-kh="បង់តាម ABA ឬ KHQR ហើយក្រុមយើងចាប់ផ្តើមការងារភ្លាម។" data-en="Pay by ABA or KHQR and our team starts right away.">បង់តាម ABA ឬ KHQR ហើយក្រុមយើងចាប់ផ្តើមការងារភ្លាម។</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block" id="knowledge">
+    <div class="wrap">
+      <div class="sec-head"><div>
+        <div class="eyebrow" data-kh="ចំណេះដឹង" data-en="Knowledge">ចំណេះដឹង</div>
+        <h2 data-kh="គន្លឹះលក់អនឡាញ ពីក្រុម ADS BOX" data-en="Online selling tips from the ADS BOX team">គន្លឹះលក់អនឡាញ ពីក្រុម ADS BOX</h2>
+      </div></div>
+      <div class="posts" id="posts"></div>
+    </div>
+  </section>
+
+  <section class="block alt" id="contact">
+    <div class="wrap">
+      <div class="sec-head"><div>
+        <div class="eyebrow" data-kh="ទំនាក់ទំនង" data-en="Contact">ទំនាក់ទំនង</div>
+        <h2 data-kh="សួរយើងបានគ្រប់ពេល" data-en="Ask us anytime">សួរយើងបានគ្រប់ពេល</h2>
+      </div></div>
+      <div class="contact">
+        <div class="c-card"><div class="label">Telegram</div><a href="https://t.me/Dornsovandara" target="_blank" rel="noopener">t.me/Dornsovandara</a></div>
+        <div class="c-card"><div class="label">Facebook</div><a href="https://www.facebook.com/adsbox.agency" target="_blank" rel="noopener">facebook.com/adsbox.agency</a></div>
+        <div class="c-card"><div class="label" data-kh="អ៊ីមែល" data-en="Email">អ៊ីមែល</div><span class="val">support@adsbox.biz</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<main id="article-view" hidden>
+  <div class="wrap"><article class="article" id="article"></article></div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="assets/logo-word-white.png" alt="ADS BOX" width="118" height="22">
+    <span>© 2026 ADS BOX · Phnom Penh, Cambodia</span>
+  </div>
+</footer>
+
+<script src="services.js"></script>
+<script src="articles.js"></script>
+<script>
+(function () {
+  var TG = "https://t.me/Dornsovandara";
+  var lang = "kh";
+  try { lang = localStorage.getItem("adsbox-lang") || "kh"; } catch (e) {}
+  var filter = "all";
+  var T = {
+    all: { kh: "ទាំងអស់", en: "All" },
+    ask: { kh: "សួរតម្លៃ", en: "Ask for price" },
+    order: { kh: "កម្ម៉ង់", en: "Order" },
+    read: { kh: "អានបន្ត →", en: "Read more →" },
+    back: { kh: "← ត្រឡប់ទៅចំណេះដឹង", en: "← Back to Knowledge" },
+    help: { kh: "ត្រូវការជំនួយពីក្រុម ADS BOX?", en: "Want the ADS BOX team to help?" },
+    chat: { kh: "ឆាតតាម Telegram", en: "Chat on Telegram" }
+  };
+  var KH_MONTHS = ["មករា","កុម្ភៈ","មីនា","មេសា","ឧសភា","មិថុនា","កក្កដា","សីហា","កញ្ញា","តុលា","វិច្ឆិកា","ធ្នូ"];
+  var KH_DIGITS = "០១២៣៤៥៦៧៨៩";
+  function khNum(n) { return String(n).replace(/\d/g, function (d) { return KH_DIGITS[d]; }); }
+  function fmtDate(s) {
+    var p = s.split("-"), d = new Date(+p[0], +p[1] - 1, +p[2]);
+    if (lang === "kh") return khNum(d.getDate()) + " " + KH_MONTHS[d.getMonth()] + " " + khNum(d.getFullYear());
+    return d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+  }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+
+  function renderTabs() {
+    var html = '<button type="button" data-f="all" aria-pressed="' + (filter === "all") + '">' + T.all[lang] + "</button>";
+    SERVICE_GROUPS.forEach(function (g) {
+      html += '<button type="button" data-f="' + g.id + '" aria-pressed="' + (filter === g.id) + '">' + esc(g.name[lang]) + "</button>";
+    });
+    document.getElementById("tabs").innerHTML = html;
+  }
+  function renderServices() {
+    var html = "";
+    SERVICE_GROUPS.forEach(function (g) {
+      if (filter !== "all" && filter !== g.id) return;
+      html += '<div class="svc-group"><h3>' + esc(g.name[lang]) + '</h3><div class="svc-list">';
+      g.services.forEach(function (s) {
+        var price = s.price ? '<span class="price">' + esc(s.price) + "</span>" : '<span class="price ask">' + T.ask[lang] + "</span>";
+        html += '<div class="svc"><h4>' + esc(s.name[lang]) + "</h4><p>" + esc(s.desc[lang]) + '</p><div class="svc-foot">' + price +
+          '<a class="order" href="' + TG + '" target="_blank" rel="noopener">' + T.order[lang] + "</a></div></div>";
+      });
+      html += "</div></div>";
+    });
+    document.getElementById("svc-groups").innerHTML = html;
+  }
+  function sortedArticles() { return ARTICLES.slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; }); }
+  function renderPosts() {
+    document.getElementById("posts").innerHTML = sortedArticles().map(function (a) {
+      return '<a class="post" href="#article-' + a.id + '"><div class="meta"><span class="pill">' + esc(a.tag[lang]) + "</span><span>" + fmtDate(a.date) +
+        "</span></div><h3>" + esc(a.title[lang]) + "</h3><p>" + esc(a.summary[lang]) + '</p><span class="read">' + T.read[lang] + "</span></a>";
+    }).join("");
+  }
+  function renderArticle(a) {
+    var body = a.body[lang].map(function (p) {
+      return p.indexOf("## ") === 0 ? "<h2>" + esc(p.slice(3)) + "</h2>" : "<p>" + esc(p) + "</p>";
+    }).join("");
+    document.getElementById("article").innerHTML =
+      '<button type="button" class="back" id="back">' + T.back[lang] + "</button>" +
+      "<h1>" + esc(a.title[lang]) + '</h1><div class="meta"><span class="pill">' + esc(a.tag[lang]) + "</span><span>" + fmtDate(a.date) + "</span></div>" +
+      '<div class="body" style="margin-top:24px">' + body + "</div>" +
+      '<div class="ask-box"><strong>' + T.help[lang] + '</strong><a class="order" href="' + TG + '" target="_blank" rel="noopener">' + T.chat[lang] + "</a></div>";
+    document.getElementById("back").addEventListener("click", function () { location.hash = "knowledge"; });
+    document.title = a.title[lang] + " · ADS BOX";
+  }
+  function route() {
+    var h = location.hash.replace("#", "");
+    var a = h.indexOf("article-") === 0 && ARTICLES.filter(function (x) { return "article-" + x.id === h; })[0];
+    document.getElementById("home-view").hidden = !!a;
+    document.getElementById("article-view").hidden = !a;
+    if (a) { renderArticle(a); window.scrollTo(0, 0); }
+    else {
+      document.title = "ADS BOX Agency";
+      if (h) { var el = document.getElementById(h); if (el) el.scrollIntoView(); }
+    }
+  }
+  function applyLang() {
+    document.documentElement.lang = lang === "kh" ? "km" : "en";
+    document.querySelectorAll("[data-kh]").forEach(function (el) { el.textContent = el.getAttribute("data-" + lang); });
+    document.getElementById("lang-kh").setAttribute("aria-pressed", lang === "kh");
+    document.getElementById("lang-en").setAttribute("aria-pressed", lang === "en");
+    renderTabs(); renderServices(); renderPosts();
+    if (!document.getElementById("article-view").hidden) route();
+  }
+  function setLang(l) { lang = l; try { localStorage.setItem("adsbox-lang", l); } catch (e) {} applyLang(); }
+
+  document.getElementById("lang-kh").addEventListener("click", function () { setLang("kh"); });
+  document.getElementById("lang-en").addEventListener("click", function () { setLang("en"); });
+  document.getElementById("tabs").addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b) return;
+    filter = b.getAttribute("data-f"); renderTabs(); renderServices();
+  });
+  window.addEventListener("hashchange", route);
+  applyLang();
+  route();
+})();
+</script>
+
+</body>
+</html>
