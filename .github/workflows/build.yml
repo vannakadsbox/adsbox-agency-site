@@ -1,0 +1,51 @@
+# Rebuilds the site after staff save something in the admin panel (Pages CMS):
+# data files, service and share pictures, knowledge pages and sitemap. Then commits the result.
+name: Build site
+
+on:
+  push:
+    branches: [main]
+    paths: ["content/**", "assets/uploads/**", "tools/**", ".github/workflows/build.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: build-site
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install tools
+        run: |
+          sudo apt-get update -q && sudo apt-get install -y -q fonts-noto-color-emoji
+          npm install --no-save --no-package-lock playwright@1.48.2
+          npx playwright install --with-deps chromium
+          pip install pyyaml pillow
+      - name: Build
+        run: python3 tools/build.py
+      - name: Commit the rebuilt files
+        run: |
+          git add -A
+          if git diff --cached --quiet; then echo "Nothing changed"; exit 0; fi
+          git config user.name "ADS BOX site builder"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Rebuild site from content"
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Publish
+        # Commits made by this workflow don't always start a GitHub Pages build on their own, so ask for one.
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds" || echo "Pages build request skipped"
+        env:
+          GH_TOKEN: ${{ github.token }}

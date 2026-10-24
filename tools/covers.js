@@ -1,5 +1,5 @@
 // Make a Facebook share picture (1200x630) for each article, matching the cover at the top of its page.
-// Run from the repo root:  node tools/covers.js        (only makes pictures that are missing)
+// Run from the repo root:  node tools/covers.js        (only makes pictures that are missing or whose title/tag/emoji changed)
 //                          node tools/covers.js --all  (remakes every picture)
 // Pictures are saved to assets/covers/<article id>.png. tools/build.py then uses them as og:image.
 const fs = require("fs");
@@ -53,7 +53,10 @@ h1 { font-size: ${a.title.kh.length > 40 ? 54 : 62}px; font-weight: 700; line-he
   const all = process.argv.includes("--all");
   const outDir = path.join(ROOT, "assets", "covers");
   fs.mkdirSync(outDir, { recursive: true });
-  const todo = window.ARTICLES.filter((a) => !a.cover && (all || !fs.existsSync(path.join(outDir, a.id + ".png"))));
+  const manFile = path.join(outDir, "manifest.json");
+  let man = {}; try { man = JSON.parse(fs.readFileSync(manFile, "utf8")); } catch (e) {}
+  const key = (a) => JSON.stringify([a.title.kh, a.tag.kh, a.emoji || []]);
+  const todo = window.ARTICLES.filter((a) => !a.cover && (all || man[a.id] !== key(a) || !fs.existsSync(path.join(outDir, a.id + ".png"))));
   if (!todo.length) return console.log("Covers: nothing to make");
   const { chromium } = require("playwright");
   let browser;
@@ -63,6 +66,7 @@ h1 { font-size: ${a.title.kh.length > 40 ? 54 : 62}px; font-weight: 700; line-he
     await page.setContent(html(a), { waitUntil: "load" });
     await page.evaluate(() => document.fonts.ready);
     await page.screenshot({ path: path.join(outDir, a.id + ".png") });
+    man[a.id] = key(a); fs.writeFileSync(manFile, JSON.stringify(man, null, 1));
     console.log("Cover made: assets/covers/" + a.id + ".png");
   }
   await browser.close();

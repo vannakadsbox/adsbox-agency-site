@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
-"""Build static pages for knowledge articles, plus sitemap.xml and robots.txt.
+"""Build the site from the content/ folder: data files, pictures, knowledge article pages, sitemap.xml and robots.txt.
 
-Run from the repo root after editing articles.js:  python3 tools/build.py
-(It also runs tools/covers.js, which makes the Facebook share picture for each new article.)
+Run from the repo root:  python3 tools/build.py
+The GitHub Action in .github/workflows/build.yml runs it after every save in the admin panel.
 """
-import hashlib, html, json, os, shutil, subprocess
+import hashlib, html, json, os, shutil, subprocess, sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://adsbox.agency"
@@ -12,14 +14,16 @@ TG = "https://t.me/vannakdm"
 FB = "https://www.facebook.com/adsbox.agency"
 MS = "https://m.me/adsbox.agency"
 
-# Make the Facebook share picture for any new article (needs Playwright; falls back to share.png if it fails)
-if subprocess.run(["node", "tools/covers.js"], cwd=ROOT).returncode != 0:
-    print("Warning: could not make cover pictures, using share.png for new articles")
+import content
 
-raw = subprocess.check_output(["node", "-e", "global.window={};require('./articles.js');process.stdout.write(JSON.stringify(window.ARTICLES))"], cwd=ROOT)
-articles = sorted(json.loads(raw), key=lambda a: a["date"], reverse=True)
-raw = subprocess.check_output(["node", "-e", "global.window={};require('./promos.js');process.stdout.write(JSON.stringify(window.PROMOS||[]))"], cwd=ROOT)
-promos = json.loads(raw)
+# Turn the content/ folder (edited in the admin panel) into articles.js, services.js and promos.js
+articles, services, promos = content.write_all()
+
+# Make the Facebook share picture for each article and the picture on each service card.
+# These need Playwright; if they fail the site still builds (share.png is used instead).
+for script in ("tools/covers.js", "tools/service-thumbs.js"):
+    if subprocess.run(["node", script], cwd=ROOT).returncode != 0:
+        print(f"Warning: {script} failed, pictures were not updated")
 
 KH_MONTHS = ["មករា", "កុម្ភៈ", "មីនា", "មេសា", "ឧសភា", "មិថុនា", "កក្កដា", "សីហា", "កញ្ញា", "តុលា", "វិច្ឆិកា", "ធ្នូ"]
 EN_MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
@@ -37,9 +41,6 @@ def share_image(a):
     if os.path.exists(f):  # ?v= changes when the picture changes, so Facebook fetches the new one
         return f"{SITE}/assets/covers/{a['id']}.png?v={hashlib.md5(open(f, 'rb').read()).hexdigest()[:8]}"
     return f"{SITE}/assets/share.png"
-def body_html(paras):
-    return "\n".join(f"<h2>{e(p[3:])}</h2>" if p.startswith("## ") else f"<p>{e(p)}</p>" for p in paras)
-
 TGSVG = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13 1.4 11.5c-1-.3-1-1 .2-1.5L20.5 2.9c.9-.3 1.6.2 1.4 1.4z"/></svg>'
 
 def page(title, desc, url, og_type, main, extra_head="", image=f"{SITE}/assets/share.png"):
@@ -80,10 +81,6 @@ def page(title, desc, url, og_type, main, extra_head="", image=f"{SITE}/assets/s
 <main>
 {main}
 </main>
-<section class="cta-band"><div class="wrap cta-in">
-  <div>{bi("ត្រៀមលក់ដាច់ជាងមុនហើយឬនៅ?", "Ready to sell more?", "h2")}{bi("ផ្ញើតំណភ្ជាប់ Page របស់បងប្អូនមកយើង ហើយយើងនឹងណែនាំជំហានដំបូង។", "Send us your Page link and we'll suggest the first step.", "p")}</div>
-  <div class="cta-btns"><a class="btn btn-white" href="{TG}" target="_blank" rel="noopener">{TGSVG}{bi("ឆាតតាម Telegram", "Chat on Telegram")}</a><a class="btn btn-line" href="{MS}" target="_blank" rel="noopener">Messenger</a></div>
-</div></section>
 <footer class="ftr"><div class="wrap ftr-in">
   <img src="/assets/logo-word-white.png" alt="ADS BOX" width="130" height="24">
   <span><a href="{TG}" target="_blank" rel="noopener">Telegram</a> · <a href="{FB}" target="_blank" rel="noopener">Facebook</a> · support@adsbox.biz</span>
@@ -108,8 +105,8 @@ for i, a in enumerate(articles):
     url = f"{SITE}/knowledge/{a['id']}/"
     related = [r for r in articles if r["id"] != a["id"]][:3]
     rel_html = "".join(f'<a class="card" href="/knowledge/{r["id"]}/"><span class="pill">{bi(r["tag"]["kh"], r["tag"]["en"])}</span>{bi(r["title"]["kh"], r["title"]["en"], "h3")}</a>' for r in related)
-    ld = json.dumps({"@context": "https://schema.org", "@type": "Article", "headline": a["title"]["kh"], "alternativeHeadline": a["title"]["en"],
-                     "datePublished": a["date"], "inLanguage": ["km", "en"], "image": share_image(a), "mainEntityOfPage": url,
+    ld = json.dumps({"@context": "https://schema.org", "@type": "Article", "headline": a["title"]["kh"],
+                     "datePublished": a["date"], "inLanguage": "km", "image": share_image(a), "mainEntityOfPage": url,
                      "author": {"@type": "Organization", "name": "ADS BOX"}, "publisher": {"@type": "Organization", "name": "ADS BOX", "logo": {"@type": "ImageObject", "url": f"{SITE}/assets/logo.png"}}}, ensure_ascii=False)
     if a.get("cover"):
         cover = f'<figure class="cover cover-img"><img src="/{e(a["cover"])}" alt="" width="1200" height="675"></figure>{bi(a["title"]["kh"], a["title"]["en"], "h1")}'
@@ -127,13 +124,12 @@ for i, a in enumerate(articles):
   {cover}
   <div class="meta">{'<span class="pill">' + bi(a["tag"]["kh"], a["tag"]["en"]) + '</span>' if a.get("cover") else ""}{bi(date_kh(a["date"]), date_en(a["date"]))}</div>
   {bi(a["summary"]["kh"], a["summary"]["en"], "p", "lead")}
-  <div class="body" data-lang-block="kh">{body_html(a["body"]["kh"])}</div>
-  <div class="body" data-lang-block="en" hidden>{body_html(a["body"]["en"])}</div>
+  <div class="body">{a["html"]}</div>
   <div class="share">{bi("ចែករំលែក៖", "Share:")} <a href="https://www.facebook.com/sharer/sharer.php?u={url}" target="_blank" rel="noopener">Facebook</a> <a href="https://t.me/share/url?url={url}" target="_blank" rel="noopener">Telegram</a></div>
 </article>
 {promo_sec}
 <section class="wrap related"><h2>{bi("អត្ថបទផ្សេងទៀត", "More articles")}</h2><div class="cards">{rel_html}</div></section>'''
-    write(f"knowledge/{a['id']}/index.html", page(f"{a['title']['kh']} · ADS BOX", f"{a['summary']['kh']} {a['summary']['en']}", url, "article", main,
+    write(f"knowledge/{a['id']}/index.html", page(f"{a['title']['kh']} · ADS BOX", a['summary']['kh'], url, "article", main,
                                                  f'<script type="application/ld+json">{ld}</script>', share_image(a)))
 
 tags = []

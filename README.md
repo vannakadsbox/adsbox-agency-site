@@ -4,8 +4,17 @@ Public website for ADS BOX: services, knowledge articles and contact. Served by 
 
 ## Editing
 
-- **Prices and services:** edit `services.js`. Put a price in `price` (for example `"$10"`), or leave it empty to show "Ask for price".
-- **Knowledge articles:** edit `articles.js` (copy an existing block, give it a new `id`, date and Khmer/English text), then run `python3 tools/build.py`. That makes the Facebook share picture for each new article in `assets/covers/`, rebuilds each article's own page under `knowledge/`, plus `sitemap.xml` and `robots.txt`. Promotions (pop-up and promo row) live in `promos.js`. Commit the generated files too.
+Staff edit the site in the admin panel at https://app.pagescms.org (Pages CMS). It saves to the `content/` folder:
+
+- `content/articles/<slug>.md`: one knowledge article per file (settings at the top, Markdown body).
+- `content/services.json`: service groups and services (name, description, emoji, price, poster).
+- `content/promos.json`: promotions shown in the pop-up.
+- Uploaded pictures go to `assets/uploads/`. The admin panel's fields are set in `.pages.yml`.
+
+After each save, the GitHub Action in `.github/workflows/build.yml` runs `python3 tools/build.py`, which writes `articles.js`, `services.js` and `promos.js`, makes the share and service pictures, rebuilds the pages under `knowledge/`, `sitemap.xml` and `robots.txt`, and commits them. Don't edit those generated files by hand.
+
+To build locally: `pip install pyyaml pillow`, have Playwright available for the pictures, then `python3 tools/build.py`.
+
 - **Page text and layout:** `index.html`.
 
 Changes pushed to `main` go live within a minute or two.

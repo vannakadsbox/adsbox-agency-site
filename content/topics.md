@@ -1,10 +1,10 @@
 # Daily knowledge article plan
 
-The daily routine takes the first unchecked topic, writes the article into `articles.js`, and ticks it here.
+The daily routine takes the first unchecked topic, writes the article as `content/articles/<slug>.md`, runs `python3 tools/build.py`, and ticks it here.
 Add, remove or reorder topics any time.
 
 ## Writing rules
-- Khmer first, plus an English version. Simple words a shop owner uses. 250–400 words.
+- Khmer only. Simple words a shop owner uses. 250–400 words.
 - Practical: steps a seller can do today. Use real-looking examples ($ amounts, product codes like A01).
 - Never invent client names, results or reviews. Never promise guaranteed orders.
 - No advice that breaks Facebook or TikTok rules (no fake accounts, fake engagement, or buying accounts).

@@ -1,6 +1,7 @@
 // Make the picture shown on each service card (960x540), from the name, group and emoji in services.js.
 // Run from the repo root:  node tools/service-thumbs.js        (only makes pictures that are missing)
 //                          node tools/service-thumbs.js --all  (remakes every picture)
+// A picture is also remade when its name, group or emoji changes.
 // Pictures are saved to assets/services/<service id>.jpg.
 const fs = require("fs");
 const path = require("path");
@@ -53,9 +54,12 @@ h1 { font-size: ${t.length > 28 ? 46 : 54}px; font-weight: 700; line-height: 1.4
   const all = process.argv.includes("--all");
   const outDir = path.join(ROOT, "assets", "services");
   fs.mkdirSync(outDir, { recursive: true });
+  const manFile = path.join(outDir, "manifest.json");
+  let man = {}; try { man = JSON.parse(fs.readFileSync(manFile, "utf8")); } catch (e) {}
+  const key = (g, s) => JSON.stringify([g.id, g.name.kh, s.name.kh, s.emoji || []]);
   const todo = [];
   window.SERVICE_GROUPS.forEach((g) => g.services.forEach((s) => {
-    if (s.id && (all || !fs.existsSync(path.join(outDir, s.id + ".jpg")))) todo.push([g, s]);
+    if (s.id && (all || man[s.id] !== key(g, s) || !fs.existsSync(path.join(outDir, s.id + ".jpg")))) todo.push([g, s]);
   }));
   if (!todo.length) return console.log("Service pictures: nothing to make");
   const { chromium } = require("playwright");
@@ -66,6 +70,7 @@ h1 { font-size: ${t.length > 28 ? 46 : 54}px; font-weight: 700; line-height: 1.4
     await page.setContent(html(g, s), { waitUntil: "load" });
     await page.evaluate(() => document.fonts.ready);
     await page.screenshot({ path: path.join(outDir, s.id + ".jpg"), type: "jpeg", quality: 84 });
+    man[s.id] = key(g, s); fs.writeFileSync(manFile, JSON.stringify(man, null, 1));
     console.log("Service picture made: assets/services/" + s.id + ".jpg");
   }
   await browser.close();

@@ -1,0 +1,164 @@
+# Admin panel settings for Pages CMS (https://app.pagescms.org).
+# Staff edit the files in content/; .github/workflows/build.yml then rebuilds the site.
+media:
+  input: assets/uploads
+  output: /assets/uploads
+  extensions: [jpg, jpeg, png, webp, gif]
+
+content:
+  - name: articles
+    label: ចំណេះដឹង (អត្ថបទ)
+    description: អត្ថបទក្នុងទំព័រ ចំណេះដឹង។ ចុច "Add an entry" ដើម្បីសរសេរអត្ថបទថ្មី។
+    type: collection
+    path: content/articles
+    format: yaml-frontmatter
+    filename:
+      template: "{fields.slug}.md"
+      field: create
+    view:
+      fields: [title, tag, date]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: ចំណងជើង
+        type: string
+        required: true
+      - name: slug
+        label: តំណភ្ជាប់ (អក្សរឡាតាំង)
+        description: "ជាអក្សរអង់គ្លេសតូច និងសញ្ញា - ប៉ុណ្ណោះ ឧ. boost-tips-for-new-page។ វាក្លាយជា adsbox.agency/knowledge/<តំណ>/ ហើយមិនអាចប្តូរបានក្រោយពេលបង្កើត។"
+        type: string
+        required: true
+        pattern:
+          regex: "^[a-z0-9]+(-[a-z0-9]+)*$"
+          message: ប្រើតែអក្សរឡាតាំងតូច លេខ និងសញ្ញា - (ឧ. sell-more-on-live)
+      - name: summary
+        label: សេចក្តីសង្ខេប
+        description: ១-២ ប្រយោគ។ បង្ហាញលើកាត និងពេលចែករំលែកលើ Facebook។
+        type: text
+        required: true
+      - name: tag
+        label: ប្រធានបទ
+        type: select
+        required: true
+        default: Boost Post
+        options:
+          values: [Boost Post, Boost Live, TikTok, លក់ Live, ថែទាំផេក, រចនា, Messenger, ចំណេះដឹង]
+      - name: date
+        label: កាលបរិច្ឆេទ
+        type: date
+        required: true
+      - name: emoji
+        label: Emoji លើរូបគម្រប
+        description: "Emoji ៣ ដកឃ្លាពីគ្នា ឧ. 🎥 🛍️ 💡។ រូបគម្រប និងរូបចែករំលែក Facebook ត្រូវបានបង្កើតដោយស្វ័យប្រវត្តិ។"
+        type: string
+        default: "📣 💬 📈"
+      - name: cover
+        label: រូបគម្របផ្ទាល់ខ្លួន (ស្រេចចិត្ត)
+        description: ទុកទទេ ដើម្បីប្រើរូបគម្របស្វ័យប្រវត្តិ។ បើដាក់ សូមប្រើរូបទំហំ 1200x630។
+        type: image
+      - name: draft
+        label: ព្រាង (មិនទាន់បង្ហាញលើវេបសាយ)
+        type: boolean
+        default: false
+      - name: body
+        label: អត្ថបទ
+        type: rich-text
+        options:
+          format: markdown
+
+  - name: services
+    label: សេវាកម្ម
+    description: សេវាកម្មទាំងអស់ដែលបង្ហាញលើទំព័រដើម។
+    type: file
+    path: content/services.json
+    format: json
+    fields:
+      - name: groups
+        label: ក្រុមសេវាកម្ម
+        type: object
+        list: true
+        fields:
+          - name: id
+            label: លេខកូដក្រុម (កុំប្តូរ)
+            type: string
+            required: true
+          - name: name
+            label: ឈ្មោះក្រុម
+            type: string
+            required: true
+          - name: services
+            label: សេវាកម្ម
+            type: object
+            list: true
+            fields:
+              - name: id
+                label: លេខកូដ (អក្សរឡាតាំង កុំប្តូរ)
+                description: "ឧ. boost-post។ សម្រាប់សេវាកម្មថ្មី ប្រើអក្សរឡាតាំងតូច និងសញ្ញា -"
+                type: string
+                required: true
+                pattern:
+                  regex: "^[a-z0-9]+(-[a-z0-9]+)*$"
+                  message: ប្រើតែអក្សរឡាតាំងតូច លេខ និងសញ្ញា -
+              - name: name
+                label: ឈ្មោះសេវាកម្ម
+                type: string
+                required: true
+              - name: desc
+                label: ការពិពណ៌នា
+                type: text
+              - name: emoji
+                label: Emoji លើរូបកាត
+                description: "Emoji ៣ ដកឃ្លាពីគ្នា។ រូបលើកាតត្រូវបានបង្កើតដោយស្វ័យប្រវត្តិ។"
+                type: string
+              - name: price
+                label: តម្លៃ
+                description: ឧ. $79 / ខែ។ ទុកទទេ ដើម្បីបង្ហាញ «សួរតម្លៃ»។
+                type: string
+              - name: poster
+                label: ប៉ូស្ទ័រ (បង្ហាញពេលចុច លម្អិត)
+                type: image
+              - name: popular
+                label: ពេញនិយម
+                type: boolean
+
+  - name: promos
+    label: ការផ្តល់ជូនពិសេស
+    description: Pop-up ដែលលោតឡើងពេលបើកវេបសាយ។ ដាក់ប៉ូស្ទ័ររាងការ៉េ។
+    type: file
+    path: content/promos.json
+    format: json
+    list: true
+    fields:
+      - name: id
+        label: លេខកូដ (អក្សរឡាតាំង)
+        type: string
+        required: true
+        pattern:
+          regex: "^[a-z0-9]+(-[a-z0-9]+)*$"
+          message: ប្រើតែអក្សរឡាតាំងតូច លេខ និងសញ្ញា -
+      - name: title
+        label: ចំណងជើង
+        type: string
+        required: true
+      - name: price
+        label: តម្លៃ
+        type: string
+      - name: badge
+        label: ស្លាក (ឧ. ថ្មី)
+        type: string
+      - name: points
+        label: ចំណុចពិសេស
+        type: string
+        list: true
+      - name: image
+        label: ប៉ូស្ទ័រ (រាងការ៉េ)
+        type: image
+        required: true
+      - name: popup
+        label: បង្ហាញក្នុង Pop-up
+        type: boolean
+        default: true
