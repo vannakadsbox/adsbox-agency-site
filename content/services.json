@@ -25,7 +25,8 @@
           "desc": "Boost ពេលកំពុង Live ដើម្បីនាំអ្នកមើលចូលលឿន និងបង្កើនការកម្ម៉ង់។",
           "emoji": "🎥 🛒 ⚡",
           "poster": "/assets/promo/promo-live-video.jpg",
-          "popular": true
+          "popular": true,
+          "price": "ចាប់ពី $120 / ខែ"
         },
         {
           "id": "live-page-setup",
