@@ -4,7 +4,7 @@
 Run from the repo root after editing articles.js:  python3 tools/build.py
 (It also runs tools/covers.js, which makes the Facebook share picture for each new article.)
 """
-import html, json, os, shutil, subprocess
+import hashlib, html, json, os, shutil, subprocess
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://adsbox.agency"
@@ -33,7 +33,9 @@ def bi(kh, en, tag="span", cls=""):
 def variant(id): return sum(ord(c) for c in id) % 3  # same rule as tools/covers.js
 def share_image(a):
     if a.get("cover"): return f"{SITE}/{a['cover']}"
-    if os.path.exists(os.path.join(ROOT, "assets", "covers", a["id"] + ".png")): return f"{SITE}/assets/covers/{a['id']}.png"
+    f = os.path.join(ROOT, "assets", "covers", a["id"] + ".png")
+    if os.path.exists(f):  # ?v= changes when the picture changes, so Facebook fetches the new one
+        return f"{SITE}/assets/covers/{a['id']}.png?v={hashlib.md5(open(f, 'rb').read()).hexdigest()[:8]}"
     return f"{SITE}/assets/share.png"
 def body_html(paras):
     return "\n".join(f"<h2>{e(p[3:])}</h2>" if p.startswith("## ") else f"<p>{e(p)}</p>" for p in paras)
