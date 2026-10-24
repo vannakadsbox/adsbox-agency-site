@@ -200,57 +200,6 @@ def load_clients():
     return out
 
 
-PAGE_PIC_DIR = os.path.join("assets", "pages")
-
-
-def page_key(url):
-    m = re.search(r"[?&]id=(\d+)", url or "") or re.search(r"facebook\.com/(?:people/[^/]+/)?([\w.]+)", url or "")
-    return re.sub(r"[^\w-]+", "-", m.group(1)) if m else ""
-
-
-def cached_page_picture(key, remote):
-    """Facebook picture links expire after a few weeks, so the first build that can reach Facebook
-    (the GitHub Action) saves a small permanent copy in assets/pages/<key>.webp."""
-    if not key: return remote
-    rel = os.path.join(PAGE_PIC_DIR, key + ".webp"); dst = os.path.join(ROOT, rel)
-    if os.path.exists(dst): return rel.replace(os.sep, "/")
-    if not remote: return ""
-    try:
-        import io, urllib.request
-        from PIL import Image, ImageOps
-        req = urllib.request.Request(remote, headers={"User-Agent": "Mozilla/5.0 (ADS BOX site builder)"})
-        with urllib.request.urlopen(req, timeout=20) as r: raw = r.read()
-        im = ImageOps.exif_transpose(Image.open(io.BytesIO(raw))).convert("RGB")
-        side = min(im.size); im = im.crop(((im.width - side) // 2, (im.height - side) // 2, (im.width + side) // 2, (im.height + side) // 2))
-        im.thumbnail((240, 240), Image.LANCZOS)
-        os.makedirs(os.path.dirname(dst), exist_ok=True); im.save(dst, "WEBP", quality=82, method=6)
-        print(f"Page picture saved: {rel}")
-        return rel.replace(os.sep, "/")
-    except Exception as ex:
-        print(f"Warning: could not download the picture for page {key} ({type(ex).__name__}); using the Facebook link for now")
-        return remote
-
-
-def load_pages():
-    """content/pages.json -> the 'ផេកខ្មែរ & ផេកប៊ូសឡាយ' tab: Pages for sale, priced by followers."""
-    path = os.path.join(ROOT, "content", "pages.json")
-    if not os.path.exists(path): return {"title": "", "price_per_1k": 0, "pages": []}
-    with open(path, encoding="utf-8") as f: data = json.load(f)
-    try: rate = float(data.get("price_per_1k") or 0)
-    except (TypeError, ValueError): rate = 0
-    out = []
-    for p in data.get("pages", []):
-        name = str(p.get("name") or "").strip()
-        if not name: continue
-        try: followers = int(str(p.get("followers") or 0).replace(",", "").strip() or 0)
-        except ValueError: followers = 0
-        url = str(p.get("url") or "").strip()
-        pic = optimized(asset(p["picture"]), (240, 240)) if p.get("picture") else cached_page_picture(page_key(url), str(p.get("picture_url") or "").strip())
-        out.append({"name": name, "url": url if url.startswith("https://") else "", "followers": followers,
-                    "type": str(p.get("type") or "").strip(), "sold": p.get("status") == "sold", "picture": pic})
-    return {"title": str(data.get("title") or "ផេកខ្មែរ & ផេកប៊ូសឡាយ").strip(), "price_per_1k": rate, "pages": out}
-
-
 def clean_opt():
     """Remove optimised copies that nothing uses any more."""
     folder = os.path.join(ROOT, OPT_DIR)
@@ -268,11 +217,12 @@ def write_all():
     services = load_services()
     promos = load_promos()
     clients = load_clients()
-    pages = load_pages()
+    import accounts
+    accts = accounts.load(asset, optimized)
     make_thumbs(promos)
     clean_opt()
     listing = [{k: a[k] for k in ("id", "date", "tag", "title", "summary", "emoji", "cover") if a.get(k)} for a in arts]
-    for path, text in (("articles.js", js("ARTICLES", listing)), ("services.js", js("SERVICE_GROUPS", services)), ("promos.js", js("PROMOS", promos)), ("clients.js", js("CLIENTS", clients)), ("pages.js", js("PAGES", pages))):
+    for path, text in (("articles.js", js("ARTICLES", listing)), ("services.js", js("SERVICE_GROUPS", services)), ("promos.js", js("PROMOS", promos)), ("clients.js", js("CLIENTS", clients)), ("accounts.js", js("ACCOUNTS", accts))):
         with open(os.path.join(ROOT, path), "w", encoding="utf-8") as f: f.write(text)
     return arts, services, promos
 

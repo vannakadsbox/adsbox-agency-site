@@ -201,62 +201,103 @@ content:
         type: boolean
         default: true
 
-  - name: pages-for-sale
-    label: ផេកខ្មែរ & ផេកប៊ូសឡាយ (លក់ផេក)
-    description: "ផេកសម្រាប់លក់ ដែលបង្ហាញក្នុងផ្ទាំងសេវាកម្ម។ តម្លៃគណនាដោយស្វ័យប្រវត្តិ៖ ចំនួន Follower ÷ 1000 × តម្លៃក្នុង 1K។ ធ្វើបច្ចុប្បន្នភាពចំនួន Follower នៅទីនេះ។"
+  - name: accounts-for-sale
+    label: លក់ផេក Facebook & អាខោន TikTok
+    description: "ដាក់តែតំណភ្ជាប់ ហើយ Save។ ឈ្មោះ ចំនួន Follower និងរូប Profile ត្រូវបានយកដោយស្វ័យប្រវត្តិ។ Facebook មិនផ្តល់រូប Cover ជាសាធារណៈទេ ដូច្នេះអាចដាក់រូប Cover ផ្ទាល់ខ្លួន ឬទុកឲ្យប្រព័ន្ធបង្កើតពីរូប Profile។"
     type: file
-    path: content/pages.json
+    path: content/accounts.json
     format: json
     fields:
-      - name: title
-        label: ឈ្មោះផ្ទាំង
-        type: string
-        default: ផេកខ្មែរ & ផេកប៊ូសឡាយ
-      - name: price_per_1k
-        label: តម្លៃក្នុង 1,000 Follower ($)
-        type: number
-        default: 15
-      - name: pages
-        label: ផេក
+      - name: facebook
+        label: លក់ផេក Facebook
         type: object
-        list: true
         fields:
-          - name: name
-            label: ឈ្មោះផេក
+          - name: title
+            label: ឈ្មោះផ្ទាំង
             type: string
-            required: true
-          - name: url
-            label: តំណភ្ជាប់ផេក (Facebook)
-            description: ឧ. https://www.facebook.com/profile.php?id=61580134710032
-            type: string
-            pattern:
-              regex: "^https://(www\\.|m\\.)?facebook\\.com/.+"
-              message: ត្រូវចាប់ផ្តើមដោយ https://www.facebook.com/
-          - name: followers
-            label: ចំនួន Follower
-            description: ឧ. 10431 (គ្មានក្បៀស)។ តម្លៃត្រូវបានគណនាពីលេខនេះ។
+          - name: price_per_1k
+            label: តម្លៃក្នុង 1,000 Follower ($)
+            description: ឧ. 15។ ដាក់ 0 ដើម្បីបង្ហាញ «សូមទាក់ទងសម្រាប់តម្លៃ»។
             type: number
-            required: true
-          - name: type
-            label: ប្រភេទ
-            type: select
-            default: ផេកខ្មែរ
-            options:
-              values: [ផេកខ្មែរ, ផេកប៊ូសឡាយ]
-          - name: status
-            label: ស្ថានភាព
-            type: select
-            default: available
-            options:
-              values: [available, sold]
-          - name: picture
-            label: រូប Profile (ស្រេចចិត្ត)
-            description: ដាក់រូប Profile របស់ផេក។ បើទុកទទេ ប្រព័ន្ធប្រើរូបពី «តំណរូបពី Facebook» ខាងក្រោម (បើមាន)។
-            type: image
-          - name: picture_url
-            label: តំណរូបពី Facebook (ស្វ័យប្រវត្តិ)
-            description: ទុកដដែល ឬទុកទទេ។ តំណនេះផុតកំណត់បន្ទាប់ពីពីរបីសប្តាហ៍ ដូច្នេះប្រព័ន្ធរក្សាទុកច្បាប់ចម្លងរូបដោយស្វ័យប្រវត្តិ។
+          - name: items
+            label: ផេក
+            type: object
+            list: true
+            fields:
+              - name: url
+                label: តំណភ្ជាប់ (Link)
+                description: "ឧ. https://www.facebook.com/profile.php?id=61580134710032 ។ ឈ្មោះ ចំនួន Follower និងរូប Profile ត្រូវបានយកដោយស្វ័យប្រវត្តិ (ក្រោយ Save ប្រហែល 2 នាទី និងធ្វើបច្ចុប្បន្នភាពរៀងរាល់ថ្ងៃ)។"
+                type: string
+                required: true
+                pattern:
+                  regex: "^https://(www\\.|m\\.)?facebook\\.com/.+"
+                  message: "ត្រូវចាប់ផ្តើមដោយ https://www.facebook.com/"
+              - name: type
+                label: ប្រភេទ
+                type: select
+                default: ផេកខ្មែរ
+                options:
+                  values: [ផេកខ្មែរ, ផេកប៊ូសឡាយ]
+              - name: status
+                label: ស្ថានភាព
+                type: select
+                default: available
+                options:
+                  values: [available, sold]
+              - name: cover
+                label: រូប Cover (ស្រេចចិត្ត)
+                description: "16:9 ឧ. 1280x720។ ទុកទទេ ប្រព័ន្ធបង្កើត Cover ពីរូប Profile ដោយស្វ័យប្រវត្តិ។"
+                type: image
+              - name: name
+                label: ឈ្មោះ (ស្រេចចិត្ត)
+                description: ទុកទទេ ដើម្បីប្រើឈ្មោះដែលយកដោយស្វ័យប្រវត្តិ។ បំពេញតែពេលចង់ប្តូរ។
+                type: string
+              - name: followers
+                label: ចំនួន Follower (ស្រេចចិត្ត)
+                description: ទុកទទេ ដើម្បីប្រើចំនួនដែលយកដោយស្វ័យប្រវត្តិ។
+                type: string
+      - name: tiktok
+        label: លក់អាខោន TikTok
+        type: object
+        fields:
+          - name: title
+            label: ឈ្មោះផ្ទាំង
             type: string
+          - name: price_per_1k
+            label: តម្លៃក្នុង 1,000 Follower ($)
+            description: ដាក់ 0 ដើម្បីបង្ហាញ «សូមទាក់ទងសម្រាប់តម្លៃ»។
+            type: number
+          - name: items
+            label: អាខោន TikTok
+            type: object
+            list: true
+            fields:
+              - name: url
+                label: តំណភ្ជាប់ (Link)
+                description: "ឧ. https://www.tiktok.com/@username ។ ឈ្មោះ ចំនួន Follower និងរូប Profile ត្រូវបានយកដោយស្វ័យប្រវត្តិ (ក្រោយ Save ប្រហែល 2 នាទី និងធ្វើបច្ចុប្បន្នភាពរៀងរាល់ថ្ងៃ)។"
+                type: string
+                required: true
+                pattern:
+                  regex: "^https://(www\\.)?tiktok\\.com/@.+"
+                  message: "ត្រូវចាប់ផ្តើមដោយ https://www.tiktok.com/@"
+              - name: status
+                label: ស្ថានភាព
+                type: select
+                default: available
+                options:
+                  values: [available, sold]
+              - name: cover
+                label: រូប Cover (ស្រេចចិត្ត)
+                description: "16:9 ឧ. 1280x720។ ទុកទទេ ប្រព័ន្ធបង្កើត Cover ពីរូប Profile ដោយស្វ័យប្រវត្តិ។"
+                type: image
+              - name: name
+                label: ឈ្មោះ (ស្រេចចិត្ត)
+                description: ទុកទទេ ដើម្បីប្រើឈ្មោះដែលយកដោយស្វ័យប្រវត្តិ។ បំពេញតែពេលចង់ប្តូរ។
+                type: string
+              - name: followers
+                label: ចំនួន Follower (ស្រេចចិត្ត)
+                description: ទុកទទេ ដើម្បីប្រើចំនួនដែលយកដោយស្វ័យប្រវត្តិ។
+                type: string
 
   - name: clients
     label: អតិថិជន (Logo)
