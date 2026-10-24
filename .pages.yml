@@ -1,419 +1,526 @@
 # Admin panel settings for Pages CMS (https://app.pagescms.org).
 # Staff edit the files in content/; .github/workflows/build.yml then rebuilds the site.
+# Sidebar: 3 groups (sell & prices, homepage, knowledge). Technical fields are hidden; long lists collapse to one line each.
 media:
   input: assets/uploads
   output: /assets/uploads
-  extensions: [jpg, jpeg, png, webp, gif]
-
+  extensions:
+  - jpg
+  - jpeg
+  - png
+  - webp
+  - gif
 content:
-  - name: articles
-    label: ចំណេះដឹង (អត្ថបទ)
-    description: អត្ថបទក្នុងទំព័រ ចំណេះដឹង។ ចុច "Add an entry" ដើម្បីសរសេរអត្ថបទថ្មី។
-    type: collection
-    path: content/articles
-    format: yaml-frontmatter
-    filename:
-      template: "{fields.slug}.md"
-      field: create
-    view:
-      fields: [title, tag, date]
-      primary: title
-      sort: [date, title]
-      default:
-        sort: date
-        order: desc
-    fields:
-      - name: title
-        label: ចំណងជើង
-        type: string
-        required: true
-      - name: slug
-        label: តំណភ្ជាប់ (អក្សរឡាតាំង)
-        description: "ជាអក្សរអង់គ្លេសតូច និងសញ្ញា - ប៉ុណ្ណោះ ឧ. boost-tips-for-new-page។ វាក្លាយជា adsbox.agency/knowledge/<តំណ>/ ហើយមិនអាចប្តូរបានក្រោយពេលបង្កើត។"
-        type: string
-        required: true
-        pattern:
-          regex: "^[a-z0-9]+(-[a-z0-9]+)*$"
-          message: ប្រើតែអក្សរឡាតាំងតូច លេខ និងសញ្ញា - (ឧ. sell-more-on-live)
-      - name: summary
-        label: សេចក្តីសង្ខេប
-        description: ១-២ ប្រយោគ។ បង្ហាញលើកាត និងពេលចែករំលែកលើ Facebook។
-        type: text
-        required: true
-      - name: tag
-        label: ប្រធានបទ
-        type: select
-        required: true
-        default: Boost Post
-        options:
-          values: [Boost Post, Boost Live, TikTok, លក់ Live, ថែទាំផេក, រចនា, Messenger, ចំណេះដឹង, លក់អនឡាញ, សេវាអតិថិជន, ថវិកា និងរបាយការណ៍, ADS BOX]
-      - name: date
-        label: កាលបរិច្ឆេទ
-        type: date
-        required: true
-      - name: emoji
-        label: Emoji លើរូបគម្រប
-        description: "Emoji ៣ ដកឃ្លាពីគ្នា ឧ. 🎥 🛍️ 💡។ រូបគម្រប និងរូបចែករំលែក Facebook ត្រូវបានបង្កើតដោយស្វ័យប្រវត្តិ។"
-        type: string
-        default: "📣 💬 📈"
-      - name: cover
-        label: រូបគម្របផ្ទាល់ខ្លួន (ស្រេចចិត្ត)
-        description: ទុកទទេ ដើម្បីប្រើរូបគម្របស្វ័យប្រវត្តិ។ បើដាក់ សូមប្រើរូបទំហំ 1200x630។
-        type: image
-      - name: draft
-        label: ព្រាង / ដកចេញពីវេបសាយ
-        description: បើកវា ដើម្បីលាក់អត្ថបទពីវេបសាយ (មិនលុបចោល)។ បិទវិញ ដើម្បីបង្ហាញម្តងទៀត។
-        type: boolean
-        default: false
-      - name: seo_title
-        label: SEO ចំណងជើង (ស្រេចចិត្ត)
-        description: ចំណងជើងសម្រាប់ Google (ក្រោម 60 តួ)។ ទុកទទេ ដើម្បីប្រើចំណងជើងធម្មតា។
-        type: string
-      - name: seo_description
-        label: SEO ការពិពណ៌នា (ស្រេចចិត្ត)
-        description: 70-160 តួ។ ទុកទទេ ដើម្បីប្រើសេចក្តីសង្ខេប។
-        type: text
-      - name: primary_keyword
-        label: ពាក្យគន្លឹះចម្បង
-        type: string
-      - name: keywords
-        label: ពាក្យគន្លឹះ
-        type: string
-        list: true
-      - name: image_alt
-        label: ការពិពណ៌នារូបភាព (alt)
-        type: string
-      - name: category
-        label: ប្រភេទមាតិកា (ស្វ័យប្រវត្តិ)
-        type: string
-      - name: image_prompt
-        label: Prompt សម្រាប់រូបភាព (ស្វ័យប្រវត្តិ)
-        type: text
-      - name: source
-        label: ប្រភព (ស្វ័យប្រវត្តិ)
-        type: string
-      - name: generated_at
-        label: ពេលបង្កើត (ស្វ័យប្រវត្តិ)
-        type: string
-      - name: updated
-        label: កាលបរិច្ឆេទកែប្រែចុងក្រោយ (ស្រេចចិត្ត)
-        type: date
-      - name: body
-        label: អត្ថបទ
-        type: rich-text
-        options:
-          format: markdown
-
+- name: grp-sell
+  label: លក់ និងតម្លៃ
+  type: group
+  items:
   - name: services
-    label: សេវាកម្ម
+    label: សេវាកម្ម និងតម្លៃ
     description: សេវាកម្មទាំងអស់ដែលបង្ហាញលើទំព័រដើម។
     type: file
     path: content/services.json
     format: json
     fields:
-      - name: groups
-        label: ក្រុមសេវាកម្ម
+    - name: groups
+      label: ក្រុមសេវាកម្ម
+      type: object
+      list:
+        collapsible:
+          collapsed: true
+          summary: '{name}'
+      fields:
+      - name: id
+        label: លេខកូដក្រុម (កុំប្តូរ)
+        type: string
+        required: true
+        readonly: true
+      - name: name
+        label: ឈ្មោះក្រុម
+        type: string
+        required: true
+      - name: services
+        label: សេវាកម្ម
         type: object
-        list: true
+        list:
+          collapsible:
+            collapsed: true
+            summary: '{name} · {price}'
         fields:
-          - name: id
-            label: លេខកូដក្រុម (កុំប្តូរ)
-            type: string
-            required: true
-          - name: name
-            label: ឈ្មោះក្រុម
-            type: string
-            required: true
-          - name: services
-            label: សេវាកម្ម
-            type: object
-            list: true
-            fields:
-              - name: id
-                label: លេខកូដ (អក្សរឡាតាំង កុំប្តូរ)
-                description: "ឧ. boost-post។ សម្រាប់សេវាកម្មថ្មី ប្រើអក្សរឡាតាំងតូច និងសញ្ញា -"
-                type: string
-                required: true
-                pattern:
-                  regex: "^[a-z0-9]+(-[a-z0-9]+)*$"
-                  message: ប្រើតែអក្សរឡាតាំងតូច លេខ និងសញ្ញា -
-              - name: name
-                label: ឈ្មោះសេវាកម្ម
-                type: string
-                required: true
-              - name: desc
-                label: ការពិពណ៌នា
-                type: text
-              - name: emoji
-                label: Emoji លើរូបកាត
-                description: "Emoji ៣ ដកឃ្លាពីគ្នា។ រូបលើកាតត្រូវបានបង្កើតដោយស្វ័យប្រវត្តិ។"
-                type: string
-              - name: price
-                label: តម្លៃ
-                description: ឧ. $79 / ខែ។ ទុកទទេ ដើម្បីបង្ហាញ «សួរតម្លៃ»។
-                type: string
-              - name: thumb
-                label: រូបលើកាតសេវាកម្ម (ស្រេចចិត្ត)
-                description: "រូបដែលបង្ហាញលើកាត។ ទំហំល្អបំផុត 1280x720 (16:9)។ ទុកទទេ ដើម្បីប្រើរូបដែលបង្កើតដោយស្វ័យប្រវត្តិ។ រូបធំៗត្រូវបានបង្រួមដោយស្វ័យប្រវត្តិ ដើម្បីឲ្យវេបសាយលឿន។"
-                type: image
-              - name: poster
-                label: ប៉ូស្ទ័រ (បង្ហាញពេលចុច លម្អិត)
-                type: image
-              - name: popular
-                label: ពេញនិយម
-                type: boolean
-
+        - name: id
+          label: លេខកូដ (អក្សរឡាតាំង កុំប្តូរ)
+          description: ឧ. boost-post។ សម្រាប់សេវាកម្មថ្មី ប្រើអក្សរឡាតាំងតូច និងសញ្ញា -
+          type: string
+          required: true
+          pattern:
+            regex: ^[a-z0-9]+(-[a-z0-9]+)*$
+            message: ប្រើតែអក្សរឡាតាំងតូច លេខ និងសញ្ញា -
+        - name: name
+          label: ឈ្មោះសេវាកម្ម
+          type: string
+          required: true
+        - name: desc
+          label: ការពិពណ៌នា
+          type: text
+        - name: emoji
+          label: Emoji លើរូបកាត
+          description: Emoji ៣ ដកឃ្លាពីគ្នា។ រូបលើកាតត្រូវបានបង្កើតដោយស្វ័យប្រវត្តិ។
+          type: string
+        - name: price
+          label: តម្លៃ
+          description: ឧ. $79 / ខែ។ ទុកទទេ ដើម្បីបង្ហាញ «សួរតម្លៃ»។
+          type: string
+        - name: thumb
+          label: រូបលើកាតសេវាកម្ម (ស្រេចចិត្ត)
+          description: រូបដែលបង្ហាញលើកាត។ ទំហំល្អបំផុត 1280x720 (16:9)។ ទុកទទេ ដើម្បីប្រើរូបដែលបង្កើតដោយស្វ័យប្រវត្តិ។ រូបធំៗត្រូវបានបង្រួមដោយស្វ័យប្រវត្តិ ដើម្បីឲ្យវេបសាយលឿន។
+          type: image
+        - name: poster
+          label: ប៉ូស្ទ័រ (បង្ហាញពេលចុច លម្អិត)
+          type: image
+        - name: popular
+          label: ពេញនិយម
+          type: boolean
+  - name: accounts-for-sale
+    label: លក់ផេក & អាខោន TikTok
+    description: ដាក់តែតំណភ្ជាប់ ហើយ Save។ ឈ្មោះ ចំនួន Follower និងរូប Profile ត្រូវបានយកដោយស្វ័យប្រវត្តិ។ Facebook មិនផ្តល់រូប Cover ជាសាធារណៈទេ ដូច្នេះអាចដាក់រូប Cover ផ្ទាល់ខ្លួន ឬទុកឲ្យប្រព័ន្ធបង្កើតពីរូប
+      Profile។
+    type: file
+    path: content/accounts.json
+    format: json
+    fields:
+    - name: facebook
+      label: លក់ផេក Facebook
+      type: object
+      fields:
+      - name: title
+        label: ឈ្មោះផ្ទាំង
+        type: string
+      - name: price_per_1k
+        label: តម្លៃក្នុង 1,000 Follower ($)
+        description: ឧ. 15។ ដាក់ 0 ដើម្បីបង្ហាញ «សូមទាក់ទងសម្រាប់តម្លៃ»។
+        type: number
+      - name: items
+        label: ផេក
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: ផេក {index} · {status} · {url}
+        fields:
+        - name: url
+          label: តំណភ្ជាប់ (Link)
+          description: ឧ. https://www.facebook.com/profile.php?id=61580134710032 ។ ឈ្មោះ ចំនួន Follower និងរូប Profile ត្រូវបានយកដោយស្វ័យប្រវត្តិ (ក្រោយ Save ប្រហែល 2 នាទី និងធ្វើបច្ចុប្បន្នភាពរៀងរាល់ថ្ងៃ)។
+          type: string
+          required: true
+          pattern:
+            regex: ^https://(www\.|m\.)?facebook\.com/.+
+            message: ត្រូវចាប់ផ្តើមដោយ https://www.facebook.com/
+        - name: type
+          label: ប្រភេទ
+          type: select
+          default: ផេកខ្មែរ
+          options:
+            values:
+            - ផេកខ្មែរ
+            - ផេកប៊ូសឡាយ
+        - name: status
+          label: ស្ថានភាព
+          type: select
+          default: available
+          options:
+            values:
+            - available
+            - sold
+        - name: cover
+          label: រូប Cover (ស្រេចចិត្ត)
+          description: 16:9 ឧ. 1280x720។ ទុកទទេ ប្រព័ន្ធបង្កើត Cover ពីរូប Profile ដោយស្វ័យប្រវត្តិ។
+          type: image
+        - name: name
+          label: ឈ្មោះ (ស្រេចចិត្ត)
+          description: ទុកទទេ ដើម្បីប្រើឈ្មោះដែលយកដោយស្វ័យប្រវត្តិ។ បំពេញតែពេលចង់ប្តូរ។
+          type: string
+        - name: followers
+          label: ចំនួន Follower (ស្រេចចិត្ត)
+          description: ទុកទទេ ដើម្បីប្រើចំនួនដែលយកដោយស្វ័យប្រវត្តិ។
+          type: string
+    - name: tiktok
+      label: លក់អាខោន TikTok
+      type: object
+      fields:
+      - name: title
+        label: ឈ្មោះផ្ទាំង
+        type: string
+      - name: price_per_1k
+        label: តម្លៃក្នុង 1,000 Follower ($)
+        description: ដាក់ 0 ដើម្បីបង្ហាញ «សូមទាក់ទងសម្រាប់តម្លៃ»។
+        type: number
+      - name: items
+        label: អាខោន TikTok
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: អាខោន {index} · {status} · {url}
+        fields:
+        - name: url
+          label: តំណភ្ជាប់ (Link)
+          description: ឧ. https://www.tiktok.com/@username ។ ឈ្មោះ ចំនួន Follower និងរូប Profile ត្រូវបានយកដោយស្វ័យប្រវត្តិ (ក្រោយ Save ប្រហែល 2 នាទី និងធ្វើបច្ចុប្បន្នភាពរៀងរាល់ថ្ងៃ)។
+          type: string
+          required: true
+          pattern:
+            regex: ^https://(www\.)?tiktok\.com/@.+
+            message: ត្រូវចាប់ផ្តើមដោយ https://www.tiktok.com/@
+        - name: status
+          label: ស្ថានភាព
+          type: select
+          default: available
+          options:
+            values:
+            - available
+            - sold
+        - name: cover
+          label: រូប Cover (ស្រេចចិត្ត)
+          description: 16:9 ឧ. 1280x720។ ទុកទទេ ប្រព័ន្ធបង្កើត Cover ពីរូប Profile ដោយស្វ័យប្រវត្តិ។
+          type: image
+        - name: name
+          label: ឈ្មោះ (ស្រេចចិត្ត)
+          description: ទុកទទេ ដើម្បីប្រើឈ្មោះដែលយកដោយស្វ័យប្រវត្តិ។ បំពេញតែពេលចង់ប្តូរ។
+          type: string
+        - name: followers
+          label: ចំនួន Follower (ស្រេចចិត្ត)
+          description: ទុកទទេ ដើម្បីប្រើចំនួនដែលយកដោយស្វ័យប្រវត្តិ។
+          type: string
   - name: promos
-    label: ការផ្តល់ជូនពិសេស
+    label: ការផ្តល់ជូនពិសេស (Pop-up)
     description: Pop-up ដែលលោតឡើងពេលបើកវេបសាយ។ ដាក់ប៉ូស្ទ័ររាងការ៉េ។
     type: file
     path: content/promos.json
     format: json
     list: true
     fields:
-      - name: id
-        label: លេខកូដ (អក្សរឡាតាំង)
-        type: string
-        required: true
-        pattern:
-          regex: "^[a-z0-9]+(-[a-z0-9]+)*$"
-          message: ប្រើតែអក្សរឡាតាំងតូច លេខ និងសញ្ញា -
-      - name: title
-        label: ចំណងជើង
-        type: string
-        required: true
-      - name: price
-        label: តម្លៃ
-        type: string
-      - name: badge
-        label: ស្លាក (ឧ. ថ្មី)
-        type: string
-      - name: points
-        label: ចំណុចពិសេស
-        type: string
-        list: true
-      - name: image
-        label: ប៉ូស្ទ័រ (រាងការ៉េ)
-        type: image
-        required: true
-      - name: popup
-        label: បង្ហាញក្នុង Pop-up
-        type: boolean
-        default: true
-
-  - name: accounts-for-sale
-    label: លក់ផេក Facebook & អាខោន TikTok
-    description: "ដាក់តែតំណភ្ជាប់ ហើយ Save។ ឈ្មោះ ចំនួន Follower និងរូប Profile ត្រូវបានយកដោយស្វ័យប្រវត្តិ។ Facebook មិនផ្តល់រូប Cover ជាសាធារណៈទេ ដូច្នេះអាចដាក់រូប Cover ផ្ទាល់ខ្លួន ឬទុកឲ្យប្រព័ន្ធបង្កើតពីរូប Profile។"
-    type: file
-    path: content/accounts.json
-    format: json
-    fields:
-      - name: facebook
-        label: លក់ផេក Facebook
-        type: object
-        fields:
-          - name: title
-            label: ឈ្មោះផ្ទាំង
-            type: string
-          - name: price_per_1k
-            label: តម្លៃក្នុង 1,000 Follower ($)
-            description: ឧ. 15។ ដាក់ 0 ដើម្បីបង្ហាញ «សូមទាក់ទងសម្រាប់តម្លៃ»។
-            type: number
-          - name: items
-            label: ផេក
-            type: object
-            list: true
-            fields:
-              - name: url
-                label: តំណភ្ជាប់ (Link)
-                description: "ឧ. https://www.facebook.com/profile.php?id=61580134710032 ។ ឈ្មោះ ចំនួន Follower និងរូប Profile ត្រូវបានយកដោយស្វ័យប្រវត្តិ (ក្រោយ Save ប្រហែល 2 នាទី និងធ្វើបច្ចុប្បន្នភាពរៀងរាល់ថ្ងៃ)។"
-                type: string
-                required: true
-                pattern:
-                  regex: "^https://(www\\.|m\\.)?facebook\\.com/.+"
-                  message: "ត្រូវចាប់ផ្តើមដោយ https://www.facebook.com/"
-              - name: type
-                label: ប្រភេទ
-                type: select
-                default: ផេកខ្មែរ
-                options:
-                  values: [ផេកខ្មែរ, ផេកប៊ូសឡាយ]
-              - name: status
-                label: ស្ថានភាព
-                type: select
-                default: available
-                options:
-                  values: [available, sold]
-              - name: cover
-                label: រូប Cover (ស្រេចចិត្ត)
-                description: "16:9 ឧ. 1280x720។ ទុកទទេ ប្រព័ន្ធបង្កើត Cover ពីរូប Profile ដោយស្វ័យប្រវត្តិ។"
-                type: image
-              - name: name
-                label: ឈ្មោះ (ស្រេចចិត្ត)
-                description: ទុកទទេ ដើម្បីប្រើឈ្មោះដែលយកដោយស្វ័យប្រវត្តិ។ បំពេញតែពេលចង់ប្តូរ។
-                type: string
-              - name: followers
-                label: ចំនួន Follower (ស្រេចចិត្ត)
-                description: ទុកទទេ ដើម្បីប្រើចំនួនដែលយកដោយស្វ័យប្រវត្តិ។
-                type: string
-      - name: tiktok
-        label: លក់អាខោន TikTok
-        type: object
-        fields:
-          - name: title
-            label: ឈ្មោះផ្ទាំង
-            type: string
-          - name: price_per_1k
-            label: តម្លៃក្នុង 1,000 Follower ($)
-            description: ដាក់ 0 ដើម្បីបង្ហាញ «សូមទាក់ទងសម្រាប់តម្លៃ»។
-            type: number
-          - name: items
-            label: អាខោន TikTok
-            type: object
-            list: true
-            fields:
-              - name: url
-                label: តំណភ្ជាប់ (Link)
-                description: "ឧ. https://www.tiktok.com/@username ។ ឈ្មោះ ចំនួន Follower និងរូប Profile ត្រូវបានយកដោយស្វ័យប្រវត្តិ (ក្រោយ Save ប្រហែល 2 នាទី និងធ្វើបច្ចុប្បន្នភាពរៀងរាល់ថ្ងៃ)។"
-                type: string
-                required: true
-                pattern:
-                  regex: "^https://(www\\.)?tiktok\\.com/@.+"
-                  message: "ត្រូវចាប់ផ្តើមដោយ https://www.tiktok.com/@"
-              - name: status
-                label: ស្ថានភាព
-                type: select
-                default: available
-                options:
-                  values: [available, sold]
-              - name: cover
-                label: រូប Cover (ស្រេចចិត្ត)
-                description: "16:9 ឧ. 1280x720។ ទុកទទេ ប្រព័ន្ធបង្កើត Cover ពីរូប Profile ដោយស្វ័យប្រវត្តិ។"
-                type: image
-              - name: name
-                label: ឈ្មោះ (ស្រេចចិត្ត)
-                description: ទុកទទេ ដើម្បីប្រើឈ្មោះដែលយកដោយស្វ័យប្រវត្តិ។ បំពេញតែពេលចង់ប្តូរ។
-                type: string
-              - name: followers
-                label: ចំនួន Follower (ស្រេចចិត្ត)
-                description: ទុកទទេ ដើម្បីប្រើចំនួនដែលយកដោយស្វ័យប្រវត្តិ។
-                type: string
-
+    - name: id
+      label: លេខកូដ (អក្សរឡាតាំង)
+      type: string
+      required: true
+      pattern:
+        regex: ^[a-z0-9]+(-[a-z0-9]+)*$
+        message: ប្រើតែអក្សរឡាតាំងតូច លេខ និងសញ្ញា -
+    - name: title
+      label: ចំណងជើង
+      type: string
+      required: true
+    - name: price
+      label: តម្លៃ
+      type: string
+    - name: badge
+      label: ស្លាក (ឧ. ថ្មី)
+      type: string
+    - name: points
+      label: ចំណុចពិសេស
+      type: string
+      list: true
+    - name: image
+      label: ប៉ូស្ទ័រ (រាងការ៉េ)
+      type: image
+      required: true
+    - name: popup
+      label: បង្ហាញក្នុង Pop-up
+      type: boolean
+      default: true
+- name: grp-site
+  label: ទំព័រដើម
+  type: group
+  items:
   - name: clients
-    label: អតិថិជន (Logo)
-    description: "Logo អតិថិជនដែលរំកិលលើទំព័រដើម។ បន្ថែម លុប ឬអូសដើម្បីប្តូរលំដាប់។ ពាក់កណ្តាលទីមួយនៅជួរខាងលើ ពាក់កណ្តាលទីពីរនៅជួរខាងក្រោម។ រូបត្រូវបានបង្រួមដោយស្វ័យប្រវត្តិ។"
+    label: Logo អតិថិជន
+    description: Logo អតិថិជនដែលរំកិលលើទំព័រដើម។ បន្ថែម លុប ឬអូសដើម្បីប្តូរលំដាប់។ ពាក់កណ្តាលទីមួយនៅជួរខាងលើ ពាក់កណ្តាលទីពីរនៅជួរខាងក្រោម។ រូបត្រូវបានបង្រួមដោយស្វ័យប្រវត្តិ។
     type: file
     path: content/clients.json
     format: json
     fields:
-      - name: clients
-        label: Logo អតិថិជន
-        type: object
-        list: true
-        fields:
-          - name: name
-            label: ឈ្មោះអតិថិជន (ស្រេចចិត្ត)
-            description: សម្រាប់អ្នកប្រើកម្មវិធីអានអេក្រង់ (alt)។ មិនបង្ហាញលើរូបទេ។
-            type: string
-          - name: logo
-            label: Logo (រាងការ៉េ)
-            description: "រូបរាងការ៉េល្អបំផុត យ៉ាងតិច 256x256។ រូបមិនការ៉េនឹងត្រូវកាត់កណ្តាល។"
-            type: image
-            required: true
-
+    - name: clients
+      label: Logo អតិថិជន
+      type: object
+      list:
+        collapsible:
+          collapsed: true
+          summary: Logo {index} · {name}
+      fields:
+      - name: name
+        label: ឈ្មោះអតិថិជន (ស្រេចចិត្ត)
+        description: សម្រាប់អ្នកប្រើកម្មវិធីអានអេក្រង់ (alt)។ មិនបង្ហាញលើរូបទេ។
+        type: string
+      - name: logo
+        label: Logo (រាងការ៉េ)
+        description: រូបរាងការ៉េល្អបំផុត យ៉ាងតិច 256x256។ រូបមិនការ៉េនឹងត្រូវកាត់កណ្តាល។
+        type: image
+        required: true
+- name: grp-knowledge
+  label: ចំណេះដឹង
+  type: group
+  items:
+  - name: articles
+    label: អត្ថបទចំណេះដឹង
+    description: អត្ថបទក្នុងទំព័រ ចំណេះដឹង។ ចុច «Add an entry» ដើម្បីសរសេរថ្មី។ បិទ «ព្រាង / ដកចេញ» ដើម្បីបង្ហាញលើវេបសាយ។
+    type: collection
+    path: content/articles
+    format: yaml-frontmatter
+    filename:
+      template: '{fields.slug}.md'
+      field: create
+    view:
+      fields:
+      - title
+      - tag
+      - date
+      - draft
+      primary: title
+      sort:
+      - date
+      - title
+      default:
+        sort: date
+        order: desc
+      search:
+      - title
+      - summary
+      - tag
+    fields:
+    - name: title
+      label: ចំណងជើង
+      type: string
+      required: true
+    - name: summary
+      label: សេចក្តីសង្ខេប
+      description: ១-២ ប្រយោគ។ បង្ហាញលើកាត និងពេលចែករំលែកលើ Facebook។
+      type: text
+      required: true
+    - name: tag
+      label: ប្រធានបទ
+      type: select
+      required: true
+      default: Boost Post
+      options:
+        values:
+        - Boost Post
+        - Boost Live
+        - TikTok
+        - លក់ Live
+        - ថែទាំផេក
+        - រចនា
+        - Messenger
+        - ចំណេះដឹង
+        - លក់អនឡាញ
+        - សេវាអតិថិជន
+        - ថវិកា និងរបាយការណ៍
+        - ADS BOX
+    - name: date
+      label: កាលបរិច្ឆេទ
+      type: date
+      required: true
+    - name: body
+      label: អត្ថបទ
+      type: rich-text
+      options:
+        format: markdown
+    - name: draft
+      label: ព្រាង / ដកចេញពីវេបសាយ
+      description: បើកវា ដើម្បីលាក់អត្ថបទពីវេបសាយ (មិនលុបចោល)។ បិទវិញ ដើម្បីបង្ហាញម្តងទៀត។
+      type: boolean
+      default: false
+    - name: cover
+      label: រូបគម្របផ្ទាល់ខ្លួន (ស្រេចចិត្ត)
+      description: ទុកទទេ ដើម្បីប្រើរូបគម្របស្វ័យប្រវត្តិ។ បើដាក់ សូមប្រើរូបទំហំ 1200x630។
+      type: image
+    - name: emoji
+      label: Emoji លើរូបគម្រប
+      description: Emoji ៣ ដកឃ្លាពីគ្នា ឧ. 🎥 🛍️ 💡។ រូបគម្រប និងរូបចែករំលែក Facebook ត្រូវបានបង្កើតដោយស្វ័យប្រវត្តិ។
+      type: string
+      default: 📣 💬 📈
+    - name: slug
+      label: តំណភ្ជាប់ (អក្សរឡាតាំង)
+      description: ជាអក្សរអង់គ្លេសតូច និងសញ្ញា - ប៉ុណ្ណោះ ឧ. boost-tips-for-new-page។ វាក្លាយជា adsbox.agency/knowledge/<តំណ>/ ហើយមិនអាចប្តូរបានក្រោយពេលបង្កើត។
+      type: string
+      required: true
+      pattern:
+        regex: ^[a-z0-9]+(-[a-z0-9]+)*$
+        message: ប្រើតែអក្សរឡាតាំងតូច លេខ និងសញ្ញា - (ឧ. sell-more-on-live)
+    - name: seo_title
+      label: SEO ចំណងជើង (ស្រេចចិត្ត)
+      description: ចំណងជើងសម្រាប់ Google (ក្រោម 60 តួ)។ ទុកទទេ ដើម្បីប្រើចំណងជើងធម្មតា។
+      type: string
+    - name: seo_description
+      label: SEO ការពិពណ៌នា (ស្រេចចិត្ត)
+      description: 70-160 តួ។ ទុកទទេ ដើម្បីប្រើសេចក្តីសង្ខេប។
+      type: text
+    - name: primary_keyword
+      label: ពាក្យគន្លឹះចម្បង
+      type: string
+    - name: keywords
+      label: ពាក្យគន្លឹះ
+      type: string
+      list: true
+    - name: image_alt
+      label: ការពិពណ៌នារូបភាព (alt)
+      type: string
+    - name: updated
+      label: កាលបរិច្ឆេទកែប្រែចុងក្រោយ (ស្រេចចិត្ត)
+      type: date
+    - name: category
+      label: ប្រភេទមាតិកា (ស្វ័យប្រវត្តិ)
+      type: string
+      hidden: true
+    - name: image_prompt
+      label: Prompt សម្រាប់រូបភាព (ស្វ័យប្រវត្តិ)
+      type: text
+      hidden: true
+    - name: source
+      label: ប្រភព (ស្វ័យប្រវត្តិ)
+      type: string
+      hidden: true
+    - name: generated_at
+      label: ពេលបង្កើត (ស្វ័យប្រវត្តិ)
+      type: string
+      hidden: true
   - name: autopost-settings
     label: បោះពុម្ពស្វ័យប្រវត្តិ · ការកំណត់
-    description: "បើក/បិទ ការបោះពុម្ពអត្ថបទស្វ័យប្រវត្តិ។ ពេល Save ការកំណត់ចូលជាធរមានភ្លាមៗ។ បើប្តូរម៉ោង សូមប្រាប់ Claude ឲ្យប្តូរ Scheduled task ដែរ។"
+    description: បើក/បិទ ការបោះពុម្ពអត្ថបទស្វ័យប្រវត្តិ។ ពេល Save ការកំណត់ចូលជាធរមានភ្លាមៗ។ បើប្តូរម៉ោង សូមប្រាប់ Claude ឲ្យប្តូរ Scheduled task ដែរ។
     type: file
     path: content/autopost/settings.json
     format: json
     fields:
+    - name: enabled
+      label: បើកការបោះពុម្ពស្វ័យប្រវត្តិ (បិទ = ផ្អាក)
+      type: boolean
+      default: true
+    - name: mode
+      label: របៀប
+      description: live = បោះពុម្ពលើវេបសាយ។ dry_run = សាកល្បង (សរសេរ និងពិនិត្យ ប៉ុន្តែមិនបង្ហាញលើវេបសាយ)។
+      type: select
+      options:
+        values:
+        - live
+        - dry_run
+    - name: timezone
+      label: ម៉ោងតំបន់ (កុំប្តូរ)
+      type: string
+      readonly: true
+    - name: morning
+      label: អត្ថបទពេលព្រឹក
+      type: object
+      fields:
       - name: enabled
-        label: បើកការបោះពុម្ពស្វ័យប្រវត្តិ (បិទ = ផ្អាក)
+        label: បើក
         type: boolean
-        default: true
-      - name: mode
-        label: របៀប
-        description: "live = បោះពុម្ពលើវេបសាយ។ dry_run = សាកល្បង (សរសេរ និងពិនិត្យ ប៉ុន្តែមិនបង្ហាញលើវេបសាយ)។"
-        type: select
-        options:
-          values: [live, dry_run]
-      - name: timezone
-        label: ម៉ោងតំបន់ (កុំប្តូរ)
+      - name: time
+        label: ម៉ោង (HH:MM ម៉ោងកម្ពុជា)
         type: string
-      - name: morning
-        label: អត្ថបទពេលព្រឹក
-        type: object
-        fields:
-          - name: enabled
-            label: បើក
-            type: boolean
-          - name: time
-            label: ម៉ោង (HH:MM ម៉ោងកម្ពុជា)
-            type: string
-            pattern:
-              regex: "^([01][0-9]|2[0-3]):[0-5][0-9]$"
-              message: ឧ. 07:00
-      - name: evening
-        label: អត្ថបទពេលល្ងាច
-        type: object
-        fields:
-          - name: enabled
-            label: បើក
-            type: boolean
-          - name: time
-            label: ម៉ោង (HH:MM ម៉ោងកម្ពុជា)
-            type: string
-            pattern:
-              regex: "^([01][0-9]|2[0-3]):[0-5][0-9]$"
-              message: ឧ. 17:00
-      - name: early_minutes
-        label: អាចចាប់ផ្តើមមុនម៉ោង (នាទី)
-        type: number
-      - name: late_minutes
-        label: បោះពុម្ពយឺតបំផុតក្រោយម៉ោង (នាទី)
-        description: ក្រោយពេលនេះ មិនបោះពុម្ពទេ (គ្មានការបោះពុម្ពបង្គ្រប់)។
-        type: number
-      - name: alert_after_minutes
-        label: ផ្ញើ Telegram ប្រាប់ បើគ្មានអត្ថបទក្រោយម៉ោង (នាទី)
-        type: number
-      - name: max_attempts
-        label: ចំនួនដងសាកល្បងឡើងវិញ
-        type: number
-      - name: min_khmer_chars
-        label: ប្រវែងអប្បបរមា (តួអក្សរខ្មែរ)
-        type: number
-      - name: max_khmer_chars
-        label: ប្រវែងអតិបរមា (តួអក្សរខ្មែរ)
-        type: number
-
+        pattern:
+          regex: ^([01][0-9]|2[0-3]):[0-5][0-9]$
+          message: ឧ. 07:00
+    - name: evening
+      label: អត្ថបទពេលល្ងាច
+      type: object
+      fields:
+      - name: enabled
+        label: បើក
+        type: boolean
+      - name: time
+        label: ម៉ោង (HH:MM ម៉ោងកម្ពុជា)
+        type: string
+        pattern:
+          regex: ^([01][0-9]|2[0-3]):[0-5][0-9]$
+          message: ឧ. 17:00
+    - name: early_minutes
+      label: អាចចាប់ផ្តើមមុនម៉ោង (នាទី)
+      type: number
+    - name: late_minutes
+      label: បោះពុម្ពយឺតបំផុតក្រោយម៉ោង (នាទី)
+      description: ក្រោយពេលនេះ មិនបោះពុម្ពទេ (គ្មានការបោះពុម្ពបង្គ្រប់)។
+      type: number
+    - name: alert_after_minutes
+      label: ផ្ញើ Telegram ប្រាប់ បើគ្មានអត្ថបទក្រោយម៉ោង (នាទី)
+      type: number
+    - name: max_attempts
+      label: ចំនួនដងសាកល្បងឡើងវិញ
+      type: number
+    - name: min_khmer_chars
+      label: ប្រវែងអប្បបរមា (តួអក្សរខ្មែរ)
+      type: number
+    - name: max_khmer_chars
+      label: ប្រវែងអតិបរមា (តួអក្សរខ្មែរ)
+      type: number
+    operations:
+      delete: false
   - name: autopost-history
     label: បោះពុម្ពស្វ័យប្រវត្តិ · ប្រវត្តិ
-    description: "កំណត់ត្រាម្តងៗ (published = បានបោះពុម្ព, failed = បរាជ័យ, dry_run = សាកល្បង)។ សម្រាប់មើលប៉ុណ្ណោះ សូមកុំកែ។ ចុងក្រោយនៅខាងក្រោម។"
+    description: កំណត់ត្រាម្តងៗ (published = បានបោះពុម្ព, failed = បរាជ័យ, dry_run = សាកល្បង)។ សម្រាប់មើលប៉ុណ្ណោះ សូមកុំកែ។ ចុងក្រោយនៅខាងក្រោម។
     type: file
     path: content/autopost/history.json
     format: json
     fields:
-      - name: runs
-        label: ការបោះពុម្ព
-        type: object
-        list: true
-        fields:
-          - { name: date, label: ថ្ងៃ, type: string }
-          - { name: slot, label: ពេល, type: string }
-          - { name: status, label: ស្ថានភាព, type: string }
-          - { name: title, label: ចំណងជើង, type: string }
-          - { name: url, label: តំណភ្ជាប់, type: string }
-          - { name: published_at, label: ពេលបោះពុម្ព, type: string }
-          - { name: error, label: កំហុស, type: text }
-          - { name: attempts, label: ចំនួនដង, type: number }
-          - { name: category, label: ប្រភេទ, type: string }
-          - { name: angle, label: មុំ, type: string }
-          - { name: slug, label: slug, type: string }
-          - { name: summary, label: សង្ខេប, type: text }
-          - { name: primary_keyword, label: ពាក្យគន្លឹះ, type: string }
-          - { name: tag, label: ស្លាក, type: string }
-          - { name: khmer_chars, label: ប្រវែង, type: number }
-          - { name: file, label: ឯកសារសាកល្បង, type: string }
-          - { name: generated_at, label: ពេលបង្កើត, type: string }
-          - { name: failed_at, label: ពេលបរាជ័យ, type: string }
+    - name: runs
+      label: ការបោះពុម្ព
+      type: object
+      list:
+        collapsible:
+          collapsed: true
+          summary: '{date} · {slot} · {status} · {title}'
+      fields:
+      - name: date
+        label: ថ្ងៃ
+        type: string
+      - name: slot
+        label: ពេល
+        type: string
+      - name: status
+        label: ស្ថានភាព
+        type: string
+      - name: title
+        label: ចំណងជើង
+        type: string
+      - name: url
+        label: តំណភ្ជាប់
+        type: string
+      - name: published_at
+        label: ពេលបោះពុម្ព
+        type: string
+      - name: error
+        label: កំហុស
+        type: text
+      - name: attempts
+        label: ចំនួនដង
+        type: number
+      - name: category
+        label: ប្រភេទ
+        type: string
+      - name: angle
+        label: មុំ
+        type: string
+      - name: slug
+        label: slug
+        type: string
+      - name: summary
+        label: សង្ខេប
+        type: text
+      - name: primary_keyword
+        label: ពាក្យគន្លឹះ
+        type: string
+      - name: tag
+        label: ស្លាក
+        type: string
+      - name: khmer_chars
+        label: ប្រវែង
+        type: number
+      - name: file
+        label: ឯកសារសាកល្បង
+        type: string
+      - name: generated_at
+        label: ពេលបង្កើត
+        type: string
+      - name: failed_at
+        label: ពេលបរាជ័យ
+        type: string
+      readonly: true
+    operations:
+      delete: false
