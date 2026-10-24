@@ -1,12 +1,13 @@
 /*
   ADS BOX knowledge articles.
   To add a new article: copy one block below, give it a new id (letters, numbers and dashes only),
-  set the date, write the Khmer (kh) and English (en) text, and save. Newest dates show first.
+  set the date, pick 3 emoji for the share picture (first one is the big one), write the Khmer (kh) and English (en) text, and save. Newest dates show first.
   In "body", each item in the list is one paragraph. Start a paragraph with "## " to make it a heading.
 */
 window.ARTICLES = [
   {
     id: "caption-that-gets-messages",
+    emoji: ["✍️", "💬", "🔥"],
     date: "2026-10-24",
     tag: { kh: "Boost Post", en: "Boost Post" },
     title: {
@@ -46,6 +47,7 @@ window.ARTICLES = [
   },
   {
     id: "boost-budget-new-page",
+    emoji: ["💰", "📈", "🎯"],
     date: "2026-10-20",
     tag: { kh: "Boost Post", en: "Boost Post" },
     title: {
@@ -81,6 +83,7 @@ window.ARTICLES = [
   },
   {
     id: "sell-more-on-live",
+    emoji: ["🎥", "🛍️", "💡"],
     date: "2026-10-14",
     tag: { kh: "លក់ Live", en: "Live selling" },
     title: {
@@ -120,6 +123,7 @@ window.ARTICLES = [
   },
   {
     id: "page-restricted-what-to-do",
+    emoji: ["🛡️", "⚠️", "✅"],
     date: "2026-10-06",
     tag: { kh: "ថែទាំផេក", en: "Page care" },
     title: {
