@@ -108,3 +108,25 @@ h1, h2, h3 { text-wrap: balance; line-height: 1.4; margin: 0; }
 .pcard b { display: block; line-height: 1.45; }
 .pcard .pprice { color: var(--blue); font-weight: 700; }
 .pcard:hover { border-color: var(--blue); }
+
+/* Card picture on the knowledge list (auto-generated cover or custom cover) */
+.card-img { display: block; width: calc(100% + 36px); max-width: none; height: auto; aspect-ratio: 1200 / 630; object-fit: cover; margin: -18px -18px 4px; border-radius: 13px 13px 0 0; background: var(--chip); }
+
+/* Call to action at the end of each article */
+.cta-box { margin: 32px 0 8px; padding: 20px; border-radius: 16px; background: var(--chip); display: flex; gap: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.cta-box strong { display: block; font-size: 18px; }
+.cta-box p { margin: 4px 0 0; color: var(--muted); font-size: 15px; max-width: 34em; }
+.cta-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+.cta-btns a { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; text-decoration: none; border-radius: 10px; padding: 9px 16px; color: #fff; }
+.cta-btns .btn-navy { background: #1c4b9b; }
+.cta-btns .btn-navy:hover { background: #0059e0; }
+.cta-btns .btn-tg { background: #1877ab; }
+.cta-btns .btn-tg:hover { background: #13618c; }
+.cta-btns svg { width: 18px; height: 18px; flex: none; }
+.cta-btns a:focus-visible { outline-color: #fff; box-shadow: 0 0 0 5px var(--blue); }
+
+/* Dark mode contrast (WCAG AA) for links inside articles and topic pills */
+@media (prefers-color-scheme: dark) {
+  .article .body a, .body a { color: #8fb3ff; }
+  .pill { color: #8fb3ff; }
+}

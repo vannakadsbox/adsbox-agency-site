@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "mode": "dry_run",
+  "timezone": "Asia/Phnom_Penh (UTC+7)",
+  "morning": {
+    "enabled": true,
+    "time": "07:00"
+  },
+  "evening": {
+    "enabled": true,
+    "time": "17:00"
+  },
+  "early_minutes": 15,
+  "late_minutes": 90,
+  "alert_after_minutes": 50,
+  "max_attempts": 3,
+  "min_khmer_chars": 1300,
+  "max_khmer_chars": 3800
+}
