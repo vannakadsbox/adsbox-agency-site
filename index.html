@@ -537,6 +537,12 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
 .feat .team-grid .row .grow b { white-space: normal; overflow: visible; }
 .feat .team-grid .av { width: 30px; height: 30px; font-size: 12px; }
 .feat .team-grid .row .grow .app-sub { display: block; }
+
+/* Free plan badge in the ADS BOX System banner */
+.appban-paid { display: block; margin-top: 4px; }
+.appban-free { display: inline-block; font-size: 13px; font-weight: 700; color: #0f6b45; background: #dcf5e8; padding: 1px 10px; border-radius: 999px; margin-right: 2px; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .appban-free { color: #8ff0bf; background: rgba(60,207,142,.16); } }
+:root[data-theme="dark"] .appban-free { color: #8ff0bf; background: rgba(60,207,142,.16); }
 </style>
 
 </head>
@@ -738,7 +744,7 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
             <div>
               <small data-kh="ស្កេន ឬចុចដើម្បីចាប់ផ្តើម" data-en="Scan or tap to start">ស្កេន ឬចុចដើម្បីចាប់ផ្តើម</small>
               <strong>adsbox.biz</strong>
-              <span class="appban-price" data-kh="ចាប់ពី $29 / ខែ" data-en="Starting at $29/month">ចាប់ពី $29 / ខែ</span>
+              <span class="appban-price"><span class="appban-free" data-kh="មានគម្រោងឥតគិតថ្លៃ" data-en="Free plan available">មានគម្រោងឥតគិតថ្លៃ</span> <span class="appban-paid" data-kh="គម្រោងបង់ប្រាក់ ចាប់ពី $29 / ខែ" data-en="Paid plans from $29/month">គម្រោងបង់ប្រាក់ ចាប់ពី $29 / ខែ</span></span>
               <a class="btn btn-navy" href="https://adsbox.biz/" target="_blank" rel="noopener" data-kh="សាកល្បងឥតគិតថ្លៃ" data-en="Try it free">សាកល្បងឥតគិតថ្លៃ</a>
             </div>
           </div>
