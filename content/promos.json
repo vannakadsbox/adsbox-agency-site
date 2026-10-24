@@ -30,5 +30,13 @@
     ],
     "image": "/assets/promo/promo-live-video.jpg",
     "popup": true
+  },
+  {
+    "id": "system-auto-reply",
+    "title": "ប្រព័ន្ធឆ្លើយតបសារស្វ័យប្រពន្ធ",
+    "price": "ត្រឹមតែ $29",
+    "badge": "ថ្មី",
+    "image": "/assets/uploads/Test System.png",
+    "popup": true
   }
 ]
