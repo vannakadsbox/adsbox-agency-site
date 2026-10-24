@@ -1,7 +1,7 @@
 // Make the picture shown on each service card (960x540), from the name, group and emoji in services.js.
 // Run from the repo root:  node tools/service-thumbs.js        (only makes pictures that are missing)
 //                          node tools/service-thumbs.js --all  (remakes every picture)
-// A picture is also remade when its name, group or emoji changes.
+// A picture is also remade when its name, group or emoji changes. Services with their own picture (thumb) are skipped.
 // Pictures are saved to assets/services/<service id>.jpg.
 const fs = require("fs");
 const path = require("path");
@@ -59,7 +59,7 @@ h1 { font-size: ${t.length > 28 ? 46 : 54}px; font-weight: 700; line-height: 1.4
   const key = (g, s) => JSON.stringify([g.id, g.name.kh, s.name.kh, s.emoji || []]);
   const todo = [];
   window.SERVICE_GROUPS.forEach((g) => g.services.forEach((s) => {
-    if (s.id && (all || man[s.id] !== key(g, s) || !fs.existsSync(path.join(outDir, s.id + ".jpg")))) todo.push([g, s]);
+    if (s.id && !s.thumb && (all || man[s.id] !== key(g, s) || !fs.existsSync(path.join(outDir, s.id + ".jpg")))) todo.push([g, s]);
   }));
   if (!todo.length) return console.log("Service pictures: nothing to make");
   const { chromium } = require("playwright");

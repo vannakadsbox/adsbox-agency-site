@@ -121,6 +121,7 @@ def load_services():
                     "price": str(s.get("price") or "").strip()}
             if s.get("popular"): item["popular"] = True
             if s.get("poster"): item["poster"] = asset(s["poster"])
+            if s.get("thumb"): item["thumb"] = asset(s["thumb"])
             svcs.append(item)
         groups.append({"id": g["id"], "name": bi(g.get("name")), "services": svcs})
     return groups

@@ -912,7 +912,7 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
       g.services.forEach(function (s) {
         var price = s.price ? '<span class="price">' + esc(s.price) + "</span>" : '<span class="price ask">' + T.ask[lang] + "</span>";
         var badge = s.popular ? '<span class="hot">' + T.popular[lang] + "</span>" : "";
-        var img = s.id ? '<img class="svc-img" src="assets/services/' + s.id + '.jpg" alt="" width="960" height="540" loading="lazy">' : "";
+        var img = s.id ? '<img class="svc-img" src="' + encodeURI(s.thumb || ("assets/services/" + s.id + ".jpg")) + '" alt="" width="960" height="540" loading="lazy">' : "";
         html += '<div class="svc">' + badge + img + "<h4>" + esc(s.name[lang]) + "</h4><p>" + esc(s.desc[lang]) + '</p><div class="svc-foot">' + price +
           '<button type="button" class="more" data-more="' + esc(s.id) + '">' + T.more[lang] + '</button><button type="button" class="order" data-svc-kh="' + esc(s.name.kh) + '" data-svc-en="' + esc(s.name.en) + '">' + T.order[lang] + "</button></div></div>";
       });
@@ -996,7 +996,7 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
   function openSvc(btn) {
     var s = findSvc(btn.getAttribute("data-more")); if (!s) return;
     var img = document.getElementById("sd-img");
-    img.src = s.poster || ("assets/services/" + s.id + ".jpg"); img.alt = s.name[lang];
+    img.src = encodeURI(s.poster || s.thumb || ("assets/services/" + s.id + ".jpg")); img.alt = s.name[lang];
     img.width = s.poster ? 1080 : 960; img.height = s.poster ? 1080 : 540;
     document.getElementById("sd-title").textContent = s.name[lang];
     document.getElementById("sd-desc").textContent = s.desc[lang];
