@@ -626,6 +626,10 @@ a.more.pg-view { display: inline-flex; align-items: center; text-decoration: non
 .pg-calc-body small { color: inherit; opacity: .8; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .acc-pill { color: #8fb3ff; border-color: #8fb3ff; } }
 :root[data-theme="dark"] .acc-pill { color: #8fb3ff; border-color: #8fb3ff; }
+
+/* Page type label sits under the profile picture */
+.acc-left { display: grid; justify-items: center; gap: 8px; flex: none; }
+.acc-left .pill { margin-top: 0; }
 </style>
 
 </head>
@@ -1021,8 +1025,8 @@ a.more.pg-view { display: inline-flex; align-items: center; text-decoration: non
     var cover = p.cover ? '<img class="acc-cover-img" src="' + encodeURI(p.cover) + '" alt="" width="960" height="540" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">' : "";
     return '<div class="svc acc acc-' + kind + (p.sold ? " acc-sold" : "") + '">' + (p.sold ? '<span class="hot">' + T.sold[lang] + "</span>" : "") +
       '<div class="acc-cover">' + cover + '<span class="acc-plat">' + (kind === "tiktok" ? "TikTok" : "Facebook") + "</span></div>" +
-      '<div class="acc-id">' + avatar(p, "acc-av") + '<div class="acc-txt"><h4>' + esc(p.name) + "</h4><small>" + T.hasFollowers[lang] + "</small>" +
-      '<span class="acc-pill">' + shortNum(p.followers) + " Follower</span>" + (p.type ? '<span class="pill">' + esc(p.type) + "</span>" : "") + "</div></div>" +
+      '<div class="acc-id"><div class="acc-left">' + avatar(p, "acc-av") + (p.type ? '<span class="pill">' + esc(p.type) + "</span>" : "") + "</div>" + '<div class="acc-txt"><h4>' + esc(p.name) + "</h4><small>" + T.hasFollowers[lang] + "</small>" +
+      '<span class="acc-pill">' + shortNum(p.followers) + " Follower</span></div></div>" +
       '<div class="svc-foot">' + (p.sold ? '<span class="price ask">' + T.sold[lang] + "</span>" : rate ? '<span class="price">$' + fmtNum(price) + "</span>" : '<span class="price ask">' + T.ask[lang] + "</span>") +
       '<a class="more" href="' + esc(p.url) + '" target="_blank" rel="noopener" aria-label="' + esc(T.more[lang] + " · " + p.name) + '">' + T.more[lang] + "</a>" +
       (p.sold ? "" : '<button type="button" class="order" data-svc-kh="' + esc(label) + '" data-svc-en="' + esc(label) + '">' + T.order[lang] + "</button>") + "</div></div>";
