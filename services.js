@@ -3,8 +3,8 @@ window.SERVICE_GROUPS = [
  {
   "id": "boost",
   "name": {
-   "kh": "ផ្សព្វផ្សាយ និង Boost",
-   "en": "ផ្សព្វផ្សាយ និង Boost"
+   "kh": "Boost Post & Live",
+   "en": "Boost Post & Live"
   },
   "services": [
    {
@@ -187,8 +187,8 @@ window.SERVICE_GROUPS = [
  {
   "id": "live",
   "name": {
-   "kh": "លក់ Live និងមេរៀន",
-   "en": "លក់ Live និងមេរៀន"
+   "kh": "មេរៀនរៀបចំកន្លែង Live",
+   "en": "មេរៀនរៀបចំកន្លែង Live"
   },
   "services": [
    {
