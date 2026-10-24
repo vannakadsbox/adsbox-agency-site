@@ -5,3 +5,10 @@
   Referrer-Policy: same-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   X-Robots-Tag: noindex, nofollow
+
+/app.js
+  Cache-Control: no-cache
+/app.css
+  Cache-Control: no-cache
+/
+  Cache-Control: no-cache
