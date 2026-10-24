@@ -48,9 +48,12 @@ async function handleUploads(section, uploads) {
   return { files, paths };
 }
 
-async function readJSON(g, path) {
+async function readJSON(g, path, optional = false) {
   const f = await g.readFile(path);
-  if (!f) return { data: null, sha: null };
+  if (!f) {
+    if (optional) return { data: null, sha: null };
+    const e = new Error(`GitHub រកមិនឃើញ ${path} — Key ប្រហែលជាមិនមានសិទ្ធិលើ repo នេះ`); e.status = 404; throw e;
+  }
   return { data: JSON.parse(f.text), sha: f.sha };
 }
 
@@ -64,6 +67,18 @@ export async function api(req, env, url, user, fetchFn) {
     return json({ email: user.email, name: user.name, role: user.role, roleInfo: ROLE_INFO[user.role], perms: permsFor(user.role), roles: ROLES.map(r => ({ id: r, ...ROLE_INFO[r] })), matrix: Object.fromEntries(ROLES.map(r => [r, permsFor(r)])), tags: ARTICLE_TAGS, repo: env.REPO, site: env.SITE_URL || "https://adsbox.agency" });
   }
 
+  // Owner-only check of the GitHub connection (shows statuses only, never the key).
+  if (kind === "diag" && method === "GET") {
+    if (user.role !== "owner") return err(403, "មានតែម្ចាស់ប៉ុណ្ណោះ");
+    const out = { repo: env.REPO, branch: env.BRANCH, keyLength: String(env.GITHUB_TOKEN || "").trim().length, keyStart: String(env.GITHUB_TOKEN || "").trim().slice(0, 11) };
+    for (const [k, path] of [["repo", `/repos/${env.REPO}`], ["file", `/repos/${env.REPO}/contents/content/accounts.json?ref=${env.BRANCH || "main"}`]]) {
+      const r = await (fetchFn || fetch)("https://api.github.com" + path, { headers: { Authorization: `Bearer ${String(env.GITHUB_TOKEN || "").trim()}`, Accept: "application/vnd.github+json", "User-Agent": "adsbox-admin" } });
+      let body = {}; try { body = await r.json(); } catch {}
+      out[k] = { status: r.status, message: body.message || null, permissions: body.permissions || null, private: body.private ?? null, accepted: r.headers.get("x-accepted-github-permissions") };
+    }
+    return json(out);
+  }
+
   if (kind === "activity" && method === "GET") {
     return json({ commits: await g.recentCommits("content", 12) });
   }
@@ -74,7 +89,7 @@ export async function api(req, env, url, user, fetchFn) {
     if (method === "GET") {
       const { data, sha } = await readJSON(g, FILES[name]);
       const out = { data, sha, canEdit: canEdit(user.role, name) };
-      if (name === "accounts") out.cache = (await readJSON(g, ACCOUNT_CACHE)).data || {};
+      if (name === "accounts") out.cache = (await readJSON(g, ACCOUNT_CACHE, true)).data || {};
       return json(out);
     }
     if (method === "PUT") {
@@ -217,7 +232,7 @@ export default {
       console.error(e && e.stack || e);
       // Say which service failed (no secrets are in these messages) so problems can be fixed quickly.
       if (e && e.status === 401) return err(502, "GitHub មិនទទួលស្គាល់ Key (ADMIN_GITHUB_TOKEN)។ សូមពិនិត្យ Key ឡើងវិញ។", { code: "github_401" });
-      if (e && (e.status === 403 || e.status === 404)) return err(502, "GitHub Key មិនមានសិទ្ធិលើ repo នេះ (Contents: Read and write)។", { code: `github_${e.status}` });
+      if (e && (e.status === 403 || e.status === 404)) return err(502, "GitHub Key មិនមានសិទ្ធិលើ repo នេះ (Contents: Read and write)។ បើក /api/diag ដើម្បីពិនិត្យ។", { code: `github_${e.status}` });
       return err(500, "មានបញ្ហា សូមព្យាយាមម្តងទៀត" + (e && e.message ? ` (${String(e.message).slice(0, 120)})` : ""), { code: "server" });
     }
   },
