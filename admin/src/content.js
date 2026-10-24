@@ -17,7 +17,7 @@ export const ARTICLES_DIR = "content/articles";
 const SLUG = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const TIME = /^([01][0-9]|2[0-3]):[0-5][0-9]$/;
 const DATE = /^\d{4}-\d{2}-\d{2}$/;
-const IMAGE = /^(\/assets\/[A-Za-z0-9._\/ -]+\.(jpe?g|png|webp|gif)|upload:\d+)?$/i;
+const IMAGE = /^(\/assets\/(?!.*\.\.)[A-Za-z0-9._\/ -]+\.(jpe?g|png|webp|gif)|upload:\d+)?$/i;   // no ".." segments
 export const ARTICLE_TAGS = ["Boost Post", "Boost Live", "TikTok", "លក់ Live", "ថែទាំផេក", "រចនា", "Messenger", "ចំណេះដឹង", "លក់អនឡាញ", "សេវាអតិថិជន", "ថវិកា និងរបាយការណ៍", "ADS BOX"];
 
 class Invalid extends Error {}

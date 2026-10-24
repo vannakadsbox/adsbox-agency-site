@@ -187,6 +187,7 @@ export default {
       }
       if (path === "/auth/logout") {
         if (req.method !== "POST") return err(405, "method");
+        if (req.headers.get("Origin") !== url.origin) return err(403, "bad origin");
         return json({ ok: true }, 200, { "Set-Cookie": clearSession() });
       }
 

@@ -268,3 +268,17 @@ describe("team", () => {
     assert.equal(gh.json("content/autopost/settings.json").mode, "dry_run");
   });
 });
+
+describe("security fixes", () => {
+  test("image paths with .. are refused", async () => {
+    const { data, sha } = (await call("sales", "GET", "/api/data/promos")).body;
+    data[0].image = "/assets/../../etc/x.png";
+    assert.equal((await call("sales", "PUT", "/api/data/promos", { data, sha })).status, 400);
+  });
+  test("logout from another site is refused", async () => {
+    const r = await worker.fetch(new Request(ORIGIN + "/auth/logout", { method: "POST", headers: { Origin: "https://evil.example" } }), env, {});
+    assert.equal(r.status, 403);
+    const ok = await worker.fetch(new Request(ORIGIN + "/auth/logout", { method: "POST", headers: { Origin: ORIGIN } }), env, {});
+    assert.equal(ok.status, 200);
+  });
+});
