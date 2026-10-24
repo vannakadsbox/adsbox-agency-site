@@ -1,0 +1,100 @@
+{
+  "clients": [
+    {
+      "name": "CEO Master Club",
+      "logo": "/assets/uploads/clients/client-01.webp"
+    },
+    {
+      "name": "Borey Chhay Ly",
+      "logo": "/assets/uploads/clients/client-02.webp"
+    },
+    {
+      "name": "Skin Seven",
+      "logo": "/assets/uploads/clients/client-03.webp"
+    },
+    {
+      "name": "",
+      "logo": "/assets/uploads/clients/client-04.webp"
+    },
+    {
+      "name": "EEWS",
+      "logo": "/assets/uploads/clients/client-05.webp"
+    },
+    {
+      "name": "La Rose TK",
+      "logo": "/assets/uploads/clients/client-06.webp"
+    },
+    {
+      "name": "Mabel",
+      "logo": "/assets/uploads/clients/client-07.webp"
+    },
+    {
+      "name": "",
+      "logo": "/assets/uploads/clients/client-08.webp"
+    },
+    {
+      "name": "",
+      "logo": "/assets/uploads/clients/client-09.webp"
+    },
+    {
+      "name": "LS Clinic",
+      "logo": "/assets/uploads/clients/client-10.webp"
+    },
+    {
+      "name": "",
+      "logo": "/assets/uploads/clients/client-11.webp"
+    },
+    {
+      "name": "Kume",
+      "logo": "/assets/uploads/clients/client-12.webp"
+    },
+    {
+      "name": "Derma Beauté Care",
+      "logo": "/assets/uploads/clients/client-13.webp"
+    },
+    {
+      "name": "O'Naomi Natural",
+      "logo": "/assets/uploads/clients/client-14.webp"
+    },
+    {
+      "name": "Sopheak Beauty Clinic",
+      "logo": "/assets/uploads/clients/client-15.webp"
+    },
+    {
+      "name": "Premium",
+      "logo": "/assets/uploads/clients/client-16.webp"
+    },
+    {
+      "name": "S-Klean",
+      "logo": "/assets/uploads/clients/client-17.webp"
+    },
+    {
+      "name": "",
+      "logo": "/assets/uploads/clients/client-18.webp"
+    },
+    {
+      "name": "",
+      "logo": "/assets/uploads/clients/client-19.webp"
+    },
+    {
+      "name": "",
+      "logo": "/assets/uploads/clients/client-20.webp"
+    },
+    {
+      "name": "",
+      "logo": "/assets/uploads/clients/client-21.webp"
+    },
+    {
+      "name": "",
+      "logo": "/assets/uploads/clients/client-22.webp"
+    },
+    {
+      "name": "S&Y Brand",
+      "logo": "/assets/uploads/clients/client-23.webp"
+    },
+    {
+      "name": "",
+      "logo": "/assets/uploads/clients/client-24.webp"
+    }
+  ]
+}
