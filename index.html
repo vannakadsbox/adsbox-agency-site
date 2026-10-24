@@ -23,6 +23,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap">
 <style>
+@font-face { font-family: "MiSans Khmer"; font-weight: 400; font-display: swap; src: url(/assets/fonts/MiSansKhmer-Regular.woff2) format("woff2"); unicode-range: U+1780-17FF, U+19E0-19FF, U+200C-200D, U+25CC; }
+@font-face { font-family: "MiSans Khmer"; font-weight: 500; font-display: swap; src: url(/assets/fonts/MiSansKhmer-Medium.woff2) format("woff2"); unicode-range: U+1780-17FF, U+19E0-19FF, U+200C-200D, U+25CC; }
+@font-face { font-family: "MiSans Khmer"; font-weight: 600; font-display: swap; src: url(/assets/fonts/MiSansKhmer-Semibold.woff2) format("woff2"); unicode-range: U+1780-17FF, U+19E0-19FF, U+200C-200D, U+25CC; }
+@font-face { font-family: "MiSans Khmer"; font-weight: 700; font-display: swap; src: url(/assets/fonts/MiSansKhmer-Bold.woff2) format("woff2"); unicode-range: U+1780-17FF, U+19E0-19FF, U+200C-200D, U+25CC; }
+
 /* Layout: a navy brand band up top, then a light working page; services read like a price board grouped by need, knowledge reads like a short magazine. */
 :root {
   --navy: #1c4b9b;
@@ -37,8 +42,8 @@
   --band-fg: #ffffff;
   --band-muted: #c9d6f2;
   --ok: #128a5a;
-  --font-display: "Sora", "Kantumruy Pro", system-ui, sans-serif;
-  --font-body: "Kantumruy Pro", "Noto Sans Khmer", system-ui, sans-serif;
+  --font-display: "Sora", "MiSans Khmer", "Kantumruy Pro", system-ui, sans-serif;
+  --font-body: "MiSans Khmer", "Kantumruy Pro", "Noto Sans Khmer", system-ui, sans-serif;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -341,9 +346,11 @@ body::before { background: var(--surface); }
 .promos .sec-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
 .promo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr)); gap: 20px; }
 .promo { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; display: grid; grid-template-columns: 46% 1fr; min-width: 0; box-shadow: 0 10px 30px rgba(10, 30, 80, .06); }
-.promo-img { display: block; border: 0; padding: 0; font: inherit; background: var(--chip); cursor: zoom-in; aspect-ratio: 1 / 1; align-self: start; }
+.promo-img { display: block; border: 0; padding: 0; font: inherit; background: var(--chip); cursor: zoom-in; aspect-ratio: 1 / 1; }
 .promo-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.promo-badge { align-self: flex-start; font-size: 12px; font-weight: 700; color: #fff; background: #c8355e; padding: 2px 10px; border-radius: 999px; }
+.promo-media { display: flex; flex-direction: column; align-items: center; gap: 14px; padding-bottom: 16px; min-width: 0; }
+.promo-media .promo-img { width: 100%; }
+.promo-badge { align-self: center; font-size: 14px; font-weight: 700; color: #fff; background: #c8355e; padding: 2px 10px; border-radius: 999px; }
 .promo-body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .promo-body h3 { font-size: 19px; line-height: 1.45; }
 .promo-price { font-family: var(--font-display); font-weight: 800; font-size: 22px; color: var(--blue); }
@@ -406,6 +413,8 @@ body::before { background: var(--surface); }
 }
 
 .svc { position: relative; }
+.svc-img { display: block; width: calc(100% + 36px); max-width: none; height: auto; aspect-ratio: 16 / 9; object-fit: cover; margin: -18px -18px 6px; border-radius: 13px 13px 0 0; }
+.svc .hot { z-index: 1; }
 button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-weight: 600; min-height: 36px; }
 .hot { position: absolute; top: -10px; right: 14px; font-size: 12px; font-weight: 700; color: #fff; background: #c8355e; padding: 2px 10px; border-radius: 999px; }
 .modal { position: fixed; inset: 0; z-index: 20; background: rgba(8, 14, 34, .6); display: grid; place-items: center; padding: 16px; }
@@ -542,7 +551,6 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
       <div class="feats">
         <div class="feat">
           <div class="feat-text">
-            <span class="feat-tag">Dashboard &amp; Analytics</span>
             <h3 data-kh="របាយការណ៍ជូនរាល់ថ្ងៃ" data-en="A report in your hands every day">របាយការណ៍ជូនរាល់ថ្ងៃ</h3>
             <p data-kh="ប្រព័ន្ធផ្ញើរបាយការណ៍ជូនរាល់ថ្ងៃ ទាំងការចំណាយ និងចំនួន Order ដើម្បីជួយបងប្អូនសម្រេចចិត្តបានត្រឹមត្រូវ។" data-en="Every day the system sends you your spend and number of orders, so you can make decisions with real numbers.">ប្រព័ន្ធផ្ញើរបាយការណ៍ជូនរាល់ថ្ងៃ ទាំងការចំណាយ និងចំនួន Order ដើម្បីជួយបងប្អូនសម្រេចចិត្តបានត្រឹមត្រូវ។</p>
           </div>
@@ -563,7 +571,6 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
 
         <div class="feat flip">
           <div class="feat-text">
-            <span class="feat-tag">Team Management</span>
             <h3 data-kh="ក្រុមជំនាញ មិនមែនម្នាក់ឯង" data-en="A team of specialists, not one person">ក្រុមជំនាញ មិនមែនម្នាក់ឯង</h3>
             <p data-kh="យើងមិនមែនត្រឹមតែជាអ្នកជំនាញម្នាក់ទេ។ យើងជាក្រុមការងារ ដែលម្នាក់ៗមានជំនាញច្បាស់លាស់រៀងៗខ្លួន។" data-en="We're not one freelancer. We're a team, and every member has a clear specialty.">យើងមិនមែនត្រឹមតែជាអ្នកជំនាញម្នាក់ទេ។ យើងជាក្រុមការងារ ដែលម្នាក់ៗមានជំនាញច្បាស់លាស់រៀងៗខ្លួន។</p>
           </div>
@@ -580,7 +587,6 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
 
         <div class="feat">
           <div class="feat-text">
-            <span class="feat-tag">Page Management</span>
             <h3 data-kh="តាមដាន Page និងឆ្លើយ Comment ស្វ័យប្រវត្តិ" data-en="Every Page tracked, every comment answered">តាមដាន Page និងឆ្លើយ Comment ស្វ័យប្រវត្តិ</h3>
             <p data-kh="តាមដានទិន្នន័យ និងសកម្មភាពរបស់ Page នីមួយៗ ព្រមទាំង Auto Reply Comment សម្រាប់ Boost Post និង Live។" data-en="We track each Page's data and activity, with auto-reply to comments on boosted posts and Lives.">តាមដានទិន្នន័យ និងសកម្មភាពរបស់ Page នីមួយៗ ព្រមទាំង Auto Reply Comment សម្រាប់ Boost Post និង Live។</p>
           </div>
@@ -597,7 +603,6 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
 
         <div class="feat flip">
           <div class="feat-text">
-            <span class="feat-tag">Work &amp; Tasks</span>
             <h3 data-kh="AI ប្រាប់ភ្លាមៗ ពេល Boost មានបញ្ហា" data-en="AI spots a problem boost right away">AI ប្រាប់ភ្លាមៗ ពេល Boost មានបញ្ហា</h3>
             <p data-kh="ប្រព័ន្ធ AI ប្រាប់ថា Boost មានបញ្ហាឬទេ ហើយក្រុមការងារតាមដានជាប់រហូតដល់ដោះស្រាយរួច។" data-en="Our AI tells us when a boost has a problem, and the team follows it until it's fixed.">ប្រព័ន្ធ AI ប្រាប់ថា Boost មានបញ្ហាឬទេ ហើយក្រុមការងារតាមដានជាប់រហូតដល់ដោះស្រាយរួច។</p>
           </div>
@@ -613,7 +618,6 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
 
         <div class="feat">
           <div class="feat-text">
-            <span class="feat-tag">Admin Dashboard</span>
             <h3 data-kh="ជំនាញ + AI = លទ្ធផលល្អជាងមុន" data-en="Skill plus AI, for better results">ជំនាញ + AI = លទ្ធផលល្អជាងមុន</h3>
             <p data-kh="យើងមិនត្រឹមតែប្រើជំនាញរបស់យើងប៉ុណ្ណោះទេ យើងថែមទាំងប្រើ AI ដើម្បីជួយឲ្យការលក់របស់បងប្អូនទទួលបានលទ្ធផលល្អជាងមុន។" data-en="We don't rely on skill alone. We also use AI to help your sales get better results.">យើងមិនត្រឹមតែប្រើជំនាញរបស់យើងប៉ុណ្ណោះទេ យើងថែមទាំងប្រើ AI ដើម្បីជួយឲ្យការលក់របស់បងប្អូនទទួលបានលទ្ធផលល្អជាងមុន។</p>
           </div>
@@ -857,7 +861,8 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
       g.services.forEach(function (s) {
         var price = s.price ? '<span class="price">' + esc(s.price) + "</span>" : "<span></span>";
         var badge = s.popular ? '<span class="hot">' + T.popular[lang] + "</span>" : "";
-        html += '<div class="svc">' + badge + "<h4>" + esc(s.name[lang]) + "</h4><p>" + esc(s.desc[lang]) + '</p><div class="svc-foot">' + price +
+        var img = s.id ? '<img class="svc-img" src="assets/services/' + s.id + '.jpg" alt="" width="960" height="540" loading="lazy">' : "";
+        html += '<div class="svc">' + badge + img + "<h4>" + esc(s.name[lang]) + "</h4><p>" + esc(s.desc[lang]) + '</p><div class="svc-foot">' + price +
           '<button type="button" class="order" data-svc-kh="' + esc(s.name.kh) + '" data-svc-en="' + esc(s.name.en) + '">' + T.order[lang] + "</button></div></div>";
       });
       html += "</div></div>";
@@ -943,9 +948,10 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
   var PROMOS = window.PROMOS || [];
   function renderPromos() {
     document.getElementById("promo-grid").innerHTML = PROMOS.map(function (p, i) {
-      return '<article class="promo"><button type="button" class="promo-img" data-pop="' + i + '" aria-label="' + esc(p.title[lang]) + '">' +
+      return '<article class="promo"><div class="promo-media"><button type="button" class="promo-img" data-pop="' + i + '" aria-label="' + esc(p.title[lang]) + '">' +
         '<img src="' + p.thumb + '" alt="' + esc(p.title[lang]) + '" width="540" height="540" loading="lazy"></button>' +
-        '<div class="promo-body">' + (p.badge ? '<span class="promo-badge">' + esc(p.badge[lang]) + '</span>' : '') + '<h3>' + esc(p.title[lang]) + '</h3><div class="promo-price">' + esc(p.price[lang]) + '</div>' +
+        (p.badge ? '<span class="promo-badge">' + esc(p.badge[lang]) + '</span>' : '') + '</div>' +
+        '<div class="promo-body"><h3>' + esc(p.title[lang]) + '</h3><div class="promo-price">' + esc(p.price[lang]) + '</div>' +
         '<ul>' + p.points[lang].map(function (t) { return '<li>' + esc(t) + '</li>'; }).join("") + '</ul>' +
         '<button type="button" class="order" data-svc-kh="' + esc(p.title.kh + " (" + p.price.kh + ")") + '" data-svc-en="' + esc(p.title.en + " (" + p.price.en + ")") + '">' + T.order[lang] + '</button></div></article>';
     }).join("");

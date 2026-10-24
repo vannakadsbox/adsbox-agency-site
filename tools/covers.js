@@ -21,7 +21,7 @@ const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&l
 function html(a) {
   const E = (a.emoji && a.emoji.length >= 3) ? a.emoji : ["📣", "💬", "📈"];
   return `<!doctype html><html lang="km"><head><meta charset="utf-8"><style>
-@font-face { font-family: K; font-weight: 400 700; src: url(data:font/woff2;base64,${b64("tools/fonts/kantumruy-khmer.woff2")}) format("woff2"); unicode-range: U+1780-17FF, U+19E0-19FF, U+200C-200D, U+25CC; }
+@font-face { font-family: K; font-weight: 400 700; src: url(data:font/woff2;base64,${b64("assets/fonts/MiSansKhmer-Bold.woff2")}) format("woff2"); unicode-range: U+1780-17FF, U+19E0-19FF, U+200C-200D, U+25CC; }
 @font-face { font-family: K; font-weight: 400 700; src: url(data:font/woff2;base64,${b64("tools/fonts/kantumruy-latin.woff2")}) format("woff2"); }
 * { box-sizing: border-box; margin: 0; }
 body { width: 1200px; height: 630px; overflow: hidden; font-family: K, "Inter", "Noto Color Emoji", sans-serif; }

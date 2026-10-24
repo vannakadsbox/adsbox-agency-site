@@ -1,6 +1,10 @@
+@font-face { font-family: "MiSans Khmer"; font-weight: 400; font-display: swap; src: url(/assets/fonts/MiSansKhmer-Regular.woff2) format("woff2"); unicode-range: U+1780-17FF, U+19E0-19FF, U+200C-200D, U+25CC; }
+@font-face { font-family: "MiSans Khmer"; font-weight: 500; font-display: swap; src: url(/assets/fonts/MiSansKhmer-Medium.woff2) format("woff2"); unicode-range: U+1780-17FF, U+19E0-19FF, U+200C-200D, U+25CC; }
+@font-face { font-family: "MiSans Khmer"; font-weight: 600; font-display: swap; src: url(/assets/fonts/MiSansKhmer-Semibold.woff2) format("woff2"); unicode-range: U+1780-17FF, U+19E0-19FF, U+200C-200D, U+25CC; }
+@font-face { font-family: "MiSans Khmer"; font-weight: 700; font-display: swap; src: url(/assets/fonts/MiSansKhmer-Bold.woff2) format("woff2"); unicode-range: U+1780-17FF, U+19E0-19FF, U+200C-200D, U+25CC; }
 /* Shared styles for the generated Knowledge pages (tools/build.py) */
 :root { --bg: #f6f8fc; --surface: #ffffff; --fg: #0f1a2e; --muted: #55627a; --line: #dfe5f0; --chip: #e8eefb; --navy: #1c4b9b; --blue: #0059e0; --ink: #0c1430;
-  --font-display: "Sora", "Kantumruy Pro", system-ui, sans-serif; --font-body: "Kantumruy Pro", "Noto Sans Khmer", system-ui, sans-serif; }
+  --font-display: "Sora", "MiSans Khmer", "Kantumruy Pro", system-ui, sans-serif; --font-body: "MiSans Khmer", "Kantumruy Pro", "Noto Sans Khmer", system-ui, sans-serif; }
 @media (prefers-color-scheme: dark) { :root { --bg: #0b1222; --surface: #121c33; --fg: #e8edf8; --muted: #9aa8c4; --line: #24324f; --chip: #1a2a4d; --blue: #4d8dff; color-scheme: dark; } }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 16px; line-height: 1.75; }
