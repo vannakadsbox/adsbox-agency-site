@@ -6,6 +6,45 @@
 */
 window.ARTICLES = [
   {
+    id: "caption-that-gets-messages",
+    date: "2026-10-24",
+    tag: { kh: "Boost Post", en: "Boost Post" },
+    title: {
+      kh: "សរសេរ Caption យ៉ាងណា ឲ្យអតិថិជនឆាតមកសួរ?",
+      en: "How to write a caption that makes customers message you"
+    },
+    summary: {
+      kh: "Caption ល្អ ប្រាប់តម្លៃច្បាស់ បង្ហាញអត្ថប្រយោជន៍ និងប្រាប់អតិថិជនថាត្រូវធ្វើអ្វីបន្ទាប់។",
+      en: "A good caption states the price, shows the benefit and tells customers what to do next."
+    },
+    body: {
+      kh: [
+        "ប៉ុស្ត៍ដែល Boost ដោយលុយដដែល អាចទទួលបានសារខុសគ្នាច្រើនដង ដោយសារតែ Caption។ នេះជាវិធី ៤ យ៉ាងដែលក្រុម ADS BOX ប្រើរាល់ថ្ងៃ។",
+        "## ១. ប្រយោគទីមួយ ត្រូវទាញចំណាប់អារម្មណ៍",
+        "មនុស្សភាគច្រើនអានតែ ១ ឬ ២ បន្ទាត់ដំបូង។ ដាក់អត្ថប្រយោជន៍ធំបំផុតនៅខាងលើ ឧទាហរណ៍៖ «អាវស្តើង មិនក្តៅ ពាក់ទៅធ្វើការបានពេញមួយថ្ងៃ»។",
+        "## ២. ប្រាប់តម្លៃឲ្យច្បាស់",
+        "ការសរសេរ «IB សួរតម្លៃ» ធ្វើឲ្យអតិថិជនខ្លះរំលងចោល។ បើអាចប្រាប់តម្លៃ ឬតម្លៃចាប់ពី អតិថិជនដែលឆាតមក នឹងជាអ្នកចង់ទិញពិតៗ។",
+        "## ៣. បង្ហាញភស្តុតាង",
+        "ដាក់រូបអតិថិជនពិត ចំនួនដែលលក់ដាច់ ឬមតិរបស់អ្នកទិញ (ដោយមានការអនុញ្ញាត)។ ភស្តុតាងធ្វើឲ្យមនុស្សទុកចិត្តលឿនជាងពាក្យសន្យា។",
+        "## ៤. ប្រាប់ឲ្យច្បាស់ថាត្រូវធ្វើអ្វីបន្ទាប់",
+        "បញ្ចប់ដោយប្រយោគមួយ ដូចជា «ចុច Send Message ហើយផ្ញើលេខកូដ A01 ដើម្បីកម្ម៉ង់»។ ការណែនាំច្បាស់ ធ្វើឲ្យមានសារច្រើនជាងមុន។",
+        "សាក Caption ២ ផ្សេងគ្នា លើរូបដដែល ហើយ Boost ថវិកាតិចៗ ២ ថ្ងៃ។ Caption ណាដែលថ្លៃក្នុងមួយសារទាបជាង គឺជាអ្នកឈ្នះ។"
+      ],
+      en: [
+        "Two posts boosted with the same money can get very different numbers of messages, just because of the caption. Here are 4 things the ADS BOX team uses every day.",
+        "## 1. Make the first line grab attention",
+        "Most people only read the first one or two lines. Put your biggest benefit at the top, for example: \"Light shirt that stays cool all day at work.\"",
+        "## 2. Say the price clearly",
+        "Writing \"inbox for price\" makes some customers scroll past. If you can show the price, or a starting price, the people who message you are the ones ready to buy.",
+        "## 3. Show proof",
+        "Add real customer photos, how many you've sold, or a buyer's comment (with their permission). Proof builds trust faster than promises.",
+        "## 4. Say exactly what to do next",
+        "End with one line such as \"Tap Send Message and send code A01 to order.\" A clear next step brings more messages.",
+        "Test 2 different captions on the same photo and boost each with a small budget for 2 days. The caption with the lower cost per message wins."
+      ]
+    }
+  },
+  {
     id: "boost-budget-new-page",
     date: "2026-10-20",
     tag: { kh: "Boost Post", en: "Boost Post" },
