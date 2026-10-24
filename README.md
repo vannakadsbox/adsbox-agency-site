@@ -5,7 +5,7 @@ Public website for ADS BOX: services, knowledge articles and contact. Served by 
 ## Editing
 
 - **Prices and services:** edit `services.js`. Put a price in `price` (for example `"$10"`), or leave it empty to show "Ask for price".
-- **Knowledge articles:** edit `articles.js`. Copy an existing article block, give it a new `id`, date and Khmer/English text.
+- **Knowledge articles:** edit `articles.js` (copy an existing block, give it a new `id`, date and Khmer/English text), then run `python3 tools/build.py`. That rebuilds each article's own page under `knowledge/`, plus `sitemap.xml` and `robots.txt`. Commit the generated files too.
 - **Page text and layout:** `index.html`.
 
 Changes pushed to `main` go live within a minute or two.

@@ -332,6 +332,9 @@ footer img { height: 22px; width: auto; }
 @media (max-width: 460px) { .ftr-grid { grid-template-columns: 1fr; } }
 section[id], footer[id] { scroll-margin-top: 80px; }
 body::before { background: var(--surface); }
+.see-all { margin-top: 28px; }
+.btn-outline { border: 1px solid var(--blue); color: var(--blue); }
+.btn-outline:hover { background: var(--chip); }
 </style>
 
 </head>
@@ -606,6 +609,7 @@ body::before { background: var(--surface); }
         <h2 data-kh="គន្លឹះលក់អនឡាញ ពីក្រុម ADS BOX" data-en="Online selling tips from the ADS BOX team">គន្លឹះលក់អនឡាញ ពីក្រុម ADS BOX</h2>
       </div></div>
       <div class="posts" id="posts"></div>
+      <div class="see-all"><a class="btn btn-outline" href="/knowledge/" data-kh="មើលអត្ថបទទាំងអស់ →" data-en="See all articles →">មើលអត្ថបទទាំងអស់ →</a></div>
     </div>
   </section>
 
@@ -704,8 +708,8 @@ body::before { background: var(--surface); }
   }
   function sortedArticles() { return ARTICLES.slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; }); }
   function renderPosts() {
-    document.getElementById("posts").innerHTML = sortedArticles().map(function (a) {
-      return '<a class="post" href="#article-' + a.id + '"><div class="meta"><span class="pill">' + esc(a.tag[lang]) + "</span><span>" + fmtDate(a.date) +
+    document.getElementById("posts").innerHTML = sortedArticles().slice(0, 6).map(function (a) {
+      return '<a class="post" href="/knowledge/' + a.id + '/"><div class="meta"><span class="pill">' + esc(a.tag[lang]) + "</span><span>" + fmtDate(a.date) +
         "</span></div><h3>" + esc(a.title[lang]) + "</h3><p>" + esc(a.summary[lang]) + '</p><span class="read">' + T.read[lang] + "</span></a>";
     }).join("");
   }
@@ -723,7 +727,8 @@ body::before { background: var(--surface); }
   }
   function route() {
     var h = location.hash.replace("#", "");
-    var a = h.indexOf("article-") === 0 && ARTICLES.filter(function (x) { return "article-" + x.id === h; })[0];
+    if (h.indexOf("article-") === 0 && ARTICLES.some(function (x) { return "article-" + x.id === h; })) { location.replace("/knowledge/" + h.slice(8) + "/"); return; }
+    var a = false;
     document.getElementById("home-view").hidden = !!a;
     document.getElementById("article-view").hidden = !a;
     if (a) { renderArticle(a); window.scrollTo(0, 0); }
