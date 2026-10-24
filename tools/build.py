@@ -13,6 +13,8 @@ MS = "https://m.me/adsbox.agency"
 
 raw = subprocess.check_output(["node", "-e", "global.window={};require('./articles.js');process.stdout.write(JSON.stringify(window.ARTICLES))"], cwd=ROOT)
 articles = sorted(json.loads(raw), key=lambda a: a["date"], reverse=True)
+raw = subprocess.check_output(["node", "-e", "global.window={};require('./promos.js');process.stdout.write(JSON.stringify(window.PROMOS||[]))"], cwd=ROOT)
+promos = json.loads(raw)
 
 KH_MONTHS = ["មករា", "កុម្ភៈ", "មីនា", "មេសា", "ឧសភា", "មិថុនា", "កក្កដា", "សីហា", "កញ្ញា", "តុលា", "វិច្ឆិកា", "ធ្នូ"]
 EN_MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
@@ -98,15 +100,27 @@ for i, a in enumerate(articles):
     ld = json.dumps({"@context": "https://schema.org", "@type": "Article", "headline": a["title"]["kh"], "alternativeHeadline": a["title"]["en"],
                      "datePublished": a["date"], "inLanguage": ["km", "en"], "image": f"{SITE}/assets/share.png", "mainEntityOfPage": url,
                      "author": {"@type": "Organization", "name": "ADS BOX"}, "publisher": {"@type": "Organization", "name": "ADS BOX", "logo": {"@type": "ImageObject", "url": f"{SITE}/assets/logo.png"}}}, ensure_ascii=False)
+    if a.get("cover"):
+        cover = f'<figure class="cover cover-img"><img src="/{e(a["cover"])}" alt="" width="1200" height="675"></figure>{bi(a["title"]["kh"], a["title"]["en"], "h1")}'
+    else:
+        cover = f'''<header class="cover cover-{i % 3}">
+    <span class="cv-shape a"></span><span class="cv-shape b"></span><span class="cv-shape c"></span>
+    <img class="cv-logo" src="/assets/logo-word-white.png" alt="" width="120" height="22">
+    <span class="cv-tag">{bi(a["tag"]["kh"], a["tag"]["en"])}</span>
+    {bi(a["title"]["kh"], a["title"]["en"], "h1")}
+  </header>'''
+    promo_html = "".join(f'''<a class="pcard" href="/#promos"><img src="/{e(pr["thumb"])}" alt="" width="540" height="540" loading="lazy"><span>{bi(pr["title"]["kh"], pr["title"]["en"], "b")}{bi(pr["price"]["kh"], pr["price"]["en"], "span", "pprice")}</span></a>''' for pr in promos)
+    promo_sec = f'<section class="wrap promo-strip"><h2>{bi("ការផ្តល់ជូនពិសេស", "Promotions")}</h2><div class="pcards">{promo_html}</div></section>' if promos else ""
     main = f'''<article class="wrap article">
   <a class="back" href="/knowledge/">{bi("← ចំណេះដឹងទាំងអស់", "← All articles")}</a>
-  <div class="meta"><span class="pill">{bi(a["tag"]["kh"], a["tag"]["en"])}</span>{bi(date_kh(a["date"]), date_en(a["date"]))}</div>
-  {bi(a["title"]["kh"], a["title"]["en"], "h1")}
+  {cover}
+  <div class="meta">{'<span class="pill">' + bi(a["tag"]["kh"], a["tag"]["en"]) + '</span>' if a.get("cover") else ""}{bi(date_kh(a["date"]), date_en(a["date"]))}</div>
   {bi(a["summary"]["kh"], a["summary"]["en"], "p", "lead")}
   <div class="body" data-lang-block="kh">{body_html(a["body"]["kh"])}</div>
   <div class="body" data-lang-block="en" hidden>{body_html(a["body"]["en"])}</div>
   <div class="share">{bi("ចែករំលែក៖", "Share:")} <a href="https://www.facebook.com/sharer/sharer.php?u={url}" target="_blank" rel="noopener">Facebook</a> <a href="https://t.me/share/url?url={url}" target="_blank" rel="noopener">Telegram</a></div>
 </article>
+{promo_sec}
 <section class="wrap related"><h2>{bi("អត្ថបទផ្សេងទៀត", "More articles")}</h2><div class="cards">{rel_html}</div></section>'''
     write(f"knowledge/{a['id']}/index.html", page(f"{a['title']['kh']} · ADS BOX", f"{a['summary']['kh']} {a['summary']['en']}", url, "article", main,
                                                  f'<script type="application/ld+json">{ld}</script>'))
