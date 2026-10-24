@@ -68,6 +68,6 @@ h1, h2, h3 { text-wrap: balance; line-height: 1.4; margin: 0; }
 .ftr { background: var(--ink); color: #b9c4e4; font-size: 14px; }
 .ftr a { color: #dfe6ff; }
 .ftr-in { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding-block: 24px 92px; }
-.float-tg { position: fixed; right: calc(16px + env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 6; display: inline-flex; align-items: center; gap: 8px; background: #1a7fb5; color: #fff; text-decoration: none; font-weight: 600; padding: 12px 18px; border-radius: 999px; box-shadow: 0 10px 24px rgba(10, 40, 90, .3); }
-.float-tg:hover { background: #156a98; }
+.float-tg { position: fixed; right: calc(16px + env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 6; display: inline-flex; align-items: center; gap: 8px; background: #1877ab; color: #fff; text-decoration: none; font-weight: 600; padding: 12px 18px; border-radius: 999px; box-shadow: 0 10px 24px rgba(10, 40, 90, .3); }
+.float-tg:hover { background: #13618c; }
 @media (max-width: 560px) { .float-tg { padding: 14px; } .float-label { display: none; } }

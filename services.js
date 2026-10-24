@@ -1,5 +1,6 @@
 /*
   ADS BOX services.
+  Set popular: true to show a "Popular" badge.
   To show a price, fill in "price" (for example "$10" or "ចាប់ពី $10"). Leave it empty to show "Ask for price".
 */
 window.SERVICE_GROUPS = [
@@ -9,6 +10,7 @@ window.SERVICE_GROUPS = [
     services: [
       {
         name: { kh: "សេវាកម្មគ្រប់គ្រងផេក (Boost Post)", en: "Facebook post boosting" },
+        popular: true,
         desc: { kh: "យើងរៀបចំ Target ថវិកា និងតាមដានលទ្ធផល ដើម្បីឲ្យប៉ុស្ត៍របស់អ្នកទទួលបានសារពីអតិថិជនពិតៗ។", en: "We set the audience and budget and track results, so your posts bring messages from real customers." },
         price: ""
       },
@@ -19,6 +21,7 @@ window.SERVICE_GROUPS = [
       },
       {
         name: { kh: "សេវាកម្មគ្រប់គ្រងផេក (Boost Live)", en: "Facebook Live boosting" },
+        popular: true,
         desc: { kh: "Boost ពេលកំពុង Live ដើម្បីនាំអ្នកមើលចូលលឿន និងបង្កើនការកម្ម៉ង់។", en: "Boost while you are live to bring viewers in fast and get more orders." },
         price: ""
       },
