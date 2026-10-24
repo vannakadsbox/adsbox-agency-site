@@ -92,7 +92,7 @@ h1, h2, h3 { text-wrap: balance; line-height: 1.3; margin: 0; }
 .hero h1 { font-family: var(--font-display); font-size: clamp(30px, 5vw, 50px); font-weight: 800; letter-spacing: -0.01em; }
 :lang(km) .hero h1 { font-family: var(--font-body); font-weight: 700; line-height: 1.45; }
 .hero p { color: var(--band-muted); font-size: 18px; max-width: 34em; margin: 16px 0 0; }
-.cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+.cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
 .btn { display: inline-flex; align-items: center; gap: 8px; font: inherit; font-weight: 600; text-decoration: none; border-radius: 10px; padding: 10px 18px; border: 1px solid transparent; cursor: pointer; }
 .btn-primary { background: #ffffff; color: #1c4b9b; }
 .btn-primary:hover { background: #e8eefb; }
@@ -286,18 +286,18 @@ footer img { height: 22px; width: auto; }
 @media (min-width: 1141px) { .drawer { display: none; } }
 
 .hero2 { background: radial-gradient(900px 420px at 85% 10%, rgba(108,92,255,.45), transparent 60%), radial-gradient(700px 400px at 10% 100%, rgba(0,89,224,.45), transparent 60%), var(--ink); color: #fff; }
-.hero2-in { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; padding-block: 64px 72px; }
+.hero2-in { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: center; padding-block: 36px 40px; }
 .hero2-text { min-width: 0; }
-.hero2 h1 { font-family: var(--font-body); font-weight: 700; font-size: clamp(30px, 4.6vw, 52px); line-height: 1.4; }
+.hero2 h1 { font-family: var(--font-body); font-weight: 700; font-size: clamp(26px, 3.4vw, 40px); line-height: 1.4; }
 :lang(en) .hero2 h1 { font-family: var(--font-display); font-weight: 800; line-height: 1.2; }
-.hero2 p { color: #c8d3f2; font-size: 18px; max-width: 34em; margin: 16px 0 0; }
-.ticks { list-style: none; padding: 0; margin: 24px 0 0; display: flex; flex-wrap: wrap; gap: 10px 20px; color: #dfe6ff; font-size: 15px; }
+.hero2 p { color: #c8d3f2; font-size: 17px; max-width: 34em; margin: 10px 0 0; }
+.ticks { list-style: none; padding: 0; margin: 16px 0 0; display: flex; flex-wrap: wrap; gap: 10px 20px; color: #dfe6ff; font-size: 15px; }
 .ticks li::before { content: "✓"; color: #3ccf8e; font-weight: 800; margin-right: 8px; }
 .hero2 .btn-primary { background: #fff; color: #1c4b9b; }
-.hero2-media { position: relative; min-width: 0; padding-bottom: 56px; }
+.hero2-media { position: relative; min-width: 0; padding-bottom: 44px; }
 .hero-app { box-shadow: 0 30px 60px rgba(0,0,0,.4); border: 1px solid rgba(255,255,255,.08); }
 .hero-ai { position: absolute; right: -8px; bottom: 0; width: min(330px, 85%); padding: 8px; box-shadow: 0 20px 40px rgba(0,0,0,.45); border: 1px solid rgba(255,255,255,.08); }
-@media (max-width: 900px) { .hero2-in { grid-template-columns: 1fr; padding-block: 44px 52px; gap: 32px; } .hero-ai { right: 0; } }
+@media (max-width: 900px) { .hero2-in { grid-template-columns: 1fr; padding-block: 28px 36px; gap: 24px; } .hero-ai { right: 0; } }
 
 .about { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: start; }
 .about > * { min-width: 0; }
@@ -468,10 +468,6 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
         <a href="#clients" class="mlink" data-kh="អតិថិជន" data-en="Our clients">អតិថិជន</a>
     </nav>
     <div class="hdr-tools">
-      <span class="lang" role="group" aria-label="Language">
-        <button type="button" id="lang-kh" aria-pressed="true">ខ្មែរ</button>
-        <button type="button" id="lang-en" aria-pressed="false">EN</button>
-      </span>
       <button type="button" class="burger" id="burger" aria-expanded="false" aria-controls="drawer" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -815,7 +811,6 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
 (function () {
   var TG = "https://t.me/vannakdm";
   var lang = "kh";
-  try { lang = localStorage.getItem("adsbox-lang") || "kh"; } catch (e) {}
   var filter = "boost";
   var T = {
     all: { kh: "ទាំងអស់", en: "All" },
@@ -897,15 +892,10 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
   function applyLang() {
     document.documentElement.lang = lang === "kh" ? "km" : "en";
     document.querySelectorAll("[data-kh]").forEach(function (el) { el.textContent = el.getAttribute("data-" + lang); });
-    document.getElementById("lang-kh").setAttribute("aria-pressed", lang === "kh");
-    document.getElementById("lang-en").setAttribute("aria-pressed", lang === "en");
     renderTabs(); renderServices(); renderPosts(); renderPromos();
     if (!document.getElementById("article-view").hidden) route();
   }
-  function setLang(l) { lang = l; try { localStorage.setItem("adsbox-lang", l); } catch (e) {} applyLang(); }
 
-  document.getElementById("lang-kh").addEventListener("click", function () { setLang("kh"); });
-  document.getElementById("lang-en").addEventListener("click", function () { setLang("en"); });
   document.getElementById("tabs").addEventListener("click", function (e) {
     var b = e.target.closest("button"); if (!b) return;
     filter = b.getAttribute("data-f"); renderTabs(); renderServices();

@@ -76,7 +76,6 @@ def page(title, desc, url, og_type, main, extra_head="", image=f"{SITE}/assets/s
     <a href="/#services" data-kh="សេវាកម្ម" data-en="Services">សេវាកម្ម</a>
     <a href="/knowledge/" data-kh="ចំណេះដឹង" data-en="Knowledge">ចំណេះដឹង</a>
   </nav>
-  <span class="lang" role="group" aria-label="Language"><button type="button" id="lang-kh" aria-pressed="true">ខ្មែរ</button><button type="button" id="lang-en" aria-pressed="false">EN</button></span>
 </div></header>
 <main>
 {main}
