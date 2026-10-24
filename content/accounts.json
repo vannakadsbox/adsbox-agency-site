@@ -48,6 +48,14 @@
   "tiktok": {
     "title": "លក់អាខោន TikTok",
     "price_per_1k": 0,
-    "items": []
+    "items": [
+      {
+        "url": "https://www.tiktok.com/@tiktok",
+        "status": "available",
+        "cover": "",
+        "name": "",
+        "followers": ""
+      }
+    ]
   }
 }

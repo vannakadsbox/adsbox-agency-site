@@ -1,0 +1,18 @@
+name: Accounts reading test (temporary)
+on:
+  push:
+    branches: [test/accounts-live]
+permissions:
+  contents: write
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q pyyaml pillow
+      - run: python3 tools/content.py > test-log.txt 2>&1 || true
+      - run: |
+          git config user.name "accounts test"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A accounts.js content/account-cache.json assets/accounts test-log.txt; git commit -m "accounts test result" || true; git push origin HEAD:test/accounts-live
