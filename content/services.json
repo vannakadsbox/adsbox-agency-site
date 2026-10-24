@@ -9,15 +9,17 @@
           "name": "សេវាកម្មគ្រប់គ្រងផេក (Boost Post)",
           "desc": "យើងរៀបចំ Target ថវិកា និងតាមដានលទ្ធផល ដើម្បីឲ្យប៉ុស្ត៍របស់អ្នកទទួលបានសារពីអតិថិជនពិតៗ។",
           "emoji": "📣 💬 📈",
+          "price": "$79 / ខែ",
           "poster": "/assets/promo/promo-boost-page.jpg",
-          "popular": true,
-          "price": "$79 / ខែ"
+          "popular": true
         },
         {
           "id": "boost-tiktok",
           "name": "សេវាកម្មគ្រប់គ្រងតិចតុក (Boost TikTok)",
           "desc": "ផ្សព្វផ្សាយវីដេអូ TikTok ឲ្យដល់អ្នកមើលដែលត្រូវគោលដៅ និងបង្កើនអ្នកតាមដាន។",
           "emoji": "🎵 📱 🔥",
+          "price": "ចាប់ពី $99 / ខែ",
+          "poster": "/assets/uploads/photo_2025-07-10_08-34-20.jpg",
           "popular": false
         },
         {
@@ -25,9 +27,9 @@
           "name": "សេវាកម្មគ្រប់គ្រងផេក (Boost Live)",
           "desc": "Boost ពេលកំពុង Live ដើម្បីនាំអ្នកមើលចូលលឿន និងបង្កើនការកម្ម៉ង់។",
           "emoji": "🎥 🛒 ⚡",
+          "price": "ចាប់ពី $120 / ខែ",
           "poster": "/assets/promo/promo-live-video.jpg",
-          "popular": true,
-          "price": "ចាប់ពី $120 / ខែ"
+          "popular": true
         },
         {
           "id": "live-page-setup",
@@ -67,6 +69,7 @@
           "name": "សេវាកម្មស្នើសុំ Blue Verify",
           "desc": "ជួយរៀបចំឯកសារ និងដាក់ពាក្យស្នើសុំសញ្ញាផ្ទៀងផ្ទាត់ពណ៌ខៀវ (Meta Verified) ឲ្យផេករបស់អ្នក។",
           "emoji": "🏅 🛡️ 📄",
+          "poster": "/assets/uploads/Blue Verify_Update2.png",
           "popular": false
         },
         {
@@ -94,6 +97,7 @@
           "name": "សេវាកម្មរៀបចំកន្លែងឡាយ",
           "desc": "រៀបចំភ្លើង កាមេរ៉ា សំឡេង និងផ្ទៃខាងក្រោយ សម្រាប់ Live ឲ្យមើលទៅអាជីព។",
           "emoji": "💡 🎙️ 📷",
+          "poster": "/assets/uploads/photo_2025-08-05_09-12-13.jpg",
           "popular": false
         },
         {
