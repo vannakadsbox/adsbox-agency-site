@@ -2,6 +2,7 @@
 """Build static pages for knowledge articles, plus sitemap.xml and robots.txt.
 
 Run from the repo root after editing articles.js:  python3 tools/build.py
+(It also runs tools/covers.js, which makes the Facebook share picture for each new article.)
 """
 import html, json, os, shutil, subprocess
 
@@ -10,6 +11,10 @@ SITE = "https://adsbox.agency"
 TG = "https://t.me/vannakdm"
 FB = "https://www.facebook.com/adsbox.agency"
 MS = "https://m.me/adsbox.agency"
+
+# Make the Facebook share picture for any new article (needs Playwright; falls back to share.png if it fails)
+if subprocess.run(["node", "tools/covers.js"], cwd=ROOT).returncode != 0:
+    print("Warning: could not make cover pictures, using share.png for new articles")
 
 raw = subprocess.check_output(["node", "-e", "global.window={};require('./articles.js');process.stdout.write(JSON.stringify(window.ARTICLES))"], cwd=ROOT)
 articles = sorted(json.loads(raw), key=lambda a: a["date"], reverse=True)
@@ -25,12 +30,17 @@ e = html.escape
 def bi(kh, en, tag="span", cls=""):
     c = f' class="{cls}"' if cls else ""
     return f'<{tag}{c} data-kh="{e(kh)}" data-en="{e(en)}">{e(kh)}</{tag}>'
+def variant(id): return sum(ord(c) for c in id) % 3  # same rule as tools/covers.js
+def share_image(a):
+    if a.get("cover"): return f"{SITE}/{a['cover']}"
+    if os.path.exists(os.path.join(ROOT, "assets", "covers", a["id"] + ".png")): return f"{SITE}/assets/covers/{a['id']}.png"
+    return f"{SITE}/assets/share.png"
 def body_html(paras):
     return "\n".join(f"<h2>{e(p[3:])}</h2>" if p.startswith("## ") else f"<p>{e(p)}</p>" for p in paras)
 
 TGSVG = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13 1.4 11.5c-1-.3-1-1 .2-1.5L20.5 2.9c.9-.3 1.6.2 1.4 1.4z"/></svg>'
 
-def page(title, desc, url, og_type, main, extra_head=""):
+def page(title, desc, url, og_type, main, extra_head="", image=f"{SITE}/assets/share.png"):
     return f'''<!doctype html>
 <html lang="km">
 <head>
@@ -45,7 +55,7 @@ def page(title, desc, url, og_type, main, extra_head=""):
 <meta property="og:url" content="{url}">
 <meta property="og:title" content="{e(title)}">
 <meta property="og:description" content="{e(desc)}">
-<meta property="og:image" content="{SITE}/assets/share.png">
+<meta property="og:image" content="{image}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -98,12 +108,12 @@ for i, a in enumerate(articles):
     related = [r for r in articles if r["id"] != a["id"]][:3]
     rel_html = "".join(f'<a class="card" href="/knowledge/{r["id"]}/"><span class="pill">{bi(r["tag"]["kh"], r["tag"]["en"])}</span>{bi(r["title"]["kh"], r["title"]["en"], "h3")}</a>' for r in related)
     ld = json.dumps({"@context": "https://schema.org", "@type": "Article", "headline": a["title"]["kh"], "alternativeHeadline": a["title"]["en"],
-                     "datePublished": a["date"], "inLanguage": ["km", "en"], "image": f"{SITE}/assets/share.png", "mainEntityOfPage": url,
+                     "datePublished": a["date"], "inLanguage": ["km", "en"], "image": share_image(a), "mainEntityOfPage": url,
                      "author": {"@type": "Organization", "name": "ADS BOX"}, "publisher": {"@type": "Organization", "name": "ADS BOX", "logo": {"@type": "ImageObject", "url": f"{SITE}/assets/logo.png"}}}, ensure_ascii=False)
     if a.get("cover"):
         cover = f'<figure class="cover cover-img"><img src="/{e(a["cover"])}" alt="" width="1200" height="675"></figure>{bi(a["title"]["kh"], a["title"]["en"], "h1")}'
     else:
-        cover = f'''<header class="cover cover-{i % 3}">
+        cover = f'''<header class="cover cover-{variant(a["id"])}">
     <span class="cv-shape a"></span><span class="cv-shape b"></span><span class="cv-shape c"></span>
     <img class="cv-logo" src="/assets/logo-word-white.png" alt="" width="120" height="22">
     <span class="cv-tag">{bi(a["tag"]["kh"], a["tag"]["en"])}</span>
@@ -123,7 +133,7 @@ for i, a in enumerate(articles):
 {promo_sec}
 <section class="wrap related"><h2>{bi("អត្ថបទផ្សេងទៀត", "More articles")}</h2><div class="cards">{rel_html}</div></section>'''
     write(f"knowledge/{a['id']}/index.html", page(f"{a['title']['kh']} · ADS BOX", f"{a['summary']['kh']} {a['summary']['en']}", url, "article", main,
-                                                 f'<script type="application/ld+json">{ld}</script>'))
+                                                 f'<script type="application/ld+json">{ld}</script>', share_image(a)))
 
 tags = []
 for a in articles:
