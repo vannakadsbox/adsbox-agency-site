@@ -65,7 +65,7 @@
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 16px; line-height: 1.7; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 16px; line-height: 1.7; }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface); }
 a { color: var(--blue); }
 h1, h2, h3 { text-wrap: balance; line-height: 1.3; margin: 0; }
@@ -465,6 +465,78 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
   .marquee .track { animation: none; width: auto; flex-wrap: wrap; justify-content: center; }
   .marquee li[aria-hidden="true"] { display: none; }
 }
+
+/* ===== Option A refinements ===== */
+/* Header: five links and a Telegram button */
+.hdr-tools .btn-tg { order: 0; }
+@media (max-width: 1140px) { .menu { display: flex; } .burger { display: none; } .hdr-tools { margin-left: 0; } }
+@media (max-width: 1000px) { .menu { display: none; } .burger { display: flex; } .hdr-tools { margin-left: auto; } }
+@media (min-width: 1001px) { .drawer { display: none; } }
+@media (max-width: 400px) { .hdr-tools .btn-tg { padding: 8px 10px; } .hdr-tools .btn-tg span { display: none; } }
+.btn-tg:focus-visible, .float-tg:focus-visible, .cta-band .btn:focus-visible { outline-color: #fff; box-shadow: 0 0 0 5px var(--blue); }
+
+/* Service prices sit on their own line above the buttons */
+.svc-foot { flex-wrap: wrap; }
+.svc-foot .price { flex-basis: 100%; color: var(--fg); }
+.svc-foot .price.ask { color: var(--muted); }
+.svc-list { grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); }
+.posts { grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); }
+.posts .post h3 { font-size: 18px; }
+.appban-price { display: block; font-weight: 700; color: #1c4b9b; margin: -4px 0 8px; font-size: 15px; }
+
+/* Features: three cards side by side, each with its preview */
+.feats { grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 20px; }
+.feat { grid-template-columns: 1fr; gap: 18px; align-content: start; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 22px; }
+.feat h3 { font-size: 20px; margin-top: 0; }
+.feat p { font-size: 15.5px; }
+.feat .app { box-shadow: none; font-size: 13px; }
+@media (max-width: 820px) { .feat { gap: 16px; } }
+
+/* Dark mode for the ADS BOX System banner */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .appban { background: linear-gradient(135deg, #14214a 0%, #121c33 55%, #18295a 100%); color: var(--fg); }
+  :root:not([data-theme="light"]) .appban .eyebrow, :root:not([data-theme="light"]) .appban-price { color: #8fb3ff; }
+  :root:not([data-theme="light"]) .appban p { color: var(--muted); }
+  :root:not([data-theme="light"]) .appban-get { background: var(--surface); border: 1px solid var(--line); box-shadow: none; }
+  :root:not([data-theme="light"]) .appban-get small { color: var(--muted); }
+  :root:not([data-theme="light"]) .appban-get img { background: #fff; border-radius: 8px; padding: 4px; }
+  :root:not([data-theme="light"]) .appban-get .btn-navy { background: #3d6fd6; }
+}
+:root[data-theme="dark"] .appban { background: linear-gradient(135deg, #14214a 0%, #121c33 55%, #18295a 100%); color: var(--fg); }
+:root[data-theme="dark"] .appban .eyebrow, :root[data-theme="dark"] .appban-price { color: #8fb3ff; }
+:root[data-theme="dark"] .appban p { color: var(--muted); }
+:root[data-theme="dark"] .appban-get { background: var(--surface); border: 1px solid var(--line); box-shadow: none; }
+:root[data-theme="dark"] .appban-get small { color: var(--muted); }
+:root[data-theme="dark"] .appban-get img { background: #fff; border-radius: 8px; padding: 4px; }
+:root[data-theme="dark"] .appban-get .btn-navy { background: #3d6fd6; }
+
+/* Clients sit right under the hero, so keep that section tight */
+.clients .logo-wall { margin-top: 28px; }
+#clients { padding-block: 48px; }
+
+/* Shorter page on phones */
+@media (max-width: 640px) {
+  section.block, #clients { padding-block: 44px; }
+  .sec-head { margin-bottom: 20px; }
+  .feats { gap: 14px; }
+  .feat { padding: 18px; }
+  .cta-in { padding-block: 36px; }
+}
+
+/* Contrast fixes (WCAG AA) */
+.bubble.me { background: #5b4bd6; border-color: #5b4bd6; }
+.bubble.me .who { color: #fff; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .pill { color: #8fb3ff; } }
+:root[data-theme="dark"] .pill { color: #8fb3ff; }
+
+/* Team preview inside the narrower feature cards: one compact row per person */
+.feat .team-grid { grid-template-columns: 1fr; gap: 6px; }
+.feat .team-grid .app-card { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 9px 12px; }
+.feat .team-grid .app-card > .row { flex: 1; min-width: 0; }
+.feat .team-grid .app-card > .app-sub { margin-top: 0 !important; text-align: right; max-width: 42%; line-height: 1.4; }
+.feat .team-grid .row .grow b { white-space: normal; overflow: visible; }
+.feat .team-grid .av { width: 30px; height: 30px; font-size: 12px; }
+.feat .team-grid .row .grow .app-sub { display: block; }
 </style>
 
 </head>
@@ -476,22 +548,20 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
       <img class="logo-dark" src="assets/logo-word-white.png" alt="ADS BOX" width="140" height="26">
     </a>
     <nav class="menu" aria-label="Main">
-        <a href="#home" class="mlink" data-kh="ទំព័រដើម" data-en="Home">ទំព័រដើម</a>
         <div class="dd"><a href="#services" data-filter="boost" class="mlink" data-kh="សេវាកម្ម" data-en="Our services">សេវាកម្ម</a><div class="dd-menu"><a href="#services" data-filter="boost" data-kh="ផ្សព្វផ្សាយ និង Boost" data-en="Boost &amp; ads">ផ្សព្វផ្សាយ និង Boost</a><a href="#services" data-filter="design" data-kh="រចនា និងវេបសាយ" data-en="Design &amp; website">រចនា និងវេបសាយ</a><a href="#services" data-filter="care" data-kh="ថែទាំផេក និងគណនី" data-en="Page &amp; account care">ថែទាំផេក និងគណនី</a><a href="#services" data-filter="live" data-kh="លក់ Live និងមេរៀន" data-en="Live selling &amp; training">លក់ Live និងមេរៀន</a></div></div>
-        <a href="#adsbox-system" class="mlink" data-kh="ប្រព័ន្ធ ADS BOX" data-en="ADS BOX system">ប្រព័ន្ធ ADS BOX</a>
-        <a href="#promos" class="mlink" data-kh="ការផ្តល់ជូនពិសេស" data-en="Sale page">ការផ្តល់ជូនពិសេស</a>
-        <a href="#knowledge" class="mlink" data-kh="ចំណេះដឹង" data-en="Knowledge">ចំណេះដឹង</a>
-        <a href="#system" class="mlink" data-kh="ចំណុចពិសេស" data-en="Key features">ចំណុចពិសេស</a>
+        <a href="#promos" class="mlink" data-kh="ការផ្តល់ជូនពិសេស" data-en="Offers">ការផ្តល់ជូនពិសេស</a>
         <a href="#results" class="mlink" data-kh="លទ្ធផល" data-en="Results">លទ្ធផល</a>
-        <a href="#clients" class="mlink" data-kh="អតិថិជន" data-en="Our clients">អតិថិជន</a>
+        <a href="#adsbox-system" class="mlink" data-kh="ប្រព័ន្ធ ADS BOX" data-en="ADS BOX system">ប្រព័ន្ធ ADS BOX</a>
+        <a href="#about" class="mlink" data-kh="អំពីយើង" data-en="About us">អំពីយើង</a>
     </nav>
     <div class="hdr-tools">
+      <a class="btn-tg" href="https://t.me/vannakdm" target="_blank" rel="noopener" aria-label="ឆាតតាម Telegram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13 1.4 11.5c-1-.3-1-1 .2-1.5L20.5 2.9c.9-.3 1.6.2 1.4 1.4z"/></svg><span data-kh="ឆាតតាម Telegram" data-en="Chat on Telegram">ឆាតតាម Telegram</span></a>
       <button type="button" class="burger" id="burger" aria-expanded="false" aria-controls="drawer" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </div>
   <div class="drawer" id="drawer" hidden>
     <nav class="wrap drawer-in" aria-label="Mobile">
-      <a href="#home" data-kh="ទំព័រដើម" data-en="Home">ទំព័រដើម</a><a href="#services" data-kh="សេវាកម្ម" data-en="Our services">សេវាកម្ម</a><a href="#adsbox-system" data-kh="ប្រព័ន្ធ ADS BOX" data-en="ADS BOX system">ប្រព័ន្ធ ADS BOX</a><a href="#promos" data-kh="ការផ្តល់ជូនពិសេស" data-en="Sale page">ការផ្តល់ជូនពិសេស</a><a href="#knowledge" data-kh="ចំណេះដឹង" data-en="Knowledge">ចំណេះដឹង</a><a href="#system" data-kh="ចំណុចពិសេស" data-en="Key features">ចំណុចពិសេស</a><a href="#results" data-kh="លទ្ធផល" data-en="Results">លទ្ធផល</a><a href="#clients" data-kh="អតិថិជន" data-en="Our clients">អតិថិជន</a>
+      <a href="#services" data-kh="សេវាកម្ម" data-en="Our services">សេវាកម្ម</a><a href="#promos" data-kh="ការផ្តល់ជូនពិសេស" data-en="Offers">ការផ្តល់ជូនពិសេស</a><a href="#results" data-kh="លទ្ធផល" data-en="Results">លទ្ធផល</a><a href="#adsbox-system" data-kh="ប្រព័ន្ធ ADS BOX" data-en="ADS BOX system">ប្រព័ន្ធ ADS BOX</a><a href="#about" data-kh="អំពីយើង" data-en="About us">អំពីយើង</a>
     </nav>
   </div>
 </header>
@@ -500,7 +570,7 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
   <section class="hero2" id="home">
     <div class="wrap hero2-in">
       <div class="hero2-text">
-        <span class="tagline">Top 1 Boost Post &amp; Live in Cambodia</span>
+        <span class="tagline">Boost Post · Boost Live · TikTok</span>
         <h1 data-kh="ក្រុមជំនាញ Boost ដែលតាមដានលុយរបស់អ្នក រាល់ថ្ងៃ" data-en="The boost team that watches your money every day">ក្រុមជំនាញ Boost ដែលតាមដានលុយរបស់អ្នក រាល់ថ្ងៃ</h1>
         <p data-kh="Boost Post, Boost Live និង TikTok ដោយក្រុមការងារជំនាញ និងប្រព័ន្ធ AI ផ្ទាល់ខ្លួន ដើម្បីឲ្យបងប្អូនទទួលបាន Order ច្រើន ក្នុងតម្លៃទាប។" data-en="Boost Post, Boost Live and TikTok, run by a specialist team and our own AI system, so you get more orders at a lower cost.">Boost Post, Boost Live និង TikTok ដោយក្រុមការងារជំនាញ និងប្រព័ន្ធ AI ផ្ទាល់ខ្លួន ដើម្បីឲ្យបងប្អូនទទួលបាន Order ច្រើន ក្នុងតម្លៃទាប។</p>
         <div class="cta">
@@ -533,6 +603,27 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
     </div>
   </section>
 
+  <section class="block clients" id="clients" aria-labelledby="clients-h">
+    <div class="wrap">
+      <div class="sec-head"><div>
+        <div class="eyebrow" data-kh="អតិថិជនរបស់យើង" data-en="Our clients">អតិថិជនរបស់យើង</div>
+        <h2 id="clients-h" data-kh="អ្នកលក់ជាច្រើនទុកចិត្ត ADS BOX" data-en="Sellers who trust ADS BOX">អ្នកលក់ជាច្រើនទុកចិត្ត ADS BOX</h2>
+      </div></div>
+      <div class="trust-grid">
+      <div><strong>120+</strong><span data-kh="អតិថិជនកំពុងប្រើសេវា" data-en="active clients">អតិថិជនកំពុងប្រើសេវា</span></div>
+      <div><strong>8</strong><span data-kh="អ្នកគ្រប់គ្រងគម្រោង" data-en="project managers">អ្នកគ្រប់គ្រងគម្រោង</span></div>
+      <div><strong><span data-kh="រៀងរាល់ថ្ងៃ" data-en="Daily">រៀងរាល់ថ្ងៃ</span></strong><span data-kh="របាយការណ៍ចំណាយ និង Order" data-en="spend &amp; order reports">របាយការណ៍ចំណាយ និង Order</span></div>
+      <div><strong>AI</strong><span data-kh="តាមដាន Boost ជាប់ជានិច្ច" data-en="watches every boost">តាមដាន Boost ជាប់ជានិច្ច</span></div>
+      </div>
+
+      <div class="logo-wall" role="region" aria-label="Client logos">
+        <p class="logo-cap" data-kh="អតិថិជនដែលធ្លាប់ប្រើប្រាស់សេវាកម្ម ADS BOX" data-en="Brands that have used ADS BOX">អតិថិជនដែលធ្លាប់ប្រើប្រាស់សេវាកម្ម ADS BOX</p>
+        <div class="marquee"><ul class="track"><li><img src="assets/clients/client-01.webp" alt="CEO Master Club" width="200" height="200" decoding="async"></li><li><img src="assets/clients/client-02.webp" alt="Borey Chhay Ly" width="200" height="200" decoding="async"></li><li><img src="assets/clients/client-03.webp" alt="Skin Seven" width="200" height="200" decoding="async"></li><li><img src="assets/clients/client-04.webp" alt="Client" width="200" height="200" decoding="async"></li><li><img src="assets/clients/client-05.webp" alt="EEWS" width="200" height="200" decoding="async"></li><li><img src="assets/clients/client-06.webp" alt="La Rose TK" width="200" height="200" decoding="async"></li><li><img src="assets/clients/client-07.webp" alt="Mabel" width="200" height="200" decoding="async"></li><li><img src="assets/clients/client-08.webp" alt="Client" width="200" height="200" decoding="async"></li><li><img src="assets/clients/client-09.webp" alt="Client" width="200" height="200" decoding="async"></li><li><img src="assets/clients/client-10.webp" alt="LS Clinic" width="200" height="200" decoding="async"></li><li><img src="assets/clients/client-11.webp" alt="Client" width="200" height="200" decoding="async"></li><li><img src="assets/clients/client-12.webp" alt="Kume" width="200" height="200" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-01.webp" alt="" width="200" height="200" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-02.webp" alt="" width="200" height="200" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-03.webp" alt="" width="200" height="200" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-04.webp" alt="" width="200" height="200" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-05.webp" alt="" width="200" height="200" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-06.webp" alt="" width="200" height="200" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-07.webp" alt="" width="200" height="200" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-08.webp" alt="" width="200" height="200" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-09.webp" alt="" width="200" height="200" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-10.webp" alt="" width="200" height="200" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-11.webp" alt="" width="200" height="200" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-12.webp" alt="" width="200" height="200" decoding="async"></li></ul></div>
+        <div class="marquee rev"><ul class="track"><li><img src="assets/clients/client-13.webp" alt="Derma Beauté Care" width="200" height="200" decoding="async"></li><li><img src="assets/clients/client-14.webp" alt="O'Naomi Natural" width="200" height="200" decoding="async"></li><li><img src="assets/clients/client-15.webp" alt="Sopheak Beauty Clinic" width="200" height="200" decoding="async"></li><li><img src="assets/clients/client-16.webp" alt="Premium" width="200" height="200" decoding="async"></li><li><img src="assets/clients/client-17.webp" alt="S-Klean" width="200" height="200" decoding="async"></li><li><img src="assets/clients/client-18.webp" alt="Client" width="200" height="200" decoding="async"></li><li><img src="assets/clients/client-19.webp" alt="Client" width="200" height="200" decoding="async"></li><li><img src="assets/clients/client-20.webp" alt="Client" width="200" height="200" decoding="async"></li><li><img src="assets/clients/client-21.webp" alt="Client" width="200" height="200" decoding="async"></li><li><img src="assets/clients/client-22.webp" alt="Client" width="200" height="200" decoding="async"></li><li><img src="assets/clients/client-23.webp" alt="S&Y Brand" width="200" height="200" decoding="async"></li><li><img src="assets/clients/client-24.webp" alt="Client" width="200" height="200" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-13.webp" alt="" width="200" height="200" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-14.webp" alt="" width="200" height="200" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-15.webp" alt="" width="200" height="200" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-16.webp" alt="" width="200" height="200" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-17.webp" alt="" width="200" height="200" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-18.webp" alt="" width="200" height="200" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-19.webp" alt="" width="200" height="200" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-20.webp" alt="" width="200" height="200" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-21.webp" alt="" width="200" height="200" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-22.webp" alt="" width="200" height="200" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-23.webp" alt="" width="200" height="200" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-24.webp" alt="" width="200" height="200" decoding="async"></li></ul></div>
+      </div>
+    </div>
+  </section>
+
   <section class="block alt" id="services">
     <div class="wrap">
       <div class="sec-head">
@@ -546,52 +637,37 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
     </div>
   </section>
 
-  <section class="block" id="adsbox-system">
-    <div class="wrap">
-      <div class="appban">
-        <div class="appban-text">
-          <div class="eyebrow">ADS BOX System · adsbox.biz</div>
-          <h3 data-kh="លក់ Live ស្រួលជាងមុន។ មិនបាត់ Order មួយ។" data-en="Sell live, easier. Never miss an order.">លក់ Live ស្រួលជាងមុន។ មិនបាត់ Order មួយ។</h3>
-          <p data-kh="ចាប់ការកម្ម៉ង់ពី Comment ដោយស្វ័យប្រវត្តិ ឆ្លើយសារ Messenger និងបោះពុម្ពស្ទីគ័រដឹកជញ្ជូន ក្នុងប្រព័ន្ធតែមួយ។ ប្រើឥតគិតថ្លៃបាន។" data-en="Catch orders from Live comments automatically, reply on Messenger and print shipping stickers, all in one system. Free plan available.">ចាប់ការកម្ម៉ង់ពី Comment ដោយស្វ័យប្រវត្តិ ឆ្លើយសារ Messenger និងបោះពុម្ពស្ទីគ័រដឹកជញ្ជូន ក្នុងប្រព័ន្ធតែមួយ។ ប្រើឥតគិតថ្លៃបាន។</p>
-          <div class="appban-get">
-            <img src="assets/qr-adsbox-biz.svg" alt="QR code for adsbox.biz" width="92" height="92">
-            <div>
-              <small data-kh="ស្កេន ឬចុចដើម្បីចាប់ផ្តើម" data-en="Scan or tap to start">ស្កេន ឬចុចដើម្បីចាប់ផ្តើម</small>
-              <strong>adsbox.biz</strong>
-              <a class="btn btn-navy" href="https://adsbox.biz/" target="_blank" rel="noopener" data-kh="សាកល្បងឥតគិតថ្លៃ" data-en="Try it free">សាកល្បងឥតគិតថ្លៃ</a>
-            </div>
-          </div>
-        </div>
-        <div class="appban-media" aria-hidden="true">
-          <span class="shape s1"></span><span class="shape s2"></span><span class="shape s3"></span>
-          <div class="phone">
-            <div class="app">
-              <div class="app-bar"><span><span class="app-dot"></span><b>ADS BOX</b></span><span class="chip-s live">● LIVE</span></div>
-              <div class="stack">
-                <div class="app-grid" style="grid-template-columns:1fr 1fr"><div class="app-card"><div class="app-k">Orders</div><div class="app-v">48</div></div><div class="app-card"><div class="app-k" data-kh="បានឆ្លើយ" data-en="Replied">បានឆ្លើយ</div><div class="app-v good">100%</div></div></div>
-                <div class="app-card row"><span class="av" style="background:#7c6cff">S</span><div class="grow"><b>Sokha · A01 x2</b><span class="who" data-kh="ឆ្លើយស្វ័យប្រវត្តិ ✓" data-en="Auto-replied ✓">ឆ្លើយស្វ័យប្រវត្តិ ✓</span></div></div>
-                <div class="app-card row"><span class="av" style="background:#3ccf8e">D</span><div class="grow"><b>Dara · B12 x1</b><span class="who" data-kh="ឆ្លើយស្វ័យប្រវត្តិ ✓" data-en="Auto-replied ✓">ឆ្លើយស្វ័យប្រវត្តិ ✓</span></div></div>
-                <div class="app-card row"><span class="av" style="background:#ff6b81">V</span><div class="grow"><b>Vanna · A03 x3</b><span class="who" data-kh="កំពុងបោះពុម្ពស្ទីគ័រ" data-en="Printing sticker">កំពុងបោះពុម្ពស្ទីគ័រ</span></div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="block alt" id="knowledge">
+  <section class="block" id="results">
     <div class="wrap">
       <div class="sec-head"><div>
-        <div class="eyebrow" data-kh="ចំណេះដឹង" data-en="Knowledge">ចំណេះដឹង</div>
-        <h2 data-kh="គន្លឹះលក់អនឡាញ ពីក្រុម ADS BOX" data-en="Online selling tips from the ADS BOX team">គន្លឹះលក់អនឡាញ ពីក្រុម ADS BOX</h2>
+        <div class="eyebrow" data-kh="លទ្ធផលពិត" data-en="Real results">លទ្ធផលពិត</div>
+        <h2 data-kh="លទ្ធផលពីអតិថិជនរបស់យើង ខែនេះ" data-en="What our clients got this month">លទ្ធផលពីអតិថិជនរបស់យើង ខែនេះ</h2>
       </div></div>
-      <div class="posts" id="posts"></div>
-      <div class="see-all"><a class="btn btn-outline" href="/knowledge/" data-kh="មើលអត្ថបទទាំងអស់ →" data-en="See all articles →">មើលអត្ថបទទាំងអស់ →</a></div>
+      <div class="results">
+        <div class="res">
+          <div class="big">$0.75</div>
+          <div class="from"><span data-kh="ក្នុងមួយ Order · ពីមុន $1.45" data-en="per order · was $1.45">ក្នុងមួយ Order · ពីមុន $1.45</span></div>
+          <h3 data-kh="ហាងសម្លៀកបំពាក់ លក់តាម Live" data-en="Clothing shop selling on Live">ហាងសម្លៀកបំពាក់ លក់តាម Live</h3>
+          <p data-kh="3,693 Orders ក្នុងខែនេះ ជាមួយ Boost Live និង Boost Post។" data-en="3,693 orders this month from Boost Live and Boost Post.">3,693 Orders ក្នុងខែនេះ ជាមួយ Boost Live និង Boost Post។</p>
+        </div>
+        <div class="res">
+          <div class="big">41%</div>
+          <div class="from"><span data-kh="ថោកជាងមធ្យម ក្នុងមួយ Order" data-en="cheaper per order than average">ថោកជាងមធ្យម ក្នុងមួយ Order</span></div>
+          <h3 data-kh="ហាងលក់ផលិតផលថែរក្សាស្បែក" data-en="Skincare shop">ហាងលក់ផលិតផលថែរក្សាស្បែក</h3>
+          <p data-kh="69 Orders ក្នុងមួយថ្ងៃ ត្រឹម $2.17 ក្នុងមួយ Order។" data-en="69 orders in one day at $2.17 each.">69 Orders ក្នុងមួយថ្ងៃ ត្រឹម $2.17 ក្នុងមួយ Order។</p>
+        </div>
+        <div class="res">
+          <div class="big">100%</div>
+          <div class="from"><span data-kh="អតិថិជនបន្តប្រើសេវា" data-en="clients renewed">អតិថិជនបន្តប្រើសេវា</span></div>
+          <h3 data-kh="ក្រុម Project Manager របស់យើង" data-en="Our project manager teams">ក្រុម Project Manager របស់យើង</h3>
+          <p data-kh="ក្រុមការងារភាគច្រើនរបស់យើង រក្សាអតិថិជនបាន 100% ក្នុងខែនេះ។" data-en="Most of our teams kept 100% of their clients this month.">ក្រុមការងារភាគច្រើនរបស់យើង រក្សាអតិថិជនបាន 100% ក្នុងខែនេះ។</p>
+        </div>
+      </div>
+      <p class="res-note" data-kh="ទិន្នន័យពិតពីប្រព័ន្ធ ADS BOX ខែតុលា 2026។ យើងលាក់ឈ្មោះអតិថិជន ដើម្បីការពារភាពឯកជន។" data-en="Real data from the ADS BOX system, October 2026. Client names are hidden to protect their privacy.">ទិន្នន័យពិតពីប្រព័ន្ធ ADS BOX ខែតុលា 2026។ យើងលាក់ឈ្មោះអតិថិជន ដើម្បីការពារភាពឯកជន។</p>
     </div>
   </section>
 
-  <section class="block" id="system">
+  <section class="block alt" id="system">
     <div class="wrap">
       <div class="sec-head"><div>
         <div class="eyebrow" data-kh="ចំណុចពិសេស" data-en="Key features">ចំណុចពិសេស</div>
@@ -601,26 +677,6 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
 
       <div class="feats">
         <div class="feat">
-          <div class="feat-text">
-            <h3 data-kh="របាយការណ៍ជូនរាល់ថ្ងៃ" data-en="A report in your hands every day">របាយការណ៍ជូនរាល់ថ្ងៃ</h3>
-            <p data-kh="ប្រព័ន្ធផ្ញើរបាយការណ៍ជូនរាល់ថ្ងៃ ទាំងការចំណាយ និងចំនួន Order ដើម្បីជួយបងប្អូនសម្រេចចិត្តបានត្រឹមត្រូវ។" data-en="Every day the system sends you your spend and number of orders, so you can make decisions with real numbers.">ប្រព័ន្ធផ្ញើរបាយការណ៍ជូនរាល់ថ្ងៃ ទាំងការចំណាយ និងចំនួន Order ដើម្បីជួយបងប្អូនសម្រេចចិត្តបានត្រឹមត្រូវ។</p>
-          </div>
-          <div class="app" aria-label="Example daily report">
-            <div class="app-bar"><span><span class="app-dot"></span><b>ADS BOX Bot</b></span><span>08:00</span></div>
-            <div class="bubble">
-              <div class="who"><span data-kh="របាយការណ៍ប្រចាំថ្ងៃ · ម្សិលមិញ" data-en="Daily report · yesterday">របាយការណ៍ប្រចាំថ្ងៃ · ម្សិលមិញ</span></div>
-              <div class="app-grid" style="margin-top:8px">
-                <div class="app-card"><div class="app-k"><span data-kh="ចំណាយ" data-en="Spend">ចំណាយ</span></div><div class="app-v">$84.20</div></div>
-                <div class="app-card"><div class="app-k">Orders</div><div class="app-v">112</div></div>
-                <div class="app-card"><div class="app-k"><span data-kh="ក្នុងមួយ Order" data-en="Per order">ក្នុងមួយ Order</span></div><div class="app-v good">$0.75</div></div>
-              </div>
-              <div class="app-bars" aria-hidden="true"><i style="height:40%"></i><i style="height:52%"></i><i style="height:47%"></i><i style="height:60%"></i><i style="height:72%"></i><i class="on" style="height:85%"></i><i class="on" style="height:100%"></i></div>
-              <div class="app-sub" style="margin-top:6px"><span data-kh="Order ក្នុងមួយថ្ងៃ · ៧ ថ្ងៃចុងក្រោយ" data-en="Orders per day · last 7 days">Order ក្នុងមួយថ្ងៃ · ៧ ថ្ងៃចុងក្រោយ</span></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="feat flip">
           <div class="feat-text">
             <h3 data-kh="ក្រុមជំនាញ មិនមែនម្នាក់ឯង" data-en="A team of specialists, not one person">ក្រុមជំនាញ មិនមែនម្នាក់ឯង</h3>
             <p data-kh="យើងមិនមែនត្រឹមតែជាអ្នកជំនាញម្នាក់នោះទេ។ យើងជាក្រុមការងារ ដែលម្នាក់ៗសុទ្ធតែមានជំនាញ និងបច្ចេកទេសច្បាស់លាស់រៀងៗខ្លួន។" data-en="We're not just one expert. We're a team, and every member has their own clear skills and expertise.">យើងមិនមែនត្រឹមតែជាអ្នកជំនាញម្នាក់នោះទេ។ យើងជាក្រុមការងារ ដែលម្នាក់ៗសុទ្ធតែមានជំនាញ និងបច្ចេកទេសច្បាស់លាស់រៀងៗខ្លួន។</p>
@@ -652,7 +708,7 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
           </div>
         </div>
 
-        <div class="feat flip">
+        <div class="feat">
           <div class="feat-text">
             <h3 data-kh="AI ប្រាប់ភ្លាមៗ ពេល Boost មានបញ្ហា" data-en="AI spots a problem boost right away">AI ប្រាប់ភ្លាមៗ ពេល Boost មានបញ្ហា</h3>
             <p data-kh="ប្រព័ន្ធ AI ប្រាប់ថា Boost មានបញ្ហាឬទេ ហើយក្រុមការងារតាមដានជាប់រហូតដល់ដោះស្រាយរួច។" data-en="Our AI tells us when a boost has a problem, and the team follows it until it's fixed.">ប្រព័ន្ធ AI ប្រាប់ថា Boost មានបញ្ហាឬទេ ហើយក្រុមការងារតាមដានជាប់រហូតដល់ដោះស្រាយរួច។</p>
@@ -666,78 +722,41 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="feat">
-          <div class="feat-text">
-            <h3 data-kh="ជំនាញ + AI = លទ្ធផលល្អជាងមុន" data-en="Skill plus AI, for better results">ជំនាញ + AI = លទ្ធផលល្អជាងមុន</h3>
-            <p data-kh="យើងមិនត្រឹមតែប្រើជំនាញរបស់យើងប៉ុណ្ណោះទេ យើងថែមទាំងប្រើ AI ដើម្បីជួយឲ្យការលក់របស់បងប្អូនទទួលបានលទ្ធផលល្អជាងមុន។" data-en="We don't rely on skill alone. We also use AI to help your sales get better results.">យើងមិនត្រឹមតែប្រើជំនាញរបស់យើងប៉ុណ្ណោះទេ យើងថែមទាំងប្រើ AI ដើម្បីជួយឲ្យការលក់របស់បងប្អូនទទួលបានលទ្ធផលល្អជាងមុន។</p>
+  <section class="block" id="adsbox-system">
+    <div class="wrap">
+      <div class="appban">
+        <div class="appban-text">
+          <div class="eyebrow">ADS BOX System · adsbox.biz</div>
+          <h3 data-kh="លក់ Live ស្រួលជាងមុន។ មិនបាត់ Order មួយ។" data-en="Sell live, easier. Never miss an order.">លក់ Live ស្រួលជាងមុន។ មិនបាត់ Order មួយ។</h3>
+          <p data-kh="ចាប់ការកម្ម៉ង់ពី Comment ដោយស្វ័យប្រវត្តិ ឆ្លើយសារ Messenger និងបោះពុម្ពស្ទីគ័រដឹកជញ្ជូន ក្នុងប្រព័ន្ធតែមួយ។ ប្រើឥតគិតថ្លៃបាន។" data-en="Catch orders from Live comments automatically, reply on Messenger and print shipping stickers, all in one system. Free plan available.">ចាប់ការកម្ម៉ង់ពី Comment ដោយស្វ័យប្រវត្តិ ឆ្លើយសារ Messenger និងបោះពុម្ពស្ទីគ័រដឹកជញ្ជូន ក្នុងប្រព័ន្ធតែមួយ។ ប្រើឥតគិតថ្លៃបាន។</p>
+          <div class="appban-get">
+            <img src="assets/qr-adsbox-biz.svg" alt="QR code for adsbox.biz" width="92" height="92">
+            <div>
+              <small data-kh="ស្កេន ឬចុចដើម្បីចាប់ផ្តើម" data-en="Scan or tap to start">ស្កេន ឬចុចដើម្បីចាប់ផ្តើម</small>
+              <strong>adsbox.biz</strong>
+              <span class="appban-price" data-kh="ចាប់ពី $29 / ខែ" data-en="Starting at $29/month">ចាប់ពី $29 / ខែ</span>
+              <a class="btn btn-navy" href="https://adsbox.biz/" target="_blank" rel="noopener" data-kh="សាកល្បងឥតគិតថ្លៃ" data-en="Try it free">សាកល្បងឥតគិតថ្លៃ</a>
+            </div>
           </div>
-          <div class="app" aria-label="Example AI plan">
-            <div class="app-bar"><b>Admin</b><span><span data-kh="ខែនេះ" data-en="This month">ខែនេះ</span></span></div>
-            <div class="app-stack">
-              <div class="app-grid">
-                <div class="app-card"><div class="app-k">Orders</div><div class="app-v">3,693</div></div>
-                <div class="app-card"><div class="app-k"><span data-kh="ក្នុងមួយ Order" data-en="Per order">ក្នុងមួយ Order</span></div><div class="app-v good">$0.75</div><div class="app-sub"><span data-kh="ម្សិលមិញ $1.45" data-en="Yesterday $1.45">ម្សិលមិញ $1.45</span></div></div>
-                <div class="app-card"><div class="app-k">Lives</div><div class="app-v">7</div></div>
-              </div>
-              <div class="app-card ai">
-                <div class="app-k">✨ <span data-kh="ផែនការថ្ងៃនេះពី AI" data-en="Today's plan from AI">ផែនការថ្ងៃនេះពី AI</span></div>
-                <div style="margin-top:4px"><span data-kh="ការចំណាយកើនឡើង ប៉ុន្តែ Order នៅដដែល។ ណែនាំឲ្យផ្អាក Post ទី ២ ហើយបង្កើនថវិកា Live ម៉ោង ៧ យប់។" data-en="Spend went up but orders stayed flat. Pause post #2 and raise the 7 PM Live budget.">ការចំណាយកើនឡើង ប៉ុន្តែ Order នៅដដែល។ ណែនាំឲ្យផ្អាក Post ទី ២ ហើយបង្កើនថវិកា Live ម៉ោង ៧ យប់។</span></div>
+        </div>
+        <div class="appban-media" aria-hidden="true">
+          <span class="shape s1"></span><span class="shape s2"></span><span class="shape s3"></span>
+          <div class="phone">
+            <div class="app">
+              <div class="app-bar"><span><span class="app-dot"></span><b>ADS BOX</b></span><span class="chip-s live">● LIVE</span></div>
+              <div class="stack">
+                <div class="app-grid" style="grid-template-columns:1fr 1fr"><div class="app-card"><div class="app-k">Orders</div><div class="app-v">48</div></div><div class="app-card"><div class="app-k" data-kh="បានឆ្លើយ" data-en="Replied">បានឆ្លើយ</div><div class="app-v good">100%</div></div></div>
+                <div class="app-card row"><span class="av" style="background:#7c6cff">S</span><div class="grow"><b>Sokha · A01 x2</b><span class="who" data-kh="ឆ្លើយស្វ័យប្រវត្តិ ✓" data-en="Auto-replied ✓">ឆ្លើយស្វ័យប្រវត្តិ ✓</span></div></div>
+                <div class="app-card row"><span class="av" style="background:#3ccf8e">D</span><div class="grow"><b>Dara · B12 x1</b><span class="who" data-kh="ឆ្លើយស្វ័យប្រវត្តិ ✓" data-en="Auto-replied ✓">ឆ្លើយស្វ័យប្រវត្តិ ✓</span></div></div>
+                <div class="app-card row"><span class="av" style="background:#ff6b81">V</span><div class="grow"><b>Vanna · A03 x3</b><span class="who" data-kh="កំពុងបោះពុម្ពស្ទីគ័រ" data-en="Printing sticker">កំពុងបោះពុម្ពស្ទីគ័រ</span></div></div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="block alt" id="results">
-    <div class="wrap">
-      <div class="sec-head"><div>
-        <div class="eyebrow" data-kh="លទ្ធផលពិត" data-en="Real results">លទ្ធផលពិត</div>
-        <h2 data-kh="លទ្ធផលពីអតិថិជនរបស់យើង ខែនេះ" data-en="What our clients got this month">លទ្ធផលពីអតិថិជនរបស់យើង ខែនេះ</h2>
-      </div></div>
-      <div class="results">
-        <div class="res">
-          <div class="big">$0.75</div>
-          <div class="from"><span data-kh="ក្នុងមួយ Order · ពីមុន $1.45" data-en="per order · was $1.45">ក្នុងមួយ Order · ពីមុន $1.45</span></div>
-          <h3 data-kh="ហាងសម្លៀកបំពាក់ លក់តាម Live" data-en="Clothing shop selling on Live">ហាងសម្លៀកបំពាក់ លក់តាម Live</h3>
-          <p data-kh="3,693 Orders ក្នុងខែនេះ ជាមួយ Boost Live និង Boost Post។" data-en="3,693 orders this month from Boost Live and Boost Post.">3,693 Orders ក្នុងខែនេះ ជាមួយ Boost Live និង Boost Post។</p>
-        </div>
-        <div class="res">
-          <div class="big">41%</div>
-          <div class="from"><span data-kh="ថោកជាងមធ្យម ក្នុងមួយ Order" data-en="cheaper per order than average">ថោកជាងមធ្យម ក្នុងមួយ Order</span></div>
-          <h3 data-kh="ហាងលក់ផលិតផលថែរក្សាស្បែក" data-en="Skincare shop">ហាងលក់ផលិតផលថែរក្សាស្បែក</h3>
-          <p data-kh="69 Orders ក្នុងមួយថ្ងៃ ត្រឹម $2.17 ក្នុងមួយ Order។" data-en="69 orders in one day at $2.17 each.">69 Orders ក្នុងមួយថ្ងៃ ត្រឹម $2.17 ក្នុងមួយ Order។</p>
-        </div>
-        <div class="res">
-          <div class="big">100%</div>
-          <div class="from"><span data-kh="អតិថិជនបន្តប្រើសេវា" data-en="clients renewed">អតិថិជនបន្តប្រើសេវា</span></div>
-          <h3 data-kh="ក្រុម Project Manager របស់យើង" data-en="Our project manager teams">ក្រុម Project Manager របស់យើង</h3>
-          <p data-kh="ក្រុមការងារភាគច្រើនរបស់យើង រក្សាអតិថិជនបាន 100% ក្នុងខែនេះ។" data-en="Most of our teams kept 100% of their clients this month.">ក្រុមការងារភាគច្រើនរបស់យើង រក្សាអតិថិជនបាន 100% ក្នុងខែនេះ។</p>
-        </div>
-      </div>
-      <p class="res-note" data-kh="ទិន្នន័យពិតពីប្រព័ន្ធ ADS BOX ខែតុលា 2026។ យើងលាក់ឈ្មោះអតិថិជន ដើម្បីការពារភាពឯកជន។" data-en="Real data from the ADS BOX system, October 2026. Client names are hidden to protect their privacy.">ទិន្នន័យពិតពីប្រព័ន្ធ ADS BOX ខែតុលា 2026។ យើងលាក់ឈ្មោះអតិថិជន ដើម្បីការពារភាពឯកជន។</p>
-    </div>
-  </section>
-
-  <section class="block clients" id="clients" aria-labelledby="clients-h">
-    <div class="wrap">
-      <div class="sec-head"><div>
-        <div class="eyebrow" data-kh="អតិថិជនរបស់យើង" data-en="Our clients">អតិថិជនរបស់យើង</div>
-        <h2 id="clients-h" data-kh="អ្នកលក់ជាច្រើនទុកចិត្ត ADS BOX" data-en="Sellers who trust ADS BOX">អ្នកលក់ជាច្រើនទុកចិត្ត ADS BOX</h2>
-      </div></div>
-      <div class="trust-grid">
-      <div><strong>120+</strong><span data-kh="អតិថិជនកំពុងប្រើសេវា" data-en="active clients">អតិថិជនកំពុងប្រើសេវា</span></div>
-      <div><strong>8</strong><span data-kh="អ្នកគ្រប់គ្រងគម្រោង" data-en="project managers">អ្នកគ្រប់គ្រងគម្រោង</span></div>
-      <div><strong><span data-kh="រៀងរាល់ថ្ងៃ" data-en="Daily">រៀងរាល់ថ្ងៃ</span></strong><span data-kh="របាយការណ៍ចំណាយ និង Order" data-en="spend &amp; order reports">របាយការណ៍ចំណាយ និង Order</span></div>
-      <div><strong>AI</strong><span data-kh="តាមដាន Boost ជាប់ជានិច្ច" data-en="watches every boost">តាមដាន Boost ជាប់ជានិច្ច</span></div>
-      </div>
-
-      <div class="logo-wall" role="region" aria-label="Client logos">
-        <p class="logo-cap" data-kh="អតិថិជនដែលធ្លាប់ប្រើប្រាស់សេវាកម្ម ADS BOX" data-en="Brands that have used ADS BOX">អតិថិជនដែលធ្លាប់ប្រើប្រាស់សេវាកម្ម ADS BOX</p>
-        <div class="marquee"><ul class="track"><li><img src="assets/clients/client-01.webp" alt="CEO Master Club" width="200" height="200" loading="lazy" decoding="async"></li><li><img src="assets/clients/client-02.webp" alt="Borey Chhay Ly" width="200" height="200" loading="lazy" decoding="async"></li><li><img src="assets/clients/client-03.webp" alt="Skin Seven" width="200" height="200" loading="lazy" decoding="async"></li><li><img src="assets/clients/client-04.webp" alt="Client" width="200" height="200" loading="lazy" decoding="async"></li><li><img src="assets/clients/client-05.webp" alt="EEWS" width="200" height="200" loading="lazy" decoding="async"></li><li><img src="assets/clients/client-06.webp" alt="La Rose TK" width="200" height="200" loading="lazy" decoding="async"></li><li><img src="assets/clients/client-07.webp" alt="Mabel" width="200" height="200" loading="lazy" decoding="async"></li><li><img src="assets/clients/client-08.webp" alt="Client" width="200" height="200" loading="lazy" decoding="async"></li><li><img src="assets/clients/client-09.webp" alt="Client" width="200" height="200" loading="lazy" decoding="async"></li><li><img src="assets/clients/client-10.webp" alt="LS Clinic" width="200" height="200" loading="lazy" decoding="async"></li><li><img src="assets/clients/client-11.webp" alt="Client" width="200" height="200" loading="lazy" decoding="async"></li><li><img src="assets/clients/client-12.webp" alt="Kume" width="200" height="200" loading="lazy" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-01.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-02.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-03.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-04.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-05.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-06.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-07.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-08.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-09.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-10.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-11.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-12.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></li></ul></div>
-        <div class="marquee rev"><ul class="track"><li><img src="assets/clients/client-13.webp" alt="Derma Beauté Care" width="200" height="200" loading="lazy" decoding="async"></li><li><img src="assets/clients/client-14.webp" alt="O'Naomi Natural" width="200" height="200" loading="lazy" decoding="async"></li><li><img src="assets/clients/client-15.webp" alt="Sopheak Beauty Clinic" width="200" height="200" loading="lazy" decoding="async"></li><li><img src="assets/clients/client-16.webp" alt="Premium" width="200" height="200" loading="lazy" decoding="async"></li><li><img src="assets/clients/client-17.webp" alt="S-Klean" width="200" height="200" loading="lazy" decoding="async"></li><li><img src="assets/clients/client-18.webp" alt="Client" width="200" height="200" loading="lazy" decoding="async"></li><li><img src="assets/clients/client-19.webp" alt="Client" width="200" height="200" loading="lazy" decoding="async"></li><li><img src="assets/clients/client-20.webp" alt="Client" width="200" height="200" loading="lazy" decoding="async"></li><li><img src="assets/clients/client-21.webp" alt="Client" width="200" height="200" loading="lazy" decoding="async"></li><li><img src="assets/clients/client-22.webp" alt="Client" width="200" height="200" loading="lazy" decoding="async"></li><li><img src="assets/clients/client-23.webp" alt="S&Y Brand" width="200" height="200" loading="lazy" decoding="async"></li><li><img src="assets/clients/client-24.webp" alt="Client" width="200" height="200" loading="lazy" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-13.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-14.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-15.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-16.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-17.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-18.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-19.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-20.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-21.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-22.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-23.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></li><li aria-hidden="true"><img src="assets/clients/client-24.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></li></ul></div>
       </div>
     </div>
   </section>
@@ -762,6 +781,28 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
       <div class="faqs"><details class="faq"><summary><span data-kh="តើកម្ម៉ង់សេវាកម្មយ៉ាងដូចម្តេច?" data-en="How do I order?">តើកម្ម៉ង់សេវាកម្មយ៉ាងដូចម្តេច?</span></summary><p data-kh="ចុចប៊ូតុង “ចាប់អារម្មណ៍សេវាកម្ម” ឬឆាតតាម Telegram ហើយផ្ញើតំណភ្ជាប់ Page របស់បងប្អូន។ ក្រុមយើងនឹងណែនាំសេវាកម្ម និងតម្លៃដែលសមស្រប។" data-en="Tap “I'm interested” or chat with us on Telegram and send your Page link. Our team will suggest the right service and price.">ចុចប៊ូតុង “ចាប់អារម្មណ៍សេវាកម្ម” ឬឆាតតាម Telegram ហើយផ្ញើតំណភ្ជាប់ Page របស់បងប្អូន។ ក្រុមយើងនឹងណែនាំសេវាកម្ម និងតម្លៃដែលសមស្រប។</p></details><details class="faq"><summary><span data-kh="តើបង់ប្រាក់តាមរបៀបណា?" data-en="How do I pay?">តើបង់ប្រាក់តាមរបៀបណា?</span></summary><p data-kh="បង់តាម ABA ឬ KHQR។ បន្ទាប់ពីបង់ សូមផ្ញើរូបភាពវិក្កយបត្រ តាម Telegram។" data-en="Pay by ABA or KHQR, then send us the payment slip on Telegram.">បង់តាម ABA ឬ KHQR។ បន្ទាប់ពីបង់ សូមផ្ញើរូបភាពវិក្កយបត្រ តាម Telegram។</p></details><details class="faq"><summary><span data-kh="តើខ្ញុំដឹងលទ្ធផលពេលណា?" data-en="When do I see results?">តើខ្ញុំដឹងលទ្ធផលពេលណា?</span></summary><p data-kh="ប្រព័ន្ធផ្ញើរបាយការណ៍ការចំណាយ និង Order ជូនរាល់ថ្ងៃ ដូច្នេះបងប្អូនដឹងលទ្ធផលជារៀងរាល់ថ្ងៃ។" data-en="The system sends you a spend and order report every day, so you know your results daily.">ប្រព័ន្ធផ្ញើរបាយការណ៍ការចំណាយ និង Order ជូនរាល់ថ្ងៃ ដូច្នេះបងប្អូនដឹងលទ្ធផលជារៀងរាល់ថ្ងៃ។</p></details><details class="faq"><summary><span data-kh="តើធានាចំនួន Order ទេ?" data-en="Do you guarantee orders?">តើធានាចំនួន Order ទេ?</span></summary><p data-kh="ចំនួន Order អាស្រ័យលើផលិតផល តម្លៃ និងរូបភាព។ យើងមិនសន្យាចំនួនជាក់លាក់ទេ ប៉ុន្តែយើងតាមដានរាល់ថ្ងៃ ហើយកែតម្រូវភ្លាមៗ ដើម្បីឲ្យថ្លៃក្នុងមួយ Order ទាបបំផុត។" data-en="Orders depend on your product, price and photos. We don't promise an exact number, but we check every day and adjust quickly to keep your cost per order low.">ចំនួន Order អាស្រ័យលើផលិតផល តម្លៃ និងរូបភាព។ យើងមិនសន្យាចំនួនជាក់លាក់ទេ ប៉ុន្តែយើងតាមដានរាល់ថ្ងៃ ហើយកែតម្រូវភ្លាមៗ ដើម្បីឲ្យថ្លៃក្នុងមួយ Order ទាបបំផុត។</p></details><details class="faq"><summary><span data-kh="តើមានប្រព័ន្ធជួយលក់ Live ទេ?" data-en="Do you have a system for Live selling?">តើមានប្រព័ន្ធជួយលក់ Live ទេ?</span></summary><p data-kh="មាន។ ប្រព័ន្ធ ADS BOX នៅ adsbox.biz ចាប់ Order ពី Comment ដោយស្វ័យប្រវត្តិ ហើយមានគម្រោងប្រើឥតគិតថ្លៃ។" data-en="Yes. The ADS BOX system at adsbox.biz catches orders from Live comments automatically, and there is a free plan.">មាន។ ប្រព័ន្ធ ADS BOX នៅ adsbox.biz ចាប់ Order ពី Comment ដោយស្វ័យប្រវត្តិ ហើយមានគម្រោងប្រើឥតគិតថ្លៃ។</p></details></div>
     </div>
   </section>
+
+  <section class="block alt" id="knowledge">
+    <div class="wrap">
+      <div class="sec-head"><div>
+        <div class="eyebrow" data-kh="ចំណេះដឹង" data-en="Knowledge">ចំណេះដឹង</div>
+        <h2 data-kh="គន្លឹះលក់អនឡាញ ពីក្រុម ADS BOX" data-en="Online selling tips from the ADS BOX team">គន្លឹះលក់អនឡាញ ពីក្រុម ADS BOX</h2>
+      </div></div>
+      <div class="posts" id="posts"></div>
+      <div class="see-all"><a class="btn btn-outline" href="/knowledge/" data-kh="មើលអត្ថបទទាំងអស់ →" data-en="See all articles →">មើលអត្ថបទទាំងអស់ →</a></div>
+    </div>
+  </section>
+
+  <section class="cta-band" id="get-started" aria-labelledby="cta-h">
+    <div class="wrap cta-in">
+      <div>
+        <h2 id="cta-h" data-kh="ចង់បាន Order ច្រើនជាងមុន?" data-en="Want more orders?">ចង់បាន Order ច្រើនជាងមុន?</h2>
+        <p data-kh="ផ្ញើតំណភ្ជាប់ Page របស់បងប្អូនមកក្រុមយើង ហើយយើងនឹងណែនាំសេវាកម្ម និងតម្លៃដែលសមស្រប។" data-en="Send us your Page link and our team will suggest the right service and price.">ផ្ញើតំណភ្ជាប់ Page របស់បងប្អូនមកក្រុមយើង ហើយយើងនឹងណែនាំសេវាកម្ម និងតម្លៃដែលសមស្រប។</p>
+      </div>
+      <a class="btn btn-primary" href="https://t.me/vannakdm" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13 1.4 11.5c-1-.3-1-1 .2-1.5L20.5 2.9c.9-.3 1.6.2 1.4 1.4z"/></svg><span data-kh="ឆាតតាម Telegram" data-en="Chat on Telegram">ឆាតតាម Telegram</span></a>
+    </div>
+  </section>
+
 </main>
 
 <main id="article-view" hidden>
@@ -837,7 +878,7 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
   var filter = "boost";
   var T = {
     all: { kh: "ទាំងអស់", en: "All" },
-    ask: { kh: "សួរតម្លៃ", en: "Ask for price" },
+    ask: { kh: "សូមទាក់ទងសម្រាប់តម្លៃ", en: "Contact us for pricing" },
     more: { kh: "លម្អិត", en: "Details" },
     order: { kh: "ចាប់អារម្មណ៍សេវាកម្ម", en: "I'm interested" },
     popular: { kh: "ពេញនិយម", en: "Popular" },
@@ -871,7 +912,7 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
       if (filter !== g.id) return;
       html += '<div class="svc-group"><h3>' + esc(g.name[lang]) + '</h3><div class="svc-list">';
       g.services.forEach(function (s) {
-        var price = s.price ? '<span class="price">' + esc(s.price) + "</span>" : "<span></span>";
+        var price = s.price ? '<span class="price">' + esc(s.price) + "</span>" : '<span class="price ask">' + T.ask[lang] + "</span>";
         var badge = s.popular ? '<span class="hot">' + T.popular[lang] + "</span>" : "";
         var img = s.id ? '<img class="svc-img" src="assets/services/' + s.id + '.jpg" alt="" width="960" height="540" loading="lazy">' : "";
         html += '<div class="svc">' + badge + img + "<h4>" + esc(s.name[lang]) + "</h4><p>" + esc(s.desc[lang]) + '</p><div class="svc-foot">' + price +
@@ -983,7 +1024,7 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
     }).join("");
   }
   var pop = document.getElementById("promo-pop"), ppTrack = document.getElementById("pp-track"), ppDots = document.getElementById("pp-dots");
-  var ppList = [], ppIdx = 0, ppTimer = null, ppPaused = false;
+  var ppList = [], ppIdx = 0, ppTimer = null, ppPaused = false, ppReturn = null;
   function ppShow(i) {
     ppIdx = (i + ppList.length) % ppList.length;
     [].forEach.call(ppTrack.querySelectorAll(".pp-slide"), function (el, k) { el.classList.toggle("on", k === ppIdx); });
@@ -999,7 +1040,7 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
     ppDots.innerHTML = ppList.length > 1 ? ppList.map(function (p, k) { return '<button type="button" aria-label="' + (k + 1) + '"></button>'; }).join("") : "";
     ppShow(start || 0); pop.hidden = false; ppPaused = false; ppAuto(); document.getElementById("pp-close").focus();
   }
-  function closePop() { pop.hidden = true; clearInterval(ppTimer); }
+  function closePop() { pop.hidden = true; clearInterval(ppTimer); if (ppReturn && ppReturn.focus && document.contains(ppReturn)) ppReturn.focus(); ppReturn = null; }
   ppTrack.addEventListener("click", function (e) { if (e.target.closest(".pp-prev")) { ppShow(ppIdx - 1); ppAuto(); } else if (e.target.closest(".pp-next")) { ppShow(ppIdx + 1); ppAuto(); } });
   ppDots.addEventListener("click", function (e) { var b = e.target.closest("button"); if (b) { ppShow([].indexOf.call(ppDots.children, b)); ppAuto(); } });
   pop.addEventListener("mouseenter", function () { ppPaused = true; clearInterval(ppTimer); });
@@ -1009,10 +1050,22 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
   document.getElementById("pp-order").addEventListener("click", function () { closePop(); openOrder(this); });
   pop.addEventListener("click", function (e) { if (e.target === pop) closePop(); });
   (document.getElementById("promo-grid") || document.createElement("div")).addEventListener("click", function (e) { var b = e.target.closest("[data-pop]"); if (b) openPop(PROMOS.filter(function (p) { return p.popup !== false; }).indexOf(PROMOS[+b.getAttribute("data-pop")])); });
-  document.addEventListener("click", function (e) { var a = e.target.closest('a[href="#promos"]'); if (!a) return; e.preventDefault(); if (!drawer.hidden) setDrawer(false); openPop(0); });
+  document.addEventListener("click", function (e) { var a = e.target.closest('a[href="#promos"]'); if (!a) return; e.preventDefault(); if (!drawer.hidden) setDrawer(false); ppReturn = a; openPop(0); });
   var seen = false; try { seen = sessionStorage.getItem("adsbox-promo-seen") === "1"; } catch (e) {}
   if (location.hash === "#promos") setTimeout(function () { openPop(0); }, 300);
-  else if (!seen && !/^#article-/.test(location.hash)) setTimeout(function () { if (modal.hidden) { openPop(0); try { sessionStorage.setItem("adsbox-promo-seen", "1"); } catch (e) {} } }, 1500);
+  else if (!seen && !/^#article-/.test(location.hash)) {
+    // Show the promotion once per visit, only after the visitor has scrolled past the services list.
+    var svcEnd = document.getElementById("services");
+    var tryPop = function () {
+      if (seen || !svcEnd) return;
+      if (svcEnd.getBoundingClientRect().bottom > 0) return;
+      if (!modal.hidden || !sdPop.hidden || !pop.hidden) return;
+      seen = true; window.removeEventListener("scroll", tryPop);
+      ppReturn = document.activeElement; openPop(0);
+      try { sessionStorage.setItem("adsbox-promo-seen", "1"); } catch (e) {}
+    };
+    window.addEventListener("scroll", tryPop, { passive: true });
+  }
 
   applyLang();
   route();

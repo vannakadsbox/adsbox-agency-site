@@ -58,7 +58,7 @@ window.SERVICE_GROUPS = [
      "kh": "Boost ពេលកំពុង Live ដើម្បីនាំអ្នកមើលចូលលឿន និងបង្កើនការកម្ម៉ង់។",
      "en": "Boost ពេលកំពុង Live ដើម្បីនាំអ្នកមើលចូលលឿន និងបង្កើនការកម្ម៉ង់។"
     },
-    "price": "",
+    "price": "ចាប់ពី $120 / ខែ",
     "popular": true,
     "poster": "assets/promo/promo-live-video.jpg"
    },
