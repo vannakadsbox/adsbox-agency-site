@@ -5,7 +5,9 @@ name: Build site
 on:
   push:
     branches: [main]
-    paths: ["content/**", "assets/uploads/**", "tools/**", ".github/workflows/build.yml"]
+    paths: ["content/**", "assets/uploads/**", "tools/**", ".github/workflows/build.yml", "!content/listings-cache.json"]
+  schedule:
+    - cron: "17 23 * * *"   # 06:17 Cambodia time: refresh followers and pictures of Pages / TikTok accounts for sale
   workflow_dispatch:
 
 permissions:

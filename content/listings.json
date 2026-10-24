@@ -1,0 +1,69 @@
+{
+  "groups": [
+    {
+      "id": "fb-pages",
+      "title": "លក់ផេក Facebook ខ្មែរ",
+      "headline": "ផេកមាន Follower ស្រាប់។ តម្លៃគិតតាម Follower។",
+      "price_per_1k": 15,
+      "items": [
+        {
+          "url": "https://www.facebook.com/profile.php?id=61580134710032",
+          "type": "ផេកខ្មែរ",
+          "status": "available",
+          "price": "",
+          "name": "",
+          "followers": "",
+          "picture": "",
+          "cover": ""
+        },
+        {
+          "url": "https://www.facebook.com/profile.php?id=61581017472166",
+          "type": "ផេកខ្មែរ",
+          "status": "available",
+          "price": "",
+          "name": "",
+          "followers": "",
+          "picture": "",
+          "cover": ""
+        },
+        {
+          "url": "https://www.facebook.com/profile.php?id=61580052934362",
+          "type": "ផេកខ្មែរ",
+          "status": "available",
+          "price": "",
+          "name": "",
+          "followers": "",
+          "picture": "",
+          "cover": ""
+        },
+        {
+          "url": "https://www.facebook.com/profile.php?id=61579303995746",
+          "type": "ផេកខ្មែរ",
+          "status": "available",
+          "price": "",
+          "name": "",
+          "followers": "",
+          "picture": "",
+          "cover": ""
+        },
+        {
+          "url": "https://www.facebook.com/profile.php?id=61593295843002",
+          "type": "ផេកខ្មែរ",
+          "status": "available",
+          "price": "",
+          "name": "",
+          "followers": "",
+          "picture": "",
+          "cover": ""
+        }
+      ]
+    },
+    {
+      "id": "tiktok-accounts",
+      "title": "លក់គណនី TikTok",
+      "headline": "គណនី TikTok មាន Follower ស្រាប់។",
+      "price_per_1k": "",
+      "items": []
+    }
+  ]
+}

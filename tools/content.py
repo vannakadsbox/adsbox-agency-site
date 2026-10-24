@@ -7,7 +7,7 @@ content/promos.json     -> promos.js
 
 articles.js, services.js and promos.js are generated: edit content/ instead.
 """
-import datetime, html, json, os, re
+import datetime, html, json, os, re, sys
 
 import yaml
 
@@ -200,55 +200,93 @@ def load_clients():
     return out
 
 
-PAGE_PIC_DIR = os.path.join("assets", "pages")
+LISTING_DIR = os.path.join("assets", "listings")
+LISTING_CACHE = os.path.join(ROOT, "content", "listings-cache.json")
+REFRESH_HOURS = 20   # follower counts are re-read at most this often (the daily build refreshes them)
 
 
-def page_key(url):
-    m = re.search(r"[?&]id=(\d+)", url or "") or re.search(r"facebook\.com/(?:people/[^/]+/)?([\w.]+)", url or "")
-    return re.sub(r"[^\w-]+", "-", m.group(1)) if m else ""
+def listing_key(url):
+    m = re.search(r"[?&]id=(\d+)", url or "") or re.search(r"tiktok\.com/@([\w.]+)", url or "") or \
+        re.search(r"facebook\.com/(?:people/[^/]+/)?([\w.]+)", url or "")
+    if not m: return ""
+    return ("tt-" if "tiktok.com" in url else "fb-") + re.sub(r"[^\w-]+", "-", m.group(1)).lower()
 
 
-def cached_page_picture(key, remote):
-    """Facebook picture links expire after a few weeks, so the first build that can reach Facebook
-    (the GitHub Action) saves a small permanent copy in assets/pages/<key>.webp."""
-    if not key: return remote
-    rel = os.path.join(PAGE_PIC_DIR, key + ".webp"); dst = os.path.join(ROOT, rel)
-    if os.path.exists(dst): return rel.replace(os.sep, "/")
-    if not remote: return ""
-    try:
-        import io, urllib.request
-        from PIL import Image, ImageOps
-        req = urllib.request.Request(remote, headers={"User-Agent": "Mozilla/5.0 (ADS BOX site builder)"})
-        with urllib.request.urlopen(req, timeout=20) as r: raw = r.read()
-        im = ImageOps.exif_transpose(Image.open(io.BytesIO(raw))).convert("RGB")
+def save_picture(remote, rel, box, crop_square, ua):
+    """Download a picture once and keep a small WebP copy (Facebook links expire)."""
+    import io, urllib.request
+    from PIL import Image, ImageOps
+    req = urllib.request.Request(remote, headers={"User-Agent": ua})
+    with urllib.request.urlopen(req, timeout=20) as r:
+        if not (r.headers.get("Content-Type") or "").startswith("image/"): raise ValueError("not an image")
+        raw = r.read()
+    im = ImageOps.exif_transpose(Image.open(io.BytesIO(raw))).convert("RGB")
+    if crop_square:
         side = min(im.size); im = im.crop(((im.width - side) // 2, (im.height - side) // 2, (im.width + side) // 2, (im.height + side) // 2))
-        im.thumbnail((240, 240), Image.LANCZOS)
-        os.makedirs(os.path.dirname(dst), exist_ok=True); im.save(dst, "WEBP", quality=82, method=6)
-        print(f"Page picture saved: {rel}")
-        return rel.replace(os.sep, "/")
+    im.thumbnail(box, Image.LANCZOS)
+    dst = os.path.join(ROOT, rel); os.makedirs(os.path.dirname(dst), exist_ok=True)
+    im.save(dst, "WEBP", quality=80, method=6)
+    return rel.replace(os.sep, "/")
+
+
+def refresh_listing(url, cached):
+    """Read name, followers, profile and cover picture from the link. Keeps the old values when reading fails."""
+    import time
+    if cached.get("fetched_at", 0) > time.time() - REFRESH_HOURS * 3600 and cached.get("name"): return cached
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import fetch_profiles as F
+        got = F.fetch(url)
     except Exception as ex:
-        print(f"Warning: could not download the picture for page {key} ({type(ex).__name__}); using the Facebook link for now")
-        return remote
+        print(f"Warning: could not read {url}: {type(ex).__name__}"); return cached
+    if not got.get("name") and not got.get("followers"):
+        print(f"Warning: nothing read from {url} ({got.get('error') or 'blocked or changed'}); keeping the last values")
+        return cached
+    key, ua = listing_key(url), (F.UA_FB if got.get("platform") == "facebook" else F.UA_BROWSER)
+    new = dict(cached, name=got.get("name") or cached.get("name", ""), followers=got.get("followers") or cached.get("followers"),
+               platform=got.get("platform"), fetched_at=int(time.time()))
+    for field, box, square in (("picture", (240, 240), True), ("cover", (960, 540), False)):
+        if got.get(field):
+            try: new[field] = save_picture(got[field], os.path.join(LISTING_DIR, f"{key}-{field}.webp"), box, square, ua)
+            except Exception as ex: print(f"Warning: could not save the {field} for {url}: {type(ex).__name__}")
+    print(f"Read {url}: {new.get('name')} · {new.get('followers')} followers")
+    return new
 
 
-def load_pages():
-    """content/pages.json -> the 'ផេកខ្មែរ & ផេកប៊ូសឡាយ' tab: Pages for sale, priced by followers."""
-    path = os.path.join(ROOT, "content", "pages.json")
-    if not os.path.exists(path): return {"title": "", "price_per_1k": 0, "pages": []}
+def load_listings():
+    """content/listings.json -> the 'sell pages / accounts' tabs. Staff paste a link; the build fills in the name,
+    followers, profile picture and cover from Facebook or TikTok, and refreshes the followers every day.
+    Anything typed in the admin panel (name, followers, pictures, price) wins over what was read."""
+    path = os.path.join(ROOT, "content", "listings.json")
+    if not os.path.exists(path): return []
     with open(path, encoding="utf-8") as f: data = json.load(f)
-    try: rate = float(data.get("price_per_1k") or 0)
-    except (TypeError, ValueError): rate = 0
-    out = []
-    for p in data.get("pages", []):
-        name = str(p.get("name") or "").strip()
-        if not name: continue
-        try: followers = int(str(p.get("followers") or 0).replace(",", "").strip() or 0)
-        except ValueError: followers = 0
-        url = str(p.get("url") or "").strip()
-        pic = optimized(asset(p["picture"]), (240, 240)) if p.get("picture") else cached_page_picture(page_key(url), str(p.get("picture_url") or "").strip())
-        out.append({"name": name, "url": url if url.startswith("https://") else "", "followers": followers,
-                    "type": str(p.get("type") or "").strip(), "sold": p.get("status") == "sold", "picture": pic})
-    return {"title": str(data.get("title") or "ផេកខ្មែរ & ផេកប៊ូសឡាយ").strip(), "price_per_1k": rate, "pages": out}
+    cache = {}
+    if os.path.exists(LISTING_CACHE):
+        with open(LISTING_CACHE, encoding="utf-8") as f: cache = json.load(f)
+    groups, used = [], {}
+    for g in data.get("groups", []):
+        try: rate = float(g.get("price_per_1k") or 0)
+        except (TypeError, ValueError): rate = 0
+        items = []
+        for it in g.get("items", []):
+            url = str(it.get("url") or "").strip()
+            if not url.startswith("https://"): continue
+            c = refresh_listing(url, cache.get(url, {})); used[url] = c
+            try: followers = int(str(it.get("followers") or "").replace(",", "").strip() or 0) or int(c.get("followers") or 0)
+            except ValueError: followers = int(c.get("followers") or 0)
+            name = str(it.get("name") or "").strip() or c.get("name") or ""
+            if not name: continue
+            pic = optimized(asset(it["picture"]), (240, 240)) if it.get("picture") else c.get("picture", "")
+            cover = optimized(asset(it["cover"]), (960, 540)) if it.get("cover") else c.get("cover", "")
+            price = str(it.get("price") or "").strip()
+            items.append({"name": name, "url": url, "followers": followers, "picture": pic, "cover": cover,
+                          "type": str(it.get("type") or "").strip(), "sold": it.get("status") == "sold",
+                          "price": price, "platform": c.get("platform") or ("tiktok" if "tiktok.com" in url else "facebook")})
+        groups.append({"id": re.sub(r"[^a-z0-9-]+", "-", str(g.get("id") or "").lower()) or f"list-{len(groups)}",
+                       "title": str(g.get("title") or "").strip(), "headline": str(g.get("headline") or "").strip(),
+                       "price_per_1k": rate, "items": items})
+    with open(LISTING_CACHE, "w", encoding="utf-8") as f: json.dump(used, f, ensure_ascii=False, indent=1); f.write("\n")
+    return groups
 
 
 def clean_opt():
@@ -268,11 +306,11 @@ def write_all():
     services = load_services()
     promos = load_promos()
     clients = load_clients()
-    pages = load_pages()
+    listings = load_listings()
     make_thumbs(promos)
     clean_opt()
     listing = [{k: a[k] for k in ("id", "date", "tag", "title", "summary", "emoji", "cover") if a.get(k)} for a in arts]
-    for path, text in (("articles.js", js("ARTICLES", listing)), ("services.js", js("SERVICE_GROUPS", services)), ("promos.js", js("PROMOS", promos)), ("clients.js", js("CLIENTS", clients)), ("pages.js", js("PAGES", pages))):
+    for path, text in (("articles.js", js("ARTICLES", listing)), ("services.js", js("SERVICE_GROUPS", services)), ("promos.js", js("PROMOS", promos)), ("clients.js", js("CLIENTS", clients)), ("listings.js", js("LISTINGS", listings))):
         with open(os.path.join(ROOT, path), "w", encoding="utf-8") as f: f.write(text)
     return arts, services, promos
 

@@ -602,6 +602,27 @@ a.more.pg-view { display: inline-flex; align-items: center; text-decoration: non
 :root[data-theme="dark"] .pg-calc input { background: var(--bg); color: var(--fg); border-color: var(--line); }
 :root[data-theme="dark"] .pg-calc output { color: #8fb3ff; }
 :root[data-theme="dark"] .pg-list .pg { background: linear-gradient(160deg, #18295a 0%, #121c33 60%); border-color: #26386a; }
+
+/* Listing card (Facebook Pages / TikTok accounts for sale): cover, round profile picture, followers pill */
+.svc.lc { padding-top: 0; }
+.lc-cover { position: relative; overflow: hidden; margin: 0 -18px; aspect-ratio: 16 / 7; border-radius: 13px 13px 0 0; background: linear-gradient(135deg, #1c4b9b, #3f7dff); }
+.lc-cover.lc-tiktok { background: linear-gradient(135deg, #111, #25f4ee 60%, #fe2c55); }
+.lc-cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.lc-cover img.lc-blur { filter: blur(18px) saturate(1.2); transform: scale(1.3); opacity: .85; }
+.lc-head { display: flex; align-items: flex-start; gap: 12px; margin-top: -30px; position: relative; min-width: 0; }
+.lc-pic { position: relative; flex: none; width: 72px; height: 72px; border-radius: 50%; overflow: hidden; border: 4px solid var(--surface); background: var(--chip); display: grid; place-items: center;
+  font-family: var(--font-display); font-weight: 800; font-size: 26px; color: var(--blue); box-shadow: 0 6px 16px rgba(10, 30, 80, .15); }
+.lc-pic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.lc-id { min-width: 0; display: grid; justify-items: start; gap: 2px; padding-top: 34px; }
+.lc-id h4 { overflow-wrap: anywhere; }
+.lc-label { font-size: 13px; color: var(--muted); }
+.lc-fol { display: inline-block; margin-top: 2px; padding: 2px 12px; border: 1.5px solid var(--navy); border-radius: 8px; font-weight: 700; font-size: 15px; color: var(--navy); background: var(--surface); }
+.lc .svc-foot { margin-top: auto; }
+.lc .svc-foot .price { flex-basis: 100%; }
+a.more { display: inline-flex; align-items: center; text-decoration: none; font-size: 14px; font-weight: 600; min-height: 36px; padding: 6px 14px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); margin-right: auto; }
+a.more:hover { border-color: var(--blue); color: var(--blue); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .lc-fol { border-color: #8fb3ff; color: #8fb3ff; } }
+:root[data-theme="dark"] .lc-fol { border-color: #8fb3ff; color: #8fb3ff; }
 </style>
 
 </head>
@@ -929,7 +950,7 @@ a.more.pg-view { display: inline-flex; align-items: center; text-decoration: non
 <script src="articles.js"></script>
 <script src="promos.js"></script>
 <script src="clients.js"></script>
-<script src="pages.js"></script>
+<script src="listings.js"></script>
 <script>
 (function () {
   var TG = "https://t.me/vannakdm";
@@ -953,12 +974,15 @@ a.more.pg-view { display: inline-flex; align-items: center; text-decoration: non
     pagePrice: { kh: "តម្លៃ", en: "Price" },
     viewPage: { kh: "មើល Page", en: "View Page" },
     sold: { kh: "លក់រួច", en: "Sold" },
-    seeMorePages: { kh: "មើលផេកបន្ថែម ({n})", en: "See more Pages ({n})" },
+    seeMorePages: { kh: "មើលបន្ថែម ({n})", en: "See more ({n})" },
     calcLabel: { kh: "គណនាតម្លៃផេក (${r} ក្នុង 1K Follower)៖ បញ្ចូលចំនួន Follower", en: "Page price calculator (${r} per 1K followers): enter followers" },
     pgHead: { kh: "ផេកមាន Follower ស្រាប់។ តម្លៃគិតតាម Follower។", en: "Pages with followers. Priced by followers." },
     pgLead: { kh: "មាន {n} ផេកកំពុងលក់។ តម្លៃ ${r} ក្នុង 1,000 Follower។ ចុច «មើល Page» ដើម្បីពិនិត្យ ហើយ «ចាប់អារម្មណ៍សេវាកម្ម» ដើម្បីកុម្ម៉ង់។", en: "{n} Pages for sale at ${r} per 1,000 followers. Tap “View Page” to check one, then “I'm interested” to order." },
     calcSmall: { kh: "បញ្ចូលចំនួន Follower", en: "Enter the followers" },
-    calcTitle: { kh: "គណនាតម្លៃផេក", en: "Page price calculator" }
+    calcTitle: { kh: "គណនាតម្លៃផេក", en: "Page price calculator" },
+    hasFollowers: { kh: "មានចំនួនអ្នកតាមដាន", en: "Followers" },
+    lsLead: { kh: "មាន {n} កំពុងលក់។ ចុច «លម្អិត» ដើម្បីមើល ហើយ «ចាប់អារម្មណ៍សេវាកម្ម» ដើម្បីកុម្ម៉ង់។", en: "{n} for sale. Tap “Details” to view one, then “I'm interested” to order." },
+    lsRate: { kh: "តម្លៃ ${r} ក្នុង 1,000 Follower។", en: "${r} per 1,000 followers." }
   };
   var KH_MONTHS = ["មករា","កុម្ភៈ","មីនា","មេសា","ឧសភា","មិថុនា","កក្កដា","សីហា","កញ្ញា","តុលា","វិច្ឆិកា","ធ្នូ"];
   var KH_DIGITS = "០១២៣៤៥៦៧៨៩";
@@ -970,66 +994,76 @@ a.more.pg-view { display: inline-flex; align-items: center; text-decoration: non
   }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
 
-  // Pages for sale (content/pages.json, edited in the admin panel): price = followers / 1000 x price_per_1k
-  var PAGES = window.PAGES || { pages: [] };
+  // Pages / accounts for sale (content/listings.json). Staff paste a link in the admin panel; the build reads the
+  // name, followers, profile picture and cover. Price: typed price, else followers / 1000 x price_per_1k, else "contact us".
+  var LISTINGS = (window.LISTINGS || []).filter(function (g) { return g.items && g.items.length; });
+  function listingGroup(id) { for (var i = 0; i < LISTINGS.length; i++) if (LISTINGS[i].id === id) return LISTINGS[i]; return null; }
   function serviceTabs() {
     var tabs = SERVICE_GROUPS.map(function (g) { return { id: g.id, name: g.name[lang] }; });
-    if (PAGES.pages && PAGES.pages.length) tabs.push({ id: "pages", name: PAGES.title || "ផេកខ្មែរ & ផេកប៊ូសឡាយ" });
+    LISTINGS.forEach(function (g) { tabs.push({ id: g.id, name: g.title }); });
     return tabs;
   }
-  function pagePrice(f) { return Math.round((+f || 0) / 1000 * (+PAGES.price_per_1k || 0)); }
   function fmtNum(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
-  function pageCard(p) {
-    var price = pagePrice(p.followers), initial = esc((p.name || "?").trim().charAt(0).toUpperCase());
-    var pic = p.picture ? '<img class="pg-pic" src="' + encodeURI(p.picture) + '" alt="" width="96" height="96" loading="lazy" referrerpolicy="no-referrer" onerror="this.replaceWith(Object.assign(document.createElement(\'span\'),{className:\'pg-pic pg-ini\',textContent:\'' + initial + '\'}))">' :
-      '<span class="pg-pic pg-ini" aria-hidden="true">' + initial + "</span>";
-    var label = p.name + " · " + fmtNum(p.followers) + " Followers · $" + price;
-    return '<div class="svc pg' + (p.sold ? " pg-sold" : "") + '">' + (p.sold ? '<span class="hot pg-sold-tag">' + T.sold[lang] + "</span>" : "") +
-      '<div class="pg-head">' + pic + '<div class="pg-id"><h4>' + esc(p.name) + "</h4>" + (p.type ? '<span class="pill">' + esc(p.type) + "</span>" : "") + "</div></div>" +
-      '<dl class="pg-stats"><div><dt>' + T.followers[lang] + "</dt><dd>" + fmtNum(p.followers) + '</dd></div><div><dt>' + T.pagePrice[lang] + '</dt><dd class="pg-price">$' + fmtNum(price) + "</dd></div></dl>" +
-      '<div class="svc-foot">' + (p.url ? '<a class="more pg-view" href="' + esc(p.url) + '" target="_blank" rel="noopener">' + T.viewPage[lang] + "</a>" : "<span></span>") +
-      (p.sold ? '<span class="price ask">' + T.sold[lang] + "</span>" : '<button type="button" class="order" data-svc-kh="' + esc(label) + '" data-svc-en="' + esc(label) + '">' + T.order[lang] + "</button>") + "</div></div>";
+  function compact(n) {
+    n = +n || 0;
+    if (n < 1000) return String(n);
+    var v = n >= 1e6 ? n / 1e6 : n / 1e3;
+    return (v >= 100 ? Math.round(v) : Math.round(v * 10) / 10) + (n >= 1e6 ? "M" : "K");
   }
-  function renderPages() {
-    var list = PAGES.pages || [], extra = list.length - SVC_VISIBLE, open = !!svcOpen.pages, html = "";
+  function itemPrice(g, p) {
+    if (p.price) return p.price;
+    if (+g.price_per_1k > 0 && p.followers) return "$" + fmtNum(Math.round(p.followers / 1000 * g.price_per_1k));
+    return "";
+  }
+  function initialOf(p) { return esc((p.name || "?").trim().charAt(0).toUpperCase()); }
+  function listingCard(g, p) {
+    var price = itemPrice(g, p), ini = initialOf(p);
+    var cover = p.cover ? '<img src="' + encodeURI(p.cover) + '" alt="" width="960" height="540" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">' :
+      (p.picture ? '<img class="lc-blur" src="' + encodeURI(p.picture) + '" alt="" width="240" height="240" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">' : "");
+    var pic = '<span class="lc-pic" aria-hidden="true">' + ini + (p.picture ? '<img src="' + encodeURI(p.picture) + '" alt="" width="96" height="96" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">' : "") + "</span>";
+    var label = p.name + " · " + fmtNum(p.followers) + " Followers" + (price ? " · " + price : "");
+    return '<div class="svc lc' + (p.sold ? " pg-sold" : "") + '">' + (p.sold ? '<span class="hot">' + T.sold[lang] + "</span>" : "") +
+      '<div class="lc-cover lc-' + esc(p.platform || "facebook") + '">' + cover + "</div>" +
+      '<div class="lc-head">' + pic + '<div class="lc-id"><h4>' + esc(p.name) + "</h4>" +
+      '<span class="lc-label">' + T.hasFollowers[lang] + "</span>" +
+      '<span class="lc-fol" title="' + fmtNum(p.followers) + ' Followers">' + compact(p.followers) + " Follower</span>" +
+      (p.type ? '<span class="pill">' + esc(p.type) + "</span>" : "") + "</div></div>" +
+      '<div class="svc-foot">' + (price ? '<span class="price">' + esc(price) + "</span>" : '<span class="price ask">' + T.ask[lang] + "</span>") +
+      '<a class="more" href="' + esc(p.url) + '" target="_blank" rel="noopener" aria-label="' + T.more[lang] + ": " + esc(p.name) + '">' + T.more[lang] + "</a>" +
+      (p.sold ? '<span class="price ask">' + T.sold[lang] + "</span>" : '<button type="button" class="order" data-svc-kh="' + esc(label) + '" data-svc-en="' + esc(label) + '">' + T.order[lang] + "</button>") +
+      "</div></div>";
+  }
+  function renderListing(g) {
+    var list = g.items, extra = list.length - SVC_VISIBLE, open = !!svcOpen[g.id], html = "";
     var avail = list.filter(function (p) { return !p.sold; });
-    var show = (avail.length ? avail : list).slice().sort(function (a, b) { return b.followers - a.followers; }).slice(0, 3);
-    function av(p) {
-      var ini = esc((p.name || "?").trim().charAt(0).toUpperCase());
-      return '<span class="av pg-av">' + (p.picture ? '<img src="' + encodeURI(p.picture) + '" alt="" width="34" height="34" referrerpolicy="no-referrer" onerror="this.remove()">' : "") + ini + "</span>";
-    }
-    var rows = show.map(function (p) {
-      return '<div class="app-card row">' + av(p) + '<div class="grow"><b>' + esc(p.name) + '</b><span class="who">' + fmtNum(p.followers) + " Followers</span></div>" +
-        '<div class="num"><b class="pg-ph-price">$' + fmtNum(pagePrice(p.followers)) + "</b></div></div>";
+    var top = (avail.length ? avail : list).slice().sort(function (a, b) { return b.followers - a.followers; }).slice(0, 3);
+    var rows = top.map(function (p) {
+      return '<div class="app-card row"><span class="av pg-av">' + (p.picture ? '<img src="' + encodeURI(p.picture) + '" alt="" width="34" height="34" referrerpolicy="no-referrer" onerror="this.remove()">' : "") + initialOf(p) + "</span>" +
+        '<div class="grow"><b>' + esc(p.name) + '</b><span class="who">' + compact(p.followers) + " Followers</span></div>" +
+        '<div class="num"><b class="pg-ph-price">' + esc(itemPrice(g, p) || compact(p.followers)) + "</b></div></div>";
     }).join("");
-    var total = list.reduce(function (n, p) { return n + (p.sold ? 0 : 1); }, 0);
-    html += '<div class="svc-group">' +
-      '<div class="appban pg-ban"><div class="appban-text">' +
-        '<div class="eyebrow">' + esc(PAGES.title) + " · Facebook Page</div>" +
-        "<h3>" + T.pgHead[lang] + "</h3>" +
-        "<p>" + T.pgLead[lang].replace("{n}", total).replace("{r}", fmtNum(PAGES.price_per_1k)) + "</p>" +
-        '<div class="appban-get pg-calc">' +
-          '<span class="pg-calc-ic" aria-hidden="true">$</span>' +
-          '<div class="pg-calc-body"><label for="pg-calc-in"><small>' + T.calcSmall[lang] + "</small><strong>" + T.calcTitle[lang] + "</strong></label>" +
-          '<span class="appban-free">$' + fmtNum(PAGES.price_per_1k) + " / 1K Follower</span>" +
-          '<div class="pg-calc-row"><input id="pg-calc-in" type="number" inputmode="numeric" min="0" step="100" placeholder="10000" aria-describedby="pg-calc-out"><span class="pg-calc-eq" aria-hidden="true">=</span>' +
-          '<output id="pg-calc-out" for="pg-calc-in" aria-live="polite">$0</output></div></div></div>' +
-      "</div>" +
-      '<div class="appban-media" aria-hidden="true"><span class="shape s1"></span><span class="shape s2"></span><span class="shape s3"></span>' +
-        '<div class="phone"><div class="app"><div class="app-bar"><span><span class="app-dot"></span><b>ADS BOX</b></span><span class="chip-s">Pages</span></div>' +
-        '<div class="stack">' + rows + "</div></div></div></div>" +
-      "</div>" +
+    var rate = +g.price_per_1k > 0, plat = list[0] && list[0].platform === "tiktok" ? "TikTok" : "Facebook";
+    var lead = T.lsLead[lang].replace("{n}", avail.length) + (rate ? " " + T.lsRate[lang].replace("{r}", fmtNum(g.price_per_1k)) : "");
+    html += '<div class="svc-group"><div class="appban pg-ban"><div class="appban-text">' +
+      '<div class="eyebrow">' + esc(g.title) + "</div><h3>" + esc(g.headline || g.title) + "</h3><p>" + esc(lead) + "</p>" +
+      (rate ? '<div class="appban-get pg-calc"><span class="pg-calc-ic" aria-hidden="true">$</span>' +
+        '<div class="pg-calc-body"><label for="pg-calc-in"><small>' + T.calcSmall[lang] + "</small><strong>" + T.calcTitle[lang] + "</strong></label>" +
+        '<span class="appban-free">$' + fmtNum(g.price_per_1k) + " / 1K Follower</span>" +
+        '<div class="pg-calc-row"><input id="pg-calc-in" type="number" inputmode="numeric" min="0" step="100" placeholder="10000" aria-describedby="pg-calc-out"><span class="pg-calc-eq" aria-hidden="true">=</span>' +
+        '<output id="pg-calc-out" for="pg-calc-in" aria-live="polite">$0</output></div></div></div>' : "") +
+      '</div><div class="appban-media" aria-hidden="true"><span class="shape s1"></span><span class="shape s2"></span><span class="shape s3"></span>' +
+      '<div class="phone"><div class="app"><div class="app-bar"><span><span class="app-dot"></span><b>ADS BOX</b></span><span class="chip-s">' + plat + '</span></div><div class="stack">' + rows + "</div></div></div></div></div>" +
       '<div class="svc-list pg-list">';
     list.forEach(function (p, i) {
-      if (i === SVC_VISIBLE) html += '</div><div class="svc-extra" id="svc-extra-pages"' + (open ? "" : " hidden") + '><div class="svc-list">';
-      html += pageCard(p);
+      if (i === SVC_VISIBLE) html += '</div><div class="svc-extra" id="svc-extra-' + esc(g.id) + '"' + (open ? "" : " hidden") + '><div class="svc-list pg-list">';
+      html += listingCard(g, p);
     });
     html += extra > 0 ? "</div></div>" : "</div>";
-    if (extra > 0) html += '<div class="svc-more-wrap"><button type="button" class="btn btn-outline svc-more" data-group="pages" aria-expanded="' + open +
-      '" aria-controls="svc-extra-pages">' + (open ? T.seeLess[lang] : T.seeMorePages[lang].replace("{n}", extra)) + '<span class="chev" aria-hidden="true"></span></button></div>';
+    if (extra > 0) html += '<div class="svc-more-wrap"><button type="button" class="btn btn-outline svc-more" data-group="' + esc(g.id) + '" aria-expanded="' + open +
+      '" aria-controls="svc-extra-' + esc(g.id) + '">' + (open ? T.seeLess[lang] : T.seeMorePages[lang].replace("{n}", extra)) + '<span class="chev" aria-hidden="true"></span></button></div>';
     document.getElementById("svc-groups").innerHTML = html + "</div>";
     var inp = document.getElementById("pg-calc-in"), out = document.getElementById("pg-calc-out");
-    inp.addEventListener("input", function () { out.textContent = "$" + fmtNum(pagePrice(inp.value)); });
+    if (inp) inp.addEventListener("input", function () { out.textContent = "$" + fmtNum(Math.round((+inp.value || 0) / 1000 * g.price_per_1k)); });
   }
   function renderTabs() {
     var html = "";
@@ -1044,7 +1078,7 @@ a.more.pg-view { display: inline-flex; align-items: center; text-decoration: non
   // Show the first SVC_VISIBLE services of a group; the rest open under a "See more" button.
   var SVC_VISIBLE = 4, svcOpen = {};
   function renderServices() {
-    if (filter === "pages") return renderPages();
+    var lg = listingGroup(filter); if (lg) return renderListing(lg);
     var html = "";
     SERVICE_GROUPS.forEach(function (g) {
       if (filter !== g.id) return;
@@ -1110,7 +1144,7 @@ a.more.pg-view { display: inline-flex; align-items: center; text-decoration: non
     box.hidden = !svcOpen[id];
     b.setAttribute("aria-expanded", svcOpen[id]);
     var extra = box.querySelectorAll(".svc").length;
-    b.firstChild.nodeValue = svcOpen[id] ? T.seeLess[lang] : (id === "pages" ? T.seeMorePages : T.seeMore)[lang].replace("{n}", extra);
+    b.firstChild.nodeValue = svcOpen[id] ? T.seeLess[lang] : (listingGroup(id) ? T.seeMorePages : T.seeMore)[lang].replace("{n}", extra);
     if (!svcOpen[id]) { var r = b.getBoundingClientRect(); if (r.top < 0 || r.bottom > innerHeight) b.scrollIntoView({ block: "center" }); }
   });
   document.getElementById("tabs").addEventListener("click", function (e) {
