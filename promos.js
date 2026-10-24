@@ -71,5 +71,27 @@ window.PROMOS = [
    ]
   },
   "popup": true
+ },
+ {
+  "id": "system-auto-reply",
+  "image": "assets/uploads/Test System.png",
+  "thumb": "assets/uploads/Test System-sm.jpg",
+  "badge": {
+   "kh": "ថ្មី",
+   "en": "ថ្មី"
+  },
+  "title": {
+   "kh": "ប្រព័ន្ធឆ្លើយតបសារស្វ័យប្រពន្ធ",
+   "en": "ប្រព័ន្ធឆ្លើយតបសារស្វ័យប្រពន្ធ"
+  },
+  "price": {
+   "kh": "ត្រឹមតែ $29",
+   "en": "ត្រឹមតែ $29"
+  },
+  "points": {
+   "kh": [],
+   "en": []
+  },
+  "popup": true
  }
 ];
