@@ -31,6 +31,22 @@
       "khmer_chars": 2330,
       "status": "dry_run",
       "file": "content/autopost/dry-runs/2026-10-24-morning-follow-up-customers-who-did-not-buy.md"
+    },
+    {
+      "date": "2026-10-23",
+      "slot": "evening",
+      "category": "live-selling",
+      "angle": "planning a 30-minute Live that sells",
+      "attempts": 1,
+      "generated_at": "2026-10-24T21:06:01+07:00",
+      "title": "រៀបចំផែនការ Live ៣០ នាទី មួយនាទីម្ដងៗ ឲ្យអ្នកមើលចង់កុម្ម៉ង់",
+      "slug": "plan-a-30-minute-facebook-live",
+      "summary": "ផែនការ Live ៣០ នាទី ដែលបែងចែកពេលច្បាស់ៗ ពីការចាប់ផ្ដើម បង្ហាញទំនិញ ឆ្លើយសំណួរ រហូតដល់ការបិទការលក់ ដើម្បីកុំឲ្យ Live វង្វេង។",
+      "primary_keyword": "ផែនការ Live ៣០ នាទី",
+      "tag": "លក់ Live",
+      "khmer_chars": 2277,
+      "status": "dry_run",
+      "file": "content/autopost/dry-runs/2026-10-23-evening-plan-a-30-minute-facebook-live.md"
     }
   ]
 }
