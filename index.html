@@ -341,6 +341,11 @@ body::before { background: var(--surface); }
 .btn-outline { border: 1px solid var(--blue); color: var(--blue); }
 .btn-outline:hover { background: var(--chip); }
 [hidden] { display: none !important; }
+.trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.trust-grid > div { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 20px; }
+.trust-grid strong { display: block; font-family: var(--font-display); font-size: 30px; font-weight: 800; color: var(--blue); font-variant-numeric: tabular-nums; line-height: 1.3; }
+.trust-grid span { color: var(--muted); font-size: 15px; }
+@media (max-width: 700px) { .trust-grid { grid-template-columns: 1fr 1fr; } }
 /* Promotions */
 .promos { padding-block: 40px 48px; }
 .promos .sec-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
@@ -382,7 +387,7 @@ body::before { background: var(--surface); }
 @media (prefers-reduced-motion: reduce) { .pp-slide { transition: none; } }
 
 /* adsbox.biz app banner */
-.appban { margin-top: 40px; border-radius: 24px; overflow: hidden; display: grid; grid-template-columns: 1.15fr 1fr; align-items: center; background: linear-gradient(135deg, #eaf1ff 0%, #f4f8ff 55%, #e3ecff 100%); color: #0f1a2e; position: relative; }
+.appban { border-radius: 24px; overflow: hidden; display: grid; grid-template-columns: 1.15fr 1fr; align-items: center; background: linear-gradient(135deg, #eaf1ff 0%, #f4f8ff 55%, #e3ecff 100%); color: #0f1a2e; position: relative; }
 .appban-text { padding: 40px 0 40px 40px; position: relative; z-index: 1; }
 .appban .eyebrow { color: #1c4b9b; }
 .appban h3 { font-family: var(--font-display); font-size: clamp(26px, 3.4vw, 36px); font-weight: 800; line-height: 1.25; margin: 6px 0 10px; }
@@ -444,27 +449,26 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
       <img class="logo-dark" src="assets/logo-word-white.png" alt="ADS BOX" width="140" height="26">
     </a>
     <nav class="menu" aria-label="Main">
-        <a href="#about" class="mlink" data-kh="អំពីយើង" data-en="About">អំពីយើង</a>
-        <div class="dd"><a href="#services" data-filter="all" class="mlink" data-kh="សេវាកម្ម" data-en="Services">សេវាកម្ម</a><div class="dd-menu"><a href="#services" data-filter="boost" data-kh="ផ្សព្វផ្សាយ និង Boost" data-en="Boost &amp; ads">ផ្សព្វផ្សាយ និង Boost</a><a href="#services" data-filter="design" data-kh="រចនា និងវេបសាយ" data-en="Design &amp; website">រចនា និងវេបសាយ</a><a href="#services" data-filter="care" data-kh="ថែទាំផេក និងគណនី" data-en="Page &amp; account care">ថែទាំផេក និងគណនី</a><a href="#services" data-filter="live" data-kh="លក់ Live និងមេរៀន" data-en="Live selling &amp; training">លក់ Live និងមេរៀន</a></div></div>
-        <a href="#system" class="mlink" data-kh="ប្រព័ន្ធ ADS BOX" data-en="ADS BOX system">ប្រព័ន្ធ ADS BOX</a>
-        <a href="#results" class="mlink" data-kh="លទ្ធផល" data-en="Results">លទ្ធផល</a>
+        <a href="#home" class="mlink" data-kh="ទំព័រដើម" data-en="Home">ទំព័រដើម</a>
+        <div class="dd"><a href="#services" data-filter="all" class="mlink" data-kh="សេវាកម្ម" data-en="Our services">សេវាកម្ម</a><div class="dd-menu"><a href="#services" data-filter="boost" data-kh="ផ្សព្វផ្សាយ និង Boost" data-en="Boost &amp; ads">ផ្សព្វផ្សាយ និង Boost</a><a href="#services" data-filter="design" data-kh="រចនា និងវេបសាយ" data-en="Design &amp; website">រចនា និងវេបសាយ</a><a href="#services" data-filter="care" data-kh="ថែទាំផេក និងគណនី" data-en="Page &amp; account care">ថែទាំផេក និងគណនី</a><a href="#services" data-filter="live" data-kh="លក់ Live និងមេរៀន" data-en="Live selling &amp; training">លក់ Live និងមេរៀន</a></div></div>
+        <a href="#adsbox-system" class="mlink" data-kh="ប្រព័ន្ធ ADS BOX" data-en="ADS BOX system">ប្រព័ន្ធ ADS BOX</a>
+        <a href="#promos" class="mlink" data-kh="ការផ្តល់ជូនពិសេស" data-en="Sale page">ការផ្តល់ជូនពិសេស</a>
         <a href="#knowledge" class="mlink" data-kh="ចំណេះដឹង" data-en="Knowledge">ចំណេះដឹង</a>
-        <a href="#faq" class="mlink" data-kh="សំណួរ" data-en="FAQ">សំណួរ</a>
-        <a href="#contact" class="mlink" data-kh="ទំនាក់ទំនង" data-en="Contact">ទំនាក់ទំនង</a>
+        <a href="#system" class="mlink" data-kh="ចំណុចពិសេស" data-en="Key features">ចំណុចពិសេស</a>
+        <a href="#results" class="mlink" data-kh="លទ្ធផល" data-en="Results">លទ្ធផល</a>
+        <a href="#clients" class="mlink" data-kh="អតិថិជន" data-en="Our clients">អតិថិជន</a>
     </nav>
     <div class="hdr-tools">
       <span class="lang" role="group" aria-label="Language">
         <button type="button" id="lang-kh" aria-pressed="true">ខ្មែរ</button>
         <button type="button" id="lang-en" aria-pressed="false">EN</button>
       </span>
-      <a class="btn-tg hide-md" href="https://t.me/vannakdm" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13 1.4 11.5c-1-.3-1-1 .2-1.5L20.5 2.9c.9-.3 1.6.2 1.4 1.4z"/></svg><span data-kh="ឆាត Telegram" data-en="Telegram">ឆាត Telegram</span></a>
       <button type="button" class="burger" id="burger" aria-expanded="false" aria-controls="drawer" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </div>
   <div class="drawer" id="drawer" hidden>
     <nav class="wrap drawer-in" aria-label="Mobile">
-      <a href="#about" data-kh="អំពីយើង" data-en="About">អំពីយើង</a><a href="#services" data-kh="សេវាកម្ម" data-en="Services">សេវាកម្ម</a><a href="#system" data-kh="ប្រព័ន្ធ ADS BOX" data-en="ADS BOX system">ប្រព័ន្ធ ADS BOX</a><a href="#results" data-kh="លទ្ធផល" data-en="Results">លទ្ធផល</a><a href="#knowledge" data-kh="ចំណេះដឹង" data-en="Knowledge">ចំណេះដឹង</a><a href="#faq" data-kh="សំណួរ" data-en="FAQ">សំណួរ</a><a href="#contact" data-kh="ទំនាក់ទំនង" data-en="Contact">ទំនាក់ទំនង</a>
-      <a class="btn-tg" href="https://t.me/vannakdm" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13 1.4 11.5c-1-.3-1-1 .2-1.5L20.5 2.9c.9-.3 1.6.2 1.4 1.4z"/></svg><span data-kh="ឆាតតាម Telegram" data-en="Chat on Telegram">ឆាតតាម Telegram</span></a>
+      <a href="#home" data-kh="ទំព័រដើម" data-en="Home">ទំព័រដើម</a><a href="#services" data-kh="សេវាកម្ម" data-en="Our services">សេវាកម្ម</a><a href="#adsbox-system" data-kh="ប្រព័ន្ធ ADS BOX" data-en="ADS BOX system">ប្រព័ន្ធ ADS BOX</a><a href="#promos" data-kh="ការផ្តល់ជូនពិសេស" data-en="Sale page">ការផ្តល់ជូនពិសេស</a><a href="#knowledge" data-kh="ចំណេះដឹង" data-en="Knowledge">ចំណេះដឹង</a><a href="#system" data-kh="ចំណុចពិសេស" data-en="Key features">ចំណុចពិសេស</a><a href="#results" data-kh="លទ្ធផល" data-en="Results">លទ្ធផល</a><a href="#clients" data-kh="អតិថិជន" data-en="Our clients">អតិថិជន</a>
     </nav>
   </div>
 </header>
@@ -506,6 +510,54 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
     </div>
   </section>
 
+  <section class="block alt" id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="eyebrow" data-kh="សេវាកម្ម" data-en="Services">សេវាកម្ម</div>
+          <h2 data-kh="ជ្រើសរើសសេវាកម្មដែលអ្នកត្រូវការ" data-en="Pick the service you need">ជ្រើសរើសសេវាកម្មដែលអ្នកត្រូវការ</h2>
+          <p data-kh="ចុច “ចាប់អារម្មណ៍សេវាកម្ម” ដើម្បីឆាតជាមួយក្រុមយើងតាម Telegram។ យើងនឹងប្រាប់តម្លៃ និងរយៈពេលច្បាស់លាស់។" data-en="Tap “I'm interested” to chat with our team on Telegram. We'll confirm the price and timing with you.">ចុច “ចាប់អារម្មណ៍សេវាកម្ម” ដើម្បីឆាតជាមួយក្រុមយើងតាម Telegram។ យើងនឹងប្រាប់តម្លៃ និងរយៈពេលច្បាស់លាស់។</p>
+        </div>
+      </div>
+      <div class="tabs" id="tabs" role="group" aria-label="Filter services"></div>
+      <div id="svc-groups"></div>
+    </div>
+  </section>
+
+  <section class="block" id="adsbox-system">
+    <div class="wrap">
+      <div class="appban">
+        <div class="appban-text">
+          <div class="eyebrow">ADS BOX System · adsbox.biz</div>
+          <h3 data-kh="លក់ Live ស្រួលជាងមុន។ មិនបាត់ Order មួយ។" data-en="Sell live, easier. Never miss an order.">លក់ Live ស្រួលជាងមុន។ មិនបាត់ Order មួយ។</h3>
+          <p data-kh="ចាប់ការកម្ម៉ង់ពី Comment ដោយស្វ័យប្រវត្តិ ឆ្លើយសារ Messenger និងបោះពុម្ពស្ទីគ័រដឹកជញ្ជូន ក្នុងប្រព័ន្ធតែមួយ។ ប្រើឥតគិតថ្លៃបាន។" data-en="Catch orders from Live comments automatically, reply on Messenger and print shipping stickers, all in one system. Free plan available.">ចាប់ការកម្ម៉ង់ពី Comment ដោយស្វ័យប្រវត្តិ ឆ្លើយសារ Messenger និងបោះពុម្ពស្ទីគ័រដឹកជញ្ជូន ក្នុងប្រព័ន្ធតែមួយ។ ប្រើឥតគិតថ្លៃបាន។</p>
+          <div class="appban-get">
+            <img src="assets/qr-adsbox-biz.svg" alt="QR code for adsbox.biz" width="92" height="92">
+            <div>
+              <small data-kh="ស្កេន ឬចុចដើម្បីចាប់ផ្តើម" data-en="Scan or tap to start">ស្កេន ឬចុចដើម្បីចាប់ផ្តើម</small>
+              <strong>adsbox.biz</strong>
+              <a class="btn btn-navy" href="https://adsbox.biz/" target="_blank" rel="noopener" data-kh="សាកល្បងឥតគិតថ្លៃ" data-en="Try it free">សាកល្បងឥតគិតថ្លៃ</a>
+            </div>
+          </div>
+        </div>
+        <div class="appban-media" aria-hidden="true">
+          <span class="shape s1"></span><span class="shape s2"></span><span class="shape s3"></span>
+          <div class="phone">
+            <div class="app">
+              <div class="app-bar"><span><span class="app-dot"></span><b>ADS BOX</b></span><span class="chip-s live">● LIVE</span></div>
+              <div class="stack">
+                <div class="app-grid" style="grid-template-columns:1fr 1fr"><div class="app-card"><div class="app-k">Orders</div><div class="app-v">48</div></div><div class="app-card"><div class="app-k" data-kh="បានឆ្លើយ" data-en="Replied">បានឆ្លើយ</div><div class="app-v good">100%</div></div></div>
+                <div class="app-card row"><span class="av" style="background:#7c6cff">S</span><div class="grow"><b>Sokha · A01 x2</b><span class="who" data-kh="ឆ្លើយស្វ័យប្រវត្តិ ✓" data-en="Auto-replied ✓">ឆ្លើយស្វ័យប្រវត្តិ ✓</span></div></div>
+                <div class="app-card row"><span class="av" style="background:#3ccf8e">D</span><div class="grow"><b>Dara · B12 x1</b><span class="who" data-kh="ឆ្លើយស្វ័យប្រវត្តិ ✓" data-en="Auto-replied ✓">ឆ្លើយស្វ័យប្រវត្តិ ✓</span></div></div>
+                <div class="app-card row"><span class="av" style="background:#ff6b81">V</span><div class="grow"><b>Vanna · A03 x3</b><span class="who" data-kh="កំពុងបោះពុម្ពស្ទីគ័រ" data-en="Printing sticker">កំពុងបោះពុម្ពស្ទីគ័រ</span></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="promos alt" id="promos" aria-labelledby="promos-h">
     <div class="wrap">
       <div class="sec-head">
@@ -519,31 +571,21 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
     </div>
   </section>
 
-  <section class="trust" aria-label="ADS BOX in numbers">
+  <section class="block" id="knowledge">
     <div class="wrap">
-      <div><strong>120+</strong><span data-kh="អតិថិជនកំពុងប្រើសេវា" data-en="active clients">អតិថិជនកំពុងប្រើសេវា</span></div>
-      <div><strong>8</strong><span data-kh="អ្នកគ្រប់គ្រងគម្រោង" data-en="project managers">អ្នកគ្រប់គ្រងគម្រោង</span></div>
-      <div><strong><span data-kh="រៀងរាល់ថ្ងៃ" data-en="Daily">រៀងរាល់ថ្ងៃ</span></strong><span data-kh="របាយការណ៍ចំណាយ និង Order" data-en="spend &amp; order reports">របាយការណ៍ចំណាយ និង Order</span></div>
-      <div><strong>AI</strong><span data-kh="តាមដាន Boost ជាប់ជានិច្ច" data-en="watches every boost">តាមដាន Boost ជាប់ជានិច្ច</span></div>
+      <div class="sec-head"><div>
+        <div class="eyebrow" data-kh="ចំណេះដឹង" data-en="Knowledge">ចំណេះដឹង</div>
+        <h2 data-kh="គន្លឹះលក់អនឡាញ ពីក្រុម ADS BOX" data-en="Online selling tips from the ADS BOX team">គន្លឹះលក់អនឡាញ ពីក្រុម ADS BOX</h2>
+      </div></div>
+      <div class="posts" id="posts"></div>
+      <div class="see-all"><a class="btn btn-outline" href="/knowledge/" data-kh="មើលអត្ថបទទាំងអស់ →" data-en="See all articles →">មើលអត្ថបទទាំងអស់ →</a></div>
     </div>
   </section>
-
-  <section class="block" id="about">
-    <div class="wrap about">
-      <div class="about-text">
-        <div class="eyebrow" data-kh="អំពីយើង" data-en="About us">អំពីយើង</div>
-        <h2 data-kh="អំពី ADS BOX" data-en="About ADS BOX">អំពី ADS BOX</h2>
-        <p data-kh="ADS BOX ជាក្រុមជំនាញផ្សព្វផ្សាយអនឡាញ ដែលជួយអ្នកលក់នៅកម្ពុជា ឲ្យទទួលបាន Order ច្រើនពី Boost Post, Boost Live និង TikTok ក្នុងតម្លៃសមរម្យ។ យើងប្រើទាំងជំនាញក្រុមការងារ និងប្រព័ន្ធ AI ផ្ទាល់ខ្លួន ដើម្បីតាមដានរាល់ដុល្លារដែលបងប្អូនចំណាយ។" data-en="ADS BOX is an online advertising team that helps sellers in Cambodia get more orders from Boost Post, Boost Live and TikTok at a fair cost. We combine a skilled team with our own AI system to track every dollar you spend.">ADS BOX ជាក្រុមជំនាញផ្សព្វផ្សាយអនឡាញ ដែលជួយអ្នកលក់នៅកម្ពុជា ឲ្យទទួលបាន Order ច្រើនពី Boost Post, Boost Live និង TikTok ក្នុងតម្លៃសមរម្យ។ យើងប្រើទាំងជំនាញក្រុមការងារ និងប្រព័ន្ធ AI ផ្ទាល់ខ្លួន ដើម្បីតាមដានរាល់ដុល្លារដែលបងប្អូនចំណាយ។</p>
-      </div>
-      <div class="vals"><div class="val"><h3 data-kh="ថ្លៃក្នុងមួយ Order ជាគោលដៅ" data-en="We aim at cost per order">ថ្លៃក្នុងមួយ Order ជាគោលដៅ</h3><p data-kh="យើងវាស់លទ្ធផលដោយចំនួន Order មិនមែនចំនួន Like ទេ។" data-en="We measure success in orders, not likes.">យើងវាស់លទ្ធផលដោយចំនួន Order មិនមែនចំនួន Like ទេ។</p></div><div class="val"><h3 data-kh="តម្លាភាពពេញលេញ" data-en="Full transparency">តម្លាភាពពេញលេញ</h3><p data-kh="បងប្អូនឃើញការចំណាយ និង Order របស់ខ្លួនរាល់ថ្ងៃ។" data-en="You see your own spend and orders every day.">បងប្អូនឃើញការចំណាយ និង Order របស់ខ្លួនរាល់ថ្ងៃ។</p></div><div class="val"><h3 data-kh="មានអ្នកទទួលខុសត្រូវច្បាស់" data-en="Someone clearly in charge">មានអ្នកទទួលខុសត្រូវច្បាស់</h3><p data-kh="Project Manager ម្នាក់មើលការខុសត្រូវ Page របស់បងប្អូន ហើយតាមដានរហូត។" data-en="One project manager looks after your page and follows it through.">Project Manager ម្នាក់មើលការខុសត្រូវ Page របស់បងប្អូន ហើយតាមដានរហូត។</p></div></div>
-    </div>
-  </section>
-
 
   <section class="block alt" id="system">
     <div class="wrap">
       <div class="sec-head"><div>
-        <div class="eyebrow" data-kh="ប្រព័ន្ធ ADS BOX" data-en="ADS BOX system">ប្រព័ន្ធ ADS BOX</div>
+        <div class="eyebrow" data-kh="ចំណុចពិសេស" data-en="Key features">ចំណុចពិសេស</div>
         <h2 data-kh="ចំណុចពិសេសរបស់ ADS BOX" data-en="What makes ADS BOX different">ចំណុចពិសេសរបស់ ADS BOX</h2>
         <p data-kh="យើងមិនត្រឹមតែ Boost ឲ្យទេ។ យើងមានប្រព័ន្ធ និងក្រុមការងារ ដែលតាមដានលុយរបស់បងប្អូនរាល់ថ្ងៃ។" data-en="We don't just boost and walk away. We have a system and a team that watch your money every day.">យើងមិនត្រឹមតែ Boost ឲ្យទេ។ យើងមានប្រព័ន្ធ និងក្រុមការងារ ដែលតាមដានលុយរបស់បងប្អូនរាល់ថ្ងៃ។</p>
       </div></div>
@@ -670,51 +712,33 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
     </div>
   </section>
 
-  <section class="block alt" id="services">
+  <section class="block clients alt" id="clients" aria-labelledby="clients-h">
     <div class="wrap">
-      <div class="sec-head">
-        <div>
-          <div class="eyebrow" data-kh="សេវាកម្ម" data-en="Services">សេវាកម្ម</div>
-          <h2 data-kh="ជ្រើសរើសសេវាកម្មដែលអ្នកត្រូវការ" data-en="Pick the service you need">ជ្រើសរើសសេវាកម្មដែលអ្នកត្រូវការ</h2>
-          <p data-kh="ចុច “ចាប់អារម្មណ៍សេវាកម្ម” ដើម្បីឆាតជាមួយក្រុមយើងតាម Telegram។ យើងនឹងប្រាប់តម្លៃ និងរយៈពេលច្បាស់លាស់។" data-en="Tap “I'm interested” to chat with our team on Telegram. We'll confirm the price and timing with you.">ចុច “ចាប់អារម្មណ៍សេវាកម្ម” ដើម្បីឆាតជាមួយក្រុមយើងតាម Telegram។ យើងនឹងប្រាប់តម្លៃ និងរយៈពេលច្បាស់លាស់។</p>
-        </div>
-      </div>
-      <div class="tabs" id="tabs" role="group" aria-label="Filter services"></div>
-      <div id="svc-groups"></div>
-
-      <div class="appban">
-        <div class="appban-text">
-          <div class="eyebrow">ADS BOX System · adsbox.biz</div>
-          <h3 data-kh="លក់ Live ស្រួលជាងមុន។ មិនបាត់ Order មួយ។" data-en="Sell live, easier. Never miss an order.">លក់ Live ស្រួលជាងមុន។ មិនបាត់ Order មួយ។</h3>
-          <p data-kh="ចាប់ការកម្ម៉ង់ពី Comment ដោយស្វ័យប្រវត្តិ ឆ្លើយសារ Messenger និងបោះពុម្ពស្ទីគ័រដឹកជញ្ជូន ក្នុងប្រព័ន្ធតែមួយ។ ប្រើឥតគិតថ្លៃបាន។" data-en="Catch orders from Live comments automatically, reply on Messenger and print shipping stickers, all in one system. Free plan available.">ចាប់ការកម្ម៉ង់ពី Comment ដោយស្វ័យប្រវត្តិ ឆ្លើយសារ Messenger និងបោះពុម្ពស្ទីគ័រដឹកជញ្ជូន ក្នុងប្រព័ន្ធតែមួយ។ ប្រើឥតគិតថ្លៃបាន។</p>
-          <div class="appban-get">
-            <img src="assets/qr-adsbox-biz.svg" alt="QR code for adsbox.biz" width="92" height="92">
-            <div>
-              <small data-kh="ស្កេន ឬចុចដើម្បីចាប់ផ្តើម" data-en="Scan or tap to start">ស្កេន ឬចុចដើម្បីចាប់ផ្តើម</small>
-              <strong>adsbox.biz</strong>
-              <a class="btn btn-navy" href="https://adsbox.biz/" target="_blank" rel="noopener" data-kh="សាកល្បងឥតគិតថ្លៃ" data-en="Try it free">សាកល្បងឥតគិតថ្លៃ</a>
-            </div>
-          </div>
-        </div>
-        <div class="appban-media" aria-hidden="true">
-          <span class="shape s1"></span><span class="shape s2"></span><span class="shape s3"></span>
-          <div class="phone">
-            <div class="app">
-              <div class="app-bar"><span><span class="app-dot"></span><b>ADS BOX</b></span><span class="chip-s live">● LIVE</span></div>
-              <div class="stack">
-                <div class="app-grid" style="grid-template-columns:1fr 1fr"><div class="app-card"><div class="app-k">Orders</div><div class="app-v">48</div></div><div class="app-card"><div class="app-k" data-kh="បានឆ្លើយ" data-en="Replied">បានឆ្លើយ</div><div class="app-v good">100%</div></div></div>
-                <div class="app-card row"><span class="av" style="background:#7c6cff">S</span><div class="grow"><b>Sokha · A01 x2</b><span class="who" data-kh="ឆ្លើយស្វ័យប្រវត្តិ ✓" data-en="Auto-replied ✓">ឆ្លើយស្វ័យប្រវត្តិ ✓</span></div></div>
-                <div class="app-card row"><span class="av" style="background:#3ccf8e">D</span><div class="grow"><b>Dara · B12 x1</b><span class="who" data-kh="ឆ្លើយស្វ័យប្រវត្តិ ✓" data-en="Auto-replied ✓">ឆ្លើយស្វ័យប្រវត្តិ ✓</span></div></div>
-                <div class="app-card row"><span class="av" style="background:#ff6b81">V</span><div class="grow"><b>Vanna · A03 x3</b><span class="who" data-kh="កំពុងបោះពុម្ពស្ទីគ័រ" data-en="Printing sticker">កំពុងបោះពុម្ពស្ទីគ័រ</span></div></div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="sec-head"><div>
+        <div class="eyebrow" data-kh="អតិថិជនរបស់យើង" data-en="Our clients">អតិថិជនរបស់យើង</div>
+        <h2 id="clients-h" data-kh="អ្នកលក់ជាច្រើនទុកចិត្ត ADS BOX" data-en="Sellers who trust ADS BOX">អ្នកលក់ជាច្រើនទុកចិត្ត ADS BOX</h2>
+      </div></div>
+      <div class="trust-grid">
+      <div><strong>120+</strong><span data-kh="អតិថិជនកំពុងប្រើសេវា" data-en="active clients">អតិថិជនកំពុងប្រើសេវា</span></div>
+      <div><strong>8</strong><span data-kh="អ្នកគ្រប់គ្រងគម្រោង" data-en="project managers">អ្នកគ្រប់គ្រងគម្រោង</span></div>
+      <div><strong><span data-kh="រៀងរាល់ថ្ងៃ" data-en="Daily">រៀងរាល់ថ្ងៃ</span></strong><span data-kh="របាយការណ៍ចំណាយ និង Order" data-en="spend &amp; order reports">របាយការណ៍ចំណាយ និង Order</span></div>
+      <div><strong>AI</strong><span data-kh="តាមដាន Boost ជាប់ជានិច្ច" data-en="watches every boost">តាមដាន Boost ជាប់ជានិច្ច</span></div>
       </div>
     </div>
   </section>
 
-  <section class="block" id="how">
+  <section class="block" id="about">
+    <div class="wrap about">
+      <div class="about-text">
+        <div class="eyebrow" data-kh="អំពីយើង" data-en="About us">អំពីយើង</div>
+        <h2 data-kh="អំពី ADS BOX" data-en="About ADS BOX">អំពី ADS BOX</h2>
+        <p data-kh="ADS BOX ជាក្រុមជំនាញផ្សព្វផ្សាយអនឡាញ ដែលជួយអ្នកលក់នៅកម្ពុជា ឲ្យទទួលបាន Order ច្រើនពី Boost Post, Boost Live និង TikTok ក្នុងតម្លៃសមរម្យ។ យើងប្រើទាំងជំនាញក្រុមការងារ និងប្រព័ន្ធ AI ផ្ទាល់ខ្លួន ដើម្បីតាមដានរាល់ដុល្លារដែលបងប្អូនចំណាយ។" data-en="ADS BOX is an online advertising team that helps sellers in Cambodia get more orders from Boost Post, Boost Live and TikTok at a fair cost. We combine a skilled team with our own AI system to track every dollar you spend.">ADS BOX ជាក្រុមជំនាញផ្សព្វផ្សាយអនឡាញ ដែលជួយអ្នកលក់នៅកម្ពុជា ឲ្យទទួលបាន Order ច្រើនពី Boost Post, Boost Live និង TikTok ក្នុងតម្លៃសមរម្យ។ យើងប្រើទាំងជំនាញក្រុមការងារ និងប្រព័ន្ធ AI ផ្ទាល់ខ្លួន ដើម្បីតាមដានរាល់ដុល្លារដែលបងប្អូនចំណាយ។</p>
+      </div>
+      <div class="vals"><div class="val"><h3 data-kh="ថ្លៃក្នុងមួយ Order ជាគោលដៅ" data-en="We aim at cost per order">ថ្លៃក្នុងមួយ Order ជាគោលដៅ</h3><p data-kh="យើងវាស់លទ្ធផលដោយចំនួន Order មិនមែនចំនួន Like ទេ។" data-en="We measure success in orders, not likes.">យើងវាស់លទ្ធផលដោយចំនួន Order មិនមែនចំនួន Like ទេ។</p></div><div class="val"><h3 data-kh="តម្លាភាពពេញលេញ" data-en="Full transparency">តម្លាភាពពេញលេញ</h3><p data-kh="បងប្អូនឃើញការចំណាយ និង Order របស់ខ្លួនរាល់ថ្ងៃ។" data-en="You see your own spend and orders every day.">បងប្អូនឃើញការចំណាយ និង Order របស់ខ្លួនរាល់ថ្ងៃ។</p></div><div class="val"><h3 data-kh="មានអ្នកទទួលខុសត្រូវច្បាស់" data-en="Someone clearly in charge">មានអ្នកទទួលខុសត្រូវច្បាស់</h3><p data-kh="Project Manager ម្នាក់មើលការខុសត្រូវ Page របស់បងប្អូន ហើយតាមដានរហូត។" data-en="One project manager looks after your page and follows it through.">Project Manager ម្នាក់មើលការខុសត្រូវ Page របស់បងប្អូន ហើយតាមដានរហូត។</p></div></div>
+    </div>
+  </section>
+
+  <section class="block alt" id="how">
     <div class="wrap">
       <div class="sec-head"><div>
         <div class="eyebrow" data-kh="របៀបកម្ម៉ង់" data-en="How to order">របៀបកម្ម៉ង់</div>
@@ -728,17 +752,6 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
     </div>
   </section>
 
-  <section class="block alt" id="knowledge">
-    <div class="wrap">
-      <div class="sec-head"><div>
-        <div class="eyebrow" data-kh="ចំណេះដឹង" data-en="Knowledge">ចំណេះដឹង</div>
-        <h2 data-kh="គន្លឹះលក់អនឡាញ ពីក្រុម ADS BOX" data-en="Online selling tips from the ADS BOX team">គន្លឹះលក់អនឡាញ ពីក្រុម ADS BOX</h2>
-      </div></div>
-      <div class="posts" id="posts"></div>
-      <div class="see-all"><a class="btn btn-outline" href="/knowledge/" data-kh="មើលអត្ថបទទាំងអស់ →" data-en="See all articles →">មើលអត្ថបទទាំងអស់ →</a></div>
-    </div>
-  </section>
-
   <section class="block" id="faq">
     <div class="wrap faq-wrap">
       <div class="sec-head"><div>
@@ -746,16 +759,6 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
         <h2 data-kh="សំណួរដែលអតិថិជនសួរញឹកញាប់" data-en="Questions customers often ask">សំណួរដែលអតិថិជនសួរញឹកញាប់</h2>
       </div></div>
       <div class="faqs"><details class="faq"><summary><span data-kh="តើកម្ម៉ង់សេវាកម្មយ៉ាងដូចម្តេច?" data-en="How do I order?">តើកម្ម៉ង់សេវាកម្មយ៉ាងដូចម្តេច?</span></summary><p data-kh="ចុចប៊ូតុង “ចាប់អារម្មណ៍សេវាកម្ម” ឬឆាតតាម Telegram ហើយផ្ញើតំណភ្ជាប់ Page របស់បងប្អូន។ ក្រុមយើងនឹងណែនាំសេវាកម្ម និងតម្លៃដែលសមស្រប។" data-en="Tap “I'm interested” or chat with us on Telegram and send your Page link. Our team will suggest the right service and price.">ចុចប៊ូតុង “ចាប់អារម្មណ៍សេវាកម្ម” ឬឆាតតាម Telegram ហើយផ្ញើតំណភ្ជាប់ Page របស់បងប្អូន។ ក្រុមយើងនឹងណែនាំសេវាកម្ម និងតម្លៃដែលសមស្រប។</p></details><details class="faq"><summary><span data-kh="តើបង់ប្រាក់តាមរបៀបណា?" data-en="How do I pay?">តើបង់ប្រាក់តាមរបៀបណា?</span></summary><p data-kh="បង់តាម ABA ឬ KHQR។ បន្ទាប់ពីបង់ សូមផ្ញើរូបភាពវិក្កយបត្រ តាម Telegram។" data-en="Pay by ABA or KHQR, then send us the payment slip on Telegram.">បង់តាម ABA ឬ KHQR។ បន្ទាប់ពីបង់ សូមផ្ញើរូបភាពវិក្កយបត្រ តាម Telegram។</p></details><details class="faq"><summary><span data-kh="តើខ្ញុំដឹងលទ្ធផលពេលណា?" data-en="When do I see results?">តើខ្ញុំដឹងលទ្ធផលពេលណា?</span></summary><p data-kh="ប្រព័ន្ធផ្ញើរបាយការណ៍ការចំណាយ និង Order ជូនរាល់ថ្ងៃ ដូច្នេះបងប្អូនដឹងលទ្ធផលជារៀងរាល់ថ្ងៃ។" data-en="The system sends you a spend and order report every day, so you know your results daily.">ប្រព័ន្ធផ្ញើរបាយការណ៍ការចំណាយ និង Order ជូនរាល់ថ្ងៃ ដូច្នេះបងប្អូនដឹងលទ្ធផលជារៀងរាល់ថ្ងៃ។</p></details><details class="faq"><summary><span data-kh="តើធានាចំនួន Order ទេ?" data-en="Do you guarantee orders?">តើធានាចំនួន Order ទេ?</span></summary><p data-kh="ចំនួន Order អាស្រ័យលើផលិតផល តម្លៃ និងរូបភាព។ យើងមិនសន្យាចំនួនជាក់លាក់ទេ ប៉ុន្តែយើងតាមដានរាល់ថ្ងៃ ហើយកែតម្រូវភ្លាមៗ ដើម្បីឲ្យថ្លៃក្នុងមួយ Order ទាបបំផុត។" data-en="Orders depend on your product, price and photos. We don't promise an exact number, but we check every day and adjust quickly to keep your cost per order low.">ចំនួន Order អាស្រ័យលើផលិតផល តម្លៃ និងរូបភាព។ យើងមិនសន្យាចំនួនជាក់លាក់ទេ ប៉ុន្តែយើងតាមដានរាល់ថ្ងៃ ហើយកែតម្រូវភ្លាមៗ ដើម្បីឲ្យថ្លៃក្នុងមួយ Order ទាបបំផុត។</p></details><details class="faq"><summary><span data-kh="តើមានប្រព័ន្ធជួយលក់ Live ទេ?" data-en="Do you have a system for Live selling?">តើមានប្រព័ន្ធជួយលក់ Live ទេ?</span></summary><p data-kh="មាន។ ប្រព័ន្ធ ADS BOX នៅ adsbox.biz ចាប់ Order ពី Comment ដោយស្វ័យប្រវត្តិ ហើយមានគម្រោងប្រើឥតគិតថ្លៃ។" data-en="Yes. The ADS BOX system at adsbox.biz catches orders from Live comments automatically, and there is a free plan.">មាន។ ប្រព័ន្ធ ADS BOX នៅ adsbox.biz ចាប់ Order ពី Comment ដោយស្វ័យប្រវត្តិ ហើយមានគម្រោងប្រើឥតគិតថ្លៃ។</p></details></div>
-    </div>
-  </section>
-
-  <section class="cta-band">
-    <div class="wrap cta-in">
-      <div>
-        <h2 data-kh="ត្រៀមលក់ដាច់ជាងមុនហើយឬនៅ?" data-en="Ready to sell more?">ត្រៀមលក់ដាច់ជាងមុនហើយឬនៅ?</h2>
-        <p data-kh="ផ្ញើតំណភ្ជាប់ Page របស់បងប្អូនមកយើង ហើយយើងនឹងណែនាំជំហានដំបូង។" data-en="Send us your Page link and we'll suggest the first step.">ផ្ញើតំណភ្ជាប់ Page របស់បងប្អូនមកយើង ហើយយើងនឹងណែនាំជំហានដំបូង។</p>
-      </div>
-      <a class="btn btn-primary" href="https://t.me/vannakdm" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13 1.4 11.5c-1-.3-1-1 .2-1.5L20.5 2.9c.9-.3 1.6.2 1.4 1.4z"/></svg><span data-kh="ឆាតតាម Telegram" data-en="Chat on Telegram">ឆាតតាម Telegram</span></a>
     </div>
   </section>
 </main>
