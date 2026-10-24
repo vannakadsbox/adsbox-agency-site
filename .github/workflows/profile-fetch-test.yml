@@ -1,0 +1,42 @@
+# TEMPORARY: checks what GitHub's servers can read from Facebook and TikTok links. Runs only on the
+# preview/sell-accounts branch and saves the result there. Delete before merging.
+name: Profile fetch test
+on:
+  push:
+    branches: ["preview/sell-accounts"]
+    paths: ["tools/fetch_profiles.py", ".github/workflows/profile-fetch-test.yml"]
+permissions:
+  contents: write
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Fetch profiles
+        run: |
+          python3 tools/fetch_profiles.py \
+            "https://www.facebook.com/profile.php?id=61580134710032" \
+            "https://www.facebook.com/profile.php?id=61581017472166" \
+            "https://www.facebook.com/profile.php?id=61593295843002" \
+            "https://www.tiktok.com/@tiktok" \
+            "https://www.tiktok.com/@khmertv24" > /tmp/r.json || true
+          python3 - <<'PY'
+          import json, urllib.request
+          rs = json.load(open("/tmp/r.json"))
+          for r in rs:
+              for k in ("picture", "cover"):
+                  u = r.get(k)
+                  if not u: continue
+                  try:
+                      req = urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0"})
+                      with urllib.request.urlopen(req, timeout=20) as x: r[k + "_download"] = f"{x.status} {len(x.read())} bytes"
+                  except Exception as e: r[k + "_download"] = f"failed {type(e).__name__}"
+                  r[k] = u[:90]
+          json.dump(rs, open("tools/fetch-test-result.json", "w"), ensure_ascii=False, indent=1)
+          PY
+      - name: Save result to this branch
+        run: |
+          git config user.name "fetch test"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/fetch-test-result.json && git commit -m "Profile fetch test result" && git push origin HEAD:preview/sell-accounts || true
