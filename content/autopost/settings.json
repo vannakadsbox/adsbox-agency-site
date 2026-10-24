@@ -1,6 +1,6 @@
 {
   "enabled": true,
-  "mode": "dry_run",
+  "mode": "live",
   "timezone": "Asia/Phnom_Penh (UTC+7)",
   "morning": {
     "enabled": true,
