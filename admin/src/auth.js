@@ -89,7 +89,7 @@ export function redirectUri(env, url) {
 export function loginRedirect(env, url) {
   const state = b64url(crypto.getRandomValues(new Uint8Array(24)));
   const q = new URLSearchParams({
-    client_id: env.GOOGLE_CLIENT_ID,
+    client_id: String(env.GOOGLE_CLIENT_ID || "").trim(),
     redirect_uri: redirectUri(env, url),
     response_type: "code",
     scope: "openid email profile",
@@ -112,7 +112,7 @@ export async function finishLogin(env, req, url, fetchFn = fetch) {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams({
-      code, client_id: env.GOOGLE_CLIENT_ID, client_secret: env.GOOGLE_CLIENT_SECRET,
+      code, client_id: String(env.GOOGLE_CLIENT_ID || "").trim(), client_secret: String(env.GOOGLE_CLIENT_SECRET || "").trim(),
       redirect_uri: redirectUri(env, url), grant_type: "authorization_code",
     }),
   });
@@ -124,7 +124,7 @@ export async function finishLogin(env, req, url, fetchFn = fetch) {
   try { claims = JSON.parse(new TextDecoder().decode(Uint8Array.from(fromB64url(tok.id_token.split(".")[1]), c => c.charCodeAt(0)))); }
   catch { throw new Error("bad_token"); }
   const okIss = claims.iss === "https://accounts.google.com" || claims.iss === "accounts.google.com";
-  if (!okIss || claims.aud !== env.GOOGLE_CLIENT_ID || claims.exp * 1000 < Date.now() || claims.nonce !== state) throw new Error("bad_token");
+  if (!okIss || claims.aud !== String(env.GOOGLE_CLIENT_ID || "").trim() || claims.exp * 1000 < Date.now() || claims.nonce !== state) throw new Error("bad_token");
   if (!claims.email || claims.email_verified !== true) throw new Error("email_not_verified");
   return { email: normEmail(claims.email), name: claims.given_name || claims.name || "" };
 }

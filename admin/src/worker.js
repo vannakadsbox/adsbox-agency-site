@@ -215,7 +215,10 @@ export default {
       if (e instanceof Conflict) return err(409, "មានអ្នកផ្សេងបានកែផ្នែកនេះ មុនពេលអ្នក Save។ សូមផ្ទុកឡើងវិញ ហើយកែម្តងទៀត។");
       if (e instanceof SyntaxError) return err(400, "ទិន្នន័យមិនត្រឹមត្រូវ");
       console.error(e && e.stack || e);
-      return err(500, "មានបញ្ហា សូមព្យាយាមម្តងទៀត");
+      // Say which service failed (no secrets are in these messages) so problems can be fixed quickly.
+      if (e && e.status === 401) return err(502, "GitHub មិនទទួលស្គាល់ Key (ADMIN_GITHUB_TOKEN)។ សូមពិនិត្យ Key ឡើងវិញ។", { code: "github_401" });
+      if (e && (e.status === 403 || e.status === 404)) return err(502, "GitHub Key មិនមានសិទ្ធិលើ repo នេះ (Contents: Read and write)។", { code: `github_${e.status}` });
+      return err(500, "មានបញ្ហា សូមព្យាយាមម្តងទៀត" + (e && e.message ? ` (${String(e.message).slice(0, 120)})` : ""), { code: "server" });
     }
   },
 };
