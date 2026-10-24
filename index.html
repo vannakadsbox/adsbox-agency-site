@@ -928,7 +928,8 @@ a.more.pg-view { display: inline-flex; align-items: center; text-decoration: non
     pagePrice: { kh: "តម្លៃ", en: "Price" },
     viewPage: { kh: "មើល Page", en: "View Page" },
     sold: { kh: "លក់រួច", en: "Sold" },
-    calcLabel: { kh: "គណនាតម្លៃផេក ($ {r} ក្នុង 1K Follower)៖ បញ្ចូលចំនួន Follower", en: "Page price calculator (${r} per 1K followers): enter followers" }
+    seeMorePages: { kh: "មើលផេកបន្ថែម ({n})", en: "See more Pages ({n})" },
+    calcLabel: { kh: "គណនាតម្លៃផេក (${r} ក្នុង 1K Follower)៖ បញ្ចូលចំនួន Follower", en: "Page price calculator (${r} per 1K followers): enter followers" }
   };
   var KH_MONTHS = ["មករា","កុម្ភៈ","មីនា","មេសា","ឧសភា","មិថុនា","កក្កដា","សីហា","កញ្ញា","តុលា","វិច្ឆិកា","ធ្នូ"];
   var KH_DIGITS = "០១២៣៤៥៦៧៨៩";
@@ -972,7 +973,7 @@ a.more.pg-view { display: inline-flex; align-items: center; text-decoration: non
     });
     html += extra > 0 ? "</div></div>" : "</div>";
     if (extra > 0) html += '<div class="svc-more-wrap"><button type="button" class="btn btn-outline svc-more" data-group="pages" aria-expanded="' + open +
-      '" aria-controls="svc-extra-pages">' + (open ? T.seeLess[lang] : T.seeMore[lang].replace("{n}", extra)) + '<span class="chev" aria-hidden="true"></span></button></div>';
+      '" aria-controls="svc-extra-pages">' + (open ? T.seeLess[lang] : T.seeMorePages[lang].replace("{n}", extra)) + '<span class="chev" aria-hidden="true"></span></button></div>';
     document.getElementById("svc-groups").innerHTML = html + "</div>";
     var inp = document.getElementById("pg-calc-in"), out = document.getElementById("pg-calc-out");
     inp.addEventListener("input", function () { out.textContent = "$" + fmtNum(pagePrice(inp.value)); });
@@ -1056,7 +1057,7 @@ a.more.pg-view { display: inline-flex; align-items: center; text-decoration: non
     box.hidden = !svcOpen[id];
     b.setAttribute("aria-expanded", svcOpen[id]);
     var extra = box.querySelectorAll(".svc").length;
-    b.firstChild.nodeValue = svcOpen[id] ? T.seeLess[lang] : T.seeMore[lang].replace("{n}", extra);
+    b.firstChild.nodeValue = svcOpen[id] ? T.seeLess[lang] : (id === "pages" ? T.seeMorePages : T.seeMore)[lang].replace("{n}", extra);
     if (!svcOpen[id]) { var r = b.getBoundingClientRect(); if (r.top < 0 || r.bottom > innerHeight) b.scrollIntoView({ block: "center" }); }
   });
   document.getElementById("tabs").addEventListener("click", function (e) {
