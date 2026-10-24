@@ -1,114 +1,36 @@
 {
- "fb-fbhit-61580134710032": {
+ "61580134710032": {
   "status": 200,
-  "final": "https://www.facebook.com/p/Van-Sovann-61580134710032/",
-  "len": 493908,
-  "og": {
-   "og:type": "video.other",
-   "og:title": "Van Sovann",
-   "og:description": "Van Sovann. 10,431 followers · 14 talking about this. Digital creator",
-   "og:url": "https://www.facebook.com/p/Van-Sovann-61580134710032/",
-   "og:image:alt": "Van Sovann",
-   "og:image": "https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=61580134710032",
-   "og:locale": "en_US"
-  },
-  "followers": [
-   "10,431",
-   "10,431",
-   "10,431"
+  "cover_like": [],
+  "all_imgs": [
+   "https://scontent-lga3-2.xx.fbcdn.net/v/t39.30808-1/554536448_122106026235004490_6451304978"
   ],
-  "login_wall": false
+  "bg": [],
+  "cover_word": [
+   2333,
+   50869
+  ],
+  "lookaside": {
+   "status": 200,
+   "type": "image/jpeg",
+   "bytes": 201586
+  }
  },
- "fb-chrome-61580134710032": {
-  "status": 400,
-  "final": "https://www.facebook.com/profile.php?id=61580134710032",
-  "len": 27,
-  "og": {},
-  "followers": [],
-  "login_wall": false
- },
- "fb-plugin-61580134710032": {
+ "61593295843002": {
   "status": 200,
-  "len": 51506,
-  "followers": [
-   "10,431 followers"
+  "cover_like": [],
+  "all_imgs": [
+   "https://scontent-lga3-2.xx.fbcdn.net/v/t39.30808-1/863588506_122122725051443194_1689462076"
   ],
-  "imgs": [
-   "https://scontent-iad6-1.xx.fbcdn.net/v/t39.30808-1/554536448_122106026235004490_6451304978207309152_n.jpg?stp="
+  "bg": [],
+  "cover_word": [
+   2333,
+   50888
   ],
-  "title": [
-   "Facebook"
-  ],
-  "names": [
-   "Van Sovann"
-  ]
- },
- "fb-fbhit-61593295843002": {
-  "status": 200,
-  "final": "https://www.facebook.com/p/Sovanry-Online-Shop-61593295843002/",
-  "len": 491141,
-  "og": {
-   "og:type": "video.other",
-   "og:title": "Sovanry Online Shop",
-   "og:description": "Sovanry Online Shop. 13,665 followers · 32,870 talking about this. Movie",
-   "og:url": "https://www.facebook.com/p/Sovanry-Online-Shop-61593295843002/",
-   "og:image:alt": "Sovanry Online Shop",
-   "og:image": "https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=61593295843002",
-   "og:locale": "en_US"
-  },
-  "followers": [
-   "13,665",
-   "13,665",
-   "13,665"
-  ],
-  "login_wall": false
- },
- "fb-chrome-61593295843002": {
-  "status": 400,
-  "final": "https://www.facebook.com/profile.php?id=61593295843002",
-  "len": 27,
-  "og": {},
-  "followers": [],
-  "login_wall": false
- },
- "fb-plugin-61593295843002": {
-  "status": 200,
-  "len": 51520,
-  "followers": [
-   "13,665 followers"
-  ],
-  "imgs": [
-   "https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-1/863588506_122122725051443194_1689462076878303724_n.jpg?stp="
-  ],
-  "title": [
-   "Facebook"
-  ],
-  "names": [
-   "Sovanry Online Shop"
-  ]
- },
- "tt-tiktok": {
-  "status": 200,
-  "len": 371437,
-  "followers": "96400000",
-  "avatar": "https:\\u002F\\u002Fp19-common-sign.tiktokcdn-us.com\\u002Ftos-useast5-avt-0068-tx\\u002Fba67b11de451691",
-  "nick": "TikTok",
-  "og": {}
- },
- "tt-oembed-tiktok": {
-  "status": 200,
-  "body": "{\"version\":\"1.0\",\"type\":\"rich\",\"title\":\"TikTok's Creator Profile\",\"author_url\":\"https://www.tiktok.com/@tiktok\",\"author_name\":\"TikTok\",\"width\":\"100%\",\"height\":\"100%\",\"html\":\"<blockquote class=\\\"tiktok-embed\\\" cite=\\\"https://www.tiktok.com/@tiktok\\\" data-unique-id=\\\"tiktok\\\" data-embed-from=\\\"oembed\\\" data-embed-type=\\\"creator\\\" style=\\\"max-width:780px; min-width:288px;\\\"> <section> <a target=\\\"_bl"
- },
- "tt-khmertvchannel": {
-  "status": 200,
-  "len": 368070,
-  "followers": null,
-  "avatar": null,
-  "nick": null,
-  "og": {}
- },
- "tt-oembed-khmertvchannel": {
-  "status": 400,
-  "body": "HTTP Error 400: Bad Request"
+  "lookaside": {
+   "status": 200,
+   "type": "image/jpeg",
+   "bytes": 67858
+  }
  }
 }
