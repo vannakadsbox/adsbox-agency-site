@@ -543,6 +543,16 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
 .appban-free { display: inline-block; font-size: 13px; font-weight: 700; color: #0f6b45; background: #dcf5e8; padding: 1px 10px; border-radius: 999px; margin-right: 2px; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .appban-free { color: #8ff0bf; background: rgba(60,207,142,.16); } }
 :root[data-theme="dark"] .appban-free { color: #8ff0bf; background: rgba(60,207,142,.16); }
+
+/* "See more" for service groups with more than 4 services */
+.svc-extra { margin-top: 14px; }
+.svc-extra:not([hidden]) { animation: svc-drop .35s ease both; }
+@keyframes svc-drop { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: none; } }
+.svc-more-wrap { display: flex; justify-content: center; margin-top: 22px; }
+.svc-more { gap: 10px; background: var(--surface); }
+.svc-more .chev { width: 8px; height: 8px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: translateY(-2px) rotate(45deg); transition: transform .25s ease; }
+.svc-more[aria-expanded="true"] .chev { transform: translateY(2px) rotate(-135deg); }
+@media (prefers-reduced-motion: reduce) { .svc-extra:not([hidden]) { animation: none; } .svc-more .chev { transition: none; } }
 </style>
 
 </head>
@@ -886,7 +896,9 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
     read: { kh: "អានបន្ត →", en: "Read more →" },
     back: { kh: "← ត្រឡប់ទៅចំណេះដឹង", en: "← Back to Knowledge" },
     help: { kh: "ត្រូវការជំនួយពីក្រុម ADS BOX?", en: "Want the ADS BOX team to help?" },
-    chat: { kh: "ឆាតតាម Telegram", en: "Chat on Telegram" }
+    chat: { kh: "ឆាតតាម Telegram", en: "Chat on Telegram" },
+    seeMore: { kh: "មើលសេវាកម្មបន្ថែម ({n})", en: "See more ({n})" },
+    seeLess: { kh: "បង្ហាញតិចវិញ", en: "See less" }
   };
   var KH_MONTHS = ["មករា","កុម្ភៈ","មីនា","មេសា","ឧសភា","មិថុនា","កក្កដា","សីហា","កញ្ញា","តុលា","វិច្ឆិកា","ធ្នូ"];
   var KH_DIGITS = "០១២៣៤៥៦៧៨៩";
@@ -905,19 +917,26 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
     });
     document.getElementById("tabs").innerHTML = html;
   }
+  // Show the first SVC_VISIBLE services of a group; the rest open under a "See more" button.
+  var SVC_VISIBLE = 4, svcOpen = {};
   function renderServices() {
     var html = "";
     SERVICE_GROUPS.forEach(function (g) {
       if (filter !== g.id) return;
       html += '<div class="svc-group"><h3>' + esc(g.name[lang]) + '</h3><div class="svc-list">';
-      g.services.forEach(function (s) {
+      var extra = g.services.length - SVC_VISIBLE, open = !!svcOpen[g.id];
+      g.services.forEach(function (s, i) {
+        if (i === SVC_VISIBLE) html += '</div><div class="svc-extra" id="svc-extra-' + esc(g.id) + '"' + (open ? "" : " hidden") + '><div class="svc-list">';
         var price = s.price ? '<span class="price">' + esc(s.price) + "</span>" : '<span class="price ask">' + T.ask[lang] + "</span>";
         var badge = s.popular ? '<span class="hot">' + T.popular[lang] + "</span>" : "";
         var img = s.id ? '<img class="svc-img" src="' + encodeURI(s.thumb || ("assets/services/" + s.id + ".jpg")) + '" alt="" width="960" height="540" loading="lazy">' : "";
         html += '<div class="svc">' + badge + img + "<h4>" + esc(s.name[lang]) + "</h4><p>" + esc(s.desc[lang]) + '</p><div class="svc-foot">' + price +
           '<button type="button" class="more" data-more="' + esc(s.id) + '">' + T.more[lang] + '</button><button type="button" class="order" data-svc-kh="' + esc(s.name.kh) + '" data-svc-en="' + esc(s.name.en) + '">' + T.order[lang] + "</button></div></div>";
       });
-      html += "</div></div>";
+      html += extra > 0 ? "</div></div>" : "</div>";
+      if (extra > 0) html += '<div class="svc-more-wrap"><button type="button" class="btn btn-outline svc-more" data-group="' + esc(g.id) + '" aria-expanded="' + open +
+        '" aria-controls="svc-extra-' + esc(g.id) + '">' + (open ? T.seeLess[lang] : T.seeMore[lang].replace("{n}", extra)) + '<span class="chev" aria-hidden="true"></span></button></div>';
+      html += "</div>";
     });
     document.getElementById("svc-groups").innerHTML = html;
   }
@@ -959,6 +978,16 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
     if (!document.getElementById("article-view").hidden) route();
   }
 
+  document.getElementById("svc-groups").addEventListener("click", function (e) {
+    var b = e.target.closest(".svc-more"); if (!b) return;
+    var id = b.getAttribute("data-group"), box = document.getElementById("svc-extra-" + id);
+    svcOpen[id] = !svcOpen[id];
+    box.hidden = !svcOpen[id];
+    b.setAttribute("aria-expanded", svcOpen[id]);
+    var extra = box.querySelectorAll(".svc").length;
+    b.firstChild.nodeValue = svcOpen[id] ? T.seeLess[lang] : T.seeMore[lang].replace("{n}", extra);
+    if (!svcOpen[id]) { var r = b.getBoundingClientRect(); if (r.top < 0 || r.bottom > innerHeight) b.scrollIntoView({ block: "center" }); }
+  });
   document.getElementById("tabs").addEventListener("click", function (e) {
     var b = e.target.closest("button"); if (!b) return;
     filter = b.getAttribute("data-f"); renderTabs(); renderServices();
