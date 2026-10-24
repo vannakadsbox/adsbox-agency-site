@@ -5,7 +5,63 @@ window.LISTINGS = [
   "title": "លក់ផេក Facebook ខ្មែរ",
   "headline": "ផេកមាន Follower ស្រាប់។ តម្លៃគិតតាម Follower។",
   "price_per_1k": 15.0,
-  "items": []
+  "items": [
+   {
+    "name": "Van Sovann",
+    "url": "https://www.facebook.com/profile.php?id=61580134710032",
+    "followers": 10431,
+    "picture": "assets/listings/fb-61580134710032-picture.webp",
+    "cover": "assets/listings/fb-61580134710032-cover.webp",
+    "type": "ផេកខ្មែរ",
+    "sold": false,
+    "price": "",
+    "platform": "facebook"
+   },
+   {
+    "name": "គីម កញ្ញា",
+    "url": "https://www.facebook.com/profile.php?id=61581017472166",
+    "followers": 9924,
+    "picture": "assets/listings/fb-61581017472166-picture.webp",
+    "cover": "assets/listings/fb-61581017472166-cover.webp",
+    "type": "ផេកខ្មែរ",
+    "sold": false,
+    "price": "",
+    "platform": "facebook"
+   },
+   {
+    "name": "EE Black 9 Korean",
+    "url": "https://www.facebook.com/profile.php?id=61580052934362",
+    "followers": 10667,
+    "picture": "assets/listings/fb-61580052934362-picture.webp",
+    "cover": "assets/listings/fb-61580052934362-cover.webp",
+    "type": "ផេកខ្មែរ",
+    "sold": false,
+    "price": "",
+    "platform": "facebook"
+   },
+   {
+    "name": "Newry & EEw9",
+    "url": "https://www.facebook.com/profile.php?id=61579303995746",
+    "followers": 11451,
+    "picture": "assets/listings/fb-61579303995746-picture.webp",
+    "cover": "assets/listings/fb-61579303995746-cover.webp",
+    "type": "ផេកខ្មែរ",
+    "sold": false,
+    "price": "",
+    "platform": "facebook"
+   },
+   {
+    "name": "Sovanry Online Shop",
+    "url": "https://www.facebook.com/profile.php?id=61593295843002",
+    "followers": 13665,
+    "picture": "assets/listings/fb-61593295843002-picture.webp",
+    "cover": "assets/listings/fb-61593295843002-cover.webp",
+    "type": "ផេកខ្មែរ",
+    "sold": false,
+    "price": "",
+    "platform": "facebook"
+   }
+  ]
  },
  {
   "id": "tiktok-accounts",
