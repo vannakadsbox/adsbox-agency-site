@@ -1,0 +1,86 @@
+# Tests and deploys the ADS BOX admin panel (admin/) to Cloudflare Workers.
+# Needs these repository secrets (Settings → Secrets and variables → Actions):
+#   CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID       – where to deploy
+#   ADMIN_OWNER_EMAIL                                 – the owner's Google email (always Owner)
+#   ADMIN_GOOGLE_CLIENT_ID, ADMIN_GOOGLE_CLIENT_SECRET – Google sign-in
+#   ADMIN_GITHUB_TOKEN                                – fine-grained token: this repo, Contents read & write
+#   ADMIN_SESSION_SECRET                              – any long random text
+name: Deploy admin panel
+
+on:
+  push:
+    branches: [main]
+    paths: ["admin/**", ".github/workflows/admin-deploy.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: admin-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: admin
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - name: Tests (every role and section)
+        run: npm test
+      - name: Check secrets are set
+        env:
+          S1: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          S2: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          S3: ${{ secrets.ADMIN_OWNER_EMAIL }}
+          S4: ${{ secrets.ADMIN_GOOGLE_CLIENT_ID }}
+          S5: ${{ secrets.ADMIN_GOOGLE_CLIENT_SECRET }}
+          S6: ${{ secrets.ADMIN_GITHUB_TOKEN }}
+          S7: ${{ secrets.ADMIN_SESSION_SECRET }}
+        run: |
+          missing=""
+          [ -n "$S1" ] || missing="$missing CLOUDFLARE_API_TOKEN"
+          [ -n "$S2" ] || missing="$missing CLOUDFLARE_ACCOUNT_ID"
+          [ -n "$S3" ] || missing="$missing ADMIN_OWNER_EMAIL"
+          [ -n "$S4" ] || missing="$missing ADMIN_GOOGLE_CLIENT_ID"
+          [ -n "$S5" ] || missing="$missing ADMIN_GOOGLE_CLIENT_SECRET"
+          [ -n "$S6" ] || missing="$missing ADMIN_GITHUB_TOKEN"
+          [ -n "$S7" ] || missing="$missing ADMIN_SESSION_SECRET"
+          if [ -n "$missing" ]; then echo "::error::Missing secrets:$missing"; exit 1; fi
+      # The Cloudflare token is given only to the steps that need it (not to npm install or tests).
+      - name: Team storage (create once, then reuse)
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          id=$(npx wrangler kv namespace list | jq -r '.[] | select(.title=="adsbox-admin-team") | .id')
+          if [ -z "$id" ]; then
+            npx wrangler kv namespace create adsbox-admin-team >/dev/null
+            id=$(npx wrangler kv namespace list | jq -r '.[] | select(.title=="adsbox-admin-team") | .id')
+          fi
+          [ -n "$id" ] || { echo "::error::Could not create the team storage"; exit 1; }
+          sed -i "s/__TEAM_KV_ID__/$id/" wrangler.toml
+      - name: Deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx wrangler deploy
+      - name: Secrets
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          OWNER_EMAIL: ${{ secrets.ADMIN_OWNER_EMAIL }}
+          GOOGLE_CLIENT_ID: ${{ secrets.ADMIN_GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.ADMIN_GOOGLE_CLIENT_SECRET }}
+          GITHUB_TOKEN: ${{ secrets.ADMIN_GITHUB_TOKEN }}
+          SESSION_SECRET: ${{ secrets.ADMIN_SESSION_SECRET }}
+        run: |
+          jq -n '{OWNER_EMAIL: env.OWNER_EMAIL, GOOGLE_CLIENT_ID: env.GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET: env.GOOGLE_CLIENT_SECRET, GITHUB_TOKEN: env.GITHUB_TOKEN, SESSION_SECRET: env.SESSION_SECRET}' > /tmp/secrets.json
+          npx wrangler secret bulk /tmp/secrets.json
+          rm -f /tmp/secrets.json

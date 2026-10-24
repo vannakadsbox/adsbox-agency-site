@@ -42,10 +42,20 @@ def read_front_matter(path):
     return yaml.safe_load(m.group(1)) or {}, m.group(2)
 
 
+# Only these link/picture targets are allowed in articles (no javascript: or data: links).
+SAFE_URL = re.compile(r"^(https?://|/(?!/)|#|mailto:|tel:)", re.I)
+
+
 def inline(s):
     s = e(s, quote=False)
-    s = re.sub(r"!\[([^\]]*)\]\(([^)\s]+)\)", lambda m: f'<img src="{e(m.group(2))}" alt="{e(m.group(1))}" loading="lazy">', s)
-    s = re.sub(r"\[([^\]]+)\]\(([^)\s]+)\)", lambda m: f'<a href="{e(m.group(2))}" target="_blank" rel="noopener">{m.group(1)}</a>', s)
+    def img(m):
+        src = html.unescape(m.group(2))
+        return f'<img src="{e(src)}" alt="{e(html.unescape(m.group(1)))}" loading="lazy">' if SAFE_URL.match(src) else e(html.unescape(m.group(1)), quote=False)
+    def link(m):
+        href = html.unescape(m.group(2))
+        return f'<a href="{e(href)}" target="_blank" rel="noopener">{m.group(1)}</a>' if SAFE_URL.match(href) else m.group(1)
+    s = re.sub(r"!\[([^\]]*)\]\(([^)\s]+)\)", img, s)
+    s = re.sub(r"\[([^\]]+)\]\(([^)\s]+)\)", link, s)
     s = re.sub(r"\*\*(.+?)\*\*|__(.+?)__", lambda m: f"<strong>{m.group(1) or m.group(2)}</strong>", s)
     s = re.sub(r"(?<![\*\w])\*(?!\s)(.+?)(?<!\s)\*(?!\*)", r"<em>\1</em>", s)
     return s
@@ -53,9 +63,8 @@ def inline(s):
 
 def md_to_html(text):
     """Small Markdown converter for article bodies: headings, paragraphs, lists, quotes, images, bold, italic, links.
-    If the body is already HTML it is used as is."""
+    Raw HTML is never passed through: it is shown as text, so an article cannot add scripts to the site."""
     text = (text or "").strip()
-    if text.startswith("<"): return text
     out = []
     for block in re.split(r"\n\s*\n", text):
         lines = [l.rstrip() for l in block.strip().split("\n") if l.strip()]
