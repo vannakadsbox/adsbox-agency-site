@@ -217,10 +217,12 @@ def write_all():
     services = load_services()
     promos = load_promos()
     clients = load_clients()
+    import accounts
+    accts = accounts.load(asset, optimized)
     make_thumbs(promos)
     clean_opt()
     listing = [{k: a[k] for k in ("id", "date", "tag", "title", "summary", "emoji", "cover") if a.get(k)} for a in arts]
-    for path, text in (("articles.js", js("ARTICLES", listing)), ("services.js", js("SERVICE_GROUPS", services)), ("promos.js", js("PROMOS", promos)), ("clients.js", js("CLIENTS", clients))):
+    for path, text in (("articles.js", js("ARTICLES", listing)), ("services.js", js("SERVICE_GROUPS", services)), ("promos.js", js("PROMOS", promos)), ("clients.js", js("CLIENTS", clients)), ("accounts.js", js("ACCOUNTS", accts))):
         with open(os.path.join(ROOT, path), "w", encoding="utf-8") as f: f.write(text)
     return arts, services, promos
 

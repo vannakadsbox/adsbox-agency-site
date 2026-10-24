@@ -423,6 +423,8 @@ body::before { background: var(--surface); }
 .svc-foot > span:empty { display: none; }
 button.more { font: inherit; font-size: 14px; font-weight: 600; min-height: 36px; padding: 6px 14px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; margin-right: auto; }
 button.more:hover { border-color: var(--blue); color: var(--blue); }
+a.more { display: inline-flex; align-items: center; font-size: 14px; font-weight: 600; min-height: 36px; padding: 6px 14px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); text-decoration: none; margin-right: auto; }
+a.more:hover { border-color: var(--blue); color: var(--blue); }
 .sd-box { width: min(480px, 100%); }
 .sd-img { display: block; width: 100%; height: auto; border-radius: 20px 20px 0 0; }
 .sd-body { padding: 16px 20px 20px; display: grid; gap: 8px; }
@@ -553,6 +555,77 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
 .svc-more .chev { width: 8px; height: 8px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: translateY(-2px) rotate(45deg); transition: transform .25s ease; }
 .svc-more[aria-expanded="true"] .chev { transform: translateY(2px) rotate(-135deg); }
 @media (prefers-reduced-motion: reduce) { .svc-extra:not([hidden]) { animation: none; } .svc-more .chev { transition: none; } }
+
+/* Pages for sale ("ផេកខ្មែរ & ផេកប៊ូសឡាយ" tab) */
+.pg-head { display: flex; align-items: center; gap: 14px; min-width: 0; }
+.pg-pic { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; flex: none; border: 3px solid var(--chip); background: var(--chip); }
+.pg-ini { display: grid; place-items: center; font-family: var(--font-display); font-weight: 800; font-size: 26px; color: var(--blue); }
+.pg-id { min-width: 0; display: grid; gap: 4px; justify-items: start; }
+.pg-id h4 { overflow-wrap: anywhere; }
+.pg-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 6px 0 0; flex: 1; align-content: start; }
+.pg-stats > div { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; }
+.pg-stats dt { font-size: 13px; color: var(--muted); }
+.pg-stats dd { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: 20px; font-variant-numeric: tabular-nums; }
+.pg-stats .pg-price { color: var(--blue); }
+a.more.pg-view { display: inline-flex; align-items: center; text-decoration: none; }
+.pg-sold { opacity: .72; }
+.pg-calc { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; margin-bottom: 16px; display: grid; gap: 8px; max-width: 560px; }
+.pg-calc label { font-weight: 600; font-size: 15px; }
+.pg-calc-row { display: flex; align-items: center; gap: 10px; }
+.pg-calc input { font: inherit; font-size: 17px; width: 100%; max-width: 220px; min-height: 44px; border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; background: var(--bg); color: var(--fg); }
+.pg-calc-eq { color: var(--muted); font-weight: 700; }
+.pg-calc output { font-family: var(--font-display); font-weight: 800; font-size: 24px; color: var(--blue); font-variant-numeric: tabular-nums; }
+
+/* Dark mode: keep white text readable on hovered blue buttons (WCAG AA) */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .order:hover, :root:not([data-theme="light"]) .btn-navy:hover { background: #2563d9; } }
+:root[data-theme="dark"] .order:hover, :root[data-theme="dark"] .btn-navy:hover { background: #2563d9; }
+
+/* Pages tab in the ADS BOX System banner style */
+.pg-ban { margin-bottom: 20px; }
+.pg-ban .appban-text h3 { max-width: 15em; }
+.pg-calc.appban-get { display: flex; align-items: center; gap: 16px; max-width: none; margin-bottom: 0; border: 0; }
+.pg-calc-ic { width: 72px; height: 72px; border-radius: 16px; flex: none; display: grid; place-items: center; font-family: var(--font-display); font-weight: 800; font-size: 34px; color: #fff; background: linear-gradient(135deg, #3f7dff, #1c4b9b); }
+.pg-calc-body { display: grid; gap: 6px; justify-items: start; min-width: 0; }
+.pg-calc-body label { display: grid; gap: 0; font-weight: 400; }
+.pg-calc-body label strong { font-size: 16px; }
+.pg-calc .appban-free { margin: 0; }
+.pg-calc input { max-width: 160px; background: #fff; color: #0f1a2e; border-color: #c9d6f2; }
+.pg-calc output { color: #1c4b9b; }
+.phone .pg-av { position: relative; overflow: hidden; background: linear-gradient(135deg, #3f7dff, #7c6cff); }
+.phone .pg-av img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.phone .pg-ph-price { color: var(--a-good); }
+.pg-list .pg { border-radius: 18px; background: linear-gradient(160deg, #f4f8ff 0%, #ffffff 60%); border-color: #d7e3fb; }
+@media (max-width: 760px) { .pg-calc.appban-get { flex-wrap: wrap; } .pg-calc-ic { width: 56px; height: 56px; font-size: 26px; } }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .pg-calc input { background: var(--bg); color: var(--fg); border-color: var(--line); }
+  :root:not([data-theme="light"]) .pg-calc output { color: #8fb3ff; }
+  :root:not([data-theme="light"]) .pg-list .pg { background: linear-gradient(160deg, #18295a 0%, #121c33 60%); border-color: #26386a; }
+}
+:root[data-theme="dark"] .pg-calc input { background: var(--bg); color: var(--fg); border-color: var(--line); }
+:root[data-theme="dark"] .pg-calc output { color: #8fb3ff; }
+:root[data-theme="dark"] .pg-list .pg { background: linear-gradient(160deg, #18295a 0%, #121c33 60%); border-color: #26386a; }
+
+/* Account cards (Facebook Pages / TikTok accounts for sale), as in the owner's mockup */
+.acc { padding-top: 0; }
+.acc-cover { position: relative; margin: 0 -18px; aspect-ratio: 16 / 9; border-radius: 13px 13px 0 0; overflow: hidden; background: linear-gradient(135deg, #1c4b9b, #7c6cff); }
+.acc-tiktok .acc-cover { background: linear-gradient(135deg, #111827, #25f4ee 55%, #fe2c55); }
+.acc-cover-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.acc-plat { position: absolute; left: 10px; top: 10px; font-size: 11px; font-weight: 700; color: #fff; background: rgba(8, 14, 34, .55); padding: 2px 10px; border-radius: 999px; }
+.acc-id { display: flex; gap: 12px; align-items: flex-start; margin-top: -34px; position: relative; flex: 1; }
+.acc-av { position: relative; width: 76px; height: 76px; border-radius: 50%; flex: none; overflow: hidden; display: grid; place-items: center; border: 4px solid var(--surface); background: linear-gradient(135deg, #3f7dff, #7c6cff); box-shadow: 0 6px 16px rgba(10, 20, 60, .18); }
+.acc-av b, .pg-av b { color: #fff; font-family: var(--font-display); font-weight: 800; font-size: 26px; }
+.pg-av b { font-size: 13px; }
+.acc-av img, .pg-av img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.acc-txt { padding-top: 38px; display: grid; gap: 2px; justify-items: start; min-width: 0; }
+.acc-txt h4 { overflow-wrap: anywhere; }
+.acc-txt small { color: var(--muted); font-size: 13px; }
+.acc-pill { margin-top: 4px; font-weight: 700; font-size: 15px; color: var(--navy); border: 1.5px solid var(--navy); border-radius: 8px; padding: 1px 10px; font-variant-numeric: tabular-nums; }
+.acc .pill { margin-top: 4px; }
+.acc .svc-foot { flex-wrap: wrap; }
+.acc-sold { opacity: .72; }
+.pg-calc-body small { color: inherit; opacity: .8; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .acc-pill { color: #8fb3ff; border-color: #8fb3ff; } }
+:root[data-theme="dark"] .acc-pill { color: #8fb3ff; border-color: #8fb3ff; }
 </style>
 
 </head>
@@ -565,7 +638,7 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
     </a>
     <nav class="menu" aria-label="Main">
         <a href="#home" class="mlink" data-kh="ទំព័រដើម" data-en="Home">ទំព័រដើម</a>
-        <div class="dd"><a href="#services" data-filter="boost" class="mlink" data-kh="សេវាកម្ម" data-en="Our services">សេវាកម្ម</a><div class="dd-menu"><a href="#services" data-filter="boost" data-kh="ផ្សព្វផ្សាយ និង Boost" data-en="Boost &amp; ads">ផ្សព្វផ្សាយ និង Boost</a><a href="#services" data-filter="design" data-kh="រចនា និងវេបសាយ" data-en="Design &amp; website">រចនា និងវេបសាយ</a><a href="#services" data-filter="care" data-kh="ថែទាំផេក និងគណនី" data-en="Page &amp; account care">ថែទាំផេក និងគណនី</a><a href="#services" data-filter="live" data-kh="លក់ Live និងមេរៀន" data-en="Live selling &amp; training">លក់ Live និងមេរៀន</a></div></div>
+        <div class="dd"><a href="#services" data-filter="boost" class="mlink" data-kh="សេវាកម្ម" data-en="Our services">សេវាកម្ម</a><div class="dd-menu" id="svc-menu"></div></div>
         <a href="#adsbox-system" class="mlink" data-kh="ប្រព័ន្ធ ADS BOX" data-en="ADS BOX system">ប្រព័ន្ធ ADS BOX</a>
         <a href="#promos" class="mlink" data-kh="ការផ្តល់ជូនពិសេស" data-en="Offers">ការផ្តល់ជូនពិសេស</a>
         <a href="#knowledge" class="mlink" data-kh="ចំណេះដឹង" data-en="Knowledge">ចំណេះដឹង</a>
@@ -865,7 +938,7 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
       <p data-kh="ក្រុមជំនាញ Boost Post និង Live សម្រាប់អ្នកលក់នៅកម្ពុជា។" data-en="The Boost Post &amp; Live team for sellers in Cambodia.">ក្រុមជំនាញ Boost Post និង Live សម្រាប់អ្នកលក់នៅកម្ពុជា។</p>
     </div>
     <div><h3 data-kh="ម៉ឺនុយ" data-en="Menu">ម៉ឺនុយ</h3><div class="ftr-links"><a href="#home" data-kh="ទំព័រដើម" data-en="Home">ទំព័រដើម</a><a href="#services" data-kh="សេវាកម្ម" data-en="Services">សេវាកម្ម</a><a href="#adsbox-system" data-kh="ប្រព័ន្ធ ADS BOX" data-en="ADS BOX system">ប្រព័ន្ធ ADS BOX</a><a href="#promos" data-kh="ការផ្តល់ជូនពិសេស" data-en="Offers">ការផ្តល់ជូនពិសេស</a><a href="#knowledge" data-kh="ចំណេះដឹង" data-en="Knowledge">ចំណេះដឹង</a><a href="#system" data-kh="ចំណុចពិសេស" data-en="Key features">ចំណុចពិសេស</a><a href="#results" data-kh="លទ្ធផល" data-en="Results">លទ្ធផល</a><a href="#clients" data-kh="អតិថិជន" data-en="Our clients">អតិថិជន</a></div></div>
-    <div><h3 data-kh="សេវាកម្ម" data-en="Services">សេវាកម្ម</h3><div class="ftr-links"><a href="#services" data-filter="boost" data-kh="ផ្សព្វផ្សាយ និង Boost" data-en="Boost &amp; ads">ផ្សព្វផ្សាយ និង Boost</a><a href="#services" data-filter="design" data-kh="រចនា និងវេបសាយ" data-en="Design &amp; website">រចនា និងវេបសាយ</a><a href="#services" data-filter="care" data-kh="ថែទាំផេក និងគណនី" data-en="Page &amp; account care">ថែទាំផេក និងគណនី</a><a href="#services" data-filter="live" data-kh="លក់ Live និងមេរៀន" data-en="Live selling &amp; training">លក់ Live និងមេរៀន</a></div></div>
+    <div><h3 data-kh="សេវាកម្ម" data-en="Services">សេវាកម្ម</h3><div class="ftr-links" id="svc-ftr"></div></div>
     <div><h3 data-kh="ទំនាក់ទំនង" data-en="Contact">ទំនាក់ទំនង</h3><div class="ftr-links">
       <a href="https://t.me/vannakdm" target="_blank" rel="noopener">Telegram · t.me/vannakdm</a>
       <a href="https://www.facebook.com/adsbox.agency" target="_blank" rel="noopener">Facebook · adsbox.agency</a>
@@ -880,6 +953,7 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
 <script src="articles.js"></script>
 <script src="promos.js"></script>
 <script src="clients.js"></script>
+<script src="accounts.js"></script>
 <script>
 (function () {
   var TG = "https://t.me/vannakdm";
@@ -898,7 +972,20 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
     help: { kh: "ត្រូវការជំនួយពីក្រុម ADS BOX?", en: "Want the ADS BOX team to help?" },
     chat: { kh: "ឆាតតាម Telegram", en: "Chat on Telegram" },
     seeMore: { kh: "មើលសេវាកម្មបន្ថែម ({n})", en: "See more ({n})" },
-    seeLess: { kh: "បង្ហាញតិចវិញ", en: "See less" }
+    seeLess: { kh: "បង្ហាញតិចវិញ", en: "See less" },
+    sold: { kh: "លក់រួច", en: "Sold" },
+    hasFollowers: { kh: "មានចំនួនអ្នកតាមដាន", en: "Followers" },
+    seeMore_facebook: { kh: "មើលផេកបន្ថែម ({n})", en: "See more Pages ({n})" },
+    seeMore_tiktok: { kh: "មើលអាខោនបន្ថែម ({n})", en: "See more accounts ({n})" },
+    head_facebook: { kh: "ផេកមាន Follower ស្រាប់។ តម្លៃគិតតាម Follower។", en: "Pages with followers. Priced by followers." },
+    head_tiktok: { kh: "អាខោន TikTok មាន Follower ស្រាប់។", en: "TikTok accounts with followers." },
+    lead_facebook: { kh: "មាន {n} ផេកកំពុងលក់។ ចុច «លម្អិត» ដើម្បីពិនិត្យផេក ហើយ «ចាប់អារម្មណ៍សេវាកម្ម» ដើម្បីកុម្ម៉ង់។", en: "{n} Pages for sale. Tap “Details” to check one, then “I'm interested” to order." },
+    lead_tiktok: { kh: "មាន {n} អាខោនកំពុងលក់។ ចុច «លម្អិត» ដើម្បីពិនិត្យអាខោន ហើយ «ចាប់អារម្មណ៍សេវាកម្ម» ដើម្បីកុម្ម៉ង់។", en: "{n} accounts for sale. Tap “Details” to check one, then “I'm interested” to order." },
+    rateLine: { kh: "តម្លៃ ${r} ក្នុង 1,000 Follower។", en: "${r} per 1,000 followers." },
+    askTitle: { kh: "សូមទាក់ទងសម្រាប់តម្លៃ", en: "Contact us for pricing" },
+    askLead: { kh: "ចុច «ចាប់អារម្មណ៍សេវាកម្ម» លើអាខោនដែលចង់បាន ក្រុមយើងនឹងប្រាប់តម្លៃ។", en: "Tap “I'm interested” on the account you want and we'll tell you the price." },
+    calcSmall: { kh: "បញ្ចូលចំនួន Follower", en: "Enter the followers" },
+    calcTitle: { kh: "គណនាតម្លៃ", en: "Price calculator" }
   };
   var KH_MONTHS = ["មករា","កុម្ភៈ","មីនា","មេសា","ឧសភា","មិថុនា","កក្កដា","សីហា","កញ្ញា","តុលា","វិច្ឆិកា","ធ្នូ"];
   var KH_DIGITS = "០១២៣៤៥៦៧៨៩";
@@ -910,16 +997,83 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
   }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
 
+  // Facebook Pages and TikTok accounts for sale (content/accounts.json). Staff paste only the link; the build reads
+  // the name, followers and profile picture. Price = followers / 1000 x price_per_1k (0 = "contact us for pricing").
+  var ACCOUNTS = window.ACCOUNTS || {};
+  var ACC_TABS = { "acc-facebook": "facebook", "acc-tiktok": "tiktok" };
+  var ACC_DEFAULT = { facebook: "លក់ផេកខ្មែរ", tiktok: "លក់អាខោន TikTok" };
+  function accList(kind) { return ACCOUNTS[kind] || { items: [] }; }
+  function serviceTabs() {
+    var tabs = SERVICE_GROUPS.map(function (g) { return { id: g.id, name: g.name[lang] }; });
+    ["facebook", "tiktok"].forEach(function (k) { var l = accList(k); if (l.items && l.items.length) tabs.push({ id: "acc-" + k, name: l.title || ACC_DEFAULT[k] }); });
+    return tabs;
+  }
+  function accPrice(f, rate) { return Math.round((+f || 0) / 1000 * (+rate || 0)); }
+  function fmtNum(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+  function shortNum(n) { n = +n || 0; if (n >= 1e6) return (Math.round(n / 1e5) / 10 + "").replace(/\.0$/, "") + "M"; if (n >= 1e3) return (Math.round(n / 100) / 10 + "").replace(/\.0$/, "") + "K"; return String(n); }
+  function avatar(p, cls) {
+    var ini = esc((p.name || "?").trim().charAt(0).toUpperCase());
+    return '<span class="' + cls + '">' + (p.picture ? '<img src="' + encodeURI(p.picture) + '" alt="" width="96" height="96" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">' : "") + "<b>" + ini + "</b></span>";
+  }
+  function accCard(p, kind, rate) {
+    var price = accPrice(p.followers, rate);
+    var label = p.name + " · " + fmtNum(p.followers) + " Followers" + (rate ? " · $" + price : "");
+    var cover = p.cover ? '<img class="acc-cover-img" src="' + encodeURI(p.cover) + '" alt="" width="960" height="540" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">' : "";
+    return '<div class="svc acc acc-' + kind + (p.sold ? " acc-sold" : "") + '">' + (p.sold ? '<span class="hot">' + T.sold[lang] + "</span>" : "") +
+      '<div class="acc-cover">' + cover + '<span class="acc-plat">' + (kind === "tiktok" ? "TikTok" : "Facebook") + "</span></div>" +
+      '<div class="acc-id">' + avatar(p, "acc-av") + '<div class="acc-txt"><h4>' + esc(p.name) + "</h4><small>" + T.hasFollowers[lang] + "</small>" +
+      '<span class="acc-pill">' + shortNum(p.followers) + " Follower</span>" + (p.type ? '<span class="pill">' + esc(p.type) + "</span>" : "") + "</div></div>" +
+      '<div class="svc-foot">' + (p.sold ? '<span class="price ask">' + T.sold[lang] + "</span>" : rate ? '<span class="price">$' + fmtNum(price) + "</span>" : '<span class="price ask">' + T.ask[lang] + "</span>") +
+      '<a class="more" href="' + esc(p.url) + '" target="_blank" rel="noopener" aria-label="' + esc(T.more[lang] + " · " + p.name) + '">' + T.more[lang] + "</a>" +
+      (p.sold ? "" : '<button type="button" class="order" data-svc-kh="' + esc(label) + '" data-svc-en="' + esc(label) + '">' + T.order[lang] + "</button>") + "</div></div>";
+  }
+  function renderAccounts(tab) {
+    var kind = ACC_TABS[tab], l = accList(kind), list = l.items || [], rate = +l.price_per_1k || 0, title = l.title || ACC_DEFAULT[kind];
+    var extra = list.length - SVC_VISIBLE, open = !!svcOpen[tab], html = "";
+    var avail = list.filter(function (p) { return !p.sold; });
+    var show = (avail.length ? avail : list).slice().sort(function (a, b) { return b.followers - a.followers; }).slice(0, 3);
+    var rows = show.map(function (p) {
+      return '<div class="app-card row">' + avatar(p, "av pg-av") + '<div class="grow"><b>' + esc(p.name) + '</b><span class="who">' + fmtNum(p.followers) + " Followers</span></div>" +
+        '<div class="num"><b class="pg-ph-price">' + (rate ? "$" + fmtNum(accPrice(p.followers, rate)) : shortNum(p.followers)) + "</b></div></div>";
+    }).join("");
+    var calc = rate ? '<div class="appban-get pg-calc"><span class="pg-calc-ic" aria-hidden="true">$</span>' +
+      '<div class="pg-calc-body"><label for="pg-calc-in"><small>' + T.calcSmall[lang] + "</small><strong>" + T.calcTitle[lang] + "</strong></label>" +
+      '<span class="appban-free">$' + fmtNum(rate) + " / 1K Follower</span>" +
+      '<div class="pg-calc-row"><input id="pg-calc-in" type="number" inputmode="numeric" min="0" step="100" placeholder="10000" aria-describedby="pg-calc-out"><span class="pg-calc-eq" aria-hidden="true">=</span>' +
+      '<output id="pg-calc-out" for="pg-calc-in" aria-live="polite">$0</output></div></div></div>' :
+      '<div class="appban-get pg-calc"><span class="pg-calc-ic" aria-hidden="true">✓</span><div class="pg-calc-body"><strong>' + T.askTitle[lang] + "</strong><small>" + T.askLead[lang] + "</small></div></div>";
+    html += '<div class="svc-group"><div class="appban pg-ban"><div class="appban-text">' +
+      '<div class="eyebrow">' + esc(title) + " · " + (kind === "tiktok" ? "TikTok Account" : "Facebook Page") + "</div>" +
+      "<h3>" + T["head_" + kind][lang] + "</h3><p>" + T["lead_" + kind][lang].replace("{n}", avail.length) + (rate ? " " + T.rateLine[lang].replace("{r}", fmtNum(rate)) : "") + "</p>" + calc + "</div>" +
+      '<div class="appban-media" aria-hidden="true"><span class="shape s1"></span><span class="shape s2"></span><span class="shape s3"></span>' +
+      '<div class="phone"><div class="app"><div class="app-bar"><span><span class="app-dot"></span><b>ADS BOX</b></span><span class="chip-s">' + (kind === "tiktok" ? "TikTok" : "Pages") + "</span></div>" +
+      '<div class="stack">' + rows + "</div></div></div></div></div>" +
+      '<div class="svc-list pg-list">';
+    list.forEach(function (p, i) {
+      if (i === SVC_VISIBLE) html += '</div><div class="svc-extra" id="svc-extra-' + tab + '"' + (open ? "" : " hidden") + '><div class="svc-list pg-list">';
+      html += accCard(p, kind, rate);
+    });
+    html += extra > 0 ? "</div></div>" : "</div>";
+    if (extra > 0) html += '<div class="svc-more-wrap"><button type="button" class="btn btn-outline svc-more" data-group="' + tab + '" aria-expanded="' + open +
+      '" aria-controls="svc-extra-' + tab + '">' + (open ? T.seeLess[lang] : T["seeMore_" + kind][lang].replace("{n}", extra)) + '<span class="chev" aria-hidden="true"></span></button></div>';
+    document.getElementById("svc-groups").innerHTML = html + "</div>";
+    var inp = document.getElementById("pg-calc-in"), out = document.getElementById("pg-calc-out");
+    if (inp) inp.addEventListener("input", function () { out.textContent = "$" + fmtNum(accPrice(inp.value, rate)); });
+  }
   function renderTabs() {
     var html = "";
-    SERVICE_GROUPS.forEach(function (g) {
-      html += '<button type="button" data-f="' + g.id + '" aria-pressed="' + (filter === g.id) + '">' + esc(g.name[lang]) + "</button>";
+    serviceTabs().forEach(function (t) {
+      html += '<button type="button" data-f="' + esc(t.id) + '" aria-pressed="' + (filter === t.id) + '">' + esc(t.name) + "</button>";
     });
     document.getElementById("tabs").innerHTML = html;
+    // The services menu in the header and the footer list follow the same tabs
+    var links = serviceTabs().map(function (t) { return '<a href="#services" data-filter="' + esc(t.id) + '">' + esc(t.name) + "</a>"; }).join("");
+    ["svc-menu", "svc-ftr"].forEach(function (id) { var el = document.getElementById(id); if (el) el.innerHTML = links; });
   }
   // Show the first SVC_VISIBLE services of a group; the rest open under a "See more" button.
   var SVC_VISIBLE = 4, svcOpen = {};
   function renderServices() {
+    if (ACC_TABS[filter]) return renderAccounts(filter);
     var html = "";
     SERVICE_GROUPS.forEach(function (g) {
       if (filter !== g.id) return;
@@ -985,7 +1139,7 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
     box.hidden = !svcOpen[id];
     b.setAttribute("aria-expanded", svcOpen[id]);
     var extra = box.querySelectorAll(".svc").length;
-    b.firstChild.nodeValue = svcOpen[id] ? T.seeLess[lang] : T.seeMore[lang].replace("{n}", extra);
+    b.firstChild.nodeValue = svcOpen[id] ? T.seeLess[lang] : (ACC_TABS[id] ? T["seeMore_" + ACC_TABS[id]] : T.seeMore)[lang].replace("{n}", extra);
     if (!svcOpen[id]) { var r = b.getBoundingClientRect(); if (r.top < 0 || r.bottom > innerHeight) b.scrollIntoView({ block: "center" }); }
   });
   document.getElementById("tabs").addEventListener("click", function (e) {

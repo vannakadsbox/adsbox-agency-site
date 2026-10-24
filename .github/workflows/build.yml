@@ -7,6 +7,9 @@ on:
     branches: [main]
     paths: ["content/**", "assets/uploads/**", "tools/**", ".github/workflows/build.yml"]
   workflow_dispatch:
+  # Daily at 08:07 Cambodia time: refresh the names, followers and pictures of the Facebook Pages and TikTok accounts for sale
+  schedule:
+    - cron: "7 1 * * *"
 
 permissions:
   contents: write
