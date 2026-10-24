@@ -630,6 +630,34 @@ a.more.pg-view { display: inline-flex; align-items: center; text-decoration: non
 /* Page type label sits under the profile picture */
 .acc-left { display: grid; justify-items: center; gap: 8px; flex: none; }
 .acc-left .pill { margin-top: 0; }
+
+/* Compact size for the Pages / TikTok tabs */
+.pg-ban { border-radius: 20px; }
+.pg-ban .appban-text { padding: 26px 0 26px 30px; }
+.pg-ban .appban-text h3 { font-size: clamp(20px, 2.4vw, 26px); margin: 4px 0 6px; }
+.pg-ban .appban-text p { font-size: 15px; }
+.pg-ban .appban-media { min-height: 0; padding: 14px 0; }
+.pg-ban .appban-media::before { width: 220px; height: 220px; }
+.pg-ban .phone { width: 205px; border-radius: 28px; padding: 8px; }
+.pg-ban .phone .app { border-radius: 22px; padding: 30px 9px 10px; font-size: 11px; }
+.pg-ban .phone .app-card { padding: 7px 8px; }
+.pg-ban .phone .av { width: 24px; height: 24px; }
+.pg-ban .shape.s1 { width: 34px; height: 34px; } .pg-ban .shape.s3 { width: 22px; height: 22px; } .pg-ban .shape.s2 { width: 16px; height: 16px; }
+.pg-ban .appban-get { margin-top: 14px; padding: 10px 14px 10px 10px; gap: 12px; }
+.pg-ban .pg-calc-ic { width: 52px; height: 52px; border-radius: 12px; font-size: 24px; }
+.pg-ban .pg-calc-body label strong { font-size: 15px; }
+.pg-ban .pg-calc input { min-height: 38px; font-size: 15px; padding: 6px 10px; max-width: 130px; }
+.pg-ban .pg-calc output { font-size: 20px; }
+.acc-cover { aspect-ratio: 2 / 1; }
+.acc-av { width: 60px; height: 60px; border-width: 3px; }
+.acc-av b { font-size: 20px; }
+.acc-id { margin-top: -26px; gap: 10px; }
+.acc-txt { padding-top: 30px; }
+.acc-txt h4 { font-size: 15.5px; line-height: 1.4; }
+.acc-txt small { font-size: 12px; }
+.acc-pill { font-size: 13px; padding: 0 8px; }
+.acc .svc-foot { margin-top: 4px; padding-top: 10px; }
+@media (max-width: 760px) { .pg-ban .appban-text { padding: 20px 18px 4px; } .pg-ban .phone { width: 170px; } }
 </style>
 
 </head>
