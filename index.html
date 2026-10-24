@@ -420,6 +420,15 @@ body::before { background: var(--surface); }
 .svc { position: relative; }
 .svc-img { display: block; width: calc(100% + 36px); max-width: none; height: auto; aspect-ratio: 16 / 9; object-fit: cover; margin: -18px -18px 6px; border-radius: 13px 13px 0 0; }
 .svc .hot { z-index: 1; }
+.svc-foot > span:empty { display: none; }
+button.more { font: inherit; font-size: 14px; font-weight: 600; min-height: 36px; padding: 6px 14px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; margin-right: auto; }
+button.more:hover { border-color: var(--blue); color: var(--blue); }
+.sd-box { width: min(480px, 100%); }
+.sd-img { display: block; width: 100%; height: auto; border-radius: 20px 20px 0 0; }
+.sd-body { padding: 16px 20px 20px; display: grid; gap: 8px; }
+.sd-body h3 { font-size: 19px; line-height: 1.45; margin: 0; }
+.sd-body p { margin: 0; color: var(--muted); }
+.sd-body .order { justify-self: start; margin-top: 6px; }
 button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-weight: 600; min-height: 36px; }
 .hot { position: absolute; top: -10px; right: 14px; font-size: 12px; font-weight: 700; color: #fff; background: #c8355e; padding: 2px 10px; border-radius: 999px; }
 .modal { position: fixed; inset: 0; z-index: 20; background: rgba(8, 14, 34, .6); display: grid; place-items: center; padding: 16px; }
@@ -450,7 +459,7 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
     </a>
     <nav class="menu" aria-label="Main">
         <a href="#home" class="mlink" data-kh="ទំព័រដើម" data-en="Home">ទំព័រដើម</a>
-        <div class="dd"><a href="#services" data-filter="all" class="mlink" data-kh="សេវាកម្ម" data-en="Our services">សេវាកម្ម</a><div class="dd-menu"><a href="#services" data-filter="boost" data-kh="ផ្សព្វផ្សាយ និង Boost" data-en="Boost &amp; ads">ផ្សព្វផ្សាយ និង Boost</a><a href="#services" data-filter="design" data-kh="រចនា និងវេបសាយ" data-en="Design &amp; website">រចនា និងវេបសាយ</a><a href="#services" data-filter="care" data-kh="ថែទាំផេក និងគណនី" data-en="Page &amp; account care">ថែទាំផេក និងគណនី</a><a href="#services" data-filter="live" data-kh="លក់ Live និងមេរៀន" data-en="Live selling &amp; training">លក់ Live និងមេរៀន</a></div></div>
+        <div class="dd"><a href="#services" data-filter="boost" class="mlink" data-kh="សេវាកម្ម" data-en="Our services">សេវាកម្ម</a><div class="dd-menu"><a href="#services" data-filter="boost" data-kh="ផ្សព្វផ្សាយ និង Boost" data-en="Boost &amp; ads">ផ្សព្វផ្សាយ និង Boost</a><a href="#services" data-filter="design" data-kh="រចនា និងវេបសាយ" data-en="Design &amp; website">រចនា និងវេបសាយ</a><a href="#services" data-filter="care" data-kh="ថែទាំផេក និងគណនី" data-en="Page &amp; account care">ថែទាំផេក និងគណនី</a><a href="#services" data-filter="live" data-kh="លក់ Live និងមេរៀន" data-en="Live selling &amp; training">លក់ Live និងមេរៀន</a></div></div>
         <a href="#adsbox-system" class="mlink" data-kh="ប្រព័ន្ធ ADS BOX" data-en="ADS BOX system">ប្រព័ន្ធ ADS BOX</a>
         <a href="#promos" class="mlink" data-kh="ការផ្តល់ជូនពិសេស" data-en="Sale page">ការផ្តល់ជូនពិសេស</a>
         <a href="#knowledge" class="mlink" data-kh="ចំណេះដឹង" data-en="Knowledge">ចំណេះដឹង</a>
@@ -769,6 +778,14 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
   </div>
 </div>
 
+<div class="modal" id="svc-pop" hidden>
+  <div class="pp-box sd-box" role="dialog" aria-modal="true" aria-labelledby="sd-title">
+    <button type="button" class="modal-x" id="sd-close" aria-label="Close">×</button>
+    <img class="sd-img" id="sd-img" src="" alt="">
+    <div class="sd-body"><h3 id="sd-title"></h3><p id="sd-desc"></p><button type="button" class="order" id="sd-order"></button></div>
+  </div>
+</div>
+
 <div class="modal" id="order-modal" hidden>
   <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="om-title">
     <button type="button" class="modal-x" id="om-close" aria-label="Close">×</button>
@@ -812,10 +829,11 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
   var TG = "https://t.me/vannakdm";
   var lang = "kh";
   try { lang = localStorage.getItem("adsbox-lang") || "kh"; } catch (e) {}
-  var filter = window.innerWidth < 700 ? "boost" : "all";
+  var filter = "boost";
   var T = {
     all: { kh: "ទាំងអស់", en: "All" },
     ask: { kh: "សួរតម្លៃ", en: "Ask for price" },
+    more: { kh: "លម្អិត", en: "Details" },
     order: { kh: "ចាប់អារម្មណ៍សេវាកម្ម", en: "I'm interested" },
     popular: { kh: "ពេញនិយម", en: "Popular" },
     msg: { kh: "សួស្តី ADS BOX! ខ្ញុំចាប់អារម្មណ៍សេវាកម្ម «{s}»។ Page របស់ខ្ញុំ៖ ", en: "Hi ADS BOX! I'm interested in \"{s}\". My Page: " },
@@ -836,7 +854,7 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
 
   function renderTabs() {
-    var html = '<button type="button" data-f="all" aria-pressed="' + (filter === "all") + '">' + T.all[lang] + "</button>";
+    var html = "";
     SERVICE_GROUPS.forEach(function (g) {
       html += '<button type="button" data-f="' + g.id + '" aria-pressed="' + (filter === g.id) + '">' + esc(g.name[lang]) + "</button>";
     });
@@ -845,14 +863,14 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
   function renderServices() {
     var html = "";
     SERVICE_GROUPS.forEach(function (g) {
-      if (filter !== "all" && filter !== g.id) return;
+      if (filter !== g.id) return;
       html += '<div class="svc-group"><h3>' + esc(g.name[lang]) + '</h3><div class="svc-list">';
       g.services.forEach(function (s) {
         var price = s.price ? '<span class="price">' + esc(s.price) + "</span>" : "<span></span>";
         var badge = s.popular ? '<span class="hot">' + T.popular[lang] + "</span>" : "";
         var img = s.id ? '<img class="svc-img" src="assets/services/' + s.id + '.jpg" alt="" width="960" height="540" loading="lazy">' : "";
         html += '<div class="svc">' + badge + img + "<h4>" + esc(s.name[lang]) + "</h4><p>" + esc(s.desc[lang]) + '</p><div class="svc-foot">' + price +
-          '<button type="button" class="order" data-svc-kh="' + esc(s.name.kh) + '" data-svc-en="' + esc(s.name.en) + '">' + T.order[lang] + "</button></div></div>";
+          '<button type="button" class="more" data-more="' + esc(s.id) + '">' + T.more[lang] + '</button><button type="button" class="order" data-svc-kh="' + esc(s.name.kh) + '" data-svc-en="' + esc(s.name.en) + '">' + T.order[lang] + "</button></div></div>";
       });
       html += "</div></div>";
     });
@@ -934,6 +952,24 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
   document.getElementById("om-close").addEventListener("click", closeOrder);
   modal.addEventListener("click", function (e) { if (e.target === modal) closeOrder(); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") { if (!modal.hidden) closeOrder(); else if (!pop.hidden) closePop(); } });
+  var sdPop = document.getElementById("svc-pop"), sdLast = null;
+  function findSvc(id) { var r = null; SERVICE_GROUPS.forEach(function (g) { g.services.forEach(function (s) { if (s.id === id) r = s; }); }); return r; }
+  function openSvc(btn) {
+    var s = findSvc(btn.getAttribute("data-more")); if (!s) return;
+    var img = document.getElementById("sd-img");
+    img.src = s.poster || ("assets/services/" + s.id + ".jpg"); img.alt = s.name[lang];
+    img.width = s.poster ? 1080 : 960; img.height = s.poster ? 1080 : 540;
+    document.getElementById("sd-title").textContent = s.name[lang];
+    document.getElementById("sd-desc").textContent = s.desc[lang];
+    var ob = document.getElementById("sd-order"); ob.textContent = T.order[lang]; ob.setAttribute("data-svc-kh", s.name.kh); ob.setAttribute("data-svc-en", s.name.en);
+    sdLast = btn; sdPop.hidden = false; document.getElementById("sd-close").focus();
+  }
+  function closeSvc() { sdPop.hidden = true; if (sdLast) sdLast.focus(); }
+  document.getElementById("svc-groups").addEventListener("click", function (e) { var b = e.target.closest("[data-more]"); if (b) openSvc(b); });
+  document.getElementById("sd-close").addEventListener("click", closeSvc);
+  document.getElementById("sd-order").addEventListener("click", function () { sdPop.hidden = true; });
+  sdPop.addEventListener("click", function (e) { if (e.target === sdPop) closeSvc(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !sdPop.hidden && modal.hidden) closeSvc(); });
   var PROMOS = window.PROMOS || [];
   function renderPromos() {
     document.getElementById("promo-grid").innerHTML = PROMOS.map(function (p, i) {

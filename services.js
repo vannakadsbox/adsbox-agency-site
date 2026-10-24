@@ -3,6 +3,7 @@
   Set popular: true to show a "Popular" badge.
   To show a price, fill in "price" (for example "$10" or "ចាប់ពី $10"). Leave it empty to show "Ask for price".
   Each service has an "id" (its picture is assets/services/<id>.jpg) and 3 "emoji" for that picture.
+  Add "poster" (a square image in assets/promo/) to show that poster when someone taps "លម្អិត".
   After changing names or emoji, run:  node tools/service-thumbs.js --all
 */
 window.SERVICE_GROUPS = [
@@ -12,6 +13,7 @@ window.SERVICE_GROUPS = [
     services: [
       {
         id: "boost-post",
+        poster: "assets/promo/promo-boost-page.jpg",
         emoji: ["📣", "💬", "📈"],
         name: { kh: "សេវាកម្មគ្រប់គ្រងផេក (Boost Post)", en: "Facebook post boosting" },
         popular: true,
@@ -27,6 +29,7 @@ window.SERVICE_GROUPS = [
       },
       {
         id: "boost-live",
+        poster: "assets/promo/promo-live-video.jpg",
         emoji: ["🎥", "🛒", "⚡"],
         name: { kh: "សេវាកម្មគ្រប់គ្រងផេក (Boost Live)", en: "Facebook Live boosting" },
         popular: true,
