@@ -2,7 +2,7 @@
   "groups": [
     {
       "id": "boost",
-      "name": "ផ្សព្វផ្សាយ និង Boost",
+      "name": "Boost Post & Live",
       "services": [
         {
           "id": "boost-post",
@@ -10,17 +10,14 @@
           "desc": "យើងរៀបចំ Target ថវិកា និងតាមដានលទ្ធផល ដើម្បីឲ្យប៉ុស្ត៍របស់អ្នកទទួលបានសារពីអតិថិជនពិតៗ។",
           "emoji": "📣 💬 📈",
           "poster": "/assets/promo/promo-boost-page.jpg",
-          "popular": true,
-          "price": ""
+          "popular": true
         },
         {
           "id": "boost-tiktok",
           "name": "សេវាកម្មគ្រប់គ្រងតិចតុក (Boost TikTok)",
           "desc": "ផ្សព្វផ្សាយវីដេអូ TikTok ឲ្យដល់អ្នកមើលដែលត្រូវគោលដៅ និងបង្កើនអ្នកតាមដាន។",
           "emoji": "🎵 📱 🔥",
-          "poster": "",
-          "popular": false,
-          "price": ""
+          "popular": false
         },
         {
           "id": "boost-live",
@@ -28,17 +25,14 @@
           "desc": "Boost ពេលកំពុង Live ដើម្បីនាំអ្នកមើលចូលលឿន និងបង្កើនការកម្ម៉ង់។",
           "emoji": "🎥 🛒 ⚡",
           "poster": "/assets/promo/promo-live-video.jpg",
-          "popular": true,
-          "price": ""
+          "popular": true
         },
         {
           "id": "live-page-setup",
           "name": "សេវាកម្មតម្លើងផេកប៊ូសឡាយ",
           "desc": "រៀបចំផេក និងគណនីផ្សាយពាណិជ្ជកម្មរបស់អ្នក ឲ្យរួចរាល់សម្រាប់ Boost Live។",
           "emoji": "⚙️ 📺 ✅",
-          "poster": "",
-          "popular": false,
-          "price": ""
+          "popular": false
         }
       ]
     },
@@ -51,18 +45,14 @@
           "name": "សេវាកម្ម Design រូបភាព និងកាត់តវីដេអូ",
           "desc": "រចនារូបភាពប៉ុស្ត៍ ប៉ូស្ទ័រ និងកាត់តវីដេអូខ្លីសម្រាប់ផ្សព្វផ្សាយ។",
           "emoji": "🎨 🎬 ✨",
-          "poster": "",
-          "popular": false,
-          "price": ""
+          "popular": false
         },
         {
           "id": "website",
           "name": "សេវាកម្ម Website Development",
           "desc": "បង្កើតវេបសាយសម្រាប់អាជីវកម្មរបស់អ្នក ដែលមើលស្រួលលើទូរស័ព្ទ។",
           "emoji": "💻 🌐 📱",
-          "poster": "",
-          "popular": false,
-          "price": ""
+          "popular": false
         }
       ]
     },
@@ -75,51 +65,41 @@
           "name": "សេវាកម្មស្នើសុំ Blue Verify",
           "desc": "ជួយរៀបចំឯកសារ និងដាក់ពាក្យស្នើសុំសញ្ញាផ្ទៀងផ្ទាត់ពណ៌ខៀវ (Meta Verified) ឲ្យផេករបស់អ្នក។",
           "emoji": "🏅 🛡️ 📄",
-          "poster": "",
-          "popular": false,
-          "price": ""
+          "popular": false
         },
         {
           "id": "troubleshoot",
           "name": "សេវាកម្មដោះស្រាយបញ្ហាផេក និង Accounts",
           "desc": "ពិនិត្យ និងជួយដោះស្រាយផេក ឬគណនីដែលត្រូវបានរឹតត្បិត ឬមានបញ្ហា។",
           "emoji": "🛠️ ⚠️ ✅",
-          "poster": "",
-          "popular": false,
-          "price": ""
+          "popular": false
         },
         {
           "id": "group-share",
           "name": "សេវាកម្មជួល Group Share",
           "desc": "ចែករំលែកប៉ុស្ត៍របស់អ្នកទៅក្នុង Group ដែលពាក់ព័ន្ធ ដើម្បីឲ្យមនុស្សច្រើនឃើញ។",
           "emoji": "👥 🔁 📢",
-          "poster": "",
-          "popular": false,
-          "price": ""
+          "popular": false
         }
       ]
     },
     {
       "id": "live",
-      "name": "លក់ Live និងមេរៀន",
+      "name": "មេរៀនរៀបចំកន្លែង Live",
       "services": [
         {
           "id": "live-studio",
           "name": "សេវាកម្មរៀបចំកន្លែងឡាយ",
           "desc": "រៀបចំភ្លើង កាមេរ៉ា សំឡេង និងផ្ទៃខាងក្រោយ សម្រាប់ Live ឲ្យមើលទៅអាជីព។",
           "emoji": "💡 🎙️ 📷",
-          "poster": "",
-          "popular": false,
-          "price": ""
+          "popular": false
         },
         {
           "id": "courses",
           "name": "លក់មេរៀនបច្ចេកទេស",
           "desc": "មេរៀនរៀន Boost រចនា និងលក់តាមអនឡាញ ដែលអ្នកអាចអនុវត្តបានភ្លាម។",
           "emoji": "🎓 📚 💡",
-          "poster": "",
-          "popular": false,
-          "price": ""
+          "popular": false
         }
       ]
     }
