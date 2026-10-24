@@ -577,6 +577,31 @@ a.more.pg-view { display: inline-flex; align-items: center; text-decoration: non
 /* Dark mode: keep white text readable on hovered blue buttons (WCAG AA) */
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .order:hover, :root:not([data-theme="light"]) .btn-navy:hover { background: #2563d9; } }
 :root[data-theme="dark"] .order:hover, :root[data-theme="dark"] .btn-navy:hover { background: #2563d9; }
+
+/* Pages tab in the ADS BOX System banner style */
+.pg-ban { margin-bottom: 20px; }
+.pg-ban .appban-text h3 { max-width: 15em; }
+.pg-calc.appban-get { display: flex; align-items: center; gap: 16px; max-width: none; margin-bottom: 0; border: 0; }
+.pg-calc-ic { width: 72px; height: 72px; border-radius: 16px; flex: none; display: grid; place-items: center; font-family: var(--font-display); font-weight: 800; font-size: 34px; color: #fff; background: linear-gradient(135deg, #3f7dff, #1c4b9b); }
+.pg-calc-body { display: grid; gap: 6px; justify-items: start; min-width: 0; }
+.pg-calc-body label { display: grid; gap: 0; font-weight: 400; }
+.pg-calc-body label strong { font-size: 16px; }
+.pg-calc .appban-free { margin: 0; }
+.pg-calc input { max-width: 160px; background: #fff; color: #0f1a2e; border-color: #c9d6f2; }
+.pg-calc output { color: #1c4b9b; }
+.phone .pg-av { position: relative; overflow: hidden; background: linear-gradient(135deg, #3f7dff, #7c6cff); }
+.phone .pg-av img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.phone .pg-ph-price { color: var(--a-good); }
+.pg-list .pg { border-radius: 18px; background: linear-gradient(160deg, #f4f8ff 0%, #ffffff 60%); border-color: #d7e3fb; }
+@media (max-width: 760px) { .pg-calc.appban-get { flex-wrap: wrap; } .pg-calc-ic { width: 56px; height: 56px; font-size: 26px; } }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .pg-calc input { background: var(--bg); color: var(--fg); border-color: var(--line); }
+  :root:not([data-theme="light"]) .pg-calc output { color: #8fb3ff; }
+  :root:not([data-theme="light"]) .pg-list .pg { background: linear-gradient(160deg, #18295a 0%, #121c33 60%); border-color: #26386a; }
+}
+:root[data-theme="dark"] .pg-calc input { background: var(--bg); color: var(--fg); border-color: var(--line); }
+:root[data-theme="dark"] .pg-calc output { color: #8fb3ff; }
+:root[data-theme="dark"] .pg-list .pg { background: linear-gradient(160deg, #18295a 0%, #121c33 60%); border-color: #26386a; }
 </style>
 
 </head>
@@ -929,7 +954,11 @@ a.more.pg-view { display: inline-flex; align-items: center; text-decoration: non
     viewPage: { kh: "មើល Page", en: "View Page" },
     sold: { kh: "លក់រួច", en: "Sold" },
     seeMorePages: { kh: "មើលផេកបន្ថែម ({n})", en: "See more Pages ({n})" },
-    calcLabel: { kh: "គណនាតម្លៃផេក (${r} ក្នុង 1K Follower)៖ បញ្ចូលចំនួន Follower", en: "Page price calculator (${r} per 1K followers): enter followers" }
+    calcLabel: { kh: "គណនាតម្លៃផេក (${r} ក្នុង 1K Follower)៖ បញ្ចូលចំនួន Follower", en: "Page price calculator (${r} per 1K followers): enter followers" },
+    pgHead: { kh: "ផេកមាន Follower ស្រាប់។ តម្លៃគិតតាម Follower។", en: "Pages with followers. Priced by followers." },
+    pgLead: { kh: "មាន {n} ផេកកំពុងលក់។ តម្លៃ ${r} ក្នុង 1,000 Follower។ ចុច «មើល Page» ដើម្បីពិនិត្យ ហើយ «ចាប់អារម្មណ៍សេវាកម្ម» ដើម្បីកុម្ម៉ង់។", en: "{n} Pages for sale at ${r} per 1,000 followers. Tap “View Page” to check one, then “I'm interested” to order." },
+    calcSmall: { kh: "បញ្ចូលចំនួន Follower", en: "Enter the followers" },
+    calcTitle: { kh: "គណនាតម្លៃផេក", en: "Page price calculator" }
   };
   var KH_MONTHS = ["មករា","កុម្ភៈ","មីនា","មេសា","ឧសភា","មិថុនា","កក្កដា","សីហា","កញ្ញា","តុលា","វិច្ឆិកា","ធ្នូ"];
   var KH_DIGITS = "០១២៣៤៥៦៧៨៩";
@@ -963,10 +992,34 @@ a.more.pg-view { display: inline-flex; align-items: center; text-decoration: non
   }
   function renderPages() {
     var list = PAGES.pages || [], extra = list.length - SVC_VISIBLE, open = !!svcOpen.pages, html = "";
-    html += '<div class="svc-group"><h3>' + esc(PAGES.title) + '</h3>' +
-      '<div class="pg-calc"><label for="pg-calc-in">' + T.calcLabel[lang].replace("{r}", fmtNum(PAGES.price_per_1k)) + '</label>' +
-      '<div class="pg-calc-row"><input id="pg-calc-in" type="number" inputmode="numeric" min="0" step="100" placeholder="10000"><span class="pg-calc-eq" aria-hidden="true">=</span>' +
-      '<output id="pg-calc-out" for="pg-calc-in" aria-live="polite">$0</output></div></div><div class="svc-list">';
+    var avail = list.filter(function (p) { return !p.sold; });
+    var show = (avail.length ? avail : list).slice().sort(function (a, b) { return b.followers - a.followers; }).slice(0, 3);
+    function av(p) {
+      var ini = esc((p.name || "?").trim().charAt(0).toUpperCase());
+      return '<span class="av pg-av">' + (p.picture ? '<img src="' + encodeURI(p.picture) + '" alt="" width="34" height="34" referrerpolicy="no-referrer" onerror="this.remove()">' : "") + ini + "</span>";
+    }
+    var rows = show.map(function (p) {
+      return '<div class="app-card row">' + av(p) + '<div class="grow"><b>' + esc(p.name) + '</b><span class="who">' + fmtNum(p.followers) + " Followers</span></div>" +
+        '<div class="num"><b class="pg-ph-price">$' + fmtNum(pagePrice(p.followers)) + "</b></div></div>";
+    }).join("");
+    var total = list.reduce(function (n, p) { return n + (p.sold ? 0 : 1); }, 0);
+    html += '<div class="svc-group">' +
+      '<div class="appban pg-ban"><div class="appban-text">' +
+        '<div class="eyebrow">' + esc(PAGES.title) + " · Facebook Page</div>" +
+        "<h3>" + T.pgHead[lang] + "</h3>" +
+        "<p>" + T.pgLead[lang].replace("{n}", total).replace("{r}", fmtNum(PAGES.price_per_1k)) + "</p>" +
+        '<div class="appban-get pg-calc">' +
+          '<span class="pg-calc-ic" aria-hidden="true">$</span>' +
+          '<div class="pg-calc-body"><label for="pg-calc-in"><small>' + T.calcSmall[lang] + "</small><strong>" + T.calcTitle[lang] + "</strong></label>" +
+          '<span class="appban-free">$' + fmtNum(PAGES.price_per_1k) + " / 1K Follower</span>" +
+          '<div class="pg-calc-row"><input id="pg-calc-in" type="number" inputmode="numeric" min="0" step="100" placeholder="10000" aria-describedby="pg-calc-out"><span class="pg-calc-eq" aria-hidden="true">=</span>' +
+          '<output id="pg-calc-out" for="pg-calc-in" aria-live="polite">$0</output></div></div></div>' +
+      "</div>" +
+      '<div class="appban-media" aria-hidden="true"><span class="shape s1"></span><span class="shape s2"></span><span class="shape s3"></span>' +
+        '<div class="phone"><div class="app"><div class="app-bar"><span><span class="app-dot"></span><b>ADS BOX</b></span><span class="chip-s">Pages</span></div>' +
+        '<div class="stack">' + rows + "</div></div></div></div>" +
+      "</div>" +
+      '<div class="svc-list pg-list">';
     list.forEach(function (p, i) {
       if (i === SVC_VISIBLE) html += '</div><div class="svc-extra" id="svc-extra-pages"' + (open ? "" : " hidden") + '><div class="svc-list">';
       html += pageCard(p);
