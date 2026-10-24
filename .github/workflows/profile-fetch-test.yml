@@ -30,8 +30,10 @@ jobs:
                   u = r.get(k)
                   if not u: continue
                   try:
-                      req = urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0"})
-                      with urllib.request.urlopen(req, timeout=20) as x: r[k + "_download"] = f"{x.status} {len(x.read())} bytes"
+                      for name, ua in (("fb", "facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)"), ("browser", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/129.0 Safari/537.36")):
+                          req = urllib.request.Request(u, headers={"User-Agent": ua})
+                          with urllib.request.urlopen(req, timeout=20) as x:
+                              body = x.read(); r[k + "_download_" + name] = f"{x.status} {x.headers.get('Content-Type')} {len(body)} bytes"
                   except Exception as e: r[k + "_download"] = f"failed {type(e).__name__}"
                   r[k] = u[:90]
           json.dump(rs, open("tools/fetch-test-result.json", "w"), ensure_ascii=False, indent=1)
