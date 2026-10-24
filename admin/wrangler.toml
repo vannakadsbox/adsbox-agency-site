@@ -1,0 +1,21 @@
+# ADS BOX admin panel on Cloudflare Workers.
+# Deployed by .github/workflows/admin-deploy.yml. Secrets (never in this file):
+#   OWNER_EMAIL, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GITHUB_TOKEN, SESSION_SECRET
+name = "adsbox-admin"
+main = "src/worker.js"
+compatibility_date = "2024-09-23"
+workers_dev = true
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+
+[vars]
+REPO = "vannakadsbox/adsbox-agency-site"
+BRANCH = "main"
+SITE_URL = "https://adsbox.agency"
+
+# Team members and roles. The deploy workflow creates the namespace on the first run and fills in the id.
+[[kv_namespaces]]
+binding = "TEAM"
+id = "__TEAM_KV_ID__"
