@@ -61,7 +61,8 @@ window.SERVICE_GROUPS = [
     },
     "price": "ចាប់ពី $120 / ខែ",
     "popular": true,
-    "poster": "assets/promo/promo-live-video.jpg"
+    "poster": "assets/promo/promo-live-video.jpg",
+    "thumb": "assets/uploads/Relive_Thumbnail.png"
    },
    {
     "id": "live-page-setup",
