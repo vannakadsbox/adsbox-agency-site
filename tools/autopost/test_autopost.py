@@ -23,6 +23,7 @@ class Base(unittest.TestCase):
         C.ROOT = self.tmp; C.AUTO = os.path.join(self.tmp, "content", "autopost")
         C.ARTICLES = os.path.join(self.tmp, "content", "articles"); C.DRY_RUNS = os.path.join(C.AUTO, "dry-runs")
         C.save_json("history.json", {"runs": []})
+        self.set(mode="dry_run")  # tests start from dry-run whatever the real settings say; live is set per test
 
     def tearDown(self):
         C.ROOT, C.AUTO, C.ARTICLES, C.DRY_RUNS = self.saved
