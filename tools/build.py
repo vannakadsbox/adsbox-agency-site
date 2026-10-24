@@ -103,11 +103,21 @@ if os.path.isdir(kdir): shutil.rmtree(kdir)
 
 for i, a in enumerate(articles):
     url = f"{SITE}/knowledge/{a['id']}/"
-    related = [r for r in articles if r["id"] != a["id"]][:3]
+    others = [r for r in articles if r["id"] != a["id"]]
+    related = sorted(others, key=lambda r: (0 if a.get("category") and r.get("category") == a["category"] else 1 if r["tag"]["en"] == a["tag"]["en"] else 2))[:3]
     rel_html = "".join(f'<a class="card" href="/knowledge/{r["id"]}/"><span class="pill">{bi(r["tag"]["kh"], r["tag"]["en"])}</span>{bi(r["title"]["kh"], r["title"]["en"], "h3")}</a>' for r in related)
-    ld = json.dumps({"@context": "https://schema.org", "@type": "Article", "headline": a["title"]["kh"],
-                     "datePublished": a["date"], "inLanguage": "km", "image": share_image(a), "mainEntityOfPage": url,
-                     "author": {"@type": "Organization", "name": "ADS BOX"}, "publisher": {"@type": "Organization", "name": "ADS BOX", "logo": {"@type": "ImageObject", "url": f"{SITE}/assets/logo.png"}}}, ensure_ascii=False)
+    seo_title = a.get("seo_title") or a["title"]["kh"]; seo_desc = a.get("seo_description") or a["summary"]["kh"]
+    ld_obj = {"@context": "https://schema.org", "@type": "Article", "headline": a["title"]["kh"][:110], "description": seo_desc,
+                     "datePublished": a["date"], "dateModified": a.get("modified") or a["date"], "inLanguage": "km", "image": share_image(a), "mainEntityOfPage": url,
+                     "articleSection": a["tag"]["kh"],
+                     "author": {"@type": "Organization", "name": "ADS BOX"}, "publisher": {"@type": "Organization", "name": "ADS BOX", "logo": {"@type": "ImageObject", "url": f"{SITE}/assets/logo.png"}}}
+    if a.get("keywords"): ld_obj["keywords"] = ", ".join(a["keywords"])
+    ld = json.dumps(ld_obj, ensure_ascii=False).replace("</", "<\\/")
+    extra = f'<script type="application/ld+json">{ld}</script>\n<meta property="article:published_time" content="{a["date"]}">\n<meta property="article:section" content="{e(a["tag"]["kh"])}">'
+    extra += "".join(f'\n<meta property="article:tag" content="{e(k)}">' for k in a.get("keywords", [])[:6])
+    if a.get("keywords"): extra += f'\n<meta name="keywords" content="{e(", ".join(a["keywords"]))}">'
+    if a.get("image_alt"): extra += f'\n<meta property="og:image:alt" content="{e(a["image_alt"])}">'
+
     if a.get("cover"):
         cover = f'<figure class="cover cover-img"><img src="/{e(a["cover"])}" alt="" width="1200" height="675"></figure>{bi(a["title"]["kh"], a["title"]["en"], "h1")}'
     else:
@@ -125,19 +135,27 @@ for i, a in enumerate(articles):
   <div class="meta">{'<span class="pill">' + bi(a["tag"]["kh"], a["tag"]["en"]) + '</span>' if a.get("cover") else ""}{bi(date_kh(a["date"]), date_en(a["date"]))}</div>
   {bi(a["summary"]["kh"], a["summary"]["en"], "p", "lead")}
   <div class="body">{a["html"]}</div>
+  <aside class="cta-box">
+    <div>{bi("ចង់បាន Order ច្រើនជាងមុន?", "Want more orders?", "strong")}{bi("ក្រុម ADS BOX ជួយគ្រប់គ្រង Boost Post និង Boost Live ឲ្យបងប្អូន ហើយផ្ញើរបាយការណ៍ចំណាយ និង Order រាល់ថ្ងៃ។", "The ADS BOX team runs your Boost Post and Boost Live and reports spend and orders every day.", "p")}</div>
+    <div class="cta-btns"><a class="btn-navy" href="/#services">{bi("មើលសេវាកម្ម", "See services")}</a><a class="btn-tg" href="{TG}" target="_blank" rel="noopener">{TGSVG}{bi("ឆាតតាម Telegram", "Chat on Telegram")}</a></div>
+  </aside>
   <div class="share">{bi("ចែករំលែក៖", "Share:")} <a href="https://www.facebook.com/sharer/sharer.php?u={url}" target="_blank" rel="noopener">Facebook</a> <a href="https://t.me/share/url?url={url}" target="_blank" rel="noopener">Telegram</a></div>
 </article>
 {promo_sec}
 <section class="wrap related"><h2>{bi("អត្ថបទផ្សេងទៀត", "More articles")}</h2><div class="cards">{rel_html}</div></section>'''
-    write(f"knowledge/{a['id']}/index.html", page(f"{a['title']['kh']} · ADS BOX", a['summary']['kh'], url, "article", main,
-                                                 f'<script type="application/ld+json">{ld}</script>', share_image(a)))
+    write(f"knowledge/{a['id']}/index.html", page(f"{seo_title} · ADS BOX", seo_desc, url, "article", main, extra, share_image(a)))
 
 tags = []
 for a in articles:
     if a["tag"]["en"] not in [t["en"] for t in tags]: tags.append(a["tag"])
 chips = f'<button type="button" class="chip" data-tag="all" aria-pressed="true">{bi("ទាំងអស់", "All")}</button>' + "".join(
     f'<button type="button" class="chip" data-tag="{e(t["en"])}" aria-pressed="false">{bi(t["kh"], t["en"])}</button>' for t in tags)
-cards = "".join(f'''<a class="card" href="/knowledge/{a["id"]}/" data-tag="{e(a["tag"]["en"])}">
+def thumb(a):
+    if a.get("cover"): src = "/" + a["cover"]
+    elif os.path.exists(os.path.join(ROOT, "assets", "covers", a["id"] + ".png")): src = f"/assets/covers/{a['id']}.png"
+    else: return ""
+    return f'<img class="card-img" src="{e(src)}" alt="{e(a.get("image_alt") or "")}" width="1200" height="630" loading="lazy" decoding="async">'
+cards = "".join(f'''<a class="card" href="/knowledge/{a["id"]}/" data-tag="{e(a["tag"]["en"])}">{thumb(a)}
   <div class="meta"><span class="pill">{bi(a["tag"]["kh"], a["tag"]["en"])}</span>{bi(date_kh(a["date"]), date_en(a["date"]))}</div>
   {bi(a["title"]["kh"], a["title"]["en"], "h3")}{bi(a["summary"]["kh"], a["summary"]["en"], "p")}</a>''' for a in articles)
 main = f'''<section class="wrap list">

@@ -46,7 +46,7 @@ content:
         required: true
         default: Boost Post
         options:
-          values: [Boost Post, Boost Live, TikTok, លក់ Live, ថែទាំផេក, រចនា, Messenger, ចំណេះដឹង]
+          values: [Boost Post, Boost Live, TikTok, លក់ Live, ថែទាំផេក, រចនា, Messenger, ចំណេះដឹង, លក់អនឡាញ, សេវាអតិថិជន, ថវិកា និងរបាយការណ៍, ADS BOX]
       - name: date
         label: កាលបរិច្ឆេទ
         type: date
@@ -61,9 +61,43 @@ content:
         description: ទុកទទេ ដើម្បីប្រើរូបគម្របស្វ័យប្រវត្តិ។ បើដាក់ សូមប្រើរូបទំហំ 1200x630។
         type: image
       - name: draft
-        label: ព្រាង (មិនទាន់បង្ហាញលើវេបសាយ)
+        label: ព្រាង / ដកចេញពីវេបសាយ
+        description: បើកវា ដើម្បីលាក់អត្ថបទពីវេបសាយ (មិនលុបចោល)។ បិទវិញ ដើម្បីបង្ហាញម្តងទៀត។
         type: boolean
         default: false
+      - name: seo_title
+        label: SEO ចំណងជើង (ស្រេចចិត្ត)
+        description: ចំណងជើងសម្រាប់ Google (ក្រោម 60 តួ)។ ទុកទទេ ដើម្បីប្រើចំណងជើងធម្មតា។
+        type: string
+      - name: seo_description
+        label: SEO ការពិពណ៌នា (ស្រេចចិត្ត)
+        description: 70-160 តួ។ ទុកទទេ ដើម្បីប្រើសេចក្តីសង្ខេប។
+        type: text
+      - name: primary_keyword
+        label: ពាក្យគន្លឹះចម្បង
+        type: string
+      - name: keywords
+        label: ពាក្យគន្លឹះ
+        type: string
+        list: true
+      - name: image_alt
+        label: ការពិពណ៌នារូបភាព (alt)
+        type: string
+      - name: category
+        label: ប្រភេទមាតិកា (ស្វ័យប្រវត្តិ)
+        type: string
+      - name: image_prompt
+        label: Prompt សម្រាប់រូបភាព (ស្វ័យប្រវត្តិ)
+        type: text
+      - name: source
+        label: ប្រភព (ស្វ័យប្រវត្តិ)
+        type: string
+      - name: generated_at
+        label: ពេលបង្កើត (ស្វ័យប្រវត្តិ)
+        type: string
+      - name: updated
+        label: កាលបរិច្ឆេទកែប្រែចុងក្រោយ (ស្រេចចិត្ត)
+        type: date
       - name: body
         label: អត្ថបទ
         type: rich-text
@@ -162,3 +196,100 @@ content:
         label: បង្ហាញក្នុង Pop-up
         type: boolean
         default: true
+
+  - name: autopost-settings
+    label: បោះពុម្ពស្វ័យប្រវត្តិ · ការកំណត់
+    description: "បើក/បិទ ការបោះពុម្ពអត្ថបទស្វ័យប្រវត្តិ។ ពេល Save ការកំណត់ចូលជាធរមានភ្លាមៗ។ បើប្តូរម៉ោង សូមប្រាប់ Claude ឲ្យប្តូរ Scheduled task ដែរ។"
+    type: file
+    path: content/autopost/settings.json
+    format: json
+    fields:
+      - name: enabled
+        label: បើកការបោះពុម្ពស្វ័យប្រវត្តិ (បិទ = ផ្អាក)
+        type: boolean
+        default: true
+      - name: mode
+        label: របៀប
+        description: "live = បោះពុម្ពលើវេបសាយ។ dry_run = សាកល្បង (សរសេរ និងពិនិត្យ ប៉ុន្តែមិនបង្ហាញលើវេបសាយ)។"
+        type: select
+        options:
+          values: [live, dry_run]
+      - name: timezone
+        label: ម៉ោងតំបន់ (កុំប្តូរ)
+        type: string
+      - name: morning
+        label: អត្ថបទពេលព្រឹក
+        type: object
+        fields:
+          - name: enabled
+            label: បើក
+            type: boolean
+          - name: time
+            label: ម៉ោង (HH:MM ម៉ោងកម្ពុជា)
+            type: string
+            pattern:
+              regex: "^([01][0-9]|2[0-3]):[0-5][0-9]$"
+              message: ឧ. 07:00
+      - name: evening
+        label: អត្ថបទពេលល្ងាច
+        type: object
+        fields:
+          - name: enabled
+            label: បើក
+            type: boolean
+          - name: time
+            label: ម៉ោង (HH:MM ម៉ោងកម្ពុជា)
+            type: string
+            pattern:
+              regex: "^([01][0-9]|2[0-3]):[0-5][0-9]$"
+              message: ឧ. 17:00
+      - name: early_minutes
+        label: អាចចាប់ផ្តើមមុនម៉ោង (នាទី)
+        type: number
+      - name: late_minutes
+        label: បោះពុម្ពយឺតបំផុតក្រោយម៉ោង (នាទី)
+        description: ក្រោយពេលនេះ មិនបោះពុម្ពទេ (គ្មានការបោះពុម្ពបង្គ្រប់)។
+        type: number
+      - name: alert_after_minutes
+        label: ផ្ញើ Telegram ប្រាប់ បើគ្មានអត្ថបទក្រោយម៉ោង (នាទី)
+        type: number
+      - name: max_attempts
+        label: ចំនួនដងសាកល្បងឡើងវិញ
+        type: number
+      - name: min_khmer_chars
+        label: ប្រវែងអប្បបរមា (តួអក្សរខ្មែរ)
+        type: number
+      - name: max_khmer_chars
+        label: ប្រវែងអតិបរមា (តួអក្សរខ្មែរ)
+        type: number
+
+  - name: autopost-history
+    label: បោះពុម្ពស្វ័យប្រវត្តិ · ប្រវត្តិ
+    description: "កំណត់ត្រាម្តងៗ (published = បានបោះពុម្ព, failed = បរាជ័យ, dry_run = សាកល្បង)។ សម្រាប់មើលប៉ុណ្ណោះ សូមកុំកែ។ ចុងក្រោយនៅខាងក្រោម។"
+    type: file
+    path: content/autopost/history.json
+    format: json
+    fields:
+      - name: runs
+        label: ការបោះពុម្ព
+        type: object
+        list: true
+        fields:
+          - { name: date, label: ថ្ងៃ, type: string }
+          - { name: slot, label: ពេល, type: string }
+          - { name: status, label: ស្ថានភាព, type: string }
+          - { name: title, label: ចំណងជើង, type: string }
+          - { name: url, label: តំណភ្ជាប់, type: string }
+          - { name: published_at, label: ពេលបោះពុម្ព, type: string }
+          - { name: error, label: កំហុស, type: text }
+          - { name: attempts, label: ចំនួនដង, type: number }
+          - { name: category, label: ប្រភេទ, type: string }
+          - { name: angle, label: មុំ, type: string }
+          - { name: slug, label: slug, type: string }
+          - { name: summary, label: សង្ខេប, type: text }
+          - { name: primary_keyword, label: ពាក្យគន្លឹះ, type: string }
+          - { name: tag, label: ស្លាក, type: string }
+          - { name: khmer_chars, label: ប្រវែង, type: number }
+          - { name: file, label: ឯកសារសាកល្បង, type: string }
+          - { name: generated_at, label: ពេលបង្កើត, type: string }
+          - { name: failed_at, label: ពេលបរាជ័យ, type: string }

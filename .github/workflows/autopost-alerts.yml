@@ -1,0 +1,57 @@
+# Telegram alerts for the daily knowledge auto-publisher.
+# - When a run records a failed slot in content/autopost/history.json, send an alert.
+# - Every hour at :50 (UTC), check whether a scheduled slot is overdue with no article, and alert once.
+# Secrets needed: TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID. Without them the job fails and GitHub emails the owner.
+name: Auto-post alerts
+
+on:
+  push:
+    branches: [main]
+    paths: ["content/autopost/history.json"]
+  schedule:
+    - cron: "50 * * * *"
+  workflow_dispatch:
+    inputs:
+      test:
+        description: "Send a test Telegram message"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: autopost-alerts
+  cancel-in-progress: false
+
+jobs:
+  alert:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q pyyaml
+      - name: Alert on new failures
+        if: github.event_name == 'push'
+        run: |
+          git show HEAD~1:content/autopost/history.json > /tmp/old-history.json 2>/dev/null || echo '{"runs": []}' > /tmp/old-history.json
+          python3 tools/autopost/alert.py --new-failures /tmp/old-history.json
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      - name: Watchdog for missed articles
+        if: github.event_name == 'schedule'
+        run: python3 tools/autopost/alert.py --watchdog
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      - name: Test message
+        if: github.event_name == 'workflow_dispatch'
+        run: python3 tools/autopost/alert.py --test
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
