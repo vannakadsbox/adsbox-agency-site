@@ -85,10 +85,6 @@ window.CLIENTS = [
   "logo": "assets/opt/client-21-c598ffddeb.webp"
  },
  {
-  "name": "",
-  "logo": "assets/opt/client-22-f118356488.webp"
- },
- {
   "name": "S&Y Brand",
   "logo": "assets/opt/client-23-1e67cbe519.webp"
  },
