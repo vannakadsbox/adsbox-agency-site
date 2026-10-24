@@ -194,6 +194,10 @@ async function render() {
   } catch (e) {
     if (e.message === "signed out") return;
     put(main, header(item), h("div", { class: "alert" }, "⚠️ " + e.message), h("button", { class: "btn", type: "button", onclick: render }, "🔄 ព្យាយាមម្តងទៀត"));
+    // Owner sees the GitHub connection check right here, to help fix setup problems.
+    if (S.me.role === "owner" && e.status === 502) {
+      try { const d = await api("GET", "/api/diag"); main.append(h("details", { class: "card", open: true }, h("summary", { style: "font-weight:700;cursor:pointer" }, "🔧 ការពិនិត្យ GitHub (សម្រាប់ម្ចាស់)"), h("pre", { style: "white-space:pre-wrap;font-size:13px;margin:10px 0 0" }, JSON.stringify(d, null, 2)))); } catch {}
+    }
   }
 }
 
