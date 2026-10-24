@@ -119,7 +119,7 @@ class Validation(Base):
         self.assertEqual(self.errs(body=b), [])
 
     def test_confirmed_facts_allowed(self):
-        b = SAMPLE["body"] + "\n\nADS BOX មានអតិថិជនជាង 120+ ហើយ Boost Post មានតម្លៃ $79 / ខែ។"
+        b = SAMPLE["body"] + "\n\nADS BOX មានអតិថិជនជាង 120+ ហើយ Boost Post មានតម្លៃ $79 / ខែ។\n\nBoost TikTok របស់ ADS BOX ចាប់ពី $99 / ខែ។"
         self.assertEqual(self.errs(body=b), [])
 
 

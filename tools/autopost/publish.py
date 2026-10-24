@@ -20,7 +20,7 @@ import common as C
 
 ALLOWED_TAGS = ["Boost Post", "Boost Live", "TikTok", "លក់ Live", "ថែទាំផេក", "រចនា", "Messenger", "ចំណេះដឹង",
                 "លក់អនឡាញ", "សេវាអតិថិជន", "ថវិកា និងរបាយការណ៍", "ADS BOX"]
-ALLOWED_PRICES = {"79", "120", "29"}            # confirmed: Boost Post $79/mo, Boost Live from $120/mo, System from $29/mo
+ALLOWED_PRICES = {"79", "99", "120", "29"}      # confirmed: Boost Post $79/mo, Boost TikTok from $99/mo, Boost Live from $120/mo, System from $29/mo
 ALLOWED_LINK = re.compile(r"^(/(#[a-z-]+)?$|/#[a-z-]+$|/knowledge/[a-z0-9-]+/?$|https://(www\.)?adsbox\.agency(/[\w\-/#]*)?$|https://t\.me/vannakdm/?$|https://adsbox\.biz/?$)")
 CLIENT_NAMES = ["CEO Master", "Borey Chhay", "Skin Seven", "EEWS", "La Rose", "Mabel", "LS Clinic", "Kume", "Derma Beaut",
                 "Naomi", "Sopheak", "S-Klean", "S&Y", "Sreyneang", "Dara Cosmetics", "Bopha Shop"]

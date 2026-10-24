@@ -14,7 +14,7 @@ Keep this file up to date when services, prices or features change.
 ## Services and prices (confirmed)
 - Boost Post (សេវាកម្មគ្រប់គ្រងផេក Boost Post): targeting, budget and result tracking so posts get messages from real customers. Price: $79 / month.
 - Boost Live (សេវាកម្មគ្រប់គ្រងផេក Boost Live): boosting while live to bring viewers in fast and raise orders. Price: from $120 / month.
-- Boost TikTok: promoting TikTok videos to the right viewers and growing followers. Price: contact us.
+- Boost TikTok (សេវាកម្មគ្រប់គ្រងតិចតុក Boost TikTok): promoting TikTok videos to the right viewers and growing followers. Price: from $99 / month.
 - Live page setup (តម្លើងផេកប៊ូសឡាយ): preparing the Page and ad account for Boost Live. Price: contact us.
 - Design: post images, posters and short promo video editing. Price: contact us.
 - Website development: mobile-friendly business websites. Price: contact us.

@@ -4,7 +4,7 @@ Two Khmer knowledge articles a day on https://adsbox.agency/knowledge/, at 07:00
 
 ## How it works
 
-1. A **Claude scheduled task** (in the Claude app, "ADS BOX daily knowledge articles") starts a fresh session at 06:52 and 16:52 Cambodia time.
+1. A **Claude scheduled task** (in the Claude app, "ADS BOX daily knowledge articles") starts a fresh session at 06:56 and 16:56 Cambodia time, so the article is online at about 07:00 and 17:00.
 2. The session clones this repo and runs `python3 tools/autopost/plan.py --out /tmp/brief.json`. The planner:
    - checks `content/autopost/settings.json` (paused? slot switched off? already done today?),
    - opens the slot from 15 minutes before to 90 minutes after its time, and never publishes outside that window (no catch-up),
@@ -31,7 +31,7 @@ Two Khmer knowledge articles a day on https://adsbox.agency/knowledge/, at 07:00
 | max_attempts | How many times Claude may fix and retry a draft that fails validation. |
 | min / max Khmer chars | Body length limits (about 300–600 Khmer words). |
 
-**Changing a time:** change it in settings *and* in the scheduled task's schedule (ask Claude: "move the evening article to 18:00"). The task should start about 8 minutes before the time.
+**Changing a time:** change it in settings *and* in the scheduled task's schedule (ask Claude: "move the evening article to 18:00"). The task should start about 4 minutes before the time.
 
 **Unpublishing or editing an article:** admin panel → "ចំណេះដឹង (អត្ថបទ)", open it, switch on "ព្រាង / ដកចេញពីវេបសាយ" (hides it without deleting) or edit the text, then Save.
 
