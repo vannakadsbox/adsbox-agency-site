@@ -30,6 +30,8 @@ export class FakeGitHub {
   res(status, data) { return new Response(data === undefined ? null : JSON.stringify(data), { status, headers: { "Content-Type": "application/json" } }); }
   handle(u, method, body) {
     const p = decodeURI(u.pathname).replace(/^\/repos\/[^/]+\/[^/]+/, "");
+    const ref = u.searchParams.get("ref");
+    if (ref !== null && !/^(main|c\d+|raced|[0-9a-f]{6,})$/.test(ref)) return this.res(404, { message: `fake: unknown ref ${ref}` });
     let m;
     if ((m = /^\/contents\/(.+)$/.exec(p)) && method === "GET") {
       const path = m[1];

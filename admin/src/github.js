@@ -21,7 +21,8 @@ export function b64decode(b64) {
 
 export class GitHub {
   constructor({ token, repo, branch, fetch: f }) {
-    this.token = String(token || "").trim(); this.repo = String(repo || "").trim();   // secrets pasted with a stray space or newline still work this.branch = branch || "main";
+    // Trimmed, so secrets pasted with a stray space or newline still work.
+    this.token = String(token || "").trim(); this.repo = String(repo || "").trim(); this.branch = String(branch || "main").trim();
     this.fetch = f || ((...a) => fetch(...a));
   }
 

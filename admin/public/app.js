@@ -527,7 +527,7 @@ PAGES.articles = async (item, sub) => {
   function drawList() {
     const q = st.q.toLowerCase();
     const items = res.items.filter(a => (!q || (a.title + " " + a.slug).toLowerCase().includes(q)) && (!st.tag || a.tag === st.tag));
-    put($("#alist"), ...(items.length ? items.map(a => h("a", { class: "item", href: `#/articles/${a.slug}`, style: "text-decoration:none;color:inherit" },
+    put(wrap.querySelector("#alist"), ...(items.length ? items.map(a => h("a", { class: "item", href: `#/articles/${a.slug}`, style: "text-decoration:none;color:inherit" },
       h("span", { class: "thumb", style: "width:44px;height:44px;background:linear-gradient(135deg,#f5b544,#ff8a3c)" }, a.source === "autopost" ? "🤖" : "📝"),
       h("div", { class: "txt" }, h("b", {}, a.title), h("span", {}, `${a.date} · ${a.tag}`)),
       a.draft ? h("span", { class: "pill warn" }, "📝 ព្រាង") : h("span", { class: "pill ok" }, "● លើវេបសាយ"),
