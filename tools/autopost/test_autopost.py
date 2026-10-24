@@ -133,6 +133,20 @@ class Publishing(Base):
         self.assertEqual(self.plan("2026-10-25T17:10")[0], 3)            # slot done: no second run
         self.assertEqual(self.publish(brief, SAMPLE)[0], 3)              # a concurrent run cannot add a second one
 
+    def test_dry_run_flag_overrides_live_settings(self):
+        self.set(mode="live")
+        brief = self.plan("2026-10-25T17:00")[1]
+        before = sorted(os.listdir(C.ARTICLES))
+        bp, dp = os.path.join(self.tmp, "b.json"), os.path.join(self.tmp, "d.json")
+        for p_, v_ in ((bp, brief), (dp, SAMPLE)):
+            with open(p_, "w", encoding="utf-8") as f: json.dump(v_, f, ensure_ascii=False)
+        class Args: pass
+        a = Args(); a.draft = dp; a.record_failure = None; a.attempts = 1; a.dry_run = True
+        code, msg, files = P.apply(a, brief, C.settings())
+        self.assertEqual(code, 0, msg); self.assertIn("dry_run", msg)
+        self.assertEqual(sorted(os.listdir(C.ARTICLES)), before)          # no live article added, changed or removed
+        self.assertTrue(all(f.startswith("content/autopost/") for f in files))
+
     def test_live_publish_and_duplicate_prevention(self):
         self.set(mode="live")
         brief = self.plan("2026-10-25T17:00")[1]
