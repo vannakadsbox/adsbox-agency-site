@@ -96,6 +96,7 @@ window.SERVICE_GROUPS = [
      "en": "មិនចាំបាច់ចំណាយពេលឡាយច្រើន រង់ចាំបិទការលក់ជាការស្រេច!"
     },
     "price": "",
+    "popular": true,
     "poster": "assets/uploads/photo_2026-10-24_21-49-05.jpg"
    }
   ]
