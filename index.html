@@ -567,20 +567,7 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
     </div>
   </section>
 
-  <section class="promos alt" id="promos" aria-labelledby="promos-h">
-    <div class="wrap">
-      <div class="sec-head">
-        <div>
-          <div class="eyebrow" data-kh="ការផ្តល់ជូនពិសេស" data-en="Promotions">ការផ្តល់ជូនពិសេស</div>
-          <h2 id="promos-h" data-kh="កញ្ចប់សេវាកម្មពេញនិយម" data-en="Our featured packages">កញ្ចប់សេវាកម្មពេញនិយម</h2>
-        </div>
-        <a class="btn btn-outline" href="#services" data-kh="មើលសេវាកម្មទាំងអស់" data-en="See all services">មើលសេវាកម្មទាំងអស់</a>
-      </div>
-      <div class="promo-grid" id="promo-grid"></div>
-    </div>
-  </section>
-
-  <section class="block" id="knowledge">
+  <section class="block alt" id="knowledge">
     <div class="wrap">
       <div class="sec-head"><div>
         <div class="eyebrow" data-kh="ចំណេះដឹង" data-en="Knowledge">ចំណេះដឹង</div>
@@ -591,7 +578,7 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
     </div>
   </section>
 
-  <section class="block alt" id="system">
+  <section class="block" id="system">
     <div class="wrap">
       <div class="sec-head"><div>
         <div class="eyebrow" data-kh="ចំណុចពិសេស" data-en="Key features">ចំណុចពិសេស</div>
@@ -691,7 +678,7 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
     </div>
   </section>
 
-  <section class="block" id="results">
+  <section class="block alt" id="results">
     <div class="wrap">
       <div class="sec-head"><div>
         <div class="eyebrow" data-kh="លទ្ធផលពិត" data-en="Real results">លទ្ធផលពិត</div>
@@ -721,7 +708,7 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
     </div>
   </section>
 
-  <section class="block clients alt" id="clients" aria-labelledby="clients-h">
+  <section class="block clients" id="clients" aria-labelledby="clients-h">
     <div class="wrap">
       <div class="sec-head"><div>
         <div class="eyebrow" data-kh="អតិថិជនរបស់យើង" data-en="Our clients">អតិថិជនរបស់យើង</div>
@@ -736,7 +723,7 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
     </div>
   </section>
 
-  <section class="block" id="about">
+  <section class="block alt" id="about">
     <div class="wrap about">
       <div class="about-text">
         <div class="eyebrow" data-kh="អំពីយើង" data-en="About us">អំពីយើង</div>
@@ -747,7 +734,7 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
     </div>
   </section>
 
-  <section class="block alt" id="faq">
+  <section class="block" id="faq">
     <div class="wrap faq-wrap">
       <div class="sec-head"><div>
         <div class="eyebrow" data-kh="សំណួរ" data-en="FAQ">សំណួរ</div>
@@ -771,7 +758,7 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
       <p class="pp-title" id="pp-title"></p>
       <div class="pp-btns">
         <button type="button" class="btn btn-navy" id="pp-order" data-kh="ចាប់អារម្មណ៍សេវាកម្ម" data-en="I'm interested">ចាប់អារម្មណ៍សេវាកម្ម</button>
-        <a class="btn btn-outline" href="#promos" id="pp-all" data-kh="មើលលម្អិត" data-en="See details">មើលលម្អិត</a>
+        <a class="btn btn-outline" href="#services" id="pp-all" data-kh="មើលសេវាកម្ម" data-en="See services">មើលសេវាកម្ម</a>
       </div>
       <a class="pp-later" href="tel:016920149" data-kh="ឬទូរស័ព្ទ 016 920 149" data-en="or call 016 920 149">ឬទូរស័ព្ទ 016 920 149</a>
     </div>
@@ -972,6 +959,7 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
   document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !sdPop.hidden && modal.hidden) closeSvc(); });
   var PROMOS = window.PROMOS || [];
   function renderPromos() {
+    if (!document.getElementById("promo-grid")) return;
     document.getElementById("promo-grid").innerHTML = PROMOS.map(function (p, i) {
       return '<article class="promo"><div class="promo-media"><button type="button" class="promo-img" data-pop="' + i + '" aria-label="' + esc(p.title[lang]) + '">' +
         '<img src="' + p.thumb + '" alt="' + esc(p.title[lang]) + '" width="540" height="540" loading="lazy"></button>' +
@@ -1007,9 +995,11 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
   document.getElementById("pp-all").addEventListener("click", closePop);
   document.getElementById("pp-order").addEventListener("click", function () { closePop(); openOrder(this); });
   pop.addEventListener("click", function (e) { if (e.target === pop) closePop(); });
-  document.getElementById("promo-grid").addEventListener("click", function (e) { var b = e.target.closest("[data-pop]"); if (b) openPop(PROMOS.filter(function (p) { return p.popup !== false; }).indexOf(PROMOS[+b.getAttribute("data-pop")])); });
+  (document.getElementById("promo-grid") || document.createElement("div")).addEventListener("click", function (e) { var b = e.target.closest("[data-pop]"); if (b) openPop(PROMOS.filter(function (p) { return p.popup !== false; }).indexOf(PROMOS[+b.getAttribute("data-pop")])); });
+  document.addEventListener("click", function (e) { var a = e.target.closest('a[href="#promos"]'); if (!a) return; e.preventDefault(); if (!drawer.hidden) setDrawer(false); openPop(0); });
   var seen = false; try { seen = sessionStorage.getItem("adsbox-promo-seen") === "1"; } catch (e) {}
-  if (!seen && !/^#article-/.test(location.hash)) setTimeout(function () { if (modal.hidden) { openPop(0); try { sessionStorage.setItem("adsbox-promo-seen", "1"); } catch (e) {} } }, 1500);
+  if (location.hash === "#promos") setTimeout(function () { openPop(0); }, 300);
+  else if (!seen && !/^#article-/.test(location.hash)) setTimeout(function () { if (modal.hidden) { openPop(0); try { sessionStorage.setItem("adsbox-promo-seen", "1"); } catch (e) {} } }, 1500);
 
   applyLang();
   route();
