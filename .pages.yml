@@ -154,7 +154,7 @@ content:
                 type: string
               - name: thumb
                 label: រូបលើកាតសេវាកម្ម (ស្រេចចិត្ត)
-                description: "រូបដែលបង្ហាញលើកាត។ ទំហំល្អបំផុត 1280x720 (16:9)។ ទុកទទេ ដើម្បីប្រើរូបដែលបង្កើតដោយស្វ័យប្រវត្តិ។"
+                description: "រូបដែលបង្ហាញលើកាត។ ទំហំល្អបំផុត 1280x720 (16:9)។ ទុកទទេ ដើម្បីប្រើរូបដែលបង្កើតដោយស្វ័យប្រវត្តិ។ រូបធំៗត្រូវបានបង្រួមដោយស្វ័យប្រវត្តិ ដើម្បីឲ្យវេបសាយលឿន។"
                 type: image
               - name: poster
                 label: ប៉ូស្ទ័រ (បង្ហាញពេលចុច លម្អិត)
@@ -200,6 +200,28 @@ content:
         label: បង្ហាញក្នុង Pop-up
         type: boolean
         default: true
+
+  - name: clients
+    label: អតិថិជន (Logo)
+    description: "Logo អតិថិជនដែលរំកិលលើទំព័រដើម។ បន្ថែម លុប ឬអូសដើម្បីប្តូរលំដាប់។ ពាក់កណ្តាលទីមួយនៅជួរខាងលើ ពាក់កណ្តាលទីពីរនៅជួរខាងក្រោម។ រូបត្រូវបានបង្រួមដោយស្វ័យប្រវត្តិ។"
+    type: file
+    path: content/clients.json
+    format: json
+    fields:
+      - name: clients
+        label: Logo អតិថិជន
+        type: object
+        list: true
+        fields:
+          - name: name
+            label: ឈ្មោះអតិថិជន (ស្រេចចិត្ត)
+            description: សម្រាប់អ្នកប្រើកម្មវិធីអានអេក្រង់ (alt)។ មិនបង្ហាញលើរូបទេ។
+            type: string
+          - name: logo
+            label: Logo (រាងការ៉េ)
+            description: "រូបរាងការ៉េល្អបំផុត យ៉ាងតិច 256x256។ រូបមិនការ៉េនឹងត្រូវកាត់កណ្តាល។"
+            type: image
+            required: true
 
   - name: autopost-settings
     label: បោះពុម្ពស្វ័យប្រវត្តិ · ការកំណត់

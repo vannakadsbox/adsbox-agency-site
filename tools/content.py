@@ -121,7 +121,7 @@ def load_services():
                     "price": str(s.get("price") or "").strip()}
             if s.get("popular"): item["popular"] = True
             if s.get("poster"): item["poster"] = asset(s["poster"])
-            if s.get("thumb"): item["thumb"] = asset(s["thumb"])
+            if s.get("thumb"): item["thumb"] = optimized(asset(s["thumb"]), (960, 540))
             svcs.append(item)
         groups.append({"id": g["id"], "name": bi(g.get("name")), "services": svcs})
     return groups
@@ -157,6 +157,57 @@ def make_thumbs(promos):
         p["thumb"] = thumb
 
 
+OPT_DIR = os.path.join("assets", "opt")
+_opt_used = set()
+
+
+def optimized(rel, box):
+    """A small, fast copy of an uploaded picture (WebP, fitted inside box), saved under assets/opt/.
+    Staff upload any size in the admin panel; visitors get the small copy. Falls back to the original
+    if Pillow is missing or the file can't be read."""
+    if not rel: return rel
+    src = os.path.join(ROOT, rel)
+    try:
+        from PIL import Image, ImageOps
+        import hashlib
+        with open(src, "rb") as f: digest = hashlib.md5(f.read() + repr(box).encode()).hexdigest()[:10]
+        stem = re.sub(r"[^a-z0-9]+", "-", os.path.splitext(os.path.basename(rel))[0].lower()).strip("-") or "img"
+        out = os.path.join(OPT_DIR, f"{stem}-{digest}.webp")
+        _opt_used.add(out)
+        dst = os.path.join(ROOT, out)
+        if not os.path.exists(dst):
+            os.makedirs(os.path.dirname(dst), exist_ok=True)
+            im = ImageOps.exif_transpose(Image.open(src))
+            im = im.convert("RGBA" if im.mode in ("RGBA", "LA", "P") else "RGB")
+            im.thumbnail(box, Image.LANCZOS)
+            im.save(dst, "WEBP", quality=82, method=6)
+        return out.replace(os.sep, "/")
+    except Exception as ex:
+        print(f"Warning: could not optimise {rel}: {ex}")
+        return rel
+
+
+def load_clients():
+    """content/clients.json -> the client logo strip on the home page (edited in the admin panel)."""
+    path = os.path.join(ROOT, "content", "clients.json")
+    if not os.path.exists(path): return []
+    with open(path, encoding="utf-8") as f: data = json.load(f)
+    out = []
+    for c in data.get("clients", []):
+        logo = asset(c.get("logo"))
+        if not logo or not os.path.exists(os.path.join(ROOT, logo)): continue
+        out.append({"name": str(c.get("name") or "").strip(), "logo": optimized(logo, (256, 256))})
+    return out
+
+
+def clean_opt():
+    """Remove optimised copies that nothing uses any more."""
+    folder = os.path.join(ROOT, OPT_DIR)
+    if not os.path.isdir(folder): return
+    for name in os.listdir(folder):
+        if os.path.join(OPT_DIR, name) not in _opt_used: os.remove(os.path.join(folder, name))
+
+
 def js(name, value):
     return HEADER + f"window.{name} = " + json.dumps(value, ensure_ascii=False, indent=1) + ";\n"
 
@@ -165,9 +216,11 @@ def write_all():
     arts = load_articles()
     services = load_services()
     promos = load_promos()
+    clients = load_clients()
     make_thumbs(promos)
+    clean_opt()
     listing = [{k: a[k] for k in ("id", "date", "tag", "title", "summary", "emoji", "cover") if a.get(k)} for a in arts]
-    for path, text in (("articles.js", js("ARTICLES", listing)), ("services.js", js("SERVICE_GROUPS", services)), ("promos.js", js("PROMOS", promos))):
+    for path, text in (("articles.js", js("ARTICLES", listing)), ("services.js", js("SERVICE_GROUPS", services)), ("promos.js", js("PROMOS", promos)), ("clients.js", js("CLIENTS", clients))):
         with open(os.path.join(ROOT, path), "w", encoding="utf-8") as f: f.write(text)
     return arts, services, promos
 
