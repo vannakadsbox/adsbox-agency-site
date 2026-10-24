@@ -1,3 +1,20 @@
 {
-  "runs": []
+  "runs": [
+    {
+      "date": "2026-10-24",
+      "slot": "evening",
+      "category": "facebook-ads",
+      "angle": "choosing the right audience",
+      "attempts": 1,
+      "generated_at": "2026-10-24T20:45:18+07:00",
+      "title": "ជ្រើសរើស Audience យ៉ាងណា ពេល Boost Post ឲ្យចំអ្នកទិញ?",
+      "slug": "choose-right-audience-boost-post",
+      "summary": "រៀនកំណត់អតិថិជនគោលដៅពេល Boost Post តាមទីតាំង អាយុ ចំណាប់អារម្មណ៍ និងការសាកល្បង ដើម្បីកុំឲ្យខាតថវិកាលើមនុស្សខុស។",
+      "primary_keyword": "Audience ពេល Boost Post",
+      "tag": "Boost Post",
+      "khmer_chars": 2068,
+      "status": "dry_run",
+      "file": "content/autopost/dry-runs/2026-10-24-evening-choose-right-audience-boost-post.md"
+    }
+  ]
 }
