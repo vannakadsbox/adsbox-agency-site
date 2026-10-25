@@ -1,10 +1,6 @@
 {
   "clients": [
     {
-      "name": "CEO Master Club",
-      "logo": "/assets/uploads/clients/client-01.webp"
-    },
-    {
       "name": "Borey Chhay Ly",
       "logo": "/assets/uploads/clients/client-02.webp"
     },
@@ -77,10 +73,6 @@
       "logo": "/assets/uploads/clients/client-21.webp"
     },
     {},
-    {
-      "name": "S&Y Brand",
-      "logo": "/assets/uploads/clients/client-23.webp"
-    },
     {
       "logo": "/assets/uploads/clients/client-24.webp"
     }
