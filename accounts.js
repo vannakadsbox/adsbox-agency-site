@@ -7,52 +7,52 @@ window.ACCOUNTS = {
    {
     "name": "Van Sovann",
     "url": "https://www.facebook.com/profile.php?id=61580134710032",
-    "followers": 10431,
+    "followers": 10430,
     "picture": "assets/accounts/fb-61580134710032.webp",
     "cover": "assets/accounts/fb-61580134710032-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
-    "updated": "2026-10-24"
+    "updated": "2026-10-25"
    },
    {
     "name": "គីម កញ្ញា",
     "url": "https://www.facebook.com/profile.php?id=61581017472166",
-    "followers": 9924,
+    "followers": 9922,
     "picture": "assets/accounts/fb-61581017472166.webp",
     "cover": "assets/accounts/fb-61581017472166-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
-    "updated": "2026-10-24"
+    "updated": "2026-10-25"
    },
    {
     "name": "EE Black 9 Korean",
     "url": "https://www.facebook.com/profile.php?id=61580052934362",
-    "followers": 10667,
+    "followers": 10669,
     "picture": "assets/accounts/fb-61580052934362.webp",
     "cover": "assets/accounts/fb-61580052934362-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
-    "updated": "2026-10-24"
+    "updated": "2026-10-25"
    },
    {
     "name": "Newry & EEw9",
     "url": "https://www.facebook.com/profile.php?id=61579303995746",
-    "followers": 11451,
+    "followers": 11449,
     "picture": "assets/accounts/fb-61579303995746.webp",
     "cover": "assets/accounts/fb-61579303995746-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
-    "updated": "2026-10-24"
+    "updated": "2026-10-25"
    },
    {
     "name": "Sovanry Online Shop",
     "url": "https://www.facebook.com/profile.php?id=61593295843002",
-    "followers": 13665,
+    "followers": 13664,
     "picture": "assets/accounts/fb-61593295843002.webp",
     "cover": "assets/accounts/fb-61593295843002-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
-    "updated": "2026-10-24"
+    "updated": "2026-10-25"
    }
   ]
  },
