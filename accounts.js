@@ -5,6 +5,86 @@ window.ACCOUNTS = {
   "price_per_1k": 15.0,
   "items": [
    {
+    "name": "Sdach Drama",
+    "url": "https://www.facebook.com/profile.php?id=61593484056003",
+    "followers": 10862,
+    "picture": "assets/accounts/fb-61593484056003.webp",
+    "cover": "assets/accounts/fb-61593484056003-cover.webp",
+    "type": "ផេកខ្មែរ",
+    "sold": false,
+    "updated": "2026-10-25"
+   },
+   {
+    "name": "NR Store | Phnom Penh",
+    "url": "https://www.facebook.com/pagenrstore",
+    "followers": 78481,
+    "picture": "assets/accounts/fb-pagenrstore.webp",
+    "cover": "assets/accounts/fb-pagenrstore-cover.webp",
+    "type": "ផេកខ្មែរ",
+    "sold": false,
+    "updated": "2026-10-25"
+   },
+   {
+    "name": "100086760075207",
+    "url": "https://www.facebook.com/profile.php?id=100086760075207",
+    "followers": 0,
+    "picture": "",
+    "cover": "",
+    "type": "ផេកខ្មែរ",
+    "sold": false,
+    "updated": ""
+   },
+   {
+    "name": "Aiសម្រាយរឿង",
+    "url": "https://www.facebook.com/profile.php?id=61593329975440",
+    "followers": 19403,
+    "picture": "assets/accounts/fb-61593329975440.webp",
+    "cover": "assets/accounts/fb-61593329975440-cover.webp",
+    "type": "ផេកខ្មែរ",
+    "sold": false,
+    "updated": "2026-10-25"
+   },
+   {
+    "name": "Ly Za",
+    "url": "https://www.facebook.com/profile.php?id=61581144403152&sk=reels_tab",
+    "followers": 12654,
+    "picture": "assets/accounts/fb-61581144403152.webp",
+    "cover": "assets/accounts/fb-61581144403152-cover.webp",
+    "type": "ផេកខ្មែរ",
+    "sold": false,
+    "updated": "2026-10-25"
+   },
+   {
+    "name": "យឹម អេង",
+    "url": "https://www.facebook.com/profile.php?id=61580042356068&sk=reels_tab",
+    "followers": 12694,
+    "picture": "assets/accounts/fb-61580042356068.webp",
+    "cover": "assets/accounts/fb-61580042356068-cover.webp",
+    "type": "ផេកខ្មែរ",
+    "sold": false,
+    "updated": "2026-10-25"
+   },
+   {
+    "name": "U Drama",
+    "url": "https://www.facebook.com/profile.php?id=61588652091475&sk=reels_tab",
+    "followers": 12550,
+    "picture": "assets/accounts/fb-61588652091475.webp",
+    "cover": "assets/accounts/fb-61588652091475-cover.webp",
+    "type": "ផេកខ្មែរ",
+    "sold": false,
+    "updated": "2026-10-25"
+   },
+   {
+    "name": "TV24k",
+    "url": "https://www.facebook.com/profile.php?id=61593510027475",
+    "followers": 2127,
+    "picture": "assets/accounts/fb-61593510027475.webp",
+    "cover": "assets/accounts/fb-61593510027475-cover.webp",
+    "type": "ផេកខ្មែរ",
+    "sold": false,
+    "updated": "2026-10-25"
+   },
+   {
     "name": "Van Sovann",
     "url": "https://www.facebook.com/profile.php?id=61580134710032",
     "followers": 10430,
@@ -20,36 +100,6 @@ window.ACCOUNTS = {
     "followers": 9922,
     "picture": "assets/accounts/fb-61581017472166.webp",
     "cover": "assets/accounts/fb-61581017472166-cover.webp",
-    "type": "ផេកខ្មែរ",
-    "sold": false,
-    "updated": "2026-10-25"
-   },
-   {
-    "name": "EE Black 9 Korean",
-    "url": "https://www.facebook.com/profile.php?id=61580052934362",
-    "followers": 10669,
-    "picture": "assets/accounts/fb-61580052934362.webp",
-    "cover": "assets/accounts/fb-61580052934362-cover.webp",
-    "type": "ផេកខ្មែរ",
-    "sold": false,
-    "updated": "2026-10-25"
-   },
-   {
-    "name": "Newry & EEw9",
-    "url": "https://www.facebook.com/profile.php?id=61579303995746",
-    "followers": 11449,
-    "picture": "assets/accounts/fb-61579303995746.webp",
-    "cover": "assets/accounts/fb-61579303995746-cover.webp",
-    "type": "ផេកខ្មែរ",
-    "sold": false,
-    "updated": "2026-10-25"
-   },
-   {
-    "name": "Sovanry Online Shop",
-    "url": "https://www.facebook.com/profile.php?id=61593295843002",
-    "followers": 13664,
-    "picture": "assets/accounts/fb-61593295843002.webp",
-    "cover": "assets/accounts/fb-61593295843002-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "updated": "2026-10-25"
