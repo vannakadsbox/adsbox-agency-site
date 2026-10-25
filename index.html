@@ -658,6 +658,23 @@ a.more.pg-view { display: inline-flex; align-items: center; text-decoration: non
 .acc-pill { font-size: 13px; padding: 0 8px; }
 .acc .svc-foot { margin-top: 4px; padding-top: 10px; }
 @media (max-width: 760px) { .pg-ban .appban-text { padding: 20px 18px 4px; } .pg-ban .phone { width: 170px; } }
+
+/* Phone layout (review 25 Oct): services sooner, shorter cards, one-row swipeable tabs. */
+@media (max-width: 560px) {
+  .hero2-media { display: none; }                       /* the dashboard picture pushed prices to the 2nd screen */
+  .hero2-in { padding-block: 24px 28px; }
+  .tabs { flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x proximity; margin-inline: -16px; padding: 2px 16px 6px; scrollbar-width: none;
+          -webkit-mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 28px), transparent); mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 28px), transparent); }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tabs button { flex: none; scroll-snap-align: start; min-height: 40px; white-space: nowrap; }
+  .svc:not(.acc) { display: grid; grid-template-columns: 116px minmax(0, 1fr); grid-template-areas: "img title" "img desc" "foot foot"; column-gap: 12px; row-gap: 2px; padding: 12px; align-items: start; }
+  .svc:not(.acc) .svc-img { grid-area: img; width: 116px; margin: 0; border-radius: 10px; }
+  .svc:not(.acc) h4 { grid-area: title; font-size: 15.5px; line-height: 1.4; }
+  .svc:not(.acc) > p { grid-area: desc; font-size: 13.5px; line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .svc:not(.acc) .svc-foot { grid-area: foot; margin-top: 10px; padding-top: 10px; }
+  .svc:not(.acc) .hot { top: -9px; right: 10px; font-size: 11px; }
+  .svc-list { gap: 12px; }
+}
 </style>
 
 </head>
@@ -1071,7 +1088,7 @@ a.more.pg-view { display: inline-flex; align-items: center; text-decoration: non
     var calc = rate ? '<div class="appban-get pg-calc"><span class="pg-calc-ic" aria-hidden="true">$</span>' +
       '<div class="pg-calc-body"><label for="pg-calc-in"><small>' + T.calcSmall[lang] + "</small><strong>" + T.calcTitle[lang] + "</strong></label>" +
       '<span class="appban-free">$' + fmtNum(rate) + " / 1K Follower</span>" +
-      '<div class="pg-calc-row"><input id="pg-calc-in" type="number" inputmode="numeric" min="0" step="100" placeholder="10000" aria-describedby="pg-calc-out"><span class="pg-calc-eq" aria-hidden="true">=</span>' +
+      '<div class="pg-calc-row"><input id="pg-calc-in" type="number" inputmode="numeric" min="0" step="100" value="10000" placeholder="10000" aria-describedby="pg-calc-out"><span class="pg-calc-eq" aria-hidden="true">=</span>' +
       '<output id="pg-calc-out" for="pg-calc-in" aria-live="polite">$0</output></div></div></div>' :
       '<div class="appban-get pg-calc"><span class="pg-calc-ic" aria-hidden="true">✓</span><div class="pg-calc-body"><strong>' + T.askTitle[lang] + "</strong><small>" + T.askLead[lang] + "</small></div></div>";
     html += '<div class="svc-group"><div class="appban pg-ban"><div class="appban-text">' +
@@ -1090,7 +1107,7 @@ a.more.pg-view { display: inline-flex; align-items: center; text-decoration: non
       '" aria-controls="svc-extra-' + tab + '">' + (open ? T.seeLess[lang] : T["seeMore_" + kind][lang].replace("{n}", extra)) + '<span class="chev" aria-hidden="true"></span></button></div>';
     document.getElementById("svc-groups").innerHTML = html + "</div>";
     var inp = document.getElementById("pg-calc-in"), out = document.getElementById("pg-calc-out");
-    if (inp) inp.addEventListener("input", function () { out.textContent = "$" + fmtNum(accPrice(inp.value, rate)); });
+    if (inp) { var calcUpd = function () { out.textContent = "$" + fmtNum(accPrice(inp.value, rate)); }; inp.addEventListener("input", calcUpd); calcUpd(); }
   }
   function renderTabs() {
     var html = "";
