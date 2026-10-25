@@ -190,6 +190,15 @@ class Publishing(Base):
         os.environ.pop("TELEGRAM_BOT_TOKEN", None)
         self.assertFalse(A.new_failures(old))                            # no Telegram secrets -> exit 1 so GitHub emails
 
+    def test_published_announced(self):
+        old = os.path.join(self.tmp, "old.json"); C.save_json("history.json", {"runs": []}); shutil.copy(os.path.join(C.AUTO, "history.json"), old)
+        h = C.history(); h["runs"].append({"date": "2026-10-25", "slot": "morning", "status": "published", "generated_at": "2026-10-25T06:58:00+07:00",
+                                           "title": "T", "url": "https://adsbox.agency/knowledge/t/"}); C.save_json("history.json", h)
+        os.environ.pop("TELEGRAM_BOT_TOKEN", None)
+        self.assertFalse(A.new_failures(old))                            # a new published article sends a message (no secrets -> fails)
+        shutil.copy(os.path.join(C.AUTO, "history.json"), old)
+        self.assertTrue(A.new_failures(old))                             # nothing new -> nothing sent
+
     def test_watchdog(self):
         os.environ.pop("TELEGRAM_BOT_TOKEN", None)
         self.assertTrue(A.watchdog("2026-10-25T07:30"))                  # too early to alert

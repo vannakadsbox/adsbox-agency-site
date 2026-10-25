@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Telegram alerts for the knowledge auto-publisher (run by .github/workflows/autopost-alerts.yml).
 
-  python3 tools/autopost/alert.py --new-failures OLD_HISTORY.json   alert for failed slots added since OLD_HISTORY
+  python3 tools/autopost/alert.py --new-failures OLD_HISTORY.json   alert for failed slots added since OLD_HISTORY,
+                                                                    and announce articles published since then
   python3 tools/autopost/alert.py --watchdog [--now ISO]           alert if a slot is overdue with no article
   python3 tools/autopost/alert.py --test                            send a test message
 
@@ -34,9 +35,14 @@ def send(text):
 def new_failures(old_path):
     try: old = json.load(open(old_path, encoding="utf-8")).get("runs", [])
     except Exception: old = []
-    seen = {(r.get("date"), r.get("slot"), r.get("generated_at")) for r in old}
-    fresh = [r for r in C.history()["runs"] if r.get("status") == "failed" and (r.get("date"), r.get("slot"), r.get("generated_at")) not in seen]
+    seen = {(r.get("date"), r.get("slot"), r.get("generated_at"), r.get("status")) for r in old}
+    added = [r for r in C.history()["runs"] if (r.get("date"), r.get("slot"), r.get("generated_at"), r.get("status")) not in seen]
+    fresh = [r for r in added if r.get("status") == "failed"]
     ok = True
+    for r in added:
+        if r.get("status") != "published": continue
+        ok &= send(f"✅ ADS BOX: បានបោះពុម្ពអត្ថបទ{SLOT_KH.get(r.get('slot'), r.get('slot'))} ថ្ងៃ {r.get('date')}\n"
+                   f"{r.get('title', '')}\n{r.get('url', '')}")
     for r in fresh:
         ok &= send(f"⚠️ ADS BOX: អត្ថបទ{SLOT_KH.get(r.get('slot'), r.get('slot'))} ថ្ងៃ {r.get('date')} មិនបានបោះពុម្ពទេ។\n"
                    f"Knowledge auto-post failed after {r.get('attempts')} attempt(s): {r.get('error')}\n"
