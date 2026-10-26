@@ -5,7 +5,7 @@ summary: "រៀនគណនាថ្លៃដើមពិត និងចំន
 tag: "លក់អនឡាញ"
 date: 2026-10-26
 emoji: "🏷️ 🧮 💰"
-cover: "/assets/uploads/admin/2026-10/relive-thumbnail-d2f1b2.png"
+cover: ""
 seo_title: "គណនាតម្លៃ Promotion ឲ្យលក់ដាច់ តែមិនខាតចំណេញ"
 seo_description: "វិធីគណនាតម្លៃ Promotion សម្រាប់អ្នកលក់អនឡាញ៖ ថ្លៃដើមពិត ចំនួនដែលត្រូវលក់បន្ថែម និងរបៀបបញ្ចុះតម្លៃដែលនៅតែមានចំណេញ។"
 primary_keyword: "គណនាតម្លៃ Promotion"
