@@ -7,7 +7,7 @@ window.ACCOUNTS = {
    {
     "name": "NR Store | Phnom Penh",
     "url": "https://www.facebook.com/pagenrstore",
-    "followers": 78479,
+    "followers": 78476,
     "picture": "assets/accounts/fb-pagenrstore.webp",
     "cover": "assets/opt/screenshot-2026-10-26-at-6-18-51-pm-83f43f-9c2c1cad35.webp",
     "type": "ផេកខ្មែរ",
@@ -47,7 +47,7 @@ window.ACCOUNTS = {
    {
     "name": "Ly Za",
     "url": "https://www.facebook.com/profile.php?id=61581144403152&sk=reels_tab",
-    "followers": 12654,
+    "followers": 12631,
     "picture": "assets/accounts/fb-61581144403152.webp",
     "cover": "assets/opt/screenshot-2026-10-26-at-6-18-51-pm-99784d-9c2c1cad35.webp",
     "type": "ផេកខ្មែរ",
@@ -77,7 +77,7 @@ window.ACCOUNTS = {
    {
     "name": "TV24k",
     "url": "https://www.facebook.com/profile.php?id=61593510027475",
-    "followers": 2136,
+    "followers": 2142,
     "picture": "assets/accounts/fb-61593510027475.webp",
     "cover": "assets/opt/screenshot-2026-10-26-at-6-18-51-pm-216adb-9c2c1cad35.webp",
     "type": "ផេកខ្មែរ",
