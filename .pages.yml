@@ -232,29 +232,38 @@ content:
   type: group
   items:
   - name: clients
-    label: Logo អតិថិជន
-    description: Logo អតិថិជនដែលរំកិលលើទំព័រដើម។ បន្ថែម លុប ឬអូសដើម្បីប្តូរលំដាប់។ ពាក់កណ្តាលទីមួយនៅជួរខាងលើ ពាក់កណ្តាលទីពីរនៅជួរខាងក្រោម។ រូបត្រូវបានបង្រួមដោយស្វ័យប្រវត្តិ។
+    label: ផេកអតិថិជន
+    description: ផេក Facebook របស់អតិថិជនដែលរំកិលលើទំព័រដើម។ ដាក់តែ Link និងប្រភេទ — ឈ្មោះ ចំនួន Follower និងរូប Profile យកដោយស្វ័យប្រវត្តិ។
     type: file
     path: content/clients.json
     format: json
     fields:
     - name: clients
-      label: Logo អតិថិជន
+      label: ផេកអតិថិជន
       type: object
       list:
         collapsible:
           collapsed: true
-          summary: Logo {index} · {name}
+          summary: ផេក {index} · {category} · {url}
       fields:
-      - name: name
-        label: ឈ្មោះអតិថិជន (ស្រេចចិត្ត)
-        description: សម្រាប់អ្នកប្រើកម្មវិធីអានអេក្រង់ (alt)។ មិនបង្ហាញលើរូបទេ។
+      - name: url
+        label: តំណភ្ជាប់ផេក (Link)
         type: string
-      - name: logo
-        label: Logo (រាងការ៉េ)
-        description: រូបរាងការ៉េល្អបំផុត យ៉ាងតិច 256x256។ រូបមិនការ៉េនឹងត្រូវកាត់កណ្តាល។
-        type: image
         required: true
+        pattern:
+          regex: ^https://(www\.|m\.|web\.)?facebook\.com/.+
+          message: ត្រូវចាប់ផ្តើមដោយ https://web.facebook.com/ ឬ https://www.facebook.com/
+      - name: category
+        label: ប្រភេទ
+        type: string
+      - name: name
+        label: ឈ្មោះ (ស្រេចចិត្ត)
+        description: ទុកទទេ ដើម្បីប្រើឈ្មោះដែលយកដោយស្វ័យប្រវត្តិ។
+        type: string
+      - name: followers
+        label: ចំនួន Follower (ស្រេចចិត្ត)
+        description: ទុកទទេ ដើម្បីប្រើចំនួនដែលយកដោយស្វ័យប្រវត្តិ។
+        type: string
 - name: grp-knowledge
   label: ចំណេះដឹង
   type: group

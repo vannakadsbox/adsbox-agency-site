@@ -9,7 +9,7 @@ import {
   loadTeam, saveTeam, roleOf, normEmail,
 } from "./auth.js";
 import {
-  FILES, ACCOUNT_CACHE, ARTICLES_DIR, ARTICLE_TAGS, CLEAN, Invalid,
+  FILES, ACCOUNT_CACHE, ARTICLES_DIR, ARTICLE_TAGS, CLIENT_CATEGORIES, CLEAN, Invalid,
   parseArticle, serializeArticle, cleanArticle, articleMeta, checkImage, uploadPath, fillUploads,
 } from "./content.js";
 
@@ -89,7 +89,8 @@ export async function api(req, env, url, user, fetchFn) {
     if (method === "GET") {
       const { data, sha } = await readJSON(g, FILES[name]);
       const out = { data, sha, canEdit: canEdit(user.role, name) };
-      if (name === "accounts") out.cache = (await readJSON(g, ACCOUNT_CACHE, true)).data || {};
+      if (name === "accounts" || name === "clients") out.cache = (await readJSON(g, ACCOUNT_CACHE, true)).data || {};
+      if (name === "clients") out.categories = CLIENT_CATEGORIES;
       return json(out);
     }
     if (method === "PUT") {

@@ -95,7 +95,7 @@ export function cleanServices(d) {
   return keep(d, { groups });
 }
 
-const FB = /^https:\/\/(www\.|m\.)?facebook\.com\/.+/;
+const FB = /^https:\/\/(www\.|m\.|web\.)?facebook\.com\/.+/;
 const TT = /^https:\/\/(www\.)?tiktok\.com\/@.+/;
 export function cleanAccounts(d) {
   if (!isObj(d)) fail("ទិន្នន័យមិនត្រឹមត្រូវ");
@@ -137,16 +137,23 @@ export function cleanPromos(d) {
   return items;
 }
 
+export const CLIENT_CATEGORIES = ["ហាងលក់អនឡាញ", "សម្ផស្ស", "អចលនទ្រព្យ", "ម្ហូបអាហារ", "កម្សាន្ត"];
+const FB_PAGE = /^https:\/\/(www\.|m\.|web\.)?facebook\.com\/.+/;
+// Client Facebook pages on the home page: a link and a category; name and followers are read from the link.
 export function cleanClients(d) {
   if (!isObj(d)) fail("ទិន្នន័យមិនត្រឹមត្រូវ");
-  const clients = list(d.clients, "Logo", 200).map((c, i) => {
+  const clients = list(d.clients, "ផេកអតិថិជន", 200).map((c, i) => {
     if (!isObj(c)) fail("មិនត្រឹមត្រូវ");
-    if (!Object.keys(c).length) return c;   // an empty entry already in the file: left alone
+    const w = `ផេក ${i + 1}`;
+    const category = str(c.category, `${w} ប្រភេទ`, { max: 40 });
     return keep(c, {
-      ...optional(c, { name: str(c.name, `Logo ${i + 1} ឈ្មោះ`, { max: 120 }) }),
-      logo: img(c.logo, `Logo ${i + 1}`) || fail(`Logo ${i + 1}: សូមដាក់រូប`),
+      url: str(c.url, `${w} Link`, { required: true, max: 300, re: FB_PAGE }),
+      category,
+      name: str(c.name, `${w} ឈ្មោះ`, { max: 120 }),
+      followers: str(String(c.followers ?? ""), `${w} Follower`, { max: 20, re: /^[0-9.,]*\s*[KkMm]?$/ }),
     });
   });
+  unique(clients, "url", "ផេកអតិថិជន");
   return keep(d, { clients });
 }
 

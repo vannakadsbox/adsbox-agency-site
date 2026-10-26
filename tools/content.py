@@ -197,15 +197,24 @@ def optimized(rel, box):
 
 
 def load_clients():
-    """content/clients.json -> the client logo strip on the home page (edited in the admin panel)."""
+    """content/clients.json -> the client Facebook pages on the home page (edited in the admin panel).
+    Staff paste the page link and choose a category; the page name, followers and profile picture are read
+    from the link when the site is built (tools/accounts.py, same cache as the pages for sale)."""
     path = os.path.join(ROOT, "content", "clients.json")
     if not os.path.exists(path): return []
     with open(path, encoding="utf-8") as f: data = json.load(f)
+    import accounts
+    items = [c for c in data.get("clients", []) if str(c.get("url") or "").startswith("https://")]
+    cache = accounts.refresh(items) if os.environ.get("ACCOUNTS_OFFLINE") != "1" else accounts.load_cache()
     out = []
-    for c in data.get("clients", []):
-        logo = asset(c.get("logo"))
-        if not logo or not os.path.exists(os.path.join(ROOT, logo)): continue
-        out.append({"name": str(c.get("name") or "").strip(), "logo": optimized(logo, (256, 256))})
+    for c in items:
+        url = str(c["url"]).strip(); got = cache.get(accounts.key_for(url)) or {}
+        name = str(c.get("name") or "").strip() or got.get("name") or ""
+        try: followers = int(str(c.get("followers") or "").replace(",", "")) if str(c.get("followers") or "").strip() else got.get("followers")
+        except ValueError: followers = got.get("followers")
+        if not name: continue   # not read yet: shown after the next successful build
+        out.append({"name": name, "url": url, "followers": followers or 0, "picture": got.get("picture", ""),
+                    "category": str(c.get("category") or "").strip()})
     return out
 
 

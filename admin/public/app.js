@@ -123,7 +123,7 @@ const NAV = [
     { id: "services", e: "🛍️", km: "សេវាកម្ម និងតម្លៃ", tint: "rgba(0,89,224,.3)", desc: "ឈ្មោះ តម្លៃ រូប និងប៉ូស្ទ័រ" },
     { id: "accounts", e: "📘", km: "លក់ផេក & TikTok", tint: "rgba(108,92,255,.32)", desc: "ដាក់ Link · Follower និងតម្លៃស្វ័យប្រវត្តិ" },
     { id: "promos", e: "🎁", km: "ការផ្តល់ជូនពិសេស", tint: "rgba(200,53,94,.32)", desc: "Pop-up ពេលបើកវេបសាយ" }] },
-  { title: "🏡 ទំព័រដើម", items: [{ id: "clients", e: "⭐", km: "Logo អតិថិជន", tint: "rgba(60,207,142,.28)", desc: "Logo ដែលរំកិលលើទំព័រដើម" }] },
+  { title: "🏡 ទំព័រដើម", items: [{ id: "clients", e: "⭐", km: "ផេកអតិថិជន", tint: "rgba(60,207,142,.28)", desc: "ដាក់ Link ផេក · ឈ្មោះ និង Follower ស្វ័យប្រវត្តិ" }] },
   { title: "📚 ចំណេះដឹង", items: [
     { id: "articles", e: "📝", km: "អត្ថបទ", tint: "rgba(245,158,11,.3)", desc: "សរសេរ កែ ឬលាក់អត្ថបទ" },
     { id: "autopost", e: "🤖", km: "បោះពុម្ពស្វ័យប្រវត្តិ", tint: "rgba(108,92,255,.32)", desc: "ម៉ោង Live/Dry run និងប្រវត្តិ" }] },
@@ -456,37 +456,48 @@ PAGES.clients = async item => {
   const res = await api("GET", "/api/data/clients");
   const edit = perm("clients") === "E";
   let data = clone(res.data), sha = res.sha;
+  const cache = Object.values(res.cache || {});
+  const cats = res.categories || [];
+  const RE = /^https:\/\/(www\.|m\.|web\.)?facebook\.com\/.+/;
   const wrap = h("div", { class: "stack" });
+  const catList = h("datalist", { id: "cp-cats" }, cats.map(c => h("option", { value: c })));
   function draw() {
     const list = data.clients;
-    const half = Math.ceil(list.filter(c => c.logo).length / 2);
-    let n = 0;
-    put(wrap, 
-      edit ? h("div", { class: "hero-add" }, h("h2", {}, "⭐ បន្ថែម Logo អតិថិជន"),
-        h("div", { class: "row", style: "gap:8px;align-items:center" },
-          h("label", { class: "btn green", for: "addlogos" }, "⬆️ ជ្រើសរូប Logo (អាចជ្រើសច្រើន)"),
-          h("input", { id: "addlogos", class: "sr", type: "file", multiple: true, accept: "image/jpeg,image/png,image/webp,image/gif", onchange: async e => {
-            for (const f of e.target.files) { const ref = await addUpload(f); if (ref) list.push({ name: f.name.replace(/\.[^.]+$/, "").replace(/[-_]+/g, " "), logo: ref }); }
-            setDirty(); draw();
-          } })),
-        h("span", { class: "hint" }, "រូបរាងការ៉េ យ៉ាងតិច 256×256។ ពាក់កណ្តាលទីមួយនៅជួរខាងលើ ពាក់កណ្តាលទីពីរនៅជួរខាងក្រោម។")) : null,
-      h("section", { class: "card" }, h("h2", {}, `⭐ Logo · ${list.filter(c => c.logo).length}`),
-        h("div", { class: "logos" }, list.map((c, i) => {
-          if (!c.logo) return null;
-          const row = ++n <= half ? "⬆️ ជួរលើ" : "⬇️ ជួរក្រោម";
-          return h("div", { class: "logo" },
-            h("img", { src: imgSrc(c.logo), alt: c.name || "", loading: "lazy" }),
-            edit ? h("input", { class: "input", value: c.name || "", "aria-label": `ឈ្មោះ Logo ${i + 1}`, placeholder: "ឈ្មោះ", oninput: e => { c.name = e.target.value; setDirty(); } }) : h("b", { style: "font-size:13px;text-align:center" }, c.name || "—"),
-            h("span", { class: "pill grey" }, row),
-            edit ? h("div", { class: "row", style: "gap:4px;justify-content:center" },
-              h("button", { class: "btn small icon", type: "button", "aria-label": "ទៅមុខ", disabled: i === 0, onclick: () => { move(list, i, -1); draw(); } }, "←"),
-              h("button", { class: "btn small icon", type: "button", "aria-label": "ទៅក្រោយ", disabled: i === list.length - 1, onclick: () => { move(list, i, 1); draw(); } }, "→"),
-              h("button", { class: "btn small icon danger", type: "button", "aria-label": `លុប ${c.name || "Logo"}`, onclick: () => { list.splice(i, 1); setDirty(); draw(); } }, "🗑️")) : null);
-        }))));
+    const linkIn = h("input", { class: "input", type: "url", id: "cp-link", placeholder: "https://web.facebook.com/…", style: "flex:3 1 280px" });
+    const catIn = h("input", { class: "input", id: "cp-cat", list: "cp-cats", placeholder: "ប្រភេទ (ជ្រើស ឬវាយ)", style: "flex:1 1 180px" });
+    put(wrap,
+      catList,
+      edit ? h("form", { class: "hero-add", onsubmit: e => {
+        e.preventDefault();
+        const url = linkIn.value.trim();
+        if (!RE.test(url)) { toast("⚠️ Link ត្រូវចាប់ផ្តើមដោយ https://web.facebook.com/ ឬ https://www.facebook.com/", true); linkIn.focus(); return; }
+        if (list.some(c => c.url === url)) { toast("⚠️ Link នេះមានរួចហើយ", true); return; }
+        list.unshift({ url, category: catIn.value.trim(), name: "", followers: "" });
+        setDirty(); draw(); toast("➕ បានបន្ថែម · ចុច «រក្សាទុក»");
+      } },
+        h("h2", {}, "🔗 បិទភ្ជាប់ Link ផេក Facebook — រូប ឈ្មោះ និង Follower យកដោយស្វ័យប្រវត្តិ"),
+        h("div", { class: "row", style: "gap:8px" }, h("label", { class: "sr", for: "cp-link" }, "Link"), linkIn, h("label", { class: "sr", for: "cp-cat" }, "ប្រភេទ"), catIn, h("button", { class: "btn green", type: "submit" }, "✨ បន្ថែម")),
+        h("span", { class: "hint" }, "ក្រោយ Save ប្រហែល 2 នាទី ឈ្មោះ Follower និងរូបនឹងបង្ហាញលើវេបសាយ ហើយធ្វើបច្ចុប្បន្នភាពរៀងរាល់ថ្ងៃ។")) : null,
+      h("section", { class: "card" }, h("h2", {}, `⭐ ផេកអតិថិជន · ${list.length}`),
+        list.length ? h("div", { class: "list" }, list.map((c, i) => {
+          const got = cache.find(x => x.url === c.url) || {};
+          const name = c.name || got.name || "";
+          const fol = parseCount(c.followers) || got.followers || 0;
+          return h("div", { class: "item", style: "flex-wrap:wrap" },
+            h("span", { class: "avatar", style: "width:44px;height:44px;overflow:hidden;background:#1c4b9b" }, got.picture ? h("img", { src: imgSrc(got.picture), alt: "", style: "width:100%;height:100%;object-fit:cover" }) : (name || "?").charAt(0).toUpperCase()),
+            h("div", { class: "txt", style: "flex:1 1 220px" }, h("b", {}, name || "⏳ កំពុងអាន… (ក្រោយ Save)"), h("a", { href: c.url, target: "_blank", rel: "noopener", style: "font-size:12.5px" }, c.url.replace(/^https:\/\/(www\.|web\.|m\.)?/, ""))),
+            fol ? h("span", { class: "pill", style: "border:2px solid var(--navy);background:#fff" }, shortNum(fol) + " Follower") : null,
+            edit ? [h("label", { class: "sr", for: "cpc" + i }, "ប្រភេទ"), h("input", { id: "cpc" + i, class: "input", list: "cp-cats", value: c.category || "", placeholder: "ប្រភេទ", style: "width:170px;min-height:38px", oninput: e => { c.category = e.target.value; setDirty(); } })]
+              : (c.category ? h("span", { class: "pill" }, c.category) : null),
+            edit ? h("div", { class: "ctl" },
+              h("button", { class: "btn small icon", type: "button", "aria-label": "ឡើងលើ", disabled: i === 0, onclick: () => { move(list, i, -1); draw(); } }, "↑"),
+              h("button", { class: "btn small icon", type: "button", "aria-label": "ចុះក្រោម", disabled: i === list.length - 1, onclick: () => { move(list, i, 1); draw(); } }, "↓"),
+              h("button", { class: "btn small icon danger", type: "button", "aria-label": `ដក ${name || c.url}`, onclick: () => { if (!confirm(`ដក «${name || c.url}» ចេញ?`)) return; list.splice(i, 1); setDirty(); draw(); } }, "🗑️")) : null);
+        })) : h("div", { class: "empty" }, "មិនទាន់មាន។ បិទភ្ជាប់ Link ខាងលើ ដើម្បីចាប់ផ្តើម។")));
   }
   draw();
-  const save = async () => { const r = await api("PUT", "/api/data/clients", { data, sha, uploads: S.uploads }); sha = r.sha; data = r.data; S.uploads = []; draw(); };
-  return [header(item), wrap, edit ? saveBar(save, () => { data = clone(res.data); S.uploads = []; setDirty(false); draw(); }) : null];
+  const save = async () => { const r = await api("PUT", "/api/data/clients", { data, sha }); sha = r.sha; data = r.data; draw(); };
+  return [header(item), wrap, edit ? saveBar(save, () => { data = clone(res.data); setDirty(false); draw(); }) : null];
 };
 
 // ---------- articles ----------
@@ -664,9 +675,9 @@ PAGES.team = async item => {
   const roles = S.me.roles.filter(r => r.id !== "owner");
   const wrap = h("div", { class: "stack" });
   const L = { E: ["✏️", "#e3f7ee", "កែបាន"], V: ["👀", "#e8eefb", "មើលបាន"], N: ["🚫", "#f3f5f9", "មើលមិនឃើញ"] };
-  const SEC = [["services", "🛍️ សេវាកម្ម និងតម្លៃ"], ["accounts", "📘 លក់ផេក & TikTok"], ["promos", "🎁 Pop-up"], ["clients", "⭐ Logo អតិថិជន"], ["articles", "📝 អត្ថបទ"], ["autopost", "🤖 ការកំណត់បោះពុម្ព (Live/Dry run)"], ["history", "📜 ប្រវត្តិបោះពុម្ព"], ["team", "👥 ក្រុមការងារ"]];
+  const SEC = [["services", "🛍️ សេវាកម្ម និងតម្លៃ"], ["accounts", "📘 លក់ផេក & TikTok"], ["promos", "🎁 Pop-up"], ["clients", "⭐ ផេកអតិថិជន"], ["articles", "📝 អត្ថបទ"], ["autopost", "🤖 ការកំណត់បោះពុម្ព (Live/Dry run)"], ["history", "📜 ប្រវត្តិបោះពុម្ព"], ["team", "👥 ក្រុមការងារ"]];
   const ROLE_BG = { owner: "linear-gradient(135deg,#f5b544,#ff8a3c)", admin: "linear-gradient(135deg,#1c4b9b,#3f7dff)", sales: "linear-gradient(135deg,#0e7a50,#2fbf7e)", writer: "linear-gradient(135deg,#5b47e0,#9b7bff)", designer: "linear-gradient(135deg,#c8355e,#ff7a9a)", viewer: "#fff" };
-  const ROLE_DESC = { owner: "គ្រប់យ៉ាង · Live · តួនាទី", admin: "កែមាតិកាទាំងអស់ លើកលែងតួនាទី និង Live", sales: "សេវាកម្ម តម្លៃ ផេកលក់ និង Pop-up", writer: "អត្ថបទចំណេះដឹង", designer: "Logo អតិថិជន Pop-up និងរូបភាព", viewer: "មើលបាន មិនអាចកែ" };
+  const ROLE_DESC = { owner: "គ្រប់យ៉ាង · Live · តួនាទី", admin: "កែមាតិកាទាំងអស់ លើកលែងតួនាទី និង Live", sales: "សេវាកម្ម តម្លៃ ផេកលក់ និង Pop-up", writer: "អត្ថបទចំណេះដឹង", designer: "ផេកអតិថិជន Pop-up និងរូបភាព", viewer: "មើលបាន មិនអាចកែ" };
   function draw() {
     const count = r => members.filter(m => m.role === r).length;
     const email = h("input", { id: "inv-email", class: "input", type: "email", placeholder: "name@gmail.com", autocomplete: "off" });
