@@ -9,7 +9,7 @@ window.ACCOUNTS = {
     "url": "https://www.facebook.com/profile.php?id=61593484056003",
     "followers": 10862,
     "picture": "assets/accounts/fb-61593484056003.webp",
-    "cover": "assets/accounts/fb-61593484056003-cover.webp",
+    "cover": "assets/opt/screenshot-2026-10-26-at-6-15-20-pm-74a483-d6f7fcd8b8.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "updated": "2026-10-26"
