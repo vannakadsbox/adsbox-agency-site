@@ -5,21 +5,21 @@ window.ACCOUNTS = {
   "price_per_1k": 15.0,
   "items": [
    {
-    "name": "Sdach Drama",
-    "url": "https://www.facebook.com/profile.php?id=61593484056003",
-    "followers": 10862,
-    "picture": "assets/accounts/fb-61593484056003.webp",
-    "cover": "assets/opt/screenshot-2026-10-26-at-6-15-20-pm-74a483-d6f7fcd8b8.webp",
-    "type": "ផេកខ្មែរ",
-    "sold": false,
-    "updated": "2026-10-26"
-   },
-   {
     "name": "NR Store | Phnom Penh",
     "url": "https://www.facebook.com/pagenrstore",
     "followers": 78479,
     "picture": "assets/accounts/fb-pagenrstore.webp",
     "cover": "assets/accounts/fb-pagenrstore-cover.webp",
+    "type": "ផេកខ្មែរ",
+    "sold": false,
+    "updated": "2026-10-26"
+   },
+   {
+    "name": "Sdach Drama",
+    "url": "https://www.facebook.com/profile.php?id=61593484056003",
+    "followers": 10862,
+    "picture": "assets/accounts/fb-61593484056003.webp",
+    "cover": "assets/opt/screenshot-2026-10-26-at-6-15-20-pm-74a483-d6f7fcd8b8.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "updated": "2026-10-26"
