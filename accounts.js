@@ -12,17 +12,17 @@ window.ACCOUNTS = {
     "cover": "assets/accounts/fb-61593484056003-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
-    "updated": "2026-10-25"
+    "updated": "2026-10-26"
    },
    {
     "name": "NR Store | Phnom Penh",
     "url": "https://www.facebook.com/pagenrstore",
-    "followers": 78481,
+    "followers": 78479,
     "picture": "assets/accounts/fb-pagenrstore.webp",
     "cover": "assets/accounts/fb-pagenrstore-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
-    "updated": "2026-10-25"
+    "updated": "2026-10-26"
    },
    {
     "name": "100086760075207",
@@ -42,7 +42,7 @@ window.ACCOUNTS = {
     "cover": "assets/accounts/fb-61593329975440-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
-    "updated": "2026-10-25"
+    "updated": "2026-10-26"
    },
    {
     "name": "Ly Za",
@@ -52,7 +52,7 @@ window.ACCOUNTS = {
     "cover": "assets/accounts/fb-61581144403152-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
-    "updated": "2026-10-25"
+    "updated": "2026-10-26"
    },
    {
     "name": "យឹម អេង",
@@ -62,7 +62,7 @@ window.ACCOUNTS = {
     "cover": "assets/accounts/fb-61580042356068-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
-    "updated": "2026-10-25"
+    "updated": "2026-10-26"
    },
    {
     "name": "U Drama",
@@ -72,17 +72,17 @@ window.ACCOUNTS = {
     "cover": "assets/accounts/fb-61588652091475-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
-    "updated": "2026-10-25"
+    "updated": "2026-10-26"
    },
    {
     "name": "TV24k",
     "url": "https://www.facebook.com/profile.php?id=61593510027475",
-    "followers": 2127,
+    "followers": 2136,
     "picture": "assets/accounts/fb-61593510027475.webp",
     "cover": "assets/accounts/fb-61593510027475-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
-    "updated": "2026-10-25"
+    "updated": "2026-10-26"
    },
    {
     "name": "Van Sovann",
