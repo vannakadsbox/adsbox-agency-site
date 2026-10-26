@@ -19,8 +19,7 @@ window.ARTICLES = [
    "🏷️",
    "🧮",
    "💰"
-  ],
-  "cover": "assets/uploads/admin/2026-10/relive-thumbnail-d2f1b2.png"
+  ]
  },
  {
   "id": "caption-answers-questions-first",
