@@ -17,7 +17,7 @@ window.ACCOUNTS = {
    {
     "name": "Sdach Drama",
     "url": "https://www.facebook.com/profile.php?id=61593484056003",
-    "followers": 10862,
+    "followers": 10858,
     "picture": "assets/accounts/fb-61593484056003.webp",
     "cover": "assets/opt/screenshot-2026-10-26-at-6-15-20-pm-74a483-d6f7fcd8b8.webp",
     "type": "ផេកខ្មែរ",
@@ -57,7 +57,7 @@ window.ACCOUNTS = {
    {
     "name": "យឹម អេង",
     "url": "https://www.facebook.com/profile.php?id=61580042356068&sk=reels_tab",
-    "followers": 12694,
+    "followers": 12680,
     "picture": "assets/accounts/fb-61580042356068.webp",
     "cover": "assets/opt/screenshot-2026-10-26-at-6-18-51-pm-fee7cb-9c2c1cad35.webp",
     "type": "ផេកខ្មែរ",
@@ -67,7 +67,7 @@ window.ACCOUNTS = {
    {
     "name": "U Drama",
     "url": "https://www.facebook.com/profile.php?id=61588652091475&sk=reels_tab",
-    "followers": 12550,
+    "followers": 12534,
     "picture": "assets/accounts/fb-61588652091475.webp",
     "cover": "assets/opt/screenshot-2026-10-26-at-6-18-51-pm-13d01e-9c2c1cad35.webp",
     "type": "ផេកខ្មែរ",

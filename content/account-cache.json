@@ -1,4 +1,49 @@
 {
+  "fb-100068655260640": {
+    "cover": "assets/accounts/fb-100068655260640-cover.webp",
+    "fetched_at": "2026-10-26T15:07:13+00:00",
+    "followers": 8387,
+    "name": "CosMe | Phnom Penh",
+    "picture": "assets/accounts/fb-100068655260640.webp",
+    "platform": "facebook",
+    "url": "https://web.facebook.com/profile.php?id=100068655260640"
+  },
+  "fb-100075488185463": {
+    "cover": "assets/accounts/fb-100075488185463-cover.webp",
+    "fetched_at": "2026-10-26T15:07:13+00:00",
+    "followers": 8302,
+    "name": "Jenna online shop",
+    "picture": "assets/accounts/fb-100075488185463.webp",
+    "platform": "facebook",
+    "url": "https://web.facebook.com/profile.php?id=100075488185463"
+  },
+  "fb-100083063480749": {
+    "cover": "assets/accounts/fb-100083063480749-cover.webp",
+    "fetched_at": "2026-10-26T15:07:13+00:00",
+    "followers": 17887,
+    "name": "Healthy Glow | Phnom Penh",
+    "picture": "assets/accounts/fb-100083063480749.webp",
+    "platform": "facebook",
+    "url": "https://web.facebook.com/profile.php?id=100083063480749"
+  },
+  "fb-100088869350470": {
+    "cover": "assets/accounts/fb-100088869350470-cover.webp",
+    "fetched_at": "2026-10-26T15:07:13+00:00",
+    "followers": 31362,
+    "name": "ផ្ទះ បង្អែមព្រិលត្រចៀកកាំ",
+    "picture": "assets/accounts/fb-100088869350470.webp",
+    "platform": "facebook",
+    "url": "https://web.facebook.com/profile.php?id=100088869350470"
+  },
+  "fb-61550509391405": {
+    "cover": "assets/accounts/fb-61550509391405-cover.webp",
+    "fetched_at": "2026-10-26T15:07:13+00:00",
+    "followers": 6446,
+    "name": "មានលាភ999 លក់គ្រាប់ធញជាតិ ដំណាប់ ផ្លែឈើ",
+    "picture": "assets/accounts/fb-61550509391405.webp",
+    "platform": "facebook",
+    "url": "https://web.facebook.com/profile.php?id=61550509391405"
+  },
   "fb-61579303995746": {
     "cover": "assets/accounts/fb-61579303995746-cover.webp",
     "fetched_at": "2026-10-25T03:50:49+00:00",
@@ -10,8 +55,8 @@
   },
   "fb-61580042356068": {
     "cover": "assets/accounts/fb-61580042356068-cover.webp",
-    "fetched_at": "2026-10-26T01:44:01+00:00",
-    "followers": 12694,
+    "fetched_at": "2026-10-26T15:07:21+00:00",
+    "followers": 12680,
     "name": "យឹម អេង",
     "picture": "assets/accounts/fb-61580042356068.webp",
     "platform": "facebook",
@@ -48,6 +93,7 @@
     "cover": "assets/accounts/fb-61581144403152-cover.webp",
     "fetched_at": "2026-10-26T01:44:01+00:00",
     "followers": 12654,
+    "last_error_at": "2026-10-26T15:07:21+00:00",
     "name": "Ly Za",
     "picture": "assets/accounts/fb-61581144403152.webp",
     "platform": "facebook",
@@ -55,8 +101,8 @@
   },
   "fb-61588652091475": {
     "cover": "assets/accounts/fb-61588652091475-cover.webp",
-    "fetched_at": "2026-10-26T01:44:01+00:00",
-    "followers": 12550,
+    "fetched_at": "2026-10-26T15:07:21+00:00",
+    "followers": 12534,
     "name": "U Drama",
     "picture": "assets/accounts/fb-61588652091475.webp",
     "platform": "facebook",
@@ -75,6 +121,7 @@
     "cover": "assets/accounts/fb-61593329975440-cover.webp",
     "fetched_at": "2026-10-26T01:44:01+00:00",
     "followers": 19403,
+    "last_error_at": "2026-10-26T15:07:21+00:00",
     "name": "Aiសម្រាយរឿង",
     "picture": "assets/accounts/fb-61593329975440.webp",
     "platform": "facebook",
@@ -82,8 +129,8 @@
   },
   "fb-61593484056003": {
     "cover": "assets/accounts/fb-61593484056003-cover.webp",
-    "fetched_at": "2026-10-26T01:44:01+00:00",
-    "followers": 10862,
+    "fetched_at": "2026-10-26T15:07:21+00:00",
+    "followers": 10858,
     "name": "Sdach Drama",
     "picture": "assets/accounts/fb-61593484056003.webp",
     "platform": "facebook",
@@ -93,6 +140,7 @@
     "cover": "assets/accounts/fb-61593510027475-cover.webp",
     "fetched_at": "2026-10-26T01:44:01+00:00",
     "followers": 2136,
+    "last_error_at": "2026-10-26T15:07:21+00:00",
     "name": "TV24k",
     "picture": "assets/accounts/fb-61593510027475.webp",
     "platform": "facebook",
@@ -102,9 +150,28 @@
     "cover": "assets/accounts/fb-pagenrstore-cover.webp",
     "fetched_at": "2026-10-26T01:44:01+00:00",
     "followers": 78479,
+    "last_error_at": "2026-10-26T15:07:21+00:00",
     "name": "NR Store | Phnom Penh",
     "picture": "assets/accounts/fb-pagenrstore.webp",
     "platform": "facebook",
     "url": "https://www.facebook.com/pagenrstore"
+  },
+  "fb-vipsorhorh": {
+    "cover": "assets/accounts/fb-vipsorhorh-cover.webp",
+    "fetched_at": "2026-10-26T15:07:13+00:00",
+    "followers": 815040,
+    "name": "ម៉ាក់ នី VIP | Phnom Penh",
+    "picture": "assets/accounts/fb-vipsorhorh.webp",
+    "platform": "facebook",
+    "url": "https://web.facebook.com/vipsorhorh"
+  },
+  "fb-worldofshopping168": {
+    "cover": "assets/accounts/fb-worldofshopping168-cover.webp",
+    "fetched_at": "2026-10-26T15:07:13+00:00",
+    "followers": 6086,
+    "name": "World of Shopping",
+    "picture": "assets/accounts/fb-worldofshopping168.webp",
+    "platform": "facebook",
+    "url": "https://web.facebook.com/worldofshopping168"
   }
 }
