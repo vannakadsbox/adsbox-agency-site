@@ -29,7 +29,7 @@ window.ACCOUNTS = {
     "url": "https://www.facebook.com/profile.php?id=100086760075207",
     "followers": 0,
     "picture": "",
-    "cover": "",
+    "cover": "assets/opt/screenshot-2026-10-26-at-6-18-51-pm-6903ba-9c2c1cad35.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "updated": ""
@@ -39,7 +39,7 @@ window.ACCOUNTS = {
     "url": "https://www.facebook.com/profile.php?id=61593329975440",
     "followers": 19403,
     "picture": "assets/accounts/fb-61593329975440.webp",
-    "cover": "assets/accounts/fb-61593329975440-cover.webp",
+    "cover": "assets/opt/screenshot-2026-10-26-at-6-18-51-pm-bd921d-9c2c1cad35.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "updated": "2026-10-26"
@@ -49,7 +49,7 @@ window.ACCOUNTS = {
     "url": "https://www.facebook.com/profile.php?id=61581144403152&sk=reels_tab",
     "followers": 12654,
     "picture": "assets/accounts/fb-61581144403152.webp",
-    "cover": "assets/accounts/fb-61581144403152-cover.webp",
+    "cover": "assets/opt/screenshot-2026-10-26-at-6-18-51-pm-99784d-9c2c1cad35.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "updated": "2026-10-26"
@@ -59,7 +59,7 @@ window.ACCOUNTS = {
     "url": "https://www.facebook.com/profile.php?id=61580042356068&sk=reels_tab",
     "followers": 12694,
     "picture": "assets/accounts/fb-61580042356068.webp",
-    "cover": "assets/accounts/fb-61580042356068-cover.webp",
+    "cover": "assets/opt/screenshot-2026-10-26-at-6-18-51-pm-fee7cb-9c2c1cad35.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "updated": "2026-10-26"
@@ -69,7 +69,7 @@ window.ACCOUNTS = {
     "url": "https://www.facebook.com/profile.php?id=61588652091475&sk=reels_tab",
     "followers": 12550,
     "picture": "assets/accounts/fb-61588652091475.webp",
-    "cover": "assets/accounts/fb-61588652091475-cover.webp",
+    "cover": "assets/opt/screenshot-2026-10-26-at-6-18-51-pm-13d01e-9c2c1cad35.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "updated": "2026-10-26"
@@ -79,7 +79,7 @@ window.ACCOUNTS = {
     "url": "https://www.facebook.com/profile.php?id=61593510027475",
     "followers": 2136,
     "picture": "assets/accounts/fb-61593510027475.webp",
-    "cover": "assets/accounts/fb-61593510027475-cover.webp",
+    "cover": "assets/opt/screenshot-2026-10-26-at-6-18-51-pm-216adb-9c2c1cad35.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "updated": "2026-10-26"
@@ -89,7 +89,7 @@ window.ACCOUNTS = {
     "url": "https://www.facebook.com/profile.php?id=61580134710032",
     "followers": 10427,
     "picture": "assets/accounts/fb-61580134710032.webp",
-    "cover": "assets/accounts/fb-61580134710032-cover.webp",
+    "cover": "assets/opt/screenshot-2026-10-26-at-6-18-51-pm-fca882-9c2c1cad35.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "updated": "2026-10-26"
@@ -99,7 +99,7 @@ window.ACCOUNTS = {
     "url": "https://www.facebook.com/profile.php?id=61581017472166",
     "followers": 9919,
     "picture": "assets/accounts/fb-61581017472166.webp",
-    "cover": "assets/accounts/fb-61581017472166-cover.webp",
+    "cover": "assets/opt/screenshot-2026-10-26-at-6-18-51-pm-c0a925-9c2c1cad35.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "updated": "2026-10-26"
