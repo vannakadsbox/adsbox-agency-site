@@ -1,0 +1,59 @@
+# Posts each new knowledge article (picture, title, summary, link) to the ADS BOX Telegram group.
+# Runs after "Build site" finishes, so the cover picture exists and the page is going live.
+# Secrets: TELEGRAM_BOT_TOKEN, TELEGRAM_GROUP_ID (the group), TELEGRAM_CHAT_ID (owner; used by "find group").
+name: Telegram group posts
+
+on:
+  workflow_run:
+    workflows: ["Build site"]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "find-group = send me the group ID · latest = post the newest article to the group"
+        type: choice
+        options: [find-group, latest]
+        default: find-group
+
+permissions:
+  contents: read
+
+concurrency:
+  group: telegram-group
+  cancel-in-progress: false
+
+jobs:
+  post:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q pyyaml
+      - name: Post new articles
+        if: github.event_name == 'workflow_run'
+        run: |
+          sha="${{ github.event.workflow_run.head_sha }}"
+          git show "$sha~1:content/autopost/history.json" > /tmp/old-history.json 2>/dev/null || echo '{"runs": []}' > /tmp/old-history.json
+          git show "$sha:content/autopost/history.json" > /tmp/new-history.json 2>/dev/null || cp content/autopost/history.json /tmp/new-history.json
+          python3 - <<'PY'
+          import json
+          old = json.load(open("/tmp/old-history.json")); new = json.load(open("/tmp/new-history.json"))
+          print("history changed in this build:", old != new)
+          PY
+          python3 tools/autopost/group.py --new-since /tmp/old-history.json --new /tmp/new-history.json
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_GROUP_ID: ${{ secrets.TELEGRAM_GROUP_ID }}
+      - name: Manual action
+        if: github.event_name == 'workflow_dispatch'
+        run: python3 tools/autopost/group.py --${{ inputs.action }}
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_GROUP_ID: ${{ secrets.TELEGRAM_GROUP_ID }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
