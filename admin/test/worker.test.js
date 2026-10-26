@@ -172,23 +172,35 @@ describe("saving content", () => {
     assert.equal((await call("sales", "PUT", "/api/data/accounts", { data, sha })).status, 200);
   });
   test("image upload goes into the same commit", async () => {
-    const { data, sha } = (await call("designer", "GET", "/api/data/clients")).body;
-    data.clients.push({ name: "New Shop", logo: "upload:0" });
-    const r = await call("designer", "PUT", "/api/data/clients", { data, sha, uploads: [{ key: 0, name: "New Shop.PNG", b64: PNG.toString("base64") }] });
+    const { data, sha } = (await call("designer", "GET", "/api/data/promos")).body;
+    data[0].image = "upload:0";
+    const r = await call("designer", "PUT", "/api/data/promos", { data, sha, uploads: [{ key: 0, name: "New Poster.PNG", b64: PNG.toString("base64") }] });
     assert.equal(r.status, 200, JSON.stringify(r.body));
-    const logo = gh.json("content/clients.json").clients.at(-1).logo;
-    assert.match(logo, /^\/assets\/uploads\/clients\/new-shop-[0-9a-f]{6}\.png$/);
-    assert.ok(gh.files.has(logo.slice(1)));
+    const img = gh.json("content/promos.json")[0].image;
+    assert.match(img, /^\/assets\/uploads\/admin\/\d{4}-\d{2}\/new-poster-[0-9a-f]{6}\.png$/);
+    assert.ok(gh.files.has(img.slice(1)));
     assert.equal(gh.commits.length, 1);
-    assert.deepEqual(gh.commits[0].paths.sort(), ["content/clients.json", logo.slice(1)].sort());
+    assert.deepEqual(gh.commits[0].paths.sort(), ["content/promos.json", img.slice(1)].sort());
   });
   test("fake images and wrong types are refused", async () => {
-    const { data, sha } = (await call("designer", "GET", "/api/data/clients")).body;
-    data.clients.push({ name: "x", logo: "upload:0" });
+    const { data, sha } = (await call("designer", "GET", "/api/data/promos")).body;
+    data[0].image = "upload:0";
     const html = Buffer.from("<script>alert(1)</script>").toString("base64");
-    assert.equal((await call("designer", "PUT", "/api/data/clients", { data, sha, uploads: [{ key: 0, name: "x.png", b64: html }] })).status, 400);
-    assert.equal((await call("designer", "PUT", "/api/data/clients", { data, sha, uploads: [{ key: 0, name: "x.svg", b64: html }] })).status, 400);
+    assert.equal((await call("designer", "PUT", "/api/data/promos", { data, sha, uploads: [{ key: 0, name: "x.png", b64: html }] })).status, 400);
+    assert.equal((await call("designer", "PUT", "/api/data/promos", { data, sha, uploads: [{ key: 0, name: "x.svg", b64: html }] })).status, 400);
     assert.equal(gh.commits.length, 0);
+  });
+  test("client pages: Facebook links (web./www.) with a category; other links refused", async () => {
+    const { data, sha, categories } = (await call("designer", "GET", "/api/data/clients")).body;
+    assert.ok(categories.length >= 5);
+    data.clients.push({ url: "https://web.facebook.com/newshop", category: "សម្ផស្ស", name: "", followers: "" });
+    assert.equal((await call("designer", "PUT", "/api/data/clients", { data, sha })).status, 200);
+    assert.equal(gh.json("content/clients.json").clients.at(-1).category, "សម្ផស្ស");
+    const again = (await call("designer", "GET", "/api/data/clients")).body;
+    again.data.clients.push({ url: "https://evil.example/x" });
+    assert.equal((await call("designer", "PUT", "/api/data/clients", again)).status, 400);
+    again.data.clients.pop(); again.data.clients.push({ url: "https://web.facebook.com/newshop" });
+    assert.equal((await call("designer", "PUT", "/api/data/clients", again)).status, 400);   // duplicate
   });
   test("image paths cannot point outside /assets", async () => {
     const { data, sha } = (await call("sales", "GET", "/api/data/promos")).body;

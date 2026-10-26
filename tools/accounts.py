@@ -82,7 +82,10 @@ def read_link(url):
     """Live lookup. Returns {name, followers, picture_url} or None. Network errors return None."""
     kind = platform(url)
     try:
-        if kind == "facebook": return parse_facebook(fetch(url, FB_UA).decode("utf-8", "replace"))
+        if kind == "facebook":
+            # web.facebook.com / m.facebook.com links are read through www.facebook.com (same page).
+            url = re.sub(r"^https://(web|m|mbasic)\.facebook\.com/", "https://www.facebook.com/", url)
+            return parse_facebook(fetch(url, FB_UA).decode("utf-8", "replace"))
         if kind == "tiktok": return parse_tiktok(fetch(url, BROWSER_UA).decode("utf-8", "replace"))
     except Exception as ex:
         print(f"Account lookup failed for {url}: {type(ex).__name__}")
