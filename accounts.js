@@ -5,6 +5,28 @@ window.ACCOUNTS = {
   "price_per_1k": 0.0,
   "items": [
    {
+    "name": "Content Happy",
+    "url": "https://www.facebook.com/profile.php?id=61565475212687",
+    "followers": 903,
+    "picture": "assets/accounts/fb-61565475212687.webp",
+    "cover": "assets/accounts/fb-61565475212687-cover.webp",
+    "type": "ផេកខ្មែរ",
+    "sold": false,
+    "discount": 0,
+    "updated": "2026-10-27"
+   },
+   {
+    "name": "7Drama",
+    "url": "https://www.facebook.com/profile.php?id=61595298921727",
+    "followers": 78,
+    "picture": "assets/accounts/fb-61595298921727.webp",
+    "cover": "assets/accounts/fb-61595298921727-cover.webp",
+    "type": "ផេកខ្មែរ",
+    "sold": false,
+    "discount": 0,
+    "updated": "2026-10-27"
+   },
+   {
     "name": "NR Store | Phnom Penh",
     "url": "https://www.facebook.com/pagenrstore",
     "followers": 78540,
