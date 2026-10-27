@@ -87,22 +87,22 @@ window.ACCOUNTS = {
    {
     "name": "Van Sovann",
     "url": "https://www.facebook.com/profile.php?id=61580134710032",
-    "followers": 10427,
+    "followers": 10421,
     "picture": "assets/accounts/fb-61580134710032.webp",
     "cover": "assets/opt/screenshot-2026-10-26-at-6-18-51-pm-fca882-9c2c1cad35.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
-    "updated": "2026-10-26"
+    "updated": "2026-10-27"
    },
    {
     "name": "គីម កញ្ញា",
     "url": "https://www.facebook.com/profile.php?id=61581017472166",
-    "followers": 9919,
+    "followers": 9913,
     "picture": "assets/accounts/fb-61581017472166.webp",
     "cover": "assets/opt/screenshot-2026-10-26-at-6-18-51-pm-c0a925-9c2c1cad35.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
-    "updated": "2026-10-26"
+    "updated": "2026-10-27"
    }
   ]
  },
