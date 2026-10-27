@@ -489,15 +489,15 @@ window.ACCOUNTS = {
     "updated": "2026-10-27"
    },
    {
-    "name": "61594250904325",
+    "name": "Mer24សម្រាយ",
     "url": "https://www.facebook.com/profile.php?id=61594250904325",
-    "followers": 0,
-    "picture": "",
-    "cover": "",
+    "followers": 166,
+    "picture": "assets/accounts/fb-61594250904325.webp",
+    "cover": "assets/accounts/fb-61594250904325-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": ""
+    "updated": "2026-10-27"
    },
    {
     "name": "Content For You",
@@ -599,26 +599,26 @@ window.ACCOUNTS = {
     "updated": "2026-10-27"
    },
    {
-    "name": "61595206226364",
+    "name": "10Drama",
     "url": "https://www.facebook.com/profile.php?id=61595206226364",
-    "followers": 0,
-    "picture": "",
-    "cover": "",
+    "followers": 25,
+    "picture": "assets/accounts/fb-61595206226364.webp",
+    "cover": "assets/accounts/fb-61595206226364-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": ""
+    "updated": "2026-10-27"
    },
    {
-    "name": "61594113096221",
+    "name": "សម្រាយកុនAi",
     "url": "https://www.facebook.com/profile.php?id=61594113096221",
-    "followers": 0,
-    "picture": "",
-    "cover": "",
+    "followers": 4662,
+    "picture": "assets/accounts/fb-61594113096221.webp",
+    "cover": "assets/accounts/fb-61594113096221-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": ""
+    "updated": "2026-10-27"
    },
    {
     "name": "Content Happy",
