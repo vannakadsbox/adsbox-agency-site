@@ -7,20 +7,20 @@ window.ACCOUNTS = {
    {
     "name": "NR Store | Phnom Penh",
     "url": "https://www.facebook.com/pagenrstore",
-    "followers": 78476,
+    "followers": 78540,
     "picture": "assets/accounts/fb-pagenrstore.webp",
-    "cover": "assets/opt/screenshot-2026-10-26-at-6-18-51-pm-83f43f-9c2c1cad35.webp",
+    "cover": "assets/opt/adsbox-cover-870b1e-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-26"
+    "updated": "2026-10-27"
    },
    {
     "name": "Sdach Drama",
     "url": "https://www.facebook.com/profile.php?id=61593484056003",
     "followers": 10857,
     "picture": "assets/accounts/fb-61593484056003.webp",
-    "cover": "assets/opt/screenshot-2026-10-26-at-6-15-20-pm-74a483-d6f7fcd8b8.webp",
+    "cover": "assets/opt/adsbox-cover-465d28-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
@@ -40,24 +40,24 @@ window.ACCOUNTS = {
    {
     "name": "Aiសម្រាយរឿង",
     "url": "https://www.facebook.com/profile.php?id=61593329975440",
-    "followers": 19403,
+    "followers": 19402,
     "picture": "assets/accounts/fb-61593329975440.webp",
     "cover": "assets/opt/screenshot-2026-10-26-at-6-18-51-pm-bd921d-9c2c1cad35.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-26"
+    "updated": "2026-10-27"
    },
    {
     "name": "Ly Za",
     "url": "https://www.facebook.com/profile.php?id=61581144403152&sk=reels_tab",
-    "followers": 12631,
+    "followers": 12573,
     "picture": "assets/accounts/fb-61581144403152.webp",
     "cover": "assets/opt/screenshot-2026-10-26-at-6-18-51-pm-99784d-9c2c1cad35.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-26"
+    "updated": "2026-10-27"
    },
    {
     "name": "យឹម អេង",
@@ -84,13 +84,13 @@ window.ACCOUNTS = {
    {
     "name": "TV24k",
     "url": "https://www.facebook.com/profile.php?id=61593510027475",
-    "followers": 2142,
+    "followers": 2145,
     "picture": "assets/accounts/fb-61593510027475.webp",
     "cover": "assets/opt/screenshot-2026-10-26-at-6-18-51-pm-216adb-9c2c1cad35.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-26"
+    "updated": "2026-10-27"
    },
    {
     "name": "Van Sovann",
