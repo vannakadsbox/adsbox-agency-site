@@ -553,6 +553,28 @@
   "tiktok": {
     "title": "លក់អាខោន TikTok",
     "price_per_1k": 0,
-    "items": []
+    "items": [
+      {
+        "url": "https://www.tiktok.com/@ahkeo080",
+        "status": "available",
+        "cover": "",
+        "name": "",
+        "followers": ""
+      },
+      {
+        "url": "https://www.tiktok.com/@sombunthoeun24",
+        "status": "available",
+        "cover": "",
+        "name": "",
+        "followers": ""
+      },
+      {
+        "url": "https://www.tiktok.com/@sotheakanha08",
+        "status": "available",
+        "cover": "",
+        "name": "",
+        "followers": ""
+      }
+    ]
   }
 }
