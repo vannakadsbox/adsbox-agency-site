@@ -99,6 +99,8 @@ export async function api(req, env, url, user, fetchFn) {
       const { files, paths } = await handleUploads(name, body.uploads);
       const cur = await g.readFile(FILES[name]);
       const before = cur ? JSON.parse(cur.text) : null;
+      if (name === "autopost" && user.role !== "owner" && before && body.data && body.data.mode !== before.mode)
+        return err(403, "មានតែម្ចាស់ប៉ុណ្ណោះ ដែលអាចប្តូរ Live / Dry run");
       const data = CLEAN[name](fillUploads(body.data, paths), before);
       // Same layout as the file already has (2-space indent; final newline only if it had one).
       const text = JSON.stringify(data, null, 2) + (!cur || cur.text.endsWith("\n") ? "\n" : "");
@@ -158,11 +160,12 @@ export async function api(req, env, url, user, fetchFn) {
 
   // ----- team -----
   if (kind === "team") {
-    if (!canView(user.role, "team")) return err(403, "មានតែម្ចាស់ប៉ុណ្ណោះ");
+    if (!canView(user.role, "team")) return err(403, "មានតែម្ចាស់ និង Admin ប៉ុណ្ណោះ");
     const team = await loadTeam(env);
     const owner = { email: normEmail(env.OWNER_EMAIL), role: "owner", name: "", fixed: true };
     if (method === "GET") return json({ members: [owner, ...team.members.filter(m => normEmail(m.email) !== owner.email)] });
     if (method === "PUT") {
+      if (!canEdit(user.role, "team")) return err(403, "អ្នកមិនមានសិទ្ធិកែក្រុមការងារទេ");
       const body = await req.json();
       if (!Array.isArray(body.members) || body.members.length > 100) return err(400, "បញ្ជីមិនត្រឹមត្រូវ");
       const seen = new Set([owner.email]);
@@ -176,6 +179,8 @@ export async function api(req, env, url, user, fetchFn) {
         seen.add(email);
         members.push({ email, role: m.role, name: String(m.name || "").slice(0, 60), added: m.added || new Date().toISOString().slice(0, 10) });
       }
+      // A non-owner cannot lock themselves out by removing their own entry.
+      if (user.role !== "owner" && !members.some(m => m.email === normEmail(user.email))) return err(400, "អ្នកមិនអាចដកខ្លួនឯងចេញពីក្រុមបានទេ");
       await saveTeam(env, { members });
       return json({ ok: true, members: [owner, ...members] });
     }

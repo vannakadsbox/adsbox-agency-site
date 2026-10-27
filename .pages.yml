@@ -143,6 +143,10 @@ content:
           label: ចំនួន Follower (ស្រេចចិត្ត)
           description: ទុកទទេ ដើម្បីប្រើចំនួនដែលយកដោយស្វ័យប្រវត្តិ។
           type: string
+        - name: discount
+          label: បញ្ចុះតម្លៃ (%)
+          description: ឧ. 20 = បញ្ចុះ 20%។ ទុក 0 ឬទទេ = គ្មានបញ្ចុះ។
+          type: number
     - name: tiktok
       label: លក់អាខោន TikTok
       type: object

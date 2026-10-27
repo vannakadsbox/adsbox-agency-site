@@ -19,9 +19,9 @@ const MATRIX = {
   promos:   "EEEVEV",
   clients:  "EEVVEV",
   articles: "EEVEVV",
-  autopost: "EVNVNV",
+  autopost: "EENVNV",   // Admin edits times and settings; only the Owner switches Live / Dry run (checked in worker.js)
   history:  "VVNVNV",
-  team:     "ENNNNN",
+  team:     "EENNNN",   // Admin can add and manage members; nobody can change the Owner
 };
 
 export const SECTIONS = Object.keys(MATRIX);

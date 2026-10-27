@@ -384,13 +384,16 @@ PAGES.accounts = async item => {
           h("a", { href: it.url, target: "_blank", rel: "noopener", style: "font-size:12.5px;word-break:break-all" }, it.url.replace(/^https:\/\/(www\.)?/, "")),
           h("div", { class: "stat2" },
             h("div", { style: "background:#f1f5ff" }, h("small", {}, "👥 Follower"), h("b", {}, fol ? shortNum(fol) : "—")),
-            h("div", { style: "background:#eafaf2" }, h("small", {}, "💰 តម្លៃ"), h("b", { style: "color:var(--ok)" }, rate && fol ? "$" + fmtNum(Math.round(fol / 1000 * rate)) : "សួរ"))),
+            h("div", { style: "background:#eafaf2" }, h("small", {}, "💰 តម្លៃ" + (+it.discount ? ` · -${+it.discount}%` : "")),
+              rate && fol && +it.discount ? h("span", {}, h("s", { class: "muted", style: "font-size:13px;margin-right:6px" }, "$" + fmtNum(Math.round(fol / 1000 * rate))), h("b", { style: "color:var(--ok)" }, "$" + fmtNum(Math.round(fol / 1000 * rate * (100 - it.discount) / 100))))
+                : h("b", { style: "color:var(--ok)" }, rate && fol ? "$" + fmtNum(Math.round(fol / 1000 * rate)) : "សួរ"))),
           edit ? h("details", {}, h("summary", { style: "cursor:pointer;font-weight:600;font-size:14px" }, "✏️ កែ"),
             h("div", { class: "stack", style: "margin-top:8px" },
               field(it, "status", "ស្ថានភាព", { type: "select", options: [{ value: "available", label: "🟢 នៅលក់" }, { value: "sold", label: "🔴 លក់រួច" }], onInput: draw }),
               st.p === "facebook" ? field(it, "type", "ប្រភេទ", { type: "select", options: ["ផេកខ្មែរ", "ផេកប៊ូសឡាយ"] }) : null,
               field(it, "name", "ឈ្មោះ (ស្រេចចិត្ត)", { hint: c.name ? `ទុកទទេ = «${c.name}»` : "ទុកទទេ = ឈ្មោះស្វ័យប្រវត្តិ" }),
               field(it, "followers", "Follower (ស្រេចចិត្ត)", { hint: c.followers ? `ទុកទទេ = ${fmtNum(c.followers)}` : "ឧ. 10.4K" }),
+              field(it, "discount", "🏷️ បញ្ចុះតម្លៃ (%)", { type: "number", hint: "ឧ. 20 = បញ្ចុះ 20% · ទុក 0 = គ្មាន", onInput: () => draw.soon2 && draw.soon2() }),
               imagePicker({ label: "Cover (ស្រេចចិត្ត)", value: it.cover, onChange: v => (it.cover = v) }),
               h("div", { class: "row", style: "gap:6px" },
                 h("button", { class: "btn small", type: "button", disabled: i === 0, onclick: () => { move(side.items, i, -1); draw(); } }, "← មុន"),
@@ -617,6 +620,7 @@ PAGES.autopost = async item => {
     S.me.perms.history !== "N" ? api("GET", "/api/data/history").catch(() => null) : null,
   ]);
   const edit = perm("autopost") === "E" && S.me.perms.autopost === "E";
+  const modeEdit = edit && S.me.role === "owner";   // Live / Dry run: Owner only (also checked on the server)
   let data = res && clone(res.data), sha = res && res.sha;
   const wrap = h("div", { class: "stack" });
   function draw() {
@@ -626,11 +630,11 @@ PAGES.autopost = async item => {
         h("div", { style: "flex:1 1 260px" }, h("h2", { style: "margin:0" }, "⚡ ការបោះពុម្ពស្វ័យប្រវត្តិ"), h("span", { class: "muted", style: "font-size:14px" }, "២ អត្ថបទ/ថ្ងៃ សម្រាប់អ្នកលក់អនឡាញ")),
         sw(!!data.enabled, data.enabled ? "បើក" : "ផ្អាក", v => { data.enabled = v; setDirty(); draw(); }, !edit))));
       parts.push(h("div", { class: "modes", role: "radiogroup", "aria-label": "Mode" },
-        h("button", { type: "button", role: "radio", "aria-checked": String(data.mode === "live"), class: "mode" + (data.mode === "live" ? " on-live" : ""), disabled: !edit, onclick: () => { if (data.mode === "live") return; if (!confirm("ប្តូរទៅ Live? អត្ថបទនឹងបង្ហាញលើវេបសាយដោយស្វ័យប្រវត្តិ។")) return; data.mode = "live"; setDirty(); draw(); } },
+        h("button", { type: "button", role: "radio", "aria-checked": String(data.mode === "live"), class: "mode" + (data.mode === "live" ? " on-live" : ""), disabled: !modeEdit, onclick: () => { if (data.mode === "live") return; if (!confirm("ប្តូរទៅ Live? អត្ថបទនឹងបង្ហាញលើវេបសាយដោយស្វ័យប្រវត្តិ។")) return; data.mode = "live"; setDirty(); draw(); } },
           h("b", {}, "🚀 បោះពុម្ពពិត (Live)"), h("span", { style: "font-size:14px" }, "អត្ថបទបង្ហាញលើវេបសាយភ្លាមៗ"), data.mode === "live" ? h("span", { class: "pill ok", style: "align-self:flex-start;background:var(--ok);color:#fff" }, "✔ កំពុងប្រើ") : null),
-        h("button", { type: "button", role: "radio", "aria-checked": String(data.mode === "dry_run"), class: "mode" + (data.mode === "dry_run" ? " on-dry" : ""), disabled: !edit, onclick: () => { data.mode = "dry_run"; setDirty(); draw(); } },
+        h("button", { type: "button", role: "radio", "aria-checked": String(data.mode === "dry_run"), class: "mode" + (data.mode === "dry_run" ? " on-dry" : ""), disabled: !modeEdit, onclick: () => { data.mode = "dry_run"; setDirty(); draw(); } },
           h("b", {}, "🧪 សាកល្បង (Dry run)"), h("span", { style: "font-size:14px" }, "សរសេរ ហើយទុកឲ្យពិនិត្យ — មិនបង្ហាញលើវេបសាយ"), data.mode === "dry_run" ? h("span", { class: "pill warn", style: "align-self:flex-start" }, "✔ កំពុងប្រើ") : null)),
-        !edit ? h("p", { class: "muted", style: "margin:0;font-size:13.5px" }, "🔒 មានតែម្ចាស់ទេ ដែលអាចប្តូរការកំណត់នេះ។") : null);
+        !modeEdit ? h("p", { class: "muted", style: "margin:0;font-size:13.5px" }, "🔒 មានតែម្ចាស់ទេ ដែលអាចប្តូរ Live / Dry run។") : null);
       const slot = (k, e, label, bg) => h("div", { class: "slot", style: `background:${bg}` },
         h("span", { class: "e", "aria-hidden": "true" }, e),
         h("div", { style: "flex:1" }, h("b", {}, label), h("div", {}, sw(!!data[k].enabled, data[k].enabled ? "បើក" : "បិទ", v => { data[k].enabled = v; setDirty(); draw(); }, !edit))),
@@ -677,7 +681,7 @@ PAGES.team = async item => {
   const L = { E: ["✏️", "#e3f7ee", "កែបាន"], V: ["👀", "#e8eefb", "មើលបាន"], N: ["🚫", "#f3f5f9", "មើលមិនឃើញ"] };
   const SEC = [["services", "🛍️ សេវាកម្ម និងតម្លៃ"], ["accounts", "📘 លក់ផេក & TikTok"], ["promos", "🎁 Pop-up"], ["clients", "⭐ ផេកអតិថិជន"], ["articles", "📝 អត្ថបទ"], ["autopost", "🤖 ការកំណត់បោះពុម្ព (Live/Dry run)"], ["history", "📜 ប្រវត្តិបោះពុម្ព"], ["team", "👥 ក្រុមការងារ"]];
   const ROLE_BG = { owner: "linear-gradient(135deg,#f5b544,#ff8a3c)", admin: "linear-gradient(135deg,#1c4b9b,#3f7dff)", sales: "linear-gradient(135deg,#0e7a50,#2fbf7e)", writer: "linear-gradient(135deg,#5b47e0,#9b7bff)", designer: "linear-gradient(135deg,#c8355e,#ff7a9a)", viewer: "#fff" };
-  const ROLE_DESC = { owner: "គ្រប់យ៉ាង · Live · តួនាទី", admin: "កែមាតិកាទាំងអស់ លើកលែងតួនាទី និង Live", sales: "សេវាកម្ម តម្លៃ ផេកលក់ និង Pop-up", writer: "អត្ថបទចំណេះដឹង", designer: "ផេកអតិថិជន Pop-up និងរូបភាព", viewer: "មើលបាន មិនអាចកែ" };
+  const ROLE_DESC = { owner: "គ្រប់យ៉ាង · Live · តួនាទី", admin: "កែមាតិកាទាំងអស់ និងបន្ថែមសមាជិក · លើកលែង Live/Dry run", sales: "សេវាកម្ម តម្លៃ ផេកលក់ និង Pop-up", writer: "អត្ថបទចំណេះដឹង", designer: "ផេកអតិថិជន Pop-up និងរូបភាព", viewer: "មើលបាន មិនអាចកែ" };
   function draw() {
     const count = r => members.filter(m => m.role === r).length;
     const email = h("input", { id: "inv-email", class: "input", type: "email", placeholder: "name@gmail.com", autocomplete: "off" });
@@ -694,7 +698,7 @@ PAGES.team = async item => {
             m.fixed ? h("span", { class: "pill warn" }, "👑 ម្ចាស់") : [
               h("label", { class: "sr", for: `r${i}` }, `តួនាទី ${m.email}`),
               h("select", { id: `r${i}`, class: "input", style: "width:auto;min-height:38px", onchange: e => { m.role = e.target.value; setDirty(); draw(); } }, roles.map(r => h("option", { value: r.id, selected: r.id === m.role }, `${r.emoji} ${r.km}`))),
-              h("button", { class: "btn small icon danger", type: "button", "aria-label": `ដក ${m.email}`, onclick: () => { if (!confirm(`ដក ${m.email} ចេញពីក្រុម?`)) return; members.splice(i, 1); setDirty(); draw(); } }, "🗑️")])))),
+              h("button", { class: "btn small icon danger", type: "button", "aria-label": `ដក ${m.email}`, disabled: m.email === S.me.email, title: m.email === S.me.email ? "មិនអាចដកខ្លួនឯង" : null, onclick: () => { if (!confirm(`ដក ${m.email} ចេញពីក្រុម?`)) return; members.splice(i, 1); setDirty(); draw(); } }, "🗑️")])))),
         h("aside", { class: "aside stack" },
           h("form", { class: "hero-add", onsubmit: e => {
             e.preventDefault();
@@ -708,7 +712,7 @@ PAGES.team = async item => {
             h("label", { class: "sr", for: "inv-role" }, "តួនាទី"), role,
             h("button", { class: "btn green", type: "submit" }, "➕ បន្ថែម"),
             h("span", { class: "hint" }, "ប្រើអ៊ីមែល Google (Gmail)។ បន្ទាប់ពី Save ពួកគេចូលបានភ្លាមៗ តាម «ចូលដោយ Google»។")),
-          h("div", { class: "alert info" }, "🔒 មានតែ ", h("b", {}, "ម្ចាស់"), " ទេ ដែលអាចប្តូរ Live/Dry run ផ្លាស់ប្តូរតួនាទី ឬដកសមាជិក។ ការដកចេញមានប្រសិទ្ធភាពភ្លាមៗ។"))),
+          h("div", { class: "alert info" }, "🔒 ", h("b", {}, "ម្ចាស់"), " និង ", h("b", {}, "Admin"), " អាចបន្ថែម ប្តូរតួនាទី ឬដកសមាជិក។ មានតែម្ចាស់ទេ ដែលអាចប្តូរ Live/Dry run។ ការដកចេញមានប្រសិទ្ធភាពភ្លាមៗ។"))),
       h("section", { class: "card" }, h("h2", {}, "🔐 សិទ្ធិតាមផ្នែក ", h("span", { class: "muted", style: "font-size:13px;font-weight:400" }, "✏️ កែបាន · 👀 មើលបាន · 🚫 មើលមិនឃើញ")),
         h("div", { class: "scroll" }, h("table", { class: "tbl", style: "min-width:620px" },
           h("thead", {}, h("tr", {}, h("th", { scope: "col" }, "ផ្នែក"), S.me.roles.map(r => h("th", { scope: "col", class: "c" }, r.emoji, h("br"), r.km)))),

@@ -691,6 +691,11 @@ a.more.pg-view { display: inline-flex; align-items: center; text-decoration: non
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .cp-cat, :root:not([data-theme="light"]) .cp-pic b { color: #8fb3ff; } :root:not([data-theme="light"]) .cp-fol { color: #8fb3ff; border-color: #8fb3ff; } }
 :root[data-theme="dark"] .cp-cat, :root[data-theme="dark"] .cp-pic b { color: #8fb3ff; }
 :root[data-theme="dark"] .cp-fol { color: #8fb3ff; border-color: #8fb3ff; }
+
+/* Page for sale with a discount (27 Oct): old price struck through, new price, -X% tag. */
+.price.acc-disc { display: inline-flex; align-items: baseline; gap: 6px; flex-wrap: wrap; color: var(--fg); }
+.price.acc-disc s { color: var(--muted); font-weight: 500; font-size: 14px; }
+.price.acc-disc em { font-style: normal; font-size: 12px; font-weight: 700; color: #fff; background: #c8355e; padding: 1px 8px; border-radius: 999px; }
 </style>
 
 </head>
@@ -1050,7 +1055,8 @@ a.more.pg-view { display: inline-flex; align-items: center; text-decoration: non
     askTitle: { kh: "សូមទាក់ទងសម្រាប់តម្លៃ", en: "Contact us for pricing" },
     askLead: { kh: "ចុច «ចាប់អារម្មណ៍សេវាកម្ម» លើអាខោនដែលចង់បាន ក្រុមយើងនឹងប្រាប់តម្លៃ។", en: "Tap “I'm interested” on the account you want and we'll tell you the price." },
     calcSmall: { kh: "បញ្ចូលចំនួន Follower", en: "Enter the followers" },
-    calcTitle: { kh: "គណនាតម្លៃ", en: "Price calculator" }
+    calcTitle: { kh: "គណនាតម្លៃ", en: "Price calculator" },
+    oldPrice: { kh: "តម្លៃដើម", en: "Was" }
   };
   var KH_MONTHS = ["មករា","កុម្ភៈ","មីនា","មេសា","ឧសភា","មិថុនា","កក្កដា","សីហា","កញ្ញា","តុលា","វិច្ឆិកា","ធ្នូ"];
   var KH_DIGITS = "០១២៣៤៥៦៧៨៩";
@@ -1081,14 +1087,15 @@ a.more.pg-view { display: inline-flex; align-items: center; text-decoration: non
     return '<span class="' + cls + '">' + (p.picture ? '<img src="' + encodeURI(p.picture) + '" alt="" width="96" height="96" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">' : "") + "<b>" + ini + "</b></span>";
   }
   function accCard(p, kind, rate) {
-    var price = accPrice(p.followers, rate);
+    var full = accPrice(p.followers, rate), disc = Math.max(0, Math.min(90, +p.discount || 0));
+    var price = disc ? Math.round(full * (100 - disc) / 100) : full;
     var label = p.name + " · " + fmtNum(p.followers) + " Followers" + (rate ? " · $" + price : "");
     var cover = p.cover ? '<img class="acc-cover-img" src="' + encodeURI(p.cover) + '" alt="" width="960" height="540" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">' : "";
     return '<div class="svc acc acc-' + kind + (p.sold ? " acc-sold" : "") + '">' + (p.sold ? '<span class="hot">' + T.sold[lang] + "</span>" : "") +
       '<div class="acc-cover">' + cover + '<span class="acc-plat">' + (kind === "tiktok" ? "TikTok" : "Facebook") + "</span></div>" +
       '<div class="acc-id"><div class="acc-left">' + avatar(p, "acc-av") + (p.type ? '<span class="pill">' + esc(p.type) + "</span>" : "") + "</div>" + '<div class="acc-txt"><h4>' + esc(p.name) + "</h4><small>" + T.hasFollowers[lang] + "</small>" +
       '<span class="acc-pill">' + shortNum(p.followers) + " Follower</span></div></div>" +
-      '<div class="svc-foot">' + (p.sold ? '<span class="price ask">' + T.sold[lang] + "</span>" : rate ? '<span class="price">$' + fmtNum(price) + "</span>" : '<span class="price ask">' + T.ask[lang] + "</span>") +
+      '<div class="svc-foot">' + (p.sold ? '<span class="price ask">' + T.sold[lang] + "</span>" : rate ? (disc ? '<span class="price acc-disc"><s aria-label="' + T.oldPrice[lang] + '">$' + fmtNum(full) + "</s> $" + fmtNum(price) + ' <em>-' + disc + "%</em></span>" : '<span class="price">$' + fmtNum(price) + "</span>") : '<span class="price ask">' + T.ask[lang] + "</span>") +
       '<a class="more" href="' + esc(p.url) + '" target="_blank" rel="noopener" aria-label="' + esc(T.more[lang] + " · " + p.name) + '">' + T.more[lang] + "</a>" +
       (p.sold ? "" : '<button type="button" class="order" data-svc-kh="' + esc(label) + '" data-svc-en="' + esc(label) + '">' + T.order[lang] + "</button>") + "</div></div>";
   }
@@ -1099,7 +1106,7 @@ a.more.pg-view { display: inline-flex; align-items: center; text-decoration: non
     var show = (avail.length ? avail : list).slice().sort(function (a, b) { return b.followers - a.followers; }).slice(0, 3);
     var rows = show.map(function (p) {
       return '<div class="app-card row">' + avatar(p, "av pg-av") + '<div class="grow"><b>' + esc(p.name) + '</b><span class="who">' + fmtNum(p.followers) + " Followers</span></div>" +
-        '<div class="num"><b class="pg-ph-price">' + (rate ? "$" + fmtNum(accPrice(p.followers, rate)) : shortNum(p.followers)) + "</b></div></div>";
+        '<div class="num"><b class="pg-ph-price">' + (rate ? "$" + fmtNum(Math.round(accPrice(p.followers, rate) * (100 - Math.max(0, Math.min(90, +p.discount || 0))) / 100)) : shortNum(p.followers)) + "</b></div></div>";
     }).join("");
     var calc = rate ? '<div class="appban-get pg-calc"><span class="pg-calc-ic" aria-hidden="true">$</span>' +
       '<div class="pg-calc-body"><label for="pg-calc-in"><small>' + T.calcSmall[lang] + "</small><strong>" + T.calcTitle[lang] + "</strong></label>" +

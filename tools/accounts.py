@@ -170,6 +170,7 @@ def load(asset, optimized):
             cover = optimized(asset(it["cover"]), (960, 540)) if it.get("cover") else c.get("cover", "")
             items.append({"name": name or key_for(url).split("-", 1)[-1], "url": url, "followers": followers or 0, "picture": c.get("picture", ""),
                           "cover": cover, "type": str(it.get("type") or "").strip(), "sold": it.get("status") == "sold",
+                          "discount": max(0, min(90, int(float(it.get("discount") or 0)))),
                           "updated": (c.get("fetched_at") or "")[:10]})
         out[kind] = {"title": str(l.get("title") or "").strip(), "price_per_1k": rate, "items": items}
     return out

@@ -60,7 +60,7 @@ const keep = (orig, clean) => ({ ...(isObj(orig) ? orig : {}), ...clean });
 function optional(orig, values) {
   const out = {};
   for (const [k, v] of Object.entries(values)) {
-    const empty = v === "" || v === false || (Array.isArray(v) && !v.length);
+    const empty = v === "" || v === false || v === 0 || (Array.isArray(v) && !v.length);
     if (!empty || (isObj(orig) && k in orig)) out[k] = v;
   }
   return out;
@@ -111,6 +111,8 @@ export function cleanAccounts(d) {
         cover: img(it.cover, `${w} Cover`),
         name: str(it.name, `${w} ឈ្មោះ`, { max: 120 }),
         followers: str(String(it.followers ?? ""), `${w} Follower`, { max: 20, re: /^[0-9.,]*\s*[KkMm]?$/ }),
+        // Discount in percent (0 = none). Written only when set or already in the file.
+        ...optional(it, { discount: it.discount === "" || it.discount == null ? 0 : num(it.discount, `${w} បញ្ចុះតម្លៃ (%)`, 0, 90) }),
       };
       return keep(it, out);
     });

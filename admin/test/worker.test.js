@@ -109,9 +109,9 @@ describe("permissions for every role and section", () => {
     });
     test(`${role} · team`, async () => {
       const r = await call(role, "GET", "/api/team");
-      assert.equal(r.status, role === "owner" ? 200 : 403);
-      const w = await call(role, "PUT", "/api/team", { members: [{ email: "x@example.com", role: "admin" }] });
-      assert.equal(w.status, role === "owner" ? 200 : 403);
+      assert.equal(r.status, access(role, "team") !== "N" ? 200 : 403);
+      const w = await call(role, "PUT", "/api/team", { members: [{ email: EMAIL(role), role: role === "owner" ? "admin" : role }, { email: "x@example.com", role: "admin" }].filter(m => m.email !== OWNER) });
+      assert.equal(w.status, access(role, "team") === "E" ? 200 : 403);
     });
   }
 });
@@ -292,5 +292,33 @@ describe("security fixes", () => {
     assert.equal(r.status, 403);
     const ok = await worker.fetch(new Request(ORIGIN + "/auth/logout", { method: "POST", headers: { Origin: ORIGIN } }), env, {});
     assert.equal(ok.status, 200);
+  });
+});
+
+describe("admin powers (27 Oct)", () => {
+  test("admin can change auto-publish times but not Live / Dry run", async () => {
+    const { data, sha } = (await call("admin", "GET", "/api/data/autopost")).body;
+    data.morning.time = "07:30";
+    const r = await call("admin", "PUT", "/api/data/autopost", { data, sha });
+    assert.equal(r.status, 200, JSON.stringify(r.body));
+    assert.equal(gh.json("content/autopost/settings.json").morning.time, "07:30");
+    const again = (await call("admin", "GET", "/api/data/autopost")).body;
+    again.data.mode = again.data.mode === "live" ? "dry_run" : "live";
+    assert.equal((await call("admin", "PUT", "/api/data/autopost", again)).status, 403);
+  });
+  test("admin can add members (also admins) but never an owner", async () => {
+    const me = { email: EMAIL("admin"), role: "admin" };
+    assert.equal((await call("admin", "PUT", "/api/team", { members: [me, { email: "new@x.co", role: "admin" }, { email: "s@x.co", role: "sales" }] })).status, 200);
+    assert.equal((await call("admin", "PUT", "/api/team", { members: [me, { email: "o@x.co", role: "owner" }] })).status, 400);
+    assert.equal((await call("admin", "PUT", "/api/team", { members: [{ email: "s@x.co", role: "sales" }] })).status, 400);   // can't remove yourself
+  });
+  test("page discount: 0–90 % is saved, other values refused", async () => {
+    const { data, sha } = (await call("sales", "GET", "/api/data/accounts")).body;
+    data.facebook.items[0].discount = 20;
+    assert.equal((await call("sales", "PUT", "/api/data/accounts", { data, sha })).status, 200);
+    assert.equal(gh.json("content/accounts.json").facebook.items[0].discount, 20);
+    const again = (await call("sales", "GET", "/api/data/accounts")).body;
+    again.data.facebook.items[0].discount = 95;
+    assert.equal((await call("sales", "PUT", "/api/data/accounts", again)).status, 400);
   });
 });
