@@ -5,6 +5,127 @@ window.ACCOUNTS = {
   "price_per_1k": 0.0,
   "items": [
    {
+    "name": "Content For You",
+    "url": "https://www.facebook.com/profile.php?id=61566430374342",
+    "followers": 9112,
+    "picture": "assets/accounts/fb-61566430374342.webp",
+    "cover": "assets/accounts/fb-61566430374342-cover.webp",
+    "type": "ផេកខ្មែរ",
+    "sold": false,
+    "discount": 0,
+    "updated": "2026-10-27"
+   },
+   {
+    "name": "11Drama",
+    "url": "https://www.facebook.com/profile.php?id=61595188437036",
+    "followers": 28,
+    "picture": "assets/accounts/fb-61595188437036.webp",
+    "cover": "assets/accounts/fb-61595188437036-cover.webp",
+    "type": "ផេកខ្មែរ",
+    "sold": false,
+    "discount": 0,
+    "updated": "2026-10-27"
+   },
+   {
+    "name": "ជីង យ៉ុងហ្វូ សេវាបោះដុំសម្ររាប់តុបតែងសម្ភារៈពិដានអគារ",
+    "url": "https://www.facebook.com/profile.php?id=61594355044975",
+    "followers": 7400,
+    "picture": "assets/accounts/fb-61594355044975.webp",
+    "cover": "assets/accounts/fb-61594355044975-cover.webp",
+    "type": "ផេកខ្មែរ",
+    "sold": false,
+    "discount": 0,
+    "updated": "2026-10-27"
+   },
+   {
+    "name": "PU THEN",
+    "url": "https://www.facebook.com/profile.php?id=100068819696205",
+    "followers": 7463,
+    "picture": "assets/accounts/fb-100068819696205.webp",
+    "cover": "assets/accounts/fb-100068819696205-cover.webp",
+    "type": "ផេកខ្មែរ",
+    "sold": false,
+    "discount": 0,
+    "updated": "2026-10-27"
+   },
+   {
+    "name": "Chinese Everyday",
+    "url": "https://www.facebook.com/profile.php?id=61572660609676",
+    "followers": 1944,
+    "picture": "assets/accounts/fb-61572660609676.webp",
+    "cover": "assets/accounts/fb-61572660609676-cover.webp",
+    "type": "ផេកខ្មែរ",
+    "sold": false,
+    "discount": 0,
+    "updated": "2026-10-27"
+   },
+   {
+    "name": "TomeAi",
+    "url": "https://www.facebook.com/profile.php?id=61594777929138",
+    "followers": 55,
+    "picture": "assets/accounts/fb-61594777929138.webp",
+    "cover": "assets/accounts/fb-61594777929138-cover.webp",
+    "type": "ផេកខ្មែរ",
+    "sold": false,
+    "discount": 0,
+    "updated": "2026-10-27"
+   },
+   {
+    "name": "គាំទ្រសម្រាយរឿង",
+    "url": "https://www.facebook.com/profile.php?id=61594167906055",
+    "followers": 127,
+    "picture": "assets/accounts/fb-61594167906055.webp",
+    "cover": "assets/accounts/fb-61594167906055-cover.webp",
+    "type": "ផេកខ្មែរ",
+    "sold": false,
+    "discount": 0,
+    "updated": "2026-10-27"
+   },
+   {
+    "name": "1 VIDEO",
+    "url": "https://www.facebook.com/slquickautophnompenh",
+    "followers": 7303,
+    "picture": "assets/accounts/fb-slquickautophnompenh.webp",
+    "cover": "assets/accounts/fb-slquickautophnompenh-cover.webp",
+    "type": "ផេកខ្មែរ",
+    "sold": false,
+    "discount": 0,
+    "updated": "2026-10-27"
+   },
+   {
+    "name": "PostDrame",
+    "url": "https://www.facebook.com/profile.php?id=61594845143177",
+    "followers": 279,
+    "picture": "assets/accounts/fb-61594845143177.webp",
+    "cover": "assets/accounts/fb-61594845143177-cover.webp",
+    "type": "ផេកខ្មែរ",
+    "sold": false,
+    "discount": 0,
+    "updated": "2026-10-27"
+   },
+   {
+    "name": "61595206226364",
+    "url": "https://www.facebook.com/profile.php?id=61595206226364",
+    "followers": 0,
+    "picture": "",
+    "cover": "",
+    "type": "ផេកខ្មែរ",
+    "sold": false,
+    "discount": 0,
+    "updated": ""
+   },
+   {
+    "name": "61594113096221",
+    "url": "https://www.facebook.com/profile.php?id=61594113096221",
+    "followers": 0,
+    "picture": "",
+    "cover": "",
+    "type": "ផេកខ្មែរ",
+    "sold": false,
+    "discount": 0,
+    "updated": ""
+   },
+   {
     "name": "Content Happy",
     "url": "https://www.facebook.com/profile.php?id=61565475212687",
     "followers": 903,

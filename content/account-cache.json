@@ -8,6 +8,15 @@
     "platform": "facebook",
     "url": "https://web.facebook.com/profile.php?id=100068655260640"
   },
+  "fb-100068819696205": {
+    "cover": "assets/accounts/fb-100068819696205-cover.webp",
+    "fetched_at": "2026-10-27T06:07:47+00:00",
+    "followers": 7463,
+    "name": "PU THEN",
+    "picture": "assets/accounts/fb-100068819696205.webp",
+    "platform": "facebook",
+    "url": "https://www.facebook.com/profile.php?id=100068819696205"
+  },
   "fb-100075488185463": {
     "cover": "assets/accounts/fb-100075488185463-cover.webp",
     "fetched_at": "2026-10-27T03:19:59+00:00",
@@ -52,6 +61,24 @@
     "picture": "assets/accounts/fb-61565475212687.webp",
     "platform": "facebook",
     "url": "https://www.facebook.com/profile.php?id=61565475212687"
+  },
+  "fb-61566430374342": {
+    "cover": "assets/accounts/fb-61566430374342-cover.webp",
+    "fetched_at": "2026-10-27T06:07:47+00:00",
+    "followers": 9112,
+    "name": "Content For You",
+    "picture": "assets/accounts/fb-61566430374342.webp",
+    "platform": "facebook",
+    "url": "https://www.facebook.com/profile.php?id=61566430374342"
+  },
+  "fb-61572660609676": {
+    "cover": "assets/accounts/fb-61572660609676-cover.webp",
+    "fetched_at": "2026-10-27T06:07:47+00:00",
+    "followers": 1944,
+    "name": "Chinese Everyday",
+    "picture": "assets/accounts/fb-61572660609676.webp",
+    "platform": "facebook",
+    "url": "https://www.facebook.com/profile.php?id=61572660609676"
   },
   "fb-61579303995746": {
     "cover": "assets/accounts/fb-61579303995746-cover.webp",
@@ -152,6 +179,51 @@
     "platform": "facebook",
     "url": "https://www.facebook.com/profile.php?id=61593510027475"
   },
+  "fb-61594167906055": {
+    "cover": "assets/accounts/fb-61594167906055-cover.webp",
+    "fetched_at": "2026-10-27T06:07:47+00:00",
+    "followers": 127,
+    "name": "គាំទ្រសម្រាយរឿង",
+    "picture": "assets/accounts/fb-61594167906055.webp",
+    "platform": "facebook",
+    "url": "https://www.facebook.com/profile.php?id=61594167906055"
+  },
+  "fb-61594355044975": {
+    "cover": "assets/accounts/fb-61594355044975-cover.webp",
+    "fetched_at": "2026-10-27T06:07:47+00:00",
+    "followers": 7400,
+    "name": "ជីង យ៉ុងហ្វូ សេវាបោះដុំសម្ររាប់តុបតែងសម្ភារៈពិដានអគារ",
+    "picture": "assets/accounts/fb-61594355044975.webp",
+    "platform": "facebook",
+    "url": "https://www.facebook.com/profile.php?id=61594355044975"
+  },
+  "fb-61594777929138": {
+    "cover": "assets/accounts/fb-61594777929138-cover.webp",
+    "fetched_at": "2026-10-27T06:07:47+00:00",
+    "followers": 55,
+    "name": "TomeAi",
+    "picture": "assets/accounts/fb-61594777929138.webp",
+    "platform": "facebook",
+    "url": "https://www.facebook.com/profile.php?id=61594777929138"
+  },
+  "fb-61594845143177": {
+    "cover": "assets/accounts/fb-61594845143177-cover.webp",
+    "fetched_at": "2026-10-27T06:07:47+00:00",
+    "followers": 279,
+    "name": "PostDrame",
+    "picture": "assets/accounts/fb-61594845143177.webp",
+    "platform": "facebook",
+    "url": "https://www.facebook.com/profile.php?id=61594845143177"
+  },
+  "fb-61595188437036": {
+    "cover": "assets/accounts/fb-61595188437036-cover.webp",
+    "fetched_at": "2026-10-27T06:07:47+00:00",
+    "followers": 28,
+    "name": "11Drama",
+    "picture": "assets/accounts/fb-61595188437036.webp",
+    "platform": "facebook",
+    "url": "https://www.facebook.com/profile.php?id=61595188437036"
+  },
   "fb-61595298921727": {
     "cover": "assets/accounts/fb-61595298921727-cover.webp",
     "fetched_at": "2026-10-27T05:59:06+00:00",
@@ -178,6 +250,15 @@
     "picture": "assets/accounts/fb-pagenrstore.webp",
     "platform": "facebook",
     "url": "https://www.facebook.com/pagenrstore"
+  },
+  "fb-slquickautophnompenh": {
+    "cover": "assets/accounts/fb-slquickautophnompenh-cover.webp",
+    "fetched_at": "2026-10-27T06:07:47+00:00",
+    "followers": 7303,
+    "name": "1 VIDEO",
+    "picture": "assets/accounts/fb-slquickautophnompenh.webp",
+    "platform": "facebook",
+    "url": "https://www.facebook.com/slquickautophnompenh"
   },
   "fb-vipsorhorh": {
     "cover": "assets/accounts/fb-vipsorhorh-cover.webp",
