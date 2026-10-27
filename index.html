@@ -1100,7 +1100,9 @@ a.more.pg-view { display: inline-flex; align-items: center; text-decoration: non
       (p.sold ? "" : '<button type="button" class="order" data-svc-kh="' + esc(label) + '" data-svc-en="' + esc(label) + '">' + T.order[lang] + "</button>") + "</div></div>";
   }
   function renderAccounts(tab) {
-    var kind = ACC_TABS[tab], l = accList(kind), list = l.items || [], rate = +l.price_per_1k || 0, title = l.title || ACC_DEFAULT[kind];
+    var kind = ACC_TABS[tab], l = accList(kind), rate = +l.price_per_1k || 0, title = l.title || ACC_DEFAULT[kind];
+    // Most followers first; sold pages go to the end.
+    var list = (l.items || []).slice().sort(function (a, b) { return (a.sold - b.sold) || ((+b.followers || 0) - (+a.followers || 0)); });
     var extra = list.length - SVC_VISIBLE, open = !!svcOpen[tab], html = "";
     var avail = list.filter(function (p) { return !p.sold; });
     var show = (avail.length ? avail : list).slice().sort(function (a, b) { return b.followers - a.followers; }).slice(0, 3);
