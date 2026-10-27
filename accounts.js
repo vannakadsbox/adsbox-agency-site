@@ -2,7 +2,7 @@
 window.ACCOUNTS = {
  "facebook": {
   "title": "លក់ផេកខ្មែរ",
-  "price_per_1k": 15.0,
+  "price_per_1k": 0.0,
   "items": [
    {
     "name": "NR Store | Phnom Penh",
@@ -18,13 +18,13 @@ window.ACCOUNTS = {
    {
     "name": "Sdach Drama",
     "url": "https://www.facebook.com/profile.php?id=61593484056003",
-    "followers": 10858,
+    "followers": 10857,
     "picture": "assets/accounts/fb-61593484056003.webp",
     "cover": "assets/opt/screenshot-2026-10-26-at-6-15-20-pm-74a483-d6f7fcd8b8.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-26"
+    "updated": "2026-10-27"
    },
    {
     "name": "100086760075207",
@@ -62,24 +62,24 @@ window.ACCOUNTS = {
    {
     "name": "យឹម អេង",
     "url": "https://www.facebook.com/profile.php?id=61580042356068&sk=reels_tab",
-    "followers": 12680,
+    "followers": 12618,
     "picture": "assets/accounts/fb-61580042356068.webp",
     "cover": "assets/opt/screenshot-2026-10-26-at-6-18-51-pm-fee7cb-9c2c1cad35.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-26"
+    "updated": "2026-10-27"
    },
    {
     "name": "U Drama",
     "url": "https://www.facebook.com/profile.php?id=61588652091475&sk=reels_tab",
-    "followers": 12534,
+    "followers": 12472,
     "picture": "assets/accounts/fb-61588652091475.webp",
     "cover": "assets/opt/screenshot-2026-10-26-at-6-18-51-pm-13d01e-9c2c1cad35.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-26"
+    "updated": "2026-10-27"
    },
    {
     "name": "TV24k",
