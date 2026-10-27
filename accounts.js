@@ -757,6 +757,40 @@ window.ACCOUNTS = {
  "tiktok": {
   "title": "លក់អាខោន TikTok",
   "price_per_1k": 0.0,
-  "items": []
+  "items": [
+   {
+    "name": "ahkeo080",
+    "url": "https://www.tiktok.com/@ahkeo080",
+    "followers": 69,
+    "picture": "assets/accounts/tt-ahkeo080.webp",
+    "cover": "assets/accounts/tt-ahkeo080-cover.webp",
+    "type": "",
+    "sold": false,
+    "discount": 0,
+    "updated": "2026-10-27"
+   },
+   {
+    "name": "sombunthoeun24",
+    "url": "https://www.tiktok.com/@sombunthoeun24",
+    "followers": 16,
+    "picture": "assets/accounts/tt-sombunthoeun24.webp",
+    "cover": "assets/accounts/tt-sombunthoeun24-cover.webp",
+    "type": "",
+    "sold": false,
+    "discount": 0,
+    "updated": "2026-10-27"
+   },
+   {
+    "name": "sotheakanha08",
+    "url": "https://www.tiktok.com/@sotheakanha08",
+    "followers": 40,
+    "picture": "assets/accounts/tt-sotheakanha08.webp",
+    "cover": "assets/accounts/tt-sotheakanha08-cover.webp",
+    "type": "",
+    "sold": false,
+    "discount": 0,
+    "updated": "2026-10-27"
+   }
+  ]
  }
 };
