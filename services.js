@@ -245,7 +245,8 @@ window.SERVICE_GROUPS = [
      "kh": "មេរៀនរៀន Boost រចនា និងលក់តាមអនឡាញ ដែលអ្នកអាចអនុវត្តបានភ្លាម។",
      "en": "មេរៀនរៀន Boost រចនា និងលក់តាមអនឡាញ ដែលអ្នកអាចអនុវត្តបានភ្លាម។"
     },
-    "price": ""
+    "price": "",
+    "poster": "assets/uploads/admin/2026-10/telegram-free-577ef7.png"
    }
   ]
  }
