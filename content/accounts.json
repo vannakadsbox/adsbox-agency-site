@@ -1,7 +1,7 @@
 {
   "facebook": {
     "title": "លក់ផេកខ្មែរ",
-    "price_per_1k": 15,
+    "price_per_1k": 0,
     "items": [
       {
         "url": "https://www.facebook.com/pagenrstore",
@@ -9,7 +9,8 @@
         "status": "available",
         "cover": "/assets/uploads/admin/2026-10/screenshot-2026-10-26-at-6-18-51-pm-83f43f.png",
         "name": "",
-        "followers": ""
+        "followers": "",
+        "discount": 0
       },
       {
         "url": "https://www.facebook.com/profile.php?id=61593484056003",
