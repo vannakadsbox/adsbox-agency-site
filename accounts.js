@@ -12,6 +12,7 @@ window.ACCOUNTS = {
     "cover": "assets/opt/screenshot-2026-10-26-at-6-18-51-pm-83f43f-9c2c1cad35.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
+    "discount": 0,
     "updated": "2026-10-26"
    },
    {
@@ -22,6 +23,7 @@ window.ACCOUNTS = {
     "cover": "assets/opt/screenshot-2026-10-26-at-6-15-20-pm-74a483-d6f7fcd8b8.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
+    "discount": 0,
     "updated": "2026-10-26"
    },
    {
@@ -32,6 +34,7 @@ window.ACCOUNTS = {
     "cover": "assets/opt/screenshot-2026-10-26-at-6-18-51-pm-6903ba-9c2c1cad35.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
+    "discount": 0,
     "updated": ""
    },
    {
@@ -42,6 +45,7 @@ window.ACCOUNTS = {
     "cover": "assets/opt/screenshot-2026-10-26-at-6-18-51-pm-bd921d-9c2c1cad35.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
+    "discount": 0,
     "updated": "2026-10-26"
    },
    {
@@ -52,6 +56,7 @@ window.ACCOUNTS = {
     "cover": "assets/opt/screenshot-2026-10-26-at-6-18-51-pm-99784d-9c2c1cad35.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
+    "discount": 0,
     "updated": "2026-10-26"
    },
    {
@@ -62,6 +67,7 @@ window.ACCOUNTS = {
     "cover": "assets/opt/screenshot-2026-10-26-at-6-18-51-pm-fee7cb-9c2c1cad35.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
+    "discount": 0,
     "updated": "2026-10-26"
    },
    {
@@ -72,6 +78,7 @@ window.ACCOUNTS = {
     "cover": "assets/opt/screenshot-2026-10-26-at-6-18-51-pm-13d01e-9c2c1cad35.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
+    "discount": 0,
     "updated": "2026-10-26"
    },
    {
@@ -82,6 +89,7 @@ window.ACCOUNTS = {
     "cover": "assets/opt/screenshot-2026-10-26-at-6-18-51-pm-216adb-9c2c1cad35.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
+    "discount": 0,
     "updated": "2026-10-26"
    },
    {
@@ -92,6 +100,7 @@ window.ACCOUNTS = {
     "cover": "assets/opt/screenshot-2026-10-26-at-6-18-51-pm-fca882-9c2c1cad35.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
+    "discount": 0,
     "updated": "2026-10-27"
    },
    {
@@ -102,6 +111,7 @@ window.ACCOUNTS = {
     "cover": "assets/opt/screenshot-2026-10-26-at-6-18-51-pm-c0a925-9c2c1cad35.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
+    "discount": 0,
     "updated": "2026-10-27"
    }
   ]
