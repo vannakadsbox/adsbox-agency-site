@@ -132,6 +132,23 @@
       "status": "published",
       "published_at": "2026-10-27T06:57:27+07:00",
       "url": "https://adsbox.agency/knowledge/turn-customer-questions-into-orders/"
+    },
+    {
+      "date": "2026-10-27",
+      "slot": "evening",
+      "category": "operations",
+      "angle": "order tracking from message to delivery",
+      "attempts": 1,
+      "generated_at": "2026-10-27T16:58:14+07:00",
+      "title": "តាមដាន Order ពីសារដល់ដៃអតិថិជន៖ ៥ ជំហានការពារការផ្ញើខុស និងភ្លេច",
+      "slug": "track-orders-from-message-to-delivery",
+      "summary": "របៀបរៀបចំការតាមដាន Order ជាដំណាក់កាលច្បាស់ៗ ពីពេលអតិថិជនឆាតកុម្ម៉ង់ រហូតដល់ទំនិញដល់ដៃ ដើម្បីកាត់បន្ថយការផ្ញើខុស និងសារសួរដដែលៗ។",
+      "primary_keyword": "តាមដាន Order",
+      "tag": "លក់អនឡាញ",
+      "khmer_chars": 2093,
+      "status": "published",
+      "published_at": "2026-10-27T16:58:14+07:00",
+      "url": "https://adsbox.agency/knowledge/track-orders-from-message-to-delivery/"
     }
   ]
 }
