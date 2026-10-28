@@ -106,13 +106,13 @@ window.ACCOUNTS = {
    {
     "name": "24MerlTos",
     "url": "https://www.facebook.com/profile.php?id=61594235184973",
-    "followers": 272,
+    "followers": 276,
     "picture": "assets/accounts/fb-61594235184973.webp",
     "cover": "assets/accounts/fb-61594235184973-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    },
    {
     "name": "អេអាយដ្រាម៉ា",
@@ -123,7 +123,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    },
    {
     "name": "មើលកុនAi",
@@ -134,7 +134,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    },
    {
     "name": "PostAi",
@@ -145,7 +145,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    },
    {
     "name": "មើលរឿងបកប្រែAi",
@@ -189,40 +189,40 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    },
    {
     "name": "Merlrg24h",
     "url": "https://www.facebook.com/profile.php?id=61593372051825",
-    "followers": 4746,
+    "followers": 4756,
     "picture": "assets/accounts/fb-61593372051825.webp",
     "cover": "assets/accounts/fb-61593372051825-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    },
    {
     "name": "MerDrama",
     "url": "https://www.facebook.com/profile.php?id=61593165279972",
-    "followers": 2049,
+    "followers": 2050,
     "picture": "assets/accounts/fb-61593165279972.webp",
     "cover": "assets/accounts/fb-61593165279972-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    },
    {
     "name": "Nito H Lim-ហ៊ា នីតូTopFan",
     "url": "https://www.facebook.com/profile.php?id=61592119824989",
-    "followers": 11507,
+    "followers": 11495,
     "picture": "assets/accounts/fb-61592119824989.webp",
     "cover": "assets/accounts/fb-61592119824989-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    },
    {
     "name": "Thorn Saroeun",
