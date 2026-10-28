@@ -13,7 +13,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    },
    {
     "name": "16Drama",
@@ -24,7 +24,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    },
    {
     "name": "31Drama",
@@ -35,7 +35,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    },
    {
     "name": "20Drama",
@@ -46,7 +46,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    },
    {
     "name": "19Drama",
@@ -57,7 +57,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    },
    {
     "name": "8Drama",
@@ -68,7 +68,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    },
    {
     "name": "3Drama",
@@ -79,29 +79,29 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    },
    {
     "name": "អ្នកមើលកុនAi",
     "url": "https://www.facebook.com/profile.php?id=61594713303864",
-    "followers": 43,
+    "followers": 44,
     "picture": "assets/accounts/fb-61594713303864.webp",
     "cover": "assets/accounts/fb-61594713303864-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    },
    {
     "name": "បកប្រែAi",
     "url": "https://www.facebook.com/profile.php?id=61594317351141",
-    "followers": 2902,
+    "followers": 2906,
     "picture": "assets/accounts/fb-61594317351141.webp",
     "cover": "assets/accounts/fb-61594317351141-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    },
    {
     "name": "24MerlTos",
