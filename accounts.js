@@ -161,7 +161,7 @@ window.ACCOUNTS = {
    {
     "name": "Aiសម្រាយកុន",
     "url": "https://www.facebook.com/profile.php?id=61593925754183",
-    "followers": 1749,
+    "followers": 1753,
     "picture": "assets/accounts/fb-61593925754183.webp",
     "cover": "assets/accounts/fb-61593925754183-cover.webp",
     "type": "ផេកខ្មែរ",
@@ -271,7 +271,7 @@ window.ACCOUNTS = {
    {
     "name": "យឹម អេង",
     "url": "https://www.facebook.com/profile.php?id=61580042356068",
-    "followers": 12618,
+    "followers": 12589,
     "picture": "assets/accounts/fb-61580042356068.webp",
     "cover": "assets/accounts/fb-61580042356068-cover.webp",
     "type": "ផេកខ្មែរ",
@@ -370,7 +370,7 @@ window.ACCOUNTS = {
    {
     "name": "Amazing DN32",
     "url": "https://www.facebook.com/profile.php?id=100068970960432",
-    "followers": 532,
+    "followers": 531,
     "picture": "assets/accounts/fb-100068970960432.webp",
     "cover": "assets/accounts/fb-100068970960432-cover.webp",
     "type": "ផេកខ្មែរ",
@@ -436,7 +436,7 @@ window.ACCOUNTS = {
    {
     "name": "Aiមើលរឿង",
     "url": "https://www.facebook.com/profile.php?id=61593313087938",
-    "followers": 1183,
+    "followers": 1182,
     "picture": "assets/accounts/fb-61593313087938.webp",
     "cover": "assets/accounts/fb-61593313087938-cover.webp",
     "type": "ផេកខ្មែរ",
@@ -480,7 +480,7 @@ window.ACCOUNTS = {
    {
     "name": "Ṅëä ẗḧ",
     "url": "https://www.facebook.com/profile.php?id=61572506574492",
-    "followers": 748,
+    "followers": 747,
     "picture": "assets/accounts/fb-61572506574492.webp",
     "cover": "assets/accounts/fb-61572506574492-cover.webp",
     "type": "ផេកខ្មែរ",
@@ -546,7 +546,7 @@ window.ACCOUNTS = {
    {
     "name": "Chinese Everyday",
     "url": "https://www.facebook.com/profile.php?id=61572660609676",
-    "followers": 1944,
+    "followers": 1943,
     "picture": "assets/accounts/fb-61572660609676.webp",
     "cover": "assets/accounts/fb-61572660609676-cover.webp",
     "type": "ផេកខ្មែរ",
@@ -656,7 +656,7 @@ window.ACCOUNTS = {
    {
     "name": "Sdach Drama",
     "url": "https://www.facebook.com/profile.php?id=61593484056003",
-    "followers": 10857,
+    "followers": 10852,
     "picture": "assets/accounts/fb-61593484056003.webp",
     "cover": "assets/opt/adsbox-cover-465d28-1565780390.webp",
     "type": "ផេកខ្មែរ",
@@ -700,7 +700,7 @@ window.ACCOUNTS = {
    {
     "name": "យឹម អេង",
     "url": "https://www.facebook.com/profile.php?id=61580042356068&sk=reels_tab",
-    "followers": 12618,
+    "followers": 12589,
     "picture": "assets/accounts/fb-61580042356068.webp",
     "cover": "assets/opt/adsbox-cover-a69ac9-1565780390.webp",
     "type": "ផេកខ្មែរ",
@@ -711,7 +711,7 @@ window.ACCOUNTS = {
    {
     "name": "U Drama",
     "url": "https://www.facebook.com/profile.php?id=61588652091475&sk=reels_tab",
-    "followers": 12472,
+    "followers": 12443,
     "picture": "assets/accounts/fb-61588652091475.webp",
     "cover": "assets/opt/adsbox-cover-7ff99d-1565780390.webp",
     "type": "ផេកខ្មែរ",
