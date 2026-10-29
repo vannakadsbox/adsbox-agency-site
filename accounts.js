@@ -156,29 +156,29 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    },
    {
     "name": "Aiសម្រាយកុន",
     "url": "https://www.facebook.com/profile.php?id=61593925754183",
-    "followers": 1753,
+    "followers": 1757,
     "picture": "assets/accounts/fb-61593925754183.webp",
     "cover": "assets/accounts/fb-61593925754183-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    },
    {
     "name": "អ្នកផុសរឿងAi",
     "url": "https://www.facebook.com/profile.php?id=61593831312583",
-    "followers": 4158,
+    "followers": 4156,
     "picture": "assets/accounts/fb-61593831312583.webp",
     "cover": "assets/accounts/fb-61593831312583-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    },
    {
     "name": "TVMovie",
@@ -205,7 +205,7 @@ window.ACCOUNTS = {
    {
     "name": "MerDrama",
     "url": "https://www.facebook.com/profile.php?id=61593165279972",
-    "followers": 2050,
+    "followers": 2051,
     "picture": "assets/accounts/fb-61593165279972.webp",
     "cover": "assets/accounts/fb-61593165279972-cover.webp",
     "type": "ផេកខ្មែរ",
@@ -216,7 +216,7 @@ window.ACCOUNTS = {
    {
     "name": "Nito H Lim-ហ៊ា នីតូTopFan",
     "url": "https://www.facebook.com/profile.php?id=61592119824989",
-    "followers": 11495,
+    "followers": 11489,
     "picture": "assets/accounts/fb-61592119824989.webp",
     "cover": "assets/accounts/fb-61592119824989-cover.webp",
     "type": "ផេកខ្មែរ",
@@ -233,18 +233,18 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    },
    {
     "name": "Ly Za",
     "url": "https://www.facebook.com/profile.php?id=61581144403152",
-    "followers": 12573,
+    "followers": 12535,
     "picture": "assets/accounts/fb-61581144403152.webp",
     "cover": "assets/accounts/fb-61581144403152-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    },
    {
     "name": "យ៉ន តឹម",
@@ -271,13 +271,13 @@ window.ACCOUNTS = {
    {
     "name": "យឹម អេង",
     "url": "https://www.facebook.com/profile.php?id=61580042356068",
-    "followers": 12589,
+    "followers": 12578,
     "picture": "assets/accounts/fb-61580042356068.webp",
     "cover": "assets/accounts/fb-61580042356068-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    },
    {
     "name": "សាន សុភ័ក្រ",
@@ -337,13 +337,13 @@ window.ACCOUNTS = {
    {
     "name": "Amazing DN28",
     "url": "https://www.facebook.com/profile.php?id=100067947746179",
-    "followers": 1867,
+    "followers": 1866,
     "picture": "assets/accounts/fb-100067947746179.webp",
     "cover": "assets/accounts/fb-100067947746179-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    },
    {
     "name": "Amazing DN29",
@@ -370,13 +370,13 @@ window.ACCOUNTS = {
    {
     "name": "Amazing DN32",
     "url": "https://www.facebook.com/profile.php?id=100068970960432",
-    "followers": 531,
+    "followers": 532,
     "picture": "assets/accounts/fb-100068970960432.webp",
     "cover": "assets/accounts/fb-100068970960432-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    },
    {
     "name": "Content 4U",
@@ -552,7 +552,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    },
    {
     "name": "TomeAi",
@@ -656,13 +656,13 @@ window.ACCOUNTS = {
    {
     "name": "Sdach Drama",
     "url": "https://www.facebook.com/profile.php?id=61593484056003",
-    "followers": 10852,
+    "followers": 10851,
     "picture": "assets/accounts/fb-61593484056003.webp",
     "cover": "assets/opt/adsbox-cover-465d28-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    },
    {
     "name": "100086760075207",
@@ -689,35 +689,35 @@ window.ACCOUNTS = {
    {
     "name": "Ly Za",
     "url": "https://www.facebook.com/profile.php?id=61581144403152&sk=reels_tab",
-    "followers": 12573,
+    "followers": 12535,
     "picture": "assets/accounts/fb-61581144403152.webp",
     "cover": "assets/opt/adsbox-cover-672969-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    },
    {
     "name": "យឹម អេង",
     "url": "https://www.facebook.com/profile.php?id=61580042356068&sk=reels_tab",
-    "followers": 12589,
+    "followers": 12578,
     "picture": "assets/accounts/fb-61580042356068.webp",
     "cover": "assets/opt/adsbox-cover-a69ac9-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    },
    {
     "name": "U Drama",
     "url": "https://www.facebook.com/profile.php?id=61588652091475&sk=reels_tab",
-    "followers": 12443,
+    "followers": 12432,
     "picture": "assets/accounts/fb-61588652091475.webp",
     "cover": "assets/opt/adsbox-cover-7ff99d-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    },
    {
     "name": "TV24k",
@@ -767,7 +767,7 @@ window.ACCOUNTS = {
     "type": "",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    },
    {
     "name": "sombunthoeun24",
@@ -778,7 +778,7 @@ window.ACCOUNTS = {
     "type": "",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    },
    {
     "name": "sotheakanha08",
@@ -789,7 +789,7 @@ window.ACCOUNTS = {
     "type": "",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-28"
    }
   ]
  }
