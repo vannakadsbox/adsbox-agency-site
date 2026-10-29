@@ -22,6 +22,27 @@ window.ARTICLES = [
   ]
  },
  {
+  "id": "test-two-boost-posts-clothing-shop",
+  "date": "2026-10-29",
+  "tag": {
+   "kh": "Boost Post",
+   "en": "Boost Post"
+  },
+  "title": {
+   "kh": "ករណីសិក្សា៖ ហាងសម្លៀកបំពាក់សាកល្បង Boost Post ពីរ ដើម្បីដឹងថាមួយណាលក់ដាច់ជាង",
+   "en": "ករណីសិក្សា៖ ហាងសម្លៀកបំពាក់សាកល្បង Boost Post ពីរ ដើម្បីដឹងថាមួយណាលក់ដាច់ជាង"
+  },
+  "summary": {
+   "kh": "ឧទាហរណ៍ហាងសម្លៀកបំពាក់គំរូ សាកល្បង Boost Post ពីរដោយប្ដូរតែរឿងមួយ ហើយវាស់លទ្ធផលជា Order មិនមែនជា Like។",
+   "en": "ឧទាហរណ៍ហាងសម្លៀកបំពាក់គំរូ សាកល្បង Boost Post ពីរដោយប្ដូរតែរឿងមួយ ហើយវាស់លទ្ធផលជា Order មិនមែនជា Like។"
+  },
+  "emoji": [
+   "👕",
+   "🆚",
+   "📊"
+  ]
+ },
+ {
   "id": "organize-messenger-inbox-reply-fast",
   "date": "2026-10-28",
   "tag": {

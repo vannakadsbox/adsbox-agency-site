@@ -513,24 +513,24 @@ window.ACCOUNTS = {
    {
     "name": "11Drama",
     "url": "https://www.facebook.com/profile.php?id=61595188437036",
-    "followers": 28,
+    "followers": 29,
     "picture": "assets/accounts/fb-61595188437036.webp",
     "cover": "assets/accounts/fb-61595188437036-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-29"
    },
    {
     "name": "ជីង យ៉ុងហ្វូ សេវាបោះដុំសម្ររាប់តុបតែងសម្ភារៈពិដានអគារ",
     "url": "https://www.facebook.com/profile.php?id=61594355044975",
-    "followers": 7400,
+    "followers": 7749,
     "picture": "assets/accounts/fb-61594355044975.webp",
     "cover": "assets/accounts/fb-61594355044975-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-29"
    },
    {
     "name": "PU THEN",
@@ -557,13 +557,13 @@ window.ACCOUNTS = {
    {
     "name": "TomeAi",
     "url": "https://www.facebook.com/profile.php?id=61594777929138",
-    "followers": 55,
+    "followers": 59,
     "picture": "assets/accounts/fb-61594777929138.webp",
     "cover": "assets/accounts/fb-61594777929138-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-29"
    },
    {
     "name": "គាំទ្រសម្រាយរឿង",
@@ -574,29 +574,29 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-29"
    },
    {
     "name": "1 VIDEO",
     "url": "https://www.facebook.com/slquickautophnompenh",
-    "followers": 7303,
+    "followers": 7446,
     "picture": "assets/accounts/fb-slquickautophnompenh.webp",
     "cover": "assets/accounts/fb-slquickautophnompenh-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-29"
    },
    {
     "name": "PostDrame",
     "url": "https://www.facebook.com/profile.php?id=61594845143177",
-    "followers": 279,
+    "followers": 280,
     "picture": "assets/accounts/fb-61594845143177.webp",
     "cover": "assets/accounts/fb-61594845143177-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-29"
    },
    {
     "name": "10Drama",
@@ -607,7 +607,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-29"
    },
    {
     "name": "សម្រាយកុនAi",
