@@ -1076,7 +1076,10 @@ a.more.pg-view { display: inline-flex; align-items: center; text-decoration: non
   function accList(kind) { return ACCOUNTS[kind] || { items: [] }; }
   function serviceTabs() {
     var tabs = SERVICE_GROUPS.map(function (g) { return { id: g.id, name: g.name[lang] }; });
-    ["facebook", "tiktok"].forEach(function (k) { var l = accList(k); if (l.items && l.items.length) tabs.push({ id: "acc-" + k, name: l.title || ACC_DEFAULT[k] }); });
+    // Pages for sale come right after the first group (Boost Post & Live).
+    var acc = [];
+    ["facebook", "tiktok"].forEach(function (k) { var l = accList(k); if (l.items && l.items.length) acc.push({ id: "acc-" + k, name: l.title || ACC_DEFAULT[k] }); });
+    tabs.splice.apply(tabs, [Math.min(1, tabs.length), 0].concat(acc));
     return tabs;
   }
   function accPrice(f, rate) { return Math.round((+f || 0) / 1000 * (+rate || 0)); }
