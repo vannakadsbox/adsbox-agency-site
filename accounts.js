@@ -161,13 +161,13 @@ window.ACCOUNTS = {
    {
     "name": "Aiសម្រាយកុន",
     "url": "https://www.facebook.com/profile.php?id=61593925754183",
-    "followers": 1757,
+    "followers": 1754,
     "picture": "assets/accounts/fb-61593925754183.webp",
     "cover": "assets/opt/adsbox-cover-263cfb-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-28"
+    "updated": "2026-10-30"
    },
    {
     "name": "អ្នកផុសរឿងAi",
@@ -189,29 +189,29 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-10-30"
    },
    {
     "name": "Merlrg24h",
     "url": "https://www.facebook.com/profile.php?id=61593372051825",
-    "followers": 4762,
+    "followers": 4761,
     "picture": "assets/accounts/fb-61593372051825.webp",
     "cover": "assets/opt/adsbox-cover-1cdc4c-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-10-30"
    },
    {
     "name": "MerDrama",
     "url": "https://www.facebook.com/profile.php?id=61593165279972",
-    "followers": 2051,
+    "followers": 2053,
     "picture": "assets/accounts/fb-61593165279972.webp",
     "cover": "assets/opt/adsbox-cover-75e2ae-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-28"
+    "updated": "2026-10-30"
    },
    {
     "name": "Nito H Lim-ហ៊ា នីតូTopFan",
@@ -227,24 +227,24 @@ window.ACCOUNTS = {
    {
     "name": "Thorn Saroeun",
     "url": "https://www.facebook.com/profile.php?id=61581267786264",
-    "followers": 1041,
+    "followers": 1042,
     "picture": "assets/accounts/fb-61581267786264.webp",
     "cover": "assets/opt/adsbox-cover-9b5872-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-28"
+    "updated": "2026-10-30"
    },
    {
     "name": "Ly Za",
     "url": "https://www.facebook.com/profile.php?id=61581144403152",
-    "followers": 12535,
+    "followers": 12531,
     "picture": "assets/accounts/fb-61581144403152.webp",
     "cover": "assets/opt/adsbox-cover-31acf4-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-28"
+    "updated": "2026-10-30"
    },
    {
     "name": "យ៉ន តឹម",
@@ -255,7 +255,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-10-30"
    },
    {
     "name": "យឹម សុជាតា",
@@ -266,7 +266,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-10-30"
    },
    {
     "name": "យឹម អេង",
@@ -689,13 +689,13 @@ window.ACCOUNTS = {
    {
     "name": "Ly Za",
     "url": "https://www.facebook.com/profile.php?id=61581144403152&sk=reels_tab",
-    "followers": 12535,
+    "followers": 12531,
     "picture": "assets/accounts/fb-61581144403152.webp",
     "cover": "assets/opt/adsbox-cover-672969-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-28"
+    "updated": "2026-10-30"
    },
    {
     "name": "យឹម អេង",
