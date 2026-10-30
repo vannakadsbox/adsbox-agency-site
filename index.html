@@ -528,6 +528,10 @@ button.order { border: 0; cursor: pointer; font: inherit; font-size: 14px; font-
 /* Contrast fixes (WCAG AA) */
 .bubble.me { background: #5b4bd6; border-color: #5b4bd6; }
 .bubble.me .who { color: #fff; }
+.bubble.oc { max-width: 78%; }
+.oc-lines { margin-top: 6px; line-height: 1.7; font-size: 14px; }
+.oc-btns { display: grid; gap: 6px; margin-top: 10px; }
+.oc-btns span { display: block; text-align: center; font-weight: 600; font-size: 14px; padding: 7px 10px; border-radius: 10px; background: rgba(255,255,255,.95); color: #0f1a2e; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .pill { color: #8fb3ff; } }
 :root[data-theme="dark"] .pill { color: #8fb3ff; }
 
@@ -858,8 +862,13 @@ a.more.pg-view { display: inline-flex; align-items: center; text-decoration: non
             <div class="app-stack">
               <div class="app-card row"><span class="av" style="background:#e0567a">S</span><div class="grow"><b>Sreyneang Fashion</b><span class="chip-s live">Live</span></div><div class="num"><b>$309.72</b><div class="app-sub">58 orders</div></div></div>
               <div class="app-card row"><span class="av" style="background:#5b6cff">D</span><div class="grow"><b>Dara Cosmetics</b><span class="chip-s">Post</span></div><div class="num"><b>$150.00</b><div class="app-sub">69 orders</div></div></div>
-              <div class="bubble"><div class="who"><span data-kh="អតិថិជន · Comment លើ Live" data-en="Customer · Live comment">អតិថិជន · Comment លើ Live</span></div><span data-kh="A01 យក ២" data-en="A01, I'll take 2">A01 យក ២</span></div>
-              <div class="bubble me"><div class="who">Auto Reply</div><span data-kh="អរគុណបង! បានទទួល Order A01 x2 ហើយ ✅" data-en="Thank you! Order A01 x2 received ✅">អរគុណបង! បានទទួល Order A01 x2 ហើយ ✅</span></div>
+              <div class="bubble"><div class="who"><span data-kh="អតិថិជន · Comment លើ Post" data-en="Customer · Post comment">អតិថិជន · Comment លើ Post</span></div>A064</div>
+              <div class="bubble me"><div class="who">Auto Reply</div><span data-kh="ជម្រាបសួរ Sokha 💛 យើងខ្ញុំបានទទួលការបញ្ជាទិញហើយ 🎁 សូមផ្ញើ 📞 លេខទូរស័ព្ទ និង 📍 អាសយដ្ឋានដឹកជូន ✨" data-en="Hi Sokha 💛 We've got your order 🎁 Please send your 📞 phone number and 📍 delivery address ✨">ជម្រាបសួរ Sokha 💛 យើងខ្ញុំបានទទួលការបញ្ជាទិញហើយ 🎁 សូមផ្ញើ 📞 លេខទូរស័ព្ទ និង 📍 អាសយដ្ឋានដឹកជូន ✨</span></div>
+              <div class="bubble"><div class="who"><span data-kh="អតិថិជន" data-en="Customer">អតិថិជន</span></div><span data-kh="012 345 678 · សៀមរាប" data-en="012 345 678 · Siem Reap">012 345 678 · សៀមរាប</span></div>
+              <div class="bubble me oc"><div class="who"><span data-kh="សូមបញ្ជាក់ការបញ្ជាទិញ" data-en="Please confirm your order">សូមបញ្ជាក់ការបញ្ជាទិញ</span></div>
+                <div class="oc-lines">📋 30-Oct-2026 (#002)<br>👤 Sokha<br>🏷️ A064 x 1<br>📞 012 345 678<br>📍 <span data-kh="សៀមរាប" data-en="Siem Reap">សៀមរាប</span></div>
+                <div class="oc-btns"><span data-kh="✅ បញ្ជាក់" data-en="✅ Confirm">✅ បញ្ជាក់</span><span data-kh="✏️ កែប្រែ" data-en="✏️ Edit">✏️ កែប្រែ</span></div>
+              </div>
             </div>
           </div>
         </div>
