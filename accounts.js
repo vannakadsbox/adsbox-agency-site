@@ -288,7 +288,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-10-30"
    },
    {
     "name": "Gen Z",
@@ -299,7 +299,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-10-30"
    },
    {
     "name": "Monkey koko | Phnom Penh",
@@ -310,18 +310,18 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-10-30"
    },
    {
     "name": "BK Gaming",
     "url": "https://www.facebook.com/profile.php?id=61567313732962",
-    "followers": 23567,
+    "followers": 23565,
     "picture": "assets/accounts/fb-61567313732962.webp",
     "cover": "assets/accounts/fb-61567313732962-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-10-30"
    },
    {
     "name": "រីករាយ សារ៉ាយ",
@@ -332,7 +332,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-10-30"
    },
    {
     "name": "Amazing DN28",
@@ -348,13 +348,13 @@ window.ACCOUNTS = {
    {
     "name": "Amazing DN29",
     "url": "https://www.facebook.com/profile.php?id=100067999853796",
-    "followers": 1355,
+    "followers": 1504,
     "picture": "assets/accounts/fb-100067999853796.webp",
     "cover": "assets/accounts/fb-100067999853796-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-10-30"
    },
    {
     "name": "Merlrg",
@@ -365,7 +365,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-10-30"
    },
    {
     "name": "Amazing DN32",
