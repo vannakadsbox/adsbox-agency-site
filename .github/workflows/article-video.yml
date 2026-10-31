@@ -1,7 +1,8 @@
 # Makes a short vertical video (Khmer voice) for each new knowledge article and sends it to the ADS BOX Alerts Telegram bot,
 # ready to post on Facebook Reels or TikTok. The video is not stored in the repository.
+# The morning video is sent at 07:30 and the evening one at 17:30 (Phnom Penh); a late article's video is sent as soon as it is ready.
 # Settings (repository variables, Settings → Secrets and variables → Actions → Variables):
-#   VIDEO_PHOTO = yes (owner's photo in the video, default) or no
+#   VIDEO_PHOTO = no (default, option 1) or yes (owner's photo in the video, option 2)
 #   VIDEO_VOICE = km-KH-PisethNeural (man, default) or km-KH-SreymomNeural (woman)
 # Secrets: TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID (the same ones the auto-post alerts use).
 name: Article video
@@ -70,10 +71,21 @@ jobs:
           VIDEO_VOICE: ${{ vars.VIDEO_VOICE }}
         run: |
           mkdir -p out
-          photo=""; [ "${VIDEO_PHOTO:-yes}" = "no" ] && photo="--no-photo"
+          photo="--no-photo"; [ "${VIDEO_PHOTO:-no}" = "yes" ] && photo=""
           for f in ${{ steps.new.outputs.files }}; do
             slug=$(basename "$f" .md)
             node tools/video.js "$f" "out/$slug.mp4" --voice "${VIDEO_VOICE:-km-KH-PisethNeural}" $photo
+          done
+          if [ -z "${{ github.event.inputs.slug }}" ]; then
+            # Wait for the send time: 07:30 for the morning article, 17:30 for the evening one (Phnom Penh, UTC+7).
+            now=$(TZ=Asia/Phnom_Penh date +%s); hour=$(TZ=Asia/Phnom_Penh date +%H)
+            if [ "$hour" -lt 12 ]; then at="07:30"; else at="17:30"; fi
+            target=$(TZ=Asia/Phnom_Penh date -d "today $at" +%s)
+            wait=$((target - now))
+            if [ "$wait" -gt 0 ] && [ "$wait" -lt 7200 ]; then echo "Waiting ${wait}s until $at"; sleep "$wait"; fi
+          fi
+          for f in ${{ steps.new.outputs.files }}; do
+            slug=$(basename "$f" .md)
             title=$(python3 -c "import sys; sys.path.insert(0,'tools'); import video_script as v; print(v.script(sys.argv[1])['title'])" "$f")
             caption=$(printf '🎬 វីដេអូថ្មីសម្រាប់ Reels / TikTok\n%s\nhttps://adsbox.agency/knowledge/%s/' "$title" "$slug")
             curl -sS --fail-with-body -o /dev/null -F chat_id="$TELEGRAM_CHAT_ID" -F caption="$caption" -F supports_streaming=true \
