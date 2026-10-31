@@ -1,0 +1,88 @@
+# Makes a short vertical video (Khmer voice) for each new knowledge article and sends it to the ADS BOX Alerts Telegram bot,
+# ready to post on Facebook Reels or TikTok. The video is not stored in the repository.
+# Settings (repository variables, Settings → Secrets and variables → Actions → Variables):
+#   VIDEO_PHOTO = yes (owner's photo in the video, default) or no
+#   VIDEO_VOICE = km-KH-PisethNeural (man, default) or km-KH-SreymomNeural (woman)
+# Secrets: TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID (the same ones the auto-post alerts use).
+name: Article video
+
+on:
+  push:
+    branches: [main]
+    paths: ["content/articles/*.md"]
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: "Article slug (file name in content/articles without .md)"
+        required: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: article-video
+  cancel-in-progress: false
+
+jobs:
+  video:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Which articles are new
+        id: new
+        run: |
+          if [ -n "${{ github.event.inputs.slug }}" ]; then
+            files="content/articles/${{ github.event.inputs.slug }}.md"
+          else
+            files=$(git diff --name-only --diff-filter=A HEAD~1 HEAD -- 'content/articles/*.md' || true)
+          fi
+          keep=""
+          for f in $files; do
+            [ -f "$f" ] || continue
+            grep -qE '^draft:\s*true' "$f" && continue
+            keep="$keep $f"
+          done
+          echo "files=$keep" >> "$GITHUB_OUTPUT"
+          echo "New articles:${keep:- none}"
+      - uses: actions/setup-node@v4
+        if: steps.new.outputs.files != ''
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v5
+        if: steps.new.outputs.files != ''
+        with:
+          python-version: "3.12"
+      - name: Install tools
+        if: steps.new.outputs.files != ''
+        run: |
+          sudo apt-get update -q && sudo apt-get install -y -q fonts-noto-color-emoji ffmpeg
+          npm install --no-save --no-package-lock playwright@1.48.2
+          npx playwright install --with-deps chromium
+          pip install pyyaml pillow edge-tts
+      - name: Make and send the videos
+        if: steps.new.outputs.files != ''
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          VIDEO_PHOTO: ${{ vars.VIDEO_PHOTO }}
+          VIDEO_VOICE: ${{ vars.VIDEO_VOICE }}
+        run: |
+          mkdir -p out
+          photo=""; [ "${VIDEO_PHOTO:-yes}" = "no" ] && photo="--no-photo"
+          for f in ${{ steps.new.outputs.files }}; do
+            slug=$(basename "$f" .md)
+            node tools/video.js "$f" "out/$slug.mp4" --voice "${VIDEO_VOICE:-km-KH-PisethNeural}" $photo
+            title=$(python3 -c "import sys; sys.path.insert(0,'tools'); import video_script as v; print(v.script(sys.argv[1])['title'])" "$f")
+            caption=$(printf '🎬 វីដេអូថ្មីសម្រាប់ Reels / TikTok\n%s\nhttps://adsbox.agency/knowledge/%s/' "$title" "$slug")
+            curl -sS --fail-with-body -o /dev/null -F chat_id="$TELEGRAM_CHAT_ID" -F caption="$caption" -F supports_streaming=true \
+              -F video=@"out/$slug.mp4" "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendVideo" \
+              && echo "Sent $slug to Telegram"
+          done
+      - uses: actions/upload-artifact@v4
+        if: steps.new.outputs.files != ''
+        with:
+          name: article-videos
+          path: out/*.mp4
+          retention-days: 14

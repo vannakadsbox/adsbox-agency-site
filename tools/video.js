@@ -1,5 +1,5 @@
 // Make a short vertical video (1080x1920, MP4) from one knowledge article, for Facebook Reels and TikTok.
-// Run from the repo root:  node tools/video.js content/articles/<slug>.md [out.mp4] [--voice km-KH-PisethNeural] [--no-voice]
+// Run from the repo root:  node tools/video.js content/articles/<slug>.md [out.mp4] [--voice km-KH-PisethNeural] [--no-voice] [--no-photo]
 // Default output: videos/<slug>.mp4. Needs Playwright (Chromium), ffmpeg and, for the Khmer voice, edge-tts (pip).
 // A Khmer voice reads each slide; each slide stays on screen as long as its voice needs.
 // If the voice can't be made (no internet, edge-tts missing), the video is made without it.
@@ -29,7 +29,8 @@ const SAY = [["ADS BOX", "អេដស៍ប៊ក"], ["Order", "អូឌ័រ
 const spoken = (t) => SAY.reduce((s, [en, kh]) => s.replace(new RegExp("\\b" + en + "\\b", "gi"), kh), String(t)).replace(/[()…«»"]/g, " ");
 // Optional presenter photos (the owner's picture): a card on the first slide, a small round face on the others.
 const img64 = (f) => fs.existsSync(path.join(ROOT, f)) ? "data:image/jpeg;base64," + b64(f) : "";
-const PHOTO = img64("assets/video/presenter.jpg"), FACE = img64("assets/video/presenter-face.jpg");
+const NO_PHOTO = process.argv.includes("--no-photo");
+const PHOTO = NO_PHOTO ? "" : img64("assets/video/presenter.jpg"), FACE = NO_PHOTO ? "" : img64("assets/video/presenter-face.jpg");
 const KH_ORD = ["មួយ", "ពីរ", "បី", "បួន", "ប្រាំ", "ប្រាំមួយ"];
 
 // The slides, with what the voice says on each, in a friendly spoken style.
