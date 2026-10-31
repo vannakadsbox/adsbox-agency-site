@@ -5,7 +5,7 @@ name: Video sample
 on:
   push:
     branches: [video-sample]
-    paths: ["tools/video.js", "tools/video_script.py", "tools/tts.py", ".github/workflows/video-sample.yml", "videos/requests.txt"]
+    paths: ["tools/video.js", "tools/video_story.js", "videos/story-*.json", "tools/video_script.py", "tools/tts.py", ".github/workflows/video-sample.yml", "videos/requests.txt"]
 
 permissions:
   contents: write
@@ -34,6 +34,9 @@ jobs:
             [ -n "$slug" ] || continue
             node tools/video.js "content/articles/$slug.md" "videos/$slug-${voice:-km-KH-SreymomNeural}.mp4" --voice "${voice:-km-KH-SreymomNeural}"
           done < videos/requests.txt
+          for story in videos/story-*.json; do
+            [ -e "$story" ] && node tools/video_story.js "$story" "${story%.json}.mp4"
+          done
       - name: Commit the videos
         run: |
           git add videos/*.mp4
