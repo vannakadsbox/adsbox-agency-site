@@ -22,6 +22,27 @@ window.ARTICLES = [
   ]
  },
  {
+  "id": "product-codes-for-live-orders",
+  "date": "2026-10-31",
+  "tag": {
+   "kh": "លក់ Live",
+   "en": "លក់ Live"
+  },
+  "title": {
+   "kh": "ដាក់លេខកូដទំនិញពេល Live៖ ៥ គន្លឹះឲ្យអតិថិជនកុម្ម៉ង់ងាយ និងមិនច្រឡំ",
+   "en": "ដាក់លេខកូដទំនិញពេល Live៖ ៥ គន្លឹះឲ្យអតិថិជនកុម្ម៉ង់ងាយ និងមិនច្រឡំ"
+  },
+  "summary": {
+   "kh": "របៀបរៀបចំលេខកូដទំនិញសម្រាប់ Facebook Live ឲ្យអតិថិជន Comment កុម្ម៉ង់បានលឿន ហើយ Admin កត់ Order មិនច្រឡំទំហំ ឬពណ៌។",
+   "en": "របៀបរៀបចំលេខកូដទំនិញសម្រាប់ Facebook Live ឲ្យអតិថិជន Comment កុម្ម៉ង់បានលឿន ហើយ Admin កត់ Order មិនច្រឡំទំហំ ឬពណ៌។"
+  },
+  "emoji": [
+   "🏷️",
+   "📱",
+   "🛍️"
+  ]
+ },
+ {
   "id": "auto-capture-orders-from-live-comments",
   "date": "2026-10-30",
   "tag": {
