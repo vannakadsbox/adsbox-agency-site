@@ -101,7 +101,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-10-30"
    },
    {
     "name": "24MerlTos",
@@ -156,7 +156,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-10-30"
    },
    {
     "name": "Aiសម្រាយកុន",
@@ -178,7 +178,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-10-30"
    },
    {
     "name": "TVMovie",
@@ -216,13 +216,13 @@ window.ACCOUNTS = {
    {
     "name": "Nito H Lim-ហ៊ា នីតូTopFan",
     "url": "https://www.facebook.com/profile.php?id=61592119824989",
-    "followers": 11485,
+    "followers": 11461,
     "picture": "assets/accounts/fb-61592119824989.webp",
     "cover": "assets/opt/adsbox-cover-e5c98d-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-10-30"
    },
    {
     "name": "Thorn Saroeun",
@@ -271,13 +271,13 @@ window.ACCOUNTS = {
    {
     "name": "យឹម អេង",
     "url": "https://www.facebook.com/profile.php?id=61580042356068",
-    "followers": 12574,
+    "followers": 12552,
     "picture": "assets/accounts/fb-61580042356068.webp",
     "cover": "assets/accounts/fb-61580042356068-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-10-30"
    },
    {
     "name": "សាន សុភ័ក្រ",
@@ -337,13 +337,13 @@ window.ACCOUNTS = {
    {
     "name": "Amazing DN28",
     "url": "https://www.facebook.com/profile.php?id=100067947746179",
-    "followers": 1866,
+    "followers": 1869,
     "picture": "assets/accounts/fb-100067947746179.webp",
     "cover": "assets/accounts/fb-100067947746179-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-10-30"
    },
    {
     "name": "Amazing DN29",
@@ -376,7 +376,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-10-30"
    },
    {
     "name": "Content 4U",
@@ -596,7 +596,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-10-30"
    },
    {
     "name": "10Drama",
@@ -607,18 +607,18 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-10-30"
    },
    {
     "name": "សម្រាយកុនAi",
     "url": "https://www.facebook.com/profile.php?id=61594113096221",
-    "followers": 4662,
+    "followers": 4790,
     "picture": "assets/accounts/fb-61594113096221.webp",
     "cover": "assets/accounts/fb-61594113096221-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-30"
    },
    {
     "name": "Content Happy",
@@ -629,40 +629,40 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-30"
    },
    {
     "name": "7Drama",
     "url": "https://www.facebook.com/profile.php?id=61595298921727",
-    "followers": 78,
+    "followers": 80,
     "picture": "assets/accounts/fb-61595298921727.webp",
     "cover": "assets/accounts/fb-61595298921727-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-30"
    },
    {
     "name": "NR Store | Phnom Penh",
     "url": "https://www.facebook.com/pagenrstore",
-    "followers": 78540,
+    "followers": 78825,
     "picture": "assets/accounts/fb-pagenrstore.webp",
     "cover": "assets/opt/adsbox-cover-870b1e-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-10-30"
    },
    {
     "name": "Sdach Drama",
     "url": "https://www.facebook.com/profile.php?id=61593484056003",
-    "followers": 10851,
+    "followers": 10843,
     "picture": "assets/accounts/fb-61593484056003.webp",
     "cover": "assets/opt/adsbox-cover-465d28-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-28"
+    "updated": "2026-10-30"
    },
    {
     "name": "100086760075207",
@@ -700,13 +700,13 @@ window.ACCOUNTS = {
    {
     "name": "យឹម អេង",
     "url": "https://www.facebook.com/profile.php?id=61580042356068&sk=reels_tab",
-    "followers": 12574,
+    "followers": 12552,
     "picture": "assets/accounts/fb-61580042356068.webp",
     "cover": "assets/opt/adsbox-cover-a69ac9-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-10-30"
    },
    {
     "name": "U Drama",
@@ -767,7 +767,7 @@ window.ACCOUNTS = {
     "type": "",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-10-30"
    },
    {
     "name": "sombunthoeun24",
@@ -778,7 +778,7 @@ window.ACCOUNTS = {
     "type": "",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-10-30"
    },
    {
     "name": "sotheakanha08",
@@ -789,7 +789,7 @@ window.ACCOUNTS = {
     "type": "",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-10-30"
    }
   ]
  }
