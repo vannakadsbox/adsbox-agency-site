@@ -1,0 +1,29 @@
+# One-off test: send the option 1 sample video to the ADS BOX Alerts Telegram bot. Runs on pushes to the article-video branch only.
+name: Video Telegram test
+
+on:
+  push:
+    branches: [article-video]
+    paths: [".github/workflows/video-telegram-test.yml"]
+
+permissions:
+  contents: read
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: video-sample
+          fetch-depth: 0
+      - name: Send the test video
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          git show def7cf7:videos/increase-order-size-with-add-ons-km-KH-PisethNeural.mp4 > test.mp4
+          ls -la test.mp4
+          caption=$(printf '🎬 សាកល្បង (Option 1)៖ វីដេអូថ្មីសម្រាប់ Reels / TikTok\nបង្កើនទំហំ Order៖ ៥ វិធីណែនាំទំនិញបន្ថែម ពេលអតិថិជនកំពុងកុម្ម៉ង់\nhttps://adsbox.agency/knowledge/increase-order-size-with-add-ons/')
+          curl -sS --fail-with-body -o /dev/null -F chat_id="$TELEGRAM_CHAT_ID" -F caption="$caption" -F supports_streaming=true \
+            -F video=@test.mp4 "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendVideo" && echo "Sent"
