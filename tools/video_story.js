@@ -257,7 +257,7 @@ function music(total, out) {
   const root = `if(lt(${t},4),220,if(lt(${t},8),174.61,if(lt(${t},12),196,164.81)))`;
   const env = "pow(sin(PI*mod(t,4)/4),0.6)";
   const expr = `0.11*${env}*(sin(2*PI*${root}*t)+0.7*sin(2*PI*${root}*1.2599*t)+0.6*sin(2*PI*${root}*1.4983*t)+0.35*sin(2*PI*${root}*0.5*t))`;
-  execFileSync("ffmpeg", ["-y", "-loglevel", "error", "-f", "lavfi", "-i", `aevalsrc=${expr}:s=44100:d=${(total + 1).toFixed(2)}`,
+  execFileSync("ffmpeg", ["-y", "-loglevel", "error", "-f", "lavfi", "-i", `aevalsrc='${expr}':s=44100:d=${(total + 1).toFixed(2)}`,
     "-af", `lowpass=f=1800,afade=t=in:d=1.5,afade=t=out:st=${Math.max(0, total - 2).toFixed(2)}:d=2,volume=0.55`, out]);
 }
 

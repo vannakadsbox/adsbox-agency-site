@@ -45,3 +45,13 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "Sample videos"
           git push origin HEAD:video-sample
+      - name: Send the story videos to Telegram
+        env:
+          TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          for v in videos/story-*.mp4; do
+            [ -e "$v" ] || continue
+            curl -sS -f "https://api.telegram.org/bot$TOKEN/sendVideo" -F chat_id="$CHAT" -F video=@"$v" \
+              -F supports_streaming=true -F caption="🎬 វីដេអូ ADS BOX (រូបថត + សំឡេងខ្មែរ + អក្សររត់) សម្រាប់ Reels / TikTok" > /dev/null
+          done
