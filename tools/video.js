@@ -22,21 +22,28 @@ const KH_DIGITS = "០១២៣៤៥៦៧៨៩";
 const khNum = (n) => String(n).replace(/\d/g, (d) => KH_DIGITS[d]);
 const arg = (name) => { const i = process.argv.indexOf(name); return i > 0 ? process.argv[i + 1] : null; };
 
-// The slides, with what the voice says on each.
+// Spoken Khmer for words the Khmer voice reads badly in English letters (only the voice uses these, not the screen).
+const SAY = [["ADS BOX", "អេដស៍ប៊ក"], ["Order", "អូឌ័រ"], ["Admin", "អាដមីន"], ["Caption", "ខេបសិន"], ["Bundle", "បាន់ឌល"],
+  ["Boost", "ប៊ូស្ត៍"], ["Post", "ប៉ុស្ត៍"], ["Live", "ឡាយ"], ["Facebook", "ហ្វេសប៊ុក"], ["TikTok", "ធីកតុក"], ["Telegram", "តេឡេក្រាម"],
+  ["Page", "ផេក"], ["Messenger", "មេសេនជ័រ"], ["Promotion", "ប្រូម៉ូសិន"], ["Comment", "ខមមិន"], ["Inbox", "អ៊ីនប្រុក"], ["Target", "ថាហ្គេត"]];
+const spoken = (t) => SAY.reduce((s, [en, kh]) => s.replace(new RegExp("\\b" + en + "\\b", "gi"), kh), String(t)).replace(/[()…«»"]/g, " ");
+const KH_ORD = ["មួយ", "ពីរ", "បី", "បួន", "ប្រាំ", "ប្រាំមួយ"];
+
+// The slides, with what the voice says on each, in a friendly spoken style.
 function slides(s) {
   const out = [];
-  out.push({ say: s.title, pops: [0.35, 0.55, 0.75], html: `
+  out.push({ say: spoken(`សួស្តីបងប្អូន! ថ្ងៃនេះ ADS BOX មានគន្លឹះល្អៗ មកចែករំលែក។ ${s.title}`), pops: [0.35, 0.55, 0.75], html: `
     <span class="tag in d1">${esc(s.tag)}</span>
     <h1 class="title in d2">${esc(s.title)}</h1>
     <div class="stickers"><span class="e main pop bob d3">${s.emoji[0]}</span><span class="e b1 pop bob d4">${s.emoji[1]}</span><span class="e b2 pop bob d5">${s.emoji[2]}</span></div>` });
-  if (s.summary) out.push({ say: s.summary, pops: [0.15], html: `
+  if (s.summary) out.push({ say: spoken(s.summary), pops: [0.15], html: `
     <span class="e solo pop bob d1">💡</span>
     <p class="lead in d2">${esc(s.summary)}</p>` });
-  s.points.forEach((p, i) => out.push({ say: `ចំណុចទី${khNum(i + 1)}។ ${p.head}។ ${p.text}`, pops: [0.15], html: `
+  s.points.forEach((p, i) => out.push({ say: spoken(`ចំណុចទី${KH_ORD[i]}, ${p.head}។ ${p.text}`), pops: [0.15], html: `
     <span class="num pop d1">${khNum(i + 1)}</span>
     <h2 class="head in d2">${esc(p.head)}<i class="mark-line d3"></i></h2>
     ${p.text ? `<p class="text in d3">${esc(p.text)}</p>` : ""}` }));
-  out.push({ say: "អានអត្ថបទពេញ នៅលើវេបសាយរបស់យើង។ ហើយឆាតជាមួយក្រុម ADS BOX តាម Telegram។", pops: [0.15], html: `
+  out.push({ say: spoken("បើបងប្អូនចង់អានលម្អិត សូមចូលទៅកាន់វេបសាយ ADS BOX។ ហើយបើចង់ឲ្យក្រុមយើងជួយ ឆាតមកយើងតាម Telegram បានភ្លាមៗ។ អរគុណបងប្អូន!"), pops: [0.15], html: `
     <img class="mark pop d1" src="data:image/png;base64,${b64("assets/logo-mark-white.png")}" alt="">
     <h2 class="head in d2">អានអត្ថបទពេញ</h2>
     <p class="url in d3">${esc(s.url)}</p>

@@ -13,7 +13,7 @@ import edge_tts
 async def say(text, voice, out):
     for attempt in range(3):
         try:
-            await edge_tts.Communicate(text, voice, rate="+5%").save(out)
+            await edge_tts.Communicate(text, voice, rate=os.environ.get("TTS_RATE", "-4%"), pitch=os.environ.get("TTS_PITCH", "+0Hz")).save(out)
             if os.path.getsize(out) > 0:
                 return
         except Exception as ex:
