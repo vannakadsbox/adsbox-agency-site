@@ -1,0 +1,44 @@
+# Makes sample videos (with the Khmer voice) on the video-sample branch and commits them to videos/ on that branch.
+# Push a change under tools/ to the branch to run it. Not used by the live site.
+name: Video sample
+
+on:
+  push:
+    branches: [video-sample]
+    paths: ["tools/video.js", "tools/video_script.py", "tools/tts.py", ".github/workflows/video-sample.yml", "videos/requests.txt"]
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install tools
+        run: |
+          sudo apt-get update -q && sudo apt-get install -y -q fonts-noto-color-emoji ffmpeg
+          npm install --no-save --no-package-lock playwright@1.48.2
+          npx playwright install --with-deps chromium
+          pip install pyyaml pillow edge-tts
+      - name: Make videos
+        run: |
+          mkdir -p videos
+          while read -r slug voice; do
+            [ -n "$slug" ] || continue
+            node tools/video.js "content/articles/$slug.md" "videos/$slug-${voice:-km-KH-SreymomNeural}.mp4" --voice "${voice:-km-KH-SreymomNeural}"
+          done < videos/requests.txt
+      - name: Commit the videos
+        run: |
+          git add videos/*.mp4
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name "ADS BOX video maker"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Sample videos"
+          git push origin HEAD:video-sample
