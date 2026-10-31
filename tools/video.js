@@ -27,6 +27,9 @@ const SAY = [["ADS BOX", "អេដស៍ប៊ក"], ["Order", "អូឌ័រ
   ["Boost", "ប៊ូស្ត៍"], ["Post", "ប៉ុស្ត៍"], ["Live", "ឡាយ"], ["Facebook", "ហ្វេសប៊ុក"], ["TikTok", "ធីកតុក"], ["Telegram", "តេឡេក្រាម"],
   ["Page", "ផេក"], ["Messenger", "មេសេនជ័រ"], ["Promotion", "ប្រូម៉ូសិន"], ["Comment", "ខមមិន"], ["Inbox", "អ៊ីនប្រុក"], ["Target", "ថាហ្គេត"]];
 const spoken = (t) => SAY.reduce((s, [en, kh]) => s.replace(new RegExp("\\b" + en + "\\b", "gi"), kh), String(t)).replace(/[()…«»"]/g, " ");
+// Optional presenter photos (the owner's picture): a card on the first slide, a small round face on the others.
+const img64 = (f) => fs.existsSync(path.join(ROOT, f)) ? "data:image/jpeg;base64," + b64(f) : "";
+const PHOTO = img64("assets/video/presenter.jpg"), FACE = img64("assets/video/presenter-face.jpg");
 const KH_ORD = ["មួយ", "ពីរ", "បី", "បួន", "ប្រាំ", "ប្រាំមួយ"];
 
 // The slides, with what the voice says on each, in a friendly spoken style.
@@ -35,7 +38,8 @@ function slides(s) {
   out.push({ say: spoken(`សួស្តីបងប្អូន! ថ្ងៃនេះ ADS BOX មានគន្លឹះល្អៗ មកចែករំលែក។ ${s.title}`), pops: [0.35, 0.55, 0.75], html: `
     <span class="tag in d1">${esc(s.tag)}</span>
     <h1 class="title in d2">${esc(s.title)}</h1>
-    <div class="stickers"><span class="e main pop bob d3">${s.emoji[0]}</span><span class="e b1 pop bob d4">${s.emoji[1]}</span><span class="e b2 pop bob d5">${s.emoji[2]}</span></div>` });
+    ${PHOTO ? `<div class="hero"><img class="card pop d3" src="${PHOTO}" alt=""><span class="e c1 pop bob d4">${s.emoji[0]}</span><span class="e c2 pop bob d5">${s.emoji[1]}</span><span class="e c3 pop bob d5">${s.emoji[2]}</span></div>`
+      : `<div class="stickers"><span class="e main pop bob d3">${s.emoji[0]}</span><span class="e b1 pop bob d4">${s.emoji[1]}</span><span class="e b2 pop bob d5">${s.emoji[2]}</span></div>`}` });
   if (s.summary) out.push({ say: spoken(s.summary), pops: [0.15], html: `
     <span class="e solo pop bob d1">💡</span>
     <p class="lead in d2">${esc(s.summary)}</p>` });
@@ -44,7 +48,7 @@ function slides(s) {
     <h2 class="head in d2">${esc(p.head)}<i class="mark-line d3"></i></h2>
     ${p.text ? `<p class="text in d3">${esc(p.text)}</p>` : ""}` }));
   out.push({ say: spoken("បើបងប្អូនចង់អានលម្អិត សូមចូលទៅកាន់វេបសាយ ADS BOX។ ហើយបើចង់ឲ្យក្រុមយើងជួយ ឆាតមកយើងតាម Telegram បានភ្លាមៗ។ អរគុណបងប្អូន!"), pops: [0.15], html: `
-    <img class="mark pop d1" src="data:image/png;base64,${b64("assets/logo-mark-white.png")}" alt="">
+    ${FACE ? `<img class="face pop d1" src="${FACE}" alt="">` : `<img class="mark pop d1" src="data:image/png;base64,${b64("assets/logo-mark-white.png")}" alt="">`}
     <h2 class="head in d2">អានអត្ថបទពេញ</h2>
     <p class="url in d3">${esc(s.url)}</p>
     <p class="cta in d4">ឆាតជាមួយក្រុម ADS BOX<br><b>Telegram: t.me/vannakdm</b></p>` });
@@ -119,6 +123,17 @@ ${flashCss}
 .main { width: 340px; height: 340px; left: 300px; top: 30px; font-size: 210px; border-radius: 80px; --r: -8deg; }
 .b1 { width: 170px; height: 170px; left: 700px; top: 0; font-size: 100px; border-radius: 50%; --r: 10deg; }
 .b2 { width: 150px; height: 150px; left: 120px; top: 250px; font-size: 88px; border-radius: 50%; --r: -12deg; }
+.hero { position: relative; height: 760px; margin-top: 10px; }
+.card { position: absolute; left: 170px; top: 0; width: 580px; height: 730px; object-fit: cover; border-radius: 48px; border: 12px solid #fff; box-shadow: 0 40px 90px rgba(0,0,0,.45); --r: -3deg; }
+.c1 { width: 210px; height: 210px; left: 640px; top: -40px; font-size: 130px; border-radius: 56px; --r: 10deg; }
+.c2 { width: 160px; height: 160px; left: 60px; top: 420px; font-size: 96px; border-radius: 50%; --r: -12deg; }
+.c3 { width: 140px; height: 140px; left: 700px; top: 560px; font-size: 84px; border-radius: 50%; --r: 8deg; }
+.face { width: 300px; height: 300px; border-radius: 50%; object-fit: cover; border: 10px solid #fff; box-shadow: 0 30px 70px rgba(0,0,0,.4); --r: 0deg; }
+.host { position: absolute; left: 80px; bottom: 70px; display: flex; align-items: center; gap: 22px; opacity: 0; animation: hostin .6s ease-out ${list[0].dur}s both, hostout .4s ease-in ${list[list.length - 1].start}s forwards; }
+${FACE ? ".foot { left: auto; right: 80px; bottom: 120px; }" : ""}
+.host img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 6px solid #fff; position: relative; z-index: 1; }
+.host .ring { position: absolute; left: 0; top: 0; width: 150px; height: 150px; border-radius: 50%; border: 6px solid #ffd23f; animation: ring 1.4s ease-out infinite; }
+.host b { font-family: L, M; font-size: 34px; font-weight: 700; background: rgba(255,255,255,.16); padding: 8px 22px; border-radius: 999px; }
 .solo { position: relative; width: 220px; height: 220px; font-size: 130px; border-radius: 60px; --r: -6deg; }
 .lead { font-size: 68px; line-height: 1.6; font-weight: 500; }
 .num { width: 200px; height: 200px; border-radius: 56px; background: #fff; color: #1c4b9b; font-size: 130px; font-weight: 700; display: grid; place-items: center; --r: -6deg; box-shadow: 0 30px 60px rgba(0,0,0,.3); }
@@ -137,6 +152,9 @@ ${flashCss}
 @keyframes rise { from { opacity: 0; transform: translateY(70px); filter: blur(6px); } to { opacity: 1; transform: none; filter: blur(0); } }
 @keyframes pop { from { opacity: 0; transform: scale(.2) rotate(-25deg); } to { opacity: 1; transform: scale(1) rotate(var(--r)); } }
 @keyframes bob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -18px; } }
+@keyframes hostin { from { opacity: 0; transform: translateX(-60px); } to { opacity: 1; transform: none; } }
+@keyframes hostout { to { opacity: 0; transform: translateX(-60px); } }
+@keyframes ring { from { transform: scale(1); opacity: .9; } to { transform: scale(1.45); opacity: 0; } }
 @keyframes line { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @keyframes flash { 0% { opacity: 0; } 30% { opacity: .22; } 100% { opacity: 0; } }
@@ -150,6 +168,7 @@ ${slideCss}
 <div class="top"><img src="data:image/png;base64,${b64("assets/logo-word-white.png")}" alt=""></div>
 ${list.map((sl, i) => `<section class="slide s${i}">${sl.html}</section>`).join("\n")}
 <div class="foot">adsbox.agency</div>
+${FACE ? `<div class="host"><span class="ring"></span><img src="${FACE}" alt=""><b>ADS BOX</b></div>` : ""}
 ${list.slice(1).map((sl, i) => `<div class="flash f${i}"></div>`).join("")}
 </body></html>`;
   return html;
