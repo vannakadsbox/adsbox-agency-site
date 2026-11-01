@@ -17,12 +17,15 @@ on:
   workflow_dispatch:
     inputs:
       action:
-        description: "video = make the video for the slug below; check = only test the Telegram settings"
+        description: "video = make the video for the slug below; check = test Telegram and Pixabay; footage-search = contact sheets of Pixabay candidates for the script below"
         type: choice
-        options: [video, check]
+        options: [video, check, footage-search]
         default: video
       slug:
         description: "Make (or remake) the video for this script: videos/scripts/<slug>.json"
+        required: false
+      script:
+        description: "footage-search only: script path, e.g. videos/drafts/<name>.json"
         required: false
 
 permissions:
@@ -40,7 +43,11 @@ jobs:
     env:
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
       TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
     steps:
+      - uses: actions/checkout@v4
+      - name: Pixabay API answers
+        run: python3 tools/reel/footage.py check
       - name: Telegram bot is set
         run: '[ -n "$TELEGRAM_BOT_TOKEN" ] && [ -n "$TELEGRAM_CHAT_ID" ] || { echo "::error::Telegram secrets missing"; exit 1; }'
 
@@ -67,8 +74,39 @@ jobs:
           git commit -q -m "Video check"
           for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin HEAD:main && exit 0; sleep 5; done
 
+  footage-search:
+    # Contact sheets of Pixabay candidates for each footage scene, pushed to the branch "footage-review" for a person
+    # (or the script writer) to look at and choose from. Nothing is rendered or sent.
+    if: github.event.inputs.action == 'footage-search'
+    runs-on: ubuntu-latest
+    env:
+      PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/cache@v4
+        with:
+          path: .cache/pixabay
+          key: pixabay-${{ github.run_id }}
+          restore-keys: pixabay-
+      - run: pip install -q pyyaml pillow
+      - name: Search Pixabay and make contact sheets
+        run: |
+          name=$(basename "${{ github.event.inputs.script }}" .json)
+          python3 tools/reel/footage.py search "${{ github.event.inputs.script }}" "/tmp/review/$name"
+          if git fetch -q origin footage-review 2>/dev/null; then
+            git checkout -q -B footage-review FETCH_HEAD
+          else
+            git checkout -q --orphan footage-review && git rm -rq --cached . >/dev/null
+          fi
+          mkdir -p "review/$name" && cp /tmp/review/$name/* "review/$name/"
+          git config user.name "ADS BOX video bot"; git config user.email "noreply@anthropic.com"
+          git add "review/$name" && git commit -q -m "Footage candidates: $name" && git push -q origin footage-review
+
   video:
-    if: github.event_name != 'schedule' && github.event.inputs.action != 'check'
+    if: github.event_name != 'schedule' && github.event.inputs.action != 'check' && github.event.inputs.action != 'footage-search'
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
@@ -103,15 +141,24 @@ jobs:
         if: steps.todo.outputs.slugs != ''
         with:
           python-version: "3.12"
+      - name: Pixabay search cache (24 hours, as Pixabay asks)
+        if: steps.todo.outputs.slugs != ''
+        uses: actions/cache@v4
+        with:
+          path: .cache/pixabay
+          key: pixabay-${{ github.run_id }}
+          restore-keys: pixabay-
       - name: Install tools
         if: steps.todo.outputs.slugs != ''
         run: |
           sudo apt-get update -q && sudo apt-get install -y -q ffmpeg
           npm install --no-save --no-package-lock playwright@1.48.2
           npx playwright install --with-deps chromium
-          pip install -q pyyaml "edge-tts>=7.0"
+          pip install -q pyyaml pillow "edge-tts>=7.0"
       - name: Make and send the videos
         if: steps.todo.outputs.slugs != ''
+        env:
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
         run: |
           set -u
           rel=video-archive
@@ -125,10 +172,15 @@ jobs:
             if [ ! -f "videos/scripts/$slug.json" ]; then python3 tools/reel/deliver.py failed --slug "$slug" --step script --error "videos/scripts/$slug.json not found" --run "$RUN_URL"; failed=1; continue; fi
             out="out/$slug"; mkdir -p "$out"
             python3 tools/reel/deliver.py status --slug "$slug" --to rendering
+            # Combined style: download the Pixabay clips the script chose (scenes without footage stay animated).
+            foot=""
+            if grep -q '"footage"' "videos/scripts/$slug.json"; then
+              python3 tools/reel/footage.py fetch "videos/scripts/$slug.json" "$out" && foot="--footage $out/footage.json"
+            fi
             music=$(ls assets/video/music/*.mp3 2>/dev/null | shuf -n1 || true)
             ok=0
             for attempt in 1 2; do
-              if REEL_VOICE="$voice" TTS_RATE="$rate" MUSIC_VOLUME="$vol" node tools/reel/render.js "videos/scripts/$slug.json" "$out" ${music:+--music "$music"}; then ok=1; break; fi
+              if REEL_VOICE="$voice" TTS_RATE="$rate" MUSIC_VOLUME="$vol" node tools/reel/render.js "videos/scripts/$slug.json" "$out" $foot ${music:+--music "$music"}; then ok=1; break; fi
               echo "Render attempt $attempt failed"; sleep 20
             done
             if [ "$ok" != 1 ]; then python3 tools/reel/deliver.py failed --slug "$slug" --step render --error "the video could not be rendered (2 attempts)" --run "$RUN_URL"; failed=1; continue; fi

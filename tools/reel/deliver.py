@@ -71,7 +71,7 @@ def sent(a):
     dur = int(round(meta.get("duration", 0)))
     caption = (f"🎬 <b>{e(script['video_title'])}</b>\n\n{e(script['topic'])}\n\n"
                f"📄 អត្ថបទ: {e(script['article']['url'])}\n"
-               f"⏱ {dur}s · 📐 {e(meta.get('resolution'))} · {meta.get('fps')} fps · 🎨 Motion graphics ({meta.get('scenes')} scenes)\n"
+               f"⏱ {dur}s · 📐 {e(meta.get('resolution'))} · {meta.get('fps')} fps · 🎨 {e(meta.get('style', 'Motion graphics'))} ({meta.get('scenes')} scenes)\n"
                f"🎙 {e(meta.get('voice'))} · 🎵 {e(meta.get('music'))}\n"
                f"💬 Subtitles: {e(meta.get('subtitle_sync'))}\n"
                f"✅ ផលិតរួច · 👀 Preview ប៉ុណ្ណោះ (មិនទាន់បង្ហោះជាសាធារណៈ)")
@@ -89,6 +89,12 @@ def sent(a):
     # The original file too: Telegram's in-app player may stream a smaller copy; this one is the exact 1080x1920 MP4.
     tg("sendDocument", {"caption": f"📁 ឯកសារដើម (Original) 1080x1920 · {meta.get('size_mb')} MB", "disable_content_type_detection": "true"}, {"document": mp4})
     tg("sendPhoto", {"caption": "🖼 Thumbnail · " + script["thumbnail_text"]}, {"photo": thumb})
+    if meta.get("footage"):
+        rows = [f"🎞 <b>Footage report</b> · Pixabay ≈{round(100 * meta.get('footage_share', 0))}% of the video, animation for the rest"]
+        for f in meta["footage"]:
+            rows.append(f"Scene {f['scene']} ({e(f.get('role'))}, {f.get('seconds')}s): Pixabay #{f['id']} by {e(f.get('author'))}\n"
+                        f"search: {e(f.get('query'))} · tags: {e(', '.join(f.get('tags') or [])[:80])}\n{e(f.get('page'))}")
+        tg("sendMessage", {"text": "\n\n".join(rows)[:4000], "parse_mode": "HTML", "disable_web_page_preview": "true"})
     for part in chunks(script_text(script)):
         tg("sendMessage", {"text": part, "parse_mode": "HTML", "disable_web_page_preview": "true"})
     archive = C.read_json(a.archive, {}) if a.archive else {}
@@ -97,7 +103,7 @@ def sent(a):
         "status": "sent", "error": "", "sent_at": C.iso(), "rendered_at": rec.get("rendered_at") or C.iso(), "run": a.run or "",
         "duration": meta.get("duration"), "size_mb": meta.get("size_mb"), "render_seconds": meta.get("render_seconds"),
         "voice": meta.get("voice"), "music": meta.get("music"), "style": meta.get("style"), "visuals": meta.get("visuals"),
-        "resolution": meta.get("resolution"), "fps": meta.get("fps"), "subtitle_sync": meta.get("subtitle_sync"),
+        "resolution": meta.get("resolution"), "fps": meta.get("fps"), "subtitle_sync": meta.get("subtitle_sync"), "footage": meta.get("footage") or [], "footage_share": meta.get("footage_share", 0),
         "telegram": {"ok": True, "message_id": msg.get("message_id"), "chat": "configured", "at": C.iso(),
                      "file_id": (msg.get("video") or {}).get("file_id")},
         "archive": archive,
