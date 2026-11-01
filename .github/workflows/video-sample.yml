@@ -28,6 +28,9 @@ jobs:
           npx playwright install --with-deps chromium
           pip install pyyaml pillow edge-tts
       - name: Make videos
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVENLABS_VOICE_ID: ${{ secrets.ELEVENLABS_VOICE_ID }}
         run: |
           mkdir -p videos
           while read -r slug voice; do
