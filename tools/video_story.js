@@ -11,9 +11,9 @@ const ROOT = path.join(__dirname, "..");
 
 const FPS = 30;
 const W = 1080, H = 1920;
-const MIN_SCENE = 5;
-const LEAD = 0.6;   // the voice starts this long after its scene appears
-const TAIL = 0.9;   // and the scene stays this long after the voice ends
+let MIN_SCENE = 5;
+let LEAD = 0.6;   // the voice starts this long after its scene appears
+let TAIL = 0.9;   // and the scene stays this long after the voice ends
 const OUTRO = 2.6;  // logo at the end
 
 const b64 = (f) => fs.readFileSync(path.join(ROOT, f)).toString("base64");
@@ -49,6 +49,43 @@ function voice(scenes, voiceName, dir) {
   } catch (e) {
     console.log("Warning: Khmer voice could not be made, the video will have music and effects only. " + String(e.message || e).split("\n")[0]);
   }
+}
+
+// The owner's own recording: one file read in scene order, with a short pause between parts.
+// The sound is cleaned (rumble cut, noise reduced, loudness evened), then cut at the longest pauses, one piece per scene.
+function ownVoice(scenes, file, dir) {
+  fs.mkdirSync(dir, { recursive: true });
+  const clean = path.join(dir, "clean.wav");
+  execFileSync("ffmpeg", ["-y", "-loglevel", "error", "-i", file, "-af", "highpass=f=80,afftdn=nf=-25,loudnorm=I=-16:TP=-1.5:LRA=11", "-ar", "44100", "-ac", "1", clean]);
+  const total = parseFloat(execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", clean], { encoding: "utf8" }));
+  const err = require("child_process").spawnSync("ffmpeg", ["-hide_banner", "-i", clean, "-af", "silencedetect=noise=-32dB:d=0.35", "-f", "null", "-"], { encoding: "utf8" }).stderr;
+  const sil = [];
+  let st = null;
+  for (const line of err.split("\n")) {
+    let m = line.match(/silence_start: ([\d.]+)/); if (m) st = parseFloat(m[1]);
+    m = line.match(/silence_end: ([\d.]+)/); if (m && st !== null) { sil.push([st, parseFloat(m[1])]); st = null; }
+  }
+  if (st !== null) sil.push([st, total]);
+  let a = 0, b = total;
+  if (sil.length && sil[0][0] < 0.05) a = sil.shift()[1];
+  if (sil.length && sil[sil.length - 1][1] >= total - 0.05) b = sil.pop()[0];
+  const n = scenes.length;
+  let cuts;  // [start, end] of speech for each scene
+  if (sil.length >= n - 1) {
+    const gaps = sil.slice().sort((x, y) => (y[1] - y[0]) - (x[1] - x[0])).slice(0, n - 1).sort((x, y) => x[0] - y[0]);
+    cuts = scenes.map((_, i) => [i ? gaps[i - 1][1] : a, i < n - 1 ? gaps[i][0] : b]);
+  } else {
+    console.log(`Warning: found ${sil.length} pauses for ${n} parts; splitting by text length instead.`);
+    const lens = scenes.map((s) => s.say.length), sum = lens.reduce((x, y) => x + y, 0);
+    let t = a; cuts = lens.map((l) => { const c = [t, t + (b - a) * l / sum]; t = c[1]; return c; });
+  }
+  cuts.forEach(([x, y], i) => {
+    const from = Math.max(0, x - 0.08), to = Math.min(total, y + 0.15);
+    const f = path.join(dir, i + ".wav");
+    execFileSync("ffmpeg", ["-y", "-loglevel", "error", "-i", clean, "-ss", from.toFixed(3), "-to", to.toFixed(3), "-af", "afade=t=in:d=0.04", f]);
+    scenes[i].voice = f; scenes[i].voiceLen = to - from;
+  });
+  console.log("Own voice: " + cuts.map(([x, y]) => (y - x).toFixed(1) + "s").join(", "));
 }
 
 function timeline(scenes) {
@@ -156,7 +193,7 @@ function subtitles(scenes) {
 function page(scenes, total) {
   const photoKinds = new Set(["presenter", "cta", "outro"]);
   const hostCss = scenes.map((s, i) => photoKinds.has(s.kind) ? "" : `.host .h${i} { animation: show ${s.dur}s linear ${s.start}s both; }`).join("");
-  const sceneCss = scenes.map((s, i) => `.s${i} { animation: scene ${s.dur}s linear ${s.start}s both; }`).join("");
+  const sceneCss = scenes.map((s, i) => `.s${i} { animation: ${["scene", "sceneB", "sceneC"][i % 3]} ${s.dur}s linear ${s.start}s both; }`).join("");
   const flashCss = scenes.slice(1).map((s, i) => `.f${i} { animation: flash .4s ease-out ${s.start - 0.05}s both; }`).join("");
   const talkCss = scenes.map((s, i) => s.say ? `.talk${i} { animation: show ${s.talk}s linear ${s.start + LEAD}s both; }` : "").join("");
   let dots = "";
@@ -276,7 +313,11 @@ body { width: ${W}px; height: ${H}px; overflow: hidden; position: relative; font
 .in { animation: rise .7s cubic-bezier(.2,.8,.2,1) both; }
 .pop { animation: pop .6s cubic-bezier(.3,1.6,.5,1) both; }
 @keyframes scene { 0% { opacity: 0; transform: scale(1.06); filter: blur(12px); } 6% { opacity: 1; transform: scale(1); filter: blur(0); }
-  93% { opacity: 1; transform: none; filter: blur(0); } 100% { opacity: 0; transform: translateX(-120px); filter: blur(8px); } }
+  93% { opacity: 1; transform: scale(1.04); filter: blur(0); } 100% { opacity: 0; transform: translateX(-120px) scale(1.04); filter: blur(8px); } }
+@keyframes sceneB { 0% { opacity: 0; transform: translateY(160px); } 6% { opacity: 1; transform: none; }
+  93% { opacity: 1; transform: scale(1.04); } 100% { opacity: 0; transform: translateY(-160px) scale(1.04); } }
+@keyframes sceneC { 0% { opacity: 0; transform: scale(.85) rotate(-2deg); filter: blur(8px); } 7% { opacity: 1; transform: none; filter: blur(0); }
+  93% { opacity: 1; transform: scale(1.04); filter: blur(0); } 100% { opacity: 0; transform: scale(1.2); filter: blur(12px); } }
 @keyframes show { 0%, 100% { opacity: 0; } 4%, 96% { opacity: 1; } }
 @keyframes sub { 0% { opacity: 0; transform: translateY(16px); } 10% { opacity: 1; transform: none; } 92% { opacity: 1; } 100% { opacity: 0; } }
 @keyframes zoom { from { transform: scale(1); } to { transform: scale(1.14); } }
@@ -347,7 +388,9 @@ function audio(scenes, total, dir, out) {
   const frames = path.join(work, "frames"); fs.mkdirSync(frames);
 
   const scenes = story.scenes.concat([{ kind: "outro" }]);
-  if (!process.argv.includes("--no-voice") && !stills) voice(scenes.filter((s) => s.say), story.voice || "km-KH-PisethNeural", path.join(work, "voice"));
+  const own = arg("--voice-file") || story.voice_file;
+  if (own && !stills) { LEAD = 0.25; TAIL = 0.35; MIN_SCENE = 2; ownVoice(scenes.filter((s) => s.say), own, path.join(work, "voice")); }
+  else if (!process.argv.includes("--no-voice") && !stills) voice(scenes.filter((s) => s.say), story.voice || "km-KH-PisethNeural", path.join(work, "voice"));
   const total = timeline(scenes);
   const html = page(scenes, total);
 
