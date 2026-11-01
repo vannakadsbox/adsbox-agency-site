@@ -71,7 +71,18 @@ async def make(out):
         dst = os.path.join(out, x["file"])
         if x.get("url"):  # a sample made on the provider's own website: download it, then the same loudness as the others
             raw = dst + ".src"
-            subprocess.run(["curl", "-fsSL", "--retry", "6", "--retry-all-errors", "--retry-delay", "4", "-o", raw, x["url"]], check=True)
+            code = ""
+            for t in range(8):
+                code = subprocess.run(["curl", "-sSL", "-A", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/130 Safari/537.36",
+                                       "-H", "Referer: https://www.kiritts.com/dashboard", "-o", raw, "-w", "%{http_code}", x["url"]],
+                                      capture_output=True, text=True).stdout.strip()
+                if code == "200" and os.path.getsize(raw) > 20000:
+                    break
+                print(f"{x['file']}: HTTP {code}, retrying")
+                import time; time.sleep(10)
+            if code != "200":
+                print(f"::error::{x['file']}: provider answered HTTP {code}; sample skipped")
+                continue
             ff("-i", raw, "-af", "loudnorm=I=-16:TP=-1.5:LRA=11", "-ar", "44100", "-b:a", "192k", dst)
         else:
             shutil.copy(os.path.join(extra, x["file"]), dst)
