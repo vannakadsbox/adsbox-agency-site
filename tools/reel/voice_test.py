@@ -74,9 +74,12 @@ async def make(out):
             code = ""
             for t in range(8):
                 code = subprocess.run(["curl", "-sSL", "-A", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/130 Safari/537.36",
-                                       "-H", "Referer: https://www.kiritts.com/dashboard", "-o", raw, "-w", "%{http_code}", x["url"]],
+                                       "-H", "Referer: https://www.kiritts.com/dashboard?locale=en", "-H", "Accept: */*", "-H", "Range: bytes=0-",
+                                       "-H", "Sec-Fetch-Dest: audio", "-H", "Sec-Fetch-Mode: no-cors", "-H", "Sec-Fetch-Site: same-origin",
+                                       "-H", "Accept-Language: en-US,en;q=0.9,km;q=0.8", "-o", raw, "-w", "%{http_code}", x["url"]],
                                       capture_output=True, text=True).stdout.strip()
-                if code == "200" and os.path.getsize(raw) > 20000:
+                if code in ("200", "206") and os.path.getsize(raw) > 20000:
+                    code = "200"
                     break
                 print(f"{x['file']}: HTTP {code}, retrying")
                 import time; time.sleep(10)
