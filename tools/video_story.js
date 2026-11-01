@@ -18,9 +18,11 @@ const OUTRO = 2.6;  // logo at the end
 
 const b64 = (f) => fs.readFileSync(path.join(ROOT, f)).toString("base64");
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const KH = (n) => String(n).replace(/\d/g, (x) => "០១២៣៤៥៦៧៨៩"[x]);
 const arg = (name) => { const i = process.argv.indexOf(name); return i > 0 ? process.argv[i + 1] : null; };
 const img64 = (f) => fs.existsSync(path.join(ROOT, f)) ? "data:image/jpeg;base64," + b64(f) : "";
-const FULL = img64("assets/video/presenter-full.jpg"), FACE = img64("assets/video/presenter-face.jpg");
+const FULL = img64("assets/video/presenter-full.jpg");
+let FACE = img64("assets/video/presenter-face.jpg");
 
 // Spoken Khmer for English words (the voice only; the screen keeps the English).
 const SAY = [["ADS BOX", "អេដស៍ប៊ក"], ["Order", "អូឌ័រ"], ["Admin", "អាដមីន"], ["Caption", "ខេបសិន"], ["Bundle", "បាន់ឌល"],
@@ -107,6 +109,28 @@ function sceneHtml(s, i) {
     case "checklist":
       return `${head(s.title)}<div class="stage"><div class="clip pop" ${d(s.start + 0.5)}><div class="cliptop">📋 បញ្ជីណែនាំ Admin</div>
         ${s.items.map((it, k) => { const t = at(0.25 + k * 0.22); return `<div class="item in" ${d(t)}><span class="tick pop" ${d(pop(t + 0.35))}>✓</span>${esc(it)}</div>`; }).join("")}</div></div>`;
+    case "hook":
+      return `<div class="center"><span class="bigemoji pop shake" ${d(pop(s.start + 0.15), `, ${s.start + 0.8}s`)}>${s.emoji}</span>
+        <div class="hooktitle in" ${d(s.start + 0.35)}>${esc(s.title)}</div></div>`;
+    case "problem":
+      return `${head(s.title)}<div class="stage col2">${s.bubbles.map((b, k) => `<div class="qb q${k % 3} pop" ${d(pop(at(0.05 + k * 0.16)))}>${esc(b)}</div>`).join("")}
+        ${s.note ? `<div class="pnote in" ${d(at(0.6))}>${esc(s.note)}</div>` : ""}</div>`;
+    case "curiosity":
+      return `<div class="center"><span class="bigemoji pop bob" ${d(pop(s.start + 0.15), `, ${s.start + 0.8}s`)}>${s.emoji}</span>
+        <div class="hooktitle in" ${d(s.start + 0.35)}>${esc(s.title)}</div>
+        ${s.badge ? `<div class="tipbadge pop" ${d(pop(at(0.7)))}>${esc(s.badge)} 👇</div>` : ""}</div>`;
+    case "tip":
+      return `<div class="center tipc"><div class="tipnum pop" ${d(pop(s.start + 0.15))}>${KH(s.n)}</div>
+        <span class="tipemoji pop bob" ${d(pop(s.start + 0.4), `, ${s.start + 1}s`)}>${s.emoji}</span>
+        <div class="tiptitle in" ${d(s.start + 0.5)}>${esc(s.title)}<i class="ul" ${d(s.start + 1)}></i></div>
+        ${s.text ? `<div class="tiptext pop" ${d(pop(at(0.55)))}>${esc(s.text)}</div>` : ""}</div>`;
+    case "caption":
+      return `${head(s.title)}<div class="stage"><div class="post pop" ${d(s.start + 0.4)}><div class="posttop"><span class="av">🛍️</span><b>ហាងគំរូ</b></div>
+        <div class="posthead">${esc(s.head)}</div>
+        ${s.lines.map((l, k) => { const t = at(0.12 + k * 0.18); return `<div class="pline in" ${d(t)}><span class="tick pop" ${d(pop(t + 0.3))}>✓</span>${esc(l)}</div>`; }).join("")}</div></div>`;
+    case "social":
+      return `<div class="center"><div class="hooktitle in" ${d(s.start + 0.2)}>${esc(s.title)}</div>
+        <div class="acts">${s.actions.map(([e, l], k) => `<div class="act pop" ${d(pop(at(0.12 + k * 0.28)))}><span>${e}</span><b>${esc(l)}</b></div>`).join("")}</div></div>`;
     case "outro":
       return `<div class="outro"><img class="pop" src="data:image/png;base64,${b64("assets/logo-mark-white.png")}" alt="" ${d(pop(s.start + 0.2))}>
         <img class="word in" src="data:image/png;base64,${b64("assets/logo-word-white.png")}" alt="" ${d(s.start + 0.6)}><p class="in" ${d(s.start + 0.9)}>adsbox.agency</p></div>`;
@@ -203,6 +227,33 @@ body { width: ${W}px; height: ${H}px; overflow: hidden; position: relative; font
 .cliptop { font: 700 48px M, L, "Noto Color Emoji"; padding-bottom: 24px; border-bottom: 4px dashed #d5dbea; margin-bottom: 20px; }
 .item { display: flex; align-items: center; gap: 24px; font: 500 46px/1.5 M, L, sans-serif; padding: 18px 0; }
 .tick { flex: none; width: 70px; height: 70px; border-radius: 22px; background: #2bb3a3; color: #fff; display: grid; place-items: center; font: 700 46px L; --r: 0deg; }
+.center { position: absolute; left: 70px; right: 70px; top: 300px; bottom: 420px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 50px; text-align: center; }
+.bigemoji { font: 230px/1 "Noto Color Emoji"; width: 340px; height: 340px; border-radius: 90px; background: #fff; display: grid; place-items: center; box-shadow: 0 40px 80px rgba(0,0,0,.35); --r: -6deg; }
+.pop.shake { animation: pop .6s cubic-bezier(.3,1.6,.5,1) both, shake .5s ease-in-out 3; }
+.pop.bob { animation: pop .6s cubic-bezier(.3,1.6,.5,1) both, bob 2.4s ease-in-out infinite; }
+.hooktitle { font: 700 84px/1.45 M, L; text-shadow: 0 6px 30px rgba(0,0,0,.35); }
+.tipbadge { font: 700 60px M, L, "Noto Color Emoji"; background: #ffd23f; color: #0c1430; padding: 16px 44px; border-radius: 999px; --r: -3deg; }
+.col2 { flex-direction: column; align-items: stretch; gap: 34px; }
+.qb { font: 700 56px/1.4 M, L; background: #fff; color: #0c1430; padding: 28px 40px; border-radius: 40px; max-width: 80%; box-shadow: 0 24px 50px rgba(0,0,0,.3); }
+.qb.q0 { align-self: flex-start; --r: -2deg; } .qb.q1 { align-self: flex-end; --r: 2deg; } .qb.q2 { align-self: flex-start; --r: -1deg; margin-left: 40px; }
+.pnote { margin-top: 30px; text-align: center; font: 700 52px/1.5 M, L, "Noto Color Emoji"; color: #ffd23f; }
+.tipc { gap: 40px; }
+.tipnum { width: 170px; height: 170px; border-radius: 50%; background: #ffd23f; color: #0c1430; font: 700 110px/1 M, L; display: grid; place-items: center; --r: 0deg; }
+.tipemoji { font: 150px/1 "Noto Color Emoji"; --r: 0deg; }
+.tiptitle { position: relative; font: 700 86px/1.45 M, L; padding-bottom: 26px; }
+.tiptitle .ul { position: absolute; left: 50%; margin-left: -130px; bottom: 0; width: 260px; height: 14px; border-radius: 14px; background: #ffd23f; transform-origin: center; animation: line .5s ease-out both; }
+.tiptext { font: 700 54px/1.5 M, L, sans-serif; background: #fff; color: #1c4b9b; padding: 22px 40px; border-radius: 28px; --r: -1deg; }
+.post { width: 880px; background: #fff; color: #0c1430; border-radius: 40px; padding: 36px 44px 46px; box-shadow: 0 40px 90px rgba(0,0,0,.4); --r: 0deg; }
+.posttop { display: flex; align-items: center; gap: 20px; font: 700 42px M, L; margin-bottom: 20px; }
+.posttop .av { width: 84px; height: 84px; border-radius: 50%; background: #e8eefc; display: grid; place-items: center; font: 48px "Noto Color Emoji"; }
+.posthead { font: 700 52px/1.4 M, L, "Noto Color Emoji"; padding-bottom: 18px; border-bottom: 4px dashed #d5dbea; margin-bottom: 12px; }
+.pline { display: flex; align-items: center; gap: 22px; font: 500 44px/1.5 M, L, sans-serif; padding: 14px 0; }
+.acts { display: flex; flex-direction: column; gap: 30px; width: 100%; }
+.act { display: flex; align-items: center; gap: 30px; background: rgba(255,255,255,.14); border: 4px solid rgba(255,255,255,.4); border-radius: 36px; padding: 26px 40px; --r: 0deg; }
+.act span { font: 90px/1 "Noto Color Emoji"; }
+.act b { font: 700 56px/1.4 M, L; }
+@keyframes shake { 0%, 100% { translate: 0 0; } 25% { translate: -14px 0; } 75% { translate: 14px 0; } }
+@keyframes bob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -18px; } }
 .outro { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; }
 .outro img { width: 300px; --r: 0deg; }
 .outro .word { width: 520px; }
@@ -288,6 +339,7 @@ function audio(scenes, total, dir, out) {
   const src = process.argv[2];
   if (!src) { console.error("usage: node tools/video_story.js videos/story.json [out.mp4] [--no-voice] [--stills DIR]"); process.exit(2); }
   const story = JSON.parse(fs.readFileSync(src, "utf8"));
+  if (story.photo === false) FACE = "";  // no owner photo in this video
   const outArg = process.argv[3] && !process.argv[3].startsWith("--") ? process.argv[3] : null;
   const out = outArg || story.out || src.replace(/\.json$/, ".mp4");
   const stills = arg("--stills");

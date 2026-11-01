@@ -35,7 +35,8 @@ jobs:
             node tools/video.js "content/articles/$slug.md" "videos/$slug-${voice:-km-KH-SreymomNeural}.mp4" --voice "${voice:-km-KH-SreymomNeural}"
           done < videos/requests.txt
           for story in videos/story-*.json; do
-            [ -e "$story" ] && node tools/video_story.js "$story" "${story%.json}.mp4"
+            [ -e "$story" ] || continue
+            node tools/video_story.js "$story" "${story%.json}.mp4" && echo "${story%.json}.mp4" >> /tmp/made.txt
           done
       - name: Commit the videos
         run: |
@@ -50,12 +51,12 @@ jobs:
           TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
-          for v in videos/story-*.mp4; do
-            [ -e "$v" ] || continue
+          [ -e /tmp/made.txt ] || exit 0
+          while read -r v; do
             # Tell Telegram the real size (tall 9:16) and give it a cover, so it shows full size instead of cropped.
             ffmpeg -y -loglevel error -ss 1 -i "$v" -frames:v 1 -vf scale=180:320 /tmp/thumb.jpg
             dur=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$v" | cut -d. -f1)
             curl -sS -f "https://api.telegram.org/bot$TOKEN/sendVideo" -F chat_id="$CHAT" -F video=@"$v" \
               -F width=1080 -F height=1920 -F duration="$dur" -F thumbnail=attach://thumb -F thumb=@/tmp/thumb.jpg \
-              -F supports_streaming=true -F caption="🎬 វីដេអូ ADS BOX (រូបថត + សំឡេងខ្មែរ + អក្សររត់) សម្រាប់ Reels / TikTok" > /dev/null
-          done
+              -F supports_streaming=true -F caption="🎬 វីដេអូ ADS BOX សម្រាប់ Reels / TikTok" > /dev/null
+          done < /tmp/made.txt
