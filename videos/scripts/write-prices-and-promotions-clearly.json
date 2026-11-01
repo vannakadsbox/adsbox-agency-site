@@ -7,40 +7,42 @@
   "scenes": [
     {
       "role": "hook",
-      "lines": [
-        "បងៗធ្លាប់ទេ ដាក់ Promotion ហើយ",
-        "Inbox ពេញតែសំណួរ «សរុបប៉ុន្មានបង?»"
-      ],
       "keyword": "«សរុបប៉ុន្មានបង?»",
+      "lines": [
+        "ដាក់ Promotion ហើយ Inbox ពេញ",
+        "តែសួរដដែលៗ «សរុបប៉ុន្មានបង?»",
+        "បងៗធ្លាប់ជួបទេ?"
+      ],
       "broll": [
-        "woman reading messages on smartphone",
-        "hands scrolling chat on phone",
-        "phone notifications messages"
+        "asian woman reading messages on smartphone",
+        "hands typing chat message on phone",
+        "smartphone notifications close up"
       ]
     },
     {
       "role": "problem",
       "lines": [
-        "បញ្ហាភាគច្រើន មិនមែននៅតម្លៃទេ",
-        "គឺនៅរបៀបដែលយើងសរសេរតម្លៃ។",
-        "អ្នកខ្លះមិនសួរផង រំកិលទៅផេកផ្សេងតែម្ដង។"
+        "តាមពិត រឿងនេះមិនមែនដោយសារតម្លៃថ្លៃទេ",
+        "តែដោយសារយើងសរសេរតម្លៃមិនច្បាស់។",
+        "អ្នកខ្លះមិនសួរផង គឺរំកិលទៅផេកផ្សេងបាត់។"
       ],
-      "keyword": "តម្លៃមិនច្បាស់ បាត់ Order",
       "broll": [
-        "confused woman looking at phone screen",
-        "person scrolling social media feed on phone"
+        "woman scrolling social media on phone",
+        "bored woman scrolling phone on sofa",
+        "thumb scrolling smartphone screen"
       ]
     },
     {
       "role": "problem",
       "lines": [
-        "ថ្ងៃនេះមាន ៤ ចំណុចងាយៗ",
-        "ដែលបងអាចកែក្នុង Caption បន្ទាប់ភ្លាម។"
+        "Order ដែលបាត់បែបនេះ",
+        "គឺលុយ Boost ដែលយើងចាយទៅទទេៗ។",
+        "តោះ មើល ៤ ចំណុចដែលកែបានភ្លាមៗ។"
       ],
-      "keyword": "៤ ចំណុចកែ Caption",
       "broll": [
-        "woman writing notes next to laptop",
-        "small business owner planning at desk"
+        "woman looking at laptop worried at home",
+        "person checking ads analytics on laptop",
+        "online seller working on laptop and phone"
       ]
     },
     {
@@ -48,13 +50,14 @@
       "label": "ចំណុចទី ១",
       "keyword": "ដាក់តម្លៃដែលត្រូវបង់",
       "lines": [
-        "ទី១ កុំឲ្យអតិថិជនគិតលេខខ្លួនឯង។",
+        "ទីមួយ កុំឲ្យអតិថិជនគិតលេខខ្លួនឯង។",
         "ជំនួសឲ្យ «បញ្ចុះ ២០% ពី $15»",
         "សរសេរតែម្ដងថា «តម្លៃពិសេស $12»។"
       ],
       "broll": [
         "woman using calculator at small shop",
-        "price tags and calculator on table"
+        "price tag on clothing close up",
+        "shop owner writing on notebook"
       ]
     },
     {
@@ -62,13 +65,14 @@
       "label": "ចំណុចទី ២",
       "keyword": "មួយបន្ទាត់ មួយលក្ខខណ្ឌ",
       "lines": [
-        "ទី២ ពាក្យ «ទិញ ១ ថែម ១» ងាយច្រឡំណាស់។",
-        "ប្រាប់ឲ្យច្បាស់ថា ថែមអ្វី លើទំនិញណា",
+        "ទីពីរ ពាក្យ «ទិញ ១ ថែម ១» ងាយច្រឡំណាស់។",
+        "ប្រាប់ឲ្យច្បាស់ ថែមអ្វី លើទំនិញណា",
         "ហើយសរសេរ មួយបន្ទាត់ មួយលក្ខខណ្ឌ។"
       ],
       "broll": [
         "folded t-shirts stacked in clothing shop",
-        "shop owner arranging clothes on rack"
+        "woman arranging clothes on rack in boutique",
+        "hands folding clothes for online order"
       ]
     },
     {
@@ -76,13 +80,14 @@
       "label": "ចំណុចទី ៣",
       "keyword": "ប្រាប់ថ្ងៃ និងម៉ោងផុតកំណត់",
       "lines": [
-        "ទី៣ កុំសរសេរត្រឹម «រយៈពេលកំណត់»។",
+        "ទីបី កុំសរសេរត្រឹម «រយៈពេលកំណត់»។",
         "ប្រាប់ឲ្យជាក់ ដល់ថ្ងៃអាទិត្យ ម៉ោង ១០ យប់",
         "អ្នកទិញនឹងសម្រេចចិត្តលឿនជាងមុន។"
       ],
       "broll": [
-        "calendar and smartphone on desk",
-        "clock on wall close up"
+        "woman checking time on smartphone",
+        "calendar on desk with smartphone",
+        "woman shopping online on phone smiling"
       ]
     },
     {
@@ -90,13 +95,14 @@
       "label": "ចំណុចទី ៤",
       "keyword": "ថ្លៃដឹក និងតម្លៃសរុប",
       "lines": [
-        "ទី៤ ចំណុចដែលច្រឡំច្រើនជាងគេ គឺថ្លៃដឹក។",
+        "ទីបួន ដែលច្រឡំច្រើនជាងគេ គឺថ្លៃដឹក។",
         "សរសេរថ្លៃដឹកភ្នំពេញ និងខេត្តឲ្យច្បាស់",
         "ហើយដាក់ឧទាហរណ៍តម្លៃសរុបមួយផង។"
       ],
       "broll": [
         "delivery rider with parcel on motorbike",
-        "woman packing parcel for delivery"
+        "woman packing parcel for delivery",
+        "taping cardboard box for shipping"
       ]
     },
     {
@@ -110,32 +116,34 @@
       ],
       "broll": [
         "woman typing social media post on phone",
+        "woman taking photo of clothes for online shop",
         "t-shirts and smartphone flat lay"
       ]
     },
     {
       "role": "summary",
-      "keyword": "អានដូចអតិថិជនថ្មី",
       "lines": [
         "មុនចុច Post លើកក្រោយ សាកអានម្ដងទៀត",
-        "ដូចជាអតិថិជនថ្មី ហើយសួរខ្លួនឯងថា",
+        "ធ្វើដូចជាអតិថិជនថ្មី ហើយសួរខ្លួនឯងថា",
         "«ខ្ញុំដឹងទេ ថាត្រូវបង់ប៉ុន្មានសរុប?»"
       ],
       "broll": [
         "young woman reading phone in cafe",
-        "woman thinking while holding smartphone"
+        "woman thinking while holding smartphone",
+        "woman smiling at smartphone"
       ]
     },
     {
       "role": "cta",
       "lines": [
-        "បើចង់ឲ្យ Caption ច្បាស់ៗ ទៅដល់អ្នកទិញពិត",
-        "ស្វែងយល់ពីសេវា Boost របស់ ADS BOX",
-        "នៅ adsbox.agency បានបងៗ។"
+        "ពេល Caption ច្បាស់ហើយ",
+        "បើចង់ឲ្យវាទៅដល់អ្នកទិញពិតៗ",
+        "ស្វែងយល់ពីសេវា Boost របស់ ADS BOX បាន។"
       ],
       "broll": [
+        "marketing team working on laptops in office",
         "woman working on laptop with phone at home office",
-        "small online shop team at computer"
+        "small business team meeting at table"
       ]
     }
   ],
@@ -143,5 +151,5 @@
     "title": "សរសេរតម្លៃ និង Promotion ក្នុង Caption ឲ្យច្បាស់៖ ៥ គន្លឹះកុំឲ្យអតិថិជនច្រឡំ",
     "url": "https://adsbox.agency/knowledge/write-prices-and-promotions-clearly/"
   },
-  "written_at": "2026-11-01T12:28:12+07:00"
+  "written_at": "2026-11-01T12:57:38+07:00"
 }
