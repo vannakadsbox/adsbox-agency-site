@@ -238,7 +238,7 @@ window.ACCOUNTS = {
    {
     "name": "Ly Za",
     "url": "https://www.facebook.com/profile.php?id=61581144403152",
-    "followers": 12499,
+    "followers": 12485,
     "picture": "assets/accounts/fb-61581144403152.webp",
     "cover": "assets/opt/adsbox-cover-31acf4-1565780390.webp",
     "type": "ផេកខ្មែរ",
@@ -260,7 +260,7 @@ window.ACCOUNTS = {
    {
     "name": "យឹម សុជាតា",
     "url": "https://www.facebook.com/profile.php?id=61580094211894",
-    "followers": 767,
+    "followers": 769,
     "picture": "assets/accounts/fb-61580094211894.webp",
     "cover": "assets/accounts/fb-61580094211894-cover.webp",
     "type": "ផេកខ្មែរ",
@@ -689,7 +689,7 @@ window.ACCOUNTS = {
    {
     "name": "Ly Za",
     "url": "https://www.facebook.com/profile.php?id=61581144403152&sk=reels_tab",
-    "followers": 12499,
+    "followers": 12485,
     "picture": "assets/accounts/fb-61581144403152.webp",
     "cover": "assets/opt/adsbox-cover-672969-1565780390.webp",
     "type": "ផេកខ្មែរ",
