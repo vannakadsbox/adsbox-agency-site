@@ -2,7 +2,8 @@
 # into a 1080x1920 Khmer video with real B-roll, voice, subtitles and music, then sends the playable preview to Telegram.
 # Nothing is posted publicly. Videos are archived in the private draft release "video-archive"; videos/log.json tracks every step.
 # Runs when a script or a note (videos/requests/) is pushed, or by hand: Actions -> Daily knowledge video -> Run workflow.
-# Secrets: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID (or TELEGRAM_VIDEO_CHAT_ID for another chat), PEXELS_API_KEY (B-roll).
+# Secrets: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID (or TELEGRAM_VIDEO_CHAT_ID for another chat), PIXABAY_API_KEY (footage;
+# PEXELS_API_KEY optional as a second source). Run with action "check" to test the keys without making a video.
 name: Daily knowledge video
 
 on:
@@ -11,9 +12,14 @@ on:
     paths: ["videos/scripts/*.json", "videos/requests/*.json"]
   workflow_dispatch:
     inputs:
+      action:
+        description: "video = make the video for the slug below; check = only test the footage key and Telegram"
+        type: choice
+        options: [video, check]
+        default: video
       slug:
         description: "Make (or remake) the video for this script: videos/scripts/<slug>.json"
-        required: true
+        required: false
 
 permissions:
   contents: write
@@ -23,7 +29,24 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  check:
+    if: github.event.inputs.action == 'check'
+    runs-on: ubuntu-latest
+    env:
+      PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pixabay key is set
+        run: '[ -n "$PIXABAY_API_KEY" ] || { echo "::error::PIXABAY_API_KEY secret is missing"; exit 1; }'
+      - name: Pixabay API answers
+        run: python3 tools/reel/broll.py --check
+      - name: Telegram bot is set
+        run: '[ -n "$TELEGRAM_BOT_TOKEN" ] && [ -n "$TELEGRAM_CHAT_ID" ] || { echo "::error::Telegram secrets missing"; exit 1; }'
+
   video:
+    if: github.event.inputs.action != 'check'
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
@@ -58,16 +81,24 @@ jobs:
         if: steps.todo.outputs.slugs != ''
         with:
           python-version: "3.12"
+      - name: Footage search cache (24 hours, as Pixabay asks)
+        if: steps.todo.outputs.slugs != ''
+        uses: actions/cache@v4
+        with:
+          path: .cache/footage
+          key: footage-${{ github.run_id }}
+          restore-keys: footage-
       - name: Install tools
         if: steps.todo.outputs.slugs != ''
         run: |
           sudo apt-get update -q && sudo apt-get install -y -q ffmpeg
           npm install --no-save --no-package-lock playwright@1.48.2
           npx playwright install --with-deps chromium
-          pip install -q pyyaml edge-tts
+          pip install -q pyyaml "edge-tts>=7.0"
       - name: Make and send the videos
         if: steps.todo.outputs.slugs != ''
         env:
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
         run: |
           set -u
@@ -82,8 +113,9 @@ jobs:
             if [ ! -f "videos/scripts/$slug.json" ]; then python3 tools/reel/deliver.py failed --slug "$slug" --step script --error "videos/scripts/$slug.json not found" --run "$RUN_URL"; failed=1; continue; fi
             out="out/$slug"; mkdir -p "$out"
             python3 tools/reel/deliver.py status --slug "$slug" --to rendering
-            python3 tools/reel/broll.py "videos/scripts/$slug.json" "$out" || echo "B-roll search failed; branded backgrounds will be used."
-            [ -f "$out/broll.json" ] || echo '{"scenes": []}' > "$out/broll.json"
+            if ! python3 tools/reel/broll.py "videos/scripts/$slug.json" "$out"; then
+              python3 tools/reel/deliver.py failed --slug "$slug" --step footage --error "no footage: PIXABAY_API_KEY missing or Pixabay found nothing" --run "$RUN_URL"; failed=1; continue
+            fi
             music=$(ls assets/video/music/*.mp3 2>/dev/null | shuf -n1 || true)
             ok=0
             for attempt in 1 2; do
