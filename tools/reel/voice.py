@@ -6,6 +6,9 @@
 Writes OUT_DIR/<i>.mp3 per scene and prints JSON: [{"len": seconds, "marks": [[start_s, end_s, "word"], ...], "kind": "word"|"sentence"|"none"}].
 Uses Microsoft's Khmer neural voices through edge-tts (km-KH-PisethNeural man, km-KH-SreymomNeural woman).
 TTS_RATE / TTS_PITCH change speed and pitch (e.g. +2%).
+VOICE "kiri:<Name>" (e.g. kiri:Sophon) uses Kiri TTS instead (KIRI_API_KEY; KIRI_INSTRUCTION = style, max 100 characters).
+Kiri gives no word timing with speech, so each scene is transcribed by Kiri (word timestamps) and the spoken
+timing is mapped onto the script text; if that fails the subtitles fall back to proportional timing.
 """
 import asyncio, json, os, subprocess, sys
 
@@ -49,6 +52,58 @@ def length(path):
     return float(out.strip())
 
 
+KIRI = "https://api.kiritts.com/v1"
+
+
+def kiri_speak(text, name, out):
+    """One scene through the Kiri API -> MP3 at out, plus marks mapped from Kiri's own transcript of that audio."""
+    key = os.environ.get("KIRI_API_KEY", "").strip()
+    if not key:
+        raise SystemExit("KIRI_API_KEY is not set.")
+    body = {"model": "kiritts", "input": text, "voice": name, "response_format": "wav"}
+    ins = os.environ.get("KIRI_INSTRUCTION", "").strip()
+    if ins:
+        body["instructions"] = ins[:100]
+    wav = out + ".wav"
+    for attempt in range(4):
+        code = subprocess.run(["curl", "-sS", "--max-time", "180", "-o", wav, "-w", "%{http_code}", KIRI + "/audio/speech",
+                               "-H", "Authorization: Bearer " + key, "-H", "Content-Type: application/json",
+                               "--data-binary", json.dumps(body)], capture_output=True, text=True).stdout.strip()
+        if code == "200" and os.path.getsize(wav) > 4000:
+            break
+        import time
+        time.sleep(5 * (attempt + 1))
+    else:
+        raise SystemExit(f"Kiri speech failed (HTTP {code}).")
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", wav, "-ar", "24000", "-ac", "1", "-b:a", "128k", out], check=True)
+    os.remove(wav)
+    marks, kind = [], "none"
+    try:
+        r = subprocess.run(["curl", "-sS", "--max-time", "180", KIRI + "/audio/transcriptions", "-H", "Authorization: Bearer " + key,
+                            "-F", f"file=@{out}", "-F", "model=kiristt", "-F", "language=km-KH", "-F", "response_format=verbose_json",
+                            "-F", "timestamp_granularities=word,segment", "-F", "prompt=" + text[:400]],
+                           capture_output=True, text=True)
+        data = json.loads(r.stdout or "{}")
+        words = data.get("words") or [w for sg in data.get("segments") or [] for w in (sg.get("words") or [])]
+        words = [(float(w["start"]), float(w["end"]), str(w.get("word") or w.get("text") or "").strip()) for w in words if "start" in w]
+        words = [w for w in words if w[2]]
+        if len(words) >= 2:
+            total = sum(len(w[2]) for w in words)
+            L, acc, pos = len(text), 0, 0
+            for s, e, w in words:  # the transcript's spelling can differ; map by share of characters instead
+                a = round(acc / total * L)
+                acc += len(w)
+                b = round(acc / total * L)
+                piece = text[max(a, pos):b]
+                if piece.strip():
+                    marks.append([round(s, 3), round(e, 3), piece.strip()])
+                pos = max(pos, b)
+            kind = "transcript"
+    except Exception as ex:  # timing is a nicety: never fail the voice for it
+        print(f"Kiri transcript timing unavailable: {ex}", file=sys.stderr)
+    return marks, kind
+
+
 async def main():
     voice, out_dir = sys.argv[1], sys.argv[2]
     texts = json.load(open(sys.argv[3], encoding="utf-8"))
@@ -56,7 +111,10 @@ async def main():
     res = []
     for i, t in enumerate(texts):
         f = os.path.join(out_dir, f"{i}.mp3")
-        marks, kind = await speak(t, voice, f)
+        if voice.startswith("kiri:"):
+            marks, kind = kiri_speak(t, voice.split(":", 1)[1], f)
+        else:
+            marks, kind = await speak(t, voice, f)
         res.append({"len": length(f), "marks": marks, "kind": kind})
     print(json.dumps(res, ensure_ascii=False))
 

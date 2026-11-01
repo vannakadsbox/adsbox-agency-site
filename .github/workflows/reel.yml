@@ -24,6 +24,9 @@ on:
       slug:
         description: "Make (or remake) the video for this script: videos/scripts/<slug>.json"
         required: false
+      voice:
+        description: "Test only: voice for this run, e.g. kiri:Sophon (empty = the production voice in videos/settings.json)"
+        required: false
 
 permissions:
   contents: write
@@ -76,6 +79,7 @@ jobs:
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
       TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       TELEGRAM_VIDEO_CHAT_ID: ${{ secrets.TELEGRAM_VIDEO_CHAT_ID }}
+      KIRI_API_KEY: ${{ secrets.KIRI_API_KEY }}
       RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
       GH_TOKEN: ${{ github.token }}
     steps:
@@ -119,6 +123,9 @@ jobs:
           gh release view "$rel" >/dev/null 2>&1 || gh release create "$rel" --draft --title "Video archive (private)" \
             --notes "Finished ADS BOX knowledge videos. Draft release: only people with access to the repository can see it."
           voice=$(python3 -c "import sys; sys.path.insert(0,'tools/reel'); import common; print(common.settings()['voice'])")
+          [ -n "${{ github.event.inputs.voice }}" ] && voice="${{ github.event.inputs.voice }}"
+          export KIRI_INSTRUCTION=$(python3 -c "import sys; sys.path.insert(0,'tools/reel'); import common; print(common.settings().get('kiri_instruction',''))")
+          echo "Voice: $voice"
           rate=$(python3 -c "import sys; sys.path.insert(0,'tools/reel'); import common; print(common.settings()['rate'])")
           vol=$(python3 -c "import sys; sys.path.insert(0,'tools/reel'); import common; print(common.settings()['music_volume'])")
           failed=0
