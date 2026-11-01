@@ -18,7 +18,7 @@ window.ACCOUNTS = {
    {
     "name": "16Drama",
     "url": "https://www.facebook.com/profile.php?id=61594897690891",
-    "followers": 35,
+    "followers": 36,
     "picture": "assets/accounts/fb-61594897690891.webp",
     "cover": "assets/opt/adsbox-cover-330cfe-1565780390.webp",
     "type": "ផេកខ្មែរ",
@@ -29,7 +29,7 @@ window.ACCOUNTS = {
    {
     "name": "31Drama",
     "url": "https://www.facebook.com/profile.php?id=61594894031772",
-    "followers": 26,
+    "followers": 27,
     "picture": "assets/accounts/fb-61594894031772.webp",
     "cover": "assets/opt/adsbox-cover-cbd100-1565780390.webp",
     "type": "ផេកខ្មែរ",
@@ -51,7 +51,7 @@ window.ACCOUNTS = {
    {
     "name": "19Drama",
     "url": "https://www.facebook.com/profile.php?id=61594794374942",
-    "followers": 36,
+    "followers": 37,
     "picture": "assets/accounts/fb-61594794374942.webp",
     "cover": "assets/opt/adsbox-cover-2519c9-1565780390.webp",
     "type": "ផេកខ្មែរ",
