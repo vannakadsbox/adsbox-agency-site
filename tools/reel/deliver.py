@@ -7,8 +7,11 @@
   python3 tools/reel/deliver.py status --slug SLUG --to rendering
 
 Needs TELEGRAM_BOT_TOKEN and TELEGRAM_VIDEO_CHAT_ID (or TELEGRAM_CHAT_ID). The token is never printed.
-"sent" posts: 1) the playable video with title, topic, article link and status (cover = the thumbnail),
-2) the thumbnail picture, 3) the full script and the post caption. Exit 1 if Telegram did not accept the video.
+"sent" posts EXACTLY 3 items per video (owner, 1 Nov 2026), in this order and nothing else:
+  1) the caption (Khmer, emojis, article link, duration and resolution)
+  2) the MP4 as a playable Telegram video, file name <slug>.mp4, the original file (not re-encoded)
+  3) the thumbnail as a JPG file, <slug>-thumbnail.jpg, the original image (sent as a file so it is not compressed)
+No reports, script, scene lists or duplicate files. Exit 1 if any of the 3 was not accepted.
 """
 import argparse, html, json, os, subprocess, sys
 
@@ -29,7 +32,8 @@ def tg(method, fields, files=None):
     for k, v in fields.items():
         cmd += ["--form-string", f"{k}={v}"]  # text is sent as-is (no @file or ;type= parsing)
     for k, p in (files or {}).items():
-        cmd += ["-F", f"{k}=@{p}"]
+        p, name = p if isinstance(p, tuple) else (p, None)
+        cmd += ["-F", f"{k}=@{p}" + (f";filename={name}" if name else "")]
     cmd.append(f"https://api.telegram.org/bot{TOKEN}/{method}")
     r = subprocess.run(cmd, capture_output=True, text=True)
     try:
@@ -99,36 +103,54 @@ def quality(mp4, meta):
                              "decode_errors": bool(dec.stderr.strip()), "visual_mix": mix}
 
 
+def caption_text(script, meta):
+    """Item 1: one clean Khmer caption for sellers."""
+    dur = int(round(meta.get("duration", 0)))
+    return (f"🎬 <b>{e(script['video_title'])}</b>\n\n"
+            f"💡 {e(script['topic'])}\n\n"
+            f"📖 អានអត្ថបទពេញ 👉 {e(script['article']['url'])}\n\n"
+            f"⏱ រយៈពេល {dur} វិនាទី · 📐 {e(meta.get('resolution'))}\n"
+            f"🛍 គន្លឹះលក់អនឡាញពី ADS BOX")
+
+
 def sent(a):
     script = C.read_json(os.path.join(C.SCRIPTS, f"{a.slug}.json"))
     meta = C.read_json(os.path.join(a.dir, "meta.json"), {})
     mp4 = os.path.join(a.dir, f"{a.slug}.mp4")
     thumb, cover = os.path.join(a.dir, f"{a.slug}-thumb.jpg"), os.path.join(a.dir, f"{a.slug}-cover.jpg")
     dur = int(round(meta.get("duration", 0)))
-    caption = (f"🎬 <b>{e(script['video_title'])}</b>\n\n{e(script['topic'])}\n\n"
-               f"📄 អត្ថបទ: {e(script['article']['url'])}\n"
-               f"⏱ {dur}s · 📐 {e(meta.get('resolution'))} · {meta.get('fps')} fps · 🎨 {e(meta.get('style', 'Motion graphics'))} ({meta.get('scenes')} scenes)\n"
-               f"🎙 {e(meta.get('voice'))} · 🎵 {e(meta.get('music'))}\n"
-               f"💬 Subtitles: {e(meta.get('subtitle_sync'))}\n"
-               f"✅ ផលិតរួច · 👀 Preview ប៉ុណ្ណោះ (មិនទាន់បង្ហោះជាសាធារណៈ)")
-    r = tg("sendVideo", {"caption": caption[:1024], "parse_mode": "HTML", "supports_streaming": "true",
-                         "width": "1080", "height": "1920", "duration": str(dur),
-                         "cover": "attach://coverimg", "thumbnail": "attach://thumbimg"},
-           {"video": mp4, "coverimg": thumb, "thumbimg": cover})
     lg = C.log()
     rec = C.record(lg, a.slug)
-    if not r.get("ok"):
-        rec.update({"status": "failed", "error": f"Telegram sendVideo: {r.get('description')}", "failed_at": C.iso(), "run": a.run or ""})
+    items = []
+
+    def fail(what, r):
+        rec.update({"status": "failed", "error": f"Telegram {what}: {r.get('description')}", "failed_at": C.iso(), "run": a.run or "",
+                    "telegram": {"ok": False, "items": items}})
         C.save_log(lg)
         return 1
-    msg = r["result"]
-    # The original file too: Telegram's in-app player may stream a smaller copy; this one is the exact 1080x1920 MP4.
-    tg("sendDocument", {"caption": f"📁 ឯកសារដើម (Original) 1080x1920 · {meta.get('size_mb')} MB", "disable_content_type_detection": "true"}, {"document": mp4})
-    tg("sendPhoto", {"caption": "🖼 Thumbnail · " + script["thumbnail_text"]}, {"photo": thumb})
-    qtext, qdata = quality(mp4, meta)
-    tg("sendMessage", {"text": qtext, "parse_mode": "HTML", "disable_web_page_preview": "true"})
-    for part in chunks(script_text(script)):
-        tg("sendMessage", {"text": part, "parse_mode": "HTML", "disable_web_page_preview": "true"})
+
+    # 1) Caption
+    r = tg("sendMessage", {"text": caption_text(script, meta), "parse_mode": "HTML", "disable_web_page_preview": "true"})
+    if not r.get("ok"):
+        return fail("caption", r)
+    items.append({"item": "caption", "message_id": r["result"]["message_id"]})
+    # 2) Video: the original MP4 as a playable video (no caption, so the caption is not repeated)
+    r = tg("sendVideo", {"supports_streaming": "true", "width": "1080", "height": "1920", "duration": str(dur),
+                         "cover": "attach://coverimg", "thumbnail": "attach://thumbimg"},
+           {"video": (mp4, f"{a.slug}.mp4"), "coverimg": thumb, "thumbimg": cover})
+    if not r.get("ok"):
+        return fail("video", r)
+    v = r["result"].get("video") or {}
+    items.append({"item": "video", "message_id": r["result"]["message_id"], "file_name": v.get("file_name"),
+                  "file_size": v.get("file_size"), "width": v.get("width"), "height": v.get("height"), "file_id": v.get("file_id")})
+    # 3) Thumbnail as a file (a photo would be recompressed by Telegram)
+    r = tg("sendDocument", {"disable_content_type_detection": "true"}, {"document": (thumb, f"{a.slug}-thumbnail.jpg")})
+    if not r.get("ok"):
+        return fail("thumbnail", r)
+    d = r["result"].get("document") or {}
+    items.append({"item": "thumbnail", "message_id": r["result"]["message_id"], "file_name": d.get("file_name"),
+                  "file_size": d.get("file_size")})
+    qtext, qdata = quality(mp4, meta)  # kept in the log only; not sent to Telegram
     archive = C.read_json(a.archive, {}) if a.archive else {}
     mp4_asset = next((x for x in archive.get("assets", []) if str(x.get("name", "")).endswith(".mp4")), {})
     rec.update({
@@ -136,14 +158,15 @@ def sent(a):
         "duration": meta.get("duration"), "size_mb": meta.get("size_mb"), "render_seconds": meta.get("render_seconds"),
         "voice": meta.get("voice"), "music": meta.get("music"), "style": meta.get("style"), "visuals": meta.get("visuals"),
         "resolution": meta.get("resolution"), "fps": meta.get("fps"), "subtitle_sync": meta.get("subtitle_sync"), "footage": [], "footage_share": 0, "stock_footage": "none (removed)",
-        "telegram": {"ok": True, "message_id": msg.get("message_id"), "chat": "configured", "at": C.iso(),
-                     "file_id": (msg.get("video") or {}).get("file_id")},
+        "telegram": {"ok": True, "message_id": items[1]["message_id"], "chat": "configured", "at": C.iso(),
+                     "file_id": items[1].get("file_id"), "items": items, "sent_count": len(items),
+                     "local_sizes": {"video": os.path.getsize(mp4), "thumbnail": os.path.getsize(thumb)}},
         "archive": archive, "quality": qdata,
         "article_id": a.slug, "video_id": mp4_asset.get("id"), "video_url": mp4_asset.get("url"),
         "created_at": rec.get("created_at") or C.iso(), "telegram_status": "delivered", "production_status": "complete",
     })
     C.save_log(lg)
-    print(f"Sent {a.slug} to Telegram (message {msg.get('message_id')}).")
+    print(f"Sent {a.slug} to Telegram: 3 items, messages {[x['message_id'] for x in items]}.")
     return 0
 
 
