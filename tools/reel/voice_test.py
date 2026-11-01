@@ -71,7 +71,7 @@ async def make(out):
         dst = os.path.join(out, x["file"])
         if x.get("url"):  # a sample made on the provider's own website: download it, then the same loudness as the others
             raw = dst + ".src"
-            subprocess.run(["curl", "-sSL", "--retry", "3", "-o", raw, x["url"]], check=True)
+            subprocess.run(["curl", "-fsSL", "--retry", "6", "--retry-all-errors", "--retry-delay", "4", "-o", raw, x["url"]], check=True)
             ff("-i", raw, "-af", "loudnorm=I=-16:TP=-1.5:LRA=11", "-ar", "44100", "-b:a", "192k", dst)
         else:
             shutil.copy(os.path.join(extra, x["file"]), dst)
