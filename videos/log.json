@@ -6,264 +6,240 @@
       "article_url": "https://adsbox.agency/knowledge/write-prices-and-promotions-clearly/",
       "video_title": "ដាក់ Promotion ហើយ Inbox ពេញសំណួរ? កែ Caption តាម ៤ ចំណុចនេះ",
       "hook": "ដាក់ Promotion ហើយ Inbox ពេញ តែសួរដដែលៗ «សរុបប៉ុន្មានបង?» បងៗធ្លាប់ជួបទេ?",
-      "status": "scripted",
+      "status": "sent",
       "scripted_at": "2026-11-01T13:25:11+07:00",
       "error": "",
-      "render_started_at": "2026-11-01T12:58:25+07:00",
-      "sent_at": "2026-11-01T13:07:39+07:00",
+      "render_started_at": "2026-11-01T13:26:04+07:00",
+      "sent_at": "2026-11-01T13:35:14+07:00",
       "rendered_at": "2026-11-01T12:32:27+07:00",
-      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/41278893752",
-      "duration": 83.73,
-      "size_mb": 37.2,
-      "render_seconds": 518,
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/41280762166",
+      "duration": 84.23,
+      "size_mb": 39.8,
+      "render_seconds": 507,
       "voice": "km-KH-PisethNeural",
       "music": "adsbox-original-1.mp3",
       "broll_ids": [
-        "pixabay-38084",
-        "pixabay-3188",
-        "pixabay-202987",
-        "pixabay-1360",
-        "pixabay-233390",
-        "pixabay-736",
-        "pixabay-293085",
-        "pixabay-283431",
-        "pixabay-6387",
-        "pixabay-189018",
-        "pixabay-10822",
-        "pixabay-206029",
-        "pixabay-1006",
+        "pixabay-204529",
+        "pixabay-168485",
+        "pixabay-304045",
+        "pixabay-174003",
+        "pixabay-183448",
+        "pixabay-208770",
+        "pixabay-107425",
+        "pixabay-221356",
+        "pixabay-59139",
+        "pixabay-993",
+        "pixabay-174007",
+        "pixabay-30703",
         "pixabay-1108",
-        "pixabay-204527",
-        "pixabay-142641",
-        "pixabay-174009",
-        "pixabay-213622",
-        "pixabay-8686",
-        "pixabay-10715",
-        "pixabay-130647",
-        "pixabay-251587",
-        "pixabay-211636",
-        "pixabay-263961",
-        "pixabay-204526",
+        "pixabay-1331",
         "pixabay-83865",
-        "pixabay-2340",
-        "pixabay-43559"
+        "pixabay-34855",
+        "pixabay-154829",
+        "pixabay-31924",
+        "pixabay-22599",
+        "pixabay-130213",
+        "pixabay-261978",
+        "pixabay-132",
+        "pixabay-129411",
+        "pixabay-39892",
+        "pixabay-39890"
       ],
       "broll": [
         {
-          "id": "pixabay-38084",
+          "id": "pixabay-204529",
           "source": "Pixabay",
-          "query": "asian woman reading messages on smartphone",
-          "page": "https://pixabay.com/videos/id-38084/",
-          "author": "mephala1980"
+          "query": "woman smartphone message",
+          "page": "https://pixabay.com/videos/id-204529/",
+          "author": "conte_public"
         },
         {
-          "id": "pixabay-3188",
+          "id": "pixabay-168485",
           "source": "Pixabay",
-          "query": "hands typing chat message on phone",
-          "page": "https://pixabay.com/videos/id-3188/",
+          "query": "typing phone chat",
+          "page": "https://pixabay.com/videos/id-168485/",
+          "author": "riaz-baloch"
+        },
+        {
+          "id": "pixabay-304045",
+          "source": "Pixabay",
+          "query": "smartphone notification",
+          "page": "https://pixabay.com/videos/id-304045/",
+          "author": "VirtualZero"
+        },
+        {
+          "id": "pixabay-174003",
+          "source": "Pixabay",
+          "query": "woman scrolling phone",
+          "page": "https://pixabay.com/videos/id-174003/",
+          "author": "Amorn_mimi"
+        },
+        {
+          "id": "pixabay-183448",
+          "source": "Pixabay",
+          "query": "social media smartphone",
+          "page": "https://pixabay.com/videos/id-183448/",
+          "author": "Amorn_mimi"
+        },
+        {
+          "id": "pixabay-208770",
+          "source": "Pixabay",
+          "query": "bored woman phone",
+          "page": "https://pixabay.com/videos/id-208770/",
+          "author": "u_xhp5h45w73"
+        },
+        {
+          "id": "pixabay-107425",
+          "source": "Pixabay",
+          "query": "woman laptop online business",
+          "page": "https://pixabay.com/videos/id-107425/",
+          "author": "OleksandrPidvalnyi"
+        },
+        {
+          "id": "pixabay-221356",
+          "source": "Pixabay",
+          "query": "laptop analytics chart",
+          "page": "https://pixabay.com/videos/id-221356/",
+          "author": "HamzaJawaid"
+        },
+        {
+          "id": "pixabay-59139",
+          "source": "Pixabay",
+          "query": "calculator money",
+          "page": "https://pixabay.com/videos/id-59139/",
+          "author": "Hassas_Arts"
+        },
+        {
+          "id": "pixabay-993",
+          "source": "Pixabay",
+          "query": "price tag clothes",
+          "page": "https://pixabay.com/videos/id-993/",
           "author": "Coverr-Free-Footage"
         },
         {
-          "id": "pixabay-202987",
+          "id": "pixabay-174007",
           "source": "Pixabay",
-          "query": "smartphone notifications close up",
-          "page": "https://pixabay.com/videos/id-202987/",
-          "author": "Natures_Embrace"
+          "query": "woman calculator",
+          "page": "https://pixabay.com/videos/id-174007/",
+          "author": "Amorn_mimi"
         },
         {
-          "id": "pixabay-1360",
+          "id": "pixabay-30703",
           "source": "Pixabay",
-          "query": "woman scrolling social media on phone",
-          "page": "https://pixabay.com/videos/id-1360/",
-          "author": "Activedia"
-        },
-        {
-          "id": "pixabay-233390",
-          "source": "Pixabay",
-          "query": "bored woman scrolling phone on sofa",
-          "page": "https://pixabay.com/videos/id-233390/",
-          "author": "Yasir1120"
-        },
-        {
-          "id": "pixabay-736",
-          "source": "Pixabay",
-          "query": "thumb scrolling smartphone screen",
-          "page": "https://pixabay.com/videos/id-736/",
-          "author": "elchao"
-        },
-        {
-          "id": "pixabay-293085",
-          "source": "Pixabay",
-          "query": "woman looking at laptop worried at home",
-          "page": "https://pixabay.com/videos/id-293085/",
-          "author": "RainMeditateHub"
-        },
-        {
-          "id": "pixabay-283431",
-          "source": "Pixabay",
-          "query": "person checking ads analytics on laptop",
-          "page": "https://pixabay.com/videos/id-283431/",
-          "author": "Kanenori"
-        },
-        {
-          "id": "pixabay-6387",
-          "source": "Pixabay",
-          "query": "woman using calculator at small shop",
-          "page": "https://pixabay.com/videos/id-6387/",
-          "author": "Coverr-Free-Footage"
-        },
-        {
-          "id": "pixabay-189018",
-          "source": "Pixabay",
-          "query": "price tag on clothing close up",
-          "page": "https://pixabay.com/videos/id-189018/",
-          "author": "choxyltd"
-        },
-        {
-          "id": "pixabay-10822",
-          "source": "Pixabay",
-          "query": "shop owner writing on notebook",
-          "page": "https://pixabay.com/videos/id-10822/",
-          "author": "Coverr-Free-Footage"
-        },
-        {
-          "id": "pixabay-206029",
-          "source": "Pixabay",
-          "query": "folded t-shirts stacked in clothing shop",
-          "page": "https://pixabay.com/videos/id-206029/",
-          "author": "Tailorcafe"
-        },
-        {
-          "id": "pixabay-1006",
-          "source": "Pixabay",
-          "query": "woman arranging clothes on rack in boutique",
-          "page": "https://pixabay.com/videos/id-1006/",
-          "author": "Coverr-Free-Footage"
+          "query": "clothing store",
+          "page": "https://pixabay.com/videos/id-30703/",
+          "author": "iha31"
         },
         {
           "id": "pixabay-1108",
           "source": "Pixabay",
-          "query": "hands folding clothes for online order",
+          "query": "folding clothes",
           "page": "https://pixabay.com/videos/id-1108/",
           "author": "DistillVideos"
         },
         {
-          "id": "pixabay-204527",
+          "id": "pixabay-1331",
           "source": "Pixabay",
-          "query": "woman checking time on smartphone",
-          "page": "https://pixabay.com/videos/id-204527/",
-          "author": "conte_public"
-        },
-        {
-          "id": "pixabay-142641",
-          "source": "Pixabay",
-          "query": "calendar on desk with smartphone",
-          "page": "https://pixabay.com/videos/id-142641/",
-          "author": "u_etjkkdz15b"
-        },
-        {
-          "id": "pixabay-174009",
-          "source": "Pixabay",
-          "query": "woman shopping online on phone smiling",
-          "page": "https://pixabay.com/videos/id-174009/",
-          "author": "Amorn_mimi"
-        },
-        {
-          "id": "pixabay-213622",
-          "source": "Pixabay",
-          "query": "delivery rider with parcel on motorbike",
-          "page": "https://pixabay.com/videos/id-213622/",
-          "author": "43413641"
-        },
-        {
-          "id": "pixabay-8686",
-          "source": "Pixabay",
-          "query": "woman packing parcel for delivery",
-          "page": "https://pixabay.com/videos/id-8686/",
-          "author": "matlevesque"
-        },
-        {
-          "id": "pixabay-10715",
-          "source": "Pixabay",
-          "query": "taping cardboard box for shipping",
-          "page": "https://pixabay.com/videos/id-10715/",
-          "author": "Pauline_17"
-        },
-        {
-          "id": "pixabay-130647",
-          "source": "Pixabay",
-          "query": "woman typing social media post on phone",
-          "page": "https://pixabay.com/videos/id-130647/",
-          "author": "SYG_Anime"
-        },
-        {
-          "id": "pixabay-251587",
-          "source": "Pixabay",
-          "query": "woman taking photo of clothes for online shop",
-          "page": "https://pixabay.com/videos/id-251587/",
-          "author": "xBriantcx"
-        },
-        {
-          "id": "pixabay-211636",
-          "source": "Pixabay",
-          "query": "t-shirts and smartphone flat lay",
-          "page": "https://pixabay.com/videos/id-211636/",
-          "author": "u_xhp5h45w73"
-        },
-        {
-          "id": "pixabay-263961",
-          "source": "Pixabay",
-          "query": "young woman reading phone in cafe",
-          "page": "https://pixabay.com/videos/id-263961/",
-          "author": "AbdulWahab_092"
-        },
-        {
-          "id": "pixabay-204526",
-          "source": "Pixabay",
-          "query": "woman thinking while holding smartphone",
-          "page": "https://pixabay.com/videos/id-204526/",
-          "author": "conte_public"
+          "query": "clothes rack shop",
+          "page": "https://pixabay.com/videos/id-1331/",
+          "author": "Vimeo-Free-Videos"
         },
         {
           "id": "pixabay-83865",
           "source": "Pixabay",
-          "query": "woman smiling at smartphone",
+          "query": "woman phone shopping",
           "page": "https://pixabay.com/videos/id-83865/",
           "author": "SYG_Anime"
         },
         {
-          "id": "pixabay-2340",
+          "id": "pixabay-34855",
           "source": "Pixabay",
-          "query": "marketing team working on laptops in office",
-          "page": "https://pixabay.com/videos/id-2340/",
-          "author": "Life-Of-Vids"
+          "query": "clock time",
+          "page": "https://pixabay.com/videos/id-34855/",
+          "author": "Danil_Shostak"
         },
         {
-          "id": "pixabay-43559",
+          "id": "pixabay-154829",
           "source": "Pixabay",
-          "query": "woman working on laptop with phone at home office",
-          "page": "https://pixabay.com/videos/id-43559/",
-          "author": "PhotoDhaba"
+          "query": "woman phone shopping",
+          "page": "https://pixabay.com/videos/id-154829/",
+          "author": "Amorn_mimi"
+        },
+        {
+          "id": "pixabay-31924",
+          "source": "Pixabay",
+          "query": "t-shirt clothes",
+          "page": "https://pixabay.com/videos/id-31924/",
+          "author": "Meltmoon"
+        },
+        {
+          "id": "pixabay-22599",
+          "source": "Pixabay",
+          "query": "woman photographing clothes",
+          "page": "https://pixabay.com/videos/id-22599/",
+          "author": "serrats_ana"
+        },
+        {
+          "id": "pixabay-130213",
+          "source": "Pixabay",
+          "query": "online shopping phone",
+          "page": "https://pixabay.com/videos/id-130213/",
+          "author": "Amorn_mimi"
+        },
+        {
+          "id": "pixabay-261978",
+          "source": "Pixabay",
+          "query": "woman reading phone cafe",
+          "page": "https://pixabay.com/videos/id-261978/",
+          "author": "AbdulWahab_092"
+        },
+        {
+          "id": "pixabay-132",
+          "source": "Pixabay",
+          "query": "woman thinking phone",
+          "page": "https://pixabay.com/videos/id-132/",
+          "author": "Coverr-Free-Footage"
+        },
+        {
+          "id": "pixabay-129411",
+          "source": "Pixabay",
+          "query": "woman smiling smartphone",
+          "page": "https://pixabay.com/videos/id-129411/",
+          "author": "Amorn_mimi"
+        },
+        {
+          "id": "pixabay-39892",
+          "source": "Pixabay",
+          "query": "business team laptop",
+          "page": "https://pixabay.com/videos/id-39892/",
+          "author": "AlexKopeykin"
+        },
+        {
+          "id": "pixabay-39890",
+          "source": "Pixabay",
+          "query": "office meeting team",
+          "page": "https://pixabay.com/videos/id-39890/",
+          "author": "AlexKopeykin"
         }
       ],
       "telegram": {
         "ok": true,
-        "message_id": 29,
+        "message_id": 32,
         "chat": "configured",
-        "at": "2026-11-01T13:07:39+07:00",
-        "file_id": "BAACAgUAAxkDAAMdaubXKXN_wCGFz-Zv_s2CWJVTBT8AAo0gAAIeBDFXOaCHCpdZp0A9BA"
+        "at": "2026-11-01T13:35:14+07:00",
+        "file_id": "BAACAgUAAxkDAAMgaubdm3mnDbh69Uewg8TmaavEMAUAApcgAAIeBDFXWCd42ttSKSc9BA"
       },
       "archive": {
         "assets": [
           {
-            "id": 697491804,
+            "id": 697548685,
             "name": "write-prices-and-promotions-clearly-thumb.jpg",
-            "size": 113627
+            "size": 110337
           },
           {
-            "id": 697491803,
+            "id": 697548684,
             "name": "write-prices-and-promotions-clearly.mp4",
-            "size": 37222586
+            "size": 39808796
           }
         ],
         "release_id": 430382508
