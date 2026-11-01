@@ -6,16 +6,16 @@
       "article_url": "https://adsbox.agency/knowledge/write-prices-and-promotions-clearly/",
       "video_title": "ដាក់ Promotion ហើយ Inbox ពេញសំណួរ? កែ Caption តាម ៤ ចំណុចនេះ",
       "hook": "ដាក់ Promotion ហើយ Inbox ពេញ តែសួរដដែលៗ «សរុបប៉ុន្មានបង?» បងៗធ្លាប់ជួបទេ?",
-      "status": "scripted",
+      "status": "sent",
       "scripted_at": "2026-11-01T14:02:51+07:00",
       "error": "",
-      "render_started_at": "2026-11-01T13:26:04+07:00",
-      "sent_at": "2026-11-01T13:35:14+07:00",
+      "render_started_at": "2026-11-01T14:03:34+07:00",
+      "sent_at": "2026-11-01T14:09:22+07:00",
       "rendered_at": "2026-11-01T12:32:27+07:00",
-      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/41280762166",
-      "duration": 84.23,
-      "size_mb": 39.8,
-      "render_seconds": 507,
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/41283199529",
+      "duration": 85.73,
+      "size_mb": 17,
+      "render_seconds": 335,
       "voice": "km-KH-PisethNeural",
       "music": "adsbox-original-1.mp3",
       "broll_ids": [
@@ -224,28 +224,43 @@
       ],
       "telegram": {
         "ok": true,
-        "message_id": 32,
+        "message_id": 36,
         "chat": "configured",
-        "at": "2026-11-01T13:35:14+07:00",
-        "file_id": "BAACAgUAAxkDAAMgaubdm3mnDbh69Uewg8TmaavEMAUAApcgAAIeBDFXWCd42ttSKSc9BA"
+        "at": "2026-11-01T14:09:22+07:00",
+        "file_id": "BAACAgUAAxkDAAMkaublnbwHH7CNV8T-bxg8SumyZ4wAAqYgAAIeBDFX6LWXGjkO8Mk9BA"
       },
       "archive": {
         "assets": [
           {
-            "id": 697548685,
+            "id": 697611375,
             "name": "write-prices-and-promotions-clearly-thumb.jpg",
-            "size": 110337
+            "size": 185972
           },
           {
-            "id": 697548684,
+            "id": 697611357,
             "name": "write-prices-and-promotions-clearly.mp4",
-            "size": 39808796
+            "size": 17037174
           }
         ],
         "release_id": 430382508
       },
       "shots": 28,
-      "subtitle_sync": "word"
+      "subtitle_sync": "word",
+      "style": "motion graphics",
+      "visuals": [
+        "question",
+        "leaving",
+        "dashboard",
+        "compare",
+        "checklist",
+        "deadline",
+        "delivery",
+        "caption",
+        "takeaway",
+        "cta"
+      ],
+      "resolution": "1080x1920",
+      "fps": 30
     }
   ]
 }
