@@ -131,6 +131,12 @@ V.takeaway = (v, x) => `${header(x.sc, x)}<div class="tk" style="${A("rise", x.s
 
 V.cta = (v, x, b64) => {
   const t1 = x.T(Math.min(1, x.n - 1)), tu = x.T(x.n - 1);
+  if (!(v.services || []).length) {  // follow mode: education first, no service list
+    return `<div class="cta-card fol" style="${A("rise", x.start + 0.2, 0.65)}">
+<div class="cc-top"><img src="data:image/png;base64,${b64("assets/logo-mark.png")}" alt=""><div><b>ADS BOX</b><small>គន្លឹះលក់អនឡាញថ្មីៗ រាល់ថ្ងៃ</small></div></div>
+${["គន្លឹះលក់អនឡាញ", "Boost និងផ្សាយពាណិជ្ជកម្ម", "លក់ Live"].map((s, i) => `<div class="cc-row" style="${A("slideR", t1 + i * 0.22, 0.5)}"><span class="ck">${icon("check", 40, "#0b1430", 3.4)}</span><b class="kh">${esc(s)}</b></div>`).join("")}</div>
+<div class="cta-url" style="${A("popIn", tu, 0.55, "cubic-bezier(.3,1.5,.5,1)")}"><span class="fbtn" style="${A("pulse", tu + 0.6, 1.1, "ease-in-out", "both", " infinite")}">+ Follow ADS BOX</span></div>`;
+  }
   return `<div class="cta-card" style="${A("rise", x.start + 0.2, 0.65)}">
 <div class="cc-top"><img src="data:image/png;base64,${b64("assets/logo-mark.png")}" alt=""><div><b>ADS BOX</b><small>ក្រុមជំនាញផ្សាយពាណិជ្ជកម្មអនឡាញ</small></div></div>
 ${(v.services || []).map((s, i) => `<div class="cc-row" style="${A("slideR", t1 + i * 0.22, 0.5)}"><span class="ck">${icon("check", 40, "#0b1430", 3.4)}</span><b>${esc(s)}</b></div>`).join("")}</div>
@@ -220,6 +226,8 @@ const CSS = `
 .cc-top{display:flex;align-items:center;gap:24px;padding-bottom:26px;margin-bottom:12px;border-bottom:3px solid #e6ebf7}
 .cc-top img{width:110px}.cc-top b{display:block;font-family:L,M,sans-serif;font-size:60px;font-weight:800}.cc-top small{font-size:36px;color:#4a557a}
 .cc-row{display:flex;align-items:center;gap:24px;padding:16px 0}.cc-row b{font-family:L,M,sans-serif;font-size:56px;font-weight:800}
+.cc-row b.kh{font-family:M,L,sans-serif;font-size:50px;font-weight:700}
+.fbtn{font-family:L,M,sans-serif;font-size:66px;font-weight:800;color:#0b1430;background:#ffd23f;padding:18px 54px 22px;border-radius:30px;box-shadow:0 24px 60px rgba(255,210,63,.35)}
 .cta-url{position:absolute;left:0;right:0;top:740px;display:flex;justify-content:center}
 .cta-url span{font-family:L,M,sans-serif;font-size:70px;font-weight:800;color:#0b1430;background:#ffd23f;padding:18px 60px 22px;border-radius:30px;box-shadow:0 24px 60px rgba(255,210,63,.35)}
 .tap{position:absolute;left:735px;top:78px}

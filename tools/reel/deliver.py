@@ -63,6 +63,38 @@ def script_text(script):
     return "\n\n".join(rows)
 
 
+def quality(mp4, meta):
+    """Technical checks on the actual file (ffprobe / ffmpeg), each marked passed only if it was measured."""
+    def run(args):
+        return subprocess.run(args, capture_output=True, text=True)
+    pr = run(["ffprobe", "-v", "error", "-show_entries", "stream=codec_type,codec_name,width,height,r_frame_rate,sample_rate,channels",
+              "-show_entries", "format=duration", "-of", "json", mp4])
+    info = json.loads(pr.stdout or "{}")
+    v = next((x for x in info.get("streams", []) if x.get("codec_type") == "video"), {})
+    au = next((x for x in info.get("streams", []) if x.get("codec_type") == "audio"), {})
+    dur = float((info.get("format") or {}).get("duration") or 0)
+    lo = run(["ffmpeg", "-hide_banner", "-i", mp4, "-af", "ebur128", "-f", "null", "-"]).stderr
+    lufs = next((l.split("I:")[1].strip() for l in reversed(lo.splitlines()) if l.strip().startswith("I:")), "?")
+    dec = run(["ffmpeg", "-v", "error", "-i", mp4, "-f", "null", "-"])
+    ok = lambda b: "✅" if b else "❌"
+    mix = meta.get("visual_mix") or {}
+    rows = [
+        "🔧 <b>Technical quality report</b> (measured on the delivered file)",
+        f"{ok(v.get('width') == 1080 and v.get('height') == 1920)} Resolution {v.get('width')}×{v.get('height')} (9:16)",
+        f"{ok(v.get('r_frame_rate') == '30/1')} Frame rate {v.get('r_frame_rate')}",
+        f"{ok(v.get('codec_name') == 'h264' and au.get('codec_name') == 'aac')} Codecs {v.get('codec_name')} / {au.get('codec_name')} {au.get('sample_rate')} Hz",
+        f"{ok(40 <= dur <= 95)} Duration {dur:.1f}s",
+        f"{ok(not dec.stderr.strip())} Plays start to end (full decode, {'no errors' if not dec.stderr.strip() else 'errors'})",
+        f"{ok(lufs != '?' and -16 <= float(lufs.split()[0]) <= -12)} Loudness {lufs} (target −14)",
+        f"{ok(meta.get('subtitle_sync') == 'word')} Subtitles timed to {meta.get('subtitle_sync')} marks from the voice",
+        f"🎞 Visual mix: footage {round(100 * mix.get('footage', 0))}% · animation {round(100 * mix.get('animation', 0))}% · "
+        f"screen demos {round(100 * mix.get('screen_demo', 0))}% · product visuals {round(100 * mix.get('product_visual', 0))}%",
+    ]
+    return "\n".join(rows), {"width": v.get("width"), "height": v.get("height"), "fps": v.get("r_frame_rate"), "duration": round(dur, 2),
+                             "video_codec": v.get("codec_name"), "audio_codec": au.get("codec_name"), "loudness": lufs,
+                             "decode_errors": bool(dec.stderr.strip()), "visual_mix": mix}
+
+
 def sent(a):
     script = C.read_json(os.path.join(C.SCRIPTS, f"{a.slug}.json"))
     meta = C.read_json(os.path.join(a.dir, "meta.json"), {})
@@ -107,6 +139,8 @@ def sent(a):
             rows.append(head + "\n" + body)
         for part in chunks("\n\n".join(rows)):
             tg("sendMessage", {"text": part, "parse_mode": "HTML", "disable_web_page_preview": "true"})
+    qtext, qdata = quality(mp4, meta)
+    tg("sendMessage", {"text": qtext, "parse_mode": "HTML", "disable_web_page_preview": "true"})
     for part in chunks(script_text(script)):
         tg("sendMessage", {"text": part, "parse_mode": "HTML", "disable_web_page_preview": "true"})
     archive = C.read_json(a.archive, {}) if a.archive else {}
@@ -118,7 +152,7 @@ def sent(a):
         "resolution": meta.get("resolution"), "fps": meta.get("fps"), "subtitle_sync": meta.get("subtitle_sync"), "footage": meta.get("footage") or [], "footage_share": meta.get("footage_share", 0),
         "telegram": {"ok": True, "message_id": msg.get("message_id"), "chat": "configured", "at": C.iso(),
                      "file_id": (msg.get("video") or {}).get("file_id")},
-        "archive": archive,
+        "archive": archive, "quality": qdata,
         "article_id": a.slug, "video_id": mp4_asset.get("id"), "video_url": mp4_asset.get("url"),
         "created_at": rec.get("created_at") or C.iso(), "telegram_status": "delivered", "production_status": "complete",
     })

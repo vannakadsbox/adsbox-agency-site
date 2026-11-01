@@ -32,7 +32,7 @@ VISUALS = {
     "delivery": {"rows": ("pairs", (2, 3), 22), "total?": ("pair", 26)},
     "caption": {"page?": ("text", 16), "lines": ("texts", (3, 6), 34), "highlight?": ("texts", (0, 4), 12), "stamp?": ("text", 12)},
     "takeaway": {"quote": ("text", 46)},
-    "cta": {"services": ("texts", (2, 4), 16)},
+    "cta": {"services?": ("texts", (2, 4), 16)},  # no services = "follow ADS BOX" card (education first)
 }
 
 

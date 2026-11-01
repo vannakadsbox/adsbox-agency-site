@@ -112,7 +112,7 @@ function page(script, scenes, total) {
     const make = S.V[v.type] || S.V.takeaway;
     if (sc.foot) {  // combined style: real footage plays underneath; only a key-point caption sits on it
       html += `<section class="scene fscene" style="${A("fadeIn", enter, 0.4, "ease-out")},${A("sout", exit, 0.4, "ease-in", "forwards").replace("animation:", "")}">
-<div class="fsh-t"></div><div class="fsh-b"></div>${sc.keyword ? `<div class="ft-lt" style="${A("slideR", x.start + 0.45, 0.55)}">${sc.label ? `<span>${esc(sc.label)}</span>` : ""}<b>${esc(sc.keyword)}</b></div>` : ""}</section>`;
+<div class="fsh-t"></div><div class="fsh-b"></div>${sc.keyword && i === 0 ? `<div class="stage"><div class="q-title" style="${A("popIn", x.start + 0.35, 0.6, "cubic-bezier(.3,1.5,.5,1)")}"><span>${esc(sc.keyword)}</span></div></div>` : sc.keyword ? `<div class="ft-lt" style="${A("slideR", x.start + 0.45, 0.55)}">${sc.label ? `<span>${esc(sc.label)}</span>` : ""}<b>${esc(sc.keyword)}</b></div>` : ""}</section>`;
     } else {
       html += `<section class="scene" style="${A("in" + dir, enter, 0.6, "cubic-bezier(.22,1,.36,1)")},${A("out" + dir, exit, 0.42, "cubic-bezier(.55,0,.75,.35)", "forwards").replace("animation:", "")}">
 <div class="stage">${make(v, x, b64)}</div></section>`;
@@ -224,6 +224,15 @@ async function frames(html, total, dir, alpha) {
     else await pg.screenshot({ path: path.join(dir, String(f).padStart(5, "0") + ".jpg"), type: "jpeg", quality: 93 });
   }
   await b.close();
+}
+
+// Share of the speaking time by visual type (the branded opening and ending are not counted).
+const DEMO = new Set(["question", "caption", "dashboard", "leaving"]);  // phone chats, post mock-ups, ads results: screen demos
+function visualMix(scenes) {
+  const t = { footage: 0, animation: 0, screen_demo: 0, product_visual: 0 };
+  scenes.forEach((s) => { const k = s.foot ? "footage" : DEMO.has((s.visual || {}).type) ? "screen_demo" : "animation"; t[k] += s.dur; });
+  const all = Object.values(t).reduce((a, b) => a + b, 0) || 1;
+  return Object.fromEntries(Object.entries(t).map(([k, v]) => [k, +(v / all).toFixed(2)]));
 }
 
 // --- Footage track (combined style) ---------------------------------------------------------------------------------
@@ -357,6 +366,7 @@ body{width:${W}px;height:${H}px;overflow:hidden;font-family:M,L,sans-serif;color
     render_seconds: Math.round((Date.now() - t0) / 1000),
     footage: scenes.map((s, i) => (s.foot ? { scene: i + 1, role: s.role, id: s.foot.id, page: s.foot.page, author: s.foot.author,
       query: s.foot.query, tags: s.foot.tags, seconds: +s.dur.toFixed(1) } : null)).filter(Boolean),
+    visual_mix: visualMix(scenes, total),
     footage_share: hybrid ? +(scenes.filter((s) => s.foot).reduce((a, s) => a + s.dur, 0) / (total - OUTRO)).toFixed(2) : 0,
   };
   fs.writeFileSync(path.join(outDir, "meta.json"), JSON.stringify(meta, null, 1));
