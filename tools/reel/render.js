@@ -235,10 +235,12 @@ function footageTrack(scenes, total, dir) {
     if (!sc.foot) return;
     const a = Math.max(0, sc.start - 0.5), b = Math.min(total, sc.start + sc.dur + 0.5), D = b - a, Ds = D.toFixed(3);
     const seg = path.join(dir, `foot${i}.mp4`), p = `(t/${Ds})`;
+    // Where the subject is across the frame (0 = left, 1 = right), chosen when the clip was reviewed; the 9:16 crop keeps it in view.
+    const focus = Math.max(0, Math.min(1, Number(sc.foot.focus ?? 0.5))).toFixed(3);
     const motion = { in: `scale=w='${W}*(1.0+0.08*${p})':h=-2:eval=frame,crop=${W}:${H}`, out: `scale=w='${W}*(1.08-0.07*${p})':h=-2:eval=frame,crop=${W}:${H}`,
       panl: `crop=${W}:${H}:x='(iw-${W})*(1-${p})':y='(ih-${H})/2'`, panr: `crop=${W}:${H}:x='(iw-${W})*${p}':y='(ih-${H})/2'` }[moves[k % 4]];
     run(["-ss", "0.3", "-stream_loop", "-1", "-i", sc.foot.file, "-vf",
-      `scale=${Math.round(W * 1.1)}:${Math.round(H * 1.1)}:force_original_aspect_ratio=increase,crop=${Math.round(W * 1.1)}:${Math.round(H * 1.1)},setsar=1,fps=${FPS},${motion},` +
+      `scale=${Math.round(W * 1.1)}:${Math.round(H * 1.1)}:force_original_aspect_ratio=increase,crop=${Math.round(W * 1.1)}:${Math.round(H * 1.1)}:x='(iw-ow)*${focus}':y='(ih-oh)/2',setsar=1,fps=${FPS},${motion},` +
       "eq=contrast=1.05:saturation=1.08:gamma=0.98,colorbalance=rs=0.02:bs=-0.02,format=yuv420p",
       "-an", "-r", String(FPS), "-c:v", "libx264", "-preset", "veryfast", "-crf", "16", "-t", Ds, seg]);
     inputs.push("-i", seg);

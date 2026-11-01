@@ -202,7 +202,7 @@ def fetch(script_path, out):
             print(f"Scene {i + 1}: Pixabay clip {fid} could not be downloaded; the scene falls back to its animation.")
             continue
         got[str(i)] = {"file": path, "id": fid, "page": c["page"], "author": c["author"], "tags": c["tags"][:8],
-                       "category": sc["footage"].get("category"), "reason": sc["footage"].get("reason"),
+                       "category": sc["footage"].get("category"), "reason": sc["footage"].get("reason"), "focus": sc["footage"].get("focus", 0.5),
                        "width": c["width"], "height": c["height"], "duration": c["duration"], "query": (sc["footage"].get("queries") or [""])[0]}
         print(f"Scene {i + 1}: Pixabay {fid} ({c['width']}x{c['height']}, {c['duration']}s) downloaded")
     C.write_json(os.path.join(out, "footage.json"), got)
