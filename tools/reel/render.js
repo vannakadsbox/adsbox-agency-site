@@ -13,7 +13,7 @@ const { execFileSync } = require("child_process");
 const ROOT = path.join(__dirname, "..", "..");
 
 const FPS = 30, W = 1080, H = 1920;
-const LEAD = 0.12, FIRST_LEAD = 0.35, TAIL = 0.32, OUTRO = 3.4, XF = 0.4, MIN_SHOT = 1.5;
+const LEAD = 0.12, FIRST_LEAD = 0.85, TAIL = 0.32, OUTRO = 3.4, XF = 0.4, MIN_SHOT = 1.5;
 const arg = (n) => { const i = process.argv.indexOf(n); return i > 0 ? process.argv[i + 1] : null; };
 const b64 = (f) => fs.readFileSync(path.join(ROOT, f)).toString("base64");
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -169,7 +169,7 @@ function page(script, scenes, total) {
   let css = "", html = "";
   scenes.forEach((sc, i) => {
     if (sc.keyword && i === 0) {  // the hook headline: big, at the top, for the first seconds
-      css += `.k0{animation:hin .6s cubic-bezier(.2,1.2,.4,1) .15s both, kout .3s ease-in ${(sc.start + sc.dur - 0.3).toFixed(2)}s forwards}`;
+      css += `.k0{animation:hin .6s cubic-bezier(.2,1.2,.4,1) .9s both, kout .3s ease-in ${(sc.start + sc.dur - 0.3).toFixed(2)}s forwards}`;
       html += `<div class="hook k0"><b>${esc(sc.keyword)}</b></div>`;
     } else if (sc.keyword) {  // a small key-point caption that slides in above the subtitles
       css += `.k${i}{animation:lin .5s cubic-bezier(.2,1,.3,1) ${(sc.start + 0.25).toFixed(2)}s both, kout .25s ease-in ${(sc.start + sc.dur - 0.3).toFixed(2)}s forwards}`;
@@ -189,22 +189,34 @@ html,body{background:transparent}
 body{width:${W}px;height:${H}px;overflow:hidden;font-family:M,L,sans-serif;color:#fff;position:relative}
 .shade-top{position:absolute;left:0;right:0;top:0;height:300px;background:linear-gradient(rgba(4,8,22,.55),rgba(4,8,22,0))}
 .shade-bot{position:absolute;left:0;right:0;bottom:0;height:760px;background:linear-gradient(rgba(4,8,22,0),rgba(4,8,22,.45) 50%,rgba(4,8,22,.72))}
-.bug{position:absolute;top:78px;left:64px;display:flex;align-items:center;gap:16px}
-.bug img{width:210px;filter:drop-shadow(0 4px 14px rgba(0,0,0,.45))}
-.hook{position:absolute;left:60px;right:60px;top:250px;text-align:center;opacity:0}
+.bug{position:absolute;top:96px;left:90px;display:flex;align-items:center;gap:18px;padding:14px 26px 14px 18px;border-radius:22px;
+  background:rgba(12,20,48,.72);box-shadow:0 10px 30px rgba(0,0,0,.3);opacity:0;animation:fadein .5s ease-out .9s forwards}
+.bug .m{width:62px}.bug .w{width:230px}
+.hook{position:absolute;left:90px;right:90px;top:300px;text-align:center;opacity:0}
 .hook b{display:inline;font-size:96px;line-height:1.5;font-weight:700;padding:6px 24px;background:#ffd23f;color:#0c1430;
   -webkit-box-decoration-break:clone;box-decoration-break:clone;border-radius:18px;box-shadow:0 20px 50px rgba(0,0,0,.35)}
-.lt{position:absolute;left:60px;bottom:560px;display:flex;align-items:center;gap:14px;opacity:0;max-width:960px}
-.lt span{font-size:34px;font-weight:700;color:#0c1430;background:#ffd23f;padding:6px 18px;border-radius:12px;white-space:nowrap}
-.lt b{font-size:42px;font-weight:700;background:rgba(12,20,48,.82);padding:6px 22px 10px;border-radius:14px}
-.sub{position:absolute;left:40px;right:40px;bottom:330px;text-align:center;opacity:0}
-.sub span{display:inline-block;font-size:60px;line-height:1.55;font-weight:700;padding:6px 26px 12px;border-radius:20px;background:rgba(0,0,0,.5);text-shadow:0 3px 14px rgba(0,0,0,.55)}
-.outro{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:40px;text-align:center;padding:0 90px;
-  background:rgba(8,14,40,.35);opacity:0;animation:fadein .5s ease-out ${end.toFixed(3)}s forwards}
-.outro .mk{width:200px;animation:pop .6s cubic-bezier(.3,1.5,.5,1) ${(end + 0.15).toFixed(2)}s both}
-.outro .wd{width:460px;animation:rise .6s ease-out ${(end + 0.3).toFixed(2)}s both}
-.outro p{font-size:52px;line-height:1.6;font-weight:500;animation:rise .6s ease-out ${(end + 0.5).toFixed(2)}s both}
-.outro .url{font-family:L,M;font-weight:800;font-size:54px;color:#0c1430;background:#fff;padding:14px 42px;border-radius:24px;animation:rise .6s ease-out ${(end + 0.7).toFixed(2)}s both}
+.lt{position:absolute;left:90px;right:90px;bottom:700px;display:flex;flex-wrap:wrap;align-items:center;gap:14px;opacity:0}
+.lt span{font-size:38px;font-weight:700;color:#0c1430;background:#ffd23f;padding:6px 20px;border-radius:12px;white-space:nowrap}
+.lt b{font-size:48px;font-weight:700;background:rgba(12,20,48,.86);padding:6px 24px 12px;border-radius:14px}
+.sub{position:absolute;left:90px;right:90px;bottom:420px;text-align:center;opacity:0}
+.sub span{display:inline;font-size:72px;line-height:1.62;font-weight:700;padding:4px 24px 12px;border-radius:18px;background:rgba(6,10,28,.68);
+  -webkit-box-decoration-break:clone;box-decoration-break:clone;text-shadow:0 3px 12px rgba(0,0,0,.5)}
+.sub{text-wrap:balance}
+.intro{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;
+  background:radial-gradient(circle at 50% 45%,rgba(28,63,134,.82),rgba(12,20,48,.92) 70%);animation:introout .45s ease-in .75s forwards}
+.intro .mk{width:230px;animation:pop .5s cubic-bezier(.3,1.5,.5,1) .02s both}
+.intro .wd{width:480px;animation:rise .45s ease-out .15s both}
+.intro i{display:block;width:120px;height:10px;border-radius:10px;background:#ffd23f;animation:grow .4s ease-out .3s both}
+.outro{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:38px;text-align:center;padding:0 110px;
+  background:linear-gradient(165deg,rgba(12,20,48,.93),rgba(28,63,134,.9) 60%,rgba(63,125,255,.88));opacity:0;animation:fadein .5s ease-out ${end.toFixed(3)}s forwards}
+.outro .mk{width:220px;animation:pop .6s cubic-bezier(.3,1.5,.5,1) ${(end + 0.15).toFixed(2)}s both}
+.outro .wd{width:500px;animation:rise .6s ease-out ${(end + 0.3).toFixed(2)}s both}
+.outro i{display:block;width:120px;height:10px;border-radius:10px;background:#ffd23f;animation:grow .4s ease-out ${(end + 0.45).toFixed(2)}s both}
+.outro p{font-size:56px;line-height:1.6;font-weight:500;animation:rise .6s ease-out ${(end + 0.55).toFixed(2)}s both}
+.outro .url{font-family:L,M;font-weight:800;font-size:58px;color:#0c1430;background:#ffd23f;padding:14px 46px;border-radius:24px;animation:rise .6s ease-out ${(end + 0.75).toFixed(2)}s both}
+.outro small{font-family:L,M;font-size:40px;font-weight:600;opacity:.9;animation:rise .6s ease-out ${(end + 0.95).toFixed(2)}s both}
+@keyframes introout{to{opacity:0;transform:scale(1.06)}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:none}}
 .main{animation:fadeout .3s ease-in ${(end - 0.15).toFixed(3)}s forwards}
 @keyframes hin{from{opacity:0;transform:translateY(-40px) scale(.92)}to{opacity:1;transform:none}}
 @keyframes lin{from{opacity:0;transform:translateX(-80px)}to{opacity:1;transform:none}}
@@ -218,11 +230,12 @@ body{width:${W}px;height:${H}px;overflow:hidden;font-family:M,L,sans-serif;color
 ${css}
 </style></head><body>
 <div class="main"><div class="shade-top"></div><div class="shade-bot"></div>
-<div class="bug"><img src="data:image/png;base64,${b64("assets/logo-word-white.png")}" alt=""></div>
+<div class="bug"><img class="m" src="data:image/png;base64,${b64("assets/logo-mark-white.png")}" alt=""><img class="w" src="data:image/png;base64,${b64("assets/logo-word-white.png")}" alt=""></div>
 ${html}</div>
+<div class="intro"><img class="mk" src="data:image/png;base64,${b64("assets/logo-mark-white.png")}" alt=""><img class="wd" src="data:image/png;base64,${b64("assets/logo-word-white.png")}" alt=""><i></i></div>
 <div class="outro"><img class="mk" src="data:image/png;base64,${b64("assets/logo-mark-white.png")}" alt="">
-<img class="wd" src="data:image/png;base64,${b64("assets/logo-word-white.png")}" alt="">
-<p>គន្លឹះលក់អនឡាញថ្មីៗ រាល់ថ្ងៃ</p><span class="url">adsbox.agency</span></div>
+<img class="wd" src="data:image/png;base64,${b64("assets/logo-word-white.png")}" alt=""><i></i>
+<p>គន្លឹះលក់អនឡាញថ្មីៗ រាល់ថ្ងៃ</p><span class="url">adsbox.agency</span><small>Telegram: t.me/vannakdm</small></div>
 </body></html>`;
 }
 
@@ -236,12 +249,11 @@ async function textLayer(html, total, dir) {
   const pg = await b.newPage({ viewport: { width: W, height: H } });
   await pg.setContent(html, { waitUntil: "load" });
   await pg.evaluate(() => document.fonts.ready);
-  // Each subtitle stays on one line: shrink long lines a little (never below 44px), wrap only if still too long.
+  // Subtitles: large (72px), at most two balanced lines inside the safe area; only a third line makes them a bit smaller.
   await pg.evaluate(() => document.querySelectorAll(".sub span").forEach((el) => {
-    const max = el.parentElement.clientWidth; let size = 60;
-    el.style.whiteSpace = "nowrap"; el.style.fontSize = size + "px";
-    while (el.offsetWidth > max && size > 44) { size -= 2; el.style.fontSize = size + "px"; }
-    if (el.offsetWidth > max) el.style.whiteSpace = "normal";
+    let size = 72;
+    const lines = () => el.getClientRects().length;
+    while (lines() > 2 && size > 60) { size -= 4; el.style.fontSize = size + "px"; }
   }));
   const n = Math.round(total * FPS);
   let prev = null, drawn = 0;
@@ -281,14 +293,14 @@ function sound(scenes, list, total, music, dir) {
   let last = "[fx]";
   if (music) {
     inputs.push("-stream_loop", "-1", "-i", music);
-    const m = clips.length, lo = Number(process.env.MUSIC_VOLUME || 0.11), hi = Math.min(0.42, lo * 3.2);
+    const m = clips.length, lo = Number(process.env.MUSIC_VOLUME || 0.085), hi = Math.min(0.42, lo * 3.2);
     const speechEnd = (total - OUTRO).toFixed(2);
     parts.push(`[${m}:a]aresample=44100,aformat=channel_layouts=stereo,atrim=0:${total.toFixed(3)},` +
       `volume='if(gt(t,${speechEnd}),${hi},${lo})':eval=frame,afade=t=in:d=0.4,afade=t=out:st=${(total - 1.5).toFixed(2)}:d=1.5[mu]`);
     mix += `;[fx][mu]amix=inputs=2:normalize=0[mx]`;
     last = "[mx]";
   }
-  mix += `;${last}alimiter=limit=0.92[out]`;
+  mix += `;${last}loudnorm=I=-14:TP=-1.5:LRA=9,alimiter=limit=0.9[out]`;
   const out = path.join(dir, "audio.wav");
   run([...inputs, "-filter_complex", parts.concat(mix).join(";"), "-map", "[out]", "-t", total.toFixed(3), "-c:a", "pcm_s16le", out]);
   return out;
@@ -346,6 +358,8 @@ body{width:${W}px;height:${H}px;overflow:hidden;font-family:M,L,sans-serif;color
     "-c:v", "libx264", "-preset", "medium", "-crf", "21", "-maxrate", "8M", "-bufsize", "16M", "-r", String(FPS),
     "-c:a", "aac", "-b:a", "192k", "-t", total.toFixed(3), "-movflags", "+faststart", mp4]);
 
+  const dims = execFileSync("ffprobe", ["-v", "error", "-select_streams", "v:0", "-show_entries", "stream=width,height", "-of", "csv=p=0", mp4], { encoding: "utf8" }).trim();
+  if (dims !== `${W},${H}`) throw new Error(`Output is ${dims}, expected ${W}x${H}`);
   const frame = path.join(work, "frame.jpg");
   run(["-ss", "1.2", "-i", bg, "-frames:v", "1", frame]);
   const thumb = path.join(outDir, `${slug}-thumb.jpg`), cover = path.join(outDir, `${slug}-cover.jpg`);
@@ -358,6 +372,9 @@ body{width:${W}px;height:${H}px;overflow:hidden;font-family:M,L,sans-serif;color
     subtitle_sync: [...new Set(scenes.map((s) => s.sync))].join(","),
     broll: [...new Map(used.map((c) => [c.id, { id: c.id, source: c.source, query: c.query, page: c.page, author: c.author }])).values()],
     branded_shots: list.filter((s) => !s.clip).length,
+    resolution: `${W}x${H}`, fps: FPS,
+    shot_list: list.map((s) => ({ at: +s.start.toFixed(2), dur: +s.dur.toFixed(2), scene: s.scene + 1, clip: s.clip ? s.clip.id : "branded",
+      query: s.clip ? s.clip.query : "", tags: s.clip ? (s.clip.tags || []).slice(0, 8) : [] })),
     render_seconds: Math.round((Date.now() - t0) / 1000),
   };
   fs.writeFileSync(path.join(outDir, "meta.json"), JSON.stringify(meta, null, 1));

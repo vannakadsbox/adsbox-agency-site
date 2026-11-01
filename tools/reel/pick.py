@@ -38,7 +38,7 @@ RULES = [
     "Example amounts must be clearly hypothetical, like the article's own examples.",
     "The 'lines' of a scene are exactly what the voice says, in order, split for subtitles at natural pauses (after a phrase or at ។ ? !). Max 40 characters per line. Use Khmer digits or Arabic digits consistently.",
     "No emoji, no hashtags and no symbols like →, *, # inside 'lines'. Hashtags go only in 'description'.",
-    "B-roll queries are concrete and visual, in English: who, doing what, with what (e.g. 'woman packing clothing orders into boxes', 'hands typing message on smartphone', 'seller live streaming clothes with phone on tripod'). Prefer Asian people and small-shop settings. Never query brands, logos or text.",
+    "B-roll queries are 2-4 plain English words naming what is visible, subject first (e.g. 'woman smartphone message', 'packing box parcel', 'delivery motorbike', 'clothing store', 'laptop analytics chart'). Clips are kept only if their tags match these words, so use common nouns. Every query must show online selling, phones, chatting with customers, packing, delivery, shops, products or business work. Never query brands, logos, text, nature, cities or abstract ideas.",
     "Make it different from the recent videos listed in 'recent_videos' (different hook style and opening words).",
 ]
 

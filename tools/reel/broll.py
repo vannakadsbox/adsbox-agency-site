@@ -81,7 +81,8 @@ def pixabay(q, key):
         if not f:
             continue
         out.append({"id": f"pixabay-{h['id']}", "link": f["url"], "width": f["width"], "height": f["height"], "duration": h.get("duration"),
-                    "page": h.get("pageURL"), "author": h.get("user"), "source": "Pixabay", "portrait": f["height"] > f["width"]})
+                    "page": h.get("pageURL"), "author": h.get("user"), "source": "Pixabay", "portrait": f["height"] > f["width"],
+                    "tags": [t.strip().lower() for t in str(h.get("tags") or "").split(",") if t.strip()]})
     out.sort(key=lambda v: not v["portrait"])  # stable: portrait clips first, otherwise Pixabay's relevance order
     return out
 
@@ -100,10 +101,39 @@ def pexels(q, key):
             if files and (v.get("duration") or 0) >= 3:
                 f = files[0]
                 out.append({"id": f"pexels-{v['id']}", "link": f["link"], "width": f["width"], "height": f["height"], "duration": v.get("duration"),
-                            "page": v.get("url"), "author": (v.get("user") or {}).get("name"), "source": "Pexels"})
+                            "page": v.get("url"), "author": (v.get("user") or {}).get("name"), "source": "Pexels",
+                            "tags": [w for w in str(v.get("url") or "").rstrip("/").split("/")[-1].split("-") if w.isalpha()]})
         if len(out) >= 6:
             break
     return out
+
+
+# --- Relevance: a clip is used only if its own tags match the scene's search words, and never with off-topic tags ---
+STOP = {"a", "an", "the", "on", "in", "at", "with", "for", "of", "and", "to", "while", "into", "close", "up", "small", "young",
+        "asian", "her", "his", "their", "using", "holding", "looking", "from", "by", "is", "people", "person"}
+OFF_TOPIC = {"sky", "night", "star", "stars", "galaxy", "space", "milky", "universe", "astronomy", "landscape", "mountain", "mountains",
+             "nature", "sunset", "sunrise", "ocean", "sea", "beach", "forest", "tree", "trees", "aerial", "drone", "factory", "industry",
+             "industrial", "machine", "machinery", "manufacturing", "crowd", "traffic", "animal", "dog", "cat", "bird", "abstract",
+             "particles", "fractal", "3d", "animation", "cartoon", "fire", "smoke", "war", "covid", "coronavirus", "virus", "mask",
+             "hospital", "christmas", "halloween", "church", "religion", "flag", "politics", "army", "gun", "weapon", "car", "highway"}
+
+
+def stem(w):
+    w = w.lower().strip()
+    for suf in ("ing", "es", "s"):
+        if len(w) > 4 and w.endswith(suf):
+            return w[: -len(suf)]
+    return w
+
+
+def relevance(query, tags):
+    """(score, ok): how many of the query's key words appear in the clip's tags; off-topic tags rule a clip out."""
+    words = {stem(w) for t in tags for w in t.replace("-", " ").split()}
+    if words & {stem(w) for w in OFF_TOPIC}:
+        return 0, False
+    key = [stem(w) for w in query.lower().replace("-", " ").split() if w not in STOP]
+    score = sum(1 for k in key if k in words)
+    return score, score >= min(2, len(key))
 
 
 def download(url, path, tries=3):
@@ -155,8 +185,15 @@ def main():
             vids = pixabay(q, pxb) if pxb else []
             if not vids and pxl:
                 vids = pexels(q, pxl)
-            vids.sort(key=lambda v: v["id"] in recent)  # fresh clips first
-            pools.append((q, vids))
+            keep = []
+            for v in vids:
+                score, ok = relevance(q, v.get("tags") or [])
+                if ok:
+                    keep.append((-score, v["id"] in recent, len(keep), v))
+                else:
+                    print(f"  skip {v['id']} for '{q}': tags {', '.join(v.get('tags') or [])[:80]}")
+            keep.sort(key=lambda x: x[:3])  # best tag match first, then fresh clips, then Pixabay's order
+            pools.append((q, [x[3] for x in keep]))
         clips = []
         while len(clips) < want and any(p[1] for p in pools):
             for q, vids in pools:  # round-robin over the queries, most specific first
@@ -170,7 +207,8 @@ def main():
                     continue
                 downloads += 1
                 used.add(v["id"])
-                clips.append({"file": path, **{k: v[k] for k in ("id", "width", "height", "duration", "page", "author", "source")}, "query": q})
+                clips.append({"file": path, **{k: v[k] for k in ("id", "width", "height", "duration", "page", "author", "source")},
+                              "tags": v.get("tags"), "query": q})
                 print(f"Scene {i + 1}: '{q}' -> {v['source']} {v['id']} ({v['width']}x{v['height']}, {v['duration']}s)")
         if not clips:
             print(f"Scene {i + 1}: no footage found (the renderer will use a neighbouring clip or the branded animation).")

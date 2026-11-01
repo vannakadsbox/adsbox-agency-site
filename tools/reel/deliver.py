@@ -86,6 +86,8 @@ def sent(a):
         C.save_log(lg)
         return 1
     msg = r["result"]
+    # The original file too: Telegram's in-app player may stream a smaller copy; this one is the exact 1080x1920 MP4.
+    tg("sendDocument", {"caption": f"📁 ឯកសារដើម (Original) 1080x1920 · {meta.get('size_mb')} MB", "disable_content_type_detection": "true"}, {"document": mp4})
     tg("sendPhoto", {"caption": "🖼 Thumbnail · " + script["thumbnail_text"]}, {"photo": thumb})
     for part in chunks(script_text(script)):
         tg("sendMessage", {"text": part, "parse_mode": "HTML", "disable_web_page_preview": "true"})
