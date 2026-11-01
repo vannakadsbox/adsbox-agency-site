@@ -6,18 +6,18 @@
       "article_url": "https://adsbox.agency/knowledge/write-prices-and-promotions-clearly/",
       "video_title": "ដាក់ Promotion ហើយ Inbox ពេញសំណួរ? កែ Caption តាម ៤ ចំណុចនេះ",
       "hook": "ដាក់ Promotion ហើយ Inbox ពេញ តែសួរដដែលៗ «សរុបប៉ុន្មានបង?» បងៗធ្លាប់ជួបទេ?",
-      "status": "scripted",
+      "status": "sent",
       "scripted_at": "2026-11-01T14:21:46+07:00",
       "error": "",
-      "render_started_at": "2026-11-01T14:03:34+07:00",
-      "sent_at": "2026-11-01T14:09:22+07:00",
+      "render_started_at": "2026-11-01T14:22:29+07:00",
+      "sent_at": "2026-11-01T14:27:20+07:00",
       "rendered_at": "2026-11-01T12:32:27+07:00",
-      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/41283199529",
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/41284485528",
       "duration": 85.73,
-      "size_mb": 17,
-      "render_seconds": 335,
+      "size_mb": 17.2,
+      "render_seconds": 274,
       "voice": "km-KH-PisethNeural",
-      "music": "adsbox-original-1.mp3",
+      "music": "adsbox-original-2.mp3",
       "broll_ids": [
         "pixabay-204529",
         "pixabay-168485",
@@ -224,22 +224,22 @@
       ],
       "telegram": {
         "ok": true,
-        "message_id": 36,
+        "message_id": 40,
         "chat": "configured",
-        "at": "2026-11-01T14:09:22+07:00",
-        "file_id": "BAACAgUAAxkDAAMkaublnbwHH7CNV8T-bxg8SumyZ4wAAqYgAAIeBDFX6LWXGjkO8Mk9BA"
+        "at": "2026-11-01T14:27:20+07:00",
+        "file_id": "BAACAgUAAxkDAAMoaubp0GmTpkUp7KAXUU2bcmijkPQAArYgAAIeBDFXTa3H2_WoNW49BA"
       },
       "archive": {
         "assets": [
           {
-            "id": 697611375,
+            "id": 697642256,
             "name": "write-prices-and-promotions-clearly-thumb.jpg",
-            "size": 185972
+            "size": 190362
           },
           {
-            "id": 697611357,
+            "id": 697642261,
             "name": "write-prices-and-promotions-clearly.mp4",
-            "size": 17037174
+            "size": 17203643
           }
         ],
         "release_id": 430382508
