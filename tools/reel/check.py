@@ -65,6 +65,28 @@ def visual_problems(i, v):
     return out
 
 
+def footage_problems(scenes):
+    """Combined style: footage only from approved categories, a reason for every chosen clip, no clip used twice."""
+    guide = (C.read_json(os.path.join(C.VIDEOS, "footage-guideline.json"), {}) or {}).get("categories", {})
+    out, seen = [], {}
+    for i, sc in enumerate(scenes, 1):
+        f = sc.get("footage")
+        if not f:
+            continue
+        if f.get("category") not in guide:
+            out.append(f"Scene {i}: footage.category must be one of {sorted(guide)}")
+        q = f.get("queries") or []
+        if not (1 <= len(q) <= 4) or not all(re.match(r"^[A-Za-z0-9 ,'\-]{3,60}$", str(x)) for x in q):
+            out.append(f"Scene {i}: footage.queries must be 1-4 plain English keyword phrases")
+        if f.get("id"):
+            if len(str(f.get("reason") or "")) < 15:
+                out.append(f"Scene {i}: explain in 'reason' why this clip matches the narration")
+            if f["id"] in seen:
+                out.append(f"Scene {i}: Pixabay #{f['id']} is already used in scene {seen[f['id']]}")
+            seen[f["id"]] = i
+    return out
+
+
 def problems(script, brief, s):
     out = []
     if not isinstance(script, dict):
@@ -125,6 +147,7 @@ def problems(script, brief, s):
         out.append("The hook must not mention ADS BOX")
     if scenes[-1].get("role") != "cta":
         out.append("The last scene must be the cta")
+    out += footage_problems(scenes)
     if not (s["min_chars"] <= total <= s["max_chars"]):
         out.append(f"Spoken Khmer is {total} characters; keep it {s['min_chars']}-{s['max_chars']} (about 45-90 seconds).")
     if total and brand / total > s["max_brand_share"]:

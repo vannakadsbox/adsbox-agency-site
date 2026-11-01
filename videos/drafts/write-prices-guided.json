@@ -1,0 +1,263 @@
+{
+  "slug": "write-prices-and-promotions-clearly-guided",
+  "video_title": "[Footage guideline test] Promotion ហើយ Inbox ពេញសំណួរ?",
+  "topic": "វិធីសរសេរតម្លៃ Promotion និងថ្លៃដឹកក្នុង Caption ឲ្យអតិថិជនយល់ភ្លាម មិនបាច់សួរ ហើយហ៊ានកុម្ម៉ង់។",
+  "thumbnail_text": "តម្លៃមិនច្បាស់ = បាត់ Order",
+  "description": "ដាក់ Promotion ហើយអតិថិជនសួរ «សរុបប៉ុន្មាន?» ដដែលៗ?\nកែ Caption តាម ៤ ចំណុចងាយៗនេះ ឲ្យអ្នកទិញដឹងតម្លៃភ្លាម ហើយហ៊ានកុម្ម៉ង់។\nអានអត្ថបទពេញនៅ adsbox.agency\n#លក់អនឡាញ #Caption #Promotion #ADSBOX #FacebookPage",
+  "scenes": [
+    {
+      "role": "hook",
+      "keyword": "«សរុបប៉ុន្មានបង?»",
+      "lines": [
+        "ដាក់ Promotion ហើយ Inbox ពេញ",
+        "តែសួរដដែលៗ «សរុបប៉ុន្មានបង?»",
+        "បងៗធ្លាប់ជួបទេ?"
+      ],
+      "visual": {
+        "type": "question",
+        "title": "សរុបប៉ុន្មានបង?",
+        "bubbles": [
+          "សរុបប៉ុន្មានបង?",
+          "រួមថ្លៃដឹកអត់?",
+          "ទិញ ២ បញ្ចុះទាំងពីរទេ?",
+          "សរុបប៉ុន្មានបង?"
+        ]
+      }
+    },
+    {
+      "role": "problem",
+      "lines": [
+        "តាមពិត រឿងនេះមិនមែនដោយសារតម្លៃថ្លៃទេ",
+        "តែដោយសារយើងសរសេរតម្លៃមិនច្បាស់។",
+        "អ្នកខ្លះមិនសួរផង គឺរំកិលទៅផេកផ្សេងបាត់។"
+      ],
+      "visual": {
+        "type": "leaving",
+        "post_title": "អាវយឺតកប្បាស",
+        "confusing": "បញ្ចុះ ២០% ពី $15 ???",
+        "caption": "អតិថិជនរំកិលទៅផេកផ្សេង"
+      },
+      "footage": {
+        "category": "Social Media & Facebook",
+        "concept": "A customer scrolls past a confusing post on her phone",
+        "queries": [
+          "scrolling smartphone",
+          "social media smartphone",
+          "woman smartphone"
+        ]
+      },
+      "keyword": "តម្លៃមិនច្បាស់ បាត់អតិថិជន"
+    },
+    {
+      "role": "problem",
+      "lines": [
+        "Order ដែលបាត់បែបនេះ",
+        "គឺលុយ Boost ដែលយើងចាយទៅទទេៗ។",
+        "តោះ មើល ៤ ចំណុចដែលកែបានភ្លាមៗ។"
+      ],
+      "visual": {
+        "type": "dashboard",
+        "title": "លុយ Boost ចាយទៅទទេ",
+        "metrics": [
+          {
+            "label": "ចំណាយ",
+            "value": "$50"
+          },
+          {
+            "label": "សារ",
+            "value": "120"
+          },
+          {
+            "label": "Order",
+            "value": "3"
+          }
+        ],
+        "alert": "សួរច្រើន តែ Order តិច",
+        "next": "ចំណុចកែ Caption"
+      },
+      "footage": {
+        "category": "Advertising & Analytics",
+        "concept": "Ad results on a screen: money spent, few orders",
+        "queries": [
+          "analytics dashboard",
+          "marketing data laptop",
+          "charts on screen"
+        ]
+      }
+    },
+    {
+      "role": "tip",
+      "label": "ចំណុចទី ១",
+      "keyword": "ដាក់តម្លៃដែលត្រូវបង់",
+      "lines": [
+        "ទីមួយ កុំឲ្យអតិថិជនគិតលេខខ្លួនឯង។",
+        "ជំនួសឲ្យ «បញ្ចុះ ២០% ពី $15»",
+        "សរសេរតែម្ដងថា «តម្លៃពិសេស $12»។"
+      ],
+      "visual": {
+        "type": "compare",
+        "bad": "បញ្ចុះ ២០% ពី $15",
+        "good": "តម្លៃពិសេស $12"
+      }
+    },
+    {
+      "role": "tip",
+      "label": "ចំណុចទី ២",
+      "keyword": "មួយបន្ទាត់ មួយលក្ខខណ្ឌ",
+      "lines": [
+        "ទីពីរ ពាក្យ «ទិញ ១ ថែម ១» ងាយច្រឡំណាស់។",
+        "ប្រាប់ឲ្យច្បាស់ ថែមអ្វី លើទំនិញណា",
+        "ហើយសរសេរ មួយបន្ទាត់ មួយលក្ខខណ្ឌ។"
+      ],
+      "visual": {
+        "type": "checklist",
+        "bad": "ទិញ ១ ថែម ១ ?",
+        "items": [
+          "ទិញ ២ ដុំ បង់ $20",
+          "ថែមកាបូប សម្រាប់ Order ពី $25",
+          "សម្រាប់តែពណ៌ខ្មៅ និងស"
+        ]
+      },
+      "footage": {
+        "category": "Product & Promotion",
+        "concept": "A shop owner with products on sale, conditions to explain",
+        "queries": [
+          "retail store sale",
+          "product promotion",
+          "clothing store owner"
+        ]
+      }
+    },
+    {
+      "role": "tip",
+      "label": "ចំណុចទី ៣",
+      "keyword": "ប្រាប់ថ្ងៃ និងម៉ោងផុតកំណត់",
+      "lines": [
+        "ទីបី កុំសរសេរត្រឹម «រយៈពេលកំណត់»។",
+        "ប្រាប់ឲ្យជាក់ ដល់ថ្ងៃអាទិត្យ ម៉ោង ១០ យប់",
+        "អ្នកទិញនឹងសម្រេចចិត្តលឿនជាងមុន។"
+      ],
+      "visual": {
+        "type": "deadline",
+        "bad": "រយៈពេលកំណត់",
+        "good": "ដល់ថ្ងៃអាទិត្យ ម៉ោង ១០ យប់",
+        "result": "សម្រេចចិត្តលឿនជាងមុន"
+      },
+      "footage": {
+        "category": "Online Selling & Ecommerce",
+        "concept": "A buyer deciding and paying quickly online",
+        "queries": [
+          "online shopping",
+          "online payment smartphone",
+          "ecommerce"
+        ]
+      }
+    },
+    {
+      "role": "tip",
+      "label": "ចំណុចទី ៤",
+      "keyword": "ថ្លៃដឹក និងតម្លៃសរុប",
+      "lines": [
+        "ទីបួន ដែលច្រឡំច្រើនជាងគេ គឺថ្លៃដឹក។",
+        "សរសេរថ្លៃដឹកភ្នំពេញ និងខេត្តឲ្យច្បាស់",
+        "ហើយដាក់ឧទាហរណ៍តម្លៃសរុបមួយផង។"
+      ],
+      "visual": {
+        "type": "delivery",
+        "rows": [
+          {
+            "label": "ដឹកក្នុងភ្នំពេញ",
+            "value": "$1.50"
+          },
+          {
+            "label": "ដឹកទៅខេត្ត",
+            "value": "$2"
+          }
+        ],
+        "total": {
+          "label": "២ ដុំ + ដឹកភ្នំពេញ",
+          "value": "$21.50"
+        }
+      },
+      "footage": {
+        "category": "Delivery & Logistics",
+        "concept": "Orders packed and handed to delivery",
+        "queries": [
+          "parcel delivery",
+          "packing boxes",
+          "courier package"
+        ]
+      }
+    },
+    {
+      "role": "example",
+      "label": "ឧទាហរណ៍",
+      "keyword": "Caption គំរូ",
+      "lines": [
+        "ឧទាហរណ៍ អាវយឺត ធម្មតា $9 ពិសេស $7",
+        "ទិញ ៣ ដុំ $19 ដឹកក្នុងភ្នំពេញ $1.50",
+        "អានតែប៉ុន្មានវិនាទី ក៏ដឹងតម្លៃសរុបភ្លាម។"
+      ],
+      "visual": {
+        "type": "caption",
+        "page": "ហាងគំរូ",
+        "lines": [
+          "អាវយឺតកប្បាសទន់",
+          "ធម្មតា $9 → ពិសេស $7",
+          "ទិញ ៣ ដុំ $19",
+          "ដឹកភ្នំពេញ $1.50 · ខេត្ត $2",
+          "ផុតកំណត់ ថ្ងៃអាទិត្យ ម៉ោង ១០ យប់"
+        ],
+        "highlight": [
+          "$7",
+          "$19"
+        ],
+        "stamp": "ច្បាស់!"
+      }
+    },
+    {
+      "role": "summary",
+      "lines": [
+        "មុនចុច Post លើកក្រោយ សាកអានម្ដងទៀត",
+        "ធ្វើដូចជាអតិថិជនថ្មី ហើយសួរខ្លួនឯងថា",
+        "«ខ្ញុំដឹងទេ ថាត្រូវបង់ប៉ុន្មានសរុប?»"
+      ],
+      "visual": {
+        "type": "takeaway",
+        "quote": "ខ្ញុំដឹងទេ ថាត្រូវបង់ប៉ុន្មានសរុប?"
+      },
+      "label": "សង្ខេប",
+      "keyword": "អានដូចអតិថិជនថ្មី",
+      "footage": {
+        "category": "Customer Service",
+        "concept": "Seeing the post through a new customer's eyes",
+        "queries": [
+          "customer smartphone",
+          "woman reading phone",
+          "happy customer"
+        ]
+      }
+    },
+    {
+      "role": "cta",
+      "lines": [
+        "ពេល Caption ច្បាស់ហើយ",
+        "បើចង់ឲ្យវាទៅដល់អ្នកទិញពិតៗ",
+        "ស្វែងយល់ពីសេវា Boost របស់ ADS BOX បាន។"
+      ],
+      "visual": {
+        "type": "cta",
+        "services": [
+          "Boost Post",
+          "Boost Live",
+          "Boost TikTok"
+        ]
+      }
+    }
+  ],
+  "article": {
+    "title": "សរសេរតម្លៃ និង Promotion ក្នុង Caption ឲ្យច្បាស់៖ ៥ គន្លឹះកុំឲ្យអតិថិជនច្រឡំ",
+    "url": "https://adsbox.agency/knowledge/write-prices-and-promotions-clearly/"
+  },
+  "written_at": "2026-11-01T14:21:46+07:00"
+}

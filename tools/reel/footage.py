@@ -5,6 +5,11 @@
   python3 tools/reel/footage.py search SCRIPT.json OUT_DIR  candidates for every scene with "footage": {"queries": [...]}
                                                             -> OUT_DIR/candidates.json + one contact sheet per scene
   python3 tools/reel/footage.py fetch SCRIPT.json OUT_DIR   download the clip chosen for each scene ("footage": {"id": ...})
+  python3 tools/reel/footage.py report SCRIPT.json          print the Footage Selection Report (markdown)
+
+Rules: videos/footage-guideline.json (owner-approved): 8 editorial categories mapped to Pixabay's own categories
+(business, computer, people, transportation), blocked subjects, one clip per scene, never the same clip twice,
+a written reason for every choice, animation when nothing fits.
                                                             -> OUT_DIR/footage.json (scene -> local file, Pixabay page, author)
 
 How clips are chosen: search shows several candidates per scene (still frames, tags, size) on a contact sheet; a person
@@ -26,11 +31,17 @@ API = "https://pixabay.com/api/videos/"
 MAX_BYTES = 40_000_000
 PER_SCENE = 9
 _last = [0.0]
-OFF_TOPIC = {"sky", "night", "star", "stars", "galaxy", "space", "universe", "landscape", "mountain", "nature", "sunset", "sunrise",
-             "ocean", "sea", "beach", "forest", "aerial", "drone", "factory", "industry", "industrial", "machine", "machinery",
-             "animal", "dog", "cat", "bird", "abstract", "particles", "fractal", "3d", "animation", "cartoon", "fire", "smoke",
-             "war", "covid", "coronavirus", "virus", "mask", "hospital", "christmas", "halloween", "church", "religion",
-             "islam", "muslim", "quran", "prayer", "mosque", "flag", "politics", "army", "gun", "weapon", "stock market", "trading"}
+GUIDE = C.read_json(os.path.join(C.VIDEOS, "footage-guideline.json"), {}) or {}
+CATEGORIES = GUIDE.get("categories", {})
+OFF_TOPIC = set(GUIDE.get("blocked_tags", []))
+SHOP_WORDS = {"shop", "store", "boutique", "retail", "shopping", "business", "sale", "customer", "seller"}
+
+
+def blocked(tags):
+    words = {w for t in tags for w in t.split()} | set(tags)
+    if words & OFF_TOPIC:
+        return True
+    return "fashion" in words and not (words & SHOP_WORDS)  # fashion shoots and runways, unless it is a shop
 
 
 def key():
@@ -142,17 +153,23 @@ def search(script_path, out):
     os.makedirs(out, exist_ok=True)
     result = {}
     for i, sc in enumerate(script["scenes"]):
-        q = (sc.get("footage") or {}).get("queries") or []
+        spec = sc.get("footage") or {}
+        q = spec.get("queries") or []
         if not q:
+            continue
+        cat = CATEGORIES.get(spec.get("category") or "")
+        if not cat:
+            print(f"Scene {i + 1}: category '{spec.get('category')}' is not on the approved list; skipped.")
             continue
         seen, cands = set(), []
         for query in q:
-            data = cached("q:" + query.lower(), {"q": query[:100], "per_page": 20, "safesearch": "true", "video_type": "film"}) or {}
+            data = cached(f"q:{cat['pixabay']}:{query.lower()}", {"q": query[:100], "category": cat["pixabay"], "per_page": 20,
+                                                               "safesearch": "true", "video_type": "film"}) or {}
             for h in data.get("hits") or []:
                 c = info(h)
                 if c["id"] in seen or not c["url"] or (c["duration"] or 0) < 4:
                     continue
-                if set(c["tags"]) & OFF_TOPIC or any(w in OFF_TOPIC for t in c["tags"] for w in t.split()):
+                if blocked(c["tags"]):
                     continue
                 seen.add(c["id"])
                 c["query"] = query
@@ -162,8 +179,8 @@ def search(script_path, out):
         for query in q:
             picked += [c for c in cands if c["query"] == query][:per]
         picked = picked[:PER_SCENE]
-        result[str(i)] = {"lines": sc["lines"], "queries": q, "candidates": picked}
-        sheet(picked, os.path.join(out, f"scene{i + 1:02d}.jpg"), f"Scene {i + 1}: " + " / ".join(q))
+        result[str(i)] = {"lines": sc["lines"], "category": spec["category"], "pixabay_category": cat["pixabay"], "queries": q, "candidates": picked}
+        sheet(picked, os.path.join(out, f"scene{i + 1:02d}.jpg"), f"Scene {i + 1} [{spec['category']} -> {cat['pixabay']}]: " + " / ".join(q))
         print(f"Scene {i + 1}: {len(picked)} candidates for {q}")
     C.write_json(os.path.join(out, "candidates.json"), result)
     return 0 if result else 5
@@ -185,10 +202,27 @@ def fetch(script_path, out):
             print(f"Scene {i + 1}: Pixabay clip {fid} could not be downloaded; the scene falls back to its animation.")
             continue
         got[str(i)] = {"file": path, "id": fid, "page": c["page"], "author": c["author"], "tags": c["tags"][:8],
+                       "category": sc["footage"].get("category"), "reason": sc["footage"].get("reason"),
                        "width": c["width"], "height": c["height"], "duration": c["duration"], "query": (sc["footage"].get("queries") or [""])[0]}
         print(f"Scene {i + 1}: Pixabay {fid} ({c['width']}x{c['height']}, {c['duration']}s) downloaded")
     C.write_json(os.path.join(out, "footage.json"), got)
     return 0
+
+
+def report(script):
+    """Footage Selection Report (markdown): every scene, its category, keywords, chosen clip and reason, or why it stays animated."""
+    rows = [f"# Footage Selection Report: {script.get('video_title', script['slug'])}", "",
+            "| Scene | Narration | Visual concept | Category (Pixabay) | Search keywords | Selected footage | Reason |",
+            "|---|---|---|---|---|---|---|"]
+    for i, sc in enumerate(script["scenes"], 1):
+        f = sc.get("footage") or {}
+        cat = f.get("category") or "-"
+        pcat = (CATEGORIES.get(cat) or {}).get("pixabay", "-")
+        sel = f"[Pixabay #{f['id']}]({f.get('page') or ''})" if f.get("id") else "ADS BOX animation (" + (sc.get("visual") or {}).get("type", "") + ")"
+        why = f.get("reason") or f.get("fallback") or "Explained best by the animated template."
+        rows.append(f"| {i} | {' '.join(sc['lines'])} | {f.get('concept') or (sc.get('visual') or {}).get('type', '')} | {cat} ({pcat}) | "
+                    f"{', '.join(f.get('queries') or []) or '-'} | {sel} | {why} |")
+    return "\n".join(rows) + "\n"
 
 
 def main():
@@ -200,6 +234,9 @@ def main():
         return 0 if n else 5
     if cmd == "search":
         return search(sys.argv[2], sys.argv[3])
+    if cmd == "report":
+        print(report(C.read_json(sys.argv[2])))
+        return 0
     if cmd == "fetch":
         return fetch(sys.argv[2], sys.argv[3])
     print(__doc__)

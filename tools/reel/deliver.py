@@ -89,12 +89,24 @@ def sent(a):
     # The original file too: Telegram's in-app player may stream a smaller copy; this one is the exact 1080x1920 MP4.
     tg("sendDocument", {"caption": f"📁 ឯកសារដើម (Original) 1080x1920 · {meta.get('size_mb')} MB", "disable_content_type_detection": "true"}, {"document": mp4})
     tg("sendPhoto", {"caption": "🖼 Thumbnail · " + script["thumbnail_text"]}, {"photo": thumb})
-    if meta.get("footage"):
-        rows = [f"🎞 <b>Footage report</b> · Pixabay ≈{round(100 * meta.get('footage_share', 0))}% of the video, animation for the rest"]
-        for f in meta["footage"]:
-            rows.append(f"Scene {f['scene']} ({e(f.get('role'))}, {f.get('seconds')}s): Pixabay #{f['id']} by {e(f.get('author'))}\n"
-                        f"search: {e(f.get('query'))} · tags: {e(', '.join(f.get('tags') or [])[:80])}\n{e(f.get('page'))}")
-        tg("sendMessage", {"text": "\n\n".join(rows)[:4000], "parse_mode": "HTML", "disable_web_page_preview": "true"})
+    if any(sc.get("footage") for sc in script["scenes"]):
+        used = {str(f["id"]) for f in meta.get("footage") or []}
+        guide = (C.read_json(os.path.join(C.VIDEOS, "footage-guideline.json"), {}) or {}).get("categories", {})
+        rows = [f"🎞 <b>Footage Selection Report</b> · real footage ≈{round(100 * meta.get('footage_share', 0))}% · animation for the rest"]
+        for n, sc in enumerate(script["scenes"], 1):
+            f = sc.get("footage") or {}
+            head = f"<b>Scene {n}</b> · {e(sc.get('role'))}"
+            if f.get("category"):
+                head += f" · {e(f['category'])} → {e((guide.get(f['category']) or {}).get('pixabay', '?'))}"
+            if f.get("id") and str(f["id"]) in used:
+                body = (f"🎥 Pixabay #{f['id']} ✅ used\n🔎 {e(', '.join(f.get('queries') or []))}\n💡 {e(f.get('reason'))}\n{e(f.get('page'))}")
+            elif f.get("id"):
+                body = f"⚠️ Pixabay #{f['id']} could not be downloaded → animation"
+            else:
+                body = f"🎨 Animation ({e((sc.get('visual') or {}).get('type'))})" + (f" · 🔎 {e(', '.join(f.get('queries') or []))}\n💡 {e(f.get('fallback'))}" if f else "")
+            rows.append(head + "\n" + body)
+        for part in chunks("\n\n".join(rows)):
+            tg("sendMessage", {"text": part, "parse_mode": "HTML", "disable_web_page_preview": "true"})
     for part in chunks(script_text(script)):
         tg("sendMessage", {"text": part, "parse_mode": "HTML", "disable_web_page_preview": "true"})
     archive = C.read_json(a.archive, {}) if a.archive else {}
