@@ -3,14 +3,72 @@
   "approved": "2026-11-01 by the owner",
   "summary": "Pixabay footage is used only for these 8 editorial categories, searched with Pixabay's own category filter, reviewed on contact sheets, and chosen per scene with a written reason. If no clip fits, the scene keeps its approved ADS BOX animation.",
   "categories": {
-    "Marketing Strategy": {"pixabay": "business", "examples": ["marketing strategy", "advertising campaign", "marketing planning", "business presentation"]},
-    "Online Selling & Ecommerce": {"pixabay": "business", "examples": ["ecommerce business", "online seller", "packing orders", "online shopping"]},
-    "Social Media & Facebook": {"pixabay": "computer", "examples": ["social media smartphone", "scrolling smartphone", "social network app"]},
-    "Customer Service": {"pixabay": "people", "examples": ["customer service", "customer conversation", "call center headset"]},
-    "Business & Teamwork": {"pixabay": "business", "examples": ["business meeting", "teamwork office", "team brainstorming"]},
-    "Advertising & Analytics": {"pixabay": "computer", "examples": ["analytics dashboard", "marketing data laptop", "charts on screen"]},
-    "Product & Promotion": {"pixabay": "business", "examples": ["product promotion", "retail store sale", "showing product camera"]},
-    "Delivery & Logistics": {"pixabay": "transportation", "examples": ["parcel delivery", "courier package", "packing boxes warehouse"]}
+    "Marketing Strategy": {
+      "pixabay": "business",
+      "examples": [
+        "marketing strategy",
+        "advertising campaign",
+        "marketing planning",
+        "business presentation"
+      ]
+    },
+    "Online Selling & Ecommerce": {
+      "pixabay": "business",
+      "examples": [
+        "ecommerce business",
+        "online seller",
+        "packing orders",
+        "online shopping"
+      ]
+    },
+    "Social Media & Facebook": {
+      "pixabay": "computer",
+      "examples": [
+        "social media smartphone",
+        "scrolling smartphone",
+        "social network app"
+      ]
+    },
+    "Customer Service": {
+      "pixabay": "people",
+      "examples": [
+        "customer service",
+        "customer conversation",
+        "call center headset"
+      ]
+    },
+    "Business & Teamwork": {
+      "pixabay": "business",
+      "examples": [
+        "business meeting",
+        "teamwork office",
+        "team brainstorming"
+      ]
+    },
+    "Advertising & Analytics": {
+      "pixabay": "computer",
+      "examples": [
+        "analytics dashboard",
+        "marketing data laptop",
+        "charts on screen"
+      ]
+    },
+    "Product & Promotion": {
+      "pixabay": "business",
+      "examples": [
+        "product promotion",
+        "retail store sale",
+        "showing product camera"
+      ]
+    },
+    "Delivery & Logistics": {
+      "pixabay": "transportation",
+      "examples": [
+        "parcel delivery",
+        "courier package",
+        "packing boxes warehouse"
+      ]
+    }
   },
   "rules": [
     "Search 5-10 results per scene when available; choose the clip that best matches the narration, not the first result.",
@@ -21,11 +79,94 @@
     "Every chosen clip has a written reason that ties it to the narration.",
     "A Footage Selection Report (scene, narration, visual concept, category, Pixabay category, keywords, selected clip URL, reason) is made before rendering and sent with the preview."
   ],
-  "blocked_tags": ["sky", "night", "star", "stars", "galaxy", "space", "universe", "landscape", "mountain", "nature", "sunset", "sunrise", "ocean",
-    "sea", "beach", "forest", "tree", "aerial", "drone", "factory", "industry", "industrial", "machine", "machinery", "animal", "animals",
-    "wildlife", "dog", "cat", "bird", "wolf", "deer", "abstract", "particles", "fractal", "3d", "animation", "cartoon", "fire", "smoke",
-    "war", "covid", "coronavirus", "virus", "mask", "hospital", "christmas", "halloween", "church", "religion", "islam", "muslim",
-    "quran", "prayer", "mosque", "flag", "politics", "army", "gun", "weapon", "stock market", "trading", "runway", "catwalk",
-    "fashion show", "sport", "sports", "boxing", "boxer", "traffic", "traffic jam", "city", "skyline", "train", "railway", "ruins",
-    "bitcoin", "crypto", "casino"]
+  "blocked_tags": [
+    "sky",
+    "night",
+    "star",
+    "stars",
+    "galaxy",
+    "space",
+    "universe",
+    "landscape",
+    "mountain",
+    "nature",
+    "sunset",
+    "sunrise",
+    "ocean",
+    "sea",
+    "beach",
+    "forest",
+    "tree",
+    "aerial",
+    "drone",
+    "factory",
+    "industry",
+    "industrial",
+    "machine",
+    "machinery",
+    "animal",
+    "animals",
+    "wildlife",
+    "dog",
+    "cat",
+    "bird",
+    "wolf",
+    "deer",
+    "abstract",
+    "particles",
+    "fractal",
+    "3d",
+    "animation",
+    "cartoon",
+    "fire",
+    "smoke",
+    "war",
+    "covid",
+    "coronavirus",
+    "virus",
+    "mask",
+    "hospital",
+    "christmas",
+    "halloween",
+    "church",
+    "religion",
+    "islam",
+    "muslim",
+    "quran",
+    "prayer",
+    "mosque",
+    "flag",
+    "politics",
+    "army",
+    "gun",
+    "weapon",
+    "stock market",
+    "trading",
+    "runway",
+    "catwalk",
+    "fashion show",
+    "sport",
+    "sports",
+    "boxing",
+    "boxer",
+    "traffic",
+    "traffic jam",
+    "city",
+    "skyline",
+    "train",
+    "railway",
+    "ruins",
+    "bitcoin",
+    "crypto",
+    "casino",
+    "bee",
+    "bees",
+    "honey",
+    "hive",
+    "insect",
+    "insects",
+    "farming",
+    "farm",
+    "green screen"
+  ]
 }
