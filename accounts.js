@@ -238,13 +238,13 @@ window.ACCOUNTS = {
    {
     "name": "Ly Za",
     "url": "https://www.facebook.com/profile.php?id=61581144403152",
-    "followers": 12507,
+    "followers": 12499,
     "picture": "assets/accounts/fb-61581144403152.webp",
     "cover": "assets/opt/adsbox-cover-31acf4-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-31"
+    "updated": "2026-11-01"
    },
    {
     "name": "យ៉ន តឹម",
@@ -255,7 +255,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-31"
+    "updated": "2026-11-01"
    },
    {
     "name": "យឹម សុជាតា",
@@ -266,7 +266,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-31"
+    "updated": "2026-11-01"
    },
    {
     "name": "យឹម អេង",
@@ -288,7 +288,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-31"
+    "updated": "2026-11-01"
    },
    {
     "name": "Gen Z",
@@ -299,7 +299,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-31"
+    "updated": "2026-11-01"
    },
    {
     "name": "Monkey koko | Phnom Penh",
@@ -310,18 +310,18 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-31"
+    "updated": "2026-11-01"
    },
    {
     "name": "BK Gaming",
     "url": "https://www.facebook.com/profile.php?id=61567313732962",
-    "followers": 23565,
+    "followers": 23562,
     "picture": "assets/accounts/fb-61567313732962.webp",
     "cover": "assets/accounts/fb-61567313732962-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-31"
+    "updated": "2026-11-01"
    },
    {
     "name": "រីករាយ សារ៉ាយ",
@@ -332,7 +332,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-31"
+    "updated": "2026-11-01"
    },
    {
     "name": "Amazing DN28",
@@ -579,24 +579,24 @@ window.ACCOUNTS = {
    {
     "name": "1 VIDEO",
     "url": "https://www.facebook.com/slquickautophnompenh",
-    "followers": 7503,
+    "followers": 7523,
     "picture": "assets/accounts/fb-slquickautophnompenh.webp",
     "cover": "assets/accounts/fb-slquickautophnompenh-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-11-01"
    },
    {
     "name": "PostDrame",
     "url": "https://www.facebook.com/profile.php?id=61594845143177",
-    "followers": 280,
+    "followers": 281,
     "picture": "assets/accounts/fb-61594845143177.webp",
     "cover": "assets/accounts/fb-61594845143177-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-30"
+    "updated": "2026-11-01"
    },
    {
     "name": "10Drama",
@@ -607,18 +607,18 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-30"
+    "updated": "2026-11-01"
    },
    {
     "name": "សម្រាយកុនAi",
     "url": "https://www.facebook.com/profile.php?id=61594113096221",
-    "followers": 4790,
+    "followers": 4809,
     "picture": "assets/accounts/fb-61594113096221.webp",
     "cover": "assets/accounts/fb-61594113096221-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-30"
+    "updated": "2026-11-01"
    },
    {
     "name": "Content Happy",
@@ -689,13 +689,13 @@ window.ACCOUNTS = {
    {
     "name": "Ly Za",
     "url": "https://www.facebook.com/profile.php?id=61581144403152&sk=reels_tab",
-    "followers": 12507,
+    "followers": 12499,
     "picture": "assets/accounts/fb-61581144403152.webp",
     "cover": "assets/opt/adsbox-cover-672969-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-31"
+    "updated": "2026-11-01"
    },
    {
     "name": "យឹម អេង",
