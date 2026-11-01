@@ -69,10 +69,11 @@ def sent(a):
     mp4 = os.path.join(a.dir, f"{a.slug}.mp4")
     thumb, cover = os.path.join(a.dir, f"{a.slug}-thumb.jpg"), os.path.join(a.dir, f"{a.slug}-cover.jpg")
     dur = int(round(meta.get("duration", 0)))
-    footage = sum(1 for b in meta.get("broll", []) if b)
+    clips = len([b for b in meta.get("broll", []) if b])
     caption = (f"🎬 <b>{e(script['video_title'])}</b>\n\n{e(script['topic'])}\n\n"
                f"📄 អត្ថបទ: {e(script['article']['url'])}\n"
-               f"⏱ {dur}s · 🎙 {e(meta.get('voice'))} · 🎞 B-roll {footage}/{meta.get('scenes')} · 🎵 {e(meta.get('music'))}\n"
+               f"⏱ {dur}s · 🎙 {e(meta.get('voice'))} · 🎞 {meta.get('shots')} shots ({clips} Pixabay clips{', ' + str(meta.get('branded_shots')) + ' branded' if meta.get('branded_shots') else ''}) · 🎵 {e(meta.get('music'))}\n"
+               f"💬 Subtitles: {e(meta.get('subtitle_sync'))}\n"
                f"✅ ផលិតរួច · 👀 Preview ប៉ុណ្ណោះ (មិនទាន់បង្ហោះជាសាធារណៈ)")
     r = tg("sendVideo", {"caption": caption[:1024], "parse_mode": "HTML", "supports_streaming": "true",
                          "width": "1080", "height": "1920", "duration": str(dur),
@@ -92,7 +93,7 @@ def sent(a):
     rec.update({
         "status": "sent", "error": "", "sent_at": C.iso(), "rendered_at": rec.get("rendered_at") or C.iso(), "run": a.run or "",
         "duration": meta.get("duration"), "size_mb": meta.get("size_mb"), "render_seconds": meta.get("render_seconds"),
-        "voice": meta.get("voice"), "music": meta.get("music"),
+        "voice": meta.get("voice"), "music": meta.get("music"), "shots": meta.get("shots"), "subtitle_sync": meta.get("subtitle_sync"),
         "broll_ids": [b["id"] for b in meta.get("broll", []) if b], "broll": meta.get("broll", []),
         "telegram": {"ok": True, "message_id": msg.get("message_id"), "chat": "configured", "at": C.iso(),
                      "file_id": (msg.get("video") or {}).get("file_id")},

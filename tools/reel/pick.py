@@ -22,7 +22,7 @@ SCHEMA = {
         "lines": ["the spoken words, split into on-screen subtitle lines of max 40 characters each, 1-3 lines per scene"],
         "keyword": "optional: 2-6 words shown big on screen, max 28 characters (the scene's key point)",
         "label": "optional: small tag above the keyword, e.g. គន្លឹះទី ១ (max 16 characters)",
-        "broll": ["2-3 English Pexels search queries for real footage that matches exactly what this scene says, most specific first"],
+        "broll": ["2-3 English stock-footage (Pixabay) search queries for real footage that matches exactly what this scene says, most specific first"],
     }],
 }
 
