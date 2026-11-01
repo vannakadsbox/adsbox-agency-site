@@ -475,7 +475,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-11-01"
    },
    {
     "name": "Ṅëä ẗḧ",
@@ -486,7 +486,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-11-01"
    },
    {
     "name": "Mer24សម្រាយ",
@@ -497,7 +497,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-11-01"
    },
    {
     "name": "Content For You",
@@ -640,7 +640,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-30"
+    "updated": "2026-11-01"
    },
    {
     "name": "NR Store | Phnom Penh",
@@ -662,7 +662,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-30"
+    "updated": "2026-11-01"
    },
    {
     "name": "100086760075207",
@@ -678,13 +678,13 @@ window.ACCOUNTS = {
    {
     "name": "Aiសម្រាយរឿង",
     "url": "https://www.facebook.com/profile.php?id=61593329975440",
-    "followers": 19402,
+    "followers": 19385,
     "picture": "assets/accounts/fb-61593329975440.webp",
     "cover": "assets/opt/adsbox-cover-df986e-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-11-01"
    },
    {
     "name": "Ly Za",
@@ -711,24 +711,24 @@ window.ACCOUNTS = {
    {
     "name": "U Drama",
     "url": "https://www.facebook.com/profile.php?id=61588652091475&sk=reels_tab",
-    "followers": 12432,
+    "followers": 12396,
     "picture": "assets/accounts/fb-61588652091475.webp",
     "cover": "assets/opt/adsbox-cover-7ff99d-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-28"
+    "updated": "2026-11-01"
    },
    {
     "name": "TV24k",
     "url": "https://www.facebook.com/profile.php?id=61593510027475",
-    "followers": 2145,
+    "followers": 2162,
     "picture": "assets/accounts/fb-61593510027475.webp",
     "cover": "assets/opt/adsbox-cover-ed4cb6-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-27"
+    "updated": "2026-11-01"
    },
    {
     "name": "Van Sovann",
