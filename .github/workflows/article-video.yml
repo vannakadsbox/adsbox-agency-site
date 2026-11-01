@@ -69,6 +69,8 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           VIDEO_PHOTO: ${{ vars.VIDEO_PHOTO }}
           VIDEO_VOICE: ${{ vars.VIDEO_VOICE }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVENLABS_VOICE_ID: ${{ secrets.ELEVENLABS_VOICE_ID }}
         run: |
           mkdir -p out
           photo="--no-photo"; [ "${VIDEO_PHOTO:-no}" = "yes" ] && photo=""
