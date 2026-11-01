@@ -3,14 +3,14 @@ window.CLIENTS = [
  {
   "name": "ផ្ទះ បង្អែមព្រិលត្រចៀកកាំ",
   "url": "https://web.facebook.com/profile.php?id=100088869350470",
-  "followers": 32011,
+  "followers": 32039,
   "picture": "assets/accounts/fb-100088869350470.webp",
   "category": "ម្ហូបអាហារ"
  },
  {
   "name": "World of Shopping",
   "url": "https://web.facebook.com/worldofshopping168",
-  "followers": 6101,
+  "followers": 6103,
   "picture": "assets/accounts/fb-worldofshopping168.webp",
   "category": "ហាងលក់អនឡាញ"
  },
@@ -24,14 +24,14 @@ window.CLIENTS = [
  {
   "name": "CosMe | Phnom Penh",
   "url": "https://web.facebook.com/profile.php?id=100068655260640",
-  "followers": 8433,
+  "followers": 8438,
   "picture": "assets/accounts/fb-100068655260640.webp",
   "category": "សម្ផស្ស"
  },
  {
   "name": "Healthy Glow | Phnom Penh",
   "url": "https://web.facebook.com/profile.php?id=100083063480749",
-  "followers": 17857,
+  "followers": 17856,
   "picture": "assets/accounts/fb-100083063480749.webp",
   "category": "សម្ផស្ស"
  },
@@ -45,7 +45,7 @@ window.CLIENTS = [
  {
   "name": "ម៉ាក់ នី VIP | Phnom Penh",
   "url": "https://web.facebook.com/vipsorhorh",
-  "followers": 820587,
+  "followers": 821016,
   "picture": "assets/accounts/fb-vipsorhorh.webp",
   "category": "សម្ផស្ស"
  },
