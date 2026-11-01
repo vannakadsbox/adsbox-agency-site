@@ -729,14 +729,14 @@
       "status": "sent",
       "scripted_at": "2026-11-01T20:30:33+07:00",
       "error": "",
-      "render_started_at": "2026-11-01T21:54:38+07:00",
-      "sent_at": "2026-11-01T22:00:55+07:00",
+      "render_started_at": "2026-11-01T22:10:16+07:00",
+      "sent_at": "2026-11-01T22:16:55+07:00",
       "rendered_at": "2026-11-01T20:48:18+07:00",
-      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/41318441274",
-      "duration": 61.63,
-      "size_mb": 17,
-      "render_seconds": 360,
-      "voice": "kiri:Sophon",
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/41319780740",
+      "duration": 62.17,
+      "size_mb": 17.1,
+      "render_seconds": 383,
+      "voice": "kiri:Bora",
       "music": "adsbox-original-2.mp3",
       "style": "custom animation only (no stock footage)",
       "visuals": [
@@ -758,49 +758,49 @@
       "stock_footage": "none (removed)",
       "telegram": {
         "ok": true,
-        "message_id": 91,
+        "message_id": 96,
         "chat": "configured",
-        "at": "2026-11-01T22:00:55+07:00",
-        "file_id": "BAACAgUAAxkDAANbaudUICZ6cmfdV3371FsBIv5njQsAAhUlAAIeBDlXjMIIfx2Lp3g9BA",
+        "at": "2026-11-01T22:16:55+07:00",
+        "file_id": "BAACAgUAAxkDAANgaudX4Mbc9wK0FL5meYHLkrj4AkIAAiglAAIeBDlXTRK-3YUpv6s9BA",
         "items": [
           {
             "item": "caption",
-            "message_id": 90
+            "message_id": 95
           },
           {
             "item": "video",
-            "message_id": 91,
+            "message_id": 96,
             "file_name": "auto-capture-orders-from-live-comments.mp4",
-            "file_size": 16972925,
+            "file_size": 17054925,
             "width": 1080,
             "height": 1920,
-            "file_id": "BAACAgUAAxkDAANbaudUICZ6cmfdV3371FsBIv5njQsAAhUlAAIeBDlXjMIIfx2Lp3g9BA"
+            "file_id": "BAACAgUAAxkDAANgaudX4Mbc9wK0FL5meYHLkrj4AkIAAiglAAIeBDlXTRK-3YUpv6s9BA"
           },
           {
             "item": "thumbnail",
-            "message_id": 92,
+            "message_id": 97,
             "file_name": "auto-capture-orders-from-live-comments-thumbnail.jpg",
-            "file_size": 170828
+            "file_size": 172324
           }
         ],
         "sent_count": 3,
         "local_sizes": {
-          "video": 16972925,
-          "thumbnail": 170828
+          "video": 17054925,
+          "thumbnail": 172324
         }
       },
       "archive": {
         "assets": [
           {
-            "id": 698640864,
+            "id": 698680539,
             "name": "auto-capture-orders-from-live-comments-thumb.jpg",
-            "size": 170828,
+            "size": 172324,
             "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/auto-capture-orders-from-live-comments-thumb.jpg"
           },
           {
-            "id": 698640861,
+            "id": 698680538,
             "name": "auto-capture-orders-from-live-comments.mp4",
-            "size": 16972925,
+            "size": 17054925,
             "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/auto-capture-orders-from-live-comments.mp4"
           }
         ],
@@ -810,20 +810,20 @@
         "width": 1080,
         "height": 1920,
         "fps": "30/1",
-        "duration": 61.63,
+        "duration": 62.17,
         "video_codec": "h264",
         "audio_codec": "aac",
-        "loudness": "-13.8 LUFS",
+        "loudness": "-13.7 LUFS",
         "decode_errors": false,
         "visual_mix": {
-          "motion_graphics": 0.45,
+          "motion_graphics": 0.46,
           "phone_chat": 0.1,
           "illustrated": 0.2,
-          "product_dashboard": 0.25
+          "product_dashboard": 0.24
         }
       },
       "article_id": "auto-capture-orders-from-live-comments",
-      "video_id": 698640861,
+      "video_id": 698680538,
       "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/auto-capture-orders-from-live-comments.mp4",
       "created_at": "2026-11-01T20:48:18+07:00",
       "telegram_status": "delivered",
