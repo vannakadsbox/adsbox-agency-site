@@ -3,8 +3,8 @@
 // STOCK FOOTAGE IS REMOVED (owner's order, 1 Nov 2026): every frame is drawn by ADS BOX's own scene templates.
 // The renderer has no code path that reads, downloads or plays a video clip; "footage" fields in a script are ignored
 // and the old --footage option is refused.
-// Writes OUT_DIR/<slug>.mp4, OUT_DIR/<slug>-thumb.jpg (9:16 video cover), OUT_DIR/<slug>-cover.jpg (small),
-// OUT_DIR/<slug>-thumbnail.jpg (16:9 thumbnail, 1920x1080) and OUT_DIR/meta.json.
+// Writes OUT_DIR/<slug>.mp4, OUT_DIR/<slug>-thumb.jpg (1080x1920 thumbnail and video cover), OUT_DIR/<slug>-cover.jpg (small),
+// and OUT_DIR/meta.json. The 1080x1920 thumb is also the delivered thumbnail.
 //
 // Every scene is an animated template (tools/reel/scenes.js) chosen by the script: question, leaving customers,
 // ads dashboard, before/after, checklist, deadline, delivery receipt, post mock-up, takeaway, CTA. Its elements appear
@@ -249,7 +249,7 @@ function sound(scenes, total, music, dir) {
   return out;
 }
 
-// --- Thumbnail 16:9 (owner, 1 Nov 2026): navy brand card, big Khmer headline, the hook scene as a phone screen --------
+// --- Thumbnail 16:9 (not used: the owner's standard is a 1080x1920 thumbnail, see thumbnail()): navy brand card, big Khmer headline, the hook scene as a phone screen --------
 async function thumbnailWide(script, frame, out) {
   const TW = 1920, TH = 1080;
   const b = await browser();
@@ -343,7 +343,6 @@ body{width:${W}px;height:${H}px;overflow:hidden;font-family:M,L,sans-serif;color
   let frame = path.join(fdir, String(Math.round(tf * FPS)).padStart(5, "0") + ".jpg");
   const thumb = path.join(outDir, `${slug}-thumb.jpg`), cover = path.join(outDir, `${slug}-cover.jpg`);
   await thumbnail(script, fs.existsSync(frame) ? frame : path.join(fdir, "00030.jpg"), thumb, cover);
-  await thumbnailWide(script, fs.existsSync(frame) ? frame : path.join(fdir, "00030.jpg"), path.join(outDir, `${slug}-thumbnail.jpg`));
 
   const meta = {
     slug, style: "custom animation only (no stock footage)", duration: +probe(mp4).toFixed(2), size_mb: +(fs.statSync(mp4).size / 1e6).toFixed(1), resolution: `${W}x${H}`, fps: FPS,

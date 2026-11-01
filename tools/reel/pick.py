@@ -15,7 +15,7 @@ SCHEMA = {
     "slug": "the article slug, exactly as in the brief",
     "video_title": "Khmer title for the video, max 70 characters, curiosity or benefit, no clickbait",
     "topic": "one or two Khmer sentences: what the viewer learns",
-    "thumbnail_text": "the big headline on the 16:9 thumbnail: short Khmer question or benefit, max 40 characters",
+    "thumbnail_text": "the big headline on the 1080x1920 thumbnail: short Khmer question or benefit, max 40 characters",
     "description": "Khmer post caption for Reels/TikTok, 2-4 short lines plus 3-6 hashtags, max 600 characters",
     "facebook_caption": "short ready-to-post Facebook caption in everyday Khmer, about 250-600 characters (see the facebook_caption rule)",
     "scenes": [{

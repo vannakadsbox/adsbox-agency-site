@@ -10,7 +10,7 @@ Needs TELEGRAM_BOT_TOKEN and TELEGRAM_VIDEO_CHAT_ID (or TELEGRAM_CHAT_ID). The t
 "sent" posts EXACTLY 3 items per video (owner, 1 Nov 2026), in this order and nothing else:
   1) the MP4 as a playable Telegram video, file name <slug>.mp4, the original file (not re-encoded)
   2) the ready-to-post Facebook caption (script "facebook_caption") as plain, copyable text
-  3) the 16:9 thumbnail as a JPG file, <slug>-thumbnail.jpg (sent as a file so it is not compressed)
+  3) the 1080x1920 thumbnail as a JPG file, <slug>-thumbnail.jpg (sent as a file so it is not compressed)
 No reports, script, scene lists or duplicate files. Exit 1 if any of the 3 was not accepted.
 """
 import argparse, html, json, os, subprocess, sys
@@ -137,9 +137,12 @@ def sent(a):
         C.save_log(lg)
         return 1
 
-    wide = os.path.join(a.dir, f"{a.slug}-thumbnail.jpg")
-    if not os.path.exists(wide):
-        wide = thumb
+    wide = thumb  # the owner's standard: thumbnail exactly 1080x1920 (checked below)
+    tw = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "stream=width,height", "-of", "csv=p=0", thumb], capture_output=True, text=True).stdout.strip()
+    if tw != "1080,1920":
+        rec.update({"status": "failed", "error": f"thumbnail is {tw}, expected 1080x1920", "failed_at": C.iso(), "run": a.run or ""})
+        C.save_log(lg)
+        return 1
     # 1) Video: the original MP4 as a playable video (no caption)
     r = tg("sendVideo", {"supports_streaming": "true", "width": "1080", "height": "1920", "duration": str(dur),
                          "cover": "attach://coverimg", "thumbnail": "attach://thumbimg"},
@@ -154,7 +157,7 @@ def sent(a):
     if not r.get("ok"):
         return fail("caption", r)
     items.append({"item": "facebook_caption", "message_id": r["result"]["message_id"]})
-    # 3) Thumbnail (16:9) as a file, so Telegram does not recompress it
+    # 3) Thumbnail (1080x1920) as a file, so Telegram does not recompress it
     r = tg("sendDocument", {"disable_content_type_detection": "true"}, {"document": (wide, f"{a.slug}-thumbnail.jpg")})
     if not r.get("ok"):
         return fail("thumbnail", r)
