@@ -1,0 +1,200 @@
+{
+  "slug": "auto-capture-orders-from-live-comments",
+  "video_title": "Comment Live ហូរលឿនពេក កត់ Order មិនទាន់? ៤ ជំហានកុំឲ្យ Order របូត",
+  "topic": "របៀបរៀបចំកូដទំនិញ ចាប់ Order ពី Comment Live ឆ្លើយបញ្ជាក់តាម Messenger និងបោះពុម្ពស្ទីគ័រ ក្នុងលំដាប់ការងារតែមួយ។",
+  "thumbnail_text": "Comment ច្រើន Order របូត?",
+  "description": "Live ដំណើរការល្អ តែ Comment ហូរលឿនជាងដៃកត់?\n៤ ជំហានរៀបចំការងារ ឲ្យ Order ពី Comment Live មិនរបូត៖ កូដទំនិញ ចាប់ Order បញ្ជាក់ Messenger និងស្ទីគ័រ។\nអានអត្ថបទពេញនៅ adsbox.agency\n#លក់Live #FacebookLive #Order #ADSBOX",
+  "scenes": [
+    {
+      "role": "hook",
+      "lines": [
+        "Live កំពុងល្អ Comment ហូរមកមិនឈប់",
+        "តែដៃកត់ Order មិនទាន់ទេ!"
+      ],
+      "visual": {
+        "type": "story",
+        "scene": "live",
+        "mood": "worried",
+        "title": "Order របូត?",
+        "bubbles": [
+          "A1 យក ២",
+          "A3 មួយ",
+          "B2 ខ្មៅ",
+          "A1 ទៀត",
+          "A5 M"
+        ]
+      }
+    },
+    {
+      "role": "problem",
+      "label": "បញ្ហា",
+      "keyword": "ហេតុអ្វី Order បាត់?",
+      "lines": [
+        "Comment ថ្មីរុញ Comment ចាស់បាត់",
+        "កត់ខុសកូដ ខុសទំហំ",
+        "ហើយអតិថិជនចាំយូរ ក៏បោះបង់។"
+      ],
+      "visual": {
+        "type": "checklist",
+        "mark": "x",
+        "items": [
+          "Comment ចាស់រំកិលបាត់",
+          "កត់ខុសកូដ ខុសទំហំ",
+          "អតិថិជនចាំយូរពេក"
+        ]
+      }
+    },
+    {
+      "role": "tip",
+      "label": "ជំហានទី ១",
+      "keyword": "កូដខ្លី មុន Live",
+      "lines": [
+        "ជំហានទី១ ដាក់កូដខ្លីៗ A1 A2 B1 មុន Live",
+        "ប្រាប់អ្នកមើលឲ្យ Comment កូដ និងចំនួន។"
+      ],
+      "visual": {
+        "type": "compare",
+        "bad": "«យកមួយនោះបង»",
+        "good": "A1 + ចំនួន"
+      }
+    },
+    {
+      "role": "tip",
+      "label": "ជំហានទី ២",
+      "keyword": "ចាប់ Order ពី Comment",
+      "lines": [
+        "ជំហានទី២ ប្រព័ន្ធចាប់ Order ពី Comment",
+        "Live Host ផ្ដោតលើការបង្ហាញទំនិញ",
+        "ហើយម្នាក់ពិនិត្យ Comment ដែលមិនច្បាស់។"
+      ],
+      "visual": {
+        "type": "orders",
+        "title": "Order ពី Comment",
+        "rows": [
+          {
+            "name": "សុខា",
+            "code": "A1",
+            "qty": "2"
+          },
+          {
+            "name": "ដារ៉ា",
+            "code": "A3",
+            "qty": "1"
+          },
+          {
+            "name": "ស្រីនាង",
+            "code": "B2",
+            "qty": "1"
+          }
+        ]
+      }
+    },
+    {
+      "role": "tip",
+      "label": "ជំហានទី ៣",
+      "keyword": "បញ្ជាក់តាម Messenger",
+      "lines": [
+        "ជំហានទី៣ ឆ្លើយបញ្ជាក់តាម Messenger ភ្លាម",
+        "ហើយសុំឈ្មោះ លេខទូរស័ព្ទ និងអាសយដ្ឋាន។"
+      ],
+      "visual": {
+        "type": "chat",
+        "with": "សុខា",
+        "messages": [
+          {
+            "from": "customer",
+            "text": "A1 យក ២"
+          },
+          {
+            "from": "shop",
+            "text": "បានទទួល Order A1 x2 ហើយបង"
+          },
+          {
+            "from": "shop",
+            "text": "សូមផ្ញើឈ្មោះ លេខទូរស័ព្ទ អាសយដ្ឋាន"
+          },
+          {
+            "from": "customer",
+            "text": "សុខា 012 345 678 ភ្នំពេញ"
+          }
+        ]
+      }
+    },
+    {
+      "role": "tip",
+      "label": "ជំហានទី ៤",
+      "keyword": "បោះពុម្ពស្ទីគ័រ",
+      "lines": [
+        "ជំហានទី៤ បោះពុម្ពស្ទីគ័រពីបញ្ជីតែមួយ",
+        "អ្នកខ្ចប់មិនបាច់វាយឡើងវិញ មិនផ្ញើខុស។"
+      ],
+      "visual": {
+        "type": "sticker",
+        "name": "សុខា",
+        "phone": "012 345 678",
+        "address": "ភ្នំពេញ",
+        "items": "A1 x2"
+      }
+    },
+    {
+      "role": "example",
+      "label": "ឧទាហរណ៍",
+      "keyword": "ហាងកាបូបមួយ",
+      "lines": [
+        "ឧទាហរណ៍ ហាងកាបូបមួយ ដាក់កូដ A1 ដល់ A10",
+        "ក្នុង Live ប្រព័ន្ធចាប់ Order",
+        "ក្រោយ Live ផ្ញើសារ និងបោះពុម្ពស្ទីគ័រ។"
+      ],
+      "visual": {
+        "type": "flow",
+        "steps": [
+          {
+            "label": "មុន Live",
+            "text": "ដាក់កូដ A1 ដល់ A10"
+          },
+          {
+            "label": "ក្នុង Live",
+            "text": "ប្រព័ន្ធចាប់ Order"
+          },
+          {
+            "label": "ក្រោយ Live",
+            "text": "សារបញ្ជាក់ និងស្ទីគ័រ"
+          }
+        ]
+      }
+    },
+    {
+      "role": "summary",
+      "lines": [
+        "ការងារមានលំដាប់ ក្រុមមិនភ័ន្តច្រឡំ",
+        "ទោះ Comment ចូលច្រើនប៉ុណ្ណាក៏ដោយ។"
+      ],
+      "visual": {
+        "type": "story",
+        "scene": "packing",
+        "mood": "happy"
+      }
+    },
+    {
+      "role": "cta",
+      "lines": [
+        "ប្រព័ន្ធ ADS BOX មានគម្រោងឥតគិតថ្លៃ",
+        "សាកមើលនៅ adsbox.biz បានបងៗ។"
+      ],
+      "visual": {
+        "type": "cta",
+        "services": [
+          "ចាប់ Order ពី Comment",
+          "ឆ្លើយ Messenger",
+          "បោះពុម្ពស្ទីគ័រ"
+        ],
+        "url": "adsbox.biz"
+      }
+    }
+  ],
+  "article": {
+    "title": "ចាប់ Order ពី Comment Live ដោយស្វ័យប្រវត្តិ៖ ៤ ជំហានមិនឲ្យ Order របូត",
+    "url": "https://adsbox.agency/knowledge/auto-capture-orders-from-live-comments/"
+  },
+  "written_at": "2026-11-01T20:30:33+07:00"
+}
