@@ -584,6 +584,16 @@
       "created_at": "2026-11-01T19:56:55+07:00",
       "telegram_status": "delivered",
       "production_status": "complete"
+    },
+    {
+      "slug": "product-codes-for-live-orders",
+      "article_title": "ដាក់លេខកូដទំនិញពេល Live៖ ៥ គន្លឹះឲ្យអតិថិជនកុម្ម៉ង់ងាយ និងមិនច្រឡំ",
+      "article_url": "https://adsbox.agency/knowledge/product-codes-for-live-orders/",
+      "video_title": "Live ហើយ Comment «យកមួយ» ច្រើនពេក? ប្រើលេខកូដទំនិញតាម ៥ គន្លឹះនេះ",
+      "hook": "Live ម្ដងៗ Comment ហូរមកលឿនណាស់ «យកមួយ» «អាវខៀវនោះប៉ុន្មាន?» តែមួយណាទៅបង?",
+      "status": "scripted",
+      "scripted_at": "2026-11-01T20:04:21+07:00",
+      "error": ""
     }
   ]
 }

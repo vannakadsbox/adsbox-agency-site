@@ -1,0 +1,233 @@
+{
+  "slug": "product-codes-for-live-orders",
+  "video_title": "Live ហើយ Comment «យកមួយ» ច្រើនពេក? ប្រើលេខកូដទំនិញតាម ៥ គន្លឹះនេះ",
+  "topic": "របៀបដាក់លេខកូដទំនិញពេល Facebook Live ឲ្យអតិថិជនកុម្ម៉ង់បានក្នុងមួយវិនាទី ហើយ Admin និងអ្នកខ្ចប់មិនច្រឡំ។",
+  "thumbnail_text": "Live គ្មានកូដ = Order ខុស",
+  "description": "Live ម្ដងៗ Comment «យកមួយ» ហូរមក តែមិនដឹងថាមួយណា?\n៥ គន្លឹះដាក់លេខកូដទំនិញ ឲ្យអតិថិជនកុម្ម៉ង់ងាយ Admin កត់ត្រូវ អ្នកខ្ចប់មិនផ្ញើខុស។\nអានអត្ថបទពេញនៅ adsbox.agency\n#លក់Live #FacebookLive #លក់អនឡាញ #ADSBOX",
+  "scenes": [
+    {
+      "role": "hook",
+      "keyword": "យកមួយណាបង?",
+      "lines": [
+        "Live ម្ដងៗ Comment ហូរមកលឿនណាស់",
+        "«យកមួយ» «អាវខៀវនោះប៉ុន្មាន?»",
+        "តែមួយណាទៅបង?"
+      ],
+      "visual": {
+        "type": "question",
+        "title": "យកមួយណាបង?",
+        "bubbles": [
+          "យកមួយ!",
+          "អាវខៀវនោះប៉ុន្មាន?",
+          "យកដូចបងមុន",
+          "យកមួយទៀត!"
+        ]
+      }
+    },
+    {
+      "role": "problem",
+      "keyword": "គ្មានកូដ = Order ខុស",
+      "lines": [
+        "បើគ្មានលេខកូដទំនិញច្បាស់ទេ",
+        "Admin ពិបាកដឹងថាគេចង់បានមួយណា",
+        "ហើយ Order ងាយខុសណាស់។"
+      ],
+      "visual": {
+        "type": "takeaway",
+        "quote": "គ្មានកូដ Admin មិនដឹងថាគេយកមួយណា"
+      },
+      "footage": {
+        "category": "Social Media & Facebook",
+        "concept": "A seller live streaming products on a phone while comments come in",
+        "queries": [
+          "live streaming selling",
+          "live stream smartphone",
+          "online seller camera"
+        ],
+        "id": 26774,
+        "page": "https://pixabay.com/videos/id-26774/",
+        "author": "ninosouza",
+        "focus": 0.55,
+        "reason": "A phone showing a Facebook-style live stream with comments scrolling up: exactly the 'comments pour in during Live' moment the narration describes."
+      }
+    },
+    {
+      "role": "tip",
+      "label": "គន្លឹះទី ១",
+      "keyword": "កូដខ្លី ២ ទៅ ៤ តួ",
+      "lines": [
+        "គន្លឹះទី១ ប្រើកូដខ្លី ២ ទៅ ៤ តួ",
+        "ដូចជា A1 A2 B5 វាយលឿនលើទូរស័ព្ទ",
+        "តែកុំប្រើ O ជាមួយ 0 ព្រោះមើលស្រដៀងគ្នា។"
+      ],
+      "visual": {
+        "type": "compare",
+        "bad": "អាវពណ៌ផ្កាឈូកនោះ",
+        "good": "A1 · A2 · B5"
+      }
+    },
+    {
+      "role": "tip",
+      "label": "គន្លឹះទី ២",
+      "keyword": "អក្សរមួយ ប្រភេទមួយ",
+      "lines": [
+        "គន្លឹះទី២ ឲ្យអក្សរនីមួយៗ ជាប្រភេទទំនិញ",
+        "A អាវ K ខោ S ស្បែកជើង B កាបូប",
+        "ឃើញ K3 ដឹងភ្លាមថាជាខោ។"
+      ],
+      "visual": {
+        "type": "checklist",
+        "items": [
+          "A = អាវ",
+          "K = ខោ",
+          "S = ស្បែកជើង",
+          "B = កាបូប"
+        ]
+      }
+    },
+    {
+      "role": "tip",
+      "label": "គន្លឹះទី ៣",
+      "keyword": "កូដ + ទំហំ + ពណ៌",
+      "lines": [
+        "គន្លឹះទី៣ ប្រាប់អ្នកមើលឲ្យវាយ",
+        "កូដ ទំហំ ពណ៌ ក្នុង Comment តែមួយ",
+        "ដូចជា A2 M ខ្មៅ Admin មិនបាច់សួរទៀត។"
+      ],
+      "visual": {
+        "type": "compare",
+        "bad": "«យកមួយ»",
+        "good": "A2 M ខ្មៅ"
+      }
+    },
+    {
+      "role": "tip",
+      "label": "គន្លឹះទី ៤",
+      "keyword": "បង្ហាញកូដឲ្យច្បាស់",
+      "lines": [
+        "គន្លឹះទី៤ បិទស្លាកកូដធំៗលើទំនិញ",
+        "កាន់ទំនិញជិតកាមេរ៉ា",
+        "ហើយនិយាយកូដ ២ ទៅ ៣ ដង។"
+      ],
+      "visual": {
+        "type": "checklist",
+        "items": [
+          "បិទស្លាកកូដធំៗ",
+          "កាន់ជិតកាមេរ៉ា",
+          "និយាយកូដ ២ ទៅ ៣ ដង"
+        ]
+      },
+      "footage": {
+        "category": "Product & Promotion",
+        "concept": "A seller holding a product up to the camera",
+        "queries": [
+          "showing product camera",
+          "woman holding product",
+          "influencer product review"
+        ],
+        "fallback": "Searched 'showing product camera', 'woman holding product', 'influencer product review': only a floating market, whiteboard, supermarket and laptops; no seller showing a product. The animated checklist shows the 3 steps."
+      }
+    },
+    {
+      "role": "tip",
+      "label": "គន្លឹះទី ៥",
+      "keyword": "តារាងកូដ មុន Live",
+      "lines": [
+        "គន្លឹះទី៥ មុន Live ៣០ នាទី",
+        "ធ្វើតារាង កូដ តម្លៃ ទំហំ និងស្តុក",
+        "ផ្ញើឲ្យ Admin និងអ្នកខ្ចប់ទាំងអស់។"
+      ],
+      "visual": {
+        "type": "checklist",
+        "items": [
+          "កូដ និងឈ្មោះទំនិញ",
+          "តម្លៃ",
+          "ទំហំ ពណ៌ និងស្តុក"
+        ]
+      },
+      "footage": {
+        "category": "Business & Teamwork",
+        "concept": "A small team preparing products and a list together",
+        "queries": [
+          "small business team",
+          "team planning office",
+          "business people notebook"
+        ],
+        "id": 2340,
+        "page": "https://pixabay.com/videos/id-2340/",
+        "author": "Life-Of-Vids",
+        "focus": 0.5,
+        "reason": "Overhead shot of hands writing a plan on paper at a table: preparing the code list (code, price, size, stock) before going Live."
+      }
+    },
+    {
+      "role": "tip",
+      "keyword": "កុំប្ដូរកូដពេល Live",
+      "lines": [
+        "ហើយកុំប្ដូរកូដពាក់កណ្ដាល Live។",
+        "ទំនិញណាអស់ ប្រាប់ថា A3 អស់ហើយ",
+        "កុំយកកូដនោះទៅដាក់ទំនិញថ្មី។"
+      ],
+      "visual": {
+        "type": "compare",
+        "bad": "A3 = ទំនិញថ្មី",
+        "good": "A3 អស់ហើយ"
+      }
+    },
+    {
+      "role": "example",
+      "keyword": "Order ត្រូវ ខ្ចប់ត្រូវ",
+      "lines": [
+        "ពេលនោះ Comment ក្លាយជា A4 L ផ្កាឈូក",
+        "Admin បញ្ជាក់ Order បានលឿន",
+        "អ្នកខ្ចប់ក៏រកត្រូវ មិនផ្ញើខុស។"
+      ],
+      "visual": {
+        "type": "caption",
+        "page": "Comment Live",
+        "lines": [
+          "A4 L ផ្កាឈូក",
+          "A2 M ខ្មៅ",
+          "K3 32 ខៀវ",
+          "B1"
+        ],
+        "stamp": "ច្បាស់!"
+      },
+      "footage": {
+        "category": "Online Selling & Ecommerce",
+        "concept": "Orders packed correctly for customers",
+        "queries": [
+          "packing orders",
+          "online seller packing",
+          "packing clothes box"
+        ],
+        "id": 130652,
+        "page": "https://pixabay.com/videos/id-130652/",
+        "author": "SYG_Anime",
+        "focus": 0.55,
+        "reason": "A seller smiling while working on her phone: the Admin confirming orders quickly on Messenger once comments use clear codes."
+      }
+    },
+    {
+      "role": "cta",
+      "lines": [
+        "Live រលូនហើយ ចង់មានអ្នកមើលច្រើនទៀត?",
+        "ស្វែងយល់ពីសេវា Boost Live របស់ ADS BOX",
+        "នៅ adsbox.agency បានបងៗ។"
+      ],
+      "visual": {
+        "type": "cta",
+        "services": [
+          "Boost Live",
+          "Boost Post",
+          "Boost TikTok"
+        ]
+      }
+    }
+  ],
+  "article": {
+    "title": "ដាក់លេខកូដទំនិញពេល Live៖ ៥ គន្លឹះឲ្យអតិថិជនកុម្ម៉ង់ងាយ និងមិនច្រឡំ",
+    "url": "https://adsbox.agency/knowledge/product-codes-for-live-orders/"
+  },
+  "written_at": "2026-11-01T20:04:21+07:00"
+}
