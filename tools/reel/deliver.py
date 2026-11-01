@@ -113,6 +113,27 @@ def caption_text(script, meta):
             f"🛍 គន្លឹះលក់អនឡាញពី ADS BOX")
 
 
+def preview_details(script, meta):
+    """Extra lines for an owner preview (REEL_PREVIEW_DETAILS=true): file facts, voice, subtitle check, social caption, script."""
+    size = meta.get("size_mb")
+    v = str(meta.get("voice") or "")
+    voice = (f"Kiri TTS · voice {v.split(':', 1)[1]}" if v.startswith("kiri:") else f"Microsoft · {v}")
+    ins = os.environ.get("KIRI_INSTRUCTION", "").strip()
+    sync = meta.get("scene_sync") or []
+    match = [m for m in (meta.get("speech_match") or []) if m is not None]
+    timed = sum(1 for x in sync if x in ("transcript", "word"))
+    sub = f"{timed}/{len(sync)} scenes timed from the voice's own speech"
+    if match:
+        sub += f" · speech matches the subtitle text {round(100 * min(match))}–{round(100 * max(match))}% (Kiri transcript)"
+    rows = [f"\n\n🔎 <b>Preview details</b>",
+            f"⏱ {meta.get('duration')}s · 💾 {size} MB · {e(meta.get('resolution'))} · {meta.get('fps')} fps",
+            f"🎙 {e(voice)}" + (f"\n🎭 Style: {e(ins)}" if ins and v.startswith('kiri:') else ""),
+            f"💬 Subtitles: {e(sub)}",
+            f"\n📣 <b>Social caption</b>\n{e(script.get('description'))}",
+            f"\n📝 <b>Narration script</b>\n" + "\n".join(e(" ".join(sc['lines'])) for sc in script["scenes"])]
+    return "\n".join(rows)
+
+
 def sent(a):
     script = C.read_json(os.path.join(C.SCRIPTS, f"{a.slug}.json"))
     meta = C.read_json(os.path.join(a.dir, "meta.json"), {})
@@ -130,7 +151,10 @@ def sent(a):
         return 1
 
     # 1) Caption
-    r = tg("sendMessage", {"text": caption_text(script, meta), "parse_mode": "HTML", "disable_web_page_preview": "true"})
+    text = caption_text(script, meta)
+    if os.environ.get("REEL_PREVIEW_DETAILS") == "true":
+        text = (text + preview_details(script, meta))[:4096]
+    r = tg("sendMessage", {"text": text, "parse_mode": "HTML", "disable_web_page_preview": "true"})
     if not r.get("ok"):
         return fail("caption", r)
     items.append({"item": "caption", "message_id": r["result"]["message_id"]})

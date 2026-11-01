@@ -44,7 +44,7 @@ function voice(scenes, dir) {
   const tf = path.join(dir, "texts.json");
   fs.writeFileSync(tf, JSON.stringify(scenes.map((s) => s.text)));
   const res = JSON.parse(execFileSync("python3", [path.join(__dirname, "voice.py"), process.env.REEL_VOICE || "km-KH-PisethNeural", dir, tf], { encoding: "utf8" }));
-  scenes.forEach((sc, i) => { sc.voice = path.join(dir, i + ".mp3"); sc.voiceLen = res[i].len; sc.marks = res[i].marks; sc.markKind = res[i].kind; });
+  scenes.forEach((sc, i) => { sc.voice = path.join(dir, i + ".mp3"); sc.voiceLen = res[i].len; sc.marks = res[i].marks; sc.markKind = res[i].kind; sc.match = res[i].match; });
 }
 
 // Character position -> seconds, from the word (or sentence) marks the voice reported; null if they don't match the text.
@@ -310,6 +310,8 @@ body{width:${W}px;height:${H}px;overflow:hidden;font-family:M,L,sans-serif;color
     render_seconds: Math.round((Date.now() - t0) / 1000),
     footage: [], stock_footage: "removed",
     visual_mix: visualMix(scenes, total),
+    // Kiri voice: how closely Kiri's own transcript of each scene's audio matches the script (1 = identical), and the timing source per scene.
+    speech_match: scenes.map((s) => (s.match ?? null)), scene_sync: scenes.map((s) => s.sync),
     footage_share: 0,
   };
   fs.writeFileSync(path.join(outDir, "meta.json"), JSON.stringify(meta, null, 1));

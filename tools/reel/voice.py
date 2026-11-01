@@ -78,6 +78,7 @@ def kiri_speak(text, name, out):
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", wav, "-ar", "24000", "-ac", "1", "-b:a", "128k", out], check=True)
     os.remove(wav)
     marks, kind = [], "none"
+    kiri_speak.match = None
     try:
         r = subprocess.run(["curl", "-sS", "--max-time", "180", KIRI + "/audio/transcriptions", "-H", "Authorization: Bearer " + key,
                             "-F", f"file=@{out}", "-F", "model=kiristt", "-F", "language=km-KH", "-F", "response_format=verbose_json",
@@ -87,6 +88,10 @@ def kiri_speak(text, name, out):
         words = data.get("words") or [w for sg in data.get("segments") or [] for w in (sg.get("words") or [])]
         words = [(float(w["start"]), float(w["end"]), str(w.get("word") or w.get("text") or "").strip()) for w in words if "start" in w]
         words = [w for w in words if w[2]]
+        import difflib, re as _re
+        said = _re.sub(r"\s+", "", str(data.get("text") or "".join(w[2] for w in words)))
+        want = _re.sub(r"\s+", "", text)
+        kiri_speak.match = round(difflib.SequenceMatcher(None, said, want).ratio(), 3) if said else None
         if len(words) >= 2:
             total = sum(len(w[2]) for w in words)
             L, acc, pos = len(text), 0, 0
@@ -113,6 +118,8 @@ async def main():
         f = os.path.join(out_dir, f"{i}.mp3")
         if voice.startswith("kiri:"):
             marks, kind = kiri_speak(t, voice.split(":", 1)[1], f)
+            res.append({"len": length(f), "marks": marks, "kind": kind, "match": kiri_speak.match})
+            continue
         else:
             marks, kind = await speak(t, voice, f)
         res.append({"len": length(f), "marks": marks, "kind": kind})
