@@ -14,6 +14,7 @@ import deliver  # noqa: E402
 
 TEXT = open(os.path.join(C.VIDEOS, "voice-tests", "script.txt"), encoding="utf-8").read().strip()
 VOICE = "km-KH-PisethNeural"
+KIRI_VOICES = ["Chanda", "Bora", "Arun", "Sophon", "Dara"]  # Kiri's male Khmer voices
 # name, rate, pitch, pause between sentences (seconds; 0 = one continuous request)
 VARIANTS = [
     ("Production settings now (rate +2%)", "+2%", "+0Hz", 0),
@@ -66,6 +67,25 @@ async def make(out):
             ff("-f", "concat", "-safe", "0", "-i", lst, "-ar", "24000", "-ac", "1", raw)
         ff("-i", raw, "-af", "loudnorm=I=-16:TP=-1.5:LRA=11", "-ar", "44100", "-b:a", "192k", f)
         labels.append({"file": os.path.basename(f), "provider": "Microsoft Azure Neural TTS", "voice": VOICE, "variant": name})
+    # Kiri TTS through its API (key from the KIRI_API_KEY secret, never printed); same script, default settings.
+    key = os.environ.get("KIRI_API_KEY", "").strip()
+    if key:
+        for i, v in enumerate(KIRI_VOICES, len(labels) + 1):
+            f = os.path.join(out, f"{i:02d}-kiri-{v.lower()}.mp3")
+            raw = f + ".wav"
+            body = json.dumps({"model": "kiritts", "input": TEXT, "voice": v, "response_format": "wav"})
+            code = subprocess.run(["curl", "-sS", "--max-time", "120", "-o", raw, "-w", "%{http_code}", "https://api.kiritts.com/v1/audio/speech",
+                                   "-H", "Authorization: Bearer " + key, "-H", "Content-Type: application/json", "--data-binary", body],
+                                  capture_output=True, text=True).stdout.strip()
+            if code != "200":
+                detail = open(raw, encoding="utf-8", errors="replace").read()[:200] if os.path.exists(raw) else ""
+                print(f"::error::Kiri {v}: HTTP {code} {detail}")
+                continue
+            ff("-i", raw, "-af", "loudnorm=I=-16:TP=-1.5:LRA=11", "-ar", "44100", "-b:a", "192k", f)
+            labels.append({"file": os.path.basename(f), "provider": "Kiri TTS (KiriTTS-1, API)", "voice": f"{v} (male, Khmer)",
+                           "variant": "Default settings: speed 1.0x, no style instruction. Same script as every sample."})
+    else:
+        print("::warning::KIRI_API_KEY is not set: Kiri samples skipped")
     extra = os.path.join(C.VIDEOS, "voice-tests", "samples")
     for x in C.read_json(os.path.join(extra, "labels.json"), []) or []:
         dst = os.path.join(out, x["file"])
