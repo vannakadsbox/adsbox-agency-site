@@ -68,7 +68,13 @@ async def make(out):
         labels.append({"file": os.path.basename(f), "provider": "Microsoft Azure Neural TTS", "voice": VOICE, "variant": name})
     extra = os.path.join(C.VIDEOS, "voice-tests", "samples")
     for x in C.read_json(os.path.join(extra, "labels.json"), []) or []:
-        shutil.copy(os.path.join(extra, x["file"]), os.path.join(out, x["file"]))
+        dst = os.path.join(out, x["file"])
+        if x.get("url"):  # a sample made on the provider's own website: download it, then the same loudness as the others
+            raw = dst + ".src"
+            subprocess.run(["curl", "-sSL", "--retry", "3", "-o", raw, x["url"]], check=True)
+            ff("-i", raw, "-af", "loudnorm=I=-16:TP=-1.5:LRA=11", "-ar", "44100", "-b:a", "192k", dst)
+        else:
+            shutil.copy(os.path.join(extra, x["file"]), dst)
         labels.append(x)
     C.write_json(os.path.join(out, "labels.json"), labels)
     print(json.dumps(labels, ensure_ascii=False, indent=1))
@@ -78,7 +84,9 @@ def send(out):
     labels = C.read_json(os.path.join(out, "labels.json"), [])
     ids = []
     for n, x in enumerate(labels, 1):
-        cap = (f"🎙 <b>Voice sample {n}/{len(labels)}</b>\n"
+        secs = float(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0",
+                                              os.path.join(out, x["file"])], text=True).strip())
+        cap = (f"🎙 <b>Voice sample {n}/{len(labels)}</b> · {secs:.1f}s\n"
                f"🏢 Provider: {deliver.e(x['provider'])}\n🗣 Voice: {deliver.e(x['voice'])}\n⚙️ {deliver.e(x['variant'])}")
         r = deliver.tg("sendAudio", {"caption": cap, "parse_mode": "HTML", "title": f"ADS BOX voice test {n} · {x['voice']}",
                                      "performer": x["provider"]}, {"audio": (os.path.join(out, x["file"]), x["file"])})
