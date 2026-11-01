@@ -729,15 +729,15 @@
       "status": "sent",
       "scripted_at": "2026-11-01T20:30:33+07:00",
       "error": "",
-      "render_started_at": "2026-11-01T22:10:16+07:00",
-      "sent_at": "2026-11-01T22:16:55+07:00",
+      "render_started_at": "2026-11-01T22:22:11+07:00",
+      "sent_at": "2026-11-01T22:28:49+07:00",
       "rendered_at": "2026-11-01T20:48:18+07:00",
-      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/41319780740",
-      "duration": 62.17,
-      "size_mb": 17.1,
-      "render_seconds": 383,
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/41320815888",
+      "duration": 58.9,
+      "size_mb": 16.4,
+      "render_seconds": 380,
       "voice": "kiri:Bora",
-      "music": "adsbox-original-2.mp3",
+      "music": "adsbox-original-1.mp3",
       "style": "custom animation only (no stock footage)",
       "visuals": [
         "story",
@@ -758,49 +758,49 @@
       "stock_footage": "none (removed)",
       "telegram": {
         "ok": true,
-        "message_id": 96,
+        "message_id": 98,
         "chat": "configured",
-        "at": "2026-11-01T22:16:55+07:00",
-        "file_id": "BAACAgUAAxkDAANgaudX4Mbc9wK0FL5meYHLkrj4AkIAAiglAAIeBDlXTRK-3YUpv6s9BA",
+        "at": "2026-11-01T22:28:49+07:00",
+        "file_id": "BAACAgUAAxkDAANiaudaqBNRPkQwXvMDCFaPkYcLCMkAAiwlAAIeBDlXiIXH2SA_6iY9BA",
         "items": [
           {
-            "item": "caption",
-            "message_id": 95
-          },
-          {
             "item": "video",
-            "message_id": 96,
+            "message_id": 98,
             "file_name": "auto-capture-orders-from-live-comments.mp4",
-            "file_size": 17054925,
+            "file_size": 16386866,
             "width": 1080,
             "height": 1920,
-            "file_id": "BAACAgUAAxkDAANgaudX4Mbc9wK0FL5meYHLkrj4AkIAAiglAAIeBDlXTRK-3YUpv6s9BA"
+            "file_id": "BAACAgUAAxkDAANiaudaqBNRPkQwXvMDCFaPkYcLCMkAAiwlAAIeBDlXiIXH2SA_6iY9BA"
+          },
+          {
+            "item": "facebook_caption",
+            "message_id": 99
           },
           {
             "item": "thumbnail",
-            "message_id": 97,
+            "message_id": 100,
             "file_name": "auto-capture-orders-from-live-comments-thumbnail.jpg",
-            "file_size": 172324
+            "file_size": 185534
           }
         ],
         "sent_count": 3,
         "local_sizes": {
-          "video": 17054925,
-          "thumbnail": 172324
+          "video": 16386866,
+          "thumbnail": 185534
         }
       },
       "archive": {
         "assets": [
           {
-            "id": 698680539,
+            "id": 698711338,
             "name": "auto-capture-orders-from-live-comments-thumb.jpg",
-            "size": 172324,
+            "size": 174325,
             "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/auto-capture-orders-from-live-comments-thumb.jpg"
           },
           {
-            "id": 698680538,
+            "id": 698711337,
             "name": "auto-capture-orders-from-live-comments.mp4",
-            "size": 17054925,
+            "size": 16386866,
             "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/auto-capture-orders-from-live-comments.mp4"
           }
         ],
@@ -810,24 +810,46 @@
         "width": 1080,
         "height": 1920,
         "fps": "30/1",
-        "duration": 62.17,
+        "duration": 58.9,
         "video_codec": "h264",
         "audio_codec": "aac",
-        "loudness": "-13.7 LUFS",
+        "loudness": "-14.0 LUFS",
         "decode_errors": false,
         "visual_mix": {
-          "motion_graphics": 0.46,
-          "phone_chat": 0.1,
-          "illustrated": 0.2,
+          "motion_graphics": 0.47,
+          "phone_chat": 0.11,
+          "illustrated": 0.19,
           "product_dashboard": 0.24
         }
       },
       "article_id": "auto-capture-orders-from-live-comments",
-      "video_id": 698680538,
+      "video_id": 698711337,
       "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/auto-capture-orders-from-live-comments.mp4",
       "created_at": "2026-11-01T20:48:18+07:00",
       "telegram_status": "delivered",
-      "production_status": "complete"
+      "production_status": "complete",
+      "speech_match": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "scene_sync": [
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript"
+      ]
     }
   ]
 }
