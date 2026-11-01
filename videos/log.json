@@ -325,6 +325,145 @@
       "created_at": "2026-11-01T17:30:18+07:00",
       "telegram_status": "delivered",
       "production_status": "complete"
+    },
+    {
+      "slug": "write-prices-and-promotions-clearly-hybrid",
+      "status": "sent",
+      "render_started_at": "2026-11-01T19:21:32+07:00",
+      "error": "",
+      "sent_at": "2026-11-01T19:35:58+07:00",
+      "rendered_at": "2026-11-01T19:35:58+07:00",
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/41306050056",
+      "duration": 86.13,
+      "size_mb": 36.2,
+      "render_seconds": 843,
+      "voice": "km-KH-PisethNeural",
+      "music": "adsbox-original-1.mp3",
+      "style": "motion graphics + Pixabay footage",
+      "visuals": [
+        "question",
+        "leaving",
+        "dashboard",
+        "compare",
+        "checklist",
+        "deadline",
+        "delivery",
+        "caption",
+        "takeaway",
+        "cta"
+      ],
+      "resolution": "1080x1920",
+      "fps": 30,
+      "subtitle_sync": "word",
+      "footage": [
+        {
+          "scene": 2,
+          "role": "problem",
+          "id": 174003,
+          "page": "https://pixabay.com/videos/id-174003/",
+          "author": "Amorn_mimi",
+          "query": "woman scrolling phone",
+          "tags": [
+            "woman",
+            "social networking",
+            "post",
+            "website management",
+            "communication",
+            "network",
+            "online",
+            "internet"
+          ],
+          "seconds": 8.9
+        },
+        {
+          "scene": 5,
+          "role": "tip",
+          "id": 30703,
+          "page": "https://pixabay.com/videos/id-30703/",
+          "author": "iha31",
+          "query": "clothing store",
+          "tags": [
+            "apparel",
+            "boutique",
+            "business",
+            "everyday",
+            "clothes",
+            "women's clothing",
+            "collection",
+            "design"
+          ],
+          "seconds": 7.8
+        },
+        {
+          "scene": 6,
+          "role": "tip",
+          "id": 83865,
+          "page": "https://pixabay.com/videos/id-83865/",
+          "author": "SYG_Anime",
+          "query": "online shopping phone",
+          "tags": [
+            "woman",
+            "card",
+            "shopping",
+            "communication",
+            "smartphone",
+            "phone",
+            "female",
+            "hand"
+          ],
+          "seconds": 7.6
+        },
+        {
+          "scene": 9,
+          "role": "summary",
+          "id": 154830,
+          "page": "https://pixabay.com/videos/id-154830/",
+          "author": "Amorn_mimi",
+          "query": "woman reading phone",
+          "tags": [
+            "woman",
+            "phone",
+            "business",
+            "casual",
+            "cheerful",
+            "customer",
+            "female",
+            "happy"
+          ],
+          "seconds": 8.6
+        }
+      ],
+      "footage_share": 0.4,
+      "telegram": {
+        "ok": true,
+        "message_id": 49,
+        "chat": "configured",
+        "at": "2026-11-01T19:35:58+07:00",
+        "file_id": "BAACAgUAAxkDAAMxaucyJgNcLZpXG1BS7Orly5080MgAAq0kAAIeBDlXicngQabb5Q09BA"
+      },
+      "archive": {
+        "assets": [
+          {
+            "id": 698301010,
+            "name": "write-prices-and-promotions-clearly-hybrid-thumb.jpg",
+            "size": 153014,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/write-prices-and-promotions-clearly-hybrid-thumb.jpg"
+          },
+          {
+            "id": 698301008,
+            "name": "write-prices-and-promotions-clearly-hybrid.mp4",
+            "size": 36236442,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/write-prices-and-promotions-clearly-hybrid.mp4"
+          }
+        ],
+        "release_id": 430382508
+      },
+      "article_id": "write-prices-and-promotions-clearly-hybrid",
+      "video_id": 698301008,
+      "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/write-prices-and-promotions-clearly-hybrid.mp4",
+      "created_at": "2026-11-01T19:35:58+07:00",
+      "telegram_status": "delivered",
+      "production_status": "complete"
     }
   ]
 }
