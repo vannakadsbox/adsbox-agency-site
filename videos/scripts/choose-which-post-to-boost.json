@@ -1,0 +1,185 @@
+{
+  "slug": "choose-which-post-to-boost",
+  "video_title": "Like ច្រើន តែគ្មានគេសួរទិញ? ៤ ចំណុចរើស Post ឲ្យចំ មុន Boost",
+  "topic": "រៀនរើស Post ត្រឹមត្រូវមុនចាយលុយ Boost ដោយមើលសារសួរទិញពិត ស្តុក ចំណេញ រូបភាព Caption និងប្រៀបធៀប Post ២-៣ ជាមួយគ្នា។",
+  "thumbnail_text": "Boost Post មួយណាឲ្យចំ?",
+  "description": "Post មាន Like ច្រើន មិនមែនសុទ្ធតែសមនឹង Boost ទេ។\nពិនិត្យ ៤ ចំណុចនេះ មុនចាយលុយលើ Post ណាមួយ។\nអានបន្ថែមនៅ adsbox.agency\n#BoostPost #លក់អនឡាញ #FacebookAds #ADSBOX",
+  "scenes": [
+    {
+      "role": "hook",
+      "lines": [
+        "Post មាន Like រាប់ពាន់",
+        "តែគ្មាននរណាសួរទិញសោះ?",
+        "បងប្រហែលជា Boost ខុស Post ហើយ។"
+      ],
+      "keyword": "Boost ខុស Post?",
+      "visual": {
+        "type": "question",
+        "title": "Boost Post មួយណា?",
+        "bubbles": [
+          "ស្អាតណាស់",
+          "Like ហើយ",
+          "ចាំមើលសិន"
+        ]
+      }
+    },
+    {
+      "role": "problem",
+      "lines": [
+        "ភាគច្រើន យើងរើស Post ដែលខ្លួនចូលចិត្ត",
+        "ឬ Post ថ្មីបំផុត។",
+        "លុយ Boost អស់ តែ Inbox នៅស្ងាត់។"
+      ],
+      "keyword": "លុយអស់ Inbox ស្ងាត់",
+      "visual": {
+        "type": "dashboard",
+        "title": "លទ្ធផល Boost (ឧទាហរណ៍)",
+        "metrics": [
+          {
+            "label": "Like",
+            "value": "ច្រើន"
+          },
+          {
+            "label": "សារសួរទិញ",
+            "value": "តិច"
+          },
+          {
+            "label": "លុយ Boost",
+            "value": "អស់"
+          }
+        ],
+        "alert": "លុយអស់ តែ Inbox ស្ងាត់"
+      }
+    },
+    {
+      "role": "tip",
+      "label": "គន្លឹះទី ១",
+      "lines": [
+        "ទី១ កុំមើលតែ Like។",
+        "មើល Post ណាដែលមានគេ Comment សួរតម្លៃ",
+        "ឬឆាតមក Inbox ទាំងមិនទាន់ Boost។"
+      ],
+      "keyword": "មើលសារសួរទិញ",
+      "visual": {
+        "type": "compare",
+        "bad": "មើលតែ Like",
+        "good": "មានគេសួរតម្លៃ"
+      }
+    },
+    {
+      "role": "tip",
+      "label": "គន្លឹះទី ២",
+      "lines": [
+        "ទី២ រូបងងឹត ឬអក្សរពេញរូប កុំ Boost អី។",
+        "រើសរូបភ្លឺ ឃើញទំនិញច្បាស់។",
+        "Caption មានតម្លៃ ការដឹក និងឆាតមកណា។"
+      ],
+      "keyword": "រូបច្បាស់ Caption គ្រប់",
+      "visual": {
+        "type": "checklist",
+        "bad": "រូបងងឹត អក្សរពេញរូប",
+        "items": [
+          "រូបភ្លឺ ឃើញទំនិញច្បាស់",
+          "មានតម្លៃ",
+          "មានការដឹក",
+          "ប្រាប់ឆាតមកណា"
+        ]
+      }
+    },
+    {
+      "role": "tip",
+      "label": "គន្លឹះទី ៣",
+      "lines": [
+        "ទី៣ គិតលុយសិន។ ឧទាហរណ៍ លក់ $១៥",
+        "ដើម $៨ បូក Boost និងដឹកអស់ $៥",
+        "សល់ $២ ប៉ុណ្ណោះ។ ស្តុកត្រូវមានគ្រប់ដែរ។"
+      ],
+      "keyword": "មានស្តុក មានចំណេញ",
+      "visual": {
+        "type": "delivery",
+        "rows": [
+          {
+            "label": "លក់",
+            "value": "$១៥"
+          },
+          {
+            "label": "ដើម",
+            "value": "$៨"
+          },
+          {
+            "label": "Boost និងដឹក",
+            "value": "$៥"
+          }
+        ],
+        "total": {
+          "label": "សល់",
+          "value": "$២"
+        }
+      }
+    },
+    {
+      "role": "tip",
+      "label": "គន្លឹះទី ៤",
+      "lines": [
+        "ទី៤ កុំរើសតាមអារម្មណ៍។",
+        "យក Post ២ ទៅ ៣ មកកត់លេខ",
+        "សារសួរទិញ Comment និង Share។"
+      ],
+      "keyword": "ប្រៀបធៀប Post ២-៣",
+      "visual": {
+        "type": "checklist",
+        "items": [
+          "កត់សារសួរទិញ",
+          "កត់ Comment",
+          "កត់ Share"
+        ]
+      }
+    },
+    {
+      "role": "example",
+      "lines": [
+        "ឧទាហរណ៍ ហាងកាបូប Post រូបស្អាត",
+        "Like ច្រើន តែគ្មានគេសួរ។ វីដេអូខ្លីមួយ",
+        "Like តិច តែ Inbox សួរទិញច្រើន។"
+      ],
+      "keyword": "Boost Post ដែលគេសួរ",
+      "visual": {
+        "type": "compare",
+        "bad": "Like ច្រើន គ្មានគេសួរ",
+        "good": "Inbox សួរទិញច្រើន"
+      }
+    },
+    {
+      "role": "summary",
+      "lines": [
+        "សង្ខេប Boost Post ដែលមានគេសួរទិញពិត",
+        "មានស្តុក មានចំណេញ រូបច្បាស់",
+        "Caption គ្រប់គ្រាន់។"
+      ],
+      "visual": {
+        "type": "takeaway",
+        "quote": "Boost Post ដែលមានគេសួរទិញពិត"
+      }
+    },
+    {
+      "role": "cta",
+      "lines": [
+        "ចង់ដឹងបន្ថែមពី Boost Post",
+        "ចូលមើល ADS BOX នៅ adsbox.agency។"
+      ],
+      "visual": {
+        "type": "cta",
+        "services": [
+          "Boost Post",
+          "Boost Live",
+          "Boost TikTok"
+        ]
+      }
+    }
+  ],
+  "article": {
+    "title": "Boost Post មួយណាឲ្យចំ? ៥ ចំណុចពិនិត្យ មុនចាយលុយលើ Post",
+    "url": "https://adsbox.agency/knowledge/choose-which-post-to-boost/"
+  },
+  "written_at": "2026-11-01T17:24:59+07:00"
+}
