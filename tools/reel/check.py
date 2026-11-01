@@ -101,9 +101,9 @@ def problems(script, brief, s):
     if script["slug"] != brief["slug"]:
         out.append(f"slug must be {brief['slug']}")
     fb = str(script.get("facebook_caption") or "")
-    if not (400 <= len(fb) <= 1500) or "#" not in fb:
-        out.append(f"facebook_caption is {len(fb)} characters; write 400-1500 characters of conversational Khmer ending with hashtags")
-    for k, mx in (("video_title", 70), ("thumbnail_text", 34), ("description", 600), ("topic", 300), ("facebook_caption", 1500)):
+    if not (150 <= len(fb) <= 900) or "#" not in fb:
+        out.append(f"facebook_caption is {len(fb)} characters; write a short caption (150-900 characters) of conversational Khmer ending with a few hashtags")
+    for k, mx in (("video_title", 70), ("thumbnail_text", 40), ("description", 600), ("topic", 300), ("facebook_caption", 900)):
         v = str(script[k]).strip()
         if not v or not C.KHMER.search(v):
             out.append(f"{k} must be Khmer text")

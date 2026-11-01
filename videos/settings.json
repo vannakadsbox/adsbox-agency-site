@@ -1,7 +1,7 @@
 {
-  "enabled": true,
+  "enabled": false,
   "schedule": "Script task 07:23 + 08:23 and 17:23 + 18:23; checks 09:10 and 19:10 (Asia/Phnom_Penh)",
-  "voice": "km-KH-PisethNeural",
+  "voice": "kiri:Bora",
   "rate": "+2%",
   "music_volume": 0.11,
   "min_scenes": 7,
@@ -15,7 +15,7 @@
     8,
     18
   ],
-  "note": "Daily videos turned on 2026-11-01 after the owner approved the template. Only articles published after 'since' are used, each once. Public posting is not part of this system.",
+  "note": "Owner standard 1 Nov 2026: official voice Kiri Bora; delivery = MP4 + short Facebook caption + 16:9 thumbnail; no stock footage. Daily videos paused until the owner approves the Bora preview (set enabled=true to resume). Public posting is not part of this system.",
   "footage_enabled": false,
   "style": "custom animated storytelling (owner direction 2026-11-01): motion graphics, phone & chat, illustrated story, product & dashboard demos; Pixabay footage off by default",
   "kiri_instruction": "Warm, confident Cambodian business consultant; conversational Khmer, medium pace, natural pauses"
