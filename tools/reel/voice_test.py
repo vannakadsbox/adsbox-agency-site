@@ -44,7 +44,11 @@ async def make(out):
     os.makedirs(out, exist_ok=True)
     sentences = [s for s in re.split(r"(?<=[?។!])\s+", TEXT) if s.strip()]
     labels = []
-    for n, (name, rate, pitch, pause) in enumerate(VARIANTS, 1):
+    only_kiri = os.environ.get("VT_KIRI_ONLY") == "true"
+    kiri_voices = [v.strip() for v in os.environ.get("VT_KIRI_VOICES", "").split(",") if v.strip()] or KIRI_VOICES
+    instruction = os.environ.get("VT_INSTRUCTION", "").strip()
+    title = os.environ.get("VT_LABEL", "").strip()
+    for n, (name, rate, pitch, pause) in enumerate([] if only_kiri else VARIANTS, 1):
         f = os.path.join(out, f"{n:02d}-azure-piseth.mp3")
         if not pause:
             raw = f + ".raw.mp3"
@@ -70,10 +74,21 @@ async def make(out):
     # Kiri TTS through its API (key from the KIRI_API_KEY secret, never printed); same script, default settings.
     key = os.environ.get("KIRI_API_KEY", "").strip()
     if key:
-        for i, v in enumerate(KIRI_VOICES, len(labels) + 1):
+        vids = {}
+        try:  # voice ids, for the report
+            vl = json.loads(subprocess.run(["curl", "-sS", "https://api.kiritts.com/v1/voices", "-H", "Authorization: Bearer " + key],
+                                           capture_output=True, text=True).stdout or "{}")
+            for x in (vl.get("data") or vl.get("voices") or (vl if isinstance(vl, list) else [])):
+                vids[str(x.get("name"))] = x.get("id") or x.get("voice_id")
+        except Exception:
+            pass
+        for i, v in enumerate(kiri_voices, len(labels) + 1):
             f = os.path.join(out, f"{i:02d}-kiri-{v.lower()}.mp3")
             raw = f + ".wav"
-            body = json.dumps({"model": "kiritts", "input": TEXT, "voice": v, "response_format": "wav"})
+            req = {"model": "kiritts", "input": TEXT, "voice": v, "response_format": "wav", "speed": 1.0}
+            if instruction:
+                req["instructions"] = instruction[:100]
+            body = json.dumps(req)
             code = subprocess.run(["curl", "-sS", "--max-time", "120", "-o", raw, "-w", "%{http_code}", "https://api.kiritts.com/v1/audio/speech",
                                    "-H", "Authorization: Bearer " + key, "-H", "Content-Type: application/json", "--data-binary", body],
                                   capture_output=True, text=True).stdout.strip()
@@ -82,8 +97,13 @@ async def make(out):
                 print(f"::error::Kiri {v}: HTTP {code} {detail}")
                 continue
             ff("-i", raw, "-af", "loudnorm=I=-16:TP=-1.5:LRA=11", "-ar", "44100", "-b:a", "192k", f)
+            secs = float(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", raw], text=True))
+            print(f"::notice::Kiri {v}: HTTP 200, voice id {vids.get(v, 'n/a')}, {secs:.2f}s, instruction "
+                  + (f"sent ({len(instruction[:100])} chars) and accepted" if instruction else "none"))
             labels.append({"file": os.path.basename(f), "provider": "Kiri TTS (KiriTTS-1, API)", "voice": f"{v} (male, Khmer)",
-                           "variant": "Default settings: speed 1.0x, no style instruction. Same script as every sample."})
+                           "title": title,
+                           "variant": ("Speed 1.0x · style instruction: " + instruction[:100]) if instruction
+                           else "Default settings: speed 1.0x, no style instruction. Same script as every sample."})
     else:
         print("::warning::KIRI_API_KEY is not set: Kiri samples skipped")
     extra = os.path.join(C.VIDEOS, "voice-tests", "samples")
@@ -120,9 +140,10 @@ def send(out):
     for n, x in enumerate(labels, 1):
         secs = float(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0",
                                               os.path.join(out, x["file"])], text=True).strip())
-        cap = (f"🎙 <b>Voice sample {n}/{len(labels)}</b> · {secs:.1f}s\n"
+        head = f"🎙 <b>{deliver.e(x['title'])}</b>" if x.get("title") else f"🎙 <b>Voice sample {n}/{len(labels)}</b>"
+        cap = (f"{head} · {secs:.1f}s\n"
                f"🏢 Provider: {deliver.e(x['provider'])}\n🗣 Voice: {deliver.e(x['voice'])}\n⚙️ {deliver.e(x['variant'])}")
-        r = deliver.tg("sendAudio", {"caption": cap, "parse_mode": "HTML", "title": f"ADS BOX voice test {n} · {x['voice']}",
+        r = deliver.tg("sendAudio", {"caption": cap, "parse_mode": "HTML", "title": x.get("title") or f"ADS BOX voice test {n} · {x['voice']}",
                                      "performer": x["provider"]}, {"audio": (os.path.join(out, x["file"]), x["file"])})
         if not r.get("ok"):
             raise SystemExit(f"Telegram refused sample {n}: {r.get('description')}")

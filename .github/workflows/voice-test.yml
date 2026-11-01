@@ -8,6 +8,19 @@ on:
         description: "Send the samples to Telegram"
         type: boolean
         default: true
+      kiri_only:
+        description: "Kiri samples only (no Microsoft Piseth)"
+        type: boolean
+        default: false
+      kiri_voices:
+        description: "Kiri voices, comma separated (empty = all five male Khmer voices)"
+        required: false
+      instruction:
+        description: "Kiri style instruction (max 100 characters; empty = none)"
+        required: false
+      label:
+        description: "Title for the Telegram sample, e.g. DARA – FINAL COMPARISON TEST"
+        required: false
 permissions:
   contents: read
 jobs:
@@ -18,6 +31,10 @@ jobs:
       TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       TELEGRAM_VIDEO_CHAT_ID: ${{ secrets.TELEGRAM_VIDEO_CHAT_ID }}
       KIRI_API_KEY: ${{ secrets.KIRI_API_KEY }}
+      VT_KIRI_ONLY: ${{ github.event.inputs.kiri_only }}
+      VT_KIRI_VOICES: ${{ github.event.inputs.kiri_voices }}
+      VT_INSTRUCTION: ${{ github.event.inputs.instruction }}
+      VT_LABEL: ${{ github.event.inputs.label }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
