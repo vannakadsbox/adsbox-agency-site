@@ -1,0 +1,179 @@
+{
+  "6": {
+    "lines": [
+      "ទីបួន ដែលច្រឡំច្រើនជាងគេ គឺថ្លៃដឹក។",
+      "សរសេរថ្លៃដឹកភ្នំពេញ និងខេត្តឲ្យច្បាស់",
+      "ហើយដាក់ឧទាហរណ៍តម្លៃសរុបមួយផង។"
+    ],
+    "queries": [
+      "cardboard box packing",
+      "parcel courier",
+      "package delivery door"
+    ],
+    "candidates": [
+      {
+        "id": 22333,
+        "page": "https://pixabay.com/videos/id-22333/",
+        "author": "Jacques_Barrette",
+        "duration": 5,
+        "tags": [
+          "present",
+          "cardboard",
+          "presentation"
+        ],
+        "width": 1920,
+        "height": 1080,
+        "url": "https://cdn.pixabay.com/video/2019/03/26/22333-326843232_large.mp4",
+        "thumb": "https://cdn.pixabay.com/video/2019/03/26/22333-326843232_large.jpg",
+        "views": 5568,
+        "downloads": 1943,
+        "query": "cardboard box packing"
+      },
+      {
+        "id": 216568,
+        "page": "https://pixabay.com/videos/id-216568/",
+        "author": "u_ixz8smhqj2",
+        "duration": 8,
+        "tags": [
+          "man",
+          "box",
+          "boxer",
+          "gloves",
+          "sport",
+          "training"
+        ],
+        "width": 2048,
+        "height": 1080,
+        "url": "https://cdn.pixabay.com/video/2024/06/13/216568_large.mp4",
+        "thumb": "https://cdn.pixabay.com/video/2024/06/13/216568_large.jpg",
+        "views": 40007,
+        "downloads": 22618,
+        "query": "cardboard box packing"
+      },
+      {
+        "id": 52101,
+        "page": "https://pixabay.com/videos/id-52101/",
+        "author": "FITAHOLICLIFE",
+        "duration": 9,
+        "tags": [
+          "boxer",
+          "athlete",
+          "gloves",
+          "box",
+          "fighting",
+          "mma",
+          "boxing",
+          "fitness"
+        ],
+        "width": 2048,
+        "height": 1080,
+        "url": "https://cdn.pixabay.com/video/2020/10/11/52101-467180032_small.mp4",
+        "thumb": "https://cdn.pixabay.com/video/2020/10/11/52101-467180032_small.jpg",
+        "views": 41274,
+        "downloads": 22278,
+        "query": "cardboard box packing"
+      },
+      {
+        "id": 11562,
+        "page": "https://pixabay.com/videos/id-11562/",
+        "author": "XiaosKitchen",
+        "duration": 57,
+        "tags": [
+          "cooking",
+          "rice",
+          "dumplings",
+          "asian",
+          "chinese",
+          "recipe",
+          "bamboo",
+          "parcels",
+          "sticky rice",
+          "making",
+          "preparing",
+          "boiling",
+          "how to",
+          "kitchen",
+          "baking",
+          "steaming",
+          "recipes",
+          "people",
+          "demonstration",
+          "eating",
+          "dinning",
+          "snack",
+          "party",
+          "buffet"
+        ],
+        "width": 1920,
+        "height": 1080,
+        "url": "https://cdn.pixabay.com/video/2017/08/25/11562-231234700_large.mp4",
+        "thumb": "https://cdn.pixabay.com/video/2017/08/25/11562-231234700_large.jpg",
+        "views": 21402,
+        "downloads": 7099,
+        "query": "parcel courier"
+      },
+      {
+        "id": 2229,
+        "page": "https://pixabay.com/videos/id-2229/",
+        "author": "Jahhoo",
+        "duration": 29,
+        "tags": [
+          "train",
+          "tracks",
+          "rail",
+          "transport",
+          "rails",
+          "travel",
+          "package"
+        ],
+        "width": 1920,
+        "height": 1080,
+        "url": "https://cdn.pixabay.com/video/2016/02/24/2229-156678294_large.mp4",
+        "thumb": "https://cdn.pixabay.com/video/2016/02/24/2229-156678294_large.jpg",
+        "views": 50864,
+        "downloads": 21786,
+        "query": "package delivery door"
+      },
+      {
+        "id": 20459,
+        "page": "https://pixabay.com/videos/id-20459/",
+        "author": "Matthias_Groeneveld",
+        "duration": 11,
+        "tags": [
+          "door",
+          "lock",
+          "old"
+        ],
+        "width": 1920,
+        "height": 1080,
+        "url": "https://cdn.pixabay.com/video/2019/01/04/20459-309694545_large.mp4",
+        "thumb": "https://cdn.pixabay.com/video/2019/01/04/20459-309694545_large.jpg",
+        "views": 27616,
+        "downloads": 15562,
+        "query": "package delivery door"
+      },
+      {
+        "id": 20263,
+        "page": "https://pixabay.com/videos/id-20263/",
+        "author": "Matthias_Groeneveld",
+        "duration": 19,
+        "tags": [
+          "ruins",
+          "house",
+          "burnt",
+          "burned",
+          "building",
+          "door",
+          "windows"
+        ],
+        "width": 1920,
+        "height": 1080,
+        "url": "https://cdn.pixabay.com/video/2018/12/26/20263-308335545_large.mp4",
+        "thumb": "https://cdn.pixabay.com/video/2018/12/26/20263-308335545_large.jpg",
+        "views": 58087,
+        "downloads": 30803,
+        "query": "package delivery door"
+      }
+    ]
+  }
+}
