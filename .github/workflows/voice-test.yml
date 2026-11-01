@@ -1,0 +1,34 @@
+# Voice provider test: makes labelled voice samples of videos/voice-tests/script.txt and sends them to Telegram.
+# Manual only. Does not touch the production voice, videos or articles.
+name: Voice test
+on:
+  workflow_dispatch:
+    inputs:
+      send:
+        description: "Send the samples to Telegram"
+        type: boolean
+        default: true
+permissions:
+  contents: read
+jobs:
+  samples:
+    runs-on: ubuntu-latest
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      TELEGRAM_VIDEO_CHAT_ID: ${{ secrets.TELEGRAM_VIDEO_CHAT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: sudo apt-get update -q && sudo apt-get install -y -q ffmpeg && pip install -q "edge-tts>=7.0"
+      - name: Make samples
+        run: python3 tools/reel/voice_test.py make out
+      - name: Send to Telegram
+        if: github.event.inputs.send == 'true'
+        run: python3 tools/reel/voice_test.py send out
+      - uses: actions/upload-artifact@v4
+        with:
+          name: voice-samples
+          path: out/*.mp3
