@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Pixabay footage for the combined style (animated scenes + real footage). Runs on GitHub, never in public.
+"""DISABLED: stock footage is removed from ADS BOX videos (owner, 1 Nov 2026). Formerly: Pixabay footage for the combined style (animated scenes + real footage). Runs on GitHub, never in public.
 
   python3 tools/reel/footage.py check                       test PIXABAY_API_KEY and the connection (exit 0 = OK)
   python3 tools/reel/footage.py search SCRIPT.json OUT_DIR  candidates for every scene with "footage": {"queries": [...]}
@@ -226,6 +226,9 @@ def report(script):
 
 
 def main():
+    # DISABLED (owner, 1 Nov 2026): stock footage is removed from ADS BOX videos. Nothing in the workflow calls this file,
+    # and it refuses to search or download anything. Kept only as a record of the earlier test.
+    raise SystemExit("Stock footage is removed from ADS BOX videos; footage.py is disabled.")
     cmd = sys.argv[1] if len(sys.argv) > 1 else ""
     if cmd == "check":
         data = get({"q": "online shopping", "per_page": 5})

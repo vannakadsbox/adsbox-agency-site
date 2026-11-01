@@ -64,7 +64,7 @@ def script_text(script):
 
 
 NAMES = {"motion_graphics": "motion graphics", "phone_chat": "phone & chat", "illustrated": "illustrated story",
-         "product_dashboard": "product & dashboard demos", "footage": "stock footage",
+         "product_dashboard": "product & dashboard demos",
          "animation": "animation", "screen_demo": "screen demos", "product_visual": "product visuals"}
 
 
@@ -125,24 +125,6 @@ def sent(a):
     # The original file too: Telegram's in-app player may stream a smaller copy; this one is the exact 1080x1920 MP4.
     tg("sendDocument", {"caption": f"📁 ឯកសារដើម (Original) 1080x1920 · {meta.get('size_mb')} MB", "disable_content_type_detection": "true"}, {"document": mp4})
     tg("sendPhoto", {"caption": "🖼 Thumbnail · " + script["thumbnail_text"]}, {"photo": thumb})
-    if any(sc.get("footage") for sc in script["scenes"]):
-        used = {str(f["id"]) for f in meta.get("footage") or []}
-        guide = (C.read_json(os.path.join(C.VIDEOS, "footage-guideline.json"), {}) or {}).get("categories", {})
-        rows = [f"🎞 <b>Footage Selection Report</b> · real footage ≈{round(100 * meta.get('footage_share', 0))}% · animation for the rest"]
-        for n, sc in enumerate(script["scenes"], 1):
-            f = sc.get("footage") or {}
-            head = f"<b>Scene {n}</b> · {e(sc.get('role'))}"
-            if f.get("category"):
-                head += f" · {e(f['category'])} → {e((guide.get(f['category']) or {}).get('pixabay', '?'))}"
-            if f.get("id") and str(f["id"]) in used:
-                body = (f"🎥 Pixabay #{f['id']} ✅ used\n🔎 {e(', '.join(f.get('queries') or []))}\n💡 {e(f.get('reason'))}\n{e(f.get('page'))}")
-            elif f.get("id"):
-                body = f"⚠️ Pixabay #{f['id']} could not be downloaded → animation"
-            else:
-                body = f"🎨 Animation ({e((sc.get('visual') or {}).get('type'))})" + (f" · 🔎 {e(', '.join(f.get('queries') or []))}\n💡 {e(f.get('fallback'))}" if f else "")
-            rows.append(head + "\n" + body)
-        for part in chunks("\n\n".join(rows)):
-            tg("sendMessage", {"text": part, "parse_mode": "HTML", "disable_web_page_preview": "true"})
     qtext, qdata = quality(mp4, meta)
     tg("sendMessage", {"text": qtext, "parse_mode": "HTML", "disable_web_page_preview": "true"})
     for part in chunks(script_text(script)):
@@ -153,7 +135,7 @@ def sent(a):
         "status": "sent", "error": "", "sent_at": C.iso(), "rendered_at": rec.get("rendered_at") or C.iso(), "run": a.run or "",
         "duration": meta.get("duration"), "size_mb": meta.get("size_mb"), "render_seconds": meta.get("render_seconds"),
         "voice": meta.get("voice"), "music": meta.get("music"), "style": meta.get("style"), "visuals": meta.get("visuals"),
-        "resolution": meta.get("resolution"), "fps": meta.get("fps"), "subtitle_sync": meta.get("subtitle_sync"), "footage": meta.get("footage") or [], "footage_share": meta.get("footage_share", 0),
+        "resolution": meta.get("resolution"), "fps": meta.get("fps"), "subtitle_sync": meta.get("subtitle_sync"), "footage": [], "footage_share": 0, "stock_footage": "none (removed)",
         "telegram": {"ok": True, "message_id": msg.get("message_id"), "chat": "configured", "at": C.iso(),
                      "file_id": (msg.get("video") or {}).get("file_id")},
         "archive": archive, "quality": qdata,

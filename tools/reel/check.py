@@ -84,25 +84,9 @@ def visual_problems(i, v):
 
 
 def footage_problems(scenes):
-    """Combined style: footage only from approved categories, a reason for every chosen clip, no clip used twice."""
-    guide = (C.read_json(os.path.join(C.VIDEOS, "footage-guideline.json"), {}) or {}).get("categories", {})
-    out, seen = [], {}
-    for i, sc in enumerate(scenes, 1):
-        f = sc.get("footage")
-        if not f:
-            continue
-        if f.get("category") not in guide:
-            out.append(f"Scene {i}: footage.category must be one of {sorted(guide)}")
-        q = f.get("queries") or []
-        if not (1 <= len(q) <= 4) or not all(re.match(r"^[A-Za-z0-9 ,'\-]{3,60}$", str(x)) for x in q):
-            out.append(f"Scene {i}: footage.queries must be 1-4 plain English keyword phrases")
-        if f.get("id"):
-            if len(str(f.get("reason") or "")) < 15:
-                out.append(f"Scene {i}: explain in 'reason' why this clip matches the narration")
-            if f["id"] in seen:
-                out.append(f"Scene {i}: Pixabay #{f['id']} is already used in scene {seen[f['id']]}")
-            seen[f["id"]] = i
-    return out
+    """Stock footage is removed (owner, 1 Nov 2026): a script may not ask for any clip."""
+    return [f"Scene {i}: remove 'footage': ADS BOX videos use custom animation only (no stock footage)"
+            for i, sc in enumerate(scenes, 1) if sc.get("footage")]
 
 
 def problems(script, brief, s):

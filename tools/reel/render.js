@@ -1,6 +1,8 @@
 // Render one ADS BOX knowledge video (1080x1920, 30 fps MP4) as branded motion graphics: no stock footage.
-//   node tools/reel/render.js videos/scripts/<slug>.json OUT_DIR [--music file.mp3] [--footage footage.json] [--no-voice]
-// With --footage (combined style), scenes that have a downloaded Pixabay clip play it full screen instead of their animation.
+//   node tools/reel/render.js videos/scripts/<slug>.json OUT_DIR [--music file.mp3] [--no-voice]
+// STOCK FOOTAGE IS REMOVED (owner's order, 1 Nov 2026): every frame is drawn by ADS BOX's own scene templates.
+// The renderer has no code path that reads, downloads or plays a video clip; "footage" fields in a script are ignored
+// and the old --footage option is refused.
 // Writes OUT_DIR/<slug>.mp4, OUT_DIR/<slug>-thumb.jpg, OUT_DIR/<slug>-cover.jpg (small) and OUT_DIR/meta.json.
 //
 // Every scene is an animated template (tools/reel/scenes.js) chosen by the script: question, leaving customers,
@@ -110,29 +112,12 @@ function page(script, scenes, total) {
     };
     const v = sc.visual || {};
     const make = S.V[v.type] || S.V.takeaway;
-    if (sc.foot) {  // combined style: real footage plays underneath; only a key-point caption sits on it
-      html += `<section class="scene fscene" style="${A("fadeIn", enter, 0.4, "ease-out")},${A("sout", exit, 0.4, "ease-in", "forwards").replace("animation:", "")}">
-<div class="fsh-t"></div><div class="fsh-b"></div>${sc.keyword && i === 0 ? `<div class="stage"><div class="q-title" style="${A("popIn", x.start + 0.35, 0.6, "cubic-bezier(.3,1.5,.5,1)")}"><span>${esc(sc.keyword)}</span></div></div>` : sc.keyword ? `<div class="ft-lt" style="${A("slideR", x.start + 0.45, 0.55)}">${sc.label ? `<span>${esc(sc.label)}</span>` : ""}<b>${esc(sc.keyword)}</b></div>` : ""}</section>`;
-    } else {
-      html += `<section class="scene" style="${A("in" + dir, enter, 0.6, "cubic-bezier(.22,1,.36,1)")},${A("out" + dir, exit, 0.42, "cubic-bezier(.55,0,.75,.35)", "forwards").replace("animation:", "")}">
+    html += `<section class="scene" style="${A("in" + dir, enter, 0.6, "cubic-bezier(.22,1,.36,1)")},${A("out" + dir, exit, 0.42, "cubic-bezier(.55,0,.75,.35)", "forwards").replace("animation:", "")}">
 <div class="stage" style="${A(i % 2 ? "camB" : "camA", enter, sc.dur + 0.3, "ease-in-out")}">${make(v, x, b64)}</div></section>`;
-    }
     sc.subs.forEach((s, j) => {
       html += `<div class="sub" style="${A("sin", s.start, 0.18, "ease-out")},${A("sout", s.end - 0.1, 0.1, "ease-in", "forwards").replace("animation:", "")}"><span>${highlight(s.text, sc.keyword)}</span></div>`;
     });
   });
-  // The branded background fades out while footage plays and back in for animated scenes.
-  const hidden = [];
-  scenes.forEach((sc) => {
-    if (!sc.foot) return;
-    const a = sc.start - 0.15, b = sc.start + sc.dur - 0.25;
-    if (hidden.length && a <= hidden[hidden.length - 1][1] + 0.2) hidden[hidden.length - 1][1] = b; else hidden.push([a, b]);
-  });
-  const pc = (t) => (Math.max(0, Math.min(total, t)) / total * 100).toFixed(3) + "%";
-  let bgKeys = "0%{opacity:1}";
-  hidden.forEach(([a, b]) => { bgKeys += `${pc(a)}{opacity:1}${pc(a + 0.45)}{opacity:0}${pc(b)}{opacity:0}${pc(b + 0.45)}{opacity:1}`; });
-  bgKeys += "100%{opacity:1}";
-  const hybrid = hidden.length > 0;
   const font = (f, w) => `@font-face{font-family:M;font-weight:${w};src:url(data:font/woff2;base64,${b64(f)}) format("woff2");unicode-range:U+1780-17FF,U+19E0-19FF,U+200C-200D,U+25CC}`;
   return `<!doctype html><html lang="km"><head><meta charset="utf-8"><style>
 ${font("assets/fonts/MiSansKhmer-Bold.woff2", 700)}${font("assets/fonts/MiSansKhmer-Medium.woff2", 500)}
@@ -184,14 +169,6 @@ body{width:${W}px;height:${H}px;overflow:hidden;font-family:M,L,sans-serif;color
 @keyframes drift2{0%{transform:translate(0,0)}50%{transform:translate(200px,-200px)}100%{transform:translate(60px,-420px)}}
 ${S.CSS}
 ${css}
-${hybrid ? `html,body{background:transparent!important}
-.bgall{position:absolute;inset:0;animation:bgvis ${total.toFixed(3)}s linear both}
-@keyframes bgvis{${bgKeys}}
-.fsh-t{position:absolute;left:0;right:0;top:0;height:340px;background:linear-gradient(rgba(6,10,28,.6),rgba(6,10,28,0))}
-.fsh-b{position:absolute;left:0;right:0;bottom:0;height:900px;background:linear-gradient(rgba(6,10,28,0),rgba(6,10,28,.55) 45%,rgba(6,10,28,.82))}
-.ft-lt{position:absolute;left:90px;right:90px;bottom:690px;display:flex;flex-wrap:wrap;align-items:center;gap:14px}
-.ft-lt span{font-size:40px;font-weight:700;color:#0b1430;background:#ffd23f;padding:6px 22px 10px;border-radius:14px}
-.ft-lt b{font-size:56px;line-height:1.45;font-weight:700;background:rgba(11,20,48,.88);padding:8px 28px 14px;border-radius:18px}` : ""}
 </style></head><body>
 <div class="bgall"><div class="bg"></div><div class="grid"></div><span class="blob b1"></span><span class="blob b2"></span></div>
 <div class="top"><div class="logo"><img class="m" src="data:image/png;base64,${b64("assets/logo-mark-white.png")}" alt=""><img class="w" src="data:image/png;base64,${b64("assets/logo-word-white.png")}" alt=""></div>
@@ -209,7 +186,7 @@ async function browser() {
   try { return await chromium.launch(); } catch (e) { return await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" }); }
 }
 
-async function frames(html, total, dir, alpha) {
+async function frames(html, total, dir) {
   const b = await browser();
   const pg = await b.newPage({ viewport: { width: W, height: H } });
   await pg.setContent(html, { waitUntil: "load" });
@@ -222,8 +199,7 @@ async function frames(html, total, dir, alpha) {
   const n = Math.round(total * FPS);
   for (let f = 0; f < n; f++) {
     await pg.evaluate((ms) => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = ms; }), (f * 1000) / FPS);
-    if (alpha) await pg.screenshot({ path: path.join(dir, String(f).padStart(5, "0") + ".png"), omitBackground: true });
-    else await pg.screenshot({ path: path.join(dir, String(f).padStart(5, "0") + ".jpg"), type: "jpeg", quality: 93 });
+    await pg.screenshot({ path: path.join(dir, String(f).padStart(5, "0") + ".jpg"), type: "jpeg", quality: 93 });
   }
   await b.close();
 }
@@ -233,37 +209,10 @@ async function frames(html, total, dir, alpha) {
 const METHOD = { question: "phone_chat", chat: "phone_chat", caption: "phone_chat", story: "illustrated", leaving: "illustrated",
   dashboard: "product_dashboard", orders: "product_dashboard", sticker: "product_dashboard" };
 function visualMix(scenes) {
-  const t = { motion_graphics: 0, phone_chat: 0, illustrated: 0, product_dashboard: 0, footage: 0 };
-  scenes.forEach((s) => { const k = s.foot ? "footage" : METHOD[(s.visual || {}).type] || "motion_graphics"; t[k] += s.dur; });
+  const t = { motion_graphics: 0, phone_chat: 0, illustrated: 0, product_dashboard: 0 };
+  scenes.forEach((s) => { const k = METHOD[(s.visual || {}).type] || "motion_graphics"; t[k] += s.dur; });
   const all = Object.values(t).reduce((a, b) => a + b, 0) || 1;
   return Object.fromEntries(Object.entries(t).map(([k, v]) => [k, +(v / all).toFixed(2)]));
-}
-
-// --- Footage track (combined style) ---------------------------------------------------------------------------------
-function footageTrack(scenes, total, dir) {
-  const inputs = ["-f", "lavfi", "-i", `color=c=0x0b1430:s=${W}x${H}:r=${FPS}:d=${total.toFixed(3)}`];
-  let chain = "", prev = "[0:v]", k = 0;
-  const moves = ["in", "panl", "out", "panr"];
-  scenes.forEach((sc, i) => {
-    if (!sc.foot) return;
-    const a = Math.max(0, sc.start - 0.5), b = Math.min(total, sc.start + sc.dur + 0.5), D = b - a, Ds = D.toFixed(3);
-    const seg = path.join(dir, `foot${i}.mp4`), p = `(t/${Ds})`;
-    // Where the subject is across the frame (0 = left, 1 = right), chosen when the clip was reviewed; the 9:16 crop keeps it in view.
-    const focus = Math.max(0, Math.min(1, Number(sc.foot.focus ?? 0.5))).toFixed(3);
-    const motion = { in: `scale=w='${W}*(1.0+0.08*${p})':h=-2:eval=frame,crop=${W}:${H}`, out: `scale=w='${W}*(1.08-0.07*${p})':h=-2:eval=frame,crop=${W}:${H}`,
-      panl: `crop=${W}:${H}:x='(iw-${W})*(1-${p})':y='(ih-${H})/2'`, panr: `crop=${W}:${H}:x='(iw-${W})*${p}':y='(ih-${H})/2'` }[moves[k % 4]];
-    run(["-ss", "0.3", "-stream_loop", "-1", "-i", sc.foot.file, "-vf",
-      `scale=${Math.round(W * 1.1)}:${Math.round(H * 1.1)}:force_original_aspect_ratio=increase,crop=${Math.round(W * 1.1)}:${Math.round(H * 1.1)}:x='(iw-ow)*${focus}':y='(ih-oh)/2',setsar=1,fps=${FPS},${motion},` +
-      "eq=contrast=1.05:saturation=1.08:gamma=0.98,colorbalance=rs=0.02:bs=-0.02,format=yuv420p",
-      "-an", "-r", String(FPS), "-c:v", "libx264", "-preset", "veryfast", "-crf", "16", "-t", Ds, seg]);
-    inputs.push("-i", seg);
-    k++;
-    chain += `[${k}:v]setpts=PTS-STARTPTS+${a.toFixed(3)}/TB[s${k}];${prev}[s${k}]overlay=0:0:eof_action=pass:enable='between(t,${a.toFixed(3)},${b.toFixed(3)})'[b${k}];`;
-    prev = `[b${k}]`;
-  });
-  const out = path.join(dir, "footage.mp4");
-  run([...inputs, "-filter_complex", chain + `${prev}format=yuv420p[v]`, "-map", "[v]", "-r", String(FPS), "-c:v", "libx264", "-preset", "veryfast", "-crf", "16", "-t", total.toFixed(3), out]);
-  return out;
 }
 
 // --- Sound -----------------------------------------------------------------------------------------------------------
@@ -327,10 +276,8 @@ body{width:${W}px;height:${H}px;overflow:hidden;font-family:M,L,sans-serif;color
   fs.mkdirSync(outDir, { recursive: true });
   const work = fs.mkdtempSync(path.join(os.tmpdir(), "reel-"));
   const scenes = script.scenes.map((s) => ({ ...s, lines: s.lines.map(String) }));
-  const footArg = arg("--footage");
-  const foot = footArg && fs.existsSync(footArg) ? JSON.parse(fs.readFileSync(footArg, "utf8")) : {};
-  scenes.forEach((sc, i) => { const f = foot[String(i)]; if (f && fs.existsSync(f.file)) sc.foot = f; });
-  const hybrid = scenes.some((s) => s.foot);
+  if (process.argv.includes("--footage")) throw new Error("Stock footage is removed from ADS BOX videos: --footage is not accepted.");
+  scenes.forEach((sc) => { delete sc.footage; delete sc.foot; });  // a script's old footage notes never reach the video
   const t0 = Date.now();
 
   if (!process.argv.includes("--no-voice")) voice(scenes, path.join(work, "voice"));
@@ -338,40 +285,32 @@ body{width:${W}px;height:${H}px;overflow:hidden;font-family:M,L,sans-serif;color
   console.log(`Timeline ${total.toFixed(1)}s: ${scenes.length} scenes (${scenes.map((s) => (s.visual || {}).type).join(", ")}), subtitle timing: ${scenes.map((s) => s.sync).join(",")}`);
 
   const fdir = path.join(work, "frames"); fs.mkdirSync(fdir);
-  await frames(page(script, scenes, total), total, fdir, hybrid);
+  await frames(page(script, scenes, total), total, fdir);  // opaque frames only: nothing is composited underneath
   const music = arg("--music");
   const wav = sound(scenes, total, music && fs.existsSync(music) ? music : null, work);
 
   const slug = script.slug, mp4 = path.join(outDir, `${slug}.mp4`);
   const enc = ["-c:v", "libx264", "-preset", "medium", "-crf", "19", "-maxrate", "8M", "-bufsize", "16M",
     "-r", String(FPS), "-c:a", "aac", "-b:a", "192k", "-t", total.toFixed(3), "-movflags", "+faststart", mp4];
-  if (!hybrid) {
-    run(["-framerate", String(FPS), "-i", path.join(fdir, "%05d.jpg"), "-i", wav, "-map", "0:v", "-map", "1:a",
-      "-vf", `scale=${W}:${H},format=yuv420p`, ...enc]);
-  } else {
-    const base = footageTrack(scenes, total, work);
-    run(["-i", base, "-framerate", String(FPS), "-i", path.join(fdir, "%05d.png"), "-i", wav,
-      "-filter_complex", "[0:v][1:v]overlay=0:0:format=auto,format=yuv420p[v]", "-map", "[v]", "-map", "2:a", ...enc]);
-  }
+  run(["-framerate", String(FPS), "-i", path.join(fdir, "%05d.jpg"), "-i", wav, "-map", "0:v", "-map", "1:a",
+    "-vf", `scale=${W}:${H},format=yuv420p`, ...enc]);
   const dims = execFileSync("ffprobe", ["-v", "error", "-select_streams", "v:0", "-show_entries", "stream=width,height,r_frame_rate", "-of", "csv=p=0", mp4], { encoding: "utf8" }).trim();
   if (dims !== `${W},${H},${FPS}/1`) throw new Error(`Output is ${dims}, expected ${W}x${H} at ${FPS} fps`);
 
   // Thumbnail from the moment the hook question is fully on screen.
   const hook = scenes[0], tf = Math.min(hook.start + hook.dur - 0.5, (hook.subs[hook.subs.length - 1].start || 1) + 0.8);
   let frame = path.join(fdir, String(Math.round(tf * FPS)).padStart(5, "0") + ".jpg");
-  if (hybrid) { frame = path.join(work, "thumbframe.jpg"); run(["-ss", tf.toFixed(2), "-i", mp4, "-frames:v", "1", frame]); }
   const thumb = path.join(outDir, `${slug}-thumb.jpg`), cover = path.join(outDir, `${slug}-cover.jpg`);
   await thumbnail(script, fs.existsSync(frame) ? frame : path.join(fdir, "00030.jpg"), thumb, cover);
 
   const meta = {
-    slug, style: hybrid ? "motion graphics + Pixabay footage" : "motion graphics", duration: +probe(mp4).toFixed(2), size_mb: +(fs.statSync(mp4).size / 1e6).toFixed(1), resolution: `${W}x${H}`, fps: FPS,
+    slug, style: "custom animation only (no stock footage)", duration: +probe(mp4).toFixed(2), size_mb: +(fs.statSync(mp4).size / 1e6).toFixed(1), resolution: `${W}x${H}`, fps: FPS,
     scenes: scenes.length, visuals: scenes.map((s) => (s.visual || {}).type), voice: scenes[0].voice ? (process.env.REEL_VOICE || "km-KH-PisethNeural") : "none",
     music: music ? path.basename(music) : "none", subtitle_sync: [...new Set(scenes.map((s) => s.sync))].join(","),
     render_seconds: Math.round((Date.now() - t0) / 1000),
-    footage: scenes.map((s, i) => (s.foot ? { scene: i + 1, role: s.role, id: s.foot.id, page: s.foot.page, author: s.foot.author,
-      query: s.foot.query, tags: s.foot.tags, seconds: +s.dur.toFixed(1) } : null)).filter(Boolean),
+    footage: [], stock_footage: "removed",
     visual_mix: visualMix(scenes, total),
-    footage_share: hybrid ? +(scenes.filter((s) => s.foot).reduce((a, s) => a + s.dur, 0) / (total - OUTRO)).toFixed(2) : 0,
+    footage_share: 0,
   };
   fs.writeFileSync(path.join(outDir, "meta.json"), JSON.stringify(meta, null, 1));
   fs.rmSync(work, { recursive: true, force: true });
