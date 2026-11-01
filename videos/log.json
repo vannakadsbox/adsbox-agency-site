@@ -591,9 +591,124 @@
       "article_url": "https://adsbox.agency/knowledge/product-codes-for-live-orders/",
       "video_title": "Live ហើយ Comment «យកមួយ» ច្រើនពេក? ប្រើលេខកូដទំនិញតាម ៥ គន្លឹះនេះ",
       "hook": "Live ម្ដងៗ Comment ហូរមកលឿនណាស់ «យកមួយ» «អាវខៀវនោះប៉ុន្មាន?» តែមួយណាទៅបង?",
-      "status": "scripted",
+      "status": "sent",
       "scripted_at": "2026-11-01T20:04:21+07:00",
-      "error": ""
+      "error": "",
+      "render_started_at": "2026-11-01T20:05:09+07:00",
+      "sent_at": "2026-11-01T20:17:17+07:00",
+      "rendered_at": "2026-11-01T20:17:17+07:00",
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/41309468989",
+      "duration": 80.03,
+      "size_mb": 22.1,
+      "render_seconds": 707,
+      "voice": "km-KH-PisethNeural",
+      "music": "adsbox-original-1.mp3",
+      "style": "motion graphics + Pixabay footage",
+      "visuals": [
+        "question",
+        "takeaway",
+        "compare",
+        "checklist",
+        "compare",
+        "checklist",
+        "checklist",
+        "compare",
+        "caption",
+        "cta"
+      ],
+      "resolution": "1080x1920",
+      "fps": 30,
+      "subtitle_sync": "word",
+      "footage": [
+        {
+          "scene": 2,
+          "role": "problem",
+          "id": 26774,
+          "page": "https://pixabay.com/videos/id-26774/",
+          "author": "ninosouza",
+          "query": "live streaming selling",
+          "tags": [
+            "livestreaming",
+            "instagram",
+            "facebook",
+            "twitter",
+            "communication",
+            "internet",
+            "smartphone",
+            "media"
+          ],
+          "seconds": 6.8
+        },
+        {
+          "scene": 7,
+          "role": "tip",
+          "id": 2340,
+          "page": "https://pixabay.com/videos/id-2340/",
+          "author": "Life-Of-Vids",
+          "query": "small business team",
+          "tags": [
+            "meeting",
+            "planning",
+            "marketing",
+            "business",
+            "team",
+            "people",
+            "office",
+            "teamwork"
+          ],
+          "seconds": 7.6
+        },
+        {
+          "scene": 9,
+          "role": "example",
+          "id": 130652,
+          "page": "https://pixabay.com/videos/id-130652/",
+          "author": "SYG_Anime",
+          "query": "packing orders",
+          "tags": [
+            "woman",
+            "smartphone",
+            "education",
+            "navigation",
+            "lifestyle",
+            "mobile",
+            "money safe",
+            "store"
+          ],
+          "seconds": 7.2
+        }
+      ],
+      "footage_share": 0.28,
+      "telegram": {
+        "ok": true,
+        "message_id": 59,
+        "chat": "configured",
+        "at": "2026-11-01T20:17:17+07:00",
+        "file_id": "BAACAgUAAxkDAAM7auc71rpJQAiyvckskovgXB7hkXYAAtEkAAIeBDlXodU8bHq0xVA9BA"
+      },
+      "archive": {
+        "assets": [
+          {
+            "id": 698396006,
+            "name": "product-codes-for-live-orders-thumb.jpg",
+            "size": 145589,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/product-codes-for-live-orders-thumb.jpg"
+          },
+          {
+            "id": 698396015,
+            "name": "product-codes-for-live-orders.mp4",
+            "size": 22068791,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/product-codes-for-live-orders.mp4"
+          }
+        ],
+        "release_id": 430382508
+      },
+      "article_id": "product-codes-for-live-orders",
+      "video_id": 698396015,
+      "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/product-codes-for-live-orders.mp4",
+      "created_at": "2026-11-01T20:17:17+07:00",
+      "telegram_status": "delivered",
+      "production_status": "complete"
     }
   ]
 }
