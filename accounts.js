@@ -161,7 +161,7 @@ window.ACCOUNTS = {
    {
     "name": "Aiសម្រាយកុន",
     "url": "https://www.facebook.com/profile.php?id=61593925754183",
-    "followers": 1758,
+    "followers": 1760,
     "picture": "assets/accounts/fb-61593925754183.webp",
     "cover": "assets/opt/adsbox-cover-263cfb-1565780390.webp",
     "type": "ផេកខ្មែរ",
@@ -183,7 +183,7 @@ window.ACCOUNTS = {
    {
     "name": "TVMovie",
     "url": "https://www.facebook.com/profile.php?id=61593525958630",
-    "followers": 995,
+    "followers": 999,
     "picture": "assets/accounts/fb-61593525958630.webp",
     "cover": "assets/opt/adsbox-cover-d04980-1565780390.webp",
     "type": "ផេកខ្មែរ",
@@ -194,7 +194,7 @@ window.ACCOUNTS = {
    {
     "name": "Merlrg24h",
     "url": "https://www.facebook.com/profile.php?id=61593372051825",
-    "followers": 4785,
+    "followers": 4798,
     "picture": "assets/accounts/fb-61593372051825.webp",
     "cover": "assets/opt/adsbox-cover-1cdc4c-1565780390.webp",
     "type": "ផេកខ្មែរ",
