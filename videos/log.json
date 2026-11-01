@@ -726,10 +726,82 @@
       "article_url": "https://adsbox.agency/knowledge/auto-capture-orders-from-live-comments/",
       "video_title": "Comment Live ហូរលឿនពេក កត់ Order មិនទាន់? ៤ ជំហានកុំឲ្យ Order របូត",
       "hook": "Live កំពុងល្អ Comment ហូរមកមិនឈប់ តែដៃកត់ Order មិនទាន់ទេ!",
-      "status": "rendering",
+      "status": "sent",
       "scripted_at": "2026-11-01T20:30:33+07:00",
       "error": "",
-      "render_started_at": "2026-11-01T20:38:14+07:00"
+      "render_started_at": "2026-11-01T20:43:00+07:00",
+      "sent_at": "2026-11-01T20:48:18+07:00",
+      "rendered_at": "2026-11-01T20:48:18+07:00",
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/41312531782",
+      "duration": 62.6,
+      "size_mb": 17.2,
+      "render_seconds": 293,
+      "voice": "km-KH-PisethNeural",
+      "music": "adsbox-original-1.mp3",
+      "style": "custom animation only (no stock footage)",
+      "visuals": [
+        "story",
+        "checklist",
+        "compare",
+        "orders",
+        "chat",
+        "sticker",
+        "flow",
+        "story",
+        "cta"
+      ],
+      "resolution": "1080x1920",
+      "fps": 30,
+      "subtitle_sync": "word",
+      "footage": [],
+      "footage_share": 0,
+      "stock_footage": "none (removed)",
+      "telegram": {
+        "ok": true,
+        "message_id": 70,
+        "chat": "configured",
+        "at": "2026-11-01T20:48:18+07:00",
+        "file_id": "BAACAgUAAxkDAANGaudDFIxmsE8YxgUs7G1B319sPzkAAt8kAAIeBDlXipDqqXHznBc9BA"
+      },
+      "archive": {
+        "assets": [
+          {
+            "id": 698472933,
+            "name": "auto-capture-orders-from-live-comments-thumb.jpg",
+            "size": 171908,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/auto-capture-orders-from-live-comments-thumb.jpg"
+          },
+          {
+            "id": 698472932,
+            "name": "auto-capture-orders-from-live-comments.mp4",
+            "size": 17198136,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/auto-capture-orders-from-live-comments.mp4"
+          }
+        ],
+        "release_id": 430382508
+      },
+      "quality": {
+        "width": 1080,
+        "height": 1920,
+        "fps": "30/1",
+        "duration": 62.6,
+        "video_codec": "h264",
+        "audio_codec": "aac",
+        "loudness": "-13.5 LUFS",
+        "decode_errors": false,
+        "visual_mix": {
+          "motion_graphics": 0.45,
+          "phone_chat": 0.11,
+          "illustrated": 0.19,
+          "product_dashboard": 0.24
+        }
+      },
+      "article_id": "auto-capture-orders-from-live-comments",
+      "video_id": 698472932,
+      "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/auto-capture-orders-from-live-comments.mp4",
+      "created_at": "2026-11-01T20:48:18+07:00",
+      "telegram_status": "delivered",
+      "production_status": "complete"
     }
   ]
 }
