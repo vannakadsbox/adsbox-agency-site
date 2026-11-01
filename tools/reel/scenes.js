@@ -198,11 +198,11 @@ const CSS = `
 .li{display:flex;align-items:center;gap:24px;background:#fff;color:#0b1430;border-radius:28px;padding:22px 30px 28px;box-shadow:0 20px 50px rgba(0,0,0,.3)}
 .li p{font-size:52px;font-weight:700;line-height:1.45}
 .ck{flex:none;width:70px;height:70px;border-radius:20px;background:#ffd23f;display:grid;place-items:center}
-.road{position:absolute;left:-90px;right:-90px;top:250px;height:300px;overflow:hidden}
+.road{position:absolute;left:-90px;right:-90px;top:220px;height:280px;overflow:hidden}
 .road::after{content:"";position:absolute;left:0;right:0;bottom:12px;height:10px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.5) 0 60px,transparent 60px 100px)}
-.scoot{position:absolute;left:330px;top:0}
-.rcpt{position:absolute;left:40px;right:40px;top:590px;background:#fff;color:#0b1430;border-radius:34px;padding:30px 36px;box-shadow:0 30px 70px rgba(0,0,0,.4)}
-.row{display:flex;align-items:baseline;gap:16px;font-size:52px;font-weight:700;padding:10px 0}.row i{flex:1;border-bottom:4px dotted #b9c3e3}
+.scoot{position:absolute;left:350px;top:10px;transform-origin:left top;scale:.9}
+.rcpt{position:absolute;left:40px;right:40px;top:520px;background:#fff;color:#0b1430;border-radius:34px;padding:30px 36px;box-shadow:0 30px 70px rgba(0,0,0,.4)}
+.row{display:flex;align-items:baseline;gap:16px;font-size:52px;font-weight:700;padding:6px 0}.row i{flex:1;border-bottom:4px dotted #b9c3e3}
 .row b,.total b{font-family:L,M,sans-serif;font-weight:800}
 .total{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-top:16px;background:#ffd23f;border-radius:22px;padding:16px 24px 22px;font-size:48px;font-weight:700}
 .total b{font-size:64px}

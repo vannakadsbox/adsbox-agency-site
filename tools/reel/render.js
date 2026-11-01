@@ -27,7 +27,7 @@ const SAY = [["adsbox.agency", "អេដស៍ប៊ក ដត អេជិន�
   ["Telegram", "តេឡេក្រាម"], ["Page", "ផេក"], ["Messenger", "មេសេនជ័រ"], ["Comment", "ខមមិន"], ["Inbox", "អ៊ីនបក់"], ["Online", "អនឡាញ"],
   ["Target", "ថាហ្គេត"], ["Bundle", "បាន់ឌល"], ["Reels", "រីល"], ["Link", "លីង"], ["Like", "ឡាយក៍"], ["Share", "ស៊ែរ"]];
 const spoken = (t) => SAY.reduce((s, [en, kh]) => s.replace(new RegExp("(^|[^A-Za-z])" + en.replace(".", "\\.") + "(?![A-Za-z])", "gi"), "$1" + kh), String(t))
-  .replace(/\$(\d+(?:\.\d+)?)/g, "$1 ដុល្លារ").replace(/(\d+)%/g, "$1 ភាគរយ").replace(/[«»"()]/g, " ").replace(/\s+/g, " ").trim();
+  .replace(/\$([0-9០-៩]+(?:\.[0-9០-៩]+)?)/g, "$1 ដុល្លារ").replace(/([0-9០-៩]+)\s?%/g, "$1 ភាគរយ").replace(/[«»"()]/g, " ").replace(/\s+/g, " ").trim();
 const weight = (s) => String(s).replace(/\s+/g, "").length || 1;
 
 // --- Voice and word timing ---------------------------------------------------------------------------------------
