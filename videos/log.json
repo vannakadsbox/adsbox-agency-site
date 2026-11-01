@@ -464,6 +464,126 @@
       "created_at": "2026-11-01T19:35:58+07:00",
       "telegram_status": "delivered",
       "production_status": "complete"
+    },
+    {
+      "slug": "write-prices-and-promotions-clearly-guided",
+      "status": "sent",
+      "render_started_at": "2026-11-01T19:39:07+07:00",
+      "error": "",
+      "sent_at": "2026-11-01T19:56:55+07:00",
+      "rendered_at": "2026-11-01T19:56:55+07:00",
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/41307447682",
+      "duration": 86.13,
+      "size_mb": 24.8,
+      "render_seconds": 1049,
+      "voice": "km-KH-PisethNeural",
+      "music": "adsbox-original-1.mp3",
+      "style": "motion graphics + Pixabay footage",
+      "visuals": [
+        "question",
+        "leaving",
+        "dashboard",
+        "compare",
+        "checklist",
+        "deadline",
+        "delivery",
+        "caption",
+        "takeaway",
+        "cta"
+      ],
+      "resolution": "1080x1920",
+      "fps": 30,
+      "subtitle_sync": "word",
+      "footage": [
+        {
+          "scene": 2,
+          "role": "problem",
+          "id": 83870,
+          "page": "https://pixabay.com/videos/id-83870/",
+          "author": "SYG_Anime",
+          "query": "scrolling smartphone",
+          "tags": [
+            "woman",
+            "communication",
+            "smartphone",
+            "phone",
+            "office",
+            "business",
+            "computer",
+            "exhausted"
+          ],
+          "seconds": 8.9
+        },
+        {
+          "scene": 6,
+          "role": "tip",
+          "id": 233382,
+          "page": "https://pixabay.com/videos/id-233382/",
+          "author": "Yasir1120",
+          "query": "online shopping",
+          "tags": [
+            "smartphone",
+            "laptop",
+            "online",
+            "internet",
+            "technology",
+            "marketing",
+            "podcast",
+            "connection"
+          ],
+          "seconds": 7.6
+        },
+        {
+          "scene": 9,
+          "role": "summary",
+          "id": 154829,
+          "page": "https://pixabay.com/videos/id-154829/",
+          "author": "Amorn_mimi",
+          "query": "customer smartphone",
+          "tags": [
+            "woman",
+            "phone",
+            "games",
+            "business",
+            "casual",
+            "cheerful",
+            "customer",
+            "female"
+          ],
+          "seconds": 8.6
+        }
+      ],
+      "footage_share": 0.3,
+      "telegram": {
+        "ok": true,
+        "message_id": 54,
+        "chat": "configured",
+        "at": "2026-11-01T19:56:55+07:00",
+        "file_id": "BAACAgUAAxkDAAM2auc3ECrL693StQlqAWBdf1RPCagAArYkAAIeBDlXWyDB79rOKhU9BA"
+      },
+      "archive": {
+        "assets": [
+          {
+            "id": 698349983,
+            "name": "write-prices-and-promotions-clearly-guided-thumb.jpg",
+            "size": 152961,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/write-prices-and-promotions-clearly-guided-thumb.jpg"
+          },
+          {
+            "id": 698349985,
+            "name": "write-prices-and-promotions-clearly-guided.mp4",
+            "size": 24751519,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/write-prices-and-promotions-clearly-guided.mp4"
+          }
+        ],
+        "release_id": 430382508
+      },
+      "article_id": "write-prices-and-promotions-clearly-guided",
+      "video_id": 698349985,
+      "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/write-prices-and-promotions-clearly-guided.mp4",
+      "created_at": "2026-11-01T19:56:55+07:00",
+      "telegram_status": "delivered",
+      "production_status": "complete"
     }
   ]
 }
