@@ -37,6 +37,15 @@
         "confusing": "បញ្ចុះ ២០% ពី $15 ???",
         "caption": "អតិថិជនរំកិលទៅផេកផ្សេង"
       },
+      "footage": {
+        "id": 174003,
+        "queries": [
+          "woman scrolling phone",
+          "social media scrolling",
+          "customer smartphone"
+        ],
+        "chosen_by": "contact-sheet review"
+      },
       "keyword": "តម្លៃមិនច្បាស់ បាត់អតិថិជន"
     },
     {
@@ -99,6 +108,15 @@
           "ថែមកាបូប សម្រាប់ Order ពី $25",
           "សម្រាប់តែពណ៌ខ្មៅ និងស"
         ]
+      },
+      "footage": {
+        "id": 30703,
+        "queries": [
+          "clothing store",
+          "clothes shop owner",
+          "boutique clothes rack"
+        ],
+        "chosen_by": "contact-sheet review"
       }
     },
     {
@@ -115,6 +133,15 @@
         "bad": "រយៈពេលកំណត់",
         "good": "ដល់ថ្ងៃអាទិត្យ ម៉ោង ១០ យប់",
         "result": "សម្រេចចិត្តលឿនជាងមុន"
+      },
+      "footage": {
+        "id": 83865,
+        "queries": [
+          "online shopping phone",
+          "online payment",
+          "woman shopping smartphone"
+        ],
+        "chosen_by": "contact-sheet review"
       }
     },
     {
@@ -142,13 +169,6 @@
           "label": "២ ដុំ + ដឹកភ្នំពេញ",
           "value": "$21.50"
         }
-      },
-      "footage": {
-        "queries": [
-          "cardboard box packing",
-          "parcel courier",
-          "package delivery door"
-        ]
       }
     },
     {
@@ -189,7 +209,16 @@
         "quote": "ខ្ញុំដឹងទេ ថាត្រូវបង់ប៉ុន្មានសរុប?"
       },
       "label": "សង្ខេប",
-      "keyword": "អានដូចអតិថិជនថ្មី"
+      "keyword": "អានដូចអតិថិជនថ្មី",
+      "footage": {
+        "id": 154830,
+        "queries": [
+          "woman reading phone",
+          "customer shopping online",
+          "happy customer phone"
+        ],
+        "chosen_by": "contact-sheet review"
+      }
     },
     {
       "role": "cta",
@@ -212,5 +241,6 @@
     "title": "សរសេរតម្លៃ និង Promotion ក្នុង Caption ឲ្យច្បាស់៖ ៥ គន្លឹះកុំឲ្យអតិថិជនច្រឡំ",
     "url": "https://adsbox.agency/knowledge/write-prices-and-promotions-clearly/"
   },
-  "written_at": "2026-11-01T14:21:46+07:00"
+  "written_at": "2026-11-01T14:21:46+07:00",
+  "footage_note": "Scene 7 (delivery): no suitable Pixabay clip in 6 searches, kept as animation."
 }
