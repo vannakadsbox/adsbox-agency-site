@@ -114,6 +114,7 @@ def main():
         "output_schema": SCHEMA,
         "visuals": {
             "question": "hook: phone with customer messages popping in, then a big question. {title, bubbles:[2-5 short customer messages]}",
+            "chat": "screen demo: Messenger chat between customer and shop, message by message. {with?, messages:[2-5 x {from: customer|shop, text}]}",
             "leaving": "problem: a confusing post and customers walking away. {post_title, confusing (the unclear text), caption}",
             "dashboard": "problem with ads money: Boost results card + red alert. {title, metrics:[3 x {label, value}] (clearly a sample), alert, next?}",
             "compare": "before/after: crossed-out bad card, then the good card with a check. {bad, good}",

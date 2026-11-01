@@ -227,7 +227,7 @@ async function frames(html, total, dir, alpha) {
 }
 
 // Share of the speaking time by visual type (the branded opening and ending are not counted).
-const DEMO = new Set(["question", "caption", "dashboard", "leaving"]);  // phone chats, post mock-ups, ads results: screen demos
+const DEMO = new Set(["question", "caption", "dashboard", "leaving", "chat"]);  // phone chats, post mock-ups, ads results: screen demos
 function visualMix(scenes) {
   const t = { footage: 0, animation: 0, screen_demo: 0, product_visual: 0 };
   scenes.forEach((s) => { const k = s.foot ? "footage" : DEMO.has((s.visual || {}).type) ? "screen_demo" : "animation"; t[k] += s.dur; });

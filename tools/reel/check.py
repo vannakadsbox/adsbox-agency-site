@@ -24,6 +24,7 @@ PERSONA = re.compile(r"ខ្ញុំឈ្មោះ|ខ្ញុំជាប�
 # The animated scene templates (tools/reel/scenes.js) and what each needs: field -> (kind, max characters or (min, max) items).
 VISUALS = {
     "question": {"title": ("text", 24), "bubbles": ("texts", (2, 5), 26)},
+    "chat": {"with?": ("text", 16), "messages": ("msgs", (2, 5), 34)},
     "leaving": {"post_title": ("text", 20), "confusing": ("text", 26), "caption": ("text", 28)},
     "dashboard": {"title": ("text", 26), "metrics": ("pairs", (3, 3), 10), "alert": ("text", 28), "next?": ("text", 24)},
     "compare": {"bad": ("text", 30), "good": ("text", 30)},
@@ -55,6 +56,11 @@ def visual_problems(i, v):
             lo, hi = spec[1]
             if not isinstance(val, list) or not (lo <= len(val) <= hi) or any(not isinstance(x, str) or len(x) > spec[2] for x in val):
                 out.append(f"Scene {i}: visual.{k} must be {lo}-{hi} texts of max {spec[2]} characters")
+        elif kind == "msgs":
+            lo, hi = spec[1]
+            if not isinstance(val, list) or not (lo <= len(val) <= hi) or any(
+                    not isinstance(x, dict) or x.get("from") not in ("customer", "shop") or not x.get("text") or len(str(x["text"])) > spec[2] for x in val):
+                out.append(f"Scene {i}: visual.{k} must be {lo}-{hi} messages {{from: customer|shop, text (max {spec[2]})}}")
         elif kind == "pairs":
             lo, hi = spec[1]
             if not isinstance(val, list) or not (lo <= len(val) <= hi) or any(

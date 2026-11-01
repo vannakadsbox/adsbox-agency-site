@@ -61,6 +61,13 @@ ${qs.map(([l, t, s], i) => `<div class="qmark" style="left:${l}px;top:${t}px;fon
 <div class="ph-body">${bubbles.map((b, i) => `<div class="bub in" style="${A("bubIn", t0 + i * step, 0.4, "cubic-bezier(.3,1.4,.5,1)")}">${esc(b)}</div>`).join("")}</div></div>`;
 };
 
+V.chat = (v, x) => {  // screen demo: a Messenger-style chat between customer and shop, one message per beat
+  const msgs = v.messages || [];
+  const t0 = x.F(0.02), step = Math.max(0.5, (x.F(0.85) - t0) / Math.max(1, msgs.length));
+  return `${header(x.sc, x)}<div class="phone chatp" style="${A("rise", x.start + 0.15, 0.7)}"><div class="ph-top">${person(1, 64)}<div><b>${esc(v.with || "អតិថិជន")}</b><small>Messenger</small></div></div>
+<div class="ph-body">${msgs.map((m, i) => `<div class="bub${m.from === "shop" ? " me" : ""}" style="${A("bubIn", t0 + i * step, 0.4, "cubic-bezier(.3,1.4,.5,1)")}">${esc(m.text)}</div>`).join("")}</div></div>`;
+};
+
 V.leaving = (v, x) => {
   const pos = [[20, 40], [740, 20], [0, 470], [770, 450], [760, 760]];
   return `<div class="post-c" style="${A("rise", x.start + 0.3, 0.6)}"><div class="pc-top"><span class="shop">ហ</span><b>ហាងគំរូ</b></div>
@@ -160,6 +167,8 @@ const CSS = `
 .badge{position:absolute;right:26px;top:30px;width:64px;height:64px;border-radius:50%;background:#ff5d6c;color:#fff;display:grid;place-items:center;font-family:L,M,sans-serif;font-weight:800;font-size:34px;counter-reset:n var(--n)}
 .badge::after{content:counter(n)}
 .ph-body{padding:26px 22px;display:flex;flex-direction:column;gap:18px;background:#eef2fb;height:100%}
+.chatp{top:250px;height:740px;left:90px;width:720px}
+.bub.me{align-self:flex-end;background:#3f7dff;color:#fff;border-radius:30px 30px 8px 30px}
 .bub{align-self:flex-start;max-width:94%;font-size:44px;font-weight:500;line-height:1.5;color:#0b1430;background:#fff;padding:12px 26px 16px;border-radius:30px 30px 30px 8px;box-shadow:0 6px 16px rgba(11,20,48,.08)}
 .post-c,.post{position:absolute;left:150px;top:150px;width:600px;background:#fff;color:#0b1430;border-radius:36px;padding:28px;box-shadow:0 36px 80px rgba(0,0,0,.4)}
 .pc-top{display:flex;align-items:center;gap:16px;margin-bottom:18px}.pc-top b{font-size:40px;display:block}.pc-top small{font-size:30px;color:#6a7495}
