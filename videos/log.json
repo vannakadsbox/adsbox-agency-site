@@ -729,13 +729,13 @@
       "status": "sent",
       "scripted_at": "2026-11-01T20:30:33+07:00",
       "error": "",
-      "render_started_at": "2026-11-01T20:43:00+07:00",
-      "sent_at": "2026-11-01T20:48:18+07:00",
+      "render_started_at": "2026-11-01T20:54:04+07:00",
+      "sent_at": "2026-11-01T20:59:00+07:00",
       "rendered_at": "2026-11-01T20:48:18+07:00",
-      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/41312531782",
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/41313420708",
       "duration": 62.6,
       "size_mb": 17.2,
-      "render_seconds": 293,
+      "render_seconds": 280,
       "voice": "km-KH-PisethNeural",
       "music": "adsbox-original-1.mp3",
       "style": "custom animation only (no stock footage)",
@@ -758,23 +758,49 @@
       "stock_footage": "none (removed)",
       "telegram": {
         "ok": true,
-        "message_id": 70,
+        "message_id": 76,
         "chat": "configured",
-        "at": "2026-11-01T20:48:18+07:00",
-        "file_id": "BAACAgUAAxkDAANGaudDFIxmsE8YxgUs7G1B319sPzkAAt8kAAIeBDlXipDqqXHznBc9BA"
+        "at": "2026-11-01T20:59:00+07:00",
+        "file_id": "BAACAgUAAxkDAANMaudFnPGqbl65_6igb72X6i3CUuoAAuIkAAIeBDlXrXQms31X_0c9BA",
+        "items": [
+          {
+            "item": "caption",
+            "message_id": 75
+          },
+          {
+            "item": "video",
+            "message_id": 76,
+            "file_name": "auto-capture-orders-from-live-comments.mp4",
+            "file_size": 17194586,
+            "width": 1080,
+            "height": 1920,
+            "file_id": "BAACAgUAAxkDAANMaudFnPGqbl65_6igb72X6i3CUuoAAuIkAAIeBDlXrXQms31X_0c9BA"
+          },
+          {
+            "item": "thumbnail",
+            "message_id": 77,
+            "file_name": "auto-capture-orders-from-live-comments-thumbnail.jpg",
+            "file_size": 171908
+          }
+        ],
+        "sent_count": 3,
+        "local_sizes": {
+          "video": 17194586,
+          "thumbnail": 171908
+        }
       },
       "archive": {
         "assets": [
           {
-            "id": 698472933,
+            "id": 698499269,
             "name": "auto-capture-orders-from-live-comments-thumb.jpg",
             "size": 171908,
             "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/auto-capture-orders-from-live-comments-thumb.jpg"
           },
           {
-            "id": 698472932,
+            "id": 698499268,
             "name": "auto-capture-orders-from-live-comments.mp4",
-            "size": 17198136,
+            "size": 17194586,
             "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/auto-capture-orders-from-live-comments.mp4"
           }
         ],
@@ -797,7 +823,7 @@
         }
       },
       "article_id": "auto-capture-orders-from-live-comments",
-      "video_id": 698472932,
+      "video_id": 698499268,
       "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/auto-capture-orders-from-live-comments.mp4",
       "created_at": "2026-11-01T20:48:18+07:00",
       "telegram_status": "delivered",
