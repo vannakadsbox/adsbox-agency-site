@@ -1,0 +1,123 @@
+# ADS BOX daily knowledge video: turns a video script (videos/scripts/<slug>.json, written by the daily Claude task)
+# into a 1080x1920 Khmer video with real B-roll, voice, subtitles and music, then sends the playable preview to Telegram.
+# Nothing is posted publicly. Videos are archived in the private draft release "video-archive"; videos/log.json tracks every step.
+# Runs when a script or a note (videos/requests/) is pushed, or by hand: Actions -> Daily knowledge video -> Run workflow.
+# Secrets: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID (or TELEGRAM_VIDEO_CHAT_ID for another chat), PEXELS_API_KEY (B-roll).
+name: Daily knowledge video
+
+on:
+  push:
+    branches: [main]
+    paths: ["videos/scripts/*.json", "videos/requests/*.json"]
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: "Make (or remake) the video for this script: videos/scripts/<slug>.json"
+        required: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reel
+  cancel-in-progress: false
+
+jobs:
+  video:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      TELEGRAM_VIDEO_CHAT_ID: ${{ secrets.TELEGRAM_VIDEO_CHAT_ID }}
+      RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: What to make
+        id: todo
+        run: |
+          if [ -n "${{ github.event.inputs.slug }}" ]; then
+            slugs="${{ github.event.inputs.slug }}"; notes=""
+          else
+            slugs=$(git diff --name-only --diff-filter=AM HEAD~1 HEAD -- 'videos/scripts/*.json' | xargs -r -n1 basename | sed 's/\.json$//' | tr '\n' ' ')
+            notes=$(git diff --name-only --diff-filter=A HEAD~1 HEAD -- 'videos/requests/*.json' | tr '\n' ' ')
+          fi
+          echo "slugs=$slugs" >> "$GITHUB_OUTPUT"; echo "notes=$notes" >> "$GITHUB_OUTPUT"
+          echo "Videos: ${slugs:-none}  Notes: ${notes:-none}"
+      - name: Send notes (no new article, script failed)
+        if: steps.todo.outputs.notes != ''
+        run: for f in ${{ steps.todo.outputs.notes }}; do python3 tools/reel/deliver.py note --file "$f" --run "$RUN_URL" || true; done
+      - uses: actions/setup-node@v4
+        if: steps.todo.outputs.slugs != ''
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v5
+        if: steps.todo.outputs.slugs != ''
+        with:
+          python-version: "3.12"
+      - name: Install tools
+        if: steps.todo.outputs.slugs != ''
+        run: |
+          sudo apt-get update -q && sudo apt-get install -y -q ffmpeg
+          npm install --no-save --no-package-lock playwright@1.48.2
+          npx playwright install --with-deps chromium
+          pip install -q pyyaml edge-tts
+      - name: Make and send the videos
+        if: steps.todo.outputs.slugs != ''
+        env:
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+        run: |
+          set -u
+          rel=video-archive
+          gh release view "$rel" >/dev/null 2>&1 || gh release create "$rel" --draft --title "Video archive (private)" \
+            --notes "Finished ADS BOX knowledge videos. Draft release: only people with access to the repository can see it."
+          voice=$(python3 -c "import sys; sys.path.insert(0,'tools/reel'); import common; print(common.settings()['voice'])")
+          rate=$(python3 -c "import sys; sys.path.insert(0,'tools/reel'); import common; print(common.settings()['rate'])")
+          vol=$(python3 -c "import sys; sys.path.insert(0,'tools/reel'); import common; print(common.settings()['music_volume'])")
+          failed=0
+          for slug in ${{ steps.todo.outputs.slugs }}; do
+            if [ ! -f "videos/scripts/$slug.json" ]; then python3 tools/reel/deliver.py failed --slug "$slug" --step script --error "videos/scripts/$slug.json not found" --run "$RUN_URL"; failed=1; continue; fi
+            out="out/$slug"; mkdir -p "$out"
+            python3 tools/reel/deliver.py status --slug "$slug" --to rendering
+            python3 tools/reel/broll.py "videos/scripts/$slug.json" "$out" || echo "B-roll search failed; branded backgrounds will be used."
+            [ -f "$out/broll.json" ] || echo '{"scenes": []}' > "$out/broll.json"
+            music=$(ls assets/video/music/*.mp3 2>/dev/null | shuf -n1 || true)
+            ok=0
+            for attempt in 1 2; do
+              if REEL_VOICE="$voice" TTS_RATE="$rate" MUSIC_VOLUME="$vol" node tools/reel/render.js "videos/scripts/$slug.json" "$out" --broll "$out/broll.json" ${music:+--music "$music"}; then ok=1; break; fi
+              echo "Render attempt $attempt failed"; sleep 20
+            done
+            if [ "$ok" != 1 ]; then python3 tools/reel/deliver.py failed --slug "$slug" --step render --error "the video could not be rendered (2 attempts)" --run "$RUN_URL"; failed=1; continue; fi
+            size=$(stat -c %s "$out/$slug.mp4")
+            if [ "$size" -gt 49000000 ]; then
+              ffmpeg -y -loglevel error -i "$out/$slug.mp4" -c:v libx264 -crf 27 -preset medium -maxrate 4M -bufsize 8M -c:a copy -movflags +faststart "$out/small.mp4" && mv "$out/small.mp4" "$out/$slug.mp4"
+            fi
+            # Keep the finished files in the private archive (never lost, even if Telegram fails).
+            gh release upload "$rel" "$out/$slug.mp4" "$out/$slug-thumb.jpg" --clobber || echo "Archive upload failed"
+            gh api "repos/${{ github.repository }}/releases" -q ".[] | select(.tag_name==\"$rel\") | {release_id: .id, assets: [.assets[] | select(.name==\"$slug.mp4\" or .name==\"$slug-thumb.jpg\") | {name, id, size}]}" > "$out/archive.json" || echo '{}' > "$out/archive.json"
+            if ! python3 tools/reel/deliver.py sent --slug "$slug" --dir "$out" --archive "$out/archive.json" --run "$RUN_URL"; then
+              python3 tools/reel/deliver.py failed --slug "$slug" --step telegram --error "Telegram did not accept the video" --run "$RUN_URL"; failed=1
+            fi
+          done
+          echo "FAILED=$failed" >> "$GITHUB_ENV"
+      - name: Save the production log
+        if: always() && steps.todo.outputs.slugs != ''
+        run: |
+          git config user.name "ADS BOX video bot"; git config user.email "noreply@anthropic.com"
+          git add videos/log.json
+          git diff --cached --quiet && exit 0
+          git commit -q -m "Video log: ${{ steps.todo.outputs.slugs }}"
+          for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin HEAD:main && exit 0; sleep 5; done
+          exit 1
+      - name: Report an unexpected failure
+        if: failure() && steps.todo.outputs.slugs != ''
+        run: |
+          for slug in ${{ steps.todo.outputs.slugs }}; do
+            python3 tools/reel/deliver.py failed --slug "$slug" --step workflow --error "the workflow stopped unexpectedly" --run "$RUN_URL" || true
+          done
+      - name: Mark the run failed
+        if: env.FAILED == '1'
+        run: exit 1
