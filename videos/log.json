@@ -268,9 +268,63 @@
       "article_url": "https://adsbox.agency/knowledge/choose-which-post-to-boost/",
       "video_title": "Like ច្រើន តែគ្មានគេសួរទិញ? ៤ ចំណុចរើស Post ឲ្យចំ មុន Boost",
       "hook": "Post មាន Like រាប់ពាន់ តែគ្មាននរណាសួរទិញសោះ? បងប្រហែលជា Boost ខុស Post ហើយ។",
-      "status": "scripted",
+      "status": "sent",
       "scripted_at": "2026-11-01T17:24:59+07:00",
-      "error": ""
+      "error": "",
+      "render_started_at": "2026-11-01T17:26:00+07:00",
+      "sent_at": "2026-11-01T17:30:18+07:00",
+      "rendered_at": "2026-11-01T17:30:18+07:00",
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/41297390578",
+      "duration": 67.37,
+      "size_mb": 14.2,
+      "render_seconds": 243,
+      "voice": "km-KH-PisethNeural",
+      "music": "adsbox-original-2.mp3",
+      "style": "motion graphics",
+      "visuals": [
+        "question",
+        "dashboard",
+        "compare",
+        "checklist",
+        "delivery",
+        "checklist",
+        "compare",
+        "takeaway",
+        "cta"
+      ],
+      "resolution": "1080x1920",
+      "fps": 30,
+      "subtitle_sync": "word",
+      "telegram": {
+        "ok": true,
+        "message_id": 45,
+        "chat": "configured",
+        "at": "2026-11-01T17:30:18+07:00",
+        "file_id": "BAACAgUAAxkDAAMtaucUtNrCiNIDCL0X3k8RTX2Iaz0AAookAAIeBDlX4FB0BLvJMCA9BA"
+      },
+      "archive": {
+        "assets": [
+          {
+            "id": 698011647,
+            "name": "choose-which-post-to-boost-thumb.jpg",
+            "size": 174228,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/choose-which-post-to-boost-thumb.jpg"
+          },
+          {
+            "id": 698011645,
+            "name": "choose-which-post-to-boost.mp4",
+            "size": 14201441,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/choose-which-post-to-boost.mp4"
+          }
+        ],
+        "release_id": 430382508
+      },
+      "article_id": "choose-which-post-to-boost",
+      "video_id": 698011645,
+      "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/choose-which-post-to-boost.mp4",
+      "created_at": "2026-11-01T17:30:18+07:00",
+      "telegram_status": "delivered",
+      "production_status": "complete"
     }
   ]
 }
