@@ -1,6 +1,6 @@
 {
   "slug": "write-prices-and-promotions-clearly-guided",
-  "video_title": "[Footage guideline test] Promotion ហើយ Inbox ពេញសំណួរ?",
+  "video_title": "[Footage guideline] Promotion ហើយ Inbox ពេញសំណួរ?",
   "topic": "វិធីសរសេរតម្លៃ Promotion និងថ្លៃដឹកក្នុង Caption ឲ្យអតិថិជនយល់ភ្លាម មិនបាច់សួរ ហើយហ៊ានកុម្ម៉ង់។",
   "thumbnail_text": "តម្លៃមិនច្បាស់ = បាត់ Order",
   "description": "ដាក់ Promotion ហើយអតិថិជនសួរ «សរុបប៉ុន្មាន?» ដដែលៗ?\nកែ Caption តាម ៤ ចំណុចងាយៗនេះ ឲ្យអ្នកទិញដឹងតម្លៃភ្លាម ហើយហ៊ានកុម្ម៉ង់។\nអានអត្ថបទពេញនៅ adsbox.agency\n#លក់អនឡាញ #Caption #Promotion #ADSBOX #FacebookPage",
@@ -44,7 +44,11 @@
           "scrolling smartphone",
           "social media smartphone",
           "woman smartphone"
-        ]
+        ],
+        "id": 83870,
+        "page": "https://pixabay.com/videos/id-83870/",
+        "author": "SYG_Anime",
+        "reason": "Woman studying her phone with a doubtful look: a customer reading an unclear price and deciding to move on, as the narration says."
       },
       "keyword": "តម្លៃមិនច្បាស់ បាត់អតិថិជន"
     },
@@ -79,10 +83,12 @@
         "category": "Advertising & Analytics",
         "concept": "Ad results on a screen: money spent, few orders",
         "queries": [
+          "worried woman laptop",
+          "business woman laptop",
           "analytics dashboard",
-          "marketing data laptop",
           "charts on screen"
-        ]
+        ],
+        "fallback": "2 searches: only keyboards, typing and offices; nothing shows money spent with few orders. Numbers are explained better by the animated dashboard."
       }
     },
     {
@@ -124,8 +130,10 @@
         "queries": [
           "retail store sale",
           "product promotion",
-          "clothing store owner"
-        ]
+          "shop owner",
+          "small shop"
+        ],
+        "fallback": "2 searches: malls, supermarkets, a tailor, street scenes; no shop explaining an offer. The animated checklist shows the conditions line by line."
       }
     },
     {
@@ -150,7 +158,11 @@
           "online shopping",
           "online payment smartphone",
           "ecommerce"
-        ]
+        ],
+        "id": 233382,
+        "page": "https://pixabay.com/videos/id-233382/",
+        "author": "Yasir1120",
+        "reason": "Shopper browsing a product on phone and laptop: the moment a buyer decides, which a clear deadline speeds up. Filmed vertically, so it fills 9:16 with no crop."
       }
     },
     {
@@ -185,8 +197,10 @@
         "queries": [
           "parcel delivery",
           "packing boxes",
-          "courier package"
-        ]
+          "courier package",
+          "delivery motorcycle"
+        ],
+        "fallback": "3 searches: highway trucks, a chopper bike, wind turbine, construction, music box; nothing like parcel delivery in Cambodia. The animated scooter and receipt show the fees."
       }
     },
     {
@@ -235,7 +249,11 @@
           "customer smartphone",
           "woman reading phone",
           "happy customer"
-        ]
+        ],
+        "id": 154829,
+        "page": "https://pixabay.com/videos/id-154829/",
+        "author": "Amorn_mimi",
+        "reason": "Woman reading her phone closely: 'read your caption again like a new customer'. Yellow background matches ADS BOX brand colours."
       }
     },
     {
