@@ -84,7 +84,7 @@ window.ACCOUNTS = {
    {
     "name": "អ្នកមើលកុនAi",
     "url": "https://www.facebook.com/profile.php?id=61594713303864",
-    "followers": 45,
+    "followers": 47,
     "picture": "assets/accounts/fb-61594713303864.webp",
     "cover": "assets/opt/adsbox-cover-ed7ada-1565780390.webp",
     "type": "ផេកខ្មែរ",
@@ -106,7 +106,7 @@ window.ACCOUNTS = {
    {
     "name": "24MerlTos",
     "url": "https://www.facebook.com/profile.php?id=61594235184973",
-    "followers": 309,
+    "followers": 316,
     "picture": "assets/accounts/fb-61594235184973.webp",
     "cover": "assets/opt/adsbox-cover-de2e8b-1565780390.webp",
     "type": "ផេកខ្មែរ",
