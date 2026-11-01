@@ -32,6 +32,7 @@ DEFAULT_SETTINGS = {
     "max_brand_share": 0.2,
     "max_attempts": 3,
     "since": "",               # only articles published at or after this time get videos
+    "footage_enabled": False,  # Pixabay footage in videos (off: custom animation only)
     "report_hours": [8, 18],   # Phnom Penh hours when a missing morning / evening article is reported on Telegram
 }
 

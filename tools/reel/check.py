@@ -28,12 +28,16 @@ VISUALS = {
     "leaving": {"post_title": ("text", 20), "confusing": ("text", 26), "caption": ("text", 28)},
     "dashboard": {"title": ("text", 26), "metrics": ("pairs", (3, 3), 10), "alert": ("text", 28), "next?": ("text", 24)},
     "compare": {"bad": ("text", 30), "good": ("text", 30)},
-    "checklist": {"bad?": ("text", 22), "items": ("texts", (2, 4), 32)},
+    "checklist": {"bad?": ("text", 22), "items": ("texts", (2, 4), 32), "mark?": ("text", 1)},
+    "story": {"scene?": ("text", 8), "mood?": ("text", 8), "title?": ("text", 24), "bubbles?": ("texts", (0, 5), 16)},
+    "flow": {"steps": ("steps", (2, 4), 30)},
+    "orders": {"title?": ("text", 20), "rows": ("rows", (2, 4), 12)},
+    "sticker": {"name": ("text", 16), "phone": ("text", 16), "address": ("text", 22), "items": ("text", 20)},
     "deadline": {"bad": ("text", 22), "good": ("text", 32), "result?": ("text", 24)},
     "delivery": {"rows": ("pairs", (2, 3), 22), "total?": ("pair", 26)},
     "caption": {"page?": ("text", 16), "lines": ("texts", (3, 6), 34), "highlight?": ("texts", (0, 4), 12), "stamp?": ("text", 12)},
     "takeaway": {"quote": ("text", 46)},
-    "cta": {"services?": ("texts", (2, 4), 16)},  # no services = "follow ADS BOX" card (education first)
+    "cta": {"services?": ("texts", (2, 4), 24), "url?": ("text", 24)},  # no services = "follow ADS BOX" card (education first)
 }
 
 
@@ -56,6 +60,14 @@ def visual_problems(i, v):
             lo, hi = spec[1]
             if not isinstance(val, list) or not (lo <= len(val) <= hi) or any(not isinstance(x, str) or len(x) > spec[2] for x in val):
                 out.append(f"Scene {i}: visual.{k} must be {lo}-{hi} texts of max {spec[2]} characters")
+        elif kind == "steps":
+            lo, hi = spec[1]
+            if not isinstance(val, list) or not (lo <= len(val) <= hi) or any(not isinstance(x, dict) or not x.get("text") or len(str(x["text"])) > spec[2] or len(str(x.get("label", ""))) > 16 for x in val):
+                out.append(f"Scene {i}: visual.{k} must be {lo}-{hi} steps {{label? (max 16), text (max {spec[2]})}}")
+        elif kind == "rows":
+            lo, hi = spec[1]
+            if not isinstance(val, list) or not (lo <= len(val) <= hi) or any(not isinstance(x, dict) or not x.get("name") or any(len(str(x.get(f, ""))) > spec[2] for f in ("name", "code", "qty")) for x in val):
+                out.append(f"Scene {i}: visual.{k} must be {lo}-{hi} rows {{name, code, qty}} (max {spec[2]} characters each)")
         elif kind == "msgs":
             lo, hi = spec[1]
             if not isinstance(val, list) or not (lo <= len(val) <= hi) or any(
@@ -145,8 +157,8 @@ def problems(script, brief, s):
         out += visual_problems(i, sc.get("visual"))
     if scenes[0].get("role") != "hook":
         out.append("Scene 1 must be the hook")
-    if (scenes[0].get("visual") or {}).get("type") != "question":
-        out.append("Scene 1 (the hook) must use the 'question' visual")
+    if (scenes[0].get("visual") or {}).get("type") not in ("question", "story", "chat"):
+        out.append("Scene 1 (the hook) must use the 'question', 'story' or 'chat' visual")
     if (scenes[-1].get("visual") or {}).get("type") != "cta":
         out.append("The last scene must use the 'cta' visual")
     if BRAND.search(" ".join(scenes[0].get("lines") or [])):

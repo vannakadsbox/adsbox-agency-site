@@ -15,5 +15,7 @@
     8,
     18
   ],
-  "note": "Daily videos turned on 2026-11-01 after the owner approved the template. Only articles published after 'since' are used, each once. Public posting is not part of this system."
+  "note": "Daily videos turned on 2026-11-01 after the owner approved the template. Only articles published after 'since' are used, each once. Public posting is not part of this system.",
+  "footage_enabled": false,
+  "style": "custom animated storytelling (owner direction 2026-11-01): motion graphics, phone & chat, illustrated story, product & dashboard demos; Pixabay footage off by default"
 }

@@ -115,7 +115,7 @@ function page(script, scenes, total) {
 <div class="fsh-t"></div><div class="fsh-b"></div>${sc.keyword && i === 0 ? `<div class="stage"><div class="q-title" style="${A("popIn", x.start + 0.35, 0.6, "cubic-bezier(.3,1.5,.5,1)")}"><span>${esc(sc.keyword)}</span></div></div>` : sc.keyword ? `<div class="ft-lt" style="${A("slideR", x.start + 0.45, 0.55)}">${sc.label ? `<span>${esc(sc.label)}</span>` : ""}<b>${esc(sc.keyword)}</b></div>` : ""}</section>`;
     } else {
       html += `<section class="scene" style="${A("in" + dir, enter, 0.6, "cubic-bezier(.22,1,.36,1)")},${A("out" + dir, exit, 0.42, "cubic-bezier(.55,0,.75,.35)", "forwards").replace("animation:", "")}">
-<div class="stage">${make(v, x, b64)}</div></section>`;
+<div class="stage" style="${A(i % 2 ? "camB" : "camA", enter, sc.dur + 0.3, "ease-in-out")}">${make(v, x, b64)}</div></section>`;
     }
     sc.subs.forEach((s, j) => {
       html += `<div class="sub" style="${A("sin", s.start, 0.18, "ease-out")},${A("sout", s.end - 0.1, 0.1, "ease-in", "forwards").replace("animation:", "")}"><span>${highlight(s.text, sc.keyword)}</span></div>`;
@@ -168,6 +168,8 @@ body{width:${W}px;height:${H}px;overflow:hidden;font-family:M,L,sans-serif;color
 .outro .u{font-family:L,M,sans-serif;font-weight:800;font-size:66px;color:#0b1430;background:#ffd23f;padding:16px 52px;border-radius:28px;animation:rise .6s ease-out ${(end + 0.75).toFixed(2)}s both,pulse 1.1s ease-in-out ${(end + 1.4).toFixed(2)}s infinite}
 .outro .f{font-size:44px;font-weight:700;padding:10px 34px 16px;border-radius:999px;border:3px solid rgba(255,255,255,.5);animation:rise .6s ease-out ${(end + 1.1).toFixed(2)}s both}
 .outro small{font-family:L,M,sans-serif;font-size:42px;font-weight:600;opacity:.9;animation:rise .6s ease-out ${(end + 0.95).toFixed(2)}s both}
+@keyframes camA{from{transform:scale(1)}to{transform:scale(1.035) translateY(-10px)}}
+@keyframes camB{from{transform:scale(1.035) translateY(-10px)}to{transform:scale(1)}}
 @keyframes inA{from{opacity:0;transform:translateX(120px) scale(.97)}to{opacity:1;transform:none}}
 @keyframes outA{to{opacity:0;transform:translateX(-120px) scale(.97)}}
 @keyframes inB{from{opacity:0;transform:translateY(90px) scale(.97)}to{opacity:1;transform:none}}
@@ -227,10 +229,12 @@ async function frames(html, total, dir, alpha) {
 }
 
 // Share of the speaking time by visual type (the branded opening and ending are not counted).
-const DEMO = new Set(["question", "caption", "dashboard", "leaving", "chat"]);  // phone chats, post mock-ups, ads results: screen demos
+// The five ADS BOX visual methods (owner's direction, 1 Nov 2026) grouped as the four target shares.
+const METHOD = { question: "phone_chat", chat: "phone_chat", caption: "phone_chat", story: "illustrated", leaving: "illustrated",
+  dashboard: "product_dashboard", orders: "product_dashboard", sticker: "product_dashboard" };
 function visualMix(scenes) {
-  const t = { footage: 0, animation: 0, screen_demo: 0, product_visual: 0 };
-  scenes.forEach((s) => { const k = s.foot ? "footage" : DEMO.has((s.visual || {}).type) ? "screen_demo" : "animation"; t[k] += s.dur; });
+  const t = { motion_graphics: 0, phone_chat: 0, illustrated: 0, product_dashboard: 0, footage: 0 };
+  scenes.forEach((s) => { const k = s.foot ? "footage" : METHOD[(s.visual || {}).type] || "motion_graphics"; t[k] += s.dur; });
   const all = Object.values(t).reduce((a, b) => a + b, 0) || 1;
   return Object.fromEntries(Object.entries(t).map(([k, v]) => [k, +(v / all).toFixed(2)]));
 }

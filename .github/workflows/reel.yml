@@ -174,7 +174,9 @@ jobs:
             python3 tools/reel/deliver.py status --slug "$slug" --to rendering
             # Combined style: download the Pixabay clips the script chose (scenes without footage stay animated).
             foot=""
-            if grep -q '"footage"' "videos/scripts/$slug.json"; then
+            # Pixabay footage is off by default (videos/settings.json "footage_enabled"); the scenes then use their animation.
+            fon=$(python3 -c "import sys; sys.path.insert(0,'tools/reel'); import common; print(1 if common.settings().get('footage_enabled') else 0)")
+            if [ "$fon" = 1 ] && grep -q '"footage"' "videos/scripts/$slug.json"; then
               python3 tools/reel/footage.py fetch "videos/scripts/$slug.json" "$out" && foot="--footage $out/footage.json"
             fi
             music=$(ls assets/video/music/*.mp3 2>/dev/null | shuf -n1 || true)

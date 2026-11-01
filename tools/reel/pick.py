@@ -38,6 +38,7 @@ RULES = [
     "Example amounts must be clearly hypothetical, like the article's own examples.",
     "The 'lines' of a scene are exactly what the voice says, in order, split for subtitles at natural pauses (after a phrase or at ។ ? !). Max 40 characters per line. Write prices with Arabic digits after $ (e.g. $15, $1.50); other numbers may use Khmer digits.",
     "No emoji, no hashtags and no symbols like →, *, # inside 'lines'. Hashtags go only in 'description'.",
+    "Visual mix target (owner, 1 Nov 2026): about 40% motion graphics (compare, checklist, flow, deadline, delivery, takeaway, cta), 25% phone and chat (chat, question, caption), 20% illustrated story (story, leaving), 15% product and dashboard demos (orders, sticker, dashboard). Never present simulated data as real.",
     "The video is branded motion graphics, no footage. Give every scene a 'visual' from 'visuals' that SHOWS what the narration says: the hook uses 'question', the last scene 'cta'; pick before/after ('compare'), steps ('checklist'), prices and totals ('delivery' receipt or 'caption' post mock-up), deadlines ('deadline'), problems ('leaving' or 'dashboard'), the lesson ('takeaway'). Vary the types; avoid the same type twice in a row.",
     "Visual texts are short Khmer phrases taken from the narration (prices, conditions, examples); never new facts. Elements appear as each subtitle line is spoken, so order the lines to match (e.g. compare: the bad version is said before the good one).",
     "Make it different from the recent videos listed in 'recent_videos' (different hook style and opening words).",
@@ -114,6 +115,10 @@ def main():
         "output_schema": SCHEMA,
         "visuals": {
             "question": "hook: phone with customer messages popping in, then a big question. {title, bubbles:[2-5 short customer messages]}",
+            "story": "illustrated story: the ADS BOX seller character (Sreyka) on Live, at her desk or packing; mood happy|worried|neutral; comment bubbles fly up. {scene?: live|desk|packing, mood?, title?, bubbles?:[0-5 short comments]}",
+            "flow": "motion graphics: 2-4 steps joined by a line, each lighting up as it is said. {steps:[{label?, text}]}",
+            "orders": "product demo: an order list filling in, always marked as an example. {title?, rows:[2-4 x {name, code, qty}]}",
+            "sticker": "product demo: a shipping sticker printing out (example). {name, phone, address, items}",
             "chat": "screen demo: Messenger chat between customer and shop, message by message. {with?, messages:[2-5 x {from: customer|shop, text}]}",
             "leaving": "problem: a confusing post and customers walking away. {post_title, confusing (the unclear text), caption}",
             "dashboard": "problem with ads money: Boost results card + red alert. {title, metrics:[3 x {label, value}] (clearly a sample), alert, next?}",

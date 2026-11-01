@@ -16,6 +16,10 @@ const ICON = {
   arrow: '<path d="M12 4v15M5 12l7 7 7-7"/>',
   bolt: '<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>',
   chat: '<path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"/>',
+  printer: '<path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M6 14h12v7H6z"/>',
+  list: '<path d="M8 6h13M8 12h13M8 18h13"/><path d="M3 6h.01M3 12h.01M3 18h.01"/>',
+  tag: '<path d="M20 12l-8 8-9-9V3h8z"/><circle cx="7.5" cy="7.5" r="1.5"/>',
+  live: '<circle cx="12" cy="12" r="3"/><path d="M5.6 5.6a9 9 0 0 0 0 12.8M18.4 5.6a9 9 0 0 1 0 12.8"/>',
   eye: '<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
 };
 const icon = (n, size = 48, color = "currentColor", sw = 2.6) =>
@@ -40,6 +44,32 @@ const clockSvg = (t, d) => `<svg width="300" height="300" viewBox="0 0 300 300" 
 ${Array.from({ length: 12 }, (_, i) => `<rect x="146" y="22" width="8" height="${i % 3 ? 16 : 30}" rx="4" fill="#0b1430" transform="rotate(${i * 30} 150 150)"/>`).join("")}
 <rect x="144" y="70" width="12" height="86" rx="6" fill="#0b1430" style="transform-origin:150px 150px;${A("spinH", t, d, "linear")}"/>
 <rect x="146" y="40" width="8" height="116" rx="4" fill="#ff5d6c" style="transform-origin:150px 150px;${A("spinM", t, d, "linear")}"/><circle cx="150" cy="150" r="14" fill="#0b1430"/></svg>`;
+
+// --- ADS BOX characters (always drawn the same way, so the videos are recognisable) -----------------------------
+// Seller "Sreyka": black ponytail, yellow top with navy collar. Customers: blue / coral / green tops.
+const FACE = { happy: '<path d="M88 112q12 10 24 0" stroke="#3a2418" stroke-width="5" fill="none" stroke-linecap="round"/>',
+  worried: '<path d="M88 118q12-8 24 0" stroke="#3a2418" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M80 82l14 4M120 82l-14 4" stroke="#2b1d16" stroke-width="5" stroke-linecap="round"/>',
+  neutral: '<path d="M90 114h20" stroke="#3a2418" stroke-width="5" stroke-linecap="round"/>' };
+function seller(mood = "happy", w = 300, hold = "phone") {
+  return `<svg width="${w}" height="${w * 1.4}" viewBox="0 0 200 280" aria-hidden="true">
+<path d="M150 70c22 10 26 60 6 92" stroke="#1a1210" stroke-width="22" fill="none" stroke-linecap="round"/>
+<path d="M30 280c4-64 30-92 70-92s66 28 70 92z" fill="#ffd23f"/><path d="M78 190l22 22 22-22" fill="#0b1430"/>
+<rect x="88" y="150" width="24" height="34" rx="10" fill="#e9b48f"/>
+<ellipse cx="100" cy="100" rx="46" ry="52" fill="#f1c6a0"/>
+<path d="M54 100c-6-50 20-70 46-70s54 18 46 70c-6-26-24-40-46-40s-40 14-46 40z" fill="#1a1210"/>
+<circle cx="84" cy="96" r="5" fill="#2b1d16"/><circle cx="116" cy="96" r="5" fill="#2b1d16"/>
+<circle cx="74" cy="112" r="7" fill="#ffb3a0" opacity=".6"/><circle cx="126" cy="112" r="7" fill="#ffb3a0" opacity=".6"/>${FACE[mood] || FACE.happy}
+${hold === "phone" ? '<path d="M150 230q30-30 18-70" stroke="#ffd23f" stroke-width="26" fill="none" stroke-linecap="round"/><rect x="150" y="128" width="40" height="66" rx="8" fill="#0b1430"/><rect x="155" y="135" width="30" height="50" rx="4" fill="#3f7dff"/>' : ""}
+${hold === "box" ? '<rect x="58" y="214" width="84" height="62" rx="6" fill="#c98b4a"/><rect x="58" y="214" width="84" height="14" fill="#b37538"/><rect x="92" y="214" width="16" height="62" fill="#e9c08a"/>' : ""}</svg>`;
+}
+function customer(k = 0, w = 200) {
+  const tops = ["#3f7dff", "#ff8a5c", "#2ed39a"], hair = ["#2b1d16", "#3a2a20", "#161010"];
+  return `<svg width="${w}" height="${w * 1.3}" viewBox="0 0 200 260" aria-hidden="true"><path d="M30 260c4-60 30-86 70-86s66 26 70 86z" fill="${tops[k % 3]}"/>
+<rect x="88" y="140" width="24" height="34" rx="10" fill="#e8b48c"/><ellipse cx="100" cy="96" rx="44" ry="50" fill="#f3cfac"/>
+<path d="M56 96c-4-44 18-64 44-64s50 18 44 64c-6-22-22-34-44-34s-38 12-44 34z" fill="${hair[k % 3]}"/>
+<circle cx="85" cy="94" r="5" fill="#2b1d16"/><circle cx="115" cy="94" r="5" fill="#2b1d16"/><path d="M90 112q10 8 20 0" stroke="#3a2418" stroke-width="5" fill="none" stroke-linecap="round"/>
+<rect x="128" y="176" width="34" height="58" rx="7" fill="#0b1430"/></svg>`;
+}
 
 // --- Templates -------------------------------------------------------------------------------------------------
 function header(sc, x) {
@@ -84,7 +114,7 @@ V.dashboard = (v, x) => {
   const bars = [62, 80, 54, 88, 70, 96, 74];
   const num = (s) => { const mm = String(s).match(/^(\$?)(\d+)$/); return mm ? { pre: mm[1], n: +mm[2] } : null; };
   return `${header({ keyword: v.title }, x)}<div class="dash" style="${A("rise", x.start + 0.35, 0.6)}">
-<div class="dh"><span class="dot"></span><b>Boost Post</b><small>ថ្ងៃនេះ</small></div>
+<div class="dh"><span class="dot"></span><b>Boost Post</b><small>ឧទាហរណ៍ · មិនមែនទិន្នន័យពិត</small></div>
 <div class="tiles">${m.map((t, i) => { const c = num(t.value); return `<div class="tile" style="${A("rise", x.start + 0.6 + i * 0.18)}"><small>${esc(t.label)}</small>
 ${c ? `<b class="cnt" data-pre="${esc(c.pre)}" style="--to:${c.n};${A("count", x.start + 0.7 + i * 0.18, 1.2, "cubic-bezier(.2,.7,.3,1)")}"></b>` : `<b>${esc(t.value)}</b>`}</div>`; }).join("")}</div>
 <div class="bars">${bars.map((h, i) => `<i style="height:${h}%;${A("barUp", x.start + 0.8 + i * 0.08, 0.6)}"></i>`).join("")}</div></div>
@@ -104,9 +134,9 @@ V.compare = (v, x) => {
 
 V.checklist = (v, x) => {
   const items = v.items || [];
-  const t1 = x.T(Math.min(1, x.n - 1)), span = Math.max(0.6, x.F(0.95) - t1), step = span / Math.max(1, items.length);
+  const t1 = v.mark === "x" ? x.F(0.02) : x.T(Math.min(1, x.n - 1)), span = Math.max(0.6, x.F(0.95) - t1), step = span / Math.max(1, items.length);
   return `${header(x.sc, x)}${v.bad ? `<div class="badline cl" style="${A("rise", x.T(0) + 0.3)}"><span>${esc(v.bad)}</span><i class="strike" style="${A("drawX", t1 - 0.1, 0.4)}"></i></div>` : ""}
-<div class="list${v.bad ? " lb" : ""}">${items.map((it, i) => `<div class="li" style="${A("slideR", t1 + i * step, 0.5)}"><span class="ck" style="${A("popIn", t1 + i * step + 0.25, 0.4)}">${icon("check", 40, "#0b1430", 3.4)}</span><p>${esc(it)}</p></div>`).join("")}</div>`;
+<div class="list${v.bad ? " lb" : ""}">${items.map((it, i) => `<div class="li" style="${A("slideR", t1 + i * step, 0.5)}"><span class="ck${v.mark === "x" ? " ckx" : ""}" style="${A("popIn", t1 + i * step + 0.25, 0.4)}">${v.mark === "x" ? icon("x", 40, "#fff", 3.4) : icon("check", 40, "#0b1430", 3.4)}</span><p>${esc(it)}</p></div>`).join("")}</div>`;
 };
 
 V.deadline = (v, x) => `${header(x.sc, x)}<div class="dl-art"><div style="${A("popIn", x.start + 0.4, 0.6)}">${calendar()}</div>
@@ -147,9 +177,49 @@ ${["គន្លឹះលក់អនឡាញ", "Boost និងផ្សាយ
   return `<div class="cta-card" style="${A("rise", x.start + 0.2, 0.65)}">
 <div class="cc-top"><img src="data:image/png;base64,${b64("assets/logo-mark.png")}" alt=""><div><b>ADS BOX</b><small>ក្រុមជំនាញផ្សាយពាណិជ្ជកម្មអនឡាញ</small></div></div>
 ${(v.services || []).map((s, i) => `<div class="cc-row" style="${A("slideR", t1 + i * 0.22, 0.5)}"><span class="ck">${icon("check", 40, "#0b1430", 3.4)}</span><b>${esc(s)}</b></div>`).join("")}</div>
-<div class="cta-url" style="${A("popIn", tu, 0.55, "cubic-bezier(.3,1.5,.5,1)")}"><span style="${A("pulse", tu + 0.6, 1.1, "ease-in-out", "both", " infinite")}">adsbox.agency</span>
+<div class="cta-url" style="${A("popIn", tu, 0.55, "cubic-bezier(.3,1.5,.5,1)")}"><span style="${A("pulse", tu + 0.6, 1.1, "ease-in-out", "both", " infinite")}">${esc(v.url || "adsbox.agency")}</span>
 <svg class="tap" width="110" height="110" viewBox="0 0 24 24" fill="#fff" stroke="#0b1430" stroke-width="1.2" style="${A("tap", tu + 0.5, 1.1, "ease-in-out", "both", " infinite")}" aria-hidden="true"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V10l4.2.8a2 2 0 0 1 1.6 2.3l-.9 4.6A3 3 0 0 1 14 20H11a3 3 0 0 1-2.4-1.2L5.3 14.4a1.4 1.4 0 0 1 2-2z"/></svg></div>`;
 };
+
+// Illustrated storytelling: the ADS BOX seller in a scene (Live, desk or packing), with comments / bubbles per beat.
+V.story = (v, x) => {
+  const bub = v.bubbles || [];
+  const t0 = x.F(0.05), step = Math.max(0.3, (x.F(0.8) - t0) / Math.max(1, bub.length));
+  const props = {
+    live: `<div class="st-ring"></div><div class="st-live" style="${A("popIn", x.start + 0.5, 0.4)}">${icon("live", 34, "#fff", 2.6)}<b>LIVE</b></div>`,
+    desk: `<div class="st-desk"></div><div class="st-laptop"></div>`,
+    packing: `<div class="st-desk"></div><div class="st-boxes">${[0, 1, 2].map((i) => `<i style="${A("popIn", x.F(0.3) + i * 0.3, 0.4)}"></i>`).join("")}</div>`,
+  }[v.scene || "live"] || "";
+  return `${v.title ? `<div class="q-title" style="${A("popIn", x.T(x.n - 1), 0.6, "cubic-bezier(.3,1.5,.5,1)")}"><span>${esc(v.title)}</span></div>` : header(x.sc, x)}
+<div class="story s-${esc(v.scene || "live")}">${props}
+<div class="st-seller" style="${A("rise", x.start + 0.2, 0.7)}">${seller(v.mood || "happy", 470, v.scene === "packing" ? "box" : "phone")}</div>
+${v.customer ? `<div class="st-cust" style="${A("slideR", x.F(0.35), 0.6)}">${customer(0, 230)}</div>` : ""}
+<div class="st-bubs">${bub.map((b, i) => `<div class="st-b" style="left:${[8, 52, 22, 60, 30][i % 5]}%;${A("flyUp", t0 + i * step, 2.2, "cubic-bezier(.2,.7,.3,1)")}">${esc(b)}</div>`).join("")}</div></div>`;
+};
+
+// Motion graphics: steps joined by a line, each one lighting up as it is said.
+V.flow = (v, x) => {
+  const steps = v.steps || [];
+  const t0 = x.F(0.02), step = Math.max(0.6, (x.F(0.9) - t0) / Math.max(1, steps.length));
+  const icons = ["tag", "chat", "list", "printer", "check"];
+  return `${header(x.sc, x)}<div class="flow"><i class="fl-line" style="${A("growY", t0, step * steps.length, "linear")}"></i>
+${steps.map((st, i) => `<div class="fl-s" style="${A("slideR", t0 + i * step, 0.5)}"><span class="fl-i">${icon(st.icon || icons[i % icons.length], 46, "#0b1430", 2.6)}</span><div><small>${esc(st.label || "")}</small><p>${esc(st.text)}</p></div></div>`).join("")}</div>`;
+};
+
+// Product / dashboard demo: an order list filling in (always labelled as an example, never real data).
+V.orders = (v, x) => {
+  const rows = v.rows || [];
+  const t0 = x.F(0.1), step = Math.max(0.4, (x.F(0.8) - t0) / Math.max(1, rows.length));
+  return `${header(x.sc, x)}<div class="ord" style="${A("rise", x.start + 0.3, 0.6)}"><div class="dh"><span class="dot"></span><b>${esc(v.title || "បញ្ជី Order")}</b><small>ឧទាហរណ៍ · មិនមែនទិន្នន័យពិត</small></div>
+<div class="or-h"><span>អតិថិជន</span><span>កូដ</span><span>ចំនួន</span><span></span></div>
+${rows.map((r, i) => `<div class="or-r" style="${A("slideR", t0 + i * step, 0.45)}"><span>${esc(r.name)}</span><b>${esc(r.code)}</b><span>${esc(r.qty)}</span><em style="${A("popIn", t0 + i * step + 0.35, 0.35)}">${icon("check", 30, "#fff", 3.4)}</em></div>`).join("")}</div>`;
+};
+
+// Product demo: a shipping sticker printing out of the printer.
+V.sticker = (v, x) => `${header(x.sc, x)}<div class="prn" style="${A("rise", x.start + 0.3, 0.6)}">${icon("printer", 110, "#0b1430", 1.8)}</div>
+<div class="stk" style="${A("printOut", x.F(0.15), 1.4, "cubic-bezier(.2,.8,.3,1)")}"><div class="stk-h"><b>ADS BOX</b><small>ស្ទីគ័រដឹកជញ្ជូន · ឧទាហរណ៍</small></div>
+<p><small>ឈ្មោះ</small>${esc(v.name)}</p><p><small>ទូរស័ព្ទ</small>${esc(v.phone)}</p><p><small>អាសយដ្ឋាន</small>${esc(v.address)}</p><p class="it"><small>ទំនិញ</small>${esc(v.items)}</p>
+<div class="bar"></div></div>`;
 
 const TYPES = Object.keys(V);
 
@@ -242,6 +312,39 @@ const CSS = `
 .tap{position:absolute;left:735px;top:78px}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
 @keyframes tap{0%,100%{transform:translate(0,0)}50%{transform:translate(-14px,-18px)}}
+.ckx{background:#ff5d6c}
+.story{position:absolute;left:-90px;right:-90px;top:200px;height:820px;overflow:visible}
+.st-seller{position:absolute;left:290px;bottom:0}
+.st-cust{position:absolute;right:60px;bottom:0}
+.st-ring{position:absolute;left:240px;top:20px;width:600px;height:600px;border-radius:50%;border:26px solid rgba(255,255,255,.12);box-shadow:0 0 80px rgba(255,210,63,.25) inset}
+.st-live{position:absolute;left:120px;top:60px;display:flex;align-items:center;gap:10px;background:#ff3b5c;padding:10px 24px;border-radius:16px;font-family:L,sans-serif;font-size:40px;font-weight:800}
+.st-desk{position:absolute;left:0;right:0;bottom:0;height:90px;background:linear-gradient(#c98b4a,#a8713a);border-radius:18px 18px 0 0}
+.st-laptop{position:absolute;left:140px;bottom:90px;width:220px;height:150px;background:#dfe5f3;border:10px solid #0b1430;border-radius:14px}
+.st-boxes{position:absolute;right:110px;bottom:90px;display:flex;align-items:flex-end;gap:12px}
+.st-boxes i{display:block;width:150px;height:120px;background:#c98b4a;border-radius:8px;box-shadow:inset 0 22px 0 #b37538}
+.st-bubs{position:absolute;left:0;right:0;top:0;bottom:200px}
+.st-b{position:absolute;bottom:0;font-family:L,M,sans-serif;font-size:42px;font-weight:800;color:#0b1430;background:#fff;padding:10px 26px 14px;border-radius:26px 26px 26px 8px;box-shadow:0 12px 30px rgba(0,0,0,.3);opacity:0}
+.flow{position:absolute;left:0;right:0;top:230px;display:flex;flex-direction:column;gap:34px}
+.fl-line{position:absolute;left:52px;top:40px;bottom:40px;width:8px;background:#ffd23f;border-radius:8px;transform-origin:top}
+.fl-s{position:relative;display:flex;align-items:center;gap:26px}
+.fl-i{flex:none;width:112px;height:112px;border-radius:30px;background:#ffd23f;display:grid;place-items:center;box-shadow:0 14px 34px rgba(0,0,0,.3)}
+.fl-s small{display:block;font-size:34px;font-weight:700;color:#ffd23f}
+.fl-s p{font-size:50px;font-weight:700;line-height:1.4;background:rgba(255,255,255,.08);padding:8px 24px 12px;border-radius:18px}
+.ord{position:absolute;left:0;right:0;top:250px;background:#fff;color:#0b1430;border-radius:36px;padding:30px;box-shadow:0 36px 80px rgba(0,0,0,.4)}
+.or-h,.or-r{display:grid;grid-template-columns:1.5fr 1fr .8fr 70px;align-items:center;gap:10px;padding:14px 10px}
+.or-h{font-size:32px;color:#6a7495;border-bottom:3px solid #e6ebf7;margin-top:14px}
+.or-r{font-size:48px;font-weight:700;border-bottom:2px solid #eef2fb}.or-r b{font-family:L,M,sans-serif;color:#1f4fd1}
+.or-r em{width:54px;height:54px;border-radius:50%;background:#2ed39a;display:grid;place-items:center}
+.prn{position:absolute;left:0;right:0;top:230px;margin:0 auto;width:220px;height:170px;background:#fff;border-radius:30px;display:grid;place-items:center;box-shadow:0 26px 60px rgba(0,0,0,.35);z-index:2}
+.stk{position:absolute;left:110px;right:110px;top:380px;background:#fff;color:#0b1430;border-radius:10px 10px 24px 24px;padding:26px 34px;box-shadow:0 30px 70px rgba(0,0,0,.4);transform-origin:top}
+.stk-h{display:flex;justify-content:space-between;align-items:baseline;border-bottom:4px dashed #b9c3e3;padding-bottom:12px;margin-bottom:10px}
+.stk-h b{font-family:L,M,sans-serif;font-size:44px;font-weight:800}.stk-h small{font-size:28px;color:#6a7495}
+.stk p{font-size:46px;font-weight:700;line-height:1.5}.stk p small{display:inline-block;width:220px;font-size:32px;font-weight:500;color:#6a7495}
+.stk .it{color:#1f4fd1}
+.stk .bar{height:80px;margin-top:16px;background:repeating-linear-gradient(90deg,#0b1430 0 6px,transparent 6px 10px,#0b1430 10px 12px,transparent 12px 20px)}
+@keyframes flyUp{0%{opacity:0;transform:translateY(40px) scale(.7)}15%{opacity:1;transform:none}80%{opacity:1}100%{opacity:0;transform:translateY(-520px)}}
+@keyframes growY{from{transform:scaleY(0)}to{transform:none}}
+@keyframes printOut{from{clip-path:inset(0 0 100% 0);transform:translateY(-60px)}to{clip-path:inset(0 0 0 0);transform:none}}
 @property --n{syntax:'<integer>';inherits:false;initial-value:0}
 @keyframes count{from{--n:0}to{--n:var(--to)}}
 @keyframes rise{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}

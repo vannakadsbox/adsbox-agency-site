@@ -63,6 +63,11 @@ def script_text(script):
     return "\n\n".join(rows)
 
 
+NAMES = {"motion_graphics": "motion graphics", "phone_chat": "phone & chat", "illustrated": "illustrated story",
+         "product_dashboard": "product & dashboard demos", "footage": "stock footage",
+         "animation": "animation", "screen_demo": "screen demos", "product_visual": "product visuals"}
+
+
 def quality(mp4, meta):
     """Technical checks on the actual file (ffprobe / ffmpeg), each marked passed only if it was measured."""
     def run(args):
@@ -87,8 +92,7 @@ def quality(mp4, meta):
         f"{ok(not dec.stderr.strip())} Plays start to end (full decode, {'no errors' if not dec.stderr.strip() else 'errors'})",
         f"{ok(lufs != '?' and -16 <= float(lufs.split()[0]) <= -12)} Loudness {lufs} (target −14)",
         f"{ok(meta.get('subtitle_sync') == 'word')} Subtitles timed to {meta.get('subtitle_sync')} marks from the voice",
-        f"🎞 Visual mix: footage {round(100 * mix.get('footage', 0))}% · animation {round(100 * mix.get('animation', 0))}% · "
-        f"screen demos {round(100 * mix.get('screen_demo', 0))}% · product visuals {round(100 * mix.get('product_visual', 0))}%",
+        "🎨 Visual mix (share of running time): " + " · ".join(f"{NAMES.get(k, k)} {round(100 * v)}%" for k, v in mix.items() if v),
     ]
     return "\n".join(rows), {"width": v.get("width"), "height": v.get("height"), "fps": v.get("r_frame_rate"), "duration": round(dur, 2),
                              "video_codec": v.get("codec_name"), "audio_codec": au.get("codec_name"), "loudness": lufs,
