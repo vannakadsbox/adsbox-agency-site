@@ -8,9 +8,8 @@
 name: Article video
 
 on:
-  push:
-    branches: [main]
-    paths: ["content/articles/*.md"]
+  # Retired 2026-11-01: new articles now get the approved motion-graphics video (.github/workflows/reel.yml).
+  # Kept for manual runs only.
   workflow_dispatch:
     inputs:
       slug:

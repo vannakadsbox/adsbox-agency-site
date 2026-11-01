@@ -1,6 +1,6 @@
 {
-  "enabled": false,
-  "time": "09:00",
+  "enabled": true,
+  "schedule": "Script task 07:23 + 08:23 and 17:23 + 18:23; checks 09:10 and 19:10 (Asia/Phnom_Penh)",
   "voice": "km-KH-PisethNeural",
   "rate": "+2%",
   "music_volume": 0.11,
@@ -9,5 +9,11 @@
   "min_chars": 420,
   "max_chars": 1100,
   "max_brand_share": 0.2,
-  "max_attempts": 3
+  "max_attempts": 3,
+  "since": "2026-11-01T14:40:00+07:00",
+  "report_hours": [
+    8,
+    18
+  ],
+  "note": "Daily videos turned on 2026-11-01 after the owner approved the template. Only articles published after 'since' are used, each once. Public posting is not part of this system."
 }

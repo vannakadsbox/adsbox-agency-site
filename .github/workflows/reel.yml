@@ -11,6 +11,9 @@ on:
   push:
     branches: [main]
     paths: ["videos/scripts/*.json", "videos/requests/*.json"]
+  schedule:
+    # Checks after each slot (09:10 and 19:10 Phnom Penh): alert for a new article without a video, retry failed ones.
+    - cron: "10 2,12 * * *"
   workflow_dispatch:
     inputs:
       action:
@@ -24,6 +27,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: reel
@@ -40,8 +44,31 @@ jobs:
       - name: Telegram bot is set
         run: '[ -n "$TELEGRAM_BOT_TOKEN" ] && [ -n "$TELEGRAM_CHAT_ID" ] || { echo "::error::Telegram secrets missing"; exit 1; }'
 
+  watch:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      TELEGRAM_VIDEO_CHAT_ID: ${{ secrets.TELEGRAM_VIDEO_CHAT_ID }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q pyyaml
+      - name: Every new article has its video
+        run: python3 tools/reel/watch.py --retry
+      - name: Save the log
+        run: |
+          git config user.name "ADS BOX video bot"; git config user.email "noreply@anthropic.com"
+          git add videos/log.json; git diff --cached --quiet && exit 0
+          git commit -q -m "Video check"
+          for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin HEAD:main && exit 0; sleep 5; done
+
   video:
-    if: github.event.inputs.action != 'check'
+    if: github.event_name != 'schedule' && github.event.inputs.action != 'check'
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
@@ -111,7 +138,7 @@ jobs:
             fi
             # Keep the finished files in the private archive (never lost, even if Telegram fails).
             gh release upload "$rel" "$out/$slug.mp4" "$out/$slug-thumb.jpg" --clobber || echo "Archive upload failed"
-            gh api "repos/${{ github.repository }}/releases" -q ".[] | select(.tag_name==\"$rel\") | {release_id: .id, assets: [.assets[] | select(.name==\"$slug.mp4\" or .name==\"$slug-thumb.jpg\") | {name, id, size}]}" > "$out/archive.json" || echo '{}' > "$out/archive.json"
+            gh api "repos/${{ github.repository }}/releases" -q ".[] | select(.tag_name==\"$rel\") | {release_id: .id, assets: [.assets[] | select(.name==\"$slug.mp4\" or .name==\"$slug-thumb.jpg\") | {name, id, size, url: .browser_download_url}]}" > "$out/archive.json" || echo '{}' > "$out/archive.json"
             if ! python3 tools/reel/deliver.py sent --slug "$slug" --dir "$out" --archive "$out/archive.json" --run "$RUN_URL"; then
               python3 tools/reel/deliver.py failed --slug "$slug" --step telegram --error "Telegram did not accept the video" --run "$RUN_URL"; failed=1
             fi

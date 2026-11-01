@@ -5,6 +5,7 @@
   python3 tools/reel/check.py --note no-article|failed --reason "..." [--push]
 
 Exit 0: valid (and saved / pushed).  Exit 2: problems, printed one per line; fix the script and run again.
+Exit 3: this article already has a video script (duplicate); nothing saved.
 Exit 1: git problem.
 --note leaves a small note for the workflow so the owner gets a Telegram message (no new article, or the script failed).
 """
@@ -160,6 +161,7 @@ def main():
     ap.add_argument("--script")
     ap.add_argument("--save", action="store_true")
     ap.add_argument("--push", action="store_true")
+    ap.add_argument("--force", action="store_true", help="save even if the article already has a script (remake)")
     ap.add_argument("--note", choices=["no-article", "failed"])
     ap.add_argument("--reason", default="")
     a = ap.parse_args()
@@ -188,6 +190,14 @@ def main():
     print(f"Script OK: {len(script['scenes'])} scenes, {total} Khmer characters spoken.")
     if not a.save:
         return 0
+    if a.push:  # duplicate guard: another run may have made this article's video meanwhile
+        try:
+            git("pull", "-q", "--rebase", "origin", "main")
+        except subprocess.CalledProcessError:
+            pass
+        if os.path.exists(os.path.join(C.SCRIPTS, f"{script['slug']}.json")) and not a.force:
+            print(f"Already done: {script['slug']} has a video script. Nothing saved.")
+            return 3
     script["article"] = {"title": brief["article"]["title"], "url": brief["article"]["url"]}
     script["written_at"] = C.iso()
     path = os.path.join(C.SCRIPTS, f"{script['slug']}.json")

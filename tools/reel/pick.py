@@ -44,6 +44,34 @@ RULES = [
 ]
 
 
+def slot_of(a):
+    """'morning' or 'evening' for an article, from its publish time (Phnom Penh)."""
+    t = a["generated_at"]
+    return "morning" if t and t[11:13] < "12" else "evening"
+
+
+def no_article(s, fresh, used):
+    """Nothing new to make. At the report hours, tell the owner on Telegram if this slot has no article at all."""
+    now = C.now()
+    slot = "morning" if now.hour < 12 else "evening"
+    today = [a for a in fresh if a["generated_at"][:10] == now.strftime("%Y-%m-%d") and slot_of(a) == slot]
+    if today:
+        print(f"Already done: the {slot} article ({today[0]['slug']}) has its video.")
+        return 3
+    if now.hour not in s.get("report_hours", [8, 18]):
+        print(f"No new {slot} article yet; will check again.")
+        return 3
+    import check  # the note is pushed so the video workflow sends it to Telegram
+    note = os.path.join(C.REQUESTS, f"{now.strftime('%Y%m%d')}-{slot}-no-article.json")
+    if os.path.exists(note):
+        print("No new article (already reported).")
+        return 3
+    C.write_json(note, {"type": "no-article", "reason": f"No new {slot} article was published today, so no video was made.", "at": C.iso()})
+    ok = check.push([note], f"Video: no new {slot} article")
+    print(f"No new {slot} article: reported to Telegram." if ok else "No new article; the report could not be pushed.")
+    return 3
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", required=True)
@@ -65,10 +93,13 @@ def main():
             print(f"{a.slug} already has a video. Use --force to make another.")
             return 3
     else:
-        pick = next((x for x in arts if x["slug"] not in used), None)
+        # Only articles published since daily videos were switched on (older ones are never picked automatically),
+        # newest first, each used once.
+        since = str(s.get("since") or "")
+        fresh = [x for x in arts if (x["generated_at"] or x["date"]) >= since]
+        pick = next((x for x in fresh if x["slug"] not in used), None)
         if not pick:
-            print("No new article: every published article already has a video.")
-            return 3
+            return no_article(s, fresh, used)
     recent = [{"video_title": v.get("video_title", ""), "hook": v.get("hook", "")}
               for v in sorted(C.log()["videos"], key=lambda v: v.get("scripted_at", ""), reverse=True)[:6]]
     brief = {

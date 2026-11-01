@@ -92,6 +92,7 @@ def sent(a):
     for part in chunks(script_text(script)):
         tg("sendMessage", {"text": part, "parse_mode": "HTML", "disable_web_page_preview": "true"})
     archive = C.read_json(a.archive, {}) if a.archive else {}
+    mp4_asset = next((x for x in archive.get("assets", []) if str(x.get("name", "")).endswith(".mp4")), {})
     rec.update({
         "status": "sent", "error": "", "sent_at": C.iso(), "rendered_at": rec.get("rendered_at") or C.iso(), "run": a.run or "",
         "duration": meta.get("duration"), "size_mb": meta.get("size_mb"), "render_seconds": meta.get("render_seconds"),
@@ -100,6 +101,8 @@ def sent(a):
         "telegram": {"ok": True, "message_id": msg.get("message_id"), "chat": "configured", "at": C.iso(),
                      "file_id": (msg.get("video") or {}).get("file_id")},
         "archive": archive,
+        "article_id": a.slug, "video_id": mp4_asset.get("id"), "video_url": mp4_asset.get("url"),
+        "created_at": rec.get("created_at") or C.iso(), "telegram_status": "delivered", "production_status": "complete",
     })
     C.save_log(lg)
     print(f"Sent {a.slug} to Telegram (message {msg.get('message_id')}).")
@@ -110,7 +113,9 @@ def failed(a):
     lg = C.log()
     rec = C.record(lg, a.slug)
     rec["attempts"] = int(rec.get("attempts") or 0) + 1
-    rec.update({"status": "failed", "error": f"{a.step}: {a.error}"[:500], "failed_at": C.iso(), "run": a.run or ""})
+    rec.update({"status": "failed", "error": f"{a.step}: {a.error}"[:500], "failed_at": C.iso(), "run": a.run or "",
+                "article_id": a.slug, "production_status": "failed",
+                "telegram_status": "not sent" if a.step != "telegram" else "failed"})
     C.save_log(lg)
     title = rec.get("video_title") or a.slug
     tg("sendMessage", {"parse_mode": "HTML", "disable_web_page_preview": "true",
