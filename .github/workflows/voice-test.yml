@@ -21,8 +21,11 @@ on:
       label:
         description: "Title for the Telegram sample, e.g. DARA – FINAL COMPARISON TEST"
         required: false
+      check_slug:
+        description: "Instead: check the finished video of this slug against its script (Kiri transcript; nothing is sent)"
+        required: false
 permissions:
-  contents: read
+  contents: write  # reads the private draft video archive for check_slug
 jobs:
   samples:
     runs-on: ubuntu-latest
@@ -41,12 +44,21 @@ jobs:
         with:
           python-version: "3.12"
       - run: sudo apt-get update -q && sudo apt-get install -y -q ffmpeg && pip install -q "edge-tts>=7.0"
+      - name: Check a finished video against its script
+        if: github.event.inputs.check_slug != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p chk && gh release download video-archive -p "${{ github.event.inputs.check_slug }}.mp4" -D chk --clobber
+          python3 tools/reel/sync_check.py "${{ github.event.inputs.check_slug }}" "chk/${{ github.event.inputs.check_slug }}.mp4"
       - name: Make samples
+        if: github.event.inputs.check_slug == ''
         run: python3 tools/reel/voice_test.py make out
       - name: Send to Telegram
-        if: github.event.inputs.send == 'true'
+        if: github.event.inputs.send == 'true' && github.event.inputs.check_slug == ''
         run: python3 tools/reel/voice_test.py send out
       - uses: actions/upload-artifact@v4
+        if: github.event.inputs.check_slug == ''
         with:
           name: voice-samples
           path: out/*.mp3
