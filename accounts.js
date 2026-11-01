@@ -13,7 +13,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-31"
+    "updated": "2026-11-01"
    },
    {
     "name": "16Drama",
@@ -24,7 +24,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-31"
+    "updated": "2026-11-01"
    },
    {
     "name": "31Drama",
@@ -35,7 +35,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-31"
+    "updated": "2026-11-01"
    },
    {
     "name": "20Drama",
@@ -46,7 +46,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-31"
+    "updated": "2026-11-01"
    },
    {
     "name": "19Drama",
@@ -57,7 +57,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-31"
+    "updated": "2026-11-01"
    },
    {
     "name": "8Drama",
@@ -68,7 +68,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-31"
+    "updated": "2026-11-01"
    },
    {
     "name": "3Drama",
@@ -79,7 +79,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-31"
+    "updated": "2026-11-01"
    },
    {
     "name": "អ្នកមើលកុនAi",
@@ -90,7 +90,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-31"
+    "updated": "2026-11-01"
    },
    {
     "name": "បកប្រែAi",
@@ -106,13 +106,13 @@ window.ACCOUNTS = {
    {
     "name": "24MerlTos",
     "url": "https://www.facebook.com/profile.php?id=61594235184973",
-    "followers": 297,
+    "followers": 309,
     "picture": "assets/accounts/fb-61594235184973.webp",
     "cover": "assets/opt/adsbox-cover-de2e8b-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-31"
+    "updated": "2026-11-01"
    },
    {
     "name": "អេអាយដ្រាម៉ា",
@@ -123,7 +123,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-31"
+    "updated": "2026-11-01"
    },
    {
     "name": "មើលកុនAi",
@@ -134,7 +134,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-31"
+    "updated": "2026-11-01"
    },
    {
     "name": "PostAi",
@@ -145,7 +145,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-31"
+    "updated": "2026-11-01"
    },
    {
     "name": "មើលរឿងបកប្រែAi",
@@ -167,7 +167,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-31"
+    "updated": "2026-11-01"
    },
    {
     "name": "អ្នកផុសរឿងAi",
@@ -189,18 +189,18 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-31"
+    "updated": "2026-11-01"
    },
    {
     "name": "Merlrg24h",
     "url": "https://www.facebook.com/profile.php?id=61593372051825",
-    "followers": 4776,
+    "followers": 4785,
     "picture": "assets/accounts/fb-61593372051825.webp",
     "cover": "assets/opt/adsbox-cover-1cdc4c-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-31"
+    "updated": "2026-11-01"
    },
    {
     "name": "MerDrama",
@@ -211,7 +211,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-31"
+    "updated": "2026-11-01"
    },
    {
     "name": "Nito H Lim-ហ៊ា នីតូTopFan",
@@ -233,7 +233,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-31"
+    "updated": "2026-11-01"
    },
    {
     "name": "Ly Za",
