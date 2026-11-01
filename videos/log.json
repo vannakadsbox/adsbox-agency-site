@@ -726,9 +726,10 @@
       "article_url": "https://adsbox.agency/knowledge/auto-capture-orders-from-live-comments/",
       "video_title": "Comment Live ហូរលឿនពេក កត់ Order មិនទាន់? ៤ ជំហានកុំឲ្យ Order របូត",
       "hook": "Live កំពុងល្អ Comment ហូរមកមិនឈប់ តែដៃកត់ Order មិនទាន់ទេ!",
-      "status": "scripted",
+      "status": "rendering",
       "scripted_at": "2026-11-01T20:30:33+07:00",
-      "error": ""
+      "error": "",
+      "render_started_at": "2026-11-01T20:38:14+07:00"
     }
   ]
 }
