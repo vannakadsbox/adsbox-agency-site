@@ -6,9 +6,53 @@
       "article_url": "https://adsbox.agency/knowledge/write-prices-and-promotions-clearly/",
       "video_title": "ដាក់ Promotion ហើយ Inbox ពេញសំណួរ? កែ Caption តាម ៤ ចំណុចនេះ",
       "hook": "បងៗធ្លាប់ទេ ដាក់ Promotion ហើយ Inbox ពេញតែសំណួរ «សរុបប៉ុន្មានបង?»",
-      "status": "scripted",
+      "status": "sent",
       "scripted_at": "2026-11-01T12:28:12+07:00",
-      "error": ""
+      "error": "",
+      "render_started_at": "2026-11-01T12:28:56+07:00",
+      "sent_at": "2026-11-01T12:32:27+07:00",
+      "rendered_at": "2026-11-01T12:32:27+07:00",
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/41277064899",
+      "duration": 84.6,
+      "size_mb": 11.5,
+      "render_seconds": 202,
+      "voice": "km-KH-PisethNeural",
+      "music": "none",
+      "broll_ids": [],
+      "broll": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "telegram": {
+        "ok": true,
+        "message_id": 26,
+        "chat": "configured",
+        "at": "2026-11-01T12:32:27+07:00",
+        "file_id": "BAACAgUAAxkDAAMaaubO6U4DvB4kF9luY3g9a2Ko9t0AAnsgAAIeBDFXDf6XbrOyHuM9BA"
+      },
+      "archive": {
+        "assets": [
+          {
+            "id": 697429959,
+            "name": "write-prices-and-promotions-clearly-thumb.jpg",
+            "size": 79426
+          },
+          {
+            "id": 697429960,
+            "name": "write-prices-and-promotions-clearly.mp4",
+            "size": 11470986
+          }
+        ],
+        "release_id": 430382508
+      }
     }
   ]
 }
