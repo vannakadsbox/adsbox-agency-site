@@ -23,6 +23,7 @@ const arg = (name) => { const i = process.argv.indexOf(name); return i > 0 ? pro
 const img64 = (f) => fs.existsSync(path.join(ROOT, f)) ? "data:image/jpeg;base64," + b64(f) : "";
 const FULL = img64("assets/video/presenter-full.jpg");
 let FACE = img64("assets/video/presenter-face.jpg");
+let TIMED = null;  // { voice, length, subs } when the whole recording plays as one track and scenes follow its timings
 
 // Spoken Khmer for English words (the voice only; the screen keeps the English).
 const SAY = [["ADS BOX", "អេដស៍ប៊ក"], ["Order", "អូឌ័រ"], ["Admin", "អាដមីន"], ["Caption", "ខេបសិន"], ["Bundle", "បាន់ឌល"],
@@ -176,6 +177,7 @@ function sceneHtml(s, i) {
 }
 
 function subtitles(scenes) {
+  if (TIMED) return TIMED.subs.map((c) => `<div class="sub" style="animation: sub ${(c.end - c.start).toFixed(3)}s linear ${c.start.toFixed(3)}s both">${esc(c.text)}</div>`).join("");
   let h = "";
   for (const s of scenes) {
     if (!s.say) continue;
@@ -365,6 +367,7 @@ function audio(scenes, total, dir, out) {
     if (i > 0) clips.push([whoosh, Math.max(0, s.start - 0.2)]);
     s.pops.forEach((p) => clips.push([pop, p]));
     if (s.voice) clips.push([s.voice, s.start + LEAD]);
+    if (TIMED && i === 0) clips.push([TIMED.voice, 0]);
   });
   const inputs = [], parts = [];
   clips.forEach(([f, t], i) => {
@@ -389,9 +392,31 @@ function audio(scenes, total, dir, out) {
 
   const scenes = story.scenes.concat([{ kind: "outro" }]);
   const own = arg("--voice-file") || story.voice_file;
-  if (own && !stills) { LEAD = 0.25; TAIL = 0.35; MIN_SCENE = 2; ownVoice(scenes.filter((s) => s.say), own, path.join(work, "voice")); }
-  else if (!process.argv.includes("--no-voice") && !stills) voice(scenes.filter((s) => s.say), story.voice || "km-KH-PisethNeural", path.join(work, "voice"));
-  const total = timeline(scenes);
+  if (own && !stills && !story.timed) { LEAD = 0.25; TAIL = 0.35; MIN_SCENE = 2; ownVoice(scenes.filter((s) => s.say), own, path.join(work, "voice")); }
+  else if (!story.timed && !process.argv.includes("--no-voice") && !stills) voice(scenes.filter((s) => s.say), story.voice || "km-KH-PisethNeural", path.join(work, "voice"));
+  // Timed mode: the story gives each scene's start ("at", seconds in the recording) and the subtitles with their times.
+  // The recording plays untouched from start to end (only a gentle level and rumble clean-up), so the voice stays natural.
+  let total;
+  if (story.timed && own && !stills) {
+    const clean = path.join(work, "voice.wav");
+    fs.mkdirSync(work, { recursive: true });
+    execFileSync("ffmpeg", ["-y", "-loglevel", "error", "-i", own, "-af", "highpass=f=70,loudnorm=I=-15:TP=-1.5:LRA=11", "-ar", "44100", "-ac", "2", clean]);
+    TIMED = { voice: clean, subs: story.subs || [] };
+    TIMED.length = parseFloat(execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", clean], { encoding: "utf8" }));
+  }
+  if (story.timed) {
+    const len = TIMED ? TIMED.length : story.length;
+    LEAD = 0;
+    scenes.forEach((s, i) => {
+      if (s.kind === "outro") { s.start = len + 0.2; s.dur = OUTRO; s.talk = 0; return; }
+      s.start = i ? s.at : 0;
+      const next = scenes[i + 1] && scenes[i + 1].kind !== "outro" ? scenes[i + 1].at : len + 0.2;
+      s.dur = next - s.start; s.talk = s.dur * 0.85;
+      s.voice = null; s.say = s.say || "";
+    });
+    if (!TIMED) TIMED = { subs: story.subs || [] };
+    total = scenes[scenes.length - 1].start + OUTRO;
+  } else total = timeline(scenes);
   const html = page(scenes, total);
 
   const { chromium } = require("playwright");
