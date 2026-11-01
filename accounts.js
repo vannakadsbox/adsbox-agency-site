@@ -348,13 +348,13 @@ window.ACCOUNTS = {
    {
     "name": "Amazing DN29",
     "url": "https://www.facebook.com/profile.php?id=100067999853796",
-    "followers": 1623,
+    "followers": 1626,
     "picture": "assets/accounts/fb-100067999853796.webp",
     "cover": "assets/accounts/fb-100067999853796-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-31"
+    "updated": "2026-11-01"
    },
    {
     "name": "Merlrg",
@@ -365,7 +365,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-31"
+    "updated": "2026-11-01"
    },
    {
     "name": "Amazing DN32",
@@ -387,7 +387,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-31"
+    "updated": "2026-11-01"
    },
    {
     "name": "MerlTvshow",
@@ -398,18 +398,18 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-11-01"
    },
    {
     "name": "Merl24tv",
     "url": "https://www.facebook.com/profile.php?id=61593232809376",
-    "followers": 515,
+    "followers": 516,
     "picture": "assets/accounts/fb-61593232809376.webp",
     "cover": "assets/accounts/fb-61593232809376-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-11-01"
    },
    {
     "name": "MerlAiសម្រាយរឿង",
@@ -420,7 +420,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-11-01"
    },
    {
     "name": "Merl24",
@@ -431,18 +431,18 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-11-01"
    },
    {
     "name": "Aiមើលរឿង",
     "url": "https://www.facebook.com/profile.php?id=61593313087938",
-    "followers": 1187,
+    "followers": 1188,
     "picture": "assets/accounts/fb-61593313087938.webp",
     "cover": "assets/accounts/fb-61593313087938-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-11-01"
    },
    {
     "name": "មើលរឿងតាមទូរទស្សន៍Ai",
@@ -453,7 +453,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-11-01"
    },
    {
     "name": "MerlTvrg",
@@ -464,7 +464,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-11-01"
    },
    {
     "name": "Vannak",
@@ -502,13 +502,13 @@ window.ACCOUNTS = {
    {
     "name": "Content For You",
     "url": "https://www.facebook.com/profile.php?id=61566430374342",
-    "followers": 9300,
+    "followers": 9474,
     "picture": "assets/accounts/fb-61566430374342.webp",
     "cover": "assets/accounts/fb-61566430374342-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-11-01"
    },
    {
     "name": "11Drama",
@@ -519,51 +519,51 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-11-01"
    },
    {
     "name": "ជីង យ៉ុងហ្វូ សេវាបោះដុំសម្ររាប់តុបតែងសម្ភារៈពិដានអគារ",
     "url": "https://www.facebook.com/profile.php?id=61594355044975",
-    "followers": 7875,
+    "followers": 8013,
     "picture": "assets/accounts/fb-61594355044975.webp",
     "cover": "assets/accounts/fb-61594355044975-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-11-01"
    },
    {
     "name": "PU THEN",
     "url": "https://www.facebook.com/profile.php?id=100068819696205",
-    "followers": 7458,
+    "followers": 7456,
     "picture": "assets/accounts/fb-100068819696205.webp",
     "cover": "assets/accounts/fb-100068819696205-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-11-01"
    },
    {
     "name": "Chinese Everyday",
     "url": "https://www.facebook.com/profile.php?id=61572660609676",
-    "followers": 1943,
+    "followers": 1942,
     "picture": "assets/accounts/fb-61572660609676.webp",
     "cover": "assets/accounts/fb-61572660609676-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-11-01"
    },
    {
     "name": "TomeAi",
     "url": "https://www.facebook.com/profile.php?id=61594777929138",
-    "followers": 59,
+    "followers": 60,
     "picture": "assets/accounts/fb-61594777929138.webp",
     "cover": "assets/accounts/fb-61594777929138-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-11-01"
    },
    {
     "name": "គាំទ្រសម្រាយរឿង",
@@ -574,7 +574,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-29"
+    "updated": "2026-11-01"
    },
    {
     "name": "1 VIDEO",
@@ -629,7 +629,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-30"
+    "updated": "2026-11-01"
    },
    {
     "name": "7Drama",
@@ -645,13 +645,13 @@ window.ACCOUNTS = {
    {
     "name": "NR Store | Phnom Penh",
     "url": "https://www.facebook.com/pagenrstore",
-    "followers": 78825,
+    "followers": 78840,
     "picture": "assets/accounts/fb-pagenrstore.webp",
     "cover": "assets/opt/adsbox-cover-870b1e-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-10-30"
+    "updated": "2026-11-01"
    },
    {
     "name": "Sdach Drama",
