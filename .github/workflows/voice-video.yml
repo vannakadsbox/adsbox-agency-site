@@ -1,0 +1,63 @@
+# Owner's voice note on Telegram → finished video back on Telegram.
+# Every 15 minutes from 06:00 to 23:00 Cambodia time it checks the ADS BOX bot for new recordings.
+# Each recording is cut per scene of its storyboard, subtitled and rendered with tools/video_story.js.
+name: Voice to video
+
+on:
+  schedule:
+    - cron: "*/15 23,0-15 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: voice-video
+  cancel-in-progress: false
+
+jobs:
+  make:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check Telegram for new recordings
+        id: inbox
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python3 tools/voice_inbox.py > /tmp/jobs.txt
+          cat /tmp/jobs.txt
+          [ -s /tmp/jobs.txt ] && echo "new=yes" >> "$GITHUB_OUTPUT" || true
+      - uses: actions/setup-node@v4
+        if: steps.inbox.outputs.new == 'yes'
+        with:
+          node-version: 22
+      - name: Install tools
+        if: steps.inbox.outputs.new == 'yes'
+        run: |
+          sudo apt-get update -q && sudo apt-get install -y -q fonts-noto-color-emoji ffmpeg
+          npm install --no-save --no-package-lock playwright@1.48.2
+          npx playwright install --with-deps chromium
+      - name: Make and send the videos
+        if: steps.inbox.outputs.new == 'yes'
+        env:
+          TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          mkdir -p out
+          while read -r board rec; do
+            v="out/$(basename "$board" .json)-voice.mp4"
+            if ! node tools/video_story.js "$board" "$v" --voice-file "$rec"; then
+              curl -sS "https://api.telegram.org/bot$TOKEN/sendMessage" -d chat_id="$CHAT" -d text="⚠️ ធ្វើវីដេអូមិនបាន។ សូមសាកផ្ញើសំឡេងម្ដងទៀត។" > /dev/null
+              continue
+            fi
+            ffmpeg -y -loglevel error -ss 1 -i "$v" -frames:v 1 -vf scale=180:320 /tmp/thumb.jpg
+            dur=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$v" | cut -d. -f1)
+            curl -sS -f "https://api.telegram.org/bot$TOKEN/sendVideo" -F chat_id="$CHAT" -F video=@"$v" \
+              -F width=1080 -F height=1920 -F duration="$dur" -F thumbnail=attach://thumb -F thumb=@/tmp/thumb.jpg \
+              -F supports_streaming=true -F caption="🎬 វីដេអូជាមួយសំឡេងរបស់អ្នក · Reels / TikTok / Shorts" > /dev/null
+          done < /tmp/jobs.txt
+      - uses: actions/upload-artifact@v4
+        if: steps.inbox.outputs.new == 'yes'
+        with:
+          name: voice-videos
+          path: out/*.mp4
+          retention-days: 14
