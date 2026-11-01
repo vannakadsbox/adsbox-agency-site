@@ -17,6 +17,7 @@ SCHEMA = {
     "topic": "one or two Khmer sentences: what the viewer learns",
     "thumbnail_text": "the big words on the thumbnail: Khmer, max 34 characters",
     "description": "Khmer post caption for Reels/TikTok, 2-4 short lines plus 3-6 hashtags, max 600 characters",
+    "facebook_caption": "ready-to-post Facebook caption in natural spoken Khmer, 400-1500 characters (see the facebook_caption rule)",
     "scenes": [{
         "role": "hook | problem | tip | example | summary | cta",
         "lines": ["the spoken words, split into on-screen subtitle lines of max 40 characters each, 1-3 lines per scene"],
@@ -37,7 +38,8 @@ RULES = [
     "State only facts about ADS BOX found in 'facts'. No other prices, numbers, results, client names or testimonials. Never pretend the narrator is an ADS BOX employee or a real person; do not give the narrator a name.",
     "Example amounts must be clearly hypothetical, like the article's own examples.",
     "The 'lines' of a scene are exactly what the voice says, in order, split for subtitles at natural pauses (after a phrase or at ។ ? !). Max 40 characters per line. Write prices with Arabic digits after $ (e.g. $15, $1.50); other numbers may use Khmer digits.",
-    "No emoji, no hashtags and no symbols like →, *, # inside 'lines'. Hashtags go only in 'description'.",
+    "No emoji, no hashtags and no symbols like →, *, # inside 'lines'. Hashtags go only in 'description' and 'facebook_caption'.",
+    "facebook_caption: written for the ADS BOX Facebook page, ready to copy and publish. Talk to sellers like a friendly conversation in everyday Khmer (not formal, not AI-sounding): open with a hook about their problem, explain the video's useful idea clearly (the steps, short), invite them to comment, share or try it, then the article link from the brief, then 4-7 hashtags (#ADSBOX plus topic tags). A few emojis where natural (e.g. 1️⃣ 2️⃣ for steps, 👇 for the call to comment); never stuffed. Only facts from the article and 'facts'.",
     "Visual mix target (owner, 1 Nov 2026): about 40% motion graphics (compare, checklist, flow, deadline, delivery, takeaway, cta), 25% phone and chat (chat, question, caption), 20% illustrated story (story, leaving), 15% product and dashboard demos (orders, sticker, dashboard). Never present simulated data as real.",
     "The video is custom ADS BOX animation only: NO stock footage, no Pixabay or Pexels clips, never a 'footage' field. Give every scene a 'visual' from 'visuals' that SHOWS what the narration says: the hook uses 'question', the last scene 'cta'; pick before/after ('compare'), steps ('checklist'), prices and totals ('delivery' receipt or 'caption' post mock-up), deadlines ('deadline'), problems ('leaving' or 'dashboard'), the lesson ('takeaway'). Vary the types; avoid the same type twice in a row.",
     "Visual texts are short Khmer phrases taken from the narration (prices, conditions, examples); never new facts. Elements appear as each subtitle line is spoken, so order the lines to match (e.g. compare: the bad version is said before the good one).",

@@ -27,10 +27,6 @@ on:
       voice:
         description: "Test only: voice for this run, e.g. kiri:Sophon (empty = the production voice in videos/settings.json)"
         required: false
-      details:
-        description: "Owner preview: add file size, voice, subtitle check, social caption and script to the caption message"
-        type: boolean
-        default: false
 
 permissions:
   contents: write
@@ -84,7 +80,6 @@ jobs:
       TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       TELEGRAM_VIDEO_CHAT_ID: ${{ secrets.TELEGRAM_VIDEO_CHAT_ID }}
       KIRI_API_KEY: ${{ secrets.KIRI_API_KEY }}
-      REEL_PREVIEW_DETAILS: ${{ github.event.inputs.details }}
       RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
       GH_TOKEN: ${{ github.token }}
     steps:

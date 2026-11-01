@@ -8,9 +8,9 @@
 
 Needs TELEGRAM_BOT_TOKEN and TELEGRAM_VIDEO_CHAT_ID (or TELEGRAM_CHAT_ID). The token is never printed.
 "sent" posts EXACTLY 3 items per video (owner, 1 Nov 2026), in this order and nothing else:
-  1) the caption (Khmer, emojis, article link, duration and resolution)
-  2) the MP4 as a playable Telegram video, file name <slug>.mp4, the original file (not re-encoded)
-  3) the thumbnail as a JPG file, <slug>-thumbnail.jpg, the original image (sent as a file so it is not compressed)
+  1) the MP4 as a playable Telegram video, file name <slug>.mp4, the original file (not re-encoded)
+  2) the ready-to-post Facebook caption (script "facebook_caption") as plain, copyable text
+  3) the 16:9 thumbnail as a JPG file, <slug>-thumbnail.jpg (sent as a file so it is not compressed)
 No reports, script, scene lists or duplicate files. Exit 1 if any of the 3 was not accepted.
 """
 import argparse, html, json, os, subprocess, sys
@@ -113,25 +113,12 @@ def caption_text(script, meta):
             f"🛍 គន្លឹះលក់អនឡាញពី ADS BOX")
 
 
-def preview_details(script, meta):
-    """Extra lines for an owner preview (REEL_PREVIEW_DETAILS=true): file facts, voice, subtitle check, social caption, script."""
-    size = meta.get("size_mb")
-    v = str(meta.get("voice") or "")
-    voice = (f"Kiri TTS · voice {v.split(':', 1)[1]}" if v.startswith("kiri:") else f"Microsoft · {v}")
-    ins = os.environ.get("KIRI_INSTRUCTION", "").strip()
-    sync = meta.get("scene_sync") or []
-    match = [m for m in (meta.get("speech_match") or []) if m is not None]
-    timed = sum(1 for x in sync if x in ("transcript", "word"))
-    sub = f"{timed}/{len(sync)} scenes timed from the voice's own speech"
-    if match:
-        sub += f" · speech matches the subtitle text {round(100 * min(match))}–{round(100 * max(match))}% (Kiri transcript)"
-    rows = [f"\n\n🔎 <b>Preview details</b>",
-            f"⏱ {meta.get('duration')}s · 💾 {size} MB · {e(meta.get('resolution'))} · {meta.get('fps')} fps",
-            f"🎙 {e(voice)}" + (f"\n🎭 Style: {e(ins)}" if ins and v.startswith('kiri:') else ""),
-            f"💬 Subtitles: {e(sub)}",
-            f"\n📣 <b>Social caption</b>\n{e(script.get('description'))}",
-            f"\n📝 <b>Narration script</b>\n" + "\n".join(e(" ".join(sc['lines'])) for sc in script["scenes"])]
-    return "\n".join(rows)
+def facebook_caption(script):
+    """Item 2: the ready-to-post Facebook caption (plain text, so it copies cleanly)."""
+    t = str(script.get("facebook_caption") or "").strip()
+    if not t:  # older scripts: the short post caption plus the article link
+        t = str(script.get("description") or "").strip() + f"\n\n📖 អានអត្ថបទពេញ៖ {script['article']['url']}"
+    return t[:4096]
 
 
 def sent(a):
@@ -150,15 +137,10 @@ def sent(a):
         C.save_log(lg)
         return 1
 
-    # 1) Caption
-    text = caption_text(script, meta)
-    if os.environ.get("REEL_PREVIEW_DETAILS") == "true":
-        text = (text + preview_details(script, meta))[:4096]
-    r = tg("sendMessage", {"text": text, "parse_mode": "HTML", "disable_web_page_preview": "true"})
-    if not r.get("ok"):
-        return fail("caption", r)
-    items.append({"item": "caption", "message_id": r["result"]["message_id"]})
-    # 2) Video: the original MP4 as a playable video (no caption, so the caption is not repeated)
+    wide = os.path.join(a.dir, f"{a.slug}-thumbnail.jpg")
+    if not os.path.exists(wide):
+        wide = thumb
+    # 1) Video: the original MP4 as a playable video (no caption)
     r = tg("sendVideo", {"supports_streaming": "true", "width": "1080", "height": "1920", "duration": str(dur),
                          "cover": "attach://coverimg", "thumbnail": "attach://thumbimg"},
            {"video": (mp4, f"{a.slug}.mp4"), "coverimg": thumb, "thumbimg": cover})
@@ -167,8 +149,13 @@ def sent(a):
     v = r["result"].get("video") or {}
     items.append({"item": "video", "message_id": r["result"]["message_id"], "file_name": v.get("file_name"),
                   "file_size": v.get("file_size"), "width": v.get("width"), "height": v.get("height"), "file_id": v.get("file_id")})
-    # 3) Thumbnail as a file (a photo would be recompressed by Telegram)
-    r = tg("sendDocument", {"disable_content_type_detection": "true"}, {"document": (thumb, f"{a.slug}-thumbnail.jpg")})
+    # 2) Facebook caption as plain, copyable text
+    r = tg("sendMessage", {"text": facebook_caption(script), "disable_web_page_preview": "true"})
+    if not r.get("ok"):
+        return fail("caption", r)
+    items.append({"item": "facebook_caption", "message_id": r["result"]["message_id"]})
+    # 3) Thumbnail (16:9) as a file, so Telegram does not recompress it
+    r = tg("sendDocument", {"disable_content_type_detection": "true"}, {"document": (wide, f"{a.slug}-thumbnail.jpg")})
     if not r.get("ok"):
         return fail("thumbnail", r)
     d = r["result"].get("document") or {}
@@ -182,9 +169,10 @@ def sent(a):
         "duration": meta.get("duration"), "size_mb": meta.get("size_mb"), "render_seconds": meta.get("render_seconds"),
         "voice": meta.get("voice"), "music": meta.get("music"), "style": meta.get("style"), "visuals": meta.get("visuals"),
         "resolution": meta.get("resolution"), "fps": meta.get("fps"), "subtitle_sync": meta.get("subtitle_sync"), "footage": [], "footage_share": 0, "stock_footage": "none (removed)",
-        "telegram": {"ok": True, "message_id": items[1]["message_id"], "chat": "configured", "at": C.iso(),
-                     "file_id": items[1].get("file_id"), "items": items, "sent_count": len(items),
-                     "local_sizes": {"video": os.path.getsize(mp4), "thumbnail": os.path.getsize(thumb)}},
+        "telegram": {"ok": True, "message_id": items[0]["message_id"], "chat": "configured", "at": C.iso(),
+                     "file_id": items[0].get("file_id"), "items": items, "sent_count": len(items),
+                     "local_sizes": {"video": os.path.getsize(mp4), "thumbnail": os.path.getsize(wide)}},
+        "speech_match": meta.get("speech_match"), "scene_sync": meta.get("scene_sync"),
         "archive": archive, "quality": qdata,
         "article_id": a.slug, "video_id": mp4_asset.get("id"), "video_url": mp4_asset.get("url"),
         "created_at": rec.get("created_at") or C.iso(), "telegram_status": "delivered", "production_status": "complete",

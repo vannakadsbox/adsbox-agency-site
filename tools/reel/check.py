@@ -93,14 +93,17 @@ def problems(script, brief, s):
     out = []
     if not isinstance(script, dict):
         return ["The script must be one JSON object."]
-    for k in ("slug", "video_title", "topic", "thumbnail_text", "description", "scenes"):
+    for k in ("slug", "video_title", "topic", "thumbnail_text", "description", "facebook_caption", "scenes"):
         if k not in script:
             out.append(f"Missing key: {k}")
     if out:
         return out
     if script["slug"] != brief["slug"]:
         out.append(f"slug must be {brief['slug']}")
-    for k, mx in (("video_title", 70), ("thumbnail_text", 34), ("description", 600), ("topic", 300)):
+    fb = str(script.get("facebook_caption") or "")
+    if not (400 <= len(fb) <= 1500) or "#" not in fb:
+        out.append(f"facebook_caption is {len(fb)} characters; write 400-1500 characters of conversational Khmer ending with hashtags")
+    for k, mx in (("video_title", 70), ("thumbnail_text", 34), ("description", 600), ("topic", 300), ("facebook_caption", 1500)):
         v = str(script[k]).strip()
         if not v or not C.KHMER.search(v):
             out.append(f"{k} must be Khmer text")

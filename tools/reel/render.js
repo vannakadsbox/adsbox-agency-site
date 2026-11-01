@@ -3,7 +3,8 @@
 // STOCK FOOTAGE IS REMOVED (owner's order, 1 Nov 2026): every frame is drawn by ADS BOX's own scene templates.
 // The renderer has no code path that reads, downloads or plays a video clip; "footage" fields in a script are ignored
 // and the old --footage option is refused.
-// Writes OUT_DIR/<slug>.mp4, OUT_DIR/<slug>-thumb.jpg, OUT_DIR/<slug>-cover.jpg (small) and OUT_DIR/meta.json.
+// Writes OUT_DIR/<slug>.mp4, OUT_DIR/<slug>-thumb.jpg (9:16 video cover), OUT_DIR/<slug>-cover.jpg (small),
+// OUT_DIR/<slug>-thumbnail.jpg (16:9 thumbnail, 1920x1080) and OUT_DIR/meta.json.
 //
 // Every scene is an animated template (tools/reel/scenes.js) chosen by the script: question, leaving customers,
 // ads dashboard, before/after, checklist, deadline, delivery receipt, post mock-up, takeaway, CTA. Its elements appear
@@ -248,6 +249,46 @@ function sound(scenes, total, music, dir) {
   return out;
 }
 
+// --- Thumbnail 16:9 (owner, 1 Nov 2026): navy brand card, big Khmer headline, the hook scene as a phone screen --------
+async function thumbnailWide(script, frame, out) {
+  const TW = 1920, TH = 1080;
+  const b = await browser();
+  const pg = await b.newPage({ viewport: { width: TW, height: TH } });
+  const img = (f) => `data:image/png;base64,${b64(f)}`;
+  await pg.setContent(`<!doctype html><html lang="km"><head><meta charset="utf-8"><style>
+@font-face{font-family:M;font-weight:700;src:url(data:font/woff2;base64,${b64("assets/fonts/MiSansKhmer-Bold.woff2")}) format("woff2");unicode-range:U+1780-17FF,U+19E0-19FF,U+200C-200D,U+25CC}
+@font-face{font-family:L;font-weight:400 800;src:url(data:font/woff2;base64,${b64("tools/fonts/kantumruy-latin.woff2")}) format("woff2")}
+*{box-sizing:border-box;margin:0}
+body{width:${TW}px;height:${TH}px;overflow:hidden;font-family:M,L,sans-serif;color:#fff;position:relative;
+  background:radial-gradient(1100px 800px at 78% 40%,#1d3a8a 0%,#0f2160 45%,#0b1430 100%)}
+.grid{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.08) 2px,transparent 2px);background-size:44px 44px}
+.glow{position:absolute;width:760px;height:760px;right:120px;top:150px;border-radius:50%;background:radial-gradient(rgba(255,210,63,.28),rgba(255,210,63,0) 65%)}
+.logo{position:absolute;left:96px;top:78px;display:flex;align-items:center;gap:18px}
+.logo .m{height:74px}.logo .w{height:40px}
+.chip{position:absolute;left:96px;top:205px;font-size:34px;font-weight:700;color:#0b1430;background:#ffd23f;padding:6px 24px 12px;border-radius:999px}
+.h{position:absolute;left:96px;width:1010px;top:300px;font-size:104px;line-height:1.5;font-weight:700;text-shadow:0 6px 24px rgba(0,0,0,.35)}
+.h b{color:#ffd23f}
+.bar{position:absolute;left:96px;top:auto;bottom:150px;width:160px;height:12px;border-radius:6px;background:#ffd23f}
+.u{position:absolute;left:96px;bottom:70px;font-family:L,M,sans-serif;font-weight:800;font-size:44px;letter-spacing:.5px}
+.phone{position:absolute;right:170px;top:90px;width:500px;height:900px;border-radius:64px;padding:16px;background:#fff;box-shadow:0 40px 90px rgba(0,0,0,.5);transform:rotate(4deg)}
+.phone .s{width:100%;height:100%;border-radius:50px;background:url(data:image/jpeg;base64,${fs.readFileSync(frame).toString("base64")}) center 42%/cover}
+</style></head><body><div class="grid"></div><div class="glow"></div>
+<div class="logo"><img class="m" src="${img("assets/logo-mark-white.png")}" alt=""><img class="w" src="${img("assets/logo-word-white.png")}" alt=""></div>
+<div class="chip">ចំណេះដឹងលក់អនឡាញ</div>
+<div class="h" id="h">${esc(script.thumbnail_text)}</div><div class="bar"></div><div class="u">adsbox.agency</div>
+<div class="phone"><div class="s"></div></div></body></html>`, { waitUntil: "load" });
+  await pg.evaluate(async () => {
+    await document.fonts.ready;
+    const h = document.getElementById("h");
+    // Highlight the English/number words (Order, Live, 4 ...) in yellow; shrink until the headline fits in 3 lines.
+    h.innerHTML = h.innerHTML.replace(/([A-Za-z0-9][A-Za-z0-9$%.+]*|[០-៩]+)/g, "<b>$1</b>");
+    let fs = 104;
+    while (fs > 64 && h.getBoundingClientRect().bottom > 900) { fs -= 4; h.style.fontSize = fs + "px"; }
+  });
+  await pg.screenshot({ path: out, type: "jpeg", quality: 92 });
+  await b.close();
+}
+
 // --- Thumbnail: the hook scene's picture with the big thumbnail words ------------------------------------------------
 async function thumbnail(script, frame, out, cover) {
   const b = await browser();
@@ -302,6 +343,7 @@ body{width:${W}px;height:${H}px;overflow:hidden;font-family:M,L,sans-serif;color
   let frame = path.join(fdir, String(Math.round(tf * FPS)).padStart(5, "0") + ".jpg");
   const thumb = path.join(outDir, `${slug}-thumb.jpg`), cover = path.join(outDir, `${slug}-cover.jpg`);
   await thumbnail(script, fs.existsSync(frame) ? frame : path.join(fdir, "00030.jpg"), thumb, cover);
+  await thumbnailWide(script, fs.existsSync(frame) ? frame : path.join(fdir, "00030.jpg"), path.join(outDir, `${slug}-thumbnail.jpg`));
 
   const meta = {
     slug, style: "custom animation only (no stock footage)", duration: +probe(mp4).toFixed(2), size_mb: +(fs.statSync(mp4).size / 1e6).toFixed(1), resolution: `${W}x${H}`, fps: FPS,
