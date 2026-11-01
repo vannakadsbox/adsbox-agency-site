@@ -99,4 +99,10 @@ def send(out):
 
 if __name__ == "__main__":
     cmd, out = sys.argv[1], sys.argv[2]
-    asyncio.run(make(out)) if cmd == "make" else send(out)
+    try:
+        asyncio.run(make(out)) if cmd == "make" else send(out)
+    except BaseException as ex:  # shown as a GitHub annotation (no secrets in it)
+        import traceback
+        msg = traceback.format_exc().strip().splitlines()[-3:]
+        print("::error::" + " | ".join(m.strip() for m in msg)[:900])
+        raise
