@@ -16,9 +16,52 @@ import common as C  # noqa: E402
 ROLES = {"hook", "problem", "tip", "example", "summary", "cta"}
 BAD_IN_LINES = re.compile(r"[#*→•_`<>\[\]{}|~]|https?://")
 EMOJI = re.compile("[\U0001F300-\U0001FAFF☀-➿️]")
-ASCII_QUERY = re.compile(r"^[A-Za-z0-9 ,'\-]{4,80}$")
 BRAND = re.compile(r"ADS\s*BOX|adsbox", re.I)
 PERSONA = re.compile(r"ខ្ញុំឈ្មោះ|ខ្ញុំជាបុគ្គលិក|បុគ្គលិក ADS BOX|ខ្ញុំធ្វើការនៅ ADS BOX")
+
+
+# The animated scene templates (tools/reel/scenes.js) and what each needs: field -> (kind, max characters or (min, max) items).
+VISUALS = {
+    "question": {"title": ("text", 24), "bubbles": ("texts", (2, 5), 26)},
+    "leaving": {"post_title": ("text", 20), "confusing": ("text", 26), "caption": ("text", 28)},
+    "dashboard": {"title": ("text", 26), "metrics": ("pairs", (3, 3), 10), "alert": ("text", 28), "next?": ("text", 24)},
+    "compare": {"bad": ("text", 30), "good": ("text", 30)},
+    "checklist": {"bad?": ("text", 22), "items": ("texts", (2, 4), 32)},
+    "deadline": {"bad": ("text", 22), "good": ("text", 32), "result?": ("text", 24)},
+    "delivery": {"rows": ("pairs", (2, 3), 22), "total?": ("pair", 26)},
+    "caption": {"page?": ("text", 16), "lines": ("texts", (3, 6), 34), "highlight?": ("texts", (0, 4), 12), "stamp?": ("text", 12)},
+    "takeaway": {"quote": ("text", 46)},
+    "cta": {"services": ("texts", (2, 4), 16)},
+}
+
+
+def visual_problems(i, v):
+    out = []
+    if not isinstance(v, dict) or v.get("type") not in VISUALS:
+        return [f"Scene {i}: visual.type must be one of {sorted(VISUALS)}"]
+    for key, spec in VISUALS[v["type"]].items():
+        opt = key.endswith("?")
+        k = key.rstrip("?")
+        val = v.get(k)
+        if val in (None, "", []):
+            if not opt:
+                out.append(f"Scene {i}: visual {v['type']} needs '{k}'")
+            continue
+        kind = spec[0]
+        if kind == "text" and (not isinstance(val, str) or len(val) > spec[1]):
+            out.append(f"Scene {i}: visual.{k} must be text of max {spec[1]} characters")
+        elif kind == "texts":
+            lo, hi = spec[1]
+            if not isinstance(val, list) or not (lo <= len(val) <= hi) or any(not isinstance(x, str) or len(x) > spec[2] for x in val):
+                out.append(f"Scene {i}: visual.{k} must be {lo}-{hi} texts of max {spec[2]} characters")
+        elif kind == "pairs":
+            lo, hi = spec[1]
+            if not isinstance(val, list) or not (lo <= len(val) <= hi) or any(
+                    not isinstance(x, dict) or len(str(x.get("label", ""))) > spec[2] or not x.get("label") or len(str(x.get("value", ""))) > 9 for x in val):
+                out.append(f"Scene {i}: visual.{k} must be {lo}-{hi} items {{label (max {spec[2]}), value (max 9)}}")
+        elif kind == "pair" and (not isinstance(val, dict) or len(str(val.get("label", ""))) > spec[1] or len(str(val.get("value", ""))) > 9):
+            out.append(f"Scene {i}: visual.{k} must be {{label (max {spec[1]}), value (max 9)}}")
+    return out
 
 
 def problems(script, brief, s):
@@ -70,11 +113,13 @@ def problems(script, brief, s):
             out.append(f"Scene {i}: keyword max 28 characters")
         if len(str(sc.get("label") or "")) > 16:
             out.append(f"Scene {i}: label max 16 characters")
-        q = sc.get("broll")
-        if not isinstance(q, list) or not (1 <= len(q) <= 3) or not all(ASCII_QUERY.match(str(x)) for x in q):
-            out.append(f"Scene {i}: broll must be 1-3 plain English search queries")
+        out += visual_problems(i, sc.get("visual"))
     if scenes[0].get("role") != "hook":
         out.append("Scene 1 must be the hook")
+    if (scenes[0].get("visual") or {}).get("type") != "question":
+        out.append("Scene 1 (the hook) must use the 'question' visual")
+    if (scenes[-1].get("visual") or {}).get("type") != "cta":
+        out.append("The last scene must use the 'cta' visual")
     if BRAND.search(" ".join(scenes[0].get("lines") or [])):
         out.append("The hook must not mention ADS BOX")
     if scenes[-1].get("role") != "cta":

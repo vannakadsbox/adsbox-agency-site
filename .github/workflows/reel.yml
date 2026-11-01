@@ -1,9 +1,10 @@
 # ADS BOX daily knowledge video: turns a video script (videos/scripts/<slug>.json, written by the daily Claude task)
-# into a 1080x1920 Khmer video with real B-roll, voice, subtitles and music, then sends the playable preview to Telegram.
+# into a 1080x1920 Khmer motion-graphics video (animated scenes, voice, word-timed subtitles, music; no stock footage),
+# then sends the playable preview to Telegram.
 # Nothing is posted publicly. Videos are archived in the private draft release "video-archive"; videos/log.json tracks every step.
 # Runs when a script or a note (videos/requests/) is pushed, or by hand: Actions -> Daily knowledge video -> Run workflow.
-# Secrets: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID (or TELEGRAM_VIDEO_CHAT_ID for another chat), PIXABAY_API_KEY (footage;
-# PEXELS_API_KEY optional as a second source). Run with action "check" to test the keys without making a video.
+# Secrets: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID (or TELEGRAM_VIDEO_CHAT_ID for another chat).
+# Run with action "check" to test the Telegram settings without making a video.
 name: Daily knowledge video
 
 on:
@@ -13,7 +14,7 @@ on:
   workflow_dispatch:
     inputs:
       action:
-        description: "video = make the video for the slug below; check = only test the footage key and Telegram"
+        description: "video = make the video for the slug below; check = only test the Telegram settings"
         type: choice
         options: [video, check]
         default: video
@@ -33,15 +34,9 @@ jobs:
     if: github.event.inputs.action == 'check'
     runs-on: ubuntu-latest
     env:
-      PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
       TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
     steps:
-      - uses: actions/checkout@v4
-      - name: Pixabay key is set
-        run: '[ -n "$PIXABAY_API_KEY" ] || { echo "::error::PIXABAY_API_KEY secret is missing"; exit 1; }'
-      - name: Pixabay API answers
-        run: python3 tools/reel/broll.py --check
       - name: Telegram bot is set
         run: '[ -n "$TELEGRAM_BOT_TOKEN" ] && [ -n "$TELEGRAM_CHAT_ID" ] || { echo "::error::Telegram secrets missing"; exit 1; }'
 
@@ -81,13 +76,6 @@ jobs:
         if: steps.todo.outputs.slugs != ''
         with:
           python-version: "3.12"
-      - name: Footage search cache (24 hours, as Pixabay asks)
-        if: steps.todo.outputs.slugs != ''
-        uses: actions/cache@v4
-        with:
-          path: .cache/footage
-          key: footage-${{ github.run_id }}
-          restore-keys: footage-
       - name: Install tools
         if: steps.todo.outputs.slugs != ''
         run: |
@@ -97,9 +85,6 @@ jobs:
           pip install -q pyyaml "edge-tts>=7.0"
       - name: Make and send the videos
         if: steps.todo.outputs.slugs != ''
-        env:
-          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
-          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
         run: |
           set -u
           rel=video-archive
@@ -113,13 +98,10 @@ jobs:
             if [ ! -f "videos/scripts/$slug.json" ]; then python3 tools/reel/deliver.py failed --slug "$slug" --step script --error "videos/scripts/$slug.json not found" --run "$RUN_URL"; failed=1; continue; fi
             out="out/$slug"; mkdir -p "$out"
             python3 tools/reel/deliver.py status --slug "$slug" --to rendering
-            if ! python3 tools/reel/broll.py "videos/scripts/$slug.json" "$out"; then
-              python3 tools/reel/deliver.py failed --slug "$slug" --step footage --error "no footage: PIXABAY_API_KEY missing or Pixabay found nothing" --run "$RUN_URL"; failed=1; continue
-            fi
             music=$(ls assets/video/music/*.mp3 2>/dev/null | shuf -n1 || true)
             ok=0
             for attempt in 1 2; do
-              if REEL_VOICE="$voice" TTS_RATE="$rate" MUSIC_VOLUME="$vol" node tools/reel/render.js "videos/scripts/$slug.json" "$out" --broll "$out/broll.json" ${music:+--music "$music"}; then ok=1; break; fi
+              if REEL_VOICE="$voice" TTS_RATE="$rate" MUSIC_VOLUME="$vol" node tools/reel/render.js "videos/scripts/$slug.json" "$out" ${music:+--music "$music"}; then ok=1; break; fi
               echo "Render attempt $attempt failed"; sleep 20
             done
             if [ "$ok" != 1 ]; then python3 tools/reel/deliver.py failed --slug "$slug" --step render --error "the video could not be rendered (2 attempts)" --run "$RUN_URL"; failed=1; continue; fi

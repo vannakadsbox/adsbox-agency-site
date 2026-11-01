@@ -22,7 +22,7 @@ SCHEMA = {
         "lines": ["the spoken words, split into on-screen subtitle lines of max 40 characters each, 1-3 lines per scene"],
         "keyword": "optional: 2-6 words shown big on screen, max 28 characters (the scene's key point)",
         "label": "optional: small tag above the keyword, e.g. គន្លឹះទី ១ (max 16 characters)",
-        "broll": ["2-3 English stock-footage (Pixabay) search queries for real footage that matches exactly what this scene says, most specific first"],
+        "visual": {"type": "the animated picture for this scene (see 'visuals'), with its fields filled from what the scene says"},
     }],
 }
 
@@ -38,7 +38,8 @@ RULES = [
     "Example amounts must be clearly hypothetical, like the article's own examples.",
     "The 'lines' of a scene are exactly what the voice says, in order, split for subtitles at natural pauses (after a phrase or at ។ ? !). Max 40 characters per line. Use Khmer digits or Arabic digits consistently.",
     "No emoji, no hashtags and no symbols like →, *, # inside 'lines'. Hashtags go only in 'description'.",
-    "B-roll queries are 2-4 plain English words naming what is visible, subject first (e.g. 'woman smartphone message', 'packing box parcel', 'delivery motorbike', 'clothing store', 'laptop analytics chart'). Clips are kept only if their tags match these words, so use common nouns. Every query must show online selling, phones, chatting with customers, packing, delivery, shops, products or business work. Never query brands, logos, text, nature, cities or abstract ideas.",
+    "The video is branded motion graphics, no footage. Give every scene a 'visual' from 'visuals' that SHOWS what the narration says: the hook uses 'question', the last scene 'cta'; pick before/after ('compare'), steps ('checklist'), prices and totals ('delivery' receipt or 'caption' post mock-up), deadlines ('deadline'), problems ('leaving' or 'dashboard'), the lesson ('takeaway'). Vary the types; avoid the same type twice in a row.",
+    "Visual texts are short Khmer phrases taken from the narration (prices, conditions, examples); never new facts. Elements appear as each subtitle line is spoken, so order the lines to match (e.g. compare: the bad version is said before the good one).",
     "Make it different from the recent videos listed in 'recent_videos' (different hook style and opening words).",
 ]
 
@@ -80,6 +81,18 @@ def main():
         "rules": RULES,
         "recent_videos": recent,
         "output_schema": SCHEMA,
+        "visuals": {
+            "question": "hook: phone with customer messages popping in, then a big question. {title, bubbles:[2-5 short customer messages]}",
+            "leaving": "problem: a confusing post and customers walking away. {post_title, confusing (the unclear text), caption}",
+            "dashboard": "problem with ads money: Boost results card + red alert. {title, metrics:[3 x {label, value}] (clearly a sample), alert, next?}",
+            "compare": "before/after: crossed-out bad card, then the good card with a check. {bad, good}",
+            "checklist": "steps or rules appearing one by one. {bad? (crossed-out), items:[2-4]}",
+            "deadline": "calendar and clock: vague vs exact deadline. {bad, good, result?}",
+            "delivery": "scooter + receipt with fees and total. {rows:[2-3 x {label, value}], total?:{label, value}}",
+            "caption": "Facebook post mock-up typed line by line, prices highlighted. {page?, lines:[3-6], highlight?:[words], stamp?}",
+            "takeaway": "the key lesson as a big quote card. {quote}",
+            "cta": "ADS BOX logo, service chips and website. {services:[2-4 from the facts, e.g. Boost Post]}",
+        },
         "example_style": "បងៗដែលកំពុងលក់ Online ប្រហែលជាធ្លាប់ជួបបញ្ហានេះហើយមែនទេ? មានអ្នកសួរច្រើន តែ Order មិនសូវចេញ។ (style only: never reuse these words)",
     }
     C.write_json(a.out, brief)
