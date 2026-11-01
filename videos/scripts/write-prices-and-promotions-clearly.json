@@ -13,11 +13,16 @@
         "តែសួរដដែលៗ «សរុបប៉ុន្មានបង?»",
         "បងៗធ្លាប់ជួបទេ?"
       ],
-      "broll": [
-        "woman smartphone message",
-        "typing phone chat",
-        "smartphone notification"
-      ]
+      "visual": {
+        "type": "question",
+        "title": "សរុបប៉ុន្មានបង?",
+        "bubbles": [
+          "សរុបប៉ុន្មានបង?",
+          "រួមថ្លៃដឹកអត់?",
+          "ទិញ ២ បញ្ចុះទាំងពីរទេ?",
+          "សរុបប៉ុន្មានបង?"
+        ]
+      }
     },
     {
       "role": "problem",
@@ -26,11 +31,12 @@
         "តែដោយសារយើងសរសេរតម្លៃមិនច្បាស់។",
         "អ្នកខ្លះមិនសួរផង គឺរំកិលទៅផេកផ្សេងបាត់។"
       ],
-      "broll": [
-        "woman scrolling phone",
-        "social media smartphone",
-        "bored woman phone"
-      ]
+      "visual": {
+        "type": "leaving",
+        "post_title": "អាវយឺតកប្បាស",
+        "confusing": "បញ្ចុះ ២០% ពី $15 ???",
+        "caption": "អតិថិជនរំកិលទៅផេកផ្សេង"
+      }
     },
     {
       "role": "problem",
@@ -39,11 +45,26 @@
         "គឺលុយ Boost ដែលយើងចាយទៅទទេៗ។",
         "តោះ មើល ៤ ចំណុចដែលកែបានភ្លាមៗ។"
       ],
-      "broll": [
-        "woman laptop online business",
-        "laptop analytics chart",
-        "online shop laptop"
-      ]
+      "visual": {
+        "type": "dashboard",
+        "title": "លុយ Boost ចាយទៅទទេ",
+        "metrics": [
+          {
+            "label": "ចំណាយ",
+            "value": "$50"
+          },
+          {
+            "label": "សារ",
+            "value": "120"
+          },
+          {
+            "label": "Order",
+            "value": "3"
+          }
+        ],
+        "alert": "សួរច្រើន តែ Order តិច",
+        "next": "ចំណុចកែ Caption"
+      }
     },
     {
       "role": "tip",
@@ -54,11 +75,11 @@
         "ជំនួសឲ្យ «បញ្ចុះ ២០% ពី $15»",
         "សរសេរតែម្ដងថា «តម្លៃពិសេស $12»។"
       ],
-      "broll": [
-        "calculator money",
-        "price tag clothes",
-        "woman calculator"
-      ]
+      "visual": {
+        "type": "compare",
+        "bad": "បញ្ចុះ ២០% ពី $15",
+        "good": "តម្លៃពិសេស $12"
+      }
     },
     {
       "role": "tip",
@@ -69,11 +90,15 @@
         "ប្រាប់ឲ្យច្បាស់ ថែមអ្វី លើទំនិញណា",
         "ហើយសរសេរ មួយបន្ទាត់ មួយលក្ខខណ្ឌ។"
       ],
-      "broll": [
-        "clothing store",
-        "folding clothes",
-        "clothes rack shop"
-      ]
+      "visual": {
+        "type": "checklist",
+        "bad": "ទិញ ១ ថែម ១ ?",
+        "items": [
+          "ទិញ ២ ដុំ បង់ $20",
+          "ថែមកាបូប សម្រាប់ Order ពី $25",
+          "សម្រាប់តែពណ៌ខ្មៅ និងស"
+        ]
+      }
     },
     {
       "role": "tip",
@@ -84,11 +109,12 @@
         "ប្រាប់ឲ្យជាក់ ដល់ថ្ងៃអាទិត្យ ម៉ោង ១០ យប់",
         "អ្នកទិញនឹងសម្រេចចិត្តលឿនជាងមុន។"
       ],
-      "broll": [
-        "calendar planner",
-        "woman phone shopping",
-        "clock time"
-      ]
+      "visual": {
+        "type": "deadline",
+        "bad": "រយៈពេលកំណត់",
+        "good": "ដល់ថ្ងៃអាទិត្យ ម៉ោង ១០ យប់",
+        "result": "សម្រេចចិត្តលឿនជាងមុន"
+      }
     },
     {
       "role": "tip",
@@ -99,11 +125,23 @@
         "សរសេរថ្លៃដឹកភ្នំពេញ និងខេត្តឲ្យច្បាស់",
         "ហើយដាក់ឧទាហរណ៍តម្លៃសរុបមួយផង។"
       ],
-      "broll": [
-        "delivery motorbike",
-        "packing box parcel",
-        "courier package"
-      ]
+      "visual": {
+        "type": "delivery",
+        "rows": [
+          {
+            "label": "ដឹកក្នុងភ្នំពេញ",
+            "value": "$1.50"
+          },
+          {
+            "label": "ដឹកទៅខេត្ត",
+            "value": "$2"
+          }
+        ],
+        "total": {
+          "label": "២ ដុំ + ដឹកភ្នំពេញ",
+          "value": "$21.50"
+        }
+      }
     },
     {
       "role": "example",
@@ -114,11 +152,22 @@
         "ទិញ ៣ ដុំ $19 ដឹកក្នុងភ្នំពេញ $1.50",
         "អានតែប៉ុន្មានវិនាទី ក៏ដឹងតម្លៃសរុបភ្លាម។"
       ],
-      "broll": [
-        "t-shirt clothes",
-        "woman photographing clothes",
-        "online shopping phone"
-      ]
+      "visual": {
+        "type": "caption",
+        "page": "ហាងគំរូ",
+        "lines": [
+          "អាវយឺតកប្បាសទន់",
+          "ធម្មតា $9 → ពិសេស $7",
+          "ទិញ ៣ ដុំ $19",
+          "ដឹកភ្នំពេញ $1.50 · ខេត្ត $2",
+          "ផុតកំណត់ ថ្ងៃអាទិត្យ ម៉ោង ១០ យប់"
+        ],
+        "highlight": [
+          "$7",
+          "$19"
+        ],
+        "stamp": "ច្បាស់!"
+      }
     },
     {
       "role": "summary",
@@ -127,11 +176,12 @@
         "ធ្វើដូចជាអតិថិជនថ្មី ហើយសួរខ្លួនឯងថា",
         "«ខ្ញុំដឹងទេ ថាត្រូវបង់ប៉ុន្មានសរុប?»"
       ],
-      "broll": [
-        "woman reading phone cafe",
-        "woman thinking phone",
-        "woman smiling smartphone"
-      ]
+      "visual": {
+        "type": "takeaway",
+        "quote": "ខ្ញុំដឹងទេ ថាត្រូវបង់ប៉ុន្មានសរុប?"
+      },
+      "label": "សង្ខេប",
+      "keyword": "អានដូចអតិថិជនថ្មី"
     },
     {
       "role": "cta",
@@ -140,16 +190,19 @@
         "បើចង់ឲ្យវាទៅដល់អ្នកទិញពិតៗ",
         "ស្វែងយល់ពីសេវា Boost របស់ ADS BOX បាន។"
       ],
-      "broll": [
-        "business team laptop",
-        "office meeting team",
-        "woman working laptop"
-      ]
+      "visual": {
+        "type": "cta",
+        "services": [
+          "Boost Post",
+          "Boost Live",
+          "Boost TikTok"
+        ]
+      }
     }
   ],
   "article": {
     "title": "សរសេរតម្លៃ និង Promotion ក្នុង Caption ឲ្យច្បាស់៖ ៥ គន្លឹះកុំឲ្យអតិថិជនច្រឡំ",
     "url": "https://adsbox.agency/knowledge/write-prices-and-promotions-clearly/"
   },
-  "written_at": "2026-11-01T13:25:11+07:00"
+  "written_at": "2026-11-01T14:02:51+07:00"
 }
