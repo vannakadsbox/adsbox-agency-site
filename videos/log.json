@@ -1117,9 +1117,133 @@
       "article_url": "https://adsbox.agency/knowledge/when-to-raise-or-cut-boost-budget/",
       "video_title": "ដំឡើង ឬកាត់ថវិកា Boost? មើលលេខ ៥ ចំណុចនេះសិន កុំប្ដូរតាមអារម្មណ៍",
       "hook": "Boost ល្អពីរថ្ងៃ ដំឡើងថវិកាទ្វេដងភ្លាម ស្រាប់តែ Order ធ្លាក់ ថ្លៃផ្សាយឡើងវិញ!",
-      "status": "scripted",
+      "status": "sent",
       "scripted_at": "2026-11-02T17:24:53+07:00",
-      "error": ""
+      "error": "",
+      "render_started_at": "2026-11-02T17:25:42+07:00",
+      "sent_at": "2026-11-02T17:33:23+07:00",
+      "rendered_at": "2026-11-02T17:33:23+07:00",
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/41428620850",
+      "duration": 73.3,
+      "size_mb": 20,
+      "render_seconds": 443,
+      "voice": "kiri:Bora",
+      "music": "adsbox-original-2.mp3",
+      "style": "custom animation only (no stock footage)",
+      "visuals": [
+        "question",
+        "story",
+        "delivery",
+        "compare",
+        "checklist",
+        "flow",
+        "dashboard",
+        "checklist",
+        "takeaway",
+        "cta"
+      ],
+      "resolution": "1080x1920",
+      "fps": 30,
+      "subtitle_sync": "transcript",
+      "footage": [],
+      "footage_share": 0,
+      "stock_footage": "none (removed)",
+      "telegram": {
+        "ok": true,
+        "message_id": 112,
+        "chat": "configured",
+        "at": "2026-11-02T17:33:23+07:00",
+        "file_id": "BAACAgUAAxkDAANwauhm6Yysfejfm7p1aCiDOEE3ESoAAoQtAALuDUhX7KjW7kkDo209BA",
+        "items": [
+          {
+            "item": "video",
+            "message_id": 112,
+            "file_name": "when-to-raise-or-cut-boost-budget.mp4",
+            "file_size": 20030348,
+            "width": 1080,
+            "height": 1920,
+            "file_id": "BAACAgUAAxkDAANwauhm6Yysfejfm7p1aCiDOEE3ESoAAoQtAALuDUhX7KjW7kkDo209BA"
+          },
+          {
+            "item": "facebook_caption",
+            "message_id": 113
+          },
+          {
+            "item": "thumbnail",
+            "message_id": 114,
+            "file_name": "when-to-raise-or-cut-boost-budget-thumbnail.jpg",
+            "file_size": 193252
+          }
+        ],
+        "sent_count": 3,
+        "local_sizes": {
+          "video": 20030348,
+          "thumbnail": 193252
+        }
+      },
+      "speech_match": [
+        1,
+        1,
+        0.957,
+        1,
+        1,
+        0.846,
+        1,
+        0.994,
+        1,
+        1
+      ],
+      "scene_sync": [
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript"
+      ],
+      "archive": {
+        "assets": [
+          {
+            "id": 701377799,
+            "name": "when-to-raise-or-cut-boost-budget-thumb.jpg",
+            "size": 193252,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/when-to-raise-or-cut-boost-budget-thumb.jpg"
+          },
+          {
+            "id": 701377803,
+            "name": "when-to-raise-or-cut-boost-budget.mp4",
+            "size": 20030348,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/when-to-raise-or-cut-boost-budget.mp4"
+          }
+        ],
+        "release_id": 430382508
+      },
+      "quality": {
+        "width": 1080,
+        "height": 1920,
+        "fps": "30/1",
+        "duration": 73.3,
+        "video_codec": "h264",
+        "audio_codec": "aac",
+        "loudness": "-14.1 LUFS",
+        "decode_errors": false,
+        "visual_mix": {
+          "motion_graphics": 0.71,
+          "phone_chat": 0.08,
+          "illustrated": 0.09,
+          "product_dashboard": 0.11
+        }
+      },
+      "article_id": "when-to-raise-or-cut-boost-budget",
+      "video_id": 701377803,
+      "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/when-to-raise-or-cut-boost-budget.mp4",
+      "created_at": "2026-11-02T17:33:23+07:00",
+      "telegram_status": "delivered",
+      "production_status": "complete"
     }
   ]
 }
