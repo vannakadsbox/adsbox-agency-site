@@ -93,9 +93,9 @@ window.ACCOUNTS = {
     "updated": "2026-11-02"
    },
    {
-    "name": "បកប្រែAi",
+    "name": "Thon SreyPhors - ថន ស្រីភ័ស",
     "url": "https://www.facebook.com/profile.php?id=61594317351141",
-    "followers": 2925,
+    "followers": 3022,
     "picture": "assets/accounts/fb-61594317351141.webp",
     "cover": "assets/opt/adsbox-cover-fe71e7-1565780390.webp",
     "type": "ផេកខ្មែរ",
@@ -150,7 +150,7 @@ window.ACCOUNTS = {
    {
     "name": "មើលរឿងបកប្រែAi",
     "url": "https://www.facebook.com/profile.php?id=61593965015950",
-    "followers": 78,
+    "followers": 79,
     "picture": "assets/accounts/fb-61593965015950.webp",
     "cover": "assets/opt/adsbox-cover-168a39-1565780390.webp",
     "type": "ផេកខ្មែរ",
@@ -216,7 +216,7 @@ window.ACCOUNTS = {
    {
     "name": "Nito H Lim-ហ៊ា នីតូTopFan",
     "url": "https://www.facebook.com/profile.php?id=61592119824989",
-    "followers": 11436,
+    "followers": 11423,
     "picture": "assets/accounts/fb-61592119824989.webp",
     "cover": "assets/opt/adsbox-cover-e5c98d-1565780390.webp",
     "type": "ផេកខ្មែរ",
@@ -271,7 +271,7 @@ window.ACCOUNTS = {
    {
     "name": "យឹម អេង",
     "url": "https://www.facebook.com/profile.php?id=61580042356068",
-    "followers": 12528,
+    "followers": 12508,
     "picture": "assets/accounts/fb-61580042356068.webp",
     "cover": "assets/accounts/fb-61580042356068-cover.webp",
     "type": "ផេកខ្មែរ",
@@ -337,7 +337,7 @@ window.ACCOUNTS = {
    {
     "name": "Amazing DN28",
     "url": "https://www.facebook.com/profile.php?id=100067947746179",
-    "followers": 1869,
+    "followers": 1868,
     "picture": "assets/accounts/fb-100067947746179.webp",
     "cover": "assets/accounts/fb-100067947746179-cover.webp",
     "type": "ផេកខ្មែរ",
@@ -700,7 +700,7 @@ window.ACCOUNTS = {
    {
     "name": "យឹម អេង",
     "url": "https://www.facebook.com/profile.php?id=61580042356068&sk=reels_tab",
-    "followers": 12528,
+    "followers": 12508,
     "picture": "assets/accounts/fb-61580042356068.webp",
     "cover": "assets/opt/adsbox-cover-a69ac9-1565780390.webp",
     "type": "ផេកខ្មែរ",
