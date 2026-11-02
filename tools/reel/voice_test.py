@@ -94,7 +94,7 @@ async def make(out):
                                   capture_output=True, text=True).stdout.strip()
             if code != "200":
                 detail = open(raw, encoding="utf-8", errors="replace").read()[:200] if os.path.exists(raw) else ""
-                print(f"::error::Kiri {v}: HTTP {code} {detail}")
+                print(f"::error::Kiri {v}: HTTP {code} {detail} | voices this key can use: {', '.join(sorted(vids))[:600]}")
                 continue
             ff("-i", raw, "-af", "loudnorm=I=-16:TP=-1.5:LRA=11", "-ar", "44100", "-b:a", "192k", f)
             secs = float(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", raw], text=True))
