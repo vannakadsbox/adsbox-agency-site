@@ -1110,6 +1110,16 @@
       "created_at": "2026-11-02T07:33:21+07:00",
       "telegram_status": "delivered",
       "production_status": "complete"
+    },
+    {
+      "slug": "when-to-raise-or-cut-boost-budget",
+      "article_title": "ពេលណាគួរដំឡើង ឬកាត់ថវិកា Boost? ៥ ជំហានសម្រេចចិត្តដោយមើលលេខ",
+      "article_url": "https://adsbox.agency/knowledge/when-to-raise-or-cut-boost-budget/",
+      "video_title": "ដំឡើង ឬកាត់ថវិកា Boost? មើលលេខ ៥ ចំណុចនេះសិន កុំប្ដូរតាមអារម្មណ៍",
+      "hook": "Boost ល្អពីរថ្ងៃ ដំឡើងថវិកាទ្វេដងភ្លាម ស្រាប់តែ Order ធ្លាក់ ថ្លៃផ្សាយឡើងវិញ!",
+      "status": "scripted",
+      "scripted_at": "2026-11-02T17:24:53+07:00",
+      "error": ""
     }
   ]
 }
