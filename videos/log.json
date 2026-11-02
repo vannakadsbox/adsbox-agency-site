@@ -986,9 +986,130 @@
       "article_url": "https://adsbox.agency/knowledge/buy-two-bundle-offers/",
       "video_title": "កាត់តម្លៃហើយចំណេញធ្លាក់? ៥ គន្លឹះរៀបកញ្ចប់ ទិញ ២ ឲ្យគេចង់យកច្រើន",
       "hook": "«ពណ៌ស ឬខ្មៅ មួយណាស្អាតជាងបង?» សំណួរនេះ អាចក្លាយជា Order ២ ដុំបាន!",
-      "status": "scripted",
+      "status": "sent",
       "scripted_at": "2026-11-02T07:24:42+07:00",
-      "error": ""
+      "error": "",
+      "render_started_at": "2026-11-02T07:25:35+07:00",
+      "sent_at": "2026-11-02T07:33:21+07:00",
+      "rendered_at": "2026-11-02T07:33:21+07:00",
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/41367003362",
+      "duration": 73.3,
+      "size_mb": 19.8,
+      "render_seconds": 447,
+      "voice": "kiri:Bora",
+      "music": "adsbox-original-1.mp3",
+      "style": "custom animation only (no stock footage)",
+      "visuals": [
+        "question",
+        "story",
+        "chat",
+        "checklist",
+        "compare",
+        "caption",
+        "flow",
+        "takeaway",
+        "cta"
+      ],
+      "resolution": "1080x1920",
+      "fps": 30,
+      "subtitle_sync": "transcript",
+      "footage": [],
+      "footage_share": 0,
+      "stock_footage": "none (removed)",
+      "telegram": {
+        "ok": true,
+        "message_id": 108,
+        "chat": "configured",
+        "at": "2026-11-02T07:33:21+07:00",
+        "file_id": "BAACAgUAAxkDAANsaufaRsUkbiXYBAim5zNl0jwu1-4AAoolAAIeBDlXooWmDPxSy0o9BA",
+        "items": [
+          {
+            "item": "video",
+            "message_id": 108,
+            "file_name": "buy-two-bundle-offers.mp4",
+            "file_size": 19836105,
+            "width": 1080,
+            "height": 1920,
+            "file_id": "BAACAgUAAxkDAANsaufaRsUkbiXYBAim5zNl0jwu1-4AAoolAAIeBDlXooWmDPxSy0o9BA"
+          },
+          {
+            "item": "facebook_caption",
+            "message_id": 109
+          },
+          {
+            "item": "thumbnail",
+            "message_id": 110,
+            "file_name": "buy-two-bundle-offers-thumbnail.jpg",
+            "file_size": 211026
+          }
+        ],
+        "sent_count": 3,
+        "local_sizes": {
+          "video": 19836105,
+          "thumbnail": 211026
+        }
+      },
+      "speech_match": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0.993
+      ],
+      "scene_sync": [
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript"
+      ],
+      "archive": {
+        "assets": [
+          {
+            "id": 699967112,
+            "name": "buy-two-bundle-offers-thumb.jpg",
+            "size": 211026,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/buy-two-bundle-offers-thumb.jpg"
+          },
+          {
+            "id": 699967110,
+            "name": "buy-two-bundle-offers.mp4",
+            "size": 19836105,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/buy-two-bundle-offers.mp4"
+          }
+        ],
+        "release_id": 430382508
+      },
+      "quality": {
+        "width": 1080,
+        "height": 1920,
+        "fps": "30/1",
+        "duration": 73.3,
+        "video_codec": "h264",
+        "audio_codec": "aac",
+        "loudness": "-13.5 LUFS",
+        "decode_errors": false,
+        "visual_mix": {
+          "motion_graphics": 0.53,
+          "phone_chat": 0.37,
+          "illustrated": 0.1,
+          "product_dashboard": 0
+        }
+      },
+      "article_id": "buy-two-bundle-offers",
+      "video_id": 699967110,
+      "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/buy-two-bundle-offers.mp4",
+      "created_at": "2026-11-02T07:33:21+07:00",
+      "telegram_status": "delivered",
+      "production_status": "complete"
     }
   ]
 }
