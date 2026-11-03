@@ -1,0 +1,192 @@
+{
+  "slug": "read-ads-manager-in-5-minutes",
+  "video_title": "Like ច្រើន តែ Order តិច? អាន Ads Manager ក្នុង ៥ នាទី មើលតែ ៥ លេខ",
+  "topic": "បងៗរៀនមើលលេខ ៥ សំខាន់ក្នុង Ads Manager តាមលំដាប់ ក្នុង ៥ នាទីរាល់ព្រឹក ដើម្បីដឹងថា Boost ល្អ ឬត្រូវកែត្រង់ណា។",
+  "thumbnail_text": "អាន Ads Manager ក្នុង ៥ នាទី",
+  "description": "បើក Ads Manager ឃើញលេខពេញអេក្រង់ មិនដឹងមើលពីណា?\nមើលតែ ៥ លេខនេះតាមលំដាប់ ៥ នាទីរាល់ព្រឹក។\nអានបន្ថែម៖ adsbox.agency\n#ADSBOX #AdsManager #BoostPost #លក់អនឡាញ",
+  "facebook_caption": "Like ច្រើន Reach ខ្ពស់ តែ Order មិនចេញ? 🤔\nបើក Ads Manager មើលតែ ៥ លេខនេះបានហើយ៖\n✅ Amount Spent (ម្សិលមិញ ឬ ៣ ថ្ងៃ)\n✅ Cost per Result\n✅ CTR\n✅ Frequency\n✅ Order ពិតក្នុង Inbox\nចំណាយត្រឹម ៥ នាទីរាល់ព្រឹក ដឹងភ្លាមថា Boost ត្រូវកែត្រង់ណា។\nបងៗធម្មតាមើលលេខមួយណាមុនគេ? Comment ប្រាប់ផង 👇\n#ADSBOX #AdsManager #BoostPost #លក់អនឡាញ",
+  "scenes": [
+    {
+      "role": "hook",
+      "lines": [
+        "Like រាប់រយ Reach រាប់ពាន់",
+        "តែ Order បែរជាតិចសោះ?"
+      ],
+      "keyword": "Like ច្រើន Order តិច?",
+      "visual": {
+        "type": "question",
+        "title": "Boost ល្អមែនឬ?",
+        "bubbles": [
+          "Like ១០០+",
+          "Reach ច្រើន",
+          "Order តិច..."
+        ]
+      }
+    },
+    {
+      "role": "problem",
+      "lines": [
+        "បងៗច្រើនបើក Ads Manager",
+        "ឃើញលេខពេញអេក្រង់ ក៏មើលតែ Like។",
+        "Like ច្រើន មិនមែនថាគេចង់ទិញទេណា។"
+      ],
+      "keyword": "Like មិនមែន Order",
+      "visual": {
+        "type": "story",
+        "scene": "desk",
+        "mood": "worried",
+        "title": "មើលលេខមួយណាមុន?"
+      }
+    },
+    {
+      "role": "tip",
+      "lines": [
+        "ទីមួយ កុំមើលតែថ្ងៃនេះ",
+        "ជ្រើសម្សិលមិញ ឬ ៣ ថ្ងៃចុងក្រោយ",
+        "ហើយមើលថាលុយចាយត្រូវតាមថវិកាអត់។"
+      ],
+      "label": "លេខទី ១",
+      "keyword": "Amount Spent",
+      "visual": {
+        "type": "deadline",
+        "bad": "មើលតែថ្ងៃនេះ",
+        "good": "ម្សិលមិញ ឬ ៣ ថ្ងៃចុងក្រោយ",
+        "result": "លុយចាយត្រូវតាមថវិកា"
+      }
+    },
+    {
+      "role": "tip",
+      "lines": [
+        "ទីពីរ មើលថ្លៃមួយលទ្ធផល។",
+        "កុំយកទៅប្រៀបនឹងផេកគេ",
+        "ប្រៀបនឹងថ្ងៃមុនៗ របស់ផេកខ្លួនឯង។"
+      ],
+      "label": "លេខទី ២",
+      "keyword": "Cost per Result",
+      "visual": {
+        "type": "compare",
+        "bad": "ប្រៀបនឹងផេកគេ",
+        "good": "ប្រៀបនឹងផេកខ្លួនឯង"
+      }
+    },
+    {
+      "role": "tip",
+      "lines": [
+        "ទីបី CTR ទាប មានន័យថា",
+        "រូប ឬ Caption មិនទាន់ទាក់ភ្នែកគេ។",
+        "ដូររូបថ្មីសិន កុំទាន់ថែមលុយ។"
+      ],
+      "label": "លេខទី ៣",
+      "keyword": "CTR ទាប ដូររូបសិន",
+      "visual": {
+        "type": "leaving",
+        "post_title": "Post Boost",
+        "confusing": "រូបមិនទាក់ភ្នែក",
+        "caption": "CTR ទាប ដូររូបថ្មីសិន"
+      }
+    },
+    {
+      "role": "tip",
+      "lines": [
+        "ទីបួន បើ Frequency ឡើង",
+        "ហើយថ្លៃមួយលទ្ធផលក៏ឡើងដែរ",
+        "គឺមនុស្សដដែលឃើញញឹកពេកហើយ។"
+      ],
+      "label": "លេខទី ៤",
+      "keyword": "Frequency",
+      "visual": {
+        "type": "checklist",
+        "items": [
+          "Frequency ឡើង",
+          "ថ្លៃមួយលទ្ធផលឡើង",
+          "ពង្រីក Audience ឬ Post ថ្មី"
+        ]
+      }
+    },
+    {
+      "role": "example",
+      "lines": [
+        "ឧទាហរណ៍ ហាងកាបូប Boost $5 មួយថ្ងៃ",
+        "ថ្លៃមួយលទ្ធផលឡើងពី $0.40 ទៅ $0.70",
+        "គាត់ពង្រីក Audience ហើយដូររូបថ្មី។"
+      ],
+      "keyword": "ឧទាហរណ៍",
+      "visual": {
+        "type": "dashboard",
+        "title": "ឧទាហរណ៍ ហាងកាបូប",
+        "metrics": [
+          {
+            "label": "ថវិកា",
+            "value": "$5"
+          },
+          {
+            "label": "ថ្លៃមួយសារ",
+            "value": "$0.70"
+          },
+          {
+            "label": "Frequency",
+            "value": "ឡើង"
+          }
+        ],
+        "alert": "មនុស្សដដែលឃើញញឹកពេក",
+        "next": "ពង្រីក Audience"
+      }
+    },
+    {
+      "role": "tip",
+      "lines": [
+        "ទីប្រាំ Ads Manager មិនឃើញ",
+        "Order ដែលបិទក្នុង Inbox ទេ។",
+        "រាប់ Order ពិត កត់ក្បែរលុយដែលចាយ។"
+      ],
+      "label": "លេខទី ៥",
+      "keyword": "Order ពិត",
+      "visual": {
+        "type": "flow",
+        "steps": [
+          {
+            "text": "លុយដែលចាយ"
+          },
+          {
+            "text": "Order ពិតក្នុង Inbox"
+          },
+          {
+            "text": "កត់ក្បែរគ្នា"
+          }
+        ]
+      }
+    },
+    {
+      "role": "summary",
+      "lines": [
+        "ចាំណា ៥ លេខ ៥ នាទីរាល់ព្រឹក",
+        "មើលតាមលំដាប់ ហើយកត់ចំណាំខ្លីៗ។"
+      ],
+      "keyword": "៥ លេខ ៥ នាទី",
+      "visual": {
+        "type": "takeaway",
+        "quote": "៥ លេខ ៥ នាទីរាល់ព្រឹក"
+      }
+    },
+    {
+      "role": "cta",
+      "lines": [
+        "ចង់មានក្រុមជួយតាមដាន Boost រាល់ថ្ងៃ",
+        "ស្វែងយល់ពី ADS BOX នៅ adsbox.agency"
+      ],
+      "visual": {
+        "type": "cta",
+        "services": [
+          "Boost Post",
+          "Boost Live",
+          "Boost TikTok"
+        ]
+      }
+    }
+  ],
+  "article": {
+    "title": "អានលទ្ធផល Ads Manager ក្នុង ៥ នាទី៖ លេខ ៥ ដែលអ្នកលក់អនឡាញគួរមើលរៀងរាល់ថ្ងៃ",
+    "url": "https://adsbox.agency/knowledge/read-ads-manager-in-5-minutes/"
+  },
+  "written_at": "2026-11-03T17:25:14+07:00"
+}
