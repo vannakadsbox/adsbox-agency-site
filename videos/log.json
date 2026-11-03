@@ -1251,9 +1251,16 @@
       "article_url": "https://adsbox.agency/knowledge/answer-customer-doubts-before-ordering/",
       "video_title": "ភ្ញៀវសួរហើយស្ងាត់បាត់? ៥ ការព្រួយបារម្ភ ឆ្លើយមុនគេសួរ ឲ្យហ៊ានកុម្ម៉ង់",
       "hook": "ភ្ញៀវសួរ មើលរូបច្រើនដង ហើយស្ងាត់បាត់ បងដឹងទេមកពីអី?",
-      "status": "scripted",
+      "status": "failed",
       "scripted_at": "2026-11-03T07:24:51+07:00",
-      "error": ""
+      "error": "render: the video could not be rendered (2 attempts)",
+      "render_started_at": "2026-11-03T07:25:38+07:00",
+      "attempts": 1,
+      "failed_at": "2026-11-03T07:40:36+07:00",
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/41552673138",
+      "article_id": "answer-customer-doubts-before-ordering",
+      "production_status": "failed",
+      "telegram_status": "not sent"
     }
   ]
 }
