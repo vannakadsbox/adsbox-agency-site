@@ -335,7 +335,9 @@ body{width:${W}px;height:${H}px;overflow:hidden;font-family:M,L,sans-serif;color
     "-r", String(FPS), "-c:a", "aac", "-b:a", "192k", "-t", total.toFixed(3), "-movflags", "+faststart", mp4];
   run(["-framerate", String(FPS), "-i", path.join(fdir, "%05d.jpg"), "-i", wav, "-map", "0:v", "-map", "1:a",
     "-vf", `scale=${W}:${H},format=yuv420p`, ...enc]);
-  const dims = execFileSync("ffprobe", ["-v", "error", "-select_streams", "v:0", "-show_entries", "stream=width,height,r_frame_rate", "-of", "csv=p=0", mp4], { encoding: "utf8" }).trim();
+  // JSON, not CSV: newer ffprobe versions add extra empty CSV fields.
+  const vs = (JSON.parse(execFileSync("ffprobe", ["-v", "error", "-select_streams", "v:0", "-show_entries", "stream=width,height,r_frame_rate", "-of", "json", mp4], { encoding: "utf8" })).streams || [])[0] || {};
+  const dims = `${vs.width},${vs.height},${vs.r_frame_rate}`;
   if (dims !== `${W},${H},${FPS}/1`) throw new Error(`Output is ${dims}, expected ${W}x${H} at ${FPS} fps`);
 
   // Thumbnail from the moment the hook question is fully on screen.

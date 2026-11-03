@@ -138,7 +138,9 @@ def sent(a):
         return 1
 
     wide = thumb  # the owner's standard: thumbnail exactly 1080x1920 (checked below)
-    tw = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "stream=width,height", "-of", "csv=p=0", thumb], capture_output=True, text=True).stdout.strip()
+    st = (json.loads(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "stream=width,height", "-of", "json", thumb],
+                                    capture_output=True, text=True).stdout or "{}").get("streams") or [{}])[0]
+    tw = f"{st.get('width')},{st.get('height')}"
     if tw != "1080,1920":
         rec.update({"status": "failed", "error": f"thumbnail is {tw}, expected 1080x1920", "failed_at": C.iso(), "run": a.run or ""})
         C.save_log(lg)
