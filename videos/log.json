@@ -1251,16 +1251,135 @@
       "article_url": "https://adsbox.agency/knowledge/answer-customer-doubts-before-ordering/",
       "video_title": "ភ្ញៀវសួរហើយស្ងាត់បាត់? ៥ ការព្រួយបារម្ភ ឆ្លើយមុនគេសួរ ឲ្យហ៊ានកុម្ម៉ង់",
       "hook": "ភ្ញៀវសួរ មើលរូបច្រើនដង ហើយស្ងាត់បាត់ បងដឹងទេមកពីអី?",
-      "status": "failed",
+      "status": "sent",
       "scripted_at": "2026-11-03T07:24:51+07:00",
-      "error": "render: the video could not be rendered (2 attempts)",
-      "render_started_at": "2026-11-03T12:14:32+07:00",
+      "error": "",
+      "render_started_at": "2026-11-03T12:31:28+07:00",
       "attempts": 4,
       "failed_at": "2026-11-03T12:30:18+07:00",
-      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/41582679936",
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/41584337284",
       "article_id": "answer-customer-doubts-before-ordering",
-      "production_status": "failed",
-      "telegram_status": "not sent"
+      "production_status": "complete",
+      "telegram_status": "delivered",
+      "sent_at": "2026-11-03T12:39:06+07:00",
+      "rendered_at": "2026-11-03T12:39:06+07:00",
+      "duration": 71.17,
+      "size_mb": 21.3,
+      "render_seconds": 437,
+      "voice": "kiri:Bora",
+      "music": "adsbox-original-2.mp3",
+      "style": "custom animation only (no stock footage)",
+      "visuals": [
+        "question",
+        "story",
+        "compare",
+        "checklist",
+        "deadline",
+        "flow",
+        "caption",
+        "chat",
+        "takeaway",
+        "cta"
+      ],
+      "resolution": "1080x1920",
+      "fps": 30,
+      "subtitle_sync": "transcript",
+      "footage": [],
+      "footage_share": 0,
+      "stock_footage": "none (removed)",
+      "telegram": {
+        "ok": true,
+        "message_id": 124,
+        "chat": "configured",
+        "at": "2026-11-03T12:39:06+07:00",
+        "file_id": "BAACAgUAAxkDAAN8aulzcEbVZNqHtp9TNI7luk1tXkIAApcjAALuDVBXm4W5-PF8oCk9BA",
+        "items": [
+          {
+            "item": "video",
+            "message_id": 124,
+            "file_name": "answer-customer-doubts-before-ordering.mp4",
+            "file_size": 21338355,
+            "width": 1080,
+            "height": 1920,
+            "file_id": "BAACAgUAAxkDAAN8aulzcEbVZNqHtp9TNI7luk1tXkIAApcjAALuDVBXm4W5-PF8oCk9BA"
+          },
+          {
+            "item": "facebook_caption",
+            "message_id": 125
+          },
+          {
+            "item": "thumbnail",
+            "message_id": 126,
+            "file_name": "answer-customer-doubts-before-ordering-thumbnail.jpg",
+            "file_size": 206086
+          }
+        ],
+        "sent_count": 3,
+        "local_sizes": {
+          "video": 21338355,
+          "thumbnail": 206086
+        }
+      },
+      "speech_match": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "scene_sync": [
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript"
+      ],
+      "archive": {
+        "assets": [
+          {
+            "id": 704456364,
+            "name": "answer-customer-doubts-before-ordering-thumb.jpg",
+            "size": 206086,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/answer-customer-doubts-before-ordering-thumb.jpg"
+          },
+          {
+            "id": 704456360,
+            "name": "answer-customer-doubts-before-ordering.mp4",
+            "size": 21338355,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/answer-customer-doubts-before-ordering.mp4"
+          }
+        ],
+        "release_id": 430382508
+      },
+      "quality": {
+        "width": 1080,
+        "height": 1920,
+        "fps": "30/1",
+        "duration": 71.17,
+        "video_codec": "h264",
+        "audio_codec": "aac",
+        "loudness": "-13.7 LUFS",
+        "decode_errors": false,
+        "visual_mix": {
+          "motion_graphics": 0.61,
+          "phone_chat": 0.29,
+          "illustrated": 0.1,
+          "product_dashboard": 0
+        }
+      },
+      "video_id": 704456360,
+      "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/answer-customer-doubts-before-ordering.mp4",
+      "created_at": "2026-11-03T12:39:06+07:00"
     }
   ]
 }
