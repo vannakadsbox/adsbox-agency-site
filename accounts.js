@@ -183,35 +183,35 @@ window.ACCOUNTS = {
    {
     "name": "TVMovie",
     "url": "https://www.facebook.com/profile.php?id=61593525958630",
-    "followers": 999,
+    "followers": 998,
     "picture": "assets/accounts/fb-61593525958630.webp",
     "cover": "assets/opt/adsbox-cover-d04980-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-01"
+    "updated": "2026-11-03"
    },
    {
     "name": "Merlrg24h",
     "url": "https://www.facebook.com/profile.php?id=61593372051825",
-    "followers": 4798,
+    "followers": 4840,
     "picture": "assets/accounts/fb-61593372051825.webp",
     "cover": "assets/opt/adsbox-cover-1cdc4c-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-01"
+    "updated": "2026-11-03"
    },
    {
     "name": "MerDrama",
     "url": "https://www.facebook.com/profile.php?id=61593165279972",
-    "followers": 2055,
+    "followers": 2057,
     "picture": "assets/accounts/fb-61593165279972.webp",
     "cover": "assets/opt/adsbox-cover-75e2ae-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-01"
+    "updated": "2026-11-03"
    },
    {
     "name": "Nito H Lim-ហ៊ា នីតូTopFan",
@@ -227,13 +227,13 @@ window.ACCOUNTS = {
    {
     "name": "Thorn Saroeun",
     "url": "https://www.facebook.com/profile.php?id=61581267786264",
-    "followers": 1042,
+    "followers": 1044,
     "picture": "assets/accounts/fb-61581267786264.webp",
     "cover": "assets/opt/adsbox-cover-9b5872-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-01"
+    "updated": "2026-11-03"
    },
    {
     "name": "Ly Za",
