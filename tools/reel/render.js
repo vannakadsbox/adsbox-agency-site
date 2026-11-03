@@ -358,4 +358,4 @@ body{width:${W}px;height:${H}px;overflow:hidden;font-family:M,L,sans-serif;color
   fs.writeFileSync(path.join(outDir, "meta.json"), JSON.stringify(meta, null, 1));
   fs.rmSync(work, { recursive: true, force: true });
   console.log(`Video made: ${mp4} (${meta.duration}s, ${meta.resolution} @ ${FPS} fps, ${meta.size_mb} MB, ${meta.render_seconds}s)`);
-})().catch((e) => { console.error(e.stack || e); process.exit(1); });
+})().catch((e) => { console.error(e.stack || e); console.log("::error::render: " + String((e && e.stack) || e).split("\n").slice(0, 4).join(" | ").slice(0, 900)); process.exit(1); });
