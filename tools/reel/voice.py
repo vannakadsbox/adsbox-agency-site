@@ -65,15 +65,23 @@ def kiri_speak(text, name, out):
     if ins:
         body["instructions"] = ins[:100]
     wav = out + ".wav"
-    for attempt in range(4):
+    detail = ""
+    for attempt in range(6):
         code = subprocess.run(["curl", "-sS", "--max-time", "180", "-o", wav, "-w", "%{http_code}", KIRI + "/audio/speech",
                                "-H", "Authorization: Bearer " + key, "-H", "Content-Type: application/json",
                                "--data-binary", json.dumps(body)], capture_output=True, text=True).stdout.strip()
         if code == "200" and os.path.getsize(wav) > 4000:
             break
+        try:
+            detail = open(wav, encoding="utf-8", errors="replace").read()[:300].replace("\n", " ")
+        except OSError:
+            detail = ""
+        print(f"Kiri speech attempt {attempt + 1}: HTTP {code} {detail}", file=sys.stderr)
         import time
-        time.sleep(5 * (attempt + 1))
+        time.sleep(min(60, 8 * (attempt + 1)))
     else:
+        # Shown as a GitHub annotation so the cause is visible without the log (no secrets in it).
+        print(f"::error::Kiri speech failed (HTTP {code}) for: {text[:80]} | {detail}", file=sys.stderr)
         raise SystemExit(f"Kiri speech failed (HTTP {code}).")
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", wav, "-ar", "24000", "-ac", "1", "-b:a", "128k", out], check=True)
     os.remove(wav)
