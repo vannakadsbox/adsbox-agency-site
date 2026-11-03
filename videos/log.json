@@ -1244,6 +1244,16 @@
       "created_at": "2026-11-02T17:33:23+07:00",
       "telegram_status": "delivered",
       "production_status": "complete"
+    },
+    {
+      "slug": "answer-customer-doubts-before-ordering",
+      "article_title": "អតិថិជនសួរហើយនៅស្ទាក់ស្ទើរ? ៥ ការព្រួយបារម្ភ និងរបៀបឆ្លើយឲ្យគេហ៊ានកុម្ម៉ង់",
+      "article_url": "https://adsbox.agency/knowledge/answer-customer-doubts-before-ordering/",
+      "video_title": "ភ្ញៀវសួរហើយស្ងាត់បាត់? ៥ ការព្រួយបារម្ភ ឆ្លើយមុនគេសួរ ឲ្យហ៊ានកុម្ម៉ង់",
+      "hook": "ភ្ញៀវសួរ មើលរូបច្រើនដង ហើយស្ងាត់បាត់ បងដឹងទេមកពីអី?",
+      "status": "scripted",
+      "scripted_at": "2026-11-03T07:24:51+07:00",
+      "error": ""
     }
   ]
 }
