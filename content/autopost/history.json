@@ -370,6 +370,23 @@
       "status": "published",
       "published_at": "2026-11-03T06:57:36+07:00",
       "url": "https://adsbox.agency/knowledge/answer-customer-doubts-before-ordering/"
+    },
+    {
+      "date": "2026-11-03",
+      "slot": "evening",
+      "category": "analytics",
+      "angle": "reading Ads Manager numbers in 5 minutes",
+      "attempts": 1,
+      "generated_at": "2026-11-03T16:57:25+07:00",
+      "title": "អានលទ្ធផល Ads Manager ក្នុង ៥ នាទី៖ លេខ ៥ ដែលអ្នកលក់អនឡាញគួរមើលរៀងរាល់ថ្ងៃ",
+      "slug": "read-ads-manager-in-5-minutes",
+      "summary": "មិនចាំបាច់យល់គ្រប់ Column ទេ។ រៀនមើលលេខ ៥ សំខាន់ក្នុង Ads Manager តាមលំដាប់ ដើម្បីដឹងថា Boost របស់អ្នកដំណើរការល្អ ឬត្រូវកែត្រង់ណា។",
+      "primary_keyword": "អានលទ្ធផល Ads Manager",
+      "tag": "ថវិកា និងរបាយការណ៍",
+      "khmer_chars": 2017,
+      "status": "published",
+      "published_at": "2026-11-03T16:57:25+07:00",
+      "url": "https://adsbox.agency/knowledge/read-ads-manager-in-5-minutes/"
     }
   ]
 }
