@@ -83,7 +83,12 @@ def kiri_speak(text, name, out):
         # Shown as a GitHub annotation so the cause is visible without the log (no secrets in it).
         print(f"::error::Kiri speech failed (HTTP {code}) for: {text[:80]} | {detail}", file=sys.stderr)
         raise SystemExit(f"Kiri speech failed (HTTP {code}).")
-    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", wav, "-ar", "24000", "-ac", "1", "-b:a", "128k", out], check=True)
+    # Clarity and consistency: remove rumble, a little less boxiness, a little more presence, gentle compression,
+    # and every scene at the same loudness so the voice never jumps between scenes.
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", wav, "-af",
+                    "highpass=f=70,equalizer=f=280:t=q:w=1.2:g=-2,equalizer=f=3600:t=q:w=1.4:g=2.5,equalizer=f=9000:t=q:w=1:g=1,"
+                    "acompressor=threshold=-21dB:ratio=2.5:attack=6:release=90:makeup=2,loudnorm=I=-16:TP=-1.5:LRA=7",
+                    "-ar", "44100", "-ac", "1", "-b:a", "192k", out], check=True)
     os.remove(wav)
     marks, kind = [], "none"
     kiri_speak.match = None

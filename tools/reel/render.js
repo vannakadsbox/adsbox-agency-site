@@ -32,15 +32,25 @@ const SAY = [["adsbox.agency", "អេដស៍ប៊ក ដត អេជិន�
   ["Target", "ថាហ្គេត"], ["Bundle", "បាន់ឌល"], ["Reels", "រីល"], ["Link", "លីង"], ["Like", "ឡាយក៍"], ["Share", "ស៊ែរ"]];
 const spoken = (t) => SAY.reduce((s, [en, kh]) => s.replace(new RegExp("(^|[^A-Za-z])" + en.replace(".", "\\.") + "(?![A-Za-z])", "gi"), "$1" + kh), String(t))
   .replace(/\$([0-9០-៩]+(?:\.[0-9០-៩]+)?)/g, "$1 ដុល្លារ").replace(/([0-9០-៩]+)\s?%/g, "$1 ភាគរយ").replace(/[«»"()]/g, " ").replace(/\s+/g, " ").trim();
+// Kiri voices read English inside Khmer naturally, so English terms stay English (no Khmer spelling); only the brand,
+// the web address, prices and percentages are written the way they should be said.
+const spokenKiri = (t) => String(t).replace(/adsbox\.agency/gi, "Ads Box dot agency").replace(/adsbox\.biz/gi, "Ads Box dot biz").replace(/ADS\s*BOX/g, "Ads Box")
+  .replace(/\$([0-9០-៩]+(?:\.[0-9០-៩]+)?)/g, "$1 ដុល្លារ").replace(/([0-9០-៩]+)\s?%/g, "$1 ភាគរយ").replace(/[«»"()]/g, " ").replace(/\s+/g, " ").trim();
 const weight = (s) => String(s).replace(/\s+/g, "").length || 1;
 
 // --- Voice and word timing ---------------------------------------------------------------------------------------
 function voice(scenes, dir) {
   fs.mkdirSync(dir, { recursive: true });
+  const kiri = String(process.env.REEL_VOICE || "").startsWith("kiri:");
   scenes.forEach((sc) => {
-    sc.said = sc.lines.map(spoken);
-    sc.text = sc.said.join(" ");
-    let p = 0; sc.lineAt = sc.said.map((l) => { const a = p; p += l.length + 1; return a; });
+    sc.said = sc.lines.map(kiri ? spokenKiri : spoken);
+    // Kiri: a subtitle line break is a natural pause, so a line without its own end mark gets a comma (a short breath).
+    let p = 0, text = "";
+    sc.lineAt = sc.said.map((l, j) => {
+      const sep = j === 0 ? "" : (kiri && !/[។?!,៖]$/.test(sc.said[j - 1]) ? ", " : " ");
+      text += sep + l; p += sep.length; const a = p; p += l.length; return a;
+    });
+    sc.text = text;
   });
   const tf = path.join(dir, "texts.json");
   fs.writeFileSync(tf, JSON.stringify(scenes.map((s) => s.text)));
@@ -232,16 +242,26 @@ function sound(scenes, total, music, dir) {
     const ms = Math.max(0, Math.round(t * 1000));
     parts.push(`[${i}:a]aresample=44100,aformat=channel_layouts=stereo,adelay=${ms}|${ms}[a${i}]`);
   });
-  let mix = clips.map((_, i) => `[a${i}]`).join("") + `amix=inputs=${clips.length}:normalize=0,apad=whole_dur=${total.toFixed(3)}[fx]`;
-  let last = "[fx]";
+  // Voice and sound effects on separate buses, so the music can step back whenever the narrator speaks.
+  const isVoice = clips.map(([f]) => scenes.some((sc) => sc.voice === f));
+  const vIdx = clips.map((_, i) => i).filter((i) => isVoice[i]), fIdx = clips.map((_, i) => i).filter((i) => !isVoice[i]);
+  const bus = (idx, name) => idx.map((i) => `[a${i}]`).join("") + `amix=inputs=${idx.length}:normalize=0,apad=whole_dur=${total.toFixed(3)}[${name}]`;
+  let mix = bus(fIdx, "sfx") + (vIdx.length ? ";" + bus(vIdx, "vox") : "");
+  let last;
+  if (vIdx.length) { mix += `;[vox]asplit=2[vo][vk];[vo][sfx]amix=inputs=2:normalize=0[fx]`; } else { mix += `;[sfx]anull[fx]`; }
+  last = "[fx]";
   if (music) {
     inputs.push("-stream_loop", "-1", "-i", music);
     const m = clips.length, lo = Number(process.env.MUSIC_VOLUME || 0.085), hi = Math.min(0.42, lo * 3.4);
     const speechEnd = (total - OUTRO).toFixed(2);
     parts.push(`[${m}:a]aresample=44100,aformat=channel_layouts=stereo,atrim=0:${total.toFixed(3)},` +
       `volume='if(lt(t,0.8)+gt(t,${speechEnd}),${hi},${lo})':eval=frame,afade=t=in:d=0.3,afade=t=out:st=${(total - 1.5).toFixed(2)}:d=1.5[mu]`);
-    mix += `;[fx][mu]amix=inputs=2:normalize=0[mx]`;
+    // Ducking: the music dips a little more while the voice is speaking and comes back softly in the pauses.
+    mix += vIdx.length ? `;[mu][vk]sidechaincompress=threshold=0.02:ratio=5:attack=25:release=400:makeup=1[mud];[fx][mud]amix=inputs=2:normalize=0[mx]`
+      : `;[fx][mu]amix=inputs=2:normalize=0[mx]`;
     last = "[mx]";
+  } else if (vIdx.length) {
+    mix += `;[vk]anullsink`;
   }
   mix += `;${last}loudnorm=I=-14:TP=-1.5:LRA=9,alimiter=limit=0.9[out]`;
   const out = path.join(dir, "audio.wav");
