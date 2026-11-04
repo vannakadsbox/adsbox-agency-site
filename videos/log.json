@@ -1521,9 +1521,133 @@
       "article_url": "https://adsbox.agency/knowledge/messenger-saved-replies-tips/",
       "video_title": "វាយប្រាប់ថ្លៃដឹកដដែលៗ? ៥ គន្លឹះ Saved Replies ឆ្លើយលឿន តែកក់ក្ដៅ",
       "hook": "មួយថ្ងៃ បងវាយប្រាប់ថ្លៃដឹក ដដែលៗ រាប់សិបដងមែនទេ?",
-      "status": "scripted",
+      "status": "sent",
       "scripted_at": "2026-11-04T07:25:15+07:00",
-      "error": ""
+      "error": "",
+      "render_started_at": "2026-11-04T07:25:58+07:00",
+      "sent_at": "2026-11-04T07:32:42+07:00",
+      "rendered_at": "2026-11-04T07:32:42+07:00",
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/41746687593",
+      "duration": 63,
+      "size_mb": 19.7,
+      "render_seconds": 386,
+      "voice": "kiri:Bora",
+      "music": "adsbox-original-1.mp3",
+      "style": "custom animation only (no stock footage)",
+      "visuals": [
+        "chat",
+        "story",
+        "flow",
+        "checklist",
+        "compare",
+        "chat",
+        "checklist",
+        "deadline",
+        "takeaway",
+        "cta"
+      ],
+      "resolution": "1080x1920",
+      "fps": 30,
+      "subtitle_sync": "transcript",
+      "footage": [],
+      "footage_share": 0,
+      "stock_footage": "none (removed)",
+      "telegram": {
+        "ok": true,
+        "message_id": 132,
+        "chat": "configured",
+        "at": "2026-11-04T07:32:42+07:00",
+        "file_id": "BAACAgUAAxkDAAOEaup9IvIZKYo3KWRWTURpeRhAVxgAAkshAAJvKFhX7BIbdUfAfKw9BA",
+        "items": [
+          {
+            "item": "video",
+            "message_id": 132,
+            "file_name": "messenger-saved-replies-tips.mp4",
+            "file_size": 19745590,
+            "width": 1080,
+            "height": 1920,
+            "file_id": "BAACAgUAAxkDAAOEaup9IvIZKYo3KWRWTURpeRhAVxgAAkshAAJvKFhX7BIbdUfAfKw9BA"
+          },
+          {
+            "item": "facebook_caption",
+            "message_id": 133
+          },
+          {
+            "item": "thumbnail",
+            "message_id": 134,
+            "file_name": "messenger-saved-replies-tips-thumbnail.jpg",
+            "file_size": 182240
+          }
+        ],
+        "sent_count": 3,
+        "local_sizes": {
+          "video": 19745590,
+          "thumbnail": 182240
+        }
+      },
+      "speech_match": [
+        1,
+        1,
+        1,
+        0.957,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0.993
+      ],
+      "scene_sync": [
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript"
+      ],
+      "archive": {
+        "assets": [
+          {
+            "id": 707644750,
+            "name": "messenger-saved-replies-tips-thumb.jpg",
+            "size": 182240,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/messenger-saved-replies-tips-thumb.jpg"
+          },
+          {
+            "id": 707644747,
+            "name": "messenger-saved-replies-tips.mp4",
+            "size": 19745590,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/messenger-saved-replies-tips.mp4"
+          }
+        ],
+        "release_id": 430382508
+      },
+      "quality": {
+        "width": 1080,
+        "height": 1920,
+        "fps": "30/1",
+        "duration": 63.0,
+        "video_codec": "h264",
+        "audio_codec": "aac",
+        "loudness": "-13.7 LUFS",
+        "decode_errors": false,
+        "visual_mix": {
+          "motion_graphics": 0.77,
+          "phone_chat": 0.15,
+          "illustrated": 0.08,
+          "product_dashboard": 0
+        }
+      },
+      "article_id": "messenger-saved-replies-tips",
+      "video_id": 707644747,
+      "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/messenger-saved-replies-tips.mp4",
+      "created_at": "2026-11-04T07:32:42+07:00",
+      "telegram_status": "delivered",
+      "production_status": "complete"
     }
   ]
 }
