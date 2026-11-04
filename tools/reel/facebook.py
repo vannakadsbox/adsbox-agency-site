@@ -1,0 +1,155 @@
+#!/usr/bin/env python3
+"""Publish an ADS BOX video to the owner's Facebook Page as a Reel, only after the owner taps "Publish" in Telegram.
+
+  python3 tools/reel/facebook.py check                       Page reachable with the token? (prints the Page name only)
+  python3 tools/reel/facebook.py publish SLUG MP4 [--draft]  upload MP4 as a Reel with the script's facebook_caption
+  python3 tools/reel/facebook.py poll                        handle "Publish" taps from Telegram (run every few minutes)
+
+Secrets (environment only, never printed): FB_PAGE_ID, FB_PAGE_TOKEN (system-user token; the Page token is fetched from it),
+TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID / TELEGRAM_VIDEO_CHAT_ID. Taps are accepted only from those chats.
+"""
+import json, os, subprocess, sys, time, urllib.parse
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import common as C  # noqa: E402
+import deliver  # noqa: E402
+
+GRAPH = "https://graph.facebook.com/v23.0"
+PAGE_ID = os.environ.get("FB_PAGE_ID", "").strip()
+SYS_TOKEN = os.environ.get("FB_PAGE_TOKEN", "").strip()
+CHATS = {deliver.CHAT} if deliver.CHAT else set()  # the chat the videos are sent to (deliver.tg always answers there)
+
+
+def note(level, msg):
+    """GitHub annotation (visible without the log); secrets are scrubbed."""
+    for s in (SYS_TOKEN, os.environ.get("TELEGRAM_BOT_TOKEN", "")):
+        if s:
+            msg = msg.replace(s, "***")
+    print(f"::{level}::{msg}")
+
+
+def curl(args):
+    r = subprocess.run(["curl", "-sS", "--max-time", "600", *args], capture_output=True, text=True)
+    try:
+        return json.loads(r.stdout or "{}")
+    except json.JSONDecodeError:
+        return {"error": {"message": (r.stdout or r.stderr)[:300]}}
+
+
+def graph(method, path, params):
+    if method == "GET":
+        return curl([f"{GRAPH}/{path}?{urllib.parse.urlencode(params)}"])
+    return curl(["-X", "POST", f"{GRAPH}/{path}", *sum((["--form-string", f"{k}={v}"] for k, v in params.items()), [])])
+
+
+def page_token():
+    if not (PAGE_ID and SYS_TOKEN):
+        raise SystemExit("FB_PAGE_ID / FB_PAGE_TOKEN are not set.")
+    r = graph("GET", PAGE_ID, {"fields": "name,access_token", "access_token": SYS_TOKEN})
+    if r.get("error") or not r.get("access_token"):
+        raise SystemExit(f"Facebook did not give a Page token: {(r.get('error') or {}).get('message', 'no access_token')}")
+    return r["name"], r["access_token"]
+
+
+def publish(slug, mp4, draft=False):
+    """Facebook Reels upload: start -> upload the file -> finish with the caption. Returns (video_id, url)."""
+    script = C.read_json(os.path.join(C.SCRIPTS, f"{slug}.json"))
+    caption = str(script.get("facebook_caption") or script.get("description") or "").strip()
+    name, pt = page_token()
+    s = graph("POST", f"{PAGE_ID}/video_reels", {"upload_phase": "start", "access_token": pt})
+    vid = s.get("video_id")
+    if not vid:
+        raise SystemExit(f"Reel start failed: {(s.get('error') or {}).get('message', s)}")
+    up = curl(["-X", "POST", s.get("upload_url") or f"https://rupload.facebook.com/video-upload/v23.0/{vid}",
+               "-H", f"Authorization: OAuth {pt}", "-H", "offset: 0", "-H", f"file_size: {os.path.getsize(mp4)}",
+               "--data-binary", f"@{mp4}"])
+    if not up.get("success"):
+        raise SystemExit(f"Reel upload failed: {(up.get('error') or {}).get('message', up)}")
+    f = graph("POST", f"{PAGE_ID}/video_reels", {"upload_phase": "finish", "video_id": vid, "access_token": pt,
+                                                 "video_state": "DRAFT" if draft else "PUBLISHED", "description": caption})
+    if not f.get("success"):
+        raise SystemExit(f"Reel finish failed: {(f.get('error') or {}).get('message', f)}")
+    status = {}
+    for _ in range(30):  # wait for Facebook to process it (up to ~5 minutes)
+        status = (graph("GET", vid, {"fields": "status", "access_token": pt}).get("status") or {})
+        if status.get("video_status") in ("ready", "error") or (status.get("processing_phase") or {}).get("status") == "error":
+            break
+        time.sleep(10)
+    url = f"https://www.facebook.com/reel/{vid}"
+    lg = C.log()
+    rec = C.record(lg, slug)
+    rec["facebook"] = {"video_id": vid, "url": url, "state": "draft" if draft else "published", "at": C.iso(),
+                       "page": name, "status": status.get("video_status")}
+    C.save_log(lg)
+    return vid, url, name, status
+
+
+def tg(method, fields):
+    return deliver.tg(method, fields)
+
+
+def poll():
+    """Read button taps ("fbpub:<slug>") from Telegram and publish those videos."""
+    r = tg("getUpdates", {"allowed_updates": json.dumps(["callback_query"]), "timeout": "0"})
+    ups = r.get("result") or []
+    last = None
+    for u in ups:
+        last = u["update_id"]
+        q = u.get("callback_query") or {}
+        data, msg = str(q.get("data") or ""), q.get("message") or {}
+        chat = str((msg.get("chat") or {}).get("id", ""))
+        if not data.startswith("fbpub:") or chat not in CHATS:
+            continue
+        slug = data.split(":", 1)[1]
+        tg("answerCallbackQuery", {"callback_query_id": q.get("id", ""), "text": "កំពុងបង្ហោះទៅ Facebook..."})
+        rec = next((v for v in C.log().get("videos", []) if v.get("slug") == slug), {})
+        done = (rec.get("facebook") or {}).get("state") == "published"
+        if done:
+            url = rec["facebook"]["url"]
+        else:
+            mp4 = f"/tmp/{slug}.mp4"
+            if subprocess.run(["gh", "release", "download", "video-archive", "-p", f"{slug}.mp4", "-O", mp4, "--clobber"]).returncode:
+                tg("sendMessage", {"text": f"⚠️ រកវីដេអូ {slug} មិនឃើញ មិនទាន់បានបង្ហោះទេ។", "reply_to_message_id": str(msg.get("message_id", ""))})
+                continue
+            try:
+                vid, url, name, status = publish(slug, mp4)
+            except SystemExit as ex:
+                note("error", f"{slug}: {ex}")
+                tg("sendMessage", {"text": f"⚠️ បង្ហោះទៅ Facebook មិនបានសម្រេច៖ {ex}", "reply_to_message_id": str(msg.get("message_id", ""))})
+                continue
+            note("notice", f"{slug}: published Reel {vid} on {name} (status {status.get('video_status')})")
+        # Replace the button with a link, so it cannot be tapped twice.
+        tg("editMessageReplyMarkup", {"message_id": str(msg.get("message_id", "")),
+                                      "reply_markup": json.dumps({"inline_keyboard": [[{"text": "✅ បានបង្ហោះ · មើលលើ Facebook", "url": url}]]})})
+        tg("sendMessage", {"text": f"✅ បានបង្ហោះទៅ Facebook Page ហើយ\n{url}", "reply_to_message_id": str(msg.get("message_id", "")),
+                           "disable_web_page_preview": "true"})
+    if last is not None:
+        tg("getUpdates", {"offset": str(last + 1), "timeout": "0"})  # confirm, so each tap is handled once
+    print(f"Handled {len(ups)} update(s).")
+
+
+def main():
+    cmd = sys.argv[1] if len(sys.argv) > 1 else ""
+    try:
+        if cmd == "check":
+            name, _ = page_token()
+            note("notice", f"Facebook OK: the token can post to the Page '{name}'.")
+            wh = tg("getWebhookInfo", {})
+            if (wh.get("result") or {}).get("url"):
+                note("warning", "This Telegram bot has a webhook; the Publish button cannot be read by polling.")
+        elif cmd == "publish":
+            vid, url, name, status = publish(sys.argv[2], sys.argv[3], draft="--draft" in sys.argv)
+            note("notice", f"Reel {vid} ({'draft, not public' if '--draft' in sys.argv else 'published'}) on '{name}', status {status}")
+        elif cmd == "poll":
+            poll()
+        else:
+            print(__doc__)
+            return 2
+    except SystemExit as ex:
+        note("error", str(ex))
+        return 1
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

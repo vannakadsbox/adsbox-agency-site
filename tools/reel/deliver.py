@@ -155,7 +155,10 @@ def sent(a):
     items.append({"item": "video", "message_id": r["result"]["message_id"], "file_name": v.get("file_name"),
                   "file_size": v.get("file_size"), "width": v.get("width"), "height": v.get("height"), "file_id": v.get("file_id")})
     # 2) Facebook caption as plain, copyable text
-    r = tg("sendMessage", {"text": facebook_caption(script), "disable_web_page_preview": "true"})
+    cap = {"text": facebook_caption(script), "disable_web_page_preview": "true"}
+    if os.environ.get("FB_PAGE_ID", "").strip():  # owner approves each video: tapping this posts it to the Facebook Page
+        cap["reply_markup"] = json.dumps({"inline_keyboard": [[{"text": "✅ Publish ទៅ Facebook Page", "callback_data": f"fbpub:{a.slug}"}]]})
+    r = tg("sendMessage", cap)
     if not r.get("ok"):
         return fail("caption", r)
     items.append({"item": "facebook_caption", "message_id": r["result"]["message_id"]})
