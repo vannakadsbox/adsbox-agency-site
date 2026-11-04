@@ -38,21 +38,21 @@ window.CLIENTS = [
  {
   "name": "Jenna online shop",
   "url": "https://web.facebook.com/profile.php?id=100075488185463",
-  "followers": 8293,
+  "followers": 8290,
   "picture": "assets/accounts/fb-100075488185463.webp",
   "category": "ហាងលក់អនឡាញ"
  },
  {
   "name": "ម៉ាក់ នី VIP | Phnom Penh",
   "url": "https://web.facebook.com/vipsorhorh",
-  "followers": 821534,
+  "followers": 821802,
   "picture": "assets/accounts/fb-vipsorhorh.webp",
   "category": "សម្ផស្ស"
  },
  {
   "name": "Borey ChhayLy | Phnom Penh",
   "url": "https://web.facebook.com/BoreyChhayly168",
-  "followers": 48433,
+  "followers": 48432,
   "picture": "assets/accounts/fb-boreychhayly168.webp",
   "category": ""
  }
