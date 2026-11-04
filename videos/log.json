@@ -1658,13 +1658,13 @@
       "status": "sent",
       "scripted_at": "2026-11-04T17:24:41+07:00",
       "error": "",
-      "render_started_at": "2026-11-04T17:25:39+07:00",
-      "sent_at": "2026-11-04T17:31:48+07:00",
+      "render_started_at": "2026-11-04T20:24:54+07:00",
+      "sent_at": "2026-11-04T20:33:13+07:00",
       "rendered_at": "2026-11-04T17:31:48+07:00",
-      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/41814035688",
-      "duration": 70.27,
-      "size_mb": 21.3,
-      "render_seconds": 352,
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/41837725116",
+      "duration": 72.33,
+      "size_mb": 21.8,
+      "render_seconds": 480,
       "voice": "kiri:Bora",
       "music": "adsbox-original-2.mp3",
       "style": "custom animation only (no stock footage)",
@@ -1687,46 +1687,46 @@
       "stock_footage": "none (removed)",
       "telegram": {
         "ok": true,
-        "message_id": 136,
+        "message_id": 139,
         "chat": "configured",
-        "at": "2026-11-04T17:31:48+07:00",
-        "file_id": "BAACAgUAAxkDAAOIausJjVptyjwRTgea93el8jYcJlsAAgwjAAJvKFhX3xti5LBdUO89BA",
+        "at": "2026-11-04T20:33:13+07:00",
+        "file_id": "BAACAgUAAxkDAAOLaus0DxVS5VuulqELz9jlZoSN97oAAmMqAAJvKGBXMTfFZVeU1rI9BA",
         "items": [
           {
             "item": "video",
-            "message_id": 136,
+            "message_id": 139,
             "file_name": "simple-stock-management-for-online-shops.mp4",
-            "file_size": 21294194,
+            "file_size": 21777568,
             "width": 1080,
             "height": 1920,
-            "file_id": "BAACAgUAAxkDAAOIausJjVptyjwRTgea93el8jYcJlsAAgwjAAJvKFhX3xti5LBdUO89BA"
+            "file_id": "BAACAgUAAxkDAAOLaus0DxVS5VuulqELz9jlZoSN97oAAmMqAAJvKGBXMTfFZVeU1rI9BA"
           },
           {
             "item": "facebook_caption",
-            "message_id": 137
+            "message_id": 140
           },
           {
             "item": "thumbnail",
-            "message_id": 138,
+            "message_id": 141,
             "file_name": "simple-stock-management-for-online-shops-thumbnail.jpg",
-            "file_size": 211411
+            "file_size": 216271
           }
         ],
         "sent_count": 3,
         "local_sizes": {
-          "video": 21294194,
-          "thumbnail": 211411
+          "video": 21777568,
+          "thumbnail": 216271
         }
       },
       "speech_match": [
-        1,
-        1,
+        0.99,
+        0.995,
         1,
         1,
         0.995,
         1,
-        1,
-        1,
+        0.959,
+        0.994,
         0.993
       ],
       "scene_sync": [
@@ -1743,15 +1743,15 @@
       "archive": {
         "assets": [
           {
-            "id": 709115816,
+            "id": 709628591,
             "name": "simple-stock-management-for-online-shops-thumb.jpg",
-            "size": 211411,
+            "size": 216271,
             "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/simple-stock-management-for-online-shops-thumb.jpg"
           },
           {
-            "id": 709115777,
+            "id": 709628592,
             "name": "simple-stock-management-for-online-shops.mp4",
-            "size": 21294194,
+            "size": 21777568,
             "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/simple-stock-management-for-online-shops.mp4"
           }
         ],
@@ -1761,20 +1761,20 @@
         "width": 1080,
         "height": 1920,
         "fps": "30/1",
-        "duration": 70.27,
+        "duration": 72.33,
         "video_codec": "h264",
         "audio_codec": "aac",
-        "loudness": "-14.1 LUFS",
+        "loudness": "-13.1 LUFS",
         "decode_errors": false,
         "visual_mix": {
-          "motion_graphics": 0.55,
-          "phone_chat": 0.19,
-          "illustrated": 0.11,
-          "product_dashboard": 0.15
+          "motion_graphics": 0.57,
+          "phone_chat": 0.18,
+          "illustrated": 0.09,
+          "product_dashboard": 0.16
         }
       },
       "article_id": "simple-stock-management-for-online-shops",
-      "video_id": 709115777,
+      "video_id": 709628592,
       "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/simple-stock-management-for-online-shops.mp4",
       "created_at": "2026-11-04T17:31:48+07:00",
       "telegram_status": "delivered",
