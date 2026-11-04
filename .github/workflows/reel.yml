@@ -151,6 +151,9 @@ jobs:
             gh api "repos/${{ github.repository }}/releases" -q ".[] | select(.tag_name==\"$rel\") | {release_id: .id, assets: [.assets[] | select(.name==\"$slug.mp4\" or .name==\"$slug-thumb.jpg\") | {name, id, size, url: .browser_download_url}]}" > "$out/archive.json" || echo '{}' > "$out/archive.json"
             if ! python3 tools/reel/deliver.py sent --slug "$slug" --dir "$out" --archive "$out/archive.json" --run "$RUN_URL"; then
               python3 tools/reel/deliver.py failed --slug "$slug" --step telegram --error "Telegram did not accept the video" --run "$RUN_URL"; failed=1
+            elif [ -n "${FB_PAGE_ID:-}" ]; then
+              # Make sure a "Publish" tap on this new video is picked up within seconds.
+              gh workflow run facebook.yml -f action=loop || true
             fi
           done
           echo "FAILED=$failed" >> "$GITHUB_ENV"

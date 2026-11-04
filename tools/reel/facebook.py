@@ -76,12 +76,25 @@ def publish(slug, mp4, draft=False):
             break
         time.sleep(10)
     url = f"https://www.facebook.com/reel/{vid}"
-    lg = C.log()
-    rec = C.record(lg, slug)
-    rec["facebook"] = {"video_id": vid, "url": url, "state": "draft" if draft else "published", "at": C.iso(),
-                       "page": name, "status": status.get("video_status")}
-    C.save_log(lg)
+    entry = {"video_id": vid, "url": url, "state": "draft" if draft else "published", "at": C.iso(),
+             "page": name, "status": status.get("video_status")}
+    save_fb(slug, entry)
     return vid, url, name, status
+
+
+def save_fb(slug, entry):
+    """Record the Facebook post in videos/log.json and push it straight away (other workflows also write the log)."""
+    for attempt in range(4):
+        subprocess.run(["git", "pull", "-q", "--rebase"], capture_output=True)
+        lg = C.log()
+        C.record(lg, slug)["facebook"] = entry
+        C.save_log(lg)
+        subprocess.run(["git", "-c", "user.name=ADS BOX video bot", "-c", "user.email=noreply@anthropic.com", "commit", "-q",
+                        "-m", f"Video log: Facebook {slug} [skip ci]", "--", "videos/log.json"], capture_output=True)
+        if subprocess.run(["git", "push", "-q"], capture_output=True).returncode == 0:
+            return
+        subprocess.run(["git", "reset", "-q", "--hard", "@{u}"], capture_output=True)
+        time.sleep(5)
 
 
 def tg(method, fields):
@@ -148,6 +161,11 @@ def main():
             note("notice" if r.get("ok") else "error", f"offer {slug}: {'sent' if r.get('ok') else r.get('description')}")
         elif cmd == "poll":
             poll()
+        elif cmd == "loop":  # stay awake and check for taps every 20 seconds (GitHub's short schedules are irregular)
+            end = time.time() + 60 * float(sys.argv[2] if len(sys.argv) > 2 else 55)
+            while time.time() < end:
+                poll()
+                time.sleep(20)
         else:
             print(__doc__)
             return 2

@@ -3,13 +3,14 @@
 name: Facebook publish
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    # Each run stays awake ~55 minutes checking for taps every 20 seconds; runs queue one after another.
+    - cron: "*/20 * * * *"
   workflow_dispatch:
     inputs:
       action:
         description: "check = test the Facebook token · draft = upload the slug below as an unpublished draft Reel · poll = handle Publish taps now"
         type: choice
-        options: [check, draft, offer, poll]
+        options: [check, draft, offer, poll, loop]
         default: check
       slug:
         description: "draft / offer: video slug"
@@ -22,7 +23,7 @@ concurrency:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 70
     env:
       FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
       FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
@@ -39,12 +40,14 @@ jobs:
       - name: Run
         if: steps.on.outputs.go == '1'
         run: |
-          act="${{ github.event.inputs.action }}"; [ -z "$act" ] && act=poll
+          act="${{ github.event.inputs.action }}"; [ -z "$act" ] && act=loop
           if [ "$act" = draft ]; then
             gh release download video-archive -p "${{ github.event.inputs.slug }}.mp4" -O /tmp/v.mp4 --clobber
             python3 tools/reel/facebook.py publish "${{ github.event.inputs.slug }}" /tmp/v.mp4 --draft
           elif [ "$act" = offer ]; then
             python3 tools/reel/facebook.py offer "${{ github.event.inputs.slug }}"
+          elif [ "$act" = loop ]; then
+            python3 tools/reel/facebook.py loop 55
           else
             python3 tools/reel/facebook.py "$act"
           fi
