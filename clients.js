@@ -52,7 +52,7 @@ window.CLIENTS = [
  {
   "name": "Borey ChhayLy | Phnom Penh",
   "url": "https://web.facebook.com/BoreyChhayly168",
-  "followers": 48432,
+  "followers": 48434,
   "picture": "assets/accounts/fb-boreychhayly168.webp",
   "category": ""
  }

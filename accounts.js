@@ -18,7 +18,7 @@ window.ACCOUNTS = {
    {
     "name": "16Drama",
     "url": "https://www.facebook.com/profile.php?id=61594897690891",
-    "followers": 36,
+    "followers": 37,
     "picture": "assets/accounts/fb-61594897690891.webp",
     "cover": "assets/opt/adsbox-cover-330cfe-1565780390.webp",
     "type": "ផេកខ្មែរ",
@@ -40,7 +40,7 @@ window.ACCOUNTS = {
    {
     "name": "20Drama",
     "url": "https://www.facebook.com/profile.php?id=61594870301717",
-    "followers": 16,
+    "followers": 17,
     "picture": "assets/accounts/fb-61594870301717.webp",
     "cover": "assets/opt/adsbox-cover-918f34-1565780390.webp",
     "type": "ផេកខ្មែរ",
@@ -189,18 +189,18 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-03"
+    "updated": "2026-11-04"
    },
    {
     "name": "Merlrg24h",
     "url": "https://www.facebook.com/profile.php?id=61593372051825",
-    "followers": 4840,
+    "followers": 4867,
     "picture": "assets/accounts/fb-61593372051825.webp",
     "cover": "assets/opt/adsbox-cover-1cdc4c-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-03"
+    "updated": "2026-11-04"
    },
    {
     "name": "MerDrama",
@@ -744,13 +744,13 @@ window.ACCOUNTS = {
    {
     "name": "គីម កញ្ញា",
     "url": "https://www.facebook.com/profile.php?id=61581017472166",
-    "followers": 9860,
+    "followers": 9764,
     "picture": "assets/accounts/fb-61581017472166.webp",
     "cover": "assets/opt/adsbox-cover-a24bf5-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-01"
+    "updated": "2026-11-04"
    }
   ]
  },
