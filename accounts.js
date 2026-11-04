@@ -590,35 +590,35 @@ window.ACCOUNTS = {
    {
     "name": "PostDrame",
     "url": "https://www.facebook.com/profile.php?id=61594845143177",
-    "followers": 281,
+    "followers": 320,
     "picture": "assets/accounts/fb-61594845143177.webp",
     "cover": "assets/accounts/fb-61594845143177-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-01"
+    "updated": "2026-11-04"
    },
    {
     "name": "10Drama",
     "url": "https://www.facebook.com/profile.php?id=61595206226364",
-    "followers": 25,
+    "followers": 27,
     "picture": "assets/accounts/fb-61595206226364.webp",
     "cover": "assets/accounts/fb-61595206226364-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-01"
+    "updated": "2026-11-04"
    },
    {
     "name": "សម្រាយកុនAi",
     "url": "https://www.facebook.com/profile.php?id=61594113096221",
-    "followers": 4809,
+    "followers": 4848,
     "picture": "assets/accounts/fb-61594113096221.webp",
     "cover": "assets/accounts/fb-61594113096221-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-01"
+    "updated": "2026-11-04"
    },
    {
     "name": "Content Happy",
@@ -629,7 +629,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-03"
+    "updated": "2026-11-04"
    },
    {
     "name": "7Drama",
@@ -640,29 +640,29 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-03"
+    "updated": "2026-11-04"
    },
    {
     "name": "NR Store | Phnom Penh",
     "url": "https://www.facebook.com/pagenrstore",
-    "followers": 78826,
+    "followers": 78818,
     "picture": "assets/accounts/fb-pagenrstore.webp",
     "cover": "assets/opt/adsbox-cover-870b1e-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-03"
+    "updated": "2026-11-04"
    },
    {
     "name": "Sdach Drama",
     "url": "https://www.facebook.com/profile.php?id=61593484056003",
-    "followers": 10842,
+    "followers": 10839,
     "picture": "assets/accounts/fb-61593484056003.webp",
     "cover": "assets/opt/adsbox-cover-465d28-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-03"
+    "updated": "2026-11-04"
    },
    {
     "name": "100086760075207",
