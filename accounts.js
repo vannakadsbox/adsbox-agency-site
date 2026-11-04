@@ -211,7 +211,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-03"
+    "updated": "2026-11-04"
    },
    {
     "name": "Nito H Lim-ហ៊ា នីតូTopFan",
@@ -227,46 +227,46 @@ window.ACCOUNTS = {
    {
     "name": "Thorn Saroeun",
     "url": "https://www.facebook.com/profile.php?id=61581267786264",
-    "followers": 1044,
+    "followers": 1045,
     "picture": "assets/accounts/fb-61581267786264.webp",
     "cover": "assets/opt/adsbox-cover-9b5872-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-03"
+    "updated": "2026-11-04"
    },
    {
-    "name": "Ly Za",
+    "name": "រចនា Store",
     "url": "https://www.facebook.com/profile.php?id=61581144403152",
-    "followers": 12464,
+    "followers": 12386,
     "picture": "assets/accounts/fb-61581144403152.webp",
     "cover": "assets/opt/adsbox-cover-31acf4-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-03"
+    "updated": "2026-11-04"
    },
    {
     "name": "យ៉ន តឹម",
     "url": "https://www.facebook.com/profile.php?id=61581113605863",
-    "followers": 703,
+    "followers": 706,
     "picture": "assets/accounts/fb-61581113605863.webp",
     "cover": "assets/accounts/fb-61581113605863-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-01"
+    "updated": "2026-11-04"
    },
    {
     "name": "យឹម សុជាតា",
     "url": "https://www.facebook.com/profile.php?id=61580094211894",
-    "followers": 769,
+    "followers": 774,
     "picture": "assets/accounts/fb-61580094211894.webp",
     "cover": "assets/accounts/fb-61580094211894-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-01"
+    "updated": "2026-11-04"
    },
    {
     "name": "យឹម អេង",
@@ -288,40 +288,40 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-01"
+    "updated": "2026-11-04"
    },
    {
     "name": "Gen Z",
     "url": "https://www.facebook.com/profile.php?id=61584362071001",
-    "followers": 295,
+    "followers": 296,
     "picture": "assets/accounts/fb-61584362071001.webp",
     "cover": "assets/accounts/fb-61584362071001-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-01"
+    "updated": "2026-11-04"
    },
    {
     "name": "Monkey koko | Phnom Penh",
     "url": "https://www.facebook.com/profile.php?id=61554724723948",
-    "followers": 425,
+    "followers": 431,
     "picture": "assets/accounts/fb-61554724723948.webp",
     "cover": "assets/accounts/fb-61554724723948-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-01"
+    "updated": "2026-11-04"
    },
    {
     "name": "BK Gaming",
     "url": "https://www.facebook.com/profile.php?id=61567313732962",
-    "followers": 23562,
+    "followers": 23552,
     "picture": "assets/accounts/fb-61567313732962.webp",
     "cover": "assets/accounts/fb-61567313732962-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-01"
+    "updated": "2026-11-04"
    },
    {
     "name": "រីករាយ សារ៉ាយ",
@@ -687,15 +687,15 @@ window.ACCOUNTS = {
     "updated": "2026-11-03"
    },
    {
-    "name": "Ly Za",
+    "name": "រចនា Store",
     "url": "https://www.facebook.com/profile.php?id=61581144403152&sk=reels_tab",
-    "followers": 12464,
+    "followers": 12386,
     "picture": "assets/accounts/fb-61581144403152.webp",
     "cover": "assets/opt/adsbox-cover-672969-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-03"
+    "updated": "2026-11-04"
    },
    {
     "name": "យឹម អេង",
