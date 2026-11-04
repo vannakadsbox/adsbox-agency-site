@@ -140,6 +140,12 @@ def main():
         elif cmd == "publish":
             vid, url, name, status = publish(sys.argv[2], sys.argv[3], draft="--draft" in sys.argv)
             note("notice", f"Reel {vid} ({'draft, not public' if '--draft' in sys.argv else 'published'}) on '{name}', status {status}")
+        elif cmd == "offer":  # send an existing video's caption again, with the Publish button
+            slug = sys.argv[2]
+            script = C.read_json(os.path.join(C.SCRIPTS, f"{slug}.json"))
+            r = tg("sendMessage", {"text": deliver.facebook_caption(script), "disable_web_page_preview": "true",
+                                   "reply_markup": json.dumps({"inline_keyboard": [[{"text": "✅ Publish ទៅ Facebook Page", "callback_data": f"fbpub:{slug}"}]]})})
+            note("notice" if r.get("ok") else "error", f"offer {slug}: {'sent' if r.get('ok') else r.get('description')}")
         elif cmd == "poll":
             poll()
         else:
