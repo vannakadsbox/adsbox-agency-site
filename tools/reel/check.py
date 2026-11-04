@@ -109,6 +109,9 @@ def problems(script, brief, s):
             out.append(f"{k} must be Khmer text")
         if len(v) > mx:
             out.append(f"{k} is {len(v)} characters; max {mx}")
+    art = json.dumps(brief.get("article") or "", ensure_ascii=False)
+    if "ដុំ" in json.dumps(script, ensure_ascii=False) and re.search("អាវ|ខោ|សម្លៀកបំពាក់|រ៉ូប", art):
+        out.append("This article is about clothes: count them with ឈុត, not ដុំ (owner's rule)")
     scenes = script["scenes"]
     if not isinstance(scenes, list) or not (s["min_scenes"] <= len(scenes) <= s["max_scenes"]):
         out.append(f"Use {s['min_scenes']}-{s['max_scenes']} scenes (now {len(scenes) if isinstance(scenes, list) else 0}).")
