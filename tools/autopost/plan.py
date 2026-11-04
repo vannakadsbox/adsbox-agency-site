@@ -46,8 +46,16 @@ def read(p):
     with open(p, encoding="utf-8") as f: return f.read()
 
 
-def pick_category(slot, cats, hist, arts):
-    """Least recently used category for this slot; ties keep the configured order."""
+def campaign_for(date):
+    """content/autopost/campaign.json: a dated focus (topics and call to action) the owner set; None outside its dates."""
+    c = C.load_json("campaign.json", None)
+    if c and c.get("from", "") <= date <= c.get("until", ""):
+        return c
+    return None
+
+
+def pick_category(slot, cats, hist, arts, only=None):
+    """Least recently used category for this slot (or the campaign's list); ties keep the configured order."""
     last = {}
     for r in hist["runs"]:
         if r.get("status") in ("published", "dry_run") and r.get("category"):
@@ -55,6 +63,9 @@ def pick_category(slot, cats, hist, arts):
     for a in arts:
         if a["category"]: last[a["category"]] = max(last.get(a["category"], ""), a["date"])
     options = cats[slot]
+    if only:
+        every = {c["id"]: c for x in cats.values() for c in x}
+        options = [every[i] for i in only if i in every] or options
     return sorted(options, key=lambda c: (last.get(c["id"], ""), options.index(c)))[0]
 
 
@@ -97,7 +108,8 @@ def main():
 
     cats = C.load_json("categories.json")
     arts = C.existing_articles()
-    cat = pick_category(slot, cats, h, arts)
+    camp = campaign_for(date)
+    cat = pick_category(slot, cats, h, arts, camp and camp.get(slot))
     other = C.slot_record(h, date, "evening" if slot == "morning" else "morning", ("published", "dry_run"))
     recent = [{"title": x["title"], "date": x["date"], "category": x["category"]} for x in arts[:60]]
     recent += [{"title": r.get("title"), "date": r.get("date"), "category": r.get("category"), "dry_run": True}
@@ -108,13 +120,14 @@ def main():
         "date": date, "slot": slot, "mode": s["mode"], "max_attempts": s["max_attempts"],
         "now": now.isoformat(timespec="minutes"),
         "category": {k: cat[k] for k in ("id", "kh", "en")}, "tag": cat["tag"], "suggested_angle": pick_angle(cat, h),
-        "slot_focus": "Morning: practical education for sellers (sales, captions, customers, mistakes, trust)." if slot == "morning"
+        "slot_focus": ("This month's focus: " + camp["goal"]) if camp else "Morning: practical education for sellers (sales, captions, customers, mistakes, trust)." if slot == "morning"
                       else "Evening: marketing and business improvement (ads, Live, budget, analytics, operations, team, ADS BOX).",
         "must_differ_from_today": other and {"title": other.get("title"), "category": other.get("category")},
         "recent_titles": recent,
         "related_articles": related,
         "facts": read(os.path.join(C.AUTO, "facts.md")),
-        "rules": [r.format(min_k=s["min_khmer_chars"], max_k=s["max_khmer_chars"]) for r in RULES],
+        "rules": [r.format(min_k=s["min_khmer_chars"], max_k=s["max_khmer_chars"]) for r in RULES] + ([camp["rule"]] if camp else []),
+        "campaign": camp and {"name": camp["name"], "goal": camp["goal"]},
         "output_schema": SCHEMA,
     }
     with open(a.out, "w", encoding="utf-8") as f: json.dump(brief, f, ensure_ascii=False, indent=2)

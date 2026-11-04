@@ -50,6 +50,17 @@ RULES = [
 ]
 
 
+def campaign_rules():
+    """The owner's dated focus (content/autopost/campaign.json) also shapes the video's ending."""
+    c = C.read_json(os.path.join(C.ROOT, "content", "autopost", "campaign.json"), None)
+    if not c or not (c.get("from", "") <= C.iso()[:10] <= c.get("until", "")):
+        return []
+    return [f"Campaign this month ({c['name']}): the last scene (cta) invites viewers, in one or two warm spoken lines, to the ADS BOX "
+            "service that fits the topic: Boost Post, Boost Live or Boost TikTok (no prices spoken). Use the cta visual with "
+            "services such as [\"Boost Post\", \"Boost Live\", \"Boost TikTok\"] and url \"t.me/vannakdm\" or \"adsbox.agency\". "
+            "Everything before the last scene stays educational."]
+
+
 def slot_of(a):
     """'morning' or 'evening' for an article, from its publish time (Phnom Penh)."""
     t = a["generated_at"]
@@ -115,7 +126,7 @@ def main():
         "facts": open(C.FACTS, encoding="utf-8").read(),
         "limits": {"scenes": [s["min_scenes"], s["max_scenes"]], "khmer_chars_spoken": [s["min_chars"], s["max_chars"]],
                    "target_seconds": "45-90", "max_brand_share": s["max_brand_share"], "max_line_chars": 40},
-        "rules": RULES,
+        "rules": RULES + campaign_rules(),
         "recent_videos": recent,
         "output_schema": SCHEMA,
         "visuals": {
