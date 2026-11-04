@@ -1,18 +1,6 @@
 {
   "morning": [
     {
-      "id": "marketing-howto",
-      "tag": "ចំណេះដឹង",
-      "kh": "របៀបធ្វើទីផ្សារអនឡាញសម្រាប់អ្នកលក់",
-      "en": "How to do online marketing (for sellers)",
-      "angles": [
-        "a simple weekly marketing plan for a small page",
-        "what to post: selling, teaching and showing posts",
-        "finding new customers vs selling to followers",
-        "using Boost Post, Live and TikTok together"
-      ]
-    },
-    {
       "id": "sales-growth",
       "tag": "លក់អនឡាញ",
       "kh": "បង្កើនការលក់អនឡាញនៅកម្ពុជា",
@@ -99,21 +87,6 @@
   ],
   "evening": [
     {
-      "id": "boost-problems",
-      "tag": "Boost Post",
-      "kh": "Boost ពិបាក? បញ្ហា Facebook Ads និងវិធីដោះស្រាយ",
-      "en": "When boosting is hard: Facebook Ads problems and fixes",
-      "angles": [
-        "a boost was rejected: how to read the reason and fix the post",
-        "words and pictures that often get boosts rejected (health, beauty, before-after, prices) and safer ways to say it",
-        "ad account or Page restricted: what to check first in Account Quality and how to request a review",
-        "payment failed or ads stopped delivering: a calm checklist",
-        "boost costs are rising: what to check before raising the budget",
-        "keeping your Page and ad account safe (two-factor login, trusted admins only)",
-        "a backup plan when Facebook ads are hard: Live, TikTok and selling to existing customers"
-      ]
-    },
-    {
       "id": "facebook-ads",
       "tag": "Boost Post",
       "kh": "Facebook Ads និង Boost Post",
@@ -135,18 +108,6 @@
         "product codes for Live orders",
         "keeping viewers watching",
         "when to boost a Live"
-      ]
-    },
-    {
-      "id": "tiktok-marketing",
-      "tag": "TikTok",
-      "kh": "ទីផ្សារ TikTok និង Boost TikTok",
-      "en": "TikTok marketing and Boost TikTok",
-      "angles": [
-        "short TikTok videos that make people buy",
-        "when a TikTok video is worth boosting",
-        "TikTok or Facebook: where a small shop should start",
-        "turning TikTok viewers into customers on Messenger or Telegram"
       ]
     },
     {
