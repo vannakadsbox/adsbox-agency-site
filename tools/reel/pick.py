@@ -47,6 +47,7 @@ RULES = [
     "The video is custom ADS BOX animation only: NO stock footage, no Pixabay or Pexels clips, never a 'footage' field. Give every scene a 'visual' from 'visuals' that SHOWS what the narration says: the hook uses 'question', the last scene 'cta'; pick before/after ('compare'), steps ('checklist'), prices and totals ('delivery' receipt or 'caption' post mock-up), deadlines ('deadline'), problems ('leaving' or 'dashboard'), the lesson ('takeaway'). Vary the types; avoid the same type twice in a row.",
     "Visual texts are short Khmer phrases taken from the narration (prices, conditions, examples); never new facts. Elements appear as each subtitle line is spoken, so order the lines to match (e.g. compare: the bad version is said before the good one).",
     "Make it different from the recent videos listed in 'recent_videos' (different hook style and opening words).",
+    "Vary the hook and title format (owner, 5 Nov 2026): avoid a number-of-tips title when recent videos used one; prefer a seller's problem or question, myth vs truth, a short story, or a before/after. If the article is about a timely moment (11.11, 12.12, holidays), say so in the hook.",
 ]
 
 

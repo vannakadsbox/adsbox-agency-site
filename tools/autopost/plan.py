@@ -22,6 +22,9 @@ RULES = [
     "Examples must be clearly illustrative (\"ឧទាហរណ៍\" / a sample shop) with no real business or person names, and no claims that ADS BOX achieved a result for anyone.",
     "Never promise or guarantee orders, sales or results. Never give advice that breaks Facebook or TikTok rules (fake accounts, fake likes or comments, buying accounts).",
     "Do not repeat a title, angle or main advice from 'recent_titles'. Choose a clearly different angle; the suggested angle is a starting point.",
+    "STYLE (owner, 5 Nov 2026): talk like an experienced consultant chatting with a seller, in plain everyday Khmer that is understood on first reading (no bookish or figurative phrases; «បងៗ» is welcome). Open with a situation the seller recognises, often as a question. Clothes are counted with «ឈុត», never «ដុំ».",
+    "VARY THE FORMAT: most recent titles use '៥ គន្លឹះ…' or '៥ ជំហាន…'. Look at 'recent_titles' and pick a different shape when that pattern dominates: a myth vs truth, a before/after, a short story of a sample shop, a 'do this, not that', a checklist before an event, a question sellers often ask, or a common mistake. Numbers in titles are fine, just not every time.",
+    "BE TIMELY: check 'date'. If a Cambodian selling moment is within about 10 days (11.11, 12.12, payday at month end, Water Festival, Khmer New Year, Pchum Ben, year-end gifts), connect the topic to it when it fits naturally, without inventing exact holiday dates you are unsure of.",
     "No keyword stuffing: the primary keyword appears naturally in the title, the first paragraph and at most 2-3 more times.",
 ]
 
