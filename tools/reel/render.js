@@ -18,7 +18,7 @@ const S = require("./scenes");
 const ROOT = path.join(__dirname, "..", "..");
 
 const FPS = 30, W = 1080, H = 1920;
-const LEAD = 0.25, FIRST_LEAD = 0.9, TAIL = 0.35, OUTRO = 3.4;
+const LEAD = 0.25, FIRST_LEAD = 0.9, TAIL = 0.35, OUTRO = 4.2;
 const arg = (n) => { const i = process.argv.indexOf(n); return i > 0 ? process.argv[i + 1] : null; };
 const b64 = (f) => fs.readFileSync(path.join(ROOT, f)).toString("base64");
 const esc = S.esc, A = S.A;
@@ -37,6 +37,20 @@ const spoken = (t) => SAY.reduce((s, [en, kh]) => s.replace(new RegExp("(^|[^A-Z
 const spokenKiri = (t) => String(t).replace(/adsbox\.agency/gi, "Ads Box dot agency").replace(/adsbox\.biz/gi, "Ads Box dot biz").replace(/ADS\s*BOX/g, "Ads Box")
   .replace(/\$([0-9០-៩]+(?:\.[0-9០-៩]+)?)/g, "$1 ដុល្លារ").replace(/([0-9០-៩]+)\s?%/g, "$1 ភាគរយ").replace(/[«»"()]/g, " ").replace(/\s+/g, " ").trim();
 const weight = (s) => String(s).replace(/\s+/g, "").length || 1;
+
+// --- Creative pack shapes (flat, brand colours) ------------------------------------------------------------------------
+const STAR = '<svg viewBox="0 0 24 24" width="44" height="44"><path fill="#ffd23f" d="M12 1.5l2.6 7.2 7.4.3-5.8 4.6 2 7.2L12 16.6l-6.2 4.2 2-7.2L2 9l7.4-.3z"/></svg>';
+const svgI = (d, fill) => `<svg viewBox="0 0 24 24" width="70" height="70"><path fill="${fill}" d="${d}"/></svg>`;
+const P_CHAT = "M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-5 4v-4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z";
+const P_HEART = "M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.8 4.5c2.1 0 3.5 1.2 5.2 3 1.7-1.8 3.1-3 5.2-3 3.8 0 5.9 3.9 4.4 7.3C19.5 16.4 12 21 12 21z";
+const P_BAG = "M6 8h12l1 13H5L6 8zm3 0V6a3 3 0 0 1 6 0v2h-2V6a1 1 0 0 0-2 0v2z";
+const P_BOX = "M3 7l9-4 9 4v10l-9 4-9-4V7zm9 2l6.5-2.9L12 3.2 5.5 6.1 12 9z";
+const FLOAT = [svgI(P_CHAT, "#fff"), svgI(P_HEART, "#ffd23f"), svgI(P_BAG, "#fff"), STAR.replace(/44/g, "70"), svgI(P_BOX, "#ffd23f"), svgI(P_CHAT, "#ffd23f"), svgI(P_HEART, "#fff"), svgI(P_BAG, "#ffd23f")];
+const SHARE = {
+  heart: '<svg viewBox="0 0 24 24"><path fill="#ff4d6d" d="' + P_HEART + '"/></svg>',
+  share: '<svg viewBox="0 0 24 24"><path fill="#3f7dff" d="M14 4l8 7.5-8 7.5v-4.5c-5.5 0-9 1.6-12 6 1-6 4-11 12-12V4z"/></svg>',
+  save: '<svg viewBox="0 0 24 24"><path fill="#0b1430" d="M6 2.5h12a1 1 0 0 1 1 1V22l-7-4.5L5 22V3.5a1 1 0 0 1 1-1z"/></svg>',
+};
 
 // --- Voice and word timing ---------------------------------------------------------------------------------------
 function voice(scenes, dir) {
@@ -115,7 +129,9 @@ function page(script, scenes, total) {
   scenes.forEach((sc, i) => {
     // Scenes overlap a little: the next one glides in while the last one leaves, so there is never an empty frame.
     const enter = i === 0 ? 0.75 : sc.start - 0.12, exit = sc.start + sc.dur - 0.2;
-    const dir = i % 2 ? "B" : "A";
+    // Creative pack (owner, 4 Nov 2026): four transition styles in turn, a brand-colour sweep at each scene change,
+    // and a sparkle burst when the scene's main picture lands.
+    const dir = ["A", "C", "B", "D"][i % 4];
     const x = {
       sc, start: enter, dur: sc.dur, n: sc.subs.length,
       T: (j) => sc.subs[Math.max(0, Math.min(j, sc.subs.length - 1))].start,
@@ -125,10 +141,16 @@ function page(script, scenes, total) {
     const make = S.V[v.type] || S.V.takeaway;
     html += `<section class="scene" style="${A("in" + dir, enter, 0.6, "cubic-bezier(.22,1,.36,1)")},${A("out" + dir, exit, 0.42, "cubic-bezier(.55,0,.75,.35)", "forwards").replace("animation:", "")}">
 <div class="stage" style="${A(i % 2 ? "camB" : "camA", enter, sc.dur + 0.3, "ease-in-out")}">${make(v, x, b64)}</div></section>`;
+    if (i > 0) html += `<div class="sweep" style="${A("sweep", sc.start - 0.3, 0.62, "cubic-bezier(.6,0,.3,1)", "both")}"><i></i><b></b></div>`;
+    const sp = (sc.subs[1] || sc.subs[0]).start + 0.1;
+    html += `<div class="spark ${i % 2 ? "sl" : "sr"}">` + [0, 1, 2, 3, 4, 5].map((k) =>
+      `<span style="--a:${k * 60 + (i * 23) % 60}deg;--d:${110 + (k % 3) * 40}px;${A("burst", sp + k * 0.02, 0.9, "cubic-bezier(.2,.8,.3,1)", "both")}">${STAR}</span>`).join("") + `</div>`;
     sc.subs.forEach((s, j) => {
-      html += `<div class="sub" style="${A("sin", s.start, 0.18, "ease-out")},${A("sout", s.end - 0.1, 0.1, "ease-in", "forwards").replace("animation:", "")}"><span>${highlight(s.text, sc.keyword)}</span></div>`;
+      html += `<div class="sub" style="${A("sin", s.start, 0.24, "ease-out")},${A("sout", s.end - 0.1, 0.1, "ease-in", "forwards").replace("animation:", "")}"><span>${highlight(s.text, sc.keyword)}</span></div>`;
     });
   });
+  const floats = FLOAT.map((ic, k) => `<span class="fl" style="left:${[70, 860, 180, 760, 420, 940, 40, 600][k]}px;` +
+    `animation:floatUp ${[11, 13, 9.5, 12, 14, 10.5, 12.5, 15][k]}s linear ${-[0, 4, 7, 2, 9, 5, 11, 3][k]}s infinite">${ic}</span>`).join("");
   const font = (f, w) => `@font-face{font-family:M;font-weight:${w};src:url(data:font/woff2;base64,${b64(f)}) format("woff2");unicode-range:U+1780-17FF,U+19E0-19FF,U+200C-200D,U+25CC}`;
   return `<!doctype html><html lang="km"><head><meta charset="utf-8"><style>
 ${font("assets/fonts/MiSansKhmer-Bold.woff2", 700)}${font("assets/fonts/MiSansKhmer-Medium.woff2", 500)}
@@ -160,10 +182,34 @@ body{width:${W}px;height:${H}px;overflow:hidden;font-family:M,L,sans-serif;color
 .outro .m{width:230px;animation:popIn .6s cubic-bezier(.3,1.5,.5,1) ${(end + 0.15).toFixed(2)}s both}
 .outro .w{width:540px;animation:rise .6s ease-out ${(end + 0.3).toFixed(2)}s both}
 .outro i{animation-delay:${(end + 0.45).toFixed(2)}s}
-.outro p{font-size:58px;line-height:1.6;font-weight:500;animation:rise .6s ease-out ${(end + 0.55).toFixed(2)}s both}
+.outro p{font-size:52px;line-height:1.6;font-weight:500;animation:rise .6s ease-out ${(end + 0.55).toFixed(2)}s both}
 .outro .u{font-family:L,M,sans-serif;font-weight:800;font-size:66px;color:#0b1430;background:#ffd23f;padding:16px 52px;border-radius:28px;animation:rise .6s ease-out ${(end + 0.75).toFixed(2)}s both,pulse 1.1s ease-in-out ${(end + 1.4).toFixed(2)}s infinite}
 .outro .f{font-size:44px;font-weight:700;padding:10px 34px 16px;border-radius:999px;border:3px solid rgba(255,255,255,.5);animation:rise .6s ease-out ${(end + 1.1).toFixed(2)}s both}
 .outro small{font-family:L,M,sans-serif;font-size:42px;font-weight:600;opacity:.9;animation:rise .6s ease-out ${(end + 0.95).toFixed(2)}s both}
+.sweep{position:absolute;inset:0;pointer-events:none;transform:translateX(-140%) skewX(-16deg);z-index:5}
+.sweep i,.sweep b{position:absolute;top:-10%;bottom:-10%;display:block}
+.sweep i{left:0;width:46%;background:#ffd23f}.sweep b{left:40%;width:30%;background:#3f7dff}
+.spark{position:absolute;top:330px;width:0;height:0;z-index:4}.spark.sr{right:150px}.spark.sl{left:150px}
+.spark span{position:absolute;left:-22px;top:-22px;width:44px;height:44px;opacity:0}
+.fl{position:absolute;top:1960px;width:70px;height:70px;opacity:.16}
+.intro .ring{position:absolute;left:50%;top:46%;width:300px;height:300px;margin:-150px 0 0 -150px;border-radius:50%;border:8px solid #ffd23f;opacity:0}
+.intro .r1{animation:ring .7s ease-out .05s both}.intro .r2{animation:ring .7s ease-out .22s both;border-color:#fff}
+.intro .rays{position:absolute;left:50%;top:46%;width:1400px;height:1400px;margin:-700px 0 0 -700px;opacity:0;
+  background:repeating-conic-gradient(rgba(255,210,63,.18) 0 8deg,transparent 8deg 22deg);animation:rays .9s ease-out both}
+.share{position:relative;display:flex;gap:44px;margin:6px 0 4px}
+.sh{display:flex;flex-direction:column;align-items:center;gap:12px}
+.sh span{width:150px;height:150px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.sh svg{width:84px;height:84px}.sh b{font-family:L,M,sans-serif;font-size:40px;font-weight:800}
+.tapsh{position:absolute;left:318px;top:82px;width:92px;height:92px}
+@keyframes sweep{0%{transform:translateX(-140%) skewX(-16deg)}100%{transform:translateX(160%) skewX(-16deg)}}
+@keyframes burst{0%{opacity:0;transform:rotate(var(--a)) translateX(0) scale(.2)}35%{opacity:1}100%{opacity:0;transform:rotate(var(--a)) translateX(var(--d)) scale(1)}}
+@keyframes floatUp{from{transform:translateY(0) rotate(-8deg)}to{transform:translateY(-2250px) rotate(12deg)}}
+@keyframes ring{0%{opacity:.9;transform:scale(.4)}100%{opacity:0;transform:scale(2.6)}}
+@keyframes rays{0%{opacity:0;transform:rotate(0) scale(.6)}40%{opacity:1}100%{opacity:.55;transform:rotate(40deg) scale(1)}}
+@keyframes inC{from{opacity:1;clip-path:circle(0% at 50% 45%)}to{opacity:1;clip-path:circle(150% at 50% 45%)}}
+@keyframes outC{to{opacity:0;transform:scale(1.06)}}
+@keyframes inD{from{opacity:0;transform:scale(1.22);filter:blur(10px)}to{opacity:1;transform:none;filter:none}}
+@keyframes outD{to{opacity:0;transform:scale(.9)}}
 @keyframes camA{from{transform:scale(1)}to{transform:scale(1.035) translateY(-10px)}}
 @keyframes camB{from{transform:scale(1.035) translateY(-10px)}to{transform:scale(1)}}
 @keyframes inA{from{opacity:0;transform:translateX(120px) scale(.97)}to{opacity:1;transform:none}}
@@ -171,7 +217,7 @@ body{width:${W}px;height:${H}px;overflow:hidden;font-family:M,L,sans-serif;color
 @keyframes inB{from{opacity:0;transform:translateY(90px) scale(.97)}to{opacity:1;transform:none}}
 @keyframes outB{to{opacity:0;transform:translateY(-90px) scale(.97)}}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
-@keyframes sin{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes sin{0%{opacity:0;transform:translateY(18px) scale(.92)}70%{opacity:1;transform:scale(1.03)}100%{opacity:1;transform:none}}
 @keyframes sout{to{opacity:0}}
 @keyframes introOut{to{opacity:0;transform:scale(1.08)}}
 @keyframes fadeIn{to{opacity:1}}
@@ -181,14 +227,17 @@ body{width:${W}px;height:${H}px;overflow:hidden;font-family:M,L,sans-serif;color
 ${S.CSS}
 ${css}
 </style></head><body>
-<div class="bgall"><div class="bg"></div><div class="grid"></div><span class="blob b1"></span><span class="blob b2"></span></div>
+<div class="bgall"><div class="bg"></div><div class="grid"></div><span class="blob b1"></span><span class="blob b2"></span>${floats}</div>
 <div class="top"><div class="logo"><img class="m" src="data:image/png;base64,${b64("assets/logo-mark-white.png")}" alt=""><img class="w" src="data:image/png;base64,${b64("assets/logo-word-white.png")}" alt=""></div>
 <span class="chip">ចំណេះដឹងលក់អនឡាញ</span></div>
 ${html}
 <div class="prog"></div>
-<div class="intro"><img class="m" src="data:image/png;base64,${b64("assets/logo-mark-white.png")}" alt=""><img class="w" src="data:image/png;base64,${b64("assets/logo-word-white.png")}" alt=""><i></i></div>
+<div class="intro"><span class="ring r1"></span><span class="ring r2"></span><span class="rays"></span><img class="m" src="data:image/png;base64,${b64("assets/logo-mark-white.png")}" alt=""><img class="w" src="data:image/png;base64,${b64("assets/logo-word-white.png")}" alt=""><i></i></div>
 <div class="outro"><img class="m" src="data:image/png;base64,${b64("assets/logo-mark-white.png")}" alt=""><img class="w" src="data:image/png;base64,${b64("assets/logo-word-white.png")}" alt=""><i></i>
-<p>គន្លឹះលក់អនឡាញថ្មីៗ រាល់ថ្ងៃ</p><span class="u">adsbox.agency</span><span class="f">ចុច Follow ដើម្បីកុំឲ្យរំលង</span><small>Telegram: t.me/vannakdm</small></div>
+<p>មានប្រយោជន៍? ចែករំលែកទៅមិត្តអ្នកលក់ផង</p>
+<div class="share">${[["heart", "Like"], ["share", "Share"], ["save", "Save"]].map(([k, t], j) => `<div class="sh" style="${A("popIn", end + 0.75 + j * 0.18, 0.5, "cubic-bezier(.3,1.6,.5,1)")}"><span>${SHARE[k]}</span><b>${t}</b></div>`).join("")}
+<svg class="tapsh" width="120" height="120" viewBox="0 0 24 24" fill="#fff" stroke="#0b1430" stroke-width="1.2" style="${A("rise", end + 1.4, 0.4)},tap 1s ease-in-out ${(end + 1.8).toFixed(2)}s infinite"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V10l4.2.8a2 2 0 0 1 1.6 2.3l-.9 4.6A3 3 0 0 1 14 20H11a3 3 0 0 1-2.4-1.2L5.3 14.4a1.4 1.4 0 0 1 2-2z"/></svg></div>
+<span class="u">adsbox.agency</span><span class="f">ចុច Follow ដើម្បីកុំឲ្យរំលង</span></div>
 </body></html>`;
 }
 
