@@ -16,6 +16,10 @@ const path = require("path");
 const { execFileSync } = require("child_process");
 const S = require("./scenes");
 const ROOT = path.join(__dirname, "..", "..");
+// Video look (videos/settings.json "video_style"): "explainer" = calm, clean illustrations and karaoke subtitles
+// (owner's reference, 5 Nov 2026); "creative" = sweeps, sparkles and floating icons.
+const STYLE = (() => { try { return JSON.parse(fs.readFileSync(path.join(ROOT, "videos", "settings.json"), "utf8")).video_style || "explainer"; } catch (e) { return "explainer"; } })();
+const EXPL = STYLE !== "creative";
 
 const FPS = 30, W = 1080, H = 1920;
 const LEAD = 0.25, FIRST_LEAD = 0.9, TAIL = 0.35, OUTRO = 4.2;
@@ -102,6 +106,7 @@ function timeline(scenes) {
     sc.voiceLen = v;
     sc.start = t; sc.vStart = t + lead; sc.dur = lead + v + TAIL; t += sc.dur;
     const at = sc.lineAt && sc.lineAt.length ? clock(sc) : null;
+    sc.at = at;
     sc.sync = at ? sc.markKind : "proportional";
     const total = sc.lines.reduce((a, l) => a + weight(l), 0);
     let acc = 0;
@@ -117,6 +122,24 @@ function timeline(scenes) {
 }
 
 // --- The animated page -------------------------------------------------------------------------------------------
+// Karaoke subtitles: each Khmer word turns from grey to white at the moment the voice says it
+// (times from the voice's own word timing; numbers and prices light up yellow).
+const SEG = new Intl.Segmenter("km", { granularity: "word" });
+function karaoke(sc, j, s) {
+  const line = s.text, said = (sc.said || [])[j] || line, base = (sc.lineAt || [])[j] || 0;
+  let k = 0, out = "";
+  for (const { segment } of SEG.segment(line)) {
+    const frac = line.length ? k / line.length : 0;
+    let t = sc.at ? sc.vStart + sc.at(base + Math.round(frac * said.length)) : s.start + frac * Math.max(0.3, s.end - s.start - 0.2);
+    t = Math.max(s.start, Math.min(t, s.end - 0.05));
+    k += segment.length;
+    if (!segment.trim()) { out += esc(segment); continue; }
+    const num = /[0-9០-៩$%]/.test(segment);
+    out += `<i class="${num ? "n" : ""}" style="animation:${num ? "litN" : "lit"} .14s linear ${t.toFixed(3)}s both">${esc(segment)}</i>`;
+  }
+  return out;
+}
+
 function highlight(line, keyword) {
   let h = esc(line);
   h = h.replace(/(\$\d+(?:\.\d+)?|[0-9០-៩]+(?:\s?%)?)/g, "<em>$1</em>");
@@ -131,7 +154,7 @@ function page(script, scenes, total) {
     const enter = i === 0 ? 0.75 : sc.start - 0.12, exit = sc.start + sc.dur - 0.2;
     // Creative pack (owner, 4 Nov 2026): four transition styles in turn, a brand-colour sweep at each scene change,
     // and a sparkle burst when the scene's main picture lands.
-    const dir = ["A", "C", "B", "D"][i % 4];
+    const dir = EXPL ? "E" : ["A", "C", "B", "D"][i % 4];
     const x = {
       sc, start: enter, dur: sc.dur, n: sc.subs.length,
       T: (j) => sc.subs[Math.max(0, Math.min(j, sc.subs.length - 1))].start,
@@ -141,19 +164,19 @@ function page(script, scenes, total) {
     const make = S.V[v.type] || S.V.takeaway;
     html += `<section class="scene" style="${A("in" + dir, enter, 0.6, "cubic-bezier(.22,1,.36,1)")},${A("out" + dir, exit, 0.42, "cubic-bezier(.55,0,.75,.35)", "forwards").replace("animation:", "")}">
 <div class="stage" style="${A(i % 2 ? "camB" : "camA", enter, sc.dur + 0.3, "ease-in-out")}">${make(v, x, b64)}</div></section>`;
-    if (i > 0) html += `<div class="sweep" style="${A("sweep", sc.start - 0.3, 0.62, "cubic-bezier(.6,0,.3,1)", "both")}"><i></i><b></b></div>`;
+    if (!EXPL && i > 0) html += `<div class="sweep" style="${A("sweep", sc.start - 0.3, 0.62, "cubic-bezier(.6,0,.3,1)", "both")}"><i></i><b></b></div>`;
     const sp = (sc.subs[1] || sc.subs[0]).start + 0.1;
-    html += `<div class="spark ${i % 2 ? "sl" : "sr"}">` + [0, 1, 2, 3, 4, 5].map((k) =>
+    if (!EXPL) html += `<div class="spark ${i % 2 ? "sl" : "sr"}">` + [0, 1, 2, 3, 4, 5].map((k) =>
       `<span style="--a:${k * 60 + (i * 23) % 60}deg;--d:${110 + (k % 3) * 40}px;${A("burst", sp + k * 0.02, 0.9, "cubic-bezier(.2,.8,.3,1)", "both")}">${STAR}</span>`).join("") + `</div>`;
     sc.subs.forEach((s, j) => {
-      html += `<div class="sub" style="${A("sin", s.start, 0.24, "ease-out")},${A("sout", s.end - 0.1, 0.1, "ease-in", "forwards").replace("animation:", "")}"><span>${highlight(s.text, sc.keyword)}</span></div>`;
+      html += `<div class="sub" style="${A(EXPL ? "sinE" : "sin", s.start, EXPL ? 0.18 : 0.24, "ease-out")},${A("sout", s.end - 0.1, 0.1, "ease-in", "forwards").replace("animation:", "")}"><span>${EXPL ? karaoke(sc, j, s) : highlight(s.text, sc.keyword)}</span></div>`;
     });
   });
-  const floats = FLOAT.map((ic, k) => `<span class="fl" style="left:${[70, 860, 180, 760, 420, 940, 40, 600][k]}px;` +
+  const floats = EXPL ? "" : FLOAT.map((ic, k) => `<span class="fl" style="left:${[70, 860, 180, 760, 420, 940, 40, 600][k]}px;` +
     `animation:floatUp ${[11, 13, 9.5, 12, 14, 10.5, 12.5, 15][k]}s linear ${-[0, 4, 7, 2, 9, 5, 11, 3][k]}s infinite">${ic}</span>`).join("");
   const font = (f, w) => `@font-face{font-family:M;font-weight:${w};src:url(data:font/woff2;base64,${b64(f)}) format("woff2");unicode-range:U+1780-17FF,U+19E0-19FF,U+200C-200D,U+25CC}`;
   return `<!doctype html><html lang="km"><head><meta charset="utf-8"><style>
-${font("assets/fonts/MiSansKhmer-Bold.woff2", 700)}${font("assets/fonts/MiSansKhmer-Medium.woff2", 500)}
+${font("assets/fonts/MiSansKhmer-Bold.woff2", 700)}${font("assets/fonts/MiSansKhmer-Medium.woff2", 500)}${font("assets/fonts/MiSansKhmer-Semibold.woff2", 600)}${font("assets/fonts/MiSansKhmer-Heavy.woff2", 800)}
 @font-face{font-family:L;font-weight:400 800;src:url(data:font/woff2;base64,${b64("tools/fonts/kantumruy-latin.woff2")}) format("woff2")}
 *{box-sizing:border-box;margin:0}
 body{width:${W}px;height:${H}px;overflow:hidden;font-family:M,L,sans-serif;color:#fff;position:relative;background:#0b1430}
@@ -173,6 +196,13 @@ body{width:${W}px;height:${H}px;overflow:hidden;font-family:M,L,sans-serif;color
 .sub span{display:inline;font-size:70px;line-height:1.62;font-weight:700;padding:4px 26px 12px;border-radius:18px;background:rgba(5,9,26,.78);
   -webkit-box-decoration-break:clone;box-decoration-break:clone}
 .sub em{font-style:normal;color:#ffd23f}
+.sub i{font-style:normal;color:rgba(255,255,255,.4)}
+@keyframes lit{to{color:#fff}}
+@keyframes litN{to{color:#ffd23f}}
+${EXPL ? ".sub span{font-weight:600}" : ""}
+@keyframes sinE{from{opacity:0}to{opacity:1}}
+@keyframes inE{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
+@keyframes outE{to{opacity:0;transform:scale(1.02)}}
 .intro,.outro{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;text-align:center}
 .intro{background:radial-gradient(circle at 50% 46%,#1f4fd1,#0b1430 72%);animation:introOut .4s ease-in .7s forwards}
 .intro .m{width:250px;animation:popIn .5s cubic-bezier(.3,1.5,.5,1) .02s both}
