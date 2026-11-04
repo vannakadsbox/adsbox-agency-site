@@ -1514,6 +1514,16 @@
       "created_at": "2026-11-03T17:32:01+07:00",
       "telegram_status": "delivered",
       "production_status": "complete"
+    },
+    {
+      "slug": "messenger-saved-replies-tips",
+      "article_title": "Saved Replies ក្នុង Messenger៖ ៥ គន្លឹះរៀបចំសារឆ្លើយស្រាប់ ឲ្យលឿន តែនៅកក់ក្ដៅ",
+      "article_url": "https://adsbox.agency/knowledge/messenger-saved-replies-tips/",
+      "video_title": "វាយប្រាប់ថ្លៃដឹកដដែលៗ? ៥ គន្លឹះ Saved Replies ឆ្លើយលឿន តែកក់ក្ដៅ",
+      "hook": "មួយថ្ងៃ បងវាយប្រាប់ថ្លៃដឹក ដដែលៗ រាប់សិបដងមែនទេ?",
+      "status": "scripted",
+      "scripted_at": "2026-11-04T07:25:15+07:00",
+      "error": ""
     }
   ]
 }
