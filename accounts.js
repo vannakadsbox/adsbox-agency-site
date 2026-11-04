@@ -62,13 +62,13 @@ window.ACCOUNTS = {
    {
     "name": "8Drama",
     "url": "https://www.facebook.com/profile.php?id=61594771935422",
-    "followers": 21,
+    "followers": 22,
     "picture": "assets/accounts/fb-61594771935422.webp",
     "cover": "assets/opt/adsbox-cover-189f7b-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-03"
+    "updated": "2026-11-04"
    },
    {
     "name": "3Drama",
@@ -90,7 +90,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-03"
+    "updated": "2026-11-04"
    },
    {
     "name": "Thon SreyPhors - ថន ស្រីភ័ស",
@@ -106,24 +106,24 @@ window.ACCOUNTS = {
    {
     "name": "24MerlTos",
     "url": "https://www.facebook.com/profile.php?id=61594235184973",
-    "followers": 332,
+    "followers": 358,
     "picture": "assets/accounts/fb-61594235184973.webp",
     "cover": "assets/opt/adsbox-cover-de2e8b-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-03"
+    "updated": "2026-11-04"
    },
    {
     "name": "អេអាយដ្រាម៉ា",
     "url": "https://www.facebook.com/profile.php?id=61594225492597",
-    "followers": 11,
+    "followers": 12,
     "picture": "assets/accounts/fb-61594225492597.webp",
     "cover": "assets/opt/adsbox-cover-04ea1c-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-03"
+    "updated": "2026-11-04"
    },
    {
     "name": "មើលកុនAi",
@@ -134,7 +134,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-03"
+    "updated": "2026-11-04"
    },
    {
     "name": "PostAi",
@@ -145,7 +145,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-03"
+    "updated": "2026-11-04"
    },
    {
     "name": "មើលរឿងបកប្រែAi",
@@ -161,13 +161,13 @@ window.ACCOUNTS = {
    {
     "name": "Aiសម្រាយកុន",
     "url": "https://www.facebook.com/profile.php?id=61593925754183",
-    "followers": 1761,
+    "followers": 1770,
     "picture": "assets/accounts/fb-61593925754183.webp",
     "cover": "assets/opt/adsbox-cover-263cfb-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-03"
+    "updated": "2026-11-04"
    },
    {
     "name": "អ្នកផុសរឿងAi",
