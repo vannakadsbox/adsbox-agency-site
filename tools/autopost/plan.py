@@ -66,6 +66,9 @@ def pick_category(slot, cats, hist, arts, only=None):
     for a in arts:
         if a["category"]: last[a["category"]] = max(last.get(a["category"], ""), a["date"])
     options = cats[slot]
+    if slot == "morning" and not C.settings()["evening"]["enabled"]:
+        # One article a day (owner, 5 Nov 2026): the morning article rotates through every topic, evening ones included.
+        options = cats["morning"] + [c for c in cats.get("evening", []) if c["id"] not in {x["id"] for x in cats["morning"]}]
     if only:
         every = {c["id"]: c for x in cats.values() for c in x}
         options = [every[i] for i in only if i in every] or options
