@@ -51,6 +51,23 @@ def page_token():
     return r["name"], r["access_token"]
 
 
+def set_cover(vid, pt, thumb):
+    """Use our 1080x1920 thumbnail as the Reel's cover (otherwise Facebook shows the first frame, the logo intro)."""
+    if not thumb or not os.path.exists(thumb):
+        return {"skipped": "no thumbnail file"}
+    r = curl(["-X", "POST", f"{GRAPH}/{vid}/thumbnails", "-F", f"access_token={pt}", "-F", "is_preferred=true", "-F", f"source=@{thumb}"])
+    if r.get("error"):
+        note("warning", f"cover for {vid} not set: {(r['error'] or {}).get('message')}")
+    return r
+
+
+def get_thumb(slug):
+    path = f"/tmp/{slug}-thumb.jpg"
+    ok = subprocess.run(["gh", "release", "download", "video-archive", "-p", f"{slug}-thumb.jpg", "-O", path, "--clobber"],
+                        capture_output=True).returncode == 0
+    return path if ok else None
+
+
 def publish(slug, mp4, draft=False):
     """Facebook Reels upload: start -> upload the file -> finish with the caption. Returns (video_id, url)."""
     script = C.read_json(os.path.join(C.SCRIPTS, f"{slug}.json"))
@@ -75,9 +92,10 @@ def publish(slug, mp4, draft=False):
         if status.get("video_status") in ("ready", "error") or (status.get("processing_phase") or {}).get("status") == "error":
             break
         time.sleep(10)
+    cover = set_cover(vid, pt, get_thumb(slug))
     url = f"https://www.facebook.com/reel/{vid}"
     entry = {"video_id": vid, "url": url, "state": "draft" if draft else "published", "at": C.iso(),
-             "page": name, "status": status.get("video_status")}
+             "page": name, "status": status.get("video_status"), "cover": "set" if cover.get("success") or cover.get("id") else "default"}
     save_fb(slug, entry)
     return vid, url, name, status
 
@@ -159,6 +177,15 @@ def main():
             r = tg("sendMessage", {"text": deliver.facebook_caption(script), "disable_web_page_preview": "true",
                                    "reply_markup": json.dumps({"inline_keyboard": [[{"text": "✅ Publish ទៅ Facebook Page", "callback_data": f"fbpub:{slug}"}]]})})
             note("notice" if r.get("ok") else "error", f"offer {slug}: {'sent' if r.get('ok') else r.get('description')}")
+        elif cmd == "cover":  # set our thumbnail on a Reel that is already on the Page
+            slug = sys.argv[2]
+            rec = next((v for v in C.log().get("videos", []) if v.get("slug") == slug), {})
+            vid = (rec.get("facebook") or {}).get("video_id")
+            if not vid:
+                raise SystemExit(f"{slug} has no Facebook video yet")
+            _, pt = page_token()
+            r = set_cover(vid, pt, get_thumb(slug))
+            note("notice" if (r.get("success") or r.get("id")) else "error", f"cover {slug} ({vid}): {json.dumps(r)[:300]}")
         elif cmd == "poll":
             poll()
         elif cmd == "loop":  # stay awake and check for taps every 20 seconds (GitHub's short schedules are irregular)
