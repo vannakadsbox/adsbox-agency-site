@@ -1928,9 +1928,133 @@
       "article_url": "https://adsbox.agency/knowledge/should-facebook-sellers-start-tiktok/",
       "video_title": "Facebook លក់ដាច់ហើយ គួរសាក TikTok ឥឡូវទេ? សួរខ្លួនឯងសិន",
       "hook": "Facebook លក់ដាច់ហើយ តែឃើញគេលក់ TikTok ក៏ចាប់ភ័យ?",
-      "status": "scripted",
+      "status": "sent",
       "scripted_at": "2026-11-05T17:26:03+07:00",
-      "error": ""
+      "error": "",
+      "render_started_at": "2026-11-05T17:27:01+07:00",
+      "sent_at": "2026-11-05T17:34:20+07:00",
+      "rendered_at": "2026-11-05T17:34:20+07:00",
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/42010671548",
+      "duration": 76.7,
+      "size_mb": 22.2,
+      "render_seconds": 419,
+      "voice": "kiri:Bora",
+      "music": "adsbox-original-2.mp3",
+      "style": "custom animation only (no stock footage)",
+      "visuals": [
+        "question",
+        "story",
+        "compare",
+        "checklist",
+        "chat",
+        "flow",
+        "compare",
+        "caption",
+        "takeaway",
+        "cta"
+      ],
+      "resolution": "1080x1920",
+      "fps": 30,
+      "subtitle_sync": "transcript",
+      "footage": [],
+      "footage_share": 0,
+      "stock_footage": "none (removed)",
+      "telegram": {
+        "ok": true,
+        "message_id": 162,
+        "chat": "configured",
+        "at": "2026-11-05T17:34:20+07:00",
+        "file_id": "BAACAgUAAxkDAAOiauxbou9dEFwmxJkKGe7MGWpSB7EAAhsjAALSKGFXJ9ZNc42bynI9BA",
+        "items": [
+          {
+            "item": "video",
+            "message_id": 162,
+            "file_name": "should-facebook-sellers-start-tiktok.mp4",
+            "file_size": 22226904,
+            "width": 1080,
+            "height": 1920,
+            "file_id": "BAACAgUAAxkDAAOiauxbou9dEFwmxJkKGe7MGWpSB7EAAhsjAALSKGFXJ9ZNc42bynI9BA"
+          },
+          {
+            "item": "facebook_caption",
+            "message_id": 163
+          },
+          {
+            "item": "thumbnail",
+            "message_id": 164,
+            "file_name": "should-facebook-sellers-start-tiktok-thumbnail.jpg",
+            "file_size": 206622
+          }
+        ],
+        "sent_count": 3,
+        "local_sizes": {
+          "video": 22226904,
+          "thumbnail": 206622
+        }
+      },
+      "speech_match": [
+        0.989,
+        0.993,
+        1,
+        1,
+        0.987,
+        1,
+        1,
+        1,
+        1,
+        0.991
+      ],
+      "scene_sync": [
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript"
+      ],
+      "archive": {
+        "assets": [
+          {
+            "id": 713015009,
+            "name": "should-facebook-sellers-start-tiktok-thumb.jpg",
+            "size": 206622,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/should-facebook-sellers-start-tiktok-thumb.jpg"
+          },
+          {
+            "id": 713015005,
+            "name": "should-facebook-sellers-start-tiktok.mp4",
+            "size": 22226904,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/should-facebook-sellers-start-tiktok.mp4"
+          }
+        ],
+        "release_id": 430382508
+      },
+      "quality": {
+        "width": 1080,
+        "height": 1920,
+        "fps": "30/1",
+        "duration": 76.7,
+        "video_codec": "h264",
+        "audio_codec": "aac",
+        "loudness": "-13.3 LUFS",
+        "decode_errors": false,
+        "visual_mix": {
+          "motion_graphics": 0.64,
+          "phone_chat": 0.28,
+          "illustrated": 0.08,
+          "product_dashboard": 0
+        }
+      },
+      "article_id": "should-facebook-sellers-start-tiktok",
+      "video_id": 713015005,
+      "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/should-facebook-sellers-start-tiktok.mp4",
+      "created_at": "2026-11-05T17:34:20+07:00",
+      "telegram_status": "delivered",
+      "production_status": "complete"
     }
   ]
 }
