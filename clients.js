@@ -24,7 +24,7 @@ window.CLIENTS = [
  {
   "name": "CosMe | Phnom Penh",
   "url": "https://web.facebook.com/profile.php?id=100068655260640",
-  "followers": 8467,
+  "followers": 8482,
   "picture": "assets/accounts/fb-100068655260640.webp",
   "category": "សម្ផស្ស"
  },
@@ -45,14 +45,14 @@ window.CLIENTS = [
  {
   "name": "ម៉ាក់ នី VIP | Phnom Penh",
   "url": "https://web.facebook.com/vipsorhorh",
-  "followers": 822070,
+  "followers": 822247,
   "picture": "assets/accounts/fb-vipsorhorh.webp",
   "category": "សម្ផស្ស"
  },
  {
   "name": "Borey ChhayLy | Phnom Penh",
   "url": "https://web.facebook.com/BoreyChhayly168",
-  "followers": 48434,
+  "followers": 48431,
   "picture": "assets/accounts/fb-boreychhayly168.webp",
   "category": ""
  }

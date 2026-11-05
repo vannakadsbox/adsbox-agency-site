@@ -22,6 +22,27 @@ window.ARTICLES = [
   ]
  },
  {
+  "id": "should-facebook-sellers-start-tiktok",
+  "date": "2026-11-05",
+  "tag": {
+   "kh": "TikTok",
+   "en": "TikTok"
+  },
+  "title": {
+   "kh": "លក់តាម Facebook ដាច់ហើយ តើហាងតូចគួរចាប់ផ្ដើម TikTok ឥឡូវនេះទេ?",
+   "en": "លក់តាម Facebook ដាច់ហើយ តើហាងតូចគួរចាប់ផ្ដើម TikTok ឥឡូវនេះទេ?"
+  },
+  "summary": {
+   "kh": "Facebook លក់បានល្អហើយ តែឮគេនិយាយរឿង TikTok រហូត? អានសំណួរ ៤ ដែលជួយបងៗសម្រេចចិត្តថា គួរចាប់ផ្ដើមឥឡូវ ឬរង់ចាំសិន។",
+   "en": "Facebook លក់បានល្អហើយ តែឮគេនិយាយរឿង TikTok រហូត? អានសំណួរ ៤ ដែលជួយបងៗសម្រេចចិត្តថា គួរចាប់ផ្ដើមឥឡូវ ឬរង់ចាំសិន។"
+  },
+  "emoji": [
+   "📱",
+   "🤔",
+   "🚀"
+  ]
+ },
+ {
   "id": "messenger-saved-replies-tips",
   "date": "2026-11-04",
   "tag": {
