@@ -1,0 +1,200 @@
+{
+  "slug": "should-facebook-sellers-start-tiktok",
+  "video_title": "Facebook លក់ដាច់ហើយ គួរសាក TikTok ឥឡូវទេ? សួរខ្លួនឯងសិន",
+  "topic": "ហាងដែលលក់ដាច់តាម Facebook រៀនដឹងថា ពេលណាគួរចាប់ផ្ដើម TikTok និងរបៀបសាកមួយខែ ដោយមិនបោះបង់ Facebook។",
+  "thumbnail_text": "Facebook ដាច់ហើយ គួរសាក TikTok ទេ?",
+  "description": "លក់តាម Facebook ដាច់ហើយ តែឃើញគេលក់ TikTok ក៏ចាប់ភ័យ?\nកុំបោះបង់ Facebook។ សួរខ្លួនឯងសិន ហើយសាក TikTok មួយខែ ដោយលុយតិចៗ។\n#ADSBOX #TikTok #លក់អនឡាញ #BoostTikTok",
+  "facebook_caption": "🤔 Facebook លក់ដាច់ហើយ តែកំពុងគិតចង់សាក TikTok?\nមុនចាប់ផ្ដើម សាកមើលចំណុចទាំងនេះសិន៖\n✅ កុំបោះបង់ Facebook\n✅ ទំនិញថតវីដេអូមើលស្អាតទេ?\n✅ មានពេលថត ៣ ដង/អាទិត្យ\n✅ ឆ្លើយសារទាន់សិន\n✅ សាក ១ ខែ ដោយលុយតិចៗ\nចុងខែ មើលលេខ កុំទាយតាមអារម្មណ៍ 📊\nបងៗ សាក TikTok ហើយឬនៅ? Comment ប្រាប់បន្តិចមក 👇\n#ADSBOX #TikTok #លក់អនឡាញ #BoostTikTok",
+  "scenes": [
+    {
+      "role": "hook",
+      "lines": [
+        "Facebook លក់ដាច់ហើយ",
+        "តែឃើញគេលក់ TikTok ក៏ចាប់ភ័យ?"
+      ],
+      "keyword": "គួរសាក TikTok ទេ?",
+      "visual": {
+        "type": "question",
+        "title": "គួរសាក TikTok ទេ?",
+        "bubbles": [
+          "បង មាន TikTok ទេ?",
+          "ឃើញក្នុង TikTok ស្អាតណាស់",
+          "ហាងនោះលក់ TikTok ដាច់ណាស់"
+        ]
+      }
+    },
+    {
+      "role": "problem",
+      "lines": [
+        "បងៗខ្លះ ឈប់ថត Facebook",
+        "ទៅថតតែ TikTok ទាំងអស់។",
+        "ស្រាប់តែផេកស្ងាត់ Order ធ្លាក់។"
+      ],
+      "keyword": "ផេកស្ងាត់ Order ធ្លាក់",
+      "visual": {
+        "type": "story",
+        "scene": "desk",
+        "mood": "worried",
+        "title": "ផេកស្ងាត់",
+        "bubbles": []
+      }
+    },
+    {
+      "role": "tip",
+      "lines": [
+        "កុំបោះបង់ Facebook ណាបង។",
+        "ភ្ញៀវចាស់ស្គាល់ផេកបងនៅទីនោះ។",
+        "ទុក TikTok ជាផ្លូវរកភ្ញៀវថ្មី។"
+      ],
+      "label": "គន្លឹះទី ១",
+      "keyword": "Facebook នៅដដែល",
+      "visual": {
+        "type": "compare",
+        "bad": "ចោល Facebook ទៅ TikTok",
+        "good": "ទុក TikTok រកភ្ញៀវថ្មី"
+      }
+    },
+    {
+      "role": "tip",
+      "lines": [
+        "ទំនិញបង ថតវីដេអូមើលទៅស្អាតទេ?",
+        "មួយអាទិត្យ មានពេលថតបីដងទេ?",
+        "សារក្នុង Inbox ឆ្លើយទាន់ឬនៅ?"
+      ],
+      "label": "គន្លឹះទី ២",
+      "keyword": "សួរខ្លួនឯងសិន",
+      "visual": {
+        "type": "checklist",
+        "items": [
+          "ថតវីដេអូមើលស្អាត",
+          "ថតបាន ៣ ដង ក្នុងមួយអាទិត្យ",
+          "ឆ្លើយសារទាន់"
+        ]
+      }
+    },
+    {
+      "role": "tip",
+      "lines": [
+        "បើភ្ញៀវឆាតមក ឆ្លើយមិនទាន់ទៅហើយ",
+        "ដោះស្រាយការឆ្លើយសារមុនសិន។",
+        "ទើបបន្ថែម TikTok ពេលក្រោយ។"
+      ],
+      "keyword": "ឆ្លើយសារទាន់សិន",
+      "visual": {
+        "type": "chat",
+        "with": "ភ្ញៀវ",
+        "messages": [
+          {
+            "from": "customer",
+            "text": "បង អាវនេះនៅទេ?"
+          },
+          {
+            "from": "customer",
+            "text": "បង?"
+          },
+          {
+            "from": "shop",
+            "text": "នៅបង! ឆ្លើយភ្លាម"
+          }
+        ]
+      }
+    },
+    {
+      "role": "tip",
+      "lines": [
+        "កុំចាយលុយច្រើនភ្លាម សាកមួយខែសិន។",
+        "ពីរអាទិត្យដំបូង ថតទំនិញដែលលក់ដាច់។",
+        "អាទិត្យទីបី មើលវីដេអូណាគេសួរតម្លៃ។"
+      ],
+      "label": "គន្លឹះទី ៣",
+      "keyword": "សាកមួយខែសិន",
+      "visual": {
+        "type": "flow",
+        "steps": [
+          {
+            "text": "សាកមួយខែ"
+          },
+          {
+            "label": "អាទិត្យ ១-២",
+            "text": "ថតទំនិញលក់ដាច់"
+          },
+          {
+            "label": "អាទិត្យ ៣",
+            "text": "មើលវីដេអូគេសួរច្រើន"
+          }
+        ]
+      }
+    },
+    {
+      "role": "tip",
+      "lines": [
+        "អាទិត្យទីបួន Boost វីដេអូល្អ លុយតិចៗ។",
+        "ចុងខែ កុំសម្រេចតាមអារម្មណ៍។",
+        "មើលថា មួយ Order អស់លុយប៉ុន្មាន។"
+      ],
+      "label": "គន្លឹះទី ៤",
+      "keyword": "មើលលេខ កុំទាយ",
+      "visual": {
+        "type": "compare",
+        "bad": "សម្រេចតាមអារម្មណ៍",
+        "good": "មើលមួយ Order អស់លុយប៉ុន្មាន"
+      }
+    },
+    {
+      "role": "example",
+      "lines": [
+        "ឧទាហរណ៍ ហាងអាវនារី នៅតែ Live ដដែល។",
+        "តែថែមវីដេអូខ្លី អាវមួយឈុត ពាក់បីបែប។",
+        "ហើយសរសេរថា ឆាតមកផេក ដើម្បីកុម្ម៉ង់។"
+      ],
+      "label": "ឧទាហរណ៍",
+      "keyword": "មួយឈុត ពាក់បីបែប",
+      "visual": {
+        "type": "caption",
+        "page": "ហាងអាវ (ឧទាហរណ៍)",
+        "lines": [
+          "Live នៅដដែល",
+          "វីដេអូខ្លី អាវមួយឈុត",
+          "ពាក់បាន ៣ បែប",
+          "ឆាតមកផេក ដើម្បីកុម្ម៉ង់"
+        ],
+        "highlight": [
+          "ឆាតមកផេក"
+        ]
+      }
+    },
+    {
+      "role": "summary",
+      "lines": [
+        "11.11 ជិតមកដល់ ផ្ដោត Facebook សិន។",
+        "តែសាក TikTok បន្តិចៗពីឥឡូវ",
+        "ដល់ 12.12 បងមានវីដេអូត្រៀមរួច។"
+      ],
+      "keyword": "សាក TikTok បន្តិចៗ",
+      "visual": {
+        "type": "takeaway",
+        "quote": "Facebook លក់បន្ត TikTok សាកបន្តិចៗ"
+      }
+    },
+    {
+      "role": "cta",
+      "lines": [
+        "ចង់ដឹងបន្ថែមពីការ Boost TikTok",
+        "ចូលមើល ADS BOX នៅ adsbox.agency។"
+      ],
+      "visual": {
+        "type": "cta",
+        "services": [
+          "Boost TikTok",
+          "Boost Post",
+          "Boost Live"
+        ]
+      }
+    }
+  ],
+  "article": {
+    "title": "លក់តាម Facebook ដាច់ហើយ តើហាងតូចគួរចាប់ផ្ដើម TikTok ឥឡូវនេះទេ?",
+    "url": "https://adsbox.agency/knowledge/should-facebook-sellers-start-tiktok/"
+  },
+  "written_at": "2026-11-05T17:26:03+07:00"
+}
