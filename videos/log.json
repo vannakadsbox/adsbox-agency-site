@@ -1791,16 +1791,16 @@
     {
       "slug": "prepare-11-11-promotion-without-losing-profit",
       "status": "sent",
-      "render_started_at": "2026-11-05T00:49:20+07:00",
+      "render_started_at": "2026-11-05T23:10:24+07:00",
       "error": "",
-      "sent_at": "2026-11-05T00:55:02+07:00",
+      "sent_at": "2026-11-05T23:16:52+07:00",
       "rendered_at": "2026-11-05T00:17:48+07:00",
-      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/41880656861",
-      "duration": 69.87,
-      "size_mb": 20.4,
-      "render_seconds": 322,
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/42056641172",
+      "duration": 66.13,
+      "size_mb": 20.6,
+      "render_seconds": 370,
       "voice": "kiri:Bora",
-      "music": "adsbox-original-2.mp3",
+      "music": "adsbox-original-1.mp3",
       "style": "custom animation only (no stock footage)",
       "visuals": [
         "question",
@@ -1821,45 +1821,45 @@
       "stock_footage": "none (removed)",
       "telegram": {
         "ok": true,
-        "message_id": 156,
+        "message_id": 166,
         "chat": "configured",
-        "at": "2026-11-05T00:55:02+07:00",
-        "file_id": "BAACAgUAAxkDAAOcautxb_6b1dDrhnFVVXbcAtOHZPEAAvcqAAJvKGBXz9HTTijqD7g9BA",
+        "at": "2026-11-05T23:16:52+07:00",
+        "file_id": "BAACAgUAAxkDAAOmauyr7DkPul6p14rh4OPBLl9QPkEAAlwkAALSKGFXAeBIbC1TlSE9BA",
         "items": [
           {
             "item": "video",
-            "message_id": 156,
+            "message_id": 166,
             "file_name": "prepare-11-11-promotion-without-losing-profit.mp4",
-            "file_size": 20363814,
+            "file_size": 20595679,
             "width": 1080,
             "height": 1920,
-            "file_id": "BAACAgUAAxkDAAOcautxb_6b1dDrhnFVVXbcAtOHZPEAAvcqAAJvKGBXz9HTTijqD7g9BA"
+            "file_id": "BAACAgUAAxkDAAOmauyr7DkPul6p14rh4OPBLl9QPkEAAlwkAALSKGFXAeBIbC1TlSE9BA"
           },
           {
             "item": "facebook_caption",
-            "message_id": 157
+            "message_id": 167
           },
           {
             "item": "thumbnail",
-            "message_id": 158,
+            "message_id": 168,
             "file_name": "prepare-11-11-promotion-without-losing-profit-thumbnail.jpg",
-            "file_size": 176549
+            "file_size": 187178
           }
         ],
         "sent_count": 3,
         "local_sizes": {
-          "video": 20363814,
-          "thumbnail": 176549
+          "video": 20595679,
+          "thumbnail": 187178
         }
       },
       "speech_match": [
-        0.991,
+        1,
         0.99,
-        0.715,
-        0.933,
-        0.989,
+        0.992,
+        0.924,
+        1,
         0.963,
-        0.938,
+        0.988,
         1,
         1
       ],
@@ -1877,15 +1877,15 @@
       "archive": {
         "assets": [
           {
-            "id": 710387590,
+            "id": 713991596,
             "name": "prepare-11-11-promotion-without-losing-profit-thumb.jpg",
-            "size": 176549,
+            "size": 187178,
             "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/prepare-11-11-promotion-without-losing-profit-thumb.jpg"
           },
           {
-            "id": 710387589,
+            "id": 713991594,
             "name": "prepare-11-11-promotion-without-losing-profit.mp4",
-            "size": 20363814,
+            "size": 20595679,
             "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/prepare-11-11-promotion-without-losing-profit.mp4"
           }
         ],
@@ -1895,20 +1895,20 @@
         "width": 1080,
         "height": 1920,
         "fps": "30/1",
-        "duration": 69.87,
+        "duration": 66.13,
         "video_codec": "h264",
         "audio_codec": "aac",
-        "loudness": "-13.3 LUFS",
+        "loudness": "-13.1 LUFS",
         "decode_errors": false,
         "visual_mix": {
-          "motion_graphics": 0.53,
+          "motion_graphics": 0.54,
           "phone_chat": 0.32,
-          "illustrated": 0.15,
+          "illustrated": 0.14,
           "product_dashboard": 0
         }
       },
       "article_id": "prepare-11-11-promotion-without-losing-profit",
-      "video_id": 710387589,
+      "video_id": 713991594,
       "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/prepare-11-11-promotion-without-losing-profit.mp4",
       "created_at": "2026-11-05T00:17:48+07:00",
       "telegram_status": "delivered",
