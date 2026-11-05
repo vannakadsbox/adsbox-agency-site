@@ -2054,7 +2054,16 @@
       "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/should-facebook-sellers-start-tiktok.mp4",
       "created_at": "2026-11-05T17:34:20+07:00",
       "telegram_status": "delivered",
-      "production_status": "complete"
+      "production_status": "complete",
+      "facebook": {
+        "video_id": "4681080302162005",
+        "url": "https://www.facebook.com/reel/4681080302162005",
+        "state": "published",
+        "at": "2026-11-05T17:45:41+07:00",
+        "page": "Hor Vannak - ហ៊ វណ្ណណាក់",
+        "status": "ready",
+        "cover": "set"
+      }
     }
   ]
 }
