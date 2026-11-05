@@ -68,7 +68,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-04"
+    "updated": "2026-11-05"
    },
    {
     "name": "3Drama",
@@ -84,13 +84,13 @@ window.ACCOUNTS = {
    {
     "name": "អ្នកមើលកុនAi",
     "url": "https://www.facebook.com/profile.php?id=61594713303864",
-    "followers": 48,
+    "followers": 49,
     "picture": "assets/accounts/fb-61594713303864.webp",
     "cover": "assets/opt/adsbox-cover-ed7ada-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-04"
+    "updated": "2026-11-05"
    },
    {
     "name": "Thon SreyPhors - ថន ស្រីភ័ស",
@@ -106,13 +106,13 @@ window.ACCOUNTS = {
    {
     "name": "24MerlTos",
     "url": "https://www.facebook.com/profile.php?id=61594235184973",
-    "followers": 358,
+    "followers": 375,
     "picture": "assets/accounts/fb-61594235184973.webp",
     "cover": "assets/opt/adsbox-cover-de2e8b-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-04"
+    "updated": "2026-11-05"
    },
    {
     "name": "អេអាយដ្រាម៉ា",
@@ -123,7 +123,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-04"
+    "updated": "2026-11-05"
    },
    {
     "name": "មើលកុនAi",
@@ -134,7 +134,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-04"
+    "updated": "2026-11-05"
    },
    {
     "name": "PostAi",
@@ -145,7 +145,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-04"
+    "updated": "2026-11-05"
    },
    {
     "name": "មើលរឿងបកប្រែAi",
@@ -161,13 +161,13 @@ window.ACCOUNTS = {
    {
     "name": "Aiសម្រាយកុន",
     "url": "https://www.facebook.com/profile.php?id=61593925754183",
-    "followers": 1770,
+    "followers": 1774,
     "picture": "assets/accounts/fb-61593925754183.webp",
     "cover": "assets/opt/adsbox-cover-263cfb-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-04"
+    "updated": "2026-11-05"
    },
    {
     "name": "អ្នកផុសរឿងAi",
