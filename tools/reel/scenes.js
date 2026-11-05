@@ -181,8 +181,20 @@ ${(v.services || []).map((s, i) => `<div class="cc-row" style="${A("slideR", t1 
 <svg class="tap" width="110" height="110" viewBox="0 0 24 24" fill="#fff" stroke="#0b1430" stroke-width="1.2" style="${A("tap", tu + 0.5, 1.1, "ease-in-out", "both", " infinite")}" aria-hidden="true"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V10l4.2.8a2 2 0 0 1 1.6 2.3l-.9 4.6A3 3 0 0 1 14 20H11a3 3 0 0 1-2.4-1.2L5.3 14.4a1.4 1.4 0 0 1 2-2z"/></svg></div>`;
 };
 
+// Vannak, the owner's own presenter character (assets/video/presenter, 800x1080 transparent poses).
+// While the voice speaks, the mouth-open "talk" pose flickers over the resting pose, so he looks like he is talking.
+const VMOOD = { worried: "think", sad: "think", happy: "happy", neutral: "smile", surprised: "surprised", think: "think", smile: "smile", wave: "wave", talk: "smile" };
+function presenter(mood, w, x, b64, cls = "") {
+  const pose = VMOOD[mood] || "smile";
+  const img = (n) => `data:image/png;base64,${b64("assets/video/presenter/vannak-" + n + ".png")}`;
+  const talks = ["smile", "happy", "neutral"].includes(pose);
+  const t0 = x.sc.vStart, n = Math.max(1, Math.floor((x.sc.voiceLen || 2) / 0.34));
+  return `<div class="vk ${cls}" style="width:${w}px"><img src="${img(pose)}" alt="">` +
+    (talks ? `<img class="vk-talk" src="${img("talk")}" alt="" style="animation:vkTalk .34s linear ${t0.toFixed(3)}s ${n} both">` : "") + `</div>`;
+}
+
 // Illustrated storytelling: the ADS BOX seller in a scene (Live, desk or packing), with comments / bubbles per beat.
-V.story = (v, x) => {
+V.story = (v, x, b64) => {
   const bub = v.bubbles || [];
   const t0 = x.F(0.05), step = Math.max(0.3, (x.F(0.8) - t0) / Math.max(1, bub.length));
   const props = {
@@ -192,7 +204,7 @@ V.story = (v, x) => {
   }[v.scene || "live"] || "";
   return `${v.title ? `<div class="q-title" style="${A("popIn", x.T(x.n - 1), 0.6, "cubic-bezier(.3,1.5,.5,1)")}"><span>${esc(v.title)}</span></div>` : header(x.sc, x)}
 <div class="story s-${esc(v.scene || "live")}">${props}
-<div class="st-seller" style="${A("rise", x.start + 0.2, 0.7)}">${seller(v.mood || "happy", 470, v.scene === "packing" ? "box" : "phone")}</div>
+<div class="st-seller st-vk" style="${A("rise", x.start + 0.2, 0.7)}">${presenter(v.mood || "happy", 560, x, b64)}</div>
 ${v.customer ? `<div class="st-cust" style="${A("slideR", x.F(0.35), 0.6)}">${customer(0, 230)}</div>` : ""}
 <div class="st-bubs">${bub.map((b, i) => `<div class="st-b" style="left:${[8, 52, 22, 60, 30][i % 5]}%;${A("flyUp", t0 + i * step, 2.2, "cubic-bezier(.2,.7,.3,1)")}">${esc(b)}</div>`).join("")}</div></div>`;
 };
@@ -315,6 +327,10 @@ const CSS = `
 .ckx{background:#ff5d6c}
 .story{position:absolute;left:-90px;right:-90px;top:200px;height:820px;overflow:visible}
 .st-seller{position:absolute;left:290px;bottom:0}
+.st-vk{left:230px;bottom:-40px}
+.vk{position:relative}.vk img{display:block;width:100%;height:auto}
+.vk .vk-talk{position:absolute;left:0;top:0;opacity:0}
+@keyframes vkTalk{0%,45%{opacity:1}46%,100%{opacity:0}}
 .st-cust{position:absolute;right:60px;bottom:0}
 .st-ring{position:absolute;left:240px;top:20px;width:600px;height:600px;border-radius:50%;border:26px solid rgba(255,255,255,.12);box-shadow:0 0 80px rgba(255,210,63,.25) inset}
 .st-live{position:absolute;left:120px;top:60px;display:flex;align-items:center;gap:10px;background:#ff3b5c;padding:10px 24px;border-radius:16px;font-family:L,sans-serif;font-size:40px;font-weight:800}
@@ -364,4 +380,4 @@ const CSS = `
 @keyframes spinH{from{transform:rotate(0)}to{transform:rotate(120deg)}}
 `;
 
-module.exports = { V, TYPES, CSS, A, esc, icon };
+module.exports = { presenter, V, TYPES, CSS, A, esc, icon };

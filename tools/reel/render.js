@@ -20,6 +20,8 @@ const ROOT = path.join(__dirname, "..", "..");
 // (owner's reference, 5 Nov 2026); "creative" = sweeps, sparkles and floating icons.
 const STYLE = (() => { try { return JSON.parse(fs.readFileSync(path.join(ROOT, "videos", "settings.json"), "utf8")).video_style || "explainer"; } catch (e) { return "explainer"; } })();
 const EXPL = STYLE !== "creative";
+// The owner's presenter character (videos/settings.json "presenter": "vannak" or "none").
+const HOST = (() => { try { return (JSON.parse(fs.readFileSync(path.join(ROOT, "videos", "settings.json"), "utf8")).presenter || "vannak") !== "none"; } catch (e) { return true; } })();
 
 const FPS = 30, W = 1080, H = 1920;
 const LEAD = 0.25, FIRST_LEAD = 0.9, TAIL = 0.35, OUTRO = 4.2;
@@ -164,6 +166,11 @@ function page(script, scenes, total) {
     const make = S.V[v.type] || S.V.takeaway;
     html += `<section class="scene" style="${A("in" + dir, enter, 0.6, "cubic-bezier(.22,1,.36,1)")},${A("out" + dir, exit, 0.42, "cubic-bezier(.55,0,.75,.35)", "forwards").replace("animation:", "")}">
 <div class="stage" style="${A(i % 2 ? "camB" : "camA", enter, sc.dur + 0.3, "ease-in-out")}">${make(v, x, b64)}</div></section>`;
+    // Vannak presents every scene from the space under the subtitles (story scenes already show him in the picture).
+    if (HOST && v.type !== "story") {
+      const mood = { hook: "surprised", problem: "think", summary: "happy", cta: "wave" }[sc.role] || "smile";
+      html += `<div class="host" style="${A("hostIn", enter + 0.05, 0.5, "cubic-bezier(.22,1,.36,1)")},${A("hostOut", exit, 0.35, "ease-in", "forwards").replace("animation:", "")}">${S.presenter(mood, 400, x, b64)}</div>`;
+    }
     if (!EXPL && i > 0) html += `<div class="sweep" style="${A("sweep", sc.start - 0.3, 0.62, "cubic-bezier(.6,0,.3,1)", "both")}"><i></i><b></b></div>`;
     const sp = (sc.subs[1] || sc.subs[0]).start + 0.1;
     if (!EXPL) html += `<div class="spark ${i % 2 ? "sl" : "sr"}">` + [0, 1, 2, 3, 4, 5].map((k) =>
@@ -200,6 +207,9 @@ body{width:${W}px;height:${H}px;overflow:hidden;font-family:M,L,sans-serif;color
 @keyframes lit{to{color:#fff}}
 @keyframes litN{to{color:#ffd23f}}
 ${EXPL ? ".sub span{font-weight:600}" : ""}
+.host{position:absolute;left:40px;bottom:-150px;opacity:0;z-index:2}
+@keyframes hostIn{from{opacity:0;transform:translateY(80px)}to{opacity:1;transform:none}}
+@keyframes hostOut{to{opacity:0;transform:translateY(40px)}}
 @keyframes sinE{from{opacity:0}to{opacity:1}}
 @keyframes inE{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
 @keyframes outE{to{opacity:0;transform:scale(1.02)}}
@@ -399,10 +409,12 @@ async function thumbnail(script, frame, out, cover) {
 body{width:${W}px;height:${H}px;overflow:hidden;font-family:M,L,sans-serif;color:#fff;position:relative;
   background:url(data:image/jpeg;base64,${fs.readFileSync(frame).toString("base64")}) center/cover}
 .sh{position:absolute;inset:0;background:linear-gradient(rgba(11,20,48,0) 35%,rgba(11,20,48,.92) 72%)}
-.t{position:absolute;left:80px;right:80px;bottom:360px}
+.t{position:absolute;left:80px;right:80px;bottom:${HOST ? 820 : 360}px}
 .t span{font-size:116px;line-height:1.42;font-weight:700;padding:4px 24px 14px;background:#ffd23f;color:#0b1430;border-radius:20px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
-.u{position:absolute;left:80px;bottom:240px;font-family:L,M,sans-serif;font-weight:800;font-size:46px}
-</style></head><body><div class="sh"></div><div class="t"><span>${esc(script.thumbnail_text)}</span></div><div class="u">adsbox.agency</div></body></html>`, { waitUntil: "load" });
+.u{position:absolute;left:80px;bottom:${HOST ? 150 : 240}px;font-family:L,M,sans-serif;font-weight:800;font-size:46px}
+.sh2{position:absolute;left:0;right:0;bottom:0;height:900px;background:linear-gradient(rgba(11,20,48,0),rgba(11,20,48,.99) 28%)}
+.vkt{position:absolute;right:-30px;bottom:-120px;width:640px}
+</style></head><body><div class="sh"></div>${HOST ? `<div class="sh2"></div><img class="vkt" src="data:image/png;base64,${b64("assets/video/presenter/vannak-happy.png")}" alt="">` : ""}<div class="t"><span>${esc(script.thumbnail_text)}</span></div><div class="u">adsbox.agency</div></body></html>`, { waitUntil: "load" });
   await pg.evaluate(() => document.fonts.ready);
   await pg.screenshot({ path: out, type: "jpeg", quality: 90 });
   await b.close();
