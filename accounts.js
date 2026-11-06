@@ -95,7 +95,7 @@ window.ACCOUNTS = {
    {
     "name": "Thon SreyPhors - ថន ស្រីភ័ស",
     "url": "https://www.facebook.com/profile.php?id=61594317351141",
-    "followers": 3035,
+    "followers": 3034,
     "picture": "assets/accounts/fb-61594317351141.webp",
     "cover": "assets/opt/adsbox-cover-fe71e7-1565780390.webp",
     "type": "ផេកខ្មែរ",
@@ -172,7 +172,7 @@ window.ACCOUNTS = {
    {
     "name": "អ្នកផុសរឿងAi",
     "url": "https://www.facebook.com/profile.php?id=61593831312583",
-    "followers": 4159,
+    "followers": 4161,
     "picture": "assets/accounts/fb-61593831312583.webp",
     "cover": "assets/opt/adsbox-cover-919002-1565780390.webp",
     "type": "ផេកខ្មែរ",
@@ -216,7 +216,7 @@ window.ACCOUNTS = {
    {
     "name": "Nito H Lim-ហ៊ា នីតូTopFan",
     "url": "https://www.facebook.com/profile.php?id=61592119824989",
-    "followers": 11339,
+    "followers": 11328,
     "picture": "assets/accounts/fb-61592119824989.webp",
     "cover": "assets/opt/adsbox-cover-e5c98d-1565780390.webp",
     "type": "ផេកខ្មែរ",
@@ -271,7 +271,7 @@ window.ACCOUNTS = {
    {
     "name": "យឹម អេង",
     "url": "https://www.facebook.com/profile.php?id=61580042356068",
-    "followers": 12410,
+    "followers": 12396,
     "picture": "assets/accounts/fb-61580042356068.webp",
     "cover": "assets/accounts/fb-61580042356068-cover.webp",
     "type": "ផេកខ្មែរ",
@@ -700,7 +700,7 @@ window.ACCOUNTS = {
    {
     "name": "យឹម អេង",
     "url": "https://www.facebook.com/profile.php?id=61580042356068&sk=reels_tab",
-    "followers": 12410,
+    "followers": 12396,
     "picture": "assets/accounts/fb-61580042356068.webp",
     "cover": "assets/opt/adsbox-cover-a69ac9-1565780390.webp",
     "type": "ផេកខ្មែរ",
