@@ -24,7 +24,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-05"
+    "updated": "2026-11-06"
    },
    {
     "name": "31Drama",
@@ -35,7 +35,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-05"
+    "updated": "2026-11-06"
    },
    {
     "name": "20Drama",
@@ -46,7 +46,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-04"
+    "updated": "2026-11-06"
    },
    {
     "name": "19Drama",
@@ -57,7 +57,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-04"
+    "updated": "2026-11-06"
    },
    {
     "name": "8Drama",
@@ -68,7 +68,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-05"
+    "updated": "2026-11-06"
    },
    {
     "name": "3Drama",
@@ -79,7 +79,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-04"
+    "updated": "2026-11-06"
    },
    {
     "name": "អ្នកមើលកុនAi",
@@ -90,7 +90,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-05"
+    "updated": "2026-11-06"
    },
    {
     "name": "Thon SreyPhors - ថន ស្រីភ័ស",
@@ -106,13 +106,13 @@ window.ACCOUNTS = {
    {
     "name": "24MerlTos",
     "url": "https://www.facebook.com/profile.php?id=61594235184973",
-    "followers": 375,
+    "followers": 391,
     "picture": "assets/accounts/fb-61594235184973.webp",
     "cover": "assets/opt/adsbox-cover-de2e8b-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-05"
+    "updated": "2026-11-06"
    },
    {
     "name": "អេអាយដ្រាម៉ា",
@@ -123,7 +123,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-05"
+    "updated": "2026-11-06"
    },
    {
     "name": "មើលកុនAi",
