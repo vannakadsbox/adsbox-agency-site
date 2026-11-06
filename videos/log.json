@@ -2064,6 +2064,16 @@
         "status": "ready",
         "cover": "set"
       }
+    },
+    {
+      "slug": "simple-daily-targets-for-sales-team",
+      "article_title": "ក្រុមរវល់ពេញថ្ងៃ តែមិនដឹងថាថ្ងៃនេះលក់បានល្អឬអត់? ដាក់គោលដៅប្រចាំថ្ងៃឲ្យក្រុមលក់",
+      "article_url": "https://adsbox.agency/knowledge/simple-daily-targets-for-sales-team/",
+      "video_title": "ក្រុមរវល់ពេញថ្ងៃ តែមិនដឹងថាថ្ងៃនេះល្អឬអត់? ដាក់គោលដៅប្រចាំថ្ងៃ",
+      "hook": "បងៗ ក្រុមរវល់ពេញមួយថ្ងៃ តែសួរថា ថ្ងៃនេះលក់ល្អឬអត់? គ្មាននរណាឆ្លើយបានទេ?",
+      "status": "scripted",
+      "scripted_at": "2026-11-06T13:15:50+07:00",
+      "error": ""
     }
   ]
 }
