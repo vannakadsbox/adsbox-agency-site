@@ -1,0 +1,31 @@
+# Test the AI photo generator (Cloudflare Workers AI). Uploads the sample to the private video-archive draft release.
+name: AI photo test
+on:
+  workflow_dispatch:
+    inputs:
+      script:
+        description: "optional: videos/scripts/<slug>.json to make all its scene photos"
+        required: false
+permissions:
+  contents: write
+jobs:
+  photo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CF_AI_TOKEN: ${{ secrets.CF_AI_TOKEN }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate
+        run: |
+          python3 tools/reel/photos.py check
+          gh release upload video-archive /tmp/photo-check.jpg --clobber
+          s="${{ github.event.inputs.script }}"
+          if [ -n "$s" ]; then
+            python3 tools/reel/photos.py make "$s" /tmp/ph
+            n=$(basename "$s" .json); (cd /tmp/ph && for f in *.jpg; do cp "$f" "/tmp/$n-photo-$f"; done)
+            gh release upload video-archive /tmp/$n-photo-*.jpg --clobber
+          fi
