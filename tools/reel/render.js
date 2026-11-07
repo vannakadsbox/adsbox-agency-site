@@ -39,46 +39,46 @@ const ICONS = (() => {
 // Paper style (owner, 7 Nov 2026, reference: Khmer explainer reels on cream paper): bold black Khmer, red and yellow
 // stickers, white paper cards that drop in slightly tilted, simple charts. Only the look changes; the scenes are the same.
 const PAPER = `
-body{background:#ece6d7!important;color:#151515}
-.bg{background:#ece6d7 radial-gradient(rgba(0,0,0,.035) 1px,transparent 1.4px) 0 0/7px 7px!important}
+body{background:#f6f8fc!important;color:#0c1430}
+.bg{background:#f6f8fc radial-gradient(rgba(0,89,224,.07) 1.2px,transparent 1.4px) 0 0/7px 7px!important}
 .grid,.blob,.fl{display:none!important}
-.chip{background:#d6322b;color:#fff;transform:rotate(-2deg)}
-.prog{background:#d6322b}
-.hd .lbl{background:#d6322b;color:#fff;border-radius:6px;transform:rotate(-2deg);box-shadow:0 6px 0 rgba(0,0,0,.12)}
-.hd h2{color:#151515;font-weight:800;font-size:80px}
-.hd .ul{background:#d6322b;height:10px}
-.q-title span{background:#fff;color:#151515;border-radius:8px;box-shadow:0 8px 0 rgba(0,0,0,.08),0 24px 40px rgba(0,0,0,.14);rotate:-1.5deg}
-.qmark{color:#d6322b;text-shadow:none}
+.chip{background:#ffd23f;color:#0c1430;font-weight:700;transform:rotate(-2deg)}
+.prog{background:#0059e0}
+.hd .lbl{background:#0059e0;color:#fff;border-radius:6px;transform:rotate(-2deg);box-shadow:0 6px 0 rgba(0,0,0,.12)}
+.hd h2{color:#0c1430;font-weight:800;font-size:80px}
+.hd .ul{background:#0059e0;height:10px}
+.q-title span{background:#fff;color:#0c1430;border-radius:8px;box-shadow:0 8px 0 rgba(0,0,0,.08),0 24px 40px rgba(0,0,0,.14);rotate:-1.5deg}
+.qmark{color:#0059e0;text-shadow:none}
 .card,.li,.tk,.rcpt,.dash,.ord,.post,.post-c,.cta-card,.stk,.goodline{border-radius:10px!important;box-shadow:0 8px 0 rgba(0,0,0,.07),0 22px 40px rgba(0,0,0,.13)!important}
 .li:nth-child(odd){rotate:-1deg}.li:nth-child(even){rotate:1deg}
 .card.bad{rotate:-1.5deg}.card.good{rotate:1.2deg}
 .tk{rotate:-1deg}.rcpt{rotate:1deg}.post{rotate:-1deg}
-.good,.goodline,.total{background:#ffd23f!important;color:#151515!important}
-.bad .tag,.warn,.alert,.ckx{background:#d6322b!important}
-.strike{background:#d6322b}
-.ck{background:#151515!important;border-radius:6px}.ck svg *{stroke:#ffd23f}
-.badline{color:#6d675b;border-color:rgba(0,0,0,.25)}
-.fl-line{background:#151515}
+.good,.goodline,.total{background:#ffd23f!important;color:#0c1430!important}
+.bad .tag,.warn,.alert,.ckx{background:#c8355e!important}
+.strike{background:#c8355e}
+.ck{background:#0c1430!important;border-radius:6px}.ck svg *{stroke:#ffd23f}
+.badline{color:#55627a;border-color:rgba(0,0,0,.25)}
+.fl-line{background:#0c1430}
 .fl-i{background:#ffd23f;border-radius:8px;box-shadow:0 6px 0 rgba(0,0,0,.12)}
-.fl-s small{color:#d6322b}
-.fl-s p{color:#151515;background:#fff;border-radius:8px;box-shadow:0 6px 0 rgba(0,0,0,.07),0 16px 30px rgba(0,0,0,.1)}
-.qq{color:#d6322b}.ul2{background:#d6322b}
+.fl-s small{color:#0059e0}
+.fl-s p{color:#0c1430;background:#fff;border-radius:8px;box-shadow:0 6px 0 rgba(0,0,0,.07),0 16px 30px rgba(0,0,0,.1)}
+.qq{color:#0059e0}.ul2{background:#0059e0}
 .st-ring{border-color:rgba(0,0,0,.06);box-shadow:none}
 .road::after{background:repeating-linear-gradient(90deg,rgba(0,0,0,.25) 0 60px,transparent 60px 100px)}
-.next span{color:#151515}
-.sub span{background:#151515;font-size:60px;border-radius:8px}
+.next span{color:#0c1430}
+.sub span{background:#0c1430;font-size:60px;border-radius:8px}
 .sub i{color:rgba(255,255,255,.45)}
 .host .vk{filter:drop-shadow(0 10px 0 rgba(0,0,0,.08))}
-.intro,.outro{background:#ece6d7!important;color:#151515}
+.intro,.outro{background:#f6f8fc!important;color:#0c1430}
 .intro img,.outro img{filter:brightness(0)}
-.intro i,.outro i{background:#d6322b}
-.intro .ring{border-color:#d6322b}.intro .r2{border-color:#151515}
-.intro .rays{background:repeating-conic-gradient(rgba(214,50,43,.12) 0 8deg,transparent 8deg 22deg)}
-.outro .u{background:#d6322b;color:#fff;font-family:L,M,sans-serif}
-.outro .f{border-color:#151515;color:#151515}
-.outro small{color:#151515}
+.intro i,.outro i{background:#0059e0}
+.intro .ring{border-color:#0059e0}.intro .r2{border-color:#0c1430}
+.intro .rays{background:repeating-conic-gradient(rgba(0,89,224,.10) 0 8deg,transparent 8deg 22deg)}
+.outro .u{background:#0059e0;color:#fff;font-family:L,M,sans-serif}
+.outro .f{border-color:#0c1430;color:#0c1430}
+.outro small{color:#0c1430}
 .sh span{box-shadow:0 8px 0 rgba(0,0,0,.08),0 20px 40px rgba(0,0,0,.15)}
-.logo{background:#151515!important}
+.logo{background:#0c1430!important}
 `;
 const jpg = (f) => fs.readFileSync(f).toString("base64");
 // Big text typed letter by letter (Khmer grapheme clusters), with a blinking cursor, like the owner's reference.
@@ -575,9 +575,9 @@ body{width:${W}px;height:${H}px;overflow:hidden;font-family:M,L,sans-serif;color
 .u{position:absolute;left:80px;bottom:${HOST ? 150 : 240}px;font-family:L,M,sans-serif;font-weight:800;font-size:46px}
 .sh2{position:absolute;left:0;right:0;bottom:0;height:900px;background:linear-gradient(rgba(11,20,48,0),rgba(11,20,48,.99) 28%)}
 .vkt{position:absolute;right:-30px;bottom:-120px;width:640px}
-${STYLE === "paper" ? `.sh{background:linear-gradient(rgba(236,230,215,0) 35%,rgba(236,230,215,.92) 72%)}
-.sh2{background:linear-gradient(rgba(236,230,215,0),#ece6d7 28%)}
-.t span{background:#151515;color:#fff}.u{color:#151515}` : ""}
+${STYLE === "paper" ? `.sh{background:linear-gradient(rgba(246,248,252,0) 35%,rgba(246,248,252,.94) 72%)}
+.sh2{background:linear-gradient(rgba(246,248,252,0),#f6f8fc 28%)}
+.t span{background:#0c1430;color:#fff}.t span:last-child{background:#ffd23f;color:#0c1430}.u{color:#0059e0}` : ""}
 </style></head><body><div class="sh"></div>${HOST ? `<div class="sh2"></div><img class="vkt" src="data:image/png;base64,${b64("assets/video/presenter/vannak-happy.png")}" alt="">` : ""}<div class="t"><span>${esc(script.thumbnail_text)}</span></div><div class="u">adsbox.agency</div></body></html>`, { waitUntil: "load" });
   await pg.evaluate(() => document.fonts.ready);
   await pg.screenshot({ path: out, type: "jpeg", quality: 90 });
