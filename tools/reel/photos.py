@@ -64,6 +64,13 @@ def gen(prompt, out, seed=7):
 def main():
     cmd = sys.argv[1] if len(sys.argv) > 1 else ""
     if cmd == "check":
+        note("notice", f"CF_AI_TOKEN set: {bool(os.environ.get('CF_AI_TOKEN', '').strip())}, account id set: {bool(ACC)} (length {len(ACC)})")
+        try:
+            req = urllib.request.Request("https://api.cloudflare.com/client/v4/user/tokens/verify", headers={"Authorization": f"Bearer {TOKEN}"})
+            with urllib.request.urlopen(req, timeout=30) as r:
+                note("notice", f"token verify: {json.loads(r.read()).get('result', {}).get('status')}")
+        except urllib.error.HTTPError as e:
+            note("warning", f"token verify HTTP {e.code}: {e.read()[:200].decode('utf-8', 'replace')}")
         try:
             gen("a woman's hands packing a folded t-shirt into a parcel next to a smartphone", "/tmp/photo-check.jpg")
             note("notice", "AI photos OK: generated /tmp/photo-check.jpg")
