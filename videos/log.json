@@ -2598,6 +2598,126 @@
       "created_at": "2026-11-07T21:50:54+07:00",
       "telegram_status": "delivered",
       "production_status": "complete"
+    },
+    {
+      "slug": "boost-budget-new-page",
+      "status": "sent",
+      "render_started_at": "2026-11-07T22:10:22+07:00",
+      "error": "",
+      "sent_at": "2026-11-07T22:15:37+07:00",
+      "rendered_at": "2026-11-07T22:15:37+07:00",
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/42385018283",
+      "duration": 54.53,
+      "size_mb": 15.1,
+      "render_seconds": 300,
+      "voice": "kiri:Sophon",
+      "music": "adsbox-original-2.mp3",
+      "style": "custom animation only",
+      "visuals": [
+        "chat",
+        "compare",
+        "flow",
+        "orders",
+        "checklist",
+        "takeaway",
+        "cta"
+      ],
+      "resolution": "1080x1920",
+      "fps": 30,
+      "subtitle_sync": "transcript",
+      "footage": [],
+      "footage_share": 0,
+      "stock_footage": "none (removed)",
+      "telegram": {
+        "ok": true,
+        "message_id": 202,
+        "chat": "configured",
+        "at": "2026-11-07T22:15:37+07:00",
+        "file_id": "BAACAgUAAxkDAAPKau9AkZCbkYDGU3p4Wjt2uHWZiooAAmAjAAI1Z3lX9dcbo6PTRgs9BA",
+        "items": [
+          {
+            "item": "video",
+            "message_id": 202,
+            "file_name": "boost-budget-new-page.mp4",
+            "file_size": 15131279,
+            "width": 1080,
+            "height": 1920,
+            "file_id": "BAACAgUAAxkDAAPKau9AkZCbkYDGU3p4Wjt2uHWZiooAAmAjAAI1Z3lX9dcbo6PTRgs9BA"
+          },
+          {
+            "item": "facebook_caption",
+            "message_id": 203
+          },
+          {
+            "item": "thumbnail",
+            "message_id": 204,
+            "file_name": "boost-budget-new-page-thumbnail.jpg",
+            "file_size": 268567
+          }
+        ],
+        "sent_count": 3,
+        "local_sizes": {
+          "video": 15131279,
+          "thumbnail": 268567
+        }
+      },
+      "speech_match": [
+        0.989,
+        0.986,
+        0.98,
+        0.985,
+        0.963,
+        0.989,
+        1
+      ],
+      "scene_sync": [
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript"
+      ],
+      "archive": {
+        "assets": [
+          {
+            "id": 721049892,
+            "name": "boost-budget-new-page-thumb.jpg",
+            "size": 268567,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/boost-budget-new-page-thumb.jpg"
+          },
+          {
+            "id": 721049891,
+            "name": "boost-budget-new-page.mp4",
+            "size": 15131279,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/boost-budget-new-page.mp4"
+          }
+        ],
+        "release_id": 430382508
+      },
+      "quality": {
+        "width": 1080,
+        "height": 1920,
+        "fps": "30/1",
+        "duration": 54.53,
+        "video_codec": "h264",
+        "audio_codec": "aac",
+        "loudness": "-13.4 LUFS",
+        "decode_errors": false,
+        "visual_mix": {
+          "motion_graphics": 0.76,
+          "phone_chat": 0.09,
+          "illustrated": 0,
+          "product_dashboard": 0.15
+        }
+      },
+      "article_id": "boost-budget-new-page",
+      "video_id": 721049891,
+      "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/boost-budget-new-page.mp4",
+      "created_at": "2026-11-07T22:15:37+07:00",
+      "telegram_status": "delivered",
+      "production_status": "complete"
     }
   ]
 }
