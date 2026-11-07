@@ -2214,16 +2214,16 @@
       "status": "sent",
       "scripted_at": "2026-11-07T07:25:29+07:00",
       "error": "",
-      "render_started_at": "2026-11-07T07:26:07+07:00",
-      "sent_at": "2026-11-07T07:31:43+07:00",
+      "render_started_at": "2026-11-07T16:42:00+07:00",
+      "sent_at": "2026-11-07T16:53:12+07:00",
       "rendered_at": "2026-11-07T07:31:43+07:00",
-      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/42318136158",
-      "duration": 65.83,
-      "size_mb": 20.8,
-      "render_seconds": 321,
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/42360783195",
+      "duration": 65.3,
+      "size_mb": 21.2,
+      "render_seconds": 636,
       "voice": "kiri:Bora",
       "music": "adsbox-original-2.mp3",
-      "style": "custom animation only (no stock footage)",
+      "style": "AI photos + animation (no stock footage)",
       "visuals": [
         "question",
         "story",
@@ -2243,44 +2243,44 @@
       "stock_footage": "none (removed)",
       "telegram": {
         "ok": true,
-        "message_id": 175,
+        "message_id": 179,
         "chat": "configured",
-        "at": "2026-11-07T07:31:43+07:00",
-        "file_id": "BAACAgUAAxkDAAOvau5xaN81gt13tKaZMblDupJ6TbwAAuIgAAI1Z3lXBu5O5u7UlWY9BA",
+        "at": "2026-11-07T16:53:12+07:00",
+        "file_id": "BAACAgUAAxkDAAOzau70_o8CipYJLyldB7Ks7z51DOoAAoMiAAI1Z3lXQI41GkTlego9BA",
         "items": [
           {
             "item": "video",
-            "message_id": 175,
+            "message_id": 179,
             "file_name": "simple-loyalty-program-small-shop.mp4",
-            "file_size": 20819449,
+            "file_size": 21156798,
             "width": 1080,
             "height": 1920,
-            "file_id": "BAACAgUAAxkDAAOvau5xaN81gt13tKaZMblDupJ6TbwAAuIgAAI1Z3lXBu5O5u7UlWY9BA"
+            "file_id": "BAACAgUAAxkDAAOzau70_o8CipYJLyldB7Ks7z51DOoAAoMiAAI1Z3lXQI41GkTlego9BA"
           },
           {
             "item": "facebook_caption",
-            "message_id": 176
+            "message_id": 180
           },
           {
             "item": "thumbnail",
-            "message_id": 177,
+            "message_id": 181,
             "file_name": "simple-loyalty-program-small-shop-thumbnail.jpg",
-            "file_size": 197299
+            "file_size": 223810
           }
         ],
         "sent_count": 3,
         "local_sizes": {
-          "video": 20819449,
-          "thumbnail": 197299
+          "video": 21156798,
+          "thumbnail": 223810
         }
       },
       "speech_match": [
-        0.897,
+        0.848,
         0.988,
         0.987,
         0.994,
-        0.966,
-        1,
+        0.98,
+        0.988,
         0.987,
         0.988,
         0.992
@@ -2299,15 +2299,15 @@
       "archive": {
         "assets": [
           {
-            "id": 719082292,
+            "id": 720283804,
             "name": "simple-loyalty-program-small-shop-thumb.jpg",
-            "size": 197299,
+            "size": 223810,
             "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/simple-loyalty-program-small-shop-thumb.jpg"
           },
           {
-            "id": 719082297,
+            "id": 720283807,
             "name": "simple-loyalty-program-small-shop.mp4",
-            "size": 20819449,
+            "size": 21156798,
             "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/simple-loyalty-program-small-shop.mp4"
           }
         ],
@@ -2317,20 +2317,20 @@
         "width": 1080,
         "height": 1920,
         "fps": "30/1",
-        "duration": 65.83,
+        "duration": 65.3,
         "video_codec": "h264",
         "audio_codec": "aac",
-        "loudness": "-13.3 LUFS",
+        "loudness": "-13.4 LUFS",
         "decode_errors": false,
         "visual_mix": {
-          "motion_graphics": 0.55,
-          "phone_chat": 0.21,
+          "motion_graphics": 0.57,
+          "phone_chat": 0.2,
           "illustrated": 0.12,
-          "product_dashboard": 0.12
+          "product_dashboard": 0.11
         }
       },
       "article_id": "simple-loyalty-program-small-shop",
-      "video_id": 719082297,
+      "video_id": 720283807,
       "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/simple-loyalty-program-small-shop.mp4",
       "created_at": "2026-11-07T07:31:43+07:00",
       "telegram_status": "delivered",
