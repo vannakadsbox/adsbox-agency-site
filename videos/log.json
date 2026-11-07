@@ -2334,7 +2334,16 @@
       "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/simple-loyalty-program-small-shop.mp4",
       "created_at": "2026-11-07T07:31:43+07:00",
       "telegram_status": "delivered",
-      "production_status": "complete"
+      "production_status": "complete",
+      "facebook": {
+        "video_id": "1783092769634911",
+        "url": "https://www.facebook.com/reel/1783092769634911",
+        "state": "published",
+        "at": "2026-11-07T07:39:36+07:00",
+        "page": "Hor Vannak - ហ៊ វណ្ណណាក់",
+        "status": "ready",
+        "cover": "set"
+      }
     }
   ]
 }
