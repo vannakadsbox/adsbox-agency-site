@@ -18,6 +18,10 @@ on:
       instruction:
         description: "Kiri style instruction (max 100 characters; empty = none)"
         required: false
+      polish:
+        description: "Clean and smooth the Kiri samples (noise, harsh s, clarity, level)"
+        type: boolean
+        default: false
       label:
         description: "Title for the Telegram sample, e.g. DARA – FINAL COMPARISON TEST"
         required: false
@@ -38,6 +42,7 @@ jobs:
       VT_KIRI_VOICES: ${{ github.event.inputs.kiri_voices }}
       VT_INSTRUCTION: ${{ github.event.inputs.instruction }}
       VT_LABEL: ${{ github.event.inputs.label }}
+      VT_POLISH: ${{ github.event.inputs.polish }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

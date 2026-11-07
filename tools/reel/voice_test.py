@@ -96,13 +96,20 @@ async def make(out):
                 detail = open(raw, encoding="utf-8", errors="replace").read()[:200] if os.path.exists(raw) else ""
                 print(f"::error::Kiri {v}: HTTP {code} {detail} | voices this key can use: {', '.join(sorted(vids))[:600]}")
                 continue
-            ff("-i", raw, "-af", "loudnorm=I=-16:TP=-1.5:LRA=11", "-ar", "44100", "-b:a", "192k", f)
+            # Polish (owner, 7 Nov 2026, for his own uploaded voice "Vannak"): remove hiss and rumble, soften harsh "s" sounds,
+            # lift clarity, even out the level, slightly slower so it sounds smooth; same loudness as the videos.
+            af = ("highpass=f=80,lowpass=f=12000,afftdn=nr=12:nf=-42:tn=1,deesser=i=0.35:m=0.5:f=0.5,"
+                  "equalizer=f=250:t=q:w=1.2:g=-2.5,equalizer=f=3300:t=q:w=1.3:g=2.5,equalizer=f=8500:t=q:w=1:g=1,"
+                  "acompressor=threshold=-22dB:ratio=2.8:attack=8:release=120:makeup=2,atempo=0.97,loudnorm=I=-16:TP=-1.5:LRA=7"
+                  if os.environ.get("VT_POLISH") == "true" else "loudnorm=I=-16:TP=-1.5:LRA=11")
+            ff("-i", raw, "-af", af, "-ar", "44100", "-b:a", "192k", f)
             secs = float(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", raw], text=True))
             print(f"::notice::Kiri {v}: HTTP 200, voice id {vids.get(v, 'n/a')}, {secs:.2f}s, instruction "
                   + (f"sent ({len(instruction[:100])} chars) and accepted" if instruction else "none"))
-            labels.append({"file": os.path.basename(f), "provider": "Kiri TTS (KiriTTS-1, API)", "voice": f"{v} (male, Khmer)",
+            labels.append({"file": os.path.basename(f), "provider": "Kiri TTS (KiriTTS-1, API)", "voice": f"{v} (Khmer)",
                            "title": title,
-                           "variant": ("Speed 1.0x · style instruction: " + instruction[:100]) if instruction
+                           "variant": (("Cleaned and smoothed (noise, harsh s, clarity, level) · " if os.environ.get("VT_POLISH") == "true" else "")
+                                       + ("Speed 1.0x · style instruction: " + instruction[:100])) if instruction
                            else "Default settings: speed 1.0x, no style instruction. Same script as every sample."})
     else:
         print("::warning::KIRI_API_KEY is not set: Kiri samples skipped")
