@@ -186,6 +186,22 @@ def main():
             _, pt = page_token()
             r = set_cover(vid, pt, get_thumb(slug))
             note("notice" if (r.get("success") or r.get("id")) else "error", f"cover {slug} ({vid}): {json.dumps(r)[:300]}")
+        elif cmd == "status":  # what Facebook says about each Reel we posted (read-only)
+            _, pt = page_token()
+            for v in C.log().get("videos", []):
+                fb = v.get("facebook") or {}
+                if not fb.get("video_id"):
+                    continue
+                r = graph("GET", fb["video_id"], {"fields": "status,published,permalink_url,privacy,created_time,description",
+                                                  "access_token": pt})
+                info = {k: r.get(k) for k in ("published", "permalink_url", "privacy", "created_time")}
+                info["status"] = r.get("status")
+                info["error"] = (r.get("error") or {}).get("message")
+                note("notice", f"{v['slug']} ({fb.get('state')}): {json.dumps(info, ensure_ascii=False)[:900]}")
+            r = graph("GET", f"{PAGE_ID}/video_reels", {"fields": "id,created_time,permalink_url,status", "limit": "25", "access_token": pt})
+            note("notice", f"Page video_reels: {json.dumps(r, ensure_ascii=False)[:2500]}")
+            r = graph("GET", f"{PAGE_ID}/videos", {"fields": "id,created_time,permalink_url,published", "limit": "25", "access_token": pt})
+            note("notice", f"Page videos: {json.dumps(r, ensure_ascii=False)[:2500]}")
         elif cmd == "poll":
             poll()
         elif cmd == "loop":  # stay awake and check for taps every 20 seconds (GitHub's short schedules are irregular)
