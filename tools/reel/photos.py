@@ -32,7 +32,7 @@ def note(level, msg):
 def gen(prompt, out, seed=7):
     if not (ACC and TOKEN):
         raise RuntimeError("CLOUDFLARE_ACCOUNT_ID / CLOUDFLARE_API_TOKEN are not set")
-    body = json.dumps({"prompt": (prompt.strip().rstrip(".") + STYLE)[:2000], "steps": 8, "seed": seed}).encode()
+    body = json.dumps({"prompt": (prompt.strip().rstrip(".") + STYLE)[:2000], "steps": 8}).encode()
     req = urllib.request.Request(f"https://api.cloudflare.com/client/v4/accounts/{ACC}/ai/run/{MODEL}", data=body,
                                  headers={"Authorization": f"Bearer {TOKEN}", "Content-Type": "application/json"})
     last = None
