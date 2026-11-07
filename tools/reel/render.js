@@ -36,6 +36,50 @@ const ICONS = (() => {
   const d = arg("--photos");
   try { return d ? JSON.parse(fs.readFileSync(path.join(d, "icons.json"), "utf8")) : {}; } catch (e) { return {}; }
 })();
+// Paper style (owner, 7 Nov 2026, reference: Khmer explainer reels on cream paper): bold black Khmer, red and yellow
+// stickers, white paper cards that drop in slightly tilted, simple charts. Only the look changes; the scenes are the same.
+const PAPER = `
+body{background:#ece6d7!important;color:#151515}
+.bg{background:#ece6d7 radial-gradient(rgba(0,0,0,.035) 1px,transparent 1.4px) 0 0/7px 7px!important}
+.grid,.blob,.fl{display:none!important}
+.chip{background:#d6322b;color:#fff;transform:rotate(-2deg)}
+.prog{background:#d6322b}
+.hd .lbl{background:#d6322b;color:#fff;border-radius:6px;transform:rotate(-2deg);box-shadow:0 6px 0 rgba(0,0,0,.12)}
+.hd h2{color:#151515;font-weight:800;font-size:80px}
+.hd .ul{background:#d6322b;height:10px}
+.q-title span{background:#fff;color:#151515;border-radius:8px;box-shadow:0 8px 0 rgba(0,0,0,.08),0 24px 40px rgba(0,0,0,.14);rotate:-1.5deg}
+.qmark{color:#d6322b;text-shadow:none}
+.card,.li,.tk,.rcpt,.dash,.ord,.post,.post-c,.cta-card,.stk,.goodline{border-radius:10px!important;box-shadow:0 8px 0 rgba(0,0,0,.07),0 22px 40px rgba(0,0,0,.13)!important}
+.li:nth-child(odd){rotate:-1deg}.li:nth-child(even){rotate:1deg}
+.card.bad{rotate:-1.5deg}.card.good{rotate:1.2deg}
+.tk{rotate:-1deg}.rcpt{rotate:1deg}.post{rotate:-1deg}
+.good,.goodline,.total{background:#ffd23f!important;color:#151515!important}
+.bad .tag,.warn,.alert,.ckx{background:#d6322b!important}
+.strike{background:#d6322b}
+.ck{background:#151515!important;border-radius:6px}.ck svg *{stroke:#ffd23f}
+.badline{color:#6d675b;border-color:rgba(0,0,0,.25)}
+.fl-line{background:#151515}
+.fl-i{background:#ffd23f;border-radius:8px;box-shadow:0 6px 0 rgba(0,0,0,.12)}
+.fl-s small{color:#d6322b}
+.fl-s p{color:#151515;background:#fff;border-radius:8px;box-shadow:0 6px 0 rgba(0,0,0,.07),0 16px 30px rgba(0,0,0,.1)}
+.qq{color:#d6322b}.ul2{background:#d6322b}
+.st-ring{border-color:rgba(0,0,0,.06);box-shadow:none}
+.road::after{background:repeating-linear-gradient(90deg,rgba(0,0,0,.25) 0 60px,transparent 60px 100px)}
+.next span{color:#151515}
+.sub span{background:#151515;font-size:60px;border-radius:8px}
+.sub i{color:rgba(255,255,255,.45)}
+.host .vk{filter:drop-shadow(0 10px 0 rgba(0,0,0,.08))}
+.intro,.outro{background:#ece6d7!important;color:#151515}
+.intro img,.outro img{filter:brightness(0)}
+.intro i,.outro i{background:#d6322b}
+.intro .ring{border-color:#d6322b}.intro .r2{border-color:#151515}
+.intro .rays{background:repeating-conic-gradient(rgba(214,50,43,.12) 0 8deg,transparent 8deg 22deg)}
+.outro .u{background:#d6322b;color:#fff;font-family:L,M,sans-serif}
+.outro .f{border-color:#151515;color:#151515}
+.outro small{color:#151515}
+.sh span{box-shadow:0 8px 0 rgba(0,0,0,.08),0 20px 40px rgba(0,0,0,.15)}
+.logo{background:#151515!important}
+`;
 const jpg = (f) => fs.readFileSync(f).toString("base64");
 // Big text typed letter by letter (Khmer grapheme clusters), with a blinking cursor, like the owner's reference.
 function typed(text, t0, step = 0.055) {
@@ -351,6 +395,7 @@ ${hybrid ? `html,body{background:transparent!important}
 @keyframes drift1{0%{transform:translate(0,0)}50%{transform:translate(-160px,260px)}100%{transform:translate(-40px,520px)}}
 @keyframes drift2{0%{transform:translate(0,0)}50%{transform:translate(200px,-200px)}100%{transform:translate(60px,-420px)}}
 ${S.CSS}
+${STYLE === "paper" ? PAPER : ""}
 ${css}
 </style></head><body>
 <div class="bgall"><div class="bg"></div><div class="grid"></div><span class="blob b1"></span><span class="blob b2"></span>${floats}</div>
