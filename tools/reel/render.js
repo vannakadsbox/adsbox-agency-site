@@ -1,8 +1,8 @@
-// Render one ADS BOX knowledge video (1080x1920, 30 fps MP4) as branded motion graphics: no stock footage.
-//   node tools/reel/render.js videos/scripts/<slug>.json OUT_DIR [--music file.mp3] [--no-voice]
-// STOCK FOOTAGE IS REMOVED (owner's order, 1 Nov 2026): every frame is drawn by ADS BOX's own scene templates.
-// The renderer has no code path that reads, downloads or plays a video clip; "footage" fields in a script are ignored
-// and the old --footage option is refused.
+// Render one ADS BOX knowledge video (1080x1920, 30 fps MP4).
+//   node tools/reel/render.js videos/scripts/<slug>.json OUT_DIR [--music file.mp3] [--no-voice] [--photos DIR] [--footage footage.json]
+// Clips style (owner, 7 Nov 2026, reference: real moving clips + motion graphics, quick cuts): scenes with Pixabay clips
+// (tools/reel/footage.py auto) play them full screen under typed Khmer text; scenes with a 3D picture show it on a white grid.
+// (Stock footage was removed on 1 Nov 2026 and brought back by the owner on 7 Nov 2026.)
 // Writes OUT_DIR/<slug>.mp4, OUT_DIR/<slug>-thumb.jpg (1080x1920 thumbnail and video cover), OUT_DIR/<slug>-cover.jpg (small),
 // and OUT_DIR/meta.json. The 1080x1920 thumb is also the delivered thumbnail.
 //
@@ -32,7 +32,21 @@ const PHOTOS = (() => {
   const d = arg("--photos");
   try { return d ? JSON.parse(fs.readFileSync(path.join(d, "photos.json"), "utf8")) : {}; } catch (e) { return {}; }
 })();
+const ICONS = (() => {
+  const d = arg("--photos");
+  try { return d ? JSON.parse(fs.readFileSync(path.join(d, "icons.json"), "utf8")) : {}; } catch (e) { return {}; }
+})();
 const jpg = (f) => fs.readFileSync(f).toString("base64");
+// Big text typed letter by letter (Khmer grapheme clusters), with a blinking cursor, like the owner's reference.
+function typed(text, t0, step = 0.055) {
+  const seg = new Intl.Segmenter("km", { granularity: "grapheme" });
+  let k = 0, out = "";
+  for (const { segment } of seg.segment(String(text))) {
+    out += segment === " " ? " " : `<i style="animation:tyIn .01s linear ${(t0 + k * step).toFixed(3)}s both">${esc(segment)}</i>`;
+    k++;
+  }
+  return out + `<u style="animation:tyIn .01s linear ${t0.toFixed(3)}s both,blink .8s steps(1) ${(t0 + k * step).toFixed(3)}s infinite"></u>`;
+}
 const esc = S.esc, A = S.A;
 const run = (args) => execFileSync("ffmpeg", ["-y", "-loglevel", "error", ...args], { stdio: ["ignore", "inherit", "inherit"] });
 const probe = (f) => parseFloat(execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", f], { encoding: "utf8" }));
@@ -170,12 +184,23 @@ function page(script, scenes, total) {
     };
     const v = sc.visual || {};
     const make = S.V[v.type] || S.V.takeaway;
-    const ph = PHOTOS[String(i)] && v.type !== "cta" && fs.existsSync(PHOTOS[String(i)]) ? PHOTOS[String(i)] : null;
-    if (ph) {
+    const ph0 = PHOTOS[String(i)] && v.type !== "cta" && fs.existsSync(PHOTOS[String(i)]) ? PHOTOS[String(i)] : null;
+    const icon = ICONS[String(i)] && v.type !== "cta" && fs.existsSync(ICONS[String(i)]) ? ICONS[String(i)] : null;
+    const kw = sc.keyword || v.title || "";
+    const ph = sc.foot ? "clip" : (icon ? null : ph0);
+    if (sc.foot) {
+      // Clip scene: the real clips play underneath (composited by ffmpeg); only shades and the typed key point are drawn.
+      const lab = sc.label ? `<b style="${A("pcIn", enter + 0.25, 0.4)}">${esc(sc.label)}</b>` : "";
+      html += `<section class="scene fscene" style="${A("sinE", enter, 0.3, "ease-out")},${A("sout", exit, 0.3, "ease-in", "forwards").replace("animation:", "")}">
+<div class="fsh-t"></div><div class="fsh-b"></div>${kw ? `<div class="ftxt">${lab}<p>${typed(kw, enter + 0.35)}</p></div>` : ""}</section>`;
+    } else if (icon) {
+      // Grid scene: white grid paper, the key point typed in brand blue, a 3D picture landing in the middle.
+      html += `<section class="scene gscene" style="${A("inE", enter, 0.35, "ease-out")},${A("outE", exit, 0.35, "ease-in", "forwards").replace("animation:", "")}">
+<div class="gpaper"></div>${kw ? `<p class="gtxt">${typed(kw, enter + 0.3, 0.06)}</p>` : ""}<div class="gico" style="${A("icoIn", enter + 0.5, 0.7, "cubic-bezier(.3,1.5,.5,1)")}"><img src="data:image/jpeg;base64,${jpg(icon)}" alt="" style="animation:icoFloat 3.2s ease-in-out ${(enter + 1.2).toFixed(2)}s infinite"></div></section>`;
+    } else if (ph) {
       // Photo scene: the realistic photo fills the screen with a slow camera move; the key point sits on a card.
       const kb = ["kbA", "kbB", "kbC"][i % 3];
       const lab = sc.label ? `<b>${esc(sc.label)}</b>` : "";
-      const kw = sc.keyword || v.title || "";
       const key = kw ? `<div class="pcard" style="${A("pcIn", enter + 0.35, 0.5, "cubic-bezier(.22,1,.36,1)")}">${lab}<span>${esc(kw)}</span></div>` : "";
       html += `<section class="scene pscene" style="${A("inE", enter, 0.6, "ease-out")},${A("outE", exit, 0.42, "ease-in", "forwards").replace("animation:", "")}">
 <div class="ph"><img src="data:image/jpeg;base64,${jpg(ph)}" alt="" style="${A(kb, enter, sc.dur + 0.6, "linear")}"></div><div class="phs"></div>${key}</section>`;
@@ -184,7 +209,7 @@ function page(script, scenes, total) {
 <div class="stage" style="${A(i % 2 ? "camB" : "camA", enter, sc.dur + 0.3, "ease-in-out")}">${make(v, x, b64)}</div></section>`;
     }
     // Vannak presents every scene from the space under the subtitles (story scenes already show him in the picture).
-    if (HOST && (v.type !== "story" || ph)) {
+    if (HOST && (v.type !== "story" || ph || icon)) {
       const mood = { hook: "surprised", problem: "think", summary: "happy", cta: "wave" }[sc.role] || "smile";
       html += `<div class="host${ph ? " hsm" : ""}" style="${A("hostIn", enter + 0.05, 0.5, "cubic-bezier(.22,1,.36,1)")},${A("hostOut", exit, 0.35, "ease-in", "forwards").replace("animation:", "")}">${S.presenter(mood, 400, x, b64)}</div>`;
     }
@@ -196,6 +221,18 @@ function page(script, scenes, total) {
       html += `<div class="sub" style="${A(EXPL ? "sinE" : "sin", s.start, EXPL ? 0.18 : 0.24, "ease-out")},${A("sout", s.end - 0.1, 0.1, "ease-in", "forwards").replace("animation:", "")}"><span>${EXPL ? karaoke(sc, j, s) : highlight(s.text, sc.keyword)}</span></div>`;
     });
   });
+  // The branded background fades out while clips play and back in for drawn scenes.
+  const hidden = [];
+  scenes.forEach((sc) => {
+    if (!sc.foot) return;
+    const a = sc.start - 0.15, b = sc.start + sc.dur - 0.25;
+    if (hidden.length && a <= hidden[hidden.length - 1][1] + 0.2) hidden[hidden.length - 1][1] = b; else hidden.push([a, b]);
+  });
+  const pc = (t) => (Math.max(0, Math.min(total, t)) / total * 100).toFixed(3) + "%";
+  let bgKeys = "0%{opacity:1}";
+  hidden.forEach(([a, b]) => { bgKeys += `${pc(a)}{opacity:1}${pc(a + 0.3)}{opacity:0}${pc(b)}{opacity:0}${pc(b + 0.3)}{opacity:1}`; });
+  bgKeys += "100%{opacity:1}";
+  const hybrid = hidden.length > 0;
   const floats = EXPL ? "" : FLOAT.map((ic, k) => `<span class="fl" style="left:${[70, 860, 180, 760, 420, 940, 40, 600][k]}px;` +
     `animation:floatUp ${[11, 13, 9.5, 12, 14, 10.5, 12.5, 15][k]}s linear ${-[0, 4, 7, 2, 9, 5, 11, 3][k]}s infinite">${ic}</span>`).join("");
   const font = (f, w) => `@font-face{font-family:M;font-weight:${w};src:url(data:font/woff2;base64,${b64(f)}) format("woff2");unicode-range:U+1780-17FF,U+19E0-19FF,U+200C-200D,U+25CC}`;
@@ -211,7 +248,7 @@ body{width:${W}px;height:${H}px;overflow:hidden;font-family:M,L,sans-serif;color
 .b2{width:640px;height:640px;left:-260px;bottom:120px;background:rgba(255,210,63,.18);animation:drift2 ${total.toFixed(1)}s ease-in-out both}
 .prog{position:absolute;z-index:3;left:0;top:0;height:10px;width:100%;background:#ffd23f;transform-origin:left;animation:drawX ${end.toFixed(2)}s linear both}
 .top{position:absolute;z-index:3;left:90px;right:90px;top:84px;display:flex;justify-content:space-between;align-items:center}
-.logo{display:flex;align-items:center;gap:16px;padding:12px 24px 12px 16px;border-radius:22px;background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.14)}
+.logo{display:flex;align-items:center;gap:16px;padding:12px 24px 12px 16px;border-radius:22px;background:rgba(11,20,48,.72);border:2px solid rgba(255,255,255,.14)}
 .logo .m{width:60px}.logo .w{width:220px}
 .chip{font-size:34px;font-weight:500;padding:8px 26px 12px;border-radius:999px;background:#ffd23f;color:#0b1430}
 .scene{position:absolute;inset:0;opacity:0}
@@ -227,6 +264,26 @@ ${EXPL ? ".sub span{font-weight:600}" : ""}
 .host{position:absolute;left:40px;bottom:-150px;opacity:0;z-index:2}
 .host.hsm{left:10px;bottom:-110px;transform-origin:left bottom;scale:.72}
 .pscene{z-index:1}
+${hybrid ? `html,body{background:transparent!important}
+.bgall{animation:bgHide ${total.toFixed(3)}s linear both}
+@keyframes bgHide{${bgKeys}}` : ""}
+.fsh-t{position:absolute;left:0;right:0;top:0;height:640px;background:linear-gradient(rgba(5,9,26,.78),rgba(5,9,26,0))}
+.fsh-b{position:absolute;left:0;right:0;bottom:0;height:900px;background:linear-gradient(rgba(5,9,26,0),rgba(5,9,26,.88) 60%)}
+.ftxt{position:absolute;left:80px;right:80px;top:240px;display:flex;flex-direction:column;align-items:flex-start;gap:16px}
+.ftxt b{font-size:36px;font-weight:700;color:#0b1430;background:#ffd23f;padding:4px 22px 10px;border-radius:999px;opacity:0}
+.ftxt p,.gtxt{font-size:96px;line-height:1.38;font-weight:800;color:#fff;text-shadow:0 6px 30px rgba(0,0,0,.65)}
+.ftxt i,.gtxt i{font-style:normal;opacity:0}
+.ftxt u,.gtxt u{display:inline-block;width:.42em;height:.95em;margin-left:6px;vertical-align:-.12em;background:#fff;opacity:0}
+.gscene{z-index:1}
+.gpaper{position:absolute;inset:0;background-color:#f7f8fc;background-image:linear-gradient(#dfe3ee 2px,transparent 2px),linear-gradient(90deg,#dfe3ee 2px,transparent 2px);background-size:72px 72px}
+.gtxt{position:absolute;left:80px;right:80px;top:230px;color:#1f4fd1;text-shadow:none;text-align:center}
+.gtxt u{background:#1f4fd1}
+.gico{position:absolute;left:50%;top:640px;width:760px;height:760px;margin-left:-380px;opacity:0;mix-blend-mode:multiply}
+.gico img{width:100%;height:100%;object-fit:contain}
+@keyframes tyIn{from{opacity:0}to{opacity:1}}
+@keyframes blink{0%{opacity:1}50%{opacity:0}}
+@keyframes icoIn{from{opacity:0;transform:scale(.4) rotate(-12deg)}to{opacity:1;transform:none}}
+@keyframes icoFloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-22px) rotate(2deg)}}
 .ph{position:absolute;inset:0;overflow:hidden;background:#0b1430}
 .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .phs{position:absolute;inset:0;background:linear-gradient(rgba(5,9,26,.72) 0,rgba(5,9,26,0) 22%,rgba(5,9,26,0) 48%,rgba(5,9,26,.82) 74%,rgba(5,9,26,.92) 100%)}
@@ -315,7 +372,7 @@ async function browser() {
   try { return await chromium.launch(); } catch (e) { return await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" }); }
 }
 
-async function frames(html, total, dir) {
+async function frames(html, total, dir, alpha) {
   const b = await browser();
   const pg = await b.newPage({ viewport: { width: W, height: H } });
   await pg.setContent(html, { waitUntil: "load" });
@@ -328,9 +385,39 @@ async function frames(html, total, dir) {
   const n = Math.round(total * FPS);
   for (let f = 0; f < n; f++) {
     await pg.evaluate((ms) => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = ms; }), (f * 1000) / FPS);
-    await pg.screenshot({ path: path.join(dir, String(f).padStart(5, "0") + ".jpg"), type: "jpeg", quality: 93 });
+    if (alpha) await pg.screenshot({ path: path.join(dir, String(f).padStart(5, "0") + ".png"), omitBackground: true });
+    else await pg.screenshot({ path: path.join(dir, String(f).padStart(5, "0") + ".jpg"), type: "jpeg", quality: 93 });
   }
   await b.close();
+}
+
+// --- Clip track (clips style): each clip scene plays its clips one after another (quick cuts), with a gentle camera move.
+function footageTrack(scenes, total, dir) {
+  const inputs = ["-f", "lavfi", "-i", `color=c=0x0b1430:s=${W}x${H}:r=${FPS}:d=${total.toFixed(3)}`];
+  let chain = "", prev = "[0:v]", k = 0;
+  const moves = ["in", "panl", "out", "panr"];
+  scenes.forEach((sc, i) => {
+    if (!sc.foot) return;
+    const a0 = Math.max(0, sc.start - 0.4), b0 = Math.min(total, sc.start + sc.dur + 0.3);
+    const parts = sc.foot.length;
+    sc.foot.forEach((clip, n) => {
+      const a = a0 + (b0 - a0) * n / parts, b = a0 + (b0 - a0) * (n + 1) / parts, D = b - a, Ds = D.toFixed(3);
+      const seg = path.join(dir, `foot${i}_${n}.mp4`), p = `(t/${Ds})`;
+      const motion = { in: `scale=w='${W}*(1.0+0.08*${p})':h=-2:eval=frame,crop=${W}:${H}`, out: `scale=w='${W}*(1.08-0.07*${p})':h=-2:eval=frame,crop=${W}:${H}`,
+        panl: `crop=${W}:${H}:x='(iw-${W})*(1-${p})':y='(ih-${H})/2'`, panr: `crop=${W}:${H}:x='(iw-${W})*${p}':y='(ih-${H})/2'` }[moves[k % 4]];
+      run(["-ss", "0.3", "-stream_loop", "-1", "-i", clip.file, "-vf",
+        `scale=${Math.round(W * 1.1)}:${Math.round(H * 1.1)}:force_original_aspect_ratio=increase,crop=${Math.round(W * 1.1)}:${Math.round(H * 1.1)},setsar=1,fps=${FPS},${motion},` +
+        "eq=contrast=1.05:saturation=1.08:gamma=0.98,format=yuv420p",
+        "-an", "-r", String(FPS), "-c:v", "libx264", "-preset", "veryfast", "-crf", "16", "-t", Ds, seg]);
+      inputs.push("-i", seg);
+      k++;
+      chain += `[${k}:v]setpts=PTS-STARTPTS+${a.toFixed(3)}/TB[s${k}];${prev}[s${k}]overlay=0:0:eof_action=pass:enable='between(t,${a.toFixed(3)},${b.toFixed(3)})'[b${k}];`;
+      prev = `[b${k}]`;
+    });
+  });
+  const out = path.join(dir, "footage.mp4");
+  run([...inputs, "-filter_complex", chain + `${prev}format=yuv420p[v]`, "-map", "[v]", "-r", String(FPS), "-c:v", "libx264", "-preset", "veryfast", "-crf", "16", "-t", total.toFixed(3), out]);
+  return out;
 }
 
 // Share of the speaking time by visual type (the branded opening and ending are not counted).
@@ -457,8 +544,14 @@ body{width:${W}px;height:${H}px;overflow:hidden;font-family:M,L,sans-serif;color
   fs.mkdirSync(outDir, { recursive: true });
   const work = fs.mkdtempSync(path.join(os.tmpdir(), "reel-"));
   const scenes = script.scenes.map((s) => ({ ...s, lines: s.lines.map(String) }));
-  if (process.argv.includes("--footage")) throw new Error("Stock footage is removed from ADS BOX videos: --footage is not accepted.");
-  scenes.forEach((sc) => { delete sc.footage; delete sc.foot; });  // a script's old footage notes never reach the video
+  const footArg = arg("--footage");
+  const foot = footArg && fs.existsSync(footArg) ? JSON.parse(fs.readFileSync(footArg, "utf8")) : {};
+  scenes.forEach((sc, i) => {
+    delete sc.foot;
+    const f = [].concat(foot[String(i)] || []).filter((c) => c && fs.existsSync(c.file));
+    if (f.length && (sc.visual || {}).type !== "cta") sc.foot = f;
+  });
+  const hybrid = scenes.some((s) => s.foot);
   const t0 = Date.now();
 
   if (!process.argv.includes("--no-voice")) voice(scenes, path.join(work, "voice"));
@@ -466,15 +559,21 @@ body{width:${W}px;height:${H}px;overflow:hidden;font-family:M,L,sans-serif;color
   console.log(`Timeline ${total.toFixed(1)}s: ${scenes.length} scenes (${scenes.map((s) => (s.visual || {}).type).join(", ")}), subtitle timing: ${scenes.map((s) => s.sync).join(",")}`);
 
   const fdir = path.join(work, "frames"); fs.mkdirSync(fdir);
-  await frames(page(script, scenes, total), total, fdir);  // opaque frames only: nothing is composited underneath
+  await frames(page(script, scenes, total), total, fdir, hybrid);  // transparent frames when clips play underneath
   const music = arg("--music");
   const wav = sound(scenes, total, music && fs.existsSync(music) ? music : null, work);
 
   const slug = script.slug, mp4 = path.join(outDir, `${slug}.mp4`);
   const enc = ["-c:v", "libx264", "-preset", "medium", "-crf", "19", "-maxrate", "8M", "-bufsize", "16M",
     "-r", String(FPS), "-c:a", "aac", "-b:a", "192k", "-t", total.toFixed(3), "-movflags", "+faststart", mp4];
-  run(["-framerate", String(FPS), "-i", path.join(fdir, "%05d.jpg"), "-i", wav, "-map", "0:v", "-map", "1:a",
-    "-vf", `scale=${W}:${H},format=yuv420p`, ...enc]);
+  if (!hybrid) {
+    run(["-framerate", String(FPS), "-i", path.join(fdir, "%05d.jpg"), "-i", wav, "-map", "0:v", "-map", "1:a",
+      "-vf", `scale=${W}:${H},format=yuv420p`, ...enc]);
+  } else {
+    const base = footageTrack(scenes, total, work);
+    run(["-i", base, "-framerate", String(FPS), "-i", path.join(fdir, "%05d.png"), "-i", wav,
+      "-filter_complex", "[0:v][1:v]overlay=0:0:format=auto,format=yuv420p[v]", "-map", "[v]", "-map", "2:a", ...enc]);
+  }
   // JSON, not CSV: newer ffprobe versions add extra empty CSV fields.
   const vs = (JSON.parse(execFileSync("ffprobe", ["-v", "error", "-select_streams", "v:0", "-show_entries", "stream=width,height,r_frame_rate", "-of", "json", mp4], { encoding: "utf8" })).streams || [])[0] || {};
   const dims = `${vs.width},${vs.height},${vs.r_frame_rate}`;
@@ -483,19 +582,21 @@ body{width:${W}px;height:${H}px;overflow:hidden;font-family:M,L,sans-serif;color
   // Thumbnail from the moment the hook question is fully on screen.
   const hook = scenes[0], tf = Math.min(hook.start + hook.dur - 0.5, (hook.subs[hook.subs.length - 1].start || 1) + 0.8);
   let frame = path.join(fdir, String(Math.round(tf * FPS)).padStart(5, "0") + ".jpg");
+  if (hybrid) { frame = path.join(work, "thumbframe.jpg"); run(["-ss", tf.toFixed(2), "-i", mp4, "-frames:v", "1", frame]); }
   const thumb = path.join(outDir, `${slug}-thumb.jpg`), cover = path.join(outDir, `${slug}-cover.jpg`);
   await thumbnail(script, fs.existsSync(frame) ? frame : path.join(fdir, "00030.jpg"), thumb, cover);
 
   const meta = {
-    slug, style: Object.keys(PHOTOS).length ? "AI photos + animation (no stock footage)" : "custom animation only (no stock footage)", photos: Object.keys(PHOTOS).length, duration: +probe(mp4).toFixed(2), size_mb: +(fs.statSync(mp4).size / 1e6).toFixed(1), resolution: `${W}x${H}`, fps: FPS,
+    slug, style: hybrid ? "Pixabay clips + 3D pictures + motion graphics" : Object.keys(PHOTOS).length ? "AI photos + animation" : "custom animation only", photos: Object.keys(PHOTOS).length, duration: +probe(mp4).toFixed(2), size_mb: +(fs.statSync(mp4).size / 1e6).toFixed(1), resolution: `${W}x${H}`, fps: FPS,
     scenes: scenes.length, visuals: scenes.map((s) => (s.visual || {}).type), voice: scenes[0].voice ? (process.env.REEL_VOICE || "km-KH-PisethNeural") : "none",
     music: music ? path.basename(music) : "none", subtitle_sync: [...new Set(scenes.map((s) => s.sync))].join(","),
     render_seconds: Math.round((Date.now() - t0) / 1000),
-    footage: [], stock_footage: "removed",
+    footage: scenes.map((s, i) => (s.foot ? { scene: i + 1, clips: s.foot.map((c) => ({ id: c.id, page: c.page, author: c.author, query: c.query })) } : null)).filter(Boolean),
+    stock_footage: hybrid ? "pixabay" : "none",
     visual_mix: visualMix(scenes, total),
     // Kiri voice: how closely Kiri's own transcript of each scene's audio matches the script (1 = identical), and the timing source per scene.
     speech_match: scenes.map((s) => (s.match ?? null)), scene_sync: scenes.map((s) => s.sync),
-    footage_share: 0,
+    footage_share: hybrid ? +(scenes.filter((s) => s.foot).reduce((a, s) => a + s.dur, 0) / (total - OUTRO)).toFixed(2) : 0,
   };
   fs.writeFileSync(path.join(outDir, "meta.json"), JSON.stringify(meta, null, 1));
   fs.rmSync(work, { recursive: true, force: true });

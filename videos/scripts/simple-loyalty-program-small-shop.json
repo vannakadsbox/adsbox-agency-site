@@ -22,7 +22,14 @@
           "មានបញ្ចុះតម្លៃអត់?"
         ]
       },
-      "photo": "a seller's hands holding a smartphone in a small clothing shop, sale price tags and folded t-shirts on a wooden table, evening light"
+      "photo": "a seller's hands holding a smartphone in a small clothing shop, sale price tags and folded t-shirts on a wooden table, evening light",
+      "footage": {
+        "queries": [
+          "online shopping smartphone",
+          "woman scrolling phone",
+          "shopping sale phone"
+        ]
+      }
     },
     {
       "role": "problem",
@@ -38,7 +45,14 @@
         "mood": "worried",
         "title": "ភ្ញៀវចាស់=ភ្ញៀវថ្មី?"
       },
-      "photo": "a returning customer seen from behind picking up a parcel at a small shop counter, shelves of folded clothes in the background"
+      "photo": "a returning customer seen from behind picking up a parcel at a small shop counter, shelves of folded clothes in the background",
+      "footage": {
+        "queries": [
+          "customer clothing store",
+          "shop owner customer",
+          "boutique shopping"
+        ]
+      }
     },
     {
       "role": "tip",
@@ -70,7 +84,8 @@
           }
         ]
       },
-      "photo": "close-up of a seller writing customer names in an open notebook next to a smartphone and a cup of iced coffee on a shop desk"
+      "photo": "close-up of a seller writing customer names in an open notebook next to a smartphone and a cup of iced coffee on a shop desk",
+      "icon3d": "an open notebook with a pen next to a smartphone"
     },
     {
       "role": "tip",
@@ -86,7 +101,13 @@
         "bad": "បញ្ចុះតម្លៃធំៗរាល់ពេល",
         "good": "ដឹកឥតគិតថ្លៃ ឬកាដូតូចៗ"
       },
-      "photo": "a small gift wrapped in brown paper with a ribbon placed on top of a delivery parcel, soft window light, cozy home shop"
+      "photo": "a small gift wrapped in brown paper with a ribbon placed on top of a delivery parcel, soft window light, cozy home shop",
+      "footage": {
+        "queries": [
+          "gift box wrapping",
+          "small gift package"
+        ]
+      }
     },
     {
       "role": "tip",
@@ -101,7 +122,8 @@
         "type": "takeaway",
         "quote": "ទិញគ្រប់ ៥ ដង ដឹកឥតគិតថ្លៃ ១ ដង"
       },
-      "photo": "a small handwritten thank-you card tucked into an open shipping box with a folded shirt, top-down view"
+      "photo": "a small handwritten thank-you card tucked into an open shipping box with a folded shirt, top-down view",
+      "icon3d": "a small gift box with a ribbon on a delivery parcel"
     },
     {
       "role": "tip",
@@ -126,7 +148,14 @@
           }
         ]
       },
-      "photo": "hands placing a small printed note card inside a parcel on a packing table with tape and scissors"
+      "photo": "hands placing a small printed note card inside a parcel on a packing table with tape and scissors",
+      "footage": {
+        "queries": [
+          "packing parcel",
+          "packing box tape",
+          "shipping package"
+        ]
+      }
     },
     {
       "role": "example",
@@ -155,7 +184,13 @@
           }
         ]
       },
-      "photo": "a smartphone on a table showing a messaging app with blurred chat bubbles, new clothes on hangers behind, warm light"
+      "photo": "a smartphone on a table showing a messaging app with blurred chat bubbles, new clothes on hangers behind, warm light",
+      "footage": {
+        "queries": [
+          "typing message smartphone",
+          "woman texting phone"
+        ]
+      }
     },
     {
       "role": "summary",
@@ -174,7 +209,8 @@
           "ប្រាប់ភ្ញៀវ"
         ]
       },
-      "photo": "tidy packing table with stacked parcels ready to ship, a notebook and a smartphone, morning sunlight in a small shop"
+      "photo": "tidy packing table with stacked parcels ready to ship, a notebook and a smartphone, morning sunlight in a small shop",
+      "icon3d": "a big green check mark next to a small gift box"
     },
     {
       "role": "cta",

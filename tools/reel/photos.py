@@ -29,10 +29,14 @@ def note(level, msg):
     print(f"::{level}::{msg}")
 
 
-def gen(prompt, out, seed=7):
+STYLE3D = (", glossy 3D render, soft clay style, single object centred, isolated on a pure white background, soft shadow, "
+           "bright colours with navy blue and yellow accents, no text, no letters, no logos")
+
+
+def gen(prompt, out, seed=7, style=None):
     if not (ACC and TOKEN):
         raise RuntimeError("CLOUDFLARE_ACCOUNT_ID / CLOUDFLARE_API_TOKEN are not set")
-    body = json.dumps({"prompt": (prompt.strip().rstrip(".") + STYLE)[:2000], "steps": 8}).encode()
+    body = json.dumps({"prompt": (prompt.strip().rstrip(".") + (style or STYLE))[:2000], "steps": 8}).encode()
     req = urllib.request.Request(f"https://api.cloudflare.com/client/v4/accounts/{ACC}/ai/run/{MODEL}", data=body,
                                  headers={"Authorization": f"Bearer {TOKEN}", "Content-Type": "application/json"})
     last = None
@@ -47,8 +51,8 @@ def gen(prompt, out, seed=7):
             with open(raw, "wb") as f:
                 f.write(base64.b64decode(img))
             # FLUX returns a square image: scale up and crop to 1080x1920 (centre).
-            subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", raw, "-vf",
-                            "scale=1920:1920:flags=lanczos,crop=1080:1920,eq=saturation=1.05", "-q:v", "3", out], check=True)
+            vf = "scale=900:900:flags=lanczos" if style else "scale=1920:1920:flags=lanczos,crop=1080:1920,eq=saturation=1.05"
+            subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", raw, "-vf", vf, "-q:v", "3", out], check=True)
             os.remove(raw)
             return out
         except urllib.error.HTTPError as e:
@@ -81,8 +85,14 @@ def main():
     if cmd == "make":
         script, outdir = C.read_json(sys.argv[2]), sys.argv[3]
         os.makedirs(outdir, exist_ok=True)
-        made, failed = {}, []
+        made, failed, icons = {}, [], {}
         for i, sc in enumerate(script.get("scenes", [])):
+            q = (sc.get("icon3d") or "").strip()
+            if q:
+                try:
+                    icons[str(i)] = gen(q, os.path.join(outdir, f"icon{i}.jpg"), style=STYLE3D)
+                except Exception as e:  # noqa: BLE001
+                    note("warning", f"scene {i + 1}: 3D picture not made ({e})")
             p = (sc.get("photo") or "").strip()
             if not p:
                 continue
@@ -93,7 +103,9 @@ def main():
                 note("warning", f"scene {i + 1}: photo not made ({e}); the animated visual is used instead")
         with open(os.path.join(outdir, "photos.json"), "w") as f:
             json.dump(made, f)
-        note("notice", f"AI photos: {len(made)} made, {len(failed)} failed")
+        with open(os.path.join(outdir, "icons.json"), "w") as f:
+            json.dump(icons, f)
+        note("notice", f"AI photos: {len(made)} made, {len(failed)} failed; 3D pictures: {len(icons)}")
         return 0
     print(__doc__)
     return 2

@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""DISABLED: stock footage is removed from ADS BOX videos (owner, 1 Nov 2026). Formerly: Pixabay footage for the combined style (animated scenes + real footage). Runs on GitHub, never in public.
+"""Pixabay stock clips for the "clips" video style. Re-enabled by the owner on 7 Nov 2026 (reference: real moving clips mixed
+with motion graphics, cuts every 2-4 seconds). Earlier history: removed on 1 Nov 2026. Runs on GitHub, never in public.
+
+  python3 tools/reel/footage.py auto SCRIPT.json OUT_DIR    pick and download up to 2 clips per scene with "footage": {"queries": [...]}
+                                                            automatically (best match, portrait first, never reused) -> OUT_DIR/footage.json
 
   python3 tools/reel/footage.py check                       test PIXABAY_API_KEY and the connection (exit 0 = OK)
   python3 tools/reel/footage.py search SCRIPT.json OUT_DIR  candidates for every scene with "footage": {"queries": [...]}
@@ -209,6 +213,73 @@ def fetch(script_path, out):
     return 0
 
 
+USED = os.path.join(C.VIDEOS, "footage-used.json")
+
+
+def score(c, query):
+    """Higher is better: portrait clips crop cleanly to 9:16; landscape is fine (centre crop); popular clips look better."""
+    w, h = c.get("width") or 1, c.get("height") or 1
+    s = 3.0 if h > w else 0.0
+    s += min(2.0, (c.get("downloads") or 0) / 20000)
+    s += 1.0 if (c.get("duration") or 0) >= 6 else 0.0
+    words = set(query.lower().split())
+    s += 0.5 * len(words & set(" ".join(c["tags"]).split()))
+    return s
+
+
+def auto(script_path, out):
+    """Choose up to two clips per scene automatically: on topic (approved categories, blocked tags), never one used before."""
+    script = C.read_json(script_path)
+    os.makedirs(out, exist_ok=True)
+    used = set(C.read_json(USED, []) or [])
+    got, taken = {}, set()
+    for i, sc in enumerate(script["scenes"]):
+        spec = sc.get("footage") or {}
+        q = [x for x in (spec.get("queries") or []) if str(x).strip()][:3]
+        if not q:
+            continue
+        cat = CATEGORIES.get(spec.get("category") or "")
+        cands = []
+        for query in q:
+            params = {"q": query[:100], "per_page": 20, "safesearch": "true", "video_type": "film"}
+            if cat:
+                params["category"] = cat["pixabay"]
+            data = cached(f"q:{params.get('category', '')}:{query.lower()}", params) or {}
+            for h in data.get("hits") or []:
+                c = info(h)
+                if not c["url"] or (c["duration"] or 0) < 4 or blocked(c["tags"]) or c["id"] in used or c["id"] in taken:
+                    continue
+                c["query"], c["score"] = query, score(c, query)
+                cands.append(c)
+        cands.sort(key=lambda c: -c["score"])
+        picks = []
+        for c in cands:
+            if c["id"] in taken or any(p["id"] == c["id"] for p in picks):
+                continue
+            path = os.path.join(out, f"clip{i:02d}_{len(picks)}.mp4")
+            if download(c["url"], path):
+                picks.append({"file": path, "id": c["id"], "page": c["page"], "author": c["author"], "tags": c["tags"][:8],
+                              "width": c["width"], "height": c["height"], "duration": c["duration"], "query": c["query"]})
+                taken.add(c["id"])
+            if len(picks) == 2:
+                break
+        if picks:
+            got[str(i)] = picks
+            print(f"Scene {i + 1}: " + ", ".join(f"Pixabay {p['id']} ({p['width']}x{p['height']}, '{p['query']}')" for p in picks))
+        else:
+            print(f"Scene {i + 1}: no suitable clip for {q}; the scene keeps its animation.")
+    C.write_json(os.path.join(out, "footage.json"), got)
+    return 0
+
+
+def remember(footage_json):
+    """After a video is delivered: never reuse its clips in later videos."""
+    got = C.read_json(footage_json, {}) or {}
+    used = C.read_json(USED, []) or []
+    used += [p["id"] for v in got.values() for p in (v if isinstance(v, list) else [v]) if p["id"] not in used]
+    C.write_json(USED, used[-3000:])
+
+
 def report(script):
     """Footage Selection Report (markdown): every scene, its category, keywords, chosen clip and reason, or why it stays animated."""
     rows = [f"# Footage Selection Report: {script.get('video_title', script['slug'])}", "",
@@ -226,15 +297,17 @@ def report(script):
 
 
 def main():
-    # DISABLED (owner, 1 Nov 2026): stock footage is removed from ADS BOX videos. Nothing in the workflow calls this file,
-    # and it refuses to search or download anything. Kept only as a record of the earlier test.
-    raise SystemExit("Stock footage is removed from ADS BOX videos; footage.py is disabled.")
     cmd = sys.argv[1] if len(sys.argv) > 1 else ""
     if cmd == "check":
         data = get({"q": "online shopping", "per_page": 5})
         n = len((data or {}).get("hits") or [])
         print(f"Pixabay OK: {n} clips for a test search." if n else "Pixabay answered with no clips.")
         return 0 if n else 5
+    if cmd == "remember":
+        remember(sys.argv[2])
+        return 0
+    if cmd == "auto":
+        return auto(sys.argv[2], sys.argv[3])
     if cmd == "search":
         return search(sys.argv[2], sys.argv[3])
     if cmd == "report":

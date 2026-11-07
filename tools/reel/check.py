@@ -84,9 +84,22 @@ def visual_problems(i, v):
 
 
 def footage_problems(scenes):
-    """Stock footage is removed (owner, 1 Nov 2026): a script may not ask for any clip."""
-    return [f"Scene {i}: remove 'footage': ADS BOX videos use custom animation only (no stock footage)"
-            for i, sc in enumerate(scenes, 1) if sc.get("footage")]
+    """Clips style (owner, 7 Nov 2026): 'footage' asks for Pixabay clips by search words only; 'icon3d' for one 3D object."""
+    out = []
+    for i, sc in enumerate(scenes, 1):
+        f = sc.get("footage")
+        if f is not None:
+            q = f.get("queries") if isinstance(f, dict) else None
+            if not (isinstance(q, list) and 1 <= len(q) <= 3 and all(isinstance(x, str) and 3 <= len(x) <= 60 and not re.search(r"[\u1780-\u17FF]", x) for x in q)):
+                out.append(f"Scene {i}: footage must be {{\"queries\": [1-3 short English searches]}}")
+            if (sc.get("visual") or {}).get("type") == "cta":
+                out.append(f"Scene {i}: the cta scene keeps its animation (no footage)")
+        ic = sc.get("icon3d")
+        if ic is not None and not (isinstance(ic, str) and 8 <= len(ic) <= 200 and not re.search(r"[\u1780-\u17FF]", ic)):
+            out.append(f"Scene {i}: icon3d must be a short English prompt (8-200 characters)")
+        if (f or ic) and not sc.get("keyword"):
+            out.append(f"Scene {i}: give a short 'keyword' (it is typed big on the clip or 3D scene)")
+    return out
 
 
 def problems(script, brief, s):

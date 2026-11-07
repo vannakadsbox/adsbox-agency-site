@@ -82,6 +82,7 @@ jobs:
       KIRI_API_KEY: ${{ secrets.KIRI_API_KEY }}
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
       CF_AI_TOKEN: ${{ secrets.CF_AI_TOKEN }}
+      PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
       FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
       RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
       GH_TOKEN: ${{ github.token }}
@@ -141,12 +142,17 @@ jobs:
             # Photo style (owner, 7 Nov 2026): realistic AI photos per scene; scenes without a photo keep their animation.
             photos=""
             style=$(python3 -c "import sys; sys.path.insert(0,'tools/reel'); import common; print(common.settings().get('video_style',''))")
-            if [ "$style" = photo ] && [ -n "${CF_AI_TOKEN:-}" ]; then
+            if { [ "$style" = photo ] || [ "$style" = clips ]; } && [ -n "${CF_AI_TOKEN:-}" ]; then
               python3 tools/reel/photos.py make "videos/scripts/$slug.json" "$out/photos" && photos="$out/photos"
+            fi
+            # Clips style (owner, 7 Nov 2026): real Pixabay clips behind the scenes that ask for them.
+            footage=""
+            if [ "$style" = clips ] && [ -n "${PIXABAY_API_KEY:-}" ]; then
+              python3 tools/reel/footage.py auto "videos/scripts/$slug.json" "$out/clips" && footage="$out/clips/footage.json"
             fi
             ok=0
             for attempt in 1 2; do
-              if REEL_VOICE="$voice" TTS_RATE="$rate" MUSIC_VOLUME="$vol" node tools/reel/render.js "videos/scripts/$slug.json" "$out" ${music:+--music "$music"} ${photos:+--photos "$photos"}; then ok=1; break; fi
+              if REEL_VOICE="$voice" TTS_RATE="$rate" MUSIC_VOLUME="$vol" node tools/reel/render.js "videos/scripts/$slug.json" "$out" ${music:+--music "$music"} ${photos:+--photos "$photos"} ${footage:+--footage "$footage"}; then ok=1; break; fi
               echo "Render attempt $attempt failed"; sleep 20
             done
             if [ "$ok" != 1 ]; then python3 tools/reel/deliver.py failed --slug "$slug" --step render --error "the video could not be rendered (2 attempts)" --run "$RUN_URL"; failed=1; continue; fi
@@ -157,6 +163,7 @@ jobs:
             # Keep the finished files in the private archive (never lost, even if Telegram fails).
             gh release upload "$rel" "$out/$slug.mp4" "$out/$slug-thumb.jpg" --clobber || echo "Archive upload failed"
             gh api "repos/${{ github.repository }}/releases" -q ".[] | select(.tag_name==\"$rel\") | {release_id: .id, assets: [.assets[] | select(.name==\"$slug.mp4\" or .name==\"$slug-thumb.jpg\") | {name, id, size, url: .browser_download_url}]}" > "$out/archive.json" || echo '{}' > "$out/archive.json"
+            [ -n "$footage" ] && python3 tools/reel/footage.py remember "$footage" || true
             if ! python3 tools/reel/deliver.py sent --slug "$slug" --dir "$out" --archive "$out/archive.json" --run "$RUN_URL"; then
               python3 tools/reel/deliver.py failed --slug "$slug" --step telegram --error "Telegram did not accept the video" --run "$RUN_URL"; failed=1
             elif [ -n "${FB_PAGE_ID:-}" ]; then
@@ -169,7 +176,7 @@ jobs:
         if: always() && steps.todo.outputs.slugs != ''
         run: |
           git config user.name "ADS BOX video bot"; git config user.email "noreply@anthropic.com"
-          git add videos/log.json
+          git add videos/log.json videos/footage-used.json 2>/dev/null || git add videos/log.json
           git diff --cached --quiet && exit 0
           git commit -q -m "Video log: ${{ steps.todo.outputs.slugs }}"
           for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin HEAD:main && exit 0; sleep 5; done
