@@ -223,8 +223,12 @@ V.orders = (v, x) => {
   const rows = v.rows || [];
   const t0 = x.F(0.1), step = Math.max(0.4, (x.F(0.8) - t0) / Math.max(1, rows.length));
   return `${header(x.sc, x)}<div class="ord" style="${A("rise", x.start + 0.3, 0.6)}"><div class="dh"><span class="dot"></span><b>${esc(v.title || "បញ្ជី Order")}</b><small>ឧទាហរណ៍ · មិនមែនទិន្នន័យពិត</small></div>
-<div class="or-h"><span>អតិថិជន</span><span>កូដ</span><span>ចំនួន</span><span></span></div>
-${rows.map((r, i) => `<div class="or-r" style="${A("slideR", t0 + i * step, 0.45)}"><span>${esc(r.name)}</span><b>${esc(r.code)}</b><span>${esc(r.qty)}</span><em style="${A("popIn", t0 + i * step + 0.35, 0.35)}">${icon("check", 30, "#fff", 3.4)}</em></div>`).join("")}</div>`;
+<div class="or-h">${(Array.isArray(v.cols) && v.cols.length === 3 ? v.cols : ["អតិថិជន", "កូដ", "ចំនួន"]).map((c) => `<span>${esc(c)}</span>`).join("")}<span></span></div>
+${rows.map((r, i) => {
+    // A row marked ✗ (or "x") is a bad choice: red cross instead of the green tick.
+    const bad = /^\s*[✗✘xX×]\s*$/.test(String(r.qty || "")), good = /^\s*[✓✔]\s*$/.test(String(r.qty || ""));
+    return `<div class="or-r" style="${A("slideR", t0 + i * step, 0.45)}"><span>${esc(r.name)}</span><b>${esc(r.code)}</b><span>${bad || good ? "" : esc(r.qty)}</span><em class="${bad ? "or-bad" : ""}" style="${A("popIn", t0 + i * step + 0.35, 0.35)}">${icon(bad ? "x" : "check", 30, "#fff", 3.4)}</em></div>`;
+  }).join("")}</div>`;
 };
 
 // Product demo: a shipping sticker printing out of the printer.
@@ -351,6 +355,7 @@ const CSS = `
 .or-h{font-size:32px;color:#6a7495;border-bottom:3px solid #e6ebf7;margin-top:14px}
 .or-r{font-size:48px;font-weight:700;border-bottom:2px solid #eef2fb}.or-r b{font-family:L,M,sans-serif;color:#1f4fd1}
 .or-r em{width:54px;height:54px;border-radius:50%;background:#2ed39a;display:grid;place-items:center}
+.or-r em.or-bad{background:#c8355e}
 .prn{position:absolute;left:0;right:0;top:230px;margin:0 auto;width:220px;height:170px;background:#fff;border-radius:30px;display:grid;place-items:center;box-shadow:0 26px 60px rgba(0,0,0,.35);z-index:2}
 .stk{position:absolute;left:110px;right:110px;top:380px;background:#fff;color:#0b1430;border-radius:10px 10px 24px 24px;padding:26px 34px;box-shadow:0 30px 70px rgba(0,0,0,.4);transform-origin:top}
 .stk-h{display:flex;justify-content:space-between;align-items:baseline;border-bottom:4px dashed #b9c3e3;padding-bottom:12px;margin-bottom:10px}

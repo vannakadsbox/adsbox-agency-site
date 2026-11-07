@@ -1,7 +1,7 @@
 {
   "enabled": true,
   "schedule": "Script task 07:23 + 08:23; check 09:10 (Asia/Phnom_Penh). One article and one video a day, in the morning (owner, from 6 Nov 2026).",
-  "voice": "kiri:Sophon",
+  "voice": "kiri:Vannak",
   "rate": "+2%",
   "music_volume": 0.11,
   "min_scenes": 6,
