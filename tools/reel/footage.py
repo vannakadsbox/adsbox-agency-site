@@ -249,7 +249,12 @@ def auto(script_path, out):
                 c = info(h)
                 if not c["url"] or (c["duration"] or 0) < 4 or blocked(c["tags"]) or c["id"] in used or c["id"] in taken:
                     continue
-                c["query"], c["score"] = query, score(c, query)
+                # On topic only: at least one search word (or its stem) must be in the clip's own tags.
+                words = {w.rstrip("s") for w in query.lower().split() if len(w) > 2}
+                tagw = {w.rstrip("s") for w in " ".join(c["tags"]).split()}
+                if not words & tagw:
+                    continue
+                c["query"], c["score"] = query, score(c, query) + 1.5 * len(words & tagw)
                 cands.append(c)
         cands.sort(key=lambda c: -c["score"])
         picks = []
