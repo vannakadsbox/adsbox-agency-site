@@ -145,6 +145,13 @@ def problems(script, brief, s):
         if len(str(sc.get("label") or "")) > 16:
             out.append(f"Scene {i}: label max 16 characters")
         out += visual_problems(i, sc.get("visual"))
+        ph = sc.get("photo")
+        if ph is not None:
+            ph = str(ph)
+            if not (40 <= len(ph) <= 400) or re.search(r"[\u1780-\u17FF]", ph):
+                out.append(f"Scene {i}: photo must be an English prompt of 40-400 characters")
+            if re.search(r"\b(text|logo|brand|words?|letters?|sign)\b", ph, re.I) and not re.search(r"\bno (text|logo)", ph, re.I):
+                out.append(f"Scene {i}: the photo prompt must not ask for text, signs, logos or brands")
     if scenes[0].get("role") != "hook":
         out.append("Scene 1 must be the hook")
     if (scenes[0].get("visual") or {}).get("type") not in ("question", "story", "chat"):

@@ -27,6 +27,12 @@ const FPS = 30, W = 1080, H = 1920;
 const LEAD = 0.25, FIRST_LEAD = 0.9, TAIL = 0.35, OUTRO = 4.2;
 const arg = (n) => { const i = process.argv.indexOf(n); return i > 0 ? process.argv[i + 1] : null; };
 const b64 = (f) => fs.readFileSync(path.join(ROOT, f)).toString("base64");
+// Photo style (owner, 7 Nov 2026, style C): scene index -> realistic AI photo made by tools/reel/photos.py (--photos DIR).
+const PHOTOS = (() => {
+  const d = arg("--photos");
+  try { return d ? JSON.parse(fs.readFileSync(path.join(d, "photos.json"), "utf8")) : {}; } catch (e) { return {}; }
+})();
+const jpg = (f) => fs.readFileSync(f).toString("base64");
 const esc = S.esc, A = S.A;
 const run = (args) => execFileSync("ffmpeg", ["-y", "-loglevel", "error", ...args], { stdio: ["ignore", "inherit", "inherit"] });
 const probe = (f) => parseFloat(execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", f], { encoding: "utf8" }));
@@ -164,12 +170,23 @@ function page(script, scenes, total) {
     };
     const v = sc.visual || {};
     const make = S.V[v.type] || S.V.takeaway;
-    html += `<section class="scene" style="${A("in" + dir, enter, 0.6, "cubic-bezier(.22,1,.36,1)")},${A("out" + dir, exit, 0.42, "cubic-bezier(.55,0,.75,.35)", "forwards").replace("animation:", "")}">
+    const ph = PHOTOS[String(i)] && v.type !== "cta" && fs.existsSync(PHOTOS[String(i)]) ? PHOTOS[String(i)] : null;
+    if (ph) {
+      // Photo scene: the realistic photo fills the screen with a slow camera move; the key point sits on a card.
+      const kb = ["kbA", "kbB", "kbC"][i % 3];
+      const lab = sc.label ? `<b>${esc(sc.label)}</b>` : "";
+      const kw = sc.keyword || v.title || "";
+      const key = kw ? `<div class="pcard" style="${A("pcIn", enter + 0.35, 0.5, "cubic-bezier(.22,1,.36,1)")}">${lab}<span>${esc(kw)}</span></div>` : "";
+      html += `<section class="scene pscene" style="${A("inE", enter, 0.6, "ease-out")},${A("outE", exit, 0.42, "ease-in", "forwards").replace("animation:", "")}">
+<div class="ph"><img src="data:image/jpeg;base64,${jpg(ph)}" alt="" style="${A(kb, enter, sc.dur + 0.6, "linear")}"></div><div class="phs"></div>${key}</section>`;
+    } else {
+      html += `<section class="scene" style="${A("in" + dir, enter, 0.6, "cubic-bezier(.22,1,.36,1)")},${A("out" + dir, exit, 0.42, "cubic-bezier(.55,0,.75,.35)", "forwards").replace("animation:", "")}">
 <div class="stage" style="${A(i % 2 ? "camB" : "camA", enter, sc.dur + 0.3, "ease-in-out")}">${make(v, x, b64)}</div></section>`;
+    }
     // Vannak presents every scene from the space under the subtitles (story scenes already show him in the picture).
-    if (HOST && v.type !== "story") {
+    if (HOST && (v.type !== "story" || ph)) {
       const mood = { hook: "surprised", problem: "think", summary: "happy", cta: "wave" }[sc.role] || "smile";
-      html += `<div class="host" style="${A("hostIn", enter + 0.05, 0.5, "cubic-bezier(.22,1,.36,1)")},${A("hostOut", exit, 0.35, "ease-in", "forwards").replace("animation:", "")}">${S.presenter(mood, 400, x, b64)}</div>`;
+      html += `<div class="host${ph ? " hsm" : ""}" style="${A("hostIn", enter + 0.05, 0.5, "cubic-bezier(.22,1,.36,1)")},${A("hostOut", exit, 0.35, "ease-in", "forwards").replace("animation:", "")}">${S.presenter(mood, 400, x, b64)}</div>`;
     }
     if (!EXPL && i > 0) html += `<div class="sweep" style="${A("sweep", sc.start - 0.3, 0.62, "cubic-bezier(.6,0,.3,1)", "both")}"><i></i><b></b></div>`;
     const sp = (sc.subs[1] || sc.subs[0]).start + 0.1;
@@ -192,14 +209,14 @@ body{width:${W}px;height:${H}px;overflow:hidden;font-family:M,L,sans-serif;color
 .blob{position:absolute;border-radius:50%;filter:blur(60px)}
 .b1{width:760px;height:760px;right:-260px;top:120px;background:rgba(63,125,255,.45);animation:drift1 ${total.toFixed(1)}s ease-in-out both}
 .b2{width:640px;height:640px;left:-260px;bottom:120px;background:rgba(255,210,63,.18);animation:drift2 ${total.toFixed(1)}s ease-in-out both}
-.prog{position:absolute;left:0;top:0;height:10px;width:100%;background:#ffd23f;transform-origin:left;animation:drawX ${end.toFixed(2)}s linear both}
-.top{position:absolute;left:90px;right:90px;top:84px;display:flex;justify-content:space-between;align-items:center}
+.prog{position:absolute;z-index:3;left:0;top:0;height:10px;width:100%;background:#ffd23f;transform-origin:left;animation:drawX ${end.toFixed(2)}s linear both}
+.top{position:absolute;z-index:3;left:90px;right:90px;top:84px;display:flex;justify-content:space-between;align-items:center}
 .logo{display:flex;align-items:center;gap:16px;padding:12px 24px 12px 16px;border-radius:22px;background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.14)}
 .logo .m{width:60px}.logo .w{width:220px}
 .chip{font-size:34px;font-weight:500;padding:8px 26px 12px;border-radius:999px;background:#ffd23f;color:#0b1430}
 .scene{position:absolute;inset:0;opacity:0}
 .stage{position:absolute;left:90px;right:90px;top:260px;height:1010px}
-.sub{position:absolute;left:90px;right:90px;bottom:390px;text-align:center;opacity:0;text-wrap:balance}
+.sub{position:absolute;z-index:3;left:90px;right:90px;bottom:390px;text-align:center;opacity:0;text-wrap:balance}
 .sub span{display:inline;font-size:70px;line-height:1.62;font-weight:700;padding:4px 26px 12px;border-radius:18px;background:rgba(5,9,26,.78);
   -webkit-box-decoration-break:clone;box-decoration-break:clone}
 .sub em{font-style:normal;color:#ffd23f}
@@ -208,12 +225,24 @@ body{width:${W}px;height:${H}px;overflow:hidden;font-family:M,L,sans-serif;color
 @keyframes litN{to{color:#ffd23f}}
 ${EXPL ? ".sub span{font-weight:600}" : ""}
 .host{position:absolute;left:40px;bottom:-150px;opacity:0;z-index:2}
+.host.hsm{left:10px;bottom:-110px;transform-origin:left bottom;scale:.72}
+.pscene{z-index:1}
+.ph{position:absolute;inset:0;overflow:hidden;background:#0b1430}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.phs{position:absolute;inset:0;background:linear-gradient(rgba(5,9,26,.72) 0,rgba(5,9,26,0) 22%,rgba(5,9,26,0) 48%,rgba(5,9,26,.82) 74%,rgba(5,9,26,.92) 100%)}
+.pcard{position:absolute;left:90px;right:90px;top:250px;opacity:0;display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.pcard b{font-size:36px;font-weight:700;color:#0b1430;background:#ffd23f;padding:4px 22px 10px;border-radius:999px}
+.pcard span{font-size:74px;line-height:1.45;font-weight:800;color:#fff;background:rgba(5,9,26,.72);padding:6px 28px 16px;border-radius:24px;border-left:10px solid #ffd23f;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+@keyframes pcIn{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:none}}
+@keyframes kbA{from{transform:scale(1.04) translate(0,0)}to{transform:scale(1.16) translate(-20px,-30px)}}
+@keyframes kbB{from{transform:scale(1.16) translate(20px,10px)}to{transform:scale(1.04) translate(0,0)}}
+@keyframes kbC{from{transform:scale(1.06) translate(-24px,0)}to{transform:scale(1.14) translate(24px,-20px)}}
 @keyframes hostIn{from{opacity:0;transform:translateY(80px)}to{opacity:1;transform:none}}
 @keyframes hostOut{to{opacity:0;transform:translateY(40px)}}
 @keyframes sinE{from{opacity:0}to{opacity:1}}
 @keyframes inE{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
 @keyframes outE{to{opacity:0;transform:scale(1.02)}}
-.intro,.outro{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;text-align:center}
+.intro,.outro{position:absolute;z-index:6;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;text-align:center}
 .intro{background:radial-gradient(circle at 50% 46%,#1f4fd1,#0b1430 72%);animation:introOut .4s ease-in .7s forwards}
 .intro .m{width:250px;animation:popIn .5s cubic-bezier(.3,1.5,.5,1) .02s both}
 .intro .w{width:520px;animation:rise .45s ease-out .15s both}
@@ -458,7 +487,7 @@ body{width:${W}px;height:${H}px;overflow:hidden;font-family:M,L,sans-serif;color
   await thumbnail(script, fs.existsSync(frame) ? frame : path.join(fdir, "00030.jpg"), thumb, cover);
 
   const meta = {
-    slug, style: "custom animation only (no stock footage)", duration: +probe(mp4).toFixed(2), size_mb: +(fs.statSync(mp4).size / 1e6).toFixed(1), resolution: `${W}x${H}`, fps: FPS,
+    slug, style: Object.keys(PHOTOS).length ? "AI photos + animation (no stock footage)" : "custom animation only (no stock footage)", photos: Object.keys(PHOTOS).length, duration: +probe(mp4).toFixed(2), size_mb: +(fs.statSync(mp4).size / 1e6).toFixed(1), resolution: `${W}x${H}`, fps: FPS,
     scenes: scenes.length, visuals: scenes.map((s) => (s.visual || {}).type), voice: scenes[0].voice ? (process.env.REEL_VOICE || "km-KH-PisethNeural") : "none",
     music: music ? path.basename(music) : "none", subtitle_sync: [...new Set(scenes.map((s) => s.sync))].join(","),
     render_seconds: Math.round((Date.now() - t0) / 1000),

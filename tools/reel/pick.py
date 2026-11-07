@@ -24,10 +24,12 @@ SCHEMA = {
         "keyword": "optional: 2-6 words shown big on screen, max 28 characters (the scene's key point)",
         "label": "optional: small tag above the keyword, e.g. គន្លឹះទី ១ (max 16 characters)",
         "visual": {"type": "the animated picture for this scene (see 'visuals'), with its fields filled from what the scene says"},
+        "photo": "PHOTO STYLE: English prompt for a realistic photo that shows this scene (see the PHOTO STYLE rule); omit on the cta scene",
     }],
 }
 
 RULES = [
+    "PHOTO STYLE (owner, 7 Nov 2026: real-looking photos, less cartoon): give most scenes (all except the cta, at least 6) a 'photo': a short English prompt (15-40 words) for a realistic smartphone photo of what the scene is about, set in a small Cambodian online shop: e.g. 'close-up of a seller's hands holding a smartphone showing a chat, parcels on a wooden table'. Show hands, phones, folded clothes, parcels, a shop desk, a ring light, a packing table. Never ask for text, screens with readable words, logos, brand names, famous people or a specific real person's face; people seen from behind or only hands are best. The photo fills the screen and the scene's 'keyword' is shown on it as a card, so give every photo scene a short 'keyword' (and 'label' when useful). Keep the 'visual' too: it is used if a photo cannot be made.",
     "Write how a friendly, experienced Cambodian online-business consultant talks to a seller face to face: natural spoken Khmer, short sentences, never a formal speech and never reading the article.",
     "Talk to the viewer as បង / បងៗ. Use everyday words sellers use (Page, Order, Live, Boost, Inbox, Caption are fine in English letters).",
     "Scene 1 is the hook: one or two short lines that make a seller stop scrolling within 3 seconds (a common pain, a surprising mistake, or a question). Do not start with greetings or the brand.",
@@ -127,7 +129,7 @@ def main():
         "facts": open(C.FACTS, encoding="utf-8").read(),
         "limits": {"scenes": [s["min_scenes"], s["max_scenes"]], "khmer_chars_spoken": [s["min_chars"], s["max_chars"]],
                    "target_seconds": "45-90", "max_brand_share": s["max_brand_share"], "max_line_chars": 40},
-        "rules": RULES + campaign_rules(),
+        "rules": [r for r in RULES if not r.startswith("PHOTO STYLE") or s.get("video_style") == "photo"] + campaign_rules(),
         "recent_videos": recent,
         "output_schema": SCHEMA,
         "visuals": {
