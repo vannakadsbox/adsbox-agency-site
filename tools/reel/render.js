@@ -575,6 +575,9 @@ body{width:${W}px;height:${H}px;overflow:hidden;font-family:M,L,sans-serif;color
 .u{position:absolute;left:80px;bottom:${HOST ? 150 : 240}px;font-family:L,M,sans-serif;font-weight:800;font-size:46px}
 .sh2{position:absolute;left:0;right:0;bottom:0;height:900px;background:linear-gradient(rgba(11,20,48,0),rgba(11,20,48,.99) 28%)}
 .vkt{position:absolute;right:-30px;bottom:-120px;width:640px}
+${STYLE === "paper" ? `.sh{background:linear-gradient(rgba(236,230,215,0) 35%,rgba(236,230,215,.92) 72%)}
+.sh2{background:linear-gradient(rgba(236,230,215,0),#ece6d7 28%)}
+.t span{background:#151515;color:#fff}.u{color:#151515}` : ""}
 </style></head><body><div class="sh"></div>${HOST ? `<div class="sh2"></div><img class="vkt" src="data:image/png;base64,${b64("assets/video/presenter/vannak-happy.png")}" alt="">` : ""}<div class="t"><span>${esc(script.thumbnail_text)}</span></div><div class="u">adsbox.agency</div></body></html>`, { waitUntil: "load" });
   await pg.evaluate(() => document.fonts.ready);
   await pg.screenshot({ path: out, type: "jpeg", quality: 90 });
