@@ -20,7 +20,7 @@ TOKEN = (os.environ.get("CF_AI_TOKEN") or os.environ.get("CLOUDFLARE_API_TOKEN")
 MODEL = "@cf/black-forest-labs/flux-1-schnell"
 STYLE = (", realistic smartphone documentary photo, small online shop in Phnom Penh Cambodia, natural window light, "
          "warm tones, shallow depth of field, vertical composition, no text, no letters, no logos, no watermark, "
-         "no recognisable real person, hands and products in focus")
+         "no recognisable real person, no signs, no price tags, no writing on any object, hands and products in focus")
 
 
 def note(level, msg):
