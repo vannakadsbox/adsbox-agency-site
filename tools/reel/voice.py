@@ -10,7 +10,7 @@ VOICE "kiri:<Name>" (e.g. kiri:Sophon) uses Kiri TTS instead (KIRI_API_KEY; KIRI
 Kiri gives no word timing with speech, so each scene is transcribed by Kiri (word timestamps) and the spoken
 timing is mapped onto the script text; if that fails the subtitles fall back to proportional timing.
 """
-import asyncio, json, os, subprocess, sys
+import shutil, asyncio, json, os, subprocess, sys
 
 import edge_tts
 
@@ -134,8 +134,24 @@ async def main():
     for i, t in enumerate(texts):
         f = os.path.join(out_dir, f"{i}.mp3")
         if voice.startswith("kiri:"):
-            marks, kind = kiri_speak(t, voice.split(":", 1)[1], f)
-            res.append({"len": length(f), "marks": marks, "kind": kind, "match": kiri_speak.match})
+            # Kiri sometimes misreads a line (seen with the owner's own voice, 7 Nov 2026): when the transcript matches
+            # the script poorly, record that scene again (up to 2 more times) and keep the best take.
+            best = None
+            for take in range(3):
+                tf = f if take == 0 else f"{f}.take{take}.mp3"
+                marks, kind = kiri_speak(t, voice.split(":", 1)[1], tf)
+                m = kiri_speak.match
+                if best is None or (m or 0) > (best[3] or 0):
+                    best = (tf, marks, kind, m)
+                if m is None or m >= 0.85:
+                    break
+                print(f"Scene {i + 1}: speech matched the script only {m:.2f}; recording it again.", file=sys.stderr)
+            if best[0] != f:
+                shutil.move(best[0], f)
+            for take in (1, 2):
+                if os.path.exists(f"{f}.take{take}.mp3"):
+                    os.remove(f"{f}.take{take}.mp3")
+            res.append({"len": length(f), "marks": best[1], "kind": best[2], "match": best[3]})
             continue
         else:
             marks, kind = await speak(t, voice, f)
