@@ -16,9 +16,15 @@ jobs:
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       CF_AI_TOKEN: ${{ secrets.CF_AI_TOKEN }}
+      PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+      PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
       GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
+      - name: Stock clip keys
+        run: |
+          echo "::notice::PIXABAY_API_KEY set: $([ -n "$PIXABAY_API_KEY" ] && echo yes || echo no), PEXELS_API_KEY set: $([ -n "$PEXELS_API_KEY" ] && echo yes || echo no)"
+          [ -n "$PIXABAY_API_KEY" ] && python3 tools/reel/footage.py check || true
       - name: Generate
         run: |
           python3 tools/reel/photos.py check
