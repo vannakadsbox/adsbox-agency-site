@@ -2853,9 +2853,124 @@
       "article_url": "https://adsbox.agency/knowledge/stop-customers-refusing-parcels/",
       "video_title": "ផ្ញើទៅដល់ ភ្ញៀវថាមិនយក? ៤ វិធីការពារ Order បោះបង់",
       "hook": "បងៗ ខ្ចប់រួច ផ្ញើទៅដល់ ស្រាប់តែភ្ញៀវថា មិនយកទេ?",
-      "status": "scripted",
+      "status": "sent",
       "scripted_at": "2026-11-08T11:09:57+07:00",
-      "error": ""
+      "error": "",
+      "render_started_at": "2026-11-08T11:10:46+07:00",
+      "sent_at": "2026-11-08T11:14:46+07:00",
+      "rendered_at": "2026-11-08T11:14:46+07:00",
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/42445688249",
+      "duration": 45.93,
+      "size_mb": 12.9,
+      "render_seconds": 226,
+      "voice": "kiri:Vannak",
+      "music": "adsbox-original-1.mp3",
+      "style": "custom animation only",
+      "visuals": [
+        "story",
+        "checklist",
+        "chat",
+        "delivery",
+        "compare",
+        "checklist",
+        "cta"
+      ],
+      "resolution": "1080x1920",
+      "fps": 30,
+      "subtitle_sync": "transcript",
+      "footage": [],
+      "footage_share": 0,
+      "stock_footage": "none (removed)",
+      "telegram": {
+        "ok": true,
+        "message_id": 225,
+        "chat": "configured",
+        "at": "2026-11-08T11:14:46+07:00",
+        "file_id": "BAACAgUAAxkDAAPhau_3MIGfpqqrdaSDhq70ur40h88AAjwlAAL6-IBXjkD4gH3E7VU9BA",
+        "items": [
+          {
+            "item": "video",
+            "message_id": 225,
+            "file_name": "stop-customers-refusing-parcels.mp4",
+            "file_size": 12884284,
+            "width": 1080,
+            "height": 1920,
+            "file_id": "BAACAgUAAxkDAAPhau_3MIGfpqqrdaSDhq70ur40h88AAjwlAAL6-IBXjkD4gH3E7VU9BA"
+          },
+          {
+            "item": "facebook_caption",
+            "message_id": 226
+          },
+          {
+            "item": "thumbnail",
+            "message_id": 227,
+            "file_name": "stop-customers-refusing-parcels-thumbnail.jpg",
+            "file_size": 293244
+          }
+        ],
+        "sent_count": 3,
+        "local_sizes": {
+          "video": 12884284,
+          "thumbnail": 293244
+        }
+      },
+      "speech_match": [
+        0.989,
+        0.986,
+        0.988,
+        0.985,
+        0.983,
+        0.986,
+        1
+      ],
+      "scene_sync": [
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript"
+      ],
+      "archive": {
+        "assets": [
+          {
+            "id": 722850330,
+            "name": "stop-customers-refusing-parcels-thumb.jpg",
+            "size": 293244,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/stop-customers-refusing-parcels-thumb.jpg"
+          },
+          {
+            "id": 722850333,
+            "name": "stop-customers-refusing-parcels.mp4",
+            "size": 12884284,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/stop-customers-refusing-parcels.mp4"
+          }
+        ],
+        "release_id": 430382508
+      },
+      "quality": {
+        "width": 1080,
+        "height": 1920,
+        "fps": "30/1",
+        "duration": 45.93,
+        "video_codec": "h264",
+        "audio_codec": "aac",
+        "loudness": "-13.3 LUFS",
+        "decode_errors": false,
+        "visual_mix": {
+          "motion_graphics": 0.71,
+          "phone_chat": 0.18,
+          "illustrated": 0.11,
+          "product_dashboard": 0
+        }
+      },
+      "article_id": "stop-customers-refusing-parcels",
+      "video_id": 722850333,
+      "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/stop-customers-refusing-parcels.mp4",
+      "created_at": "2026-11-08T11:14:46+07:00",
+      "telegram_status": "delivered",
+      "production_status": "complete"
     }
   ]
 }
