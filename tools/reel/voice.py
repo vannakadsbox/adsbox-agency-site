@@ -89,8 +89,22 @@ def kiri_speak(text, name, out):
     # The owner's own uploaded voice "Vannak" (7 Nov 2026) also gets the clean-up he approved in the sample:
     # hiss removed and harsh "s" sounds softened.
     clean = "afftdn=nr=12:nf=-42:tn=1,deesser=i=0.35:m=0.5:f=0.5," if str(name).lower() == "vannak" else ""
+    # Steady pace (owner, 8 Nov 2026: "I love the voice last night"): Kiri sometimes reads the same voice ~13% slower.
+    # Speed each scene so it lands at the pace the owner liked (about 9.3 Khmer letters a second after processing);
+    # never faster than 1.10x or slower than 0.92x, so the voice always sounds natural.
+    tempo = 0.95
+    try:
+        import re as _re
+        n = len(_re.findall(r"[\u1780-\u17FF]", text))
+        raw_len = float(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", wav], text=True))
+        target = float(os.environ.get("VOICE_PACE") or 9.3)
+        if n >= 15 and raw_len > 0:
+            tempo = max(0.92, min(1.10, target * raw_len / n))
+    except Exception:  # noqa: BLE001
+        tempo = 0.95
+    print(f"Voice pace: tempo {tempo:.3f}", file=sys.stderr)
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", wav, "-af",
-                    clean + "atempo=0.95,highpass=f=70,equalizer=f=280:t=q:w=1.2:g=-2,equalizer=f=3600:t=q:w=1.4:g=2.5,equalizer=f=9000:t=q:w=1:g=1,"
+                    clean + f"atempo={tempo:.3f},highpass=f=70,equalizer=f=280:t=q:w=1.2:g=-2,equalizer=f=3600:t=q:w=1.4:g=2.5,equalizer=f=9000:t=q:w=1:g=1,"
                     "acompressor=threshold=-21dB:ratio=2.5:attack=6:release=90:makeup=2,loudnorm=I=-16:TP=-1.5:LRA=7",
                     "-ar", "44100", "-ac", "1", "-b:a", "192k", out], check=True)
     os.remove(wav)
