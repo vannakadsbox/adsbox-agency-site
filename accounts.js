@@ -106,24 +106,24 @@ window.ACCOUNTS = {
    {
     "name": "24MerlTos",
     "url": "https://www.facebook.com/profile.php?id=61594235184973",
-    "followers": 394,
+    "followers": 402,
     "picture": "assets/accounts/fb-61594235184973.webp",
     "cover": "assets/opt/adsbox-cover-de2e8b-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-07"
+    "updated": "2026-11-08"
    },
    {
     "name": "អេអាយដ្រាម៉ា",
     "url": "https://www.facebook.com/profile.php?id=61594225492597",
-    "followers": 12,
+    "followers": 13,
     "picture": "assets/accounts/fb-61594225492597.webp",
     "cover": "assets/opt/adsbox-cover-04ea1c-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-07"
+    "updated": "2026-11-08"
    },
    {
     "name": "មើលកុនAi",
@@ -134,7 +134,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-07"
+    "updated": "2026-11-08"
    },
    {
     "name": "PostAi",
@@ -145,7 +145,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-07"
+    "updated": "2026-11-08"
    },
    {
     "name": "មើលរឿងបកប្រែAi",
@@ -161,13 +161,13 @@ window.ACCOUNTS = {
    {
     "name": "Aiសម្រាយកុន",
     "url": "https://www.facebook.com/profile.php?id=61593925754183",
-    "followers": 1776,
+    "followers": 1783,
     "picture": "assets/accounts/fb-61593925754183.webp",
     "cover": "assets/opt/adsbox-cover-263cfb-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-07"
+    "updated": "2026-11-08"
    },
    {
     "name": "អ្នកផុសរឿងAi",
@@ -189,18 +189,18 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-07"
+    "updated": "2026-11-08"
    },
    {
     "name": "Merlrg24h",
     "url": "https://www.facebook.com/profile.php?id=61593372051825",
-    "followers": 4908,
+    "followers": 4924,
     "picture": "assets/accounts/fb-61593372051825.webp",
     "cover": "assets/opt/adsbox-cover-1cdc4c-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-07"
+    "updated": "2026-11-08"
    },
    {
     "name": "MerDrama",
@@ -211,7 +211,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-07"
+    "updated": "2026-11-08"
    },
    {
     "name": "Nito H Lim-ហ៊ា នីតូTopFan",
