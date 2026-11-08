@@ -129,6 +129,7 @@ jobs:
           voice=$(python3 -c "import sys; sys.path.insert(0,'tools/reel'); import common; print(common.settings()['voice'])")
           [ -n "${{ github.event.inputs.voice }}" ] && voice="${{ github.event.inputs.voice }}"
           export KIRI_INSTRUCTION=$(python3 -c "import sys; sys.path.insert(0,'tools/reel'); import common; print(common.settings().get('kiri_instruction',''))")
+          export VOICE_FINISH=$(python3 -c "import sys; sys.path.insert(0,'tools/reel'); import common; print(common.settings().get('voice_finish',''))")
           echo "Voice: $voice"
           rate=$(python3 -c "import sys; sys.path.insert(0,'tools/reel'); import common; print(common.settings()['rate'])")
           vol=$(python3 -c "import sys; sys.path.insert(0,'tools/reel'); import common; print(common.settings()['music_volume'])")

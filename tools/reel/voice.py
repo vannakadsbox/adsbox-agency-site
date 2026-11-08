@@ -103,9 +103,14 @@ def kiri_speak(text, name, out):
     except Exception:  # noqa: BLE001
         tempo = 0.95
     print(f"Voice pace: tempo {tempo:.3f}", file=sys.stderr)
-    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", wav, "-af",
-                    clean + f"atempo={tempo:.3f},highpass=f=70,equalizer=f=280:t=q:w=1.2:g=-2,equalizer=f=3600:t=q:w=1.4:g=2.5,equalizer=f=9000:t=q:w=1:g=1,"
-                    "acompressor=threshold=-21dB:ratio=2.5:attack=6:release=90:makeup=2,loudnorm=I=-16:TP=-1.5:LRA=7",
+    af = (clean + f"atempo={tempo:.3f},highpass=f=70,equalizer=f=280:t=q:w=1.2:g=-2,equalizer=f=3600:t=q:w=1.4:g=2.5,equalizer=f=9000:t=q:w=1:g=1,"
+          "acompressor=threshold=-21dB:ratio=2.5:attack=6:release=90:makeup=2,loudnorm=I=-16:TP=-1.5:LRA=7")
+    if str(name).lower() == "vannak" and os.environ.get("VOICE_FINISH", "") == "sample_a":
+        # Owner's choice "A" (8 Nov 2026): exactly the processing of the 7 Nov 21:55 Vannak sample he loved.
+        af = ("highpass=f=80,lowpass=f=12000,afftdn=nr=12:nf=-42:tn=1,deesser=i=0.35:m=0.5:f=0.5,"
+              "equalizer=f=250:t=q:w=1.2:g=-2.5,equalizer=f=3300:t=q:w=1.3:g=2.5,equalizer=f=8500:t=q:w=1:g=1,"
+              "acompressor=threshold=-22dB:ratio=2.8:attack=8:release=120:makeup=2,atempo=0.97,loudnorm=I=-16:TP=-1.5:LRA=7")
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", wav, "-af", af,
                     "-ar", "44100", "-ac", "1", "-b:a", "192k", out], check=True)
     os.remove(wav)
     marks, kind = [], "none"
