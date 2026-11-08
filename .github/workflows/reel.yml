@@ -138,7 +138,9 @@ jobs:
             out="out/$slug"; mkdir -p "$out"
             python3 tools/reel/deliver.py status --slug "$slug" --to rendering
             # Custom animation only: stock footage (Pixabay/Pexels) is removed; nothing is searched or downloaded.
-            music=$(ls assets/video/music/*.mp3 2>/dev/null | shuf -n1 || true)
+            # Music: a fixed track when settings name one (owner, 8 Nov 2026: the 7 Nov 22:30 video, track 1), else random.
+            music=$(python3 -c "import sys; sys.path.insert(0,'tools/reel'); import common; print(common.settings().get('music_track',''))")
+            if [ -n "$music" ] && [ -f "assets/video/music/$music" ]; then music="assets/video/music/$music"; else music=$(ls assets/video/music/*.mp3 2>/dev/null | shuf -n1 || true); fi
             # Photo style (owner, 7 Nov 2026): realistic AI photos per scene; scenes without a photo keep their animation.
             photos=""
             style=$(python3 -c "import sys; sys.path.insert(0,'tools/reel'); import common; print(common.settings().get('video_style',''))")

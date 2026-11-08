@@ -98,7 +98,7 @@ def kiri_speak(text, name, out):
         n = len(_re.findall(r"[\u1780-\u17FF]", text))
         raw_len = float(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", wav], text=True))
         target = float(os.environ.get("VOICE_PACE") or 9.3)
-        if n >= 15 and raw_len > 0:
+        if os.environ.get("VOICE_PACE") and n >= 15 and raw_len > 0:  # off by default: the owner chose the fixed 0.95 (8 Nov)
             tempo = max(0.92, min(1.10, target * raw_len / n))
     except Exception:  # noqa: BLE001
         tempo = 0.95
