@@ -2725,9 +2725,127 @@
       "article_url": "https://adsbox.agency/knowledge/skincare-shop-boost-post-week-before-live/",
       "video_title": "Boost ច្រើនថ្ងៃ Live តែភ្ញៀវមើលបន្តិចចេញ? ចាប់ផ្ដើមមុនមួយសប្ដាហ៍",
       "hook": "បងៗ ដាក់ Boost ច្រើននៅថ្ងៃ Live តែភ្ញៀវចូលមើលបន្តិច ហើយចេញ? Live 11.11 កុំឲ្យជួបដូចនេះទៀត។",
-      "status": "scripted",
+      "status": "sent",
       "scripted_at": "2026-11-08T07:25:31+07:00",
-      "error": ""
+      "error": "",
+      "render_started_at": "2026-11-08T07:26:29+07:00",
+      "sent_at": "2026-11-08T07:33:47+07:00",
+      "rendered_at": "2026-11-08T07:33:47+07:00",
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/42429687685",
+      "duration": 74,
+      "size_mb": 20.1,
+      "render_seconds": 421,
+      "voice": "kiri:Vannak",
+      "music": "adsbox-original-2.mp3",
+      "style": "custom animation only",
+      "visuals": [
+        "question",
+        "story",
+        "compare",
+        "flow",
+        "chat",
+        "checklist",
+        "takeaway",
+        "cta"
+      ],
+      "resolution": "1080x1920",
+      "fps": 30,
+      "subtitle_sync": "transcript",
+      "footage": [],
+      "footage_share": 0,
+      "stock_footage": "none (removed)",
+      "telegram": {
+        "ok": true,
+        "message_id": 212,
+        "chat": "configured",
+        "at": "2026-11-08T07:33:47+07:00",
+        "file_id": "BAACAgUAAxkDAAPUau_DY7AZfg7l5jwqGGCW5T8n7poAAkciAAI1Z4FXYBH2y-8qTEs9BA",
+        "items": [
+          {
+            "item": "video",
+            "message_id": 212,
+            "file_name": "skincare-shop-boost-post-week-before-live.mp4",
+            "file_size": 20138667,
+            "width": 1080,
+            "height": 1920,
+            "file_id": "BAACAgUAAxkDAAPUau_DY7AZfg7l5jwqGGCW5T8n7poAAkciAAI1Z4FXYBH2y-8qTEs9BA"
+          },
+          {
+            "item": "facebook_caption",
+            "message_id": 213
+          },
+          {
+            "item": "thumbnail",
+            "message_id": 214,
+            "file_name": "skincare-shop-boost-post-week-before-live-thumbnail.jpg",
+            "file_size": 283467
+          }
+        ],
+        "sent_count": 3,
+        "local_sizes": {
+          "video": 20138667,
+          "thumbnail": 283467
+        }
+      },
+      "speech_match": [
+        0.994,
+        1,
+        1,
+        1,
+        0.994,
+        0.994,
+        0.994,
+        0.976
+      ],
+      "scene_sync": [
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript"
+      ],
+      "archive": {
+        "assets": [
+          {
+            "id": 722403306,
+            "name": "skincare-shop-boost-post-week-before-live-thumb.jpg",
+            "size": 283467,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/skincare-shop-boost-post-week-before-live-thumb.jpg"
+          },
+          {
+            "id": 722403305,
+            "name": "skincare-shop-boost-post-week-before-live.mp4",
+            "size": 20138667,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/skincare-shop-boost-post-week-before-live.mp4"
+          }
+        ],
+        "release_id": 430382508
+      },
+      "quality": {
+        "width": 1080,
+        "height": 1920,
+        "fps": "30/1",
+        "duration": 74.0,
+        "video_codec": "h264",
+        "audio_codec": "aac",
+        "loudness": "-13.3 LUFS",
+        "decode_errors": false,
+        "visual_mix": {
+          "motion_graphics": 0.63,
+          "phone_chat": 0.28,
+          "illustrated": 0.09,
+          "product_dashboard": 0
+        }
+      },
+      "article_id": "skincare-shop-boost-post-week-before-live",
+      "video_id": 722403305,
+      "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/skincare-shop-boost-post-week-before-live.mp4",
+      "created_at": "2026-11-08T07:33:47+07:00",
+      "telegram_status": "delivered",
+      "production_status": "complete"
     }
   ]
 }
