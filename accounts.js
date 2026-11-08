@@ -7,24 +7,24 @@ window.ACCOUNTS = {
    {
     "name": "18Drama",
     "url": "https://www.facebook.com/profile.php?id=61594923069579",
-    "followers": 29,
+    "followers": 31,
     "picture": "assets/accounts/fb-61594923069579.webp",
     "cover": "assets/opt/adsbox-cover-6e5638-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-07"
+    "updated": "2026-11-08"
    },
    {
     "name": "16Drama",
     "url": "https://www.facebook.com/profile.php?id=61594897690891",
-    "followers": 37,
+    "followers": 38,
     "picture": "assets/accounts/fb-61594897690891.webp",
     "cover": "assets/opt/adsbox-cover-330cfe-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-07"
+    "updated": "2026-11-08"
    },
    {
     "name": "31Drama",
@@ -35,7 +35,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-07"
+    "updated": "2026-11-08"
    },
    {
     "name": "20Drama",
@@ -46,18 +46,18 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-07"
+    "updated": "2026-11-08"
    },
    {
     "name": "19Drama",
     "url": "https://www.facebook.com/profile.php?id=61594794374942",
-    "followers": 38,
+    "followers": 48,
     "picture": "assets/accounts/fb-61594794374942.webp",
     "cover": "assets/opt/adsbox-cover-2519c9-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-07"
+    "updated": "2026-11-08"
    },
    {
     "name": "8Drama",
@@ -68,29 +68,29 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-07"
+    "updated": "2026-11-08"
    },
    {
     "name": "3Drama",
     "url": "https://www.facebook.com/profile.php?id=61594765991841",
-    "followers": 69,
+    "followers": 70,
     "picture": "assets/accounts/fb-61594765991841.webp",
     "cover": "assets/opt/adsbox-cover-0d5afe-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-07"
+    "updated": "2026-11-08"
    },
    {
     "name": "អ្នកមើលកុនAi",
     "url": "https://www.facebook.com/profile.php?id=61594713303864",
-    "followers": 49,
+    "followers": 50,
     "picture": "assets/accounts/fb-61594713303864.webp",
     "cover": "assets/opt/adsbox-cover-ed7ada-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-07"
+    "updated": "2026-11-08"
    },
    {
     "name": "Thon SreyPhors - ថន ស្រីភ័ស",
