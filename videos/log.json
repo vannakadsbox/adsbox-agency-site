@@ -2728,13 +2728,13 @@
       "status": "sent",
       "scripted_at": "2026-11-08T07:25:31+07:00",
       "error": "",
-      "render_started_at": "2026-11-08T08:13:48+07:00",
-      "sent_at": "2026-11-08T08:19:22+07:00",
+      "render_started_at": "2026-11-08T10:47:27+07:00",
+      "sent_at": "2026-11-08T10:52:50+07:00",
       "rendered_at": "2026-11-08T07:33:47+07:00",
-      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/42433284724",
-      "duration": 70.47,
-      "size_mb": 19.3,
-      "render_seconds": 320,
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/42444121217",
+      "duration": 61.83,
+      "size_mb": 17.1,
+      "render_seconds": 307,
       "voice": "kiri:Vannak",
       "music": "adsbox-original-1.mp3",
       "style": "custom animation only",
@@ -2756,46 +2756,46 @@
       "stock_footage": "none (removed)",
       "telegram": {
         "ok": true,
-        "message_id": 218,
+        "message_id": 221,
         "chat": "configured",
-        "at": "2026-11-08T08:19:22+07:00",
-        "file_id": "BAACAgUAAxkDAAPaau_OE5uvJLaKke4rUHyqEKzViG8AAmAiAAI1Z4FX90WY00VnjBA9BA",
+        "at": "2026-11-08T10:52:50+07:00",
+        "file_id": "BAACAgUAAxkDAAPdau_yCuw_QjtHwnpqcwUbFUobcegAAicjAAI1Z4FXxgmBgo5B-sE9BA",
         "items": [
           {
             "item": "video",
-            "message_id": 218,
+            "message_id": 221,
             "file_name": "skincare-shop-boost-post-week-before-live.mp4",
-            "file_size": 19305176,
+            "file_size": 17146330,
             "width": 1080,
             "height": 1920,
-            "file_id": "BAACAgUAAxkDAAPaau_OE5uvJLaKke4rUHyqEKzViG8AAmAiAAI1Z4FX90WY00VnjBA9BA"
+            "file_id": "BAACAgUAAxkDAAPdau_yCuw_QjtHwnpqcwUbFUobcegAAicjAAI1Z4FXxgmBgo5B-sE9BA"
           },
           {
             "item": "facebook_caption",
-            "message_id": 219
+            "message_id": 222
           },
           {
             "item": "thumbnail",
-            "message_id": 220,
+            "message_id": 223,
             "file_name": "skincare-shop-boost-post-week-before-live-thumbnail.jpg",
-            "file_size": 282513
+            "file_size": 281712
           }
         ],
         "sent_count": 3,
         "local_sizes": {
-          "video": 19305176,
-          "thumbnail": 282513
+          "video": 17146330,
+          "thumbnail": 281712
         }
       },
       "speech_match": [
+        0.994,
         1,
         1,
-        0.995,
         1,
-        0.989,
         0.994,
         0.994,
-        0.927
+        0.994,
+        0.976
       ],
       "scene_sync": [
         "transcript",
@@ -2810,15 +2810,15 @@
       "archive": {
         "assets": [
           {
-            "id": 722498374,
+            "id": 722805537,
             "name": "skincare-shop-boost-post-week-before-live-thumb.jpg",
-            "size": 282513,
+            "size": 281712,
             "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/skincare-shop-boost-post-week-before-live-thumb.jpg"
           },
           {
-            "id": 722498373,
+            "id": 722805539,
             "name": "skincare-shop-boost-post-week-before-live.mp4",
-            "size": 19305176,
+            "size": 17146330,
             "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/skincare-shop-boost-post-week-before-live.mp4"
           }
         ],
@@ -2828,20 +2828,20 @@
         "width": 1080,
         "height": 1920,
         "fps": "30/1",
-        "duration": 70.47,
+        "duration": 61.83,
         "video_codec": "h264",
         "audio_codec": "aac",
-        "loudness": "-13.1 LUFS",
+        "loudness": "-13.3 LUFS",
         "decode_errors": false,
         "visual_mix": {
           "motion_graphics": 0.63,
           "phone_chat": 0.26,
-          "illustrated": 0.1,
+          "illustrated": 0.11,
           "product_dashboard": 0
         }
       },
       "article_id": "skincare-shop-boost-post-week-before-live",
-      "video_id": 722498373,
+      "video_id": 722805539,
       "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/skincare-shop-boost-post-week-before-live.mp4",
       "created_at": "2026-11-08T07:33:47+07:00",
       "telegram_status": "delivered",
