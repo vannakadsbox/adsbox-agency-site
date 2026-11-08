@@ -2846,6 +2846,16 @@
       "created_at": "2026-11-08T07:33:47+07:00",
       "telegram_status": "delivered",
       "production_status": "complete"
+    },
+    {
+      "slug": "stop-customers-refusing-parcels",
+      "article_title": "ភ្ញៀវកុម្ម៉ង់ហើយ ដល់ពេលដឹកមិនទទួល៖ ការពារ Order បោះបង់មុនផ្ញើ",
+      "article_url": "https://adsbox.agency/knowledge/stop-customers-refusing-parcels/",
+      "video_title": "ផ្ញើទៅដល់ ភ្ញៀវថាមិនយក? ៤ វិធីការពារ Order បោះបង់",
+      "hook": "បងៗ ខ្ចប់រួច ផ្ញើទៅដល់ ស្រាប់តែភ្ញៀវថា មិនយកទេ?",
+      "status": "scripted",
+      "scripted_at": "2026-11-08T11:09:57+07:00",
+      "error": ""
     }
   ]
 }
