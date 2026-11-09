@@ -3108,6 +3108,126 @@
       "created_at": "2026-11-09T07:30:02+07:00",
       "telegram_status": "delivered",
       "production_status": "complete"
+    },
+    {
+      "slug": "boost-rejected-what-to-check",
+      "status": "sent",
+      "render_started_at": "2026-11-09T17:36:22+07:00",
+      "error": "",
+      "sent_at": "2026-11-09T17:41:01+07:00",
+      "rendered_at": "2026-11-09T17:41:01+07:00",
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/42601962236",
+      "duration": 40.63,
+      "size_mb": 11.8,
+      "render_seconds": 262,
+      "voice": "kiri:Vannak",
+      "music": "adsbox-original-1.mp3",
+      "style": "custom animation only",
+      "visuals": [
+        "question",
+        "compare",
+        "takeaway",
+        "checklist",
+        "compare",
+        "flow",
+        "cta"
+      ],
+      "resolution": "1080x1920",
+      "fps": 30,
+      "subtitle_sync": "transcript",
+      "footage": [],
+      "footage_share": 0,
+      "stock_footage": "none (removed)",
+      "telegram": {
+        "ok": true,
+        "message_id": 239,
+        "chat": "configured",
+        "at": "2026-11-09T17:41:01+07:00",
+        "file_id": "BAACAgUAAxkDAAPvavGjNZHGXFW1Q0oGNfF_MhEeIwEAAkIoAAL6-IhXC_6i3zMSOF89BA",
+        "items": [
+          {
+            "item": "video",
+            "message_id": 239,
+            "file_name": "boost-rejected-what-to-check.mp4",
+            "file_size": 11836639,
+            "width": 1080,
+            "height": 1920,
+            "file_id": "BAACAgUAAxkDAAPvavGjNZHGXFW1Q0oGNfF_MhEeIwEAAkIoAAL6-IhXC_6i3zMSOF89BA"
+          },
+          {
+            "item": "facebook_caption",
+            "message_id": 240
+          },
+          {
+            "item": "thumbnail",
+            "message_id": 241,
+            "file_name": "boost-rejected-what-to-check-thumbnail.jpg",
+            "file_size": 184063
+          }
+        ],
+        "sent_count": 3,
+        "local_sizes": {
+          "video": 11836639,
+          "thumbnail": 184063
+        }
+      },
+      "speech_match": [
+        0.984,
+        0.985,
+        1,
+        0.985,
+        1,
+        0.987,
+        0.992
+      ],
+      "scene_sync": [
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript"
+      ],
+      "archive": {
+        "assets": [
+          {
+            "id": 727107248,
+            "name": "boost-rejected-what-to-check-thumb.jpg",
+            "size": 184063,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/boost-rejected-what-to-check-thumb.jpg"
+          },
+          {
+            "id": 727107251,
+            "name": "boost-rejected-what-to-check.mp4",
+            "size": 11836639,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/boost-rejected-what-to-check.mp4"
+          }
+        ],
+        "release_id": 430382508
+      },
+      "quality": {
+        "width": 1080,
+        "height": 1920,
+        "fps": "30/1",
+        "duration": 40.63,
+        "video_codec": "h264",
+        "audio_codec": "aac",
+        "loudness": "-13.2 LUFS",
+        "decode_errors": false,
+        "visual_mix": {
+          "motion_graphics": 0.91,
+          "phone_chat": 0.09,
+          "illustrated": 0,
+          "product_dashboard": 0
+        }
+      },
+      "article_id": "boost-rejected-what-to-check",
+      "video_id": 727107251,
+      "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/boost-rejected-what-to-check.mp4",
+      "created_at": "2026-11-09T17:41:01+07:00",
+      "telegram_status": "delivered",
+      "production_status": "complete"
     }
   ]
 }
