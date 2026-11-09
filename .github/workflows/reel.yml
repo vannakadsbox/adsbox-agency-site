@@ -24,6 +24,12 @@ on:
       slug:
         description: "Make (or remake) the video for this script: videos/scripts/<slug>.json"
         required: false
+      style:
+        description: "Test only: video style for this run (e.g. neon); empty = videos/settings.json"
+        required: false
+      instruction:
+        description: "Test only: Kiri voice instruction for this run (max 100 characters)"
+        required: false
       voice:
         description: "Test only: voice for this run, e.g. kiri:Sophon (empty = the production voice in videos/settings.json)"
         required: false
@@ -129,6 +135,8 @@ jobs:
           voice=$(python3 -c "import sys; sys.path.insert(0,'tools/reel'); import common; print(common.settings()['voice'])")
           [ -n "${{ github.event.inputs.voice }}" ] && voice="${{ github.event.inputs.voice }}"
           export KIRI_INSTRUCTION=$(python3 -c "import sys; sys.path.insert(0,'tools/reel'); import common; print(common.settings().get('kiri_instruction',''))")
+          if [ -n "${{ github.event.inputs.instruction }}" ]; then export KIRI_INSTRUCTION="${{ github.event.inputs.instruction }}"; fi
+          if [ -n "${{ github.event.inputs.style }}" ]; then export REEL_STYLE="${{ github.event.inputs.style }}"; fi
           export VOICE_FINISH=$(python3 -c "import sys; sys.path.insert(0,'tools/reel'); import common; print(common.settings().get('voice_finish',''))")
           echo "Voice: $voice"
           rate=$(python3 -c "import sys; sys.path.insert(0,'tools/reel'); import common; print(common.settings()['rate'])")

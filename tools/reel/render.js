@@ -18,7 +18,7 @@ const S = require("./scenes");
 const ROOT = path.join(__dirname, "..", "..");
 // Video look (videos/settings.json "video_style"): "explainer" = calm, clean illustrations and karaoke subtitles
 // (owner's reference, 5 Nov 2026); "creative" = sweeps, sparkles and floating icons.
-const STYLE = (() => { try { return JSON.parse(fs.readFileSync(path.join(ROOT, "videos", "settings.json"), "utf8")).video_style || "explainer"; } catch (e) { return "explainer"; } })();
+const STYLE = process.env.REEL_STYLE || (() => { try { return JSON.parse(fs.readFileSync(path.join(ROOT, "videos", "settings.json"), "utf8")).video_style || "explainer"; } catch (e) { return "explainer"; } })();
 const EXPL = STYLE !== "creative";
 // The owner's presenter character (videos/settings.json "presenter": "vannak" or "none").
 const HOST = (() => { try { return (JSON.parse(fs.readFileSync(path.join(ROOT, "videos", "settings.json"), "utf8")).presenter || "vannak") !== "none"; } catch (e) { return true; } })();
@@ -79,6 +79,31 @@ body{background:#f6f8fc!important;color:#0c1430}
 .outro small{color:#0c1430}
 .sh span{box-shadow:0 8px 0 rgba(0,0,0,.08),0 20px 40px rgba(0,0,0,.15)}
 .logo{background:#0c1430!important}
+`;
+// Neon style (owner's reference, 9 Nov 2026: dark navy app-style explainer): deep navy with a soft blue glow, glowing
+// UI cards, a big bold headline in yellow-orange, white subtitles without boxes, ADS BOX blue and yellow accents.
+const NEON = `
+.bg{background:radial-gradient(120% 70% at 50% 20%,#132a6b 0%,#0a1638 45%,#050b1f 100%)!important}
+.grid{background-image:linear-gradient(rgba(90,140,255,.06) 2px,transparent 2px),linear-gradient(90deg,rgba(90,140,255,.06) 2px,transparent 2px)!important;background-size:90px 90px!important}
+.blob{opacity:.55}
+.hd .lbl{background:linear-gradient(90deg,#2f6bff,#5b8cff);color:#fff;border-radius:999px;box-shadow:0 0 28px rgba(63,125,255,.7)}
+.hd h2{color:#fff;font-weight:800;font-size:82px;text-shadow:0 0 30px rgba(63,125,255,.35)}
+.hd .ul{background:linear-gradient(90deg,#ffd23f,#ff8a1f);height:8px;box-shadow:0 0 18px rgba(255,170,40,.7)}
+.q-title span{background:none;box-shadow:none;font-size:118px;font-weight:800;color:transparent;background-image:linear-gradient(180deg,#fff 0%,#ffe08a 45%,#ff9d2e 100%);-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 22px rgba(255,160,40,.55))}
+.qmark{color:#5b8cff;text-shadow:0 0 30px rgba(63,125,255,.9)}
+.card,.li,.tk,.rcpt,.dash,.ord,.post,.post-c,.cta-card,.stk,.goodline,.fl-s p,.st-b{background:rgba(16,30,72,.88)!important;color:#fff!important;border:2px solid rgba(91,140,255,.55)!important;box-shadow:0 0 36px rgba(63,125,255,.35),inset 0 0 24px rgba(63,125,255,.12)!important;border-radius:22px!important}
+.card.good,.goodline,.total{border-color:#ffd23f!important;box-shadow:0 0 40px rgba(255,200,60,.45)!important}
+.card.bad{border-color:#ff8a1f!important;box-shadow:0 0 36px rgba(255,120,40,.4)!important}
+.good,.total{color:#ffd23f!important}
+.ck{background:linear-gradient(135deg,#2f6bff,#5b8cff)!important;box-shadow:0 0 18px rgba(63,125,255,.8)}
+.ckx,.bad .tag,.warn,.alert{background:#ff8a1f!important;box-shadow:0 0 18px rgba(255,138,31,.8)}
+.fl-i{background:#ffd23f;box-shadow:0 0 22px rgba(255,210,63,.7)}
+.fl-line{background:linear-gradient(90deg,#2f6bff,#ffd23f)}
+.sub span{background:none!important;padding:0 6px;font-size:68px;font-weight:800!important;text-shadow:0 4px 18px rgba(0,0,0,.85),0 0 2px rgba(0,0,0,.9)}
+.sub i{color:rgba(255,255,255,.55)}
+.sub em{color:#ffd23f}
+.chip{background:rgba(16,30,72,.9);color:#ffd23f;border:2px solid rgba(255,210,63,.6)}
+.logo{background:rgba(16,30,72,.85)!important;border:2px solid rgba(91,140,255,.45)}
 `;
 const jpg = (f) => fs.readFileSync(f).toString("base64");
 // Big text typed letter by letter (Khmer grapheme clusters), with a blinking cursor, like the owner's reference.
@@ -396,6 +421,7 @@ ${hybrid ? `html,body{background:transparent!important}
 @keyframes drift2{0%{transform:translate(0,0)}50%{transform:translate(200px,-200px)}100%{transform:translate(60px,-420px)}}
 ${S.CSS}
 ${STYLE === "paper" ? PAPER : ""}
+${STYLE === "neon" ? NEON : ""}
 ${css}
 </style></head><body>
 <div class="bgall"><div class="bg"></div><div class="grid"></div><span class="blob b1"></span><span class="blob b2"></span>${floats}</div>
