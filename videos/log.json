@@ -3227,7 +3227,16 @@
       "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/boost-rejected-what-to-check.mp4",
       "created_at": "2026-11-09T17:41:01+07:00",
       "telegram_status": "delivered",
-      "production_status": "complete"
+      "production_status": "complete",
+      "facebook": {
+        "video_id": "1676947787490258",
+        "url": "https://www.facebook.com/reel/1676947787490258",
+        "state": "published",
+        "at": "2026-11-09T17:42:49+07:00",
+        "page": "Hor Vannak - ហ៊ វណ្ណណាក់",
+        "status": "ready",
+        "cover": "set"
+      }
     }
   ]
 }
