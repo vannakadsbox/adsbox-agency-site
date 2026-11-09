@@ -89,7 +89,8 @@ const NEON = `
 .hd .lbl{background:linear-gradient(90deg,#2f6bff,#5b8cff);color:#fff;border-radius:999px;box-shadow:0 0 28px rgba(63,125,255,.7)}
 .hd h2{color:#fff;font-weight:800;font-size:82px;text-shadow:0 0 30px rgba(63,125,255,.35)}
 .hd .ul{background:linear-gradient(90deg,#ffd23f,#ff8a1f);height:8px;box-shadow:0 0 18px rgba(255,170,40,.7)}
-.q-title span{background:none;box-shadow:none;font-size:118px;font-weight:800;color:transparent;background-image:linear-gradient(180deg,#fff 0%,#ffe08a 45%,#ff9d2e 100%);-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 22px rgba(255,160,40,.55))}
+.q-title{top:10px!important}
+.q-title span{background:none;box-shadow:none;font-size:92px;line-height:1.3;padding:0 10px;font-weight:800;color:transparent;background-image:linear-gradient(180deg,#fff 0%,#ffe08a 45%,#ff9d2e 100%);-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 22px rgba(255,160,40,.55))}
 .qmark{color:#5b8cff;text-shadow:0 0 30px rgba(63,125,255,.9)}
 .card,.li,.tk,.rcpt,.dash,.ord,.post,.post-c,.cta-card,.stk,.goodline,.fl-s p,.st-b{background:rgba(16,30,72,.88)!important;color:#fff!important;border:2px solid rgba(91,140,255,.55)!important;box-shadow:0 0 36px rgba(63,125,255,.35),inset 0 0 24px rgba(63,125,255,.12)!important;border-radius:22px!important}
 .card.good,.goodline,.total{border-color:#ffd23f!important;box-shadow:0 0 40px rgba(255,200,60,.45)!important}
