@@ -2856,23 +2856,23 @@
       "status": "sent",
       "scripted_at": "2026-11-08T11:09:57+07:00",
       "error": "",
-      "render_started_at": "2026-11-08T11:10:46+07:00",
-      "sent_at": "2026-11-08T11:14:46+07:00",
+      "render_started_at": "2026-11-09T12:52:12+07:00",
+      "sent_at": "2026-11-09T12:56:55+07:00",
       "rendered_at": "2026-11-08T11:14:46+07:00",
-      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/42445688249",
-      "duration": 45.93,
-      "size_mb": 12.9,
-      "render_seconds": 226,
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/42569677167",
+      "duration": 36.83,
+      "size_mb": 11.1,
+      "render_seconds": 270,
       "voice": "kiri:Vannak",
       "music": "adsbox-original-1.mp3",
       "style": "custom animation only",
       "visuals": [
-        "story",
+        "question",
         "checklist",
+        "takeaway",
         "chat",
         "delivery",
         "compare",
-        "checklist",
         "cta"
       ],
       "resolution": "1080x1920",
@@ -2883,45 +2883,45 @@
       "stock_footage": "none (removed)",
       "telegram": {
         "ok": true,
-        "message_id": 225,
+        "message_id": 233,
         "chat": "configured",
-        "at": "2026-11-08T11:14:46+07:00",
-        "file_id": "BAACAgUAAxkDAAPhau_3MIGfpqqrdaSDhq70ur40h88AAjwlAAL6-IBXjkD4gH3E7VU9BA",
+        "at": "2026-11-09T12:56:55+07:00",
+        "file_id": "BAACAgUAAxkDAAPpavFgoeFDkvSaIVcnC0viK2ju7FYAAoomAAL6-IhXdV43tZXaopI9BA",
         "items": [
           {
             "item": "video",
-            "message_id": 225,
+            "message_id": 233,
             "file_name": "stop-customers-refusing-parcels.mp4",
-            "file_size": 12884284,
+            "file_size": 11066148,
             "width": 1080,
             "height": 1920,
-            "file_id": "BAACAgUAAxkDAAPhau_3MIGfpqqrdaSDhq70ur40h88AAjwlAAL6-IBXjkD4gH3E7VU9BA"
+            "file_id": "BAACAgUAAxkDAAPpavFgoeFDkvSaIVcnC0viK2ju7FYAAoomAAL6-IhXdV43tZXaopI9BA"
           },
           {
             "item": "facebook_caption",
-            "message_id": 226
+            "message_id": 234
           },
           {
             "item": "thumbnail",
-            "message_id": 227,
+            "message_id": 235,
             "file_name": "stop-customers-refusing-parcels-thumbnail.jpg",
-            "file_size": 293244
+            "file_size": 194846
           }
         ],
         "sent_count": 3,
         "local_sizes": {
-          "video": 12884284,
-          "thumbnail": 293244
+          "video": 11066148,
+          "thumbnail": 194846
         }
       },
       "speech_match": [
-        0.989,
-        0.986,
-        0.988,
-        0.985,
+        0.984,
+        0.977,
+        1,
         0.983,
-        0.986,
-        1
+        0.984,
+        1,
+        0.99
       ],
       "scene_sync": [
         "transcript",
@@ -2935,15 +2935,15 @@
       "archive": {
         "assets": [
           {
-            "id": 722850330,
+            "id": 726399127,
             "name": "stop-customers-refusing-parcels-thumb.jpg",
-            "size": 293244,
+            "size": 194846,
             "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/stop-customers-refusing-parcels-thumb.jpg"
           },
           {
-            "id": 722850333,
+            "id": 726399126,
             "name": "stop-customers-refusing-parcels.mp4",
-            "size": 12884284,
+            "size": 11066148,
             "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/stop-customers-refusing-parcels.mp4"
           }
         ],
@@ -2953,20 +2953,20 @@
         "width": 1080,
         "height": 1920,
         "fps": "30/1",
-        "duration": 45.93,
+        "duration": 36.83,
         "video_codec": "h264",
         "audio_codec": "aac",
-        "loudness": "-13.3 LUFS",
+        "loudness": "-13.4 LUFS",
         "decode_errors": false,
         "visual_mix": {
-          "motion_graphics": 0.71,
-          "phone_chat": 0.18,
-          "illustrated": 0.11,
+          "motion_graphics": 0.74,
+          "phone_chat": 0.26,
+          "illustrated": 0,
           "product_dashboard": 0
         }
       },
       "article_id": "stop-customers-refusing-parcels",
-      "video_id": 722850333,
+      "video_id": 726399126,
       "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/stop-customers-refusing-parcels.mp4",
       "created_at": "2026-11-08T11:14:46+07:00",
       "telegram_status": "delivered",
