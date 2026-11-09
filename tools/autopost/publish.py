@@ -124,6 +124,17 @@ def validate(d, brief, s, existing=None, history=None):
         if title and t and C.similarity(title, t) >= 0.55: errs.append(f"duplicate: title too similar to an existing article: {t}")
         if pk and k and dt >= cut and C.norm(pk) == C.norm(k): errs.append(f"duplicate: primary keyword '{pk}' was used in the last 21 days ({t})")
         if body and b and len(b) > 400 and C.similarity(body, b, 5) >= 0.35: errs.append(f"duplicate: body too similar to: {t}")
+    # New topic every day (owner, 9 Nov 2026): not the same subject as an article from the last 7 days.
+    week = (datetime.date.fromisoformat(brief["date"]) - datetime.timedelta(days=7)).isoformat()
+    kws = {C.norm(k) for k in (d.get("keywords") or []) + [pk] if str(k).strip()}
+    for x in existing:
+        if x["date"] < week or x.get("slug") == d.get("slug"):
+            continue
+        other = {C.norm(k) for k in (x.get("keywords") or []) + [x.get("primary_keyword", "")] if str(k).strip()}
+        if kws and other and len(kws & other) / max(1, min(len(kws), len(other))) >= 0.4:
+            errs.append(f"same topic: keywords overlap with '{x['title']}' ({x['date']}); choose a different subject this week")
+        if body and len(x["body"]) > 400 and C.similarity(body, x["summary"] + " " + x["body"], 5) >= 0.25:
+            errs.append(f"same topic: too close to '{x['title']}' ({x['date']}); choose a different subject this week")
     return sorted(set(errs), key=errs.index)
 
 

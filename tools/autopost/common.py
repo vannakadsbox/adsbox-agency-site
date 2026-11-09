@@ -85,7 +85,8 @@ def existing_articles():
         d = fm.get("date"); d = d.isoformat()[:10] if hasattr(d, "isoformat") else str(d or "")[:10]
         out.append({"slug": name[:-3], "title": str(fm.get("title") or ""), "date": d, "tag": str(fm.get("tag") or ""),
                     "category": str(fm.get("category") or ""), "primary_keyword": str(fm.get("primary_keyword") or ""),
-                    "summary": str(fm.get("summary") or ""), "body": body})
+                    "summary": str(fm.get("summary") or ""), "body": body,
+                    "keywords": [str(k) for k in (fm.get("keywords") or []) if k] if isinstance(fm.get("keywords"), list) else []})
     return sorted(out, key=lambda a: a["date"], reverse=True)
 
 

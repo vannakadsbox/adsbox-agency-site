@@ -21,6 +21,7 @@ RULES = [
     "State only facts about ADS BOX that appear in 'facts'. No other prices, discounts, packages, client counts, statistics or features. If unsure, leave ADS BOX out.",
     "Examples must be clearly illustrative (\"ឧទាហរណ៍\" / a sample shop) with no real business or person names, and no claims that ADS BOX achieved a result for anyone.",
     "Never promise or guarantee orders, sales or results. Never give advice that breaks Facebook or TikTok rules (fake accounts, fake likes or comments, buying accounts).",
+    "NEW TOPIC EVERY DAY (owner, 9 Nov 2026): the seller problem and the main advice must be clearly different from every article in 'last_7_days' (not the same subject in other words). E.g. if a recent article was about boost spend vs orders, messages vs orders or daily numbers, do not write about counting, measuring or reporting boost results again this week. Mention a shared event (like 11.11) in at most one article every few days, not every day.",
     "Do not repeat a title, angle or main advice from 'recent_titles'. Choose a clearly different angle; the suggested angle is a starting point.",
     "STYLE (owner, 5 Nov 2026): talk like an experienced consultant chatting with a seller, in plain everyday Khmer that is understood on first reading (no bookish or figurative phrases; «បងៗ» is welcome). Open with a situation the seller recognises, often as a question. Clothes are counted with «ឈុត», never «ដុំ».",
     "VARY THE FORMAT: most recent titles use '៥ គន្លឹះ…' or '៥ ជំហាន…'. Look at 'recent_titles' and pick a different shape when that pattern dominates: a myth vs truth, a before/after, a short story of a sample shop, a 'do this, not that', a checklist before an event, a question sellers often ask, or a common mistake. Numbers in titles are fine, just not every time.",
@@ -44,6 +45,14 @@ SCHEMA = {
     "image_alt": "Khmer description of that featured image, 10-150 characters",
     "body": "the article in Markdown: paragraphs, '## ' headings, '-' or '1.' lists, **bold**, [links](/#services). No '# ' heading (the title is shown separately)."
 }
+
+
+def read_json_safe(p):
+    try:
+        with open(p, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:  # noqa: BLE001
+        return {}
 
 
 def read(p):
@@ -131,6 +140,11 @@ def main():
                       else "Evening: marketing and business improvement (ads, Live, budget, analytics, operations, team, ADS BOX).",
         "must_differ_from_today": other and {"title": other.get("title"), "category": other.get("category")},
         "recent_titles": recent,
+        "last_7_days": [{"date": x["date"], "title": x["title"], "primary_keyword": x.get("primary_keyword", ""), "summary": x.get("summary", "")}
+                        for x in arts if x["date"] >= (datetime.date.fromisoformat(date) - datetime.timedelta(days=7)).isoformat()]
+                       + [{"date": str(v.get("sent_at", ""))[:10], "title": v.get("title") or v.get("video_title") or v.get("slug"), "video": True}
+                          for v in (read_json_safe(os.path.join(C.ROOT, "videos", "log.json")).get("videos") or [])
+                          if str(v.get("sent_at", ""))[:10] >= (datetime.date.fromisoformat(date) - datetime.timedelta(days=7)).isoformat()],
         "related_articles": related,
         "facts": read(os.path.join(C.AUTO, "facts.md")),
         "rules": [r.format(min_k=s["min_khmer_chars"], max_k=s["max_khmer_chars"]) for r in RULES] + ([camp["rule"]] if camp else []),
