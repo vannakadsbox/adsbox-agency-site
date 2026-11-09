@@ -1,0 +1,23 @@
+# Read-only: is adsbox.agency reachable from outside? DNS records, HTTPS response, GitHub Pages settings.
+name: Site check
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - run: |
+          for h in adsbox.agency www.adsbox.agency; do
+            echo "::notice::DNS $h A: $(dig +short A $h | tr '\n' ' ') | AAAA: $(dig +short AAAA $h | tr '\n' ' ') | CNAME: $(dig +short CNAME $h | tr '\n' ' ') | NS: $(dig +short NS adsbox.agency | tr '\n' ' ')"
+            echo "::notice::HTTPS $h: $(curl -sS -o /dev/null -m 20 -w '%{http_code} %{remote_ip} %{ssl_verify_result}' https://$h/ 2>&1 | tail -c 300)"
+            echo "::notice::HTTP $h: $(curl -sS -o /dev/null -m 20 -w '%{http_code} -> %{redirect_url}' http://$h/ 2>&1 | tail -c 300)"
+          done
+          echo "::notice::github.io: $(curl -sS -o /dev/null -m 20 -w '%{http_code} -> %{redirect_url}' https://vannakadsbox.github.io/adsbox-agency-site/ 2>&1 | tail -c 300)"
+          echo "::notice::Pages: $(gh api repos/${{ github.repository }}/pages --jq '{status,cname,https_enforced,cert:.https_certificate.state,build_type}' 2>&1 | tail -c 400)"
+          echo "::notice::WHOIS: $(whois adsbox.agency 2>/dev/null | grep -iE 'expir|status|name server' | head -6 | tr '\n' ' ' | tail -c 600)"
