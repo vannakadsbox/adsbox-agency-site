@@ -1,0 +1,25 @@
+{
+  "slug": "boost-rejected-what-to-check",
+  "video_title": "ចុច Boost ហើយ ជាប់ Rejected? កុំទាន់បង្កើតផេកថ្មី!",
+  "topic": "Boost ត្រូវ Facebook បដិសេធ (Rejected)៖ អានមូលហេតុ ពិនិត្យពាក្យ និងរូប កែឲ្យត្រូវ ហើយស្នើពិនិត្យឡើងវិញ មិនមែនបង្កើតផេកថ្មីដើម្បីគេចទេ។",
+  "thumbnail_text": "Boost ជាប់ Rejected?",
+  "description": "ចុច Boost ហើយជាប់ Rejected?\nអានមូលហេតុ កែពាក្យ និងរូប ហើយស្នើពិនិត្យឡើងវិញ។\n#BoostPost #FacebookAds #ADSBOX",
+  "facebook_caption": "ចុច Boost ហើយ Facebook ថា Rejected? 😩\n\nកុំទាន់បង្កើតផេកថ្មីគេច! ធ្វើបែបនេះវិញ 👇\n\n✅ អានមូលហេតុដែល Facebook ប្រាប់\n✅ កុំសួរពីរូបរាងភ្ញៀវ ដូចជា «ធាត់មែនទេ?»\n✅ កុំសន្យាលទ្ធផលហួស ឬដាក់រូបមុន/ក្រោយ\n✅ កែរួច ចុច Request Review\n\nបងធ្លាប់ជាប់ Rejected ដោយសារអ្វី? Comment ប្រាប់យើងផង 👇\n\n#ADSBOX #BoostPost #FacebookAds #OnlineSeller",
+  "scenes": [
+    {"role": "hook", "lines": ["ចុច Boost ហើយ", "ជាប់ Rejected ទៀតហើយ!"],
+     "visual": {"type": "question", "title": "Rejected ទៀតហើយ!", "bubbles": ["ហេតុអី?", "ផេកខូចហើយ?", "បង្កើតផេកថ្មី?"]}},
+    {"role": "problem", "label": "កុំធ្វើ", "keyword": "កុំបង្កើតផេកថ្មីគេច", "lines": ["អ្នកលក់ខ្លះ", "បង្កើតផេកថ្មីដើម្បីគេច", "តែរឿងនេះអាចធ្វើឲ្យជាប់ធ្ងន់ជាងមុន។"],
+     "visual": {"type": "compare", "bad": "បង្កើតផេកថ្មីគេច", "good": "កែ Post ឲ្យត្រូវ"}},
+    {"role": "problem", "label": "សំណួរ", "keyword": "ហេតុអីជាប់?", "lines": ["តែបងធ្លាប់ឆ្ងល់អត់?", "ហេតុអី Post ខ្លះ Boost ចេញភ្លាម", "តែ Post ខ្លះជាប់រហូត?"],
+     "visual": {"type": "takeaway", "quote": "ហេតុអី Post ខ្លះជាប់ Rejected រហូត?"}},
+    {"role": "tip", "label": "ទីមួយ", "keyword": "អានមូលហេតុ", "lines": ["ទីមួយ អានមូលហេតុ", "ដែល Facebook ប្រាប់សិន", "វាប្រាប់ថាជាប់ដោយសារពាក្យ ឬរូបណា។"],
+     "visual": {"type": "checklist", "items": ["អានមូលហេតុ", "មើលពាក្យណាខុស", "មើលរូបណាខុស"]}},
+    {"role": "tip", "label": "ទីពីរ", "keyword": "កុំសួរពីរូបរាងភ្ញៀវ", "lines": ["ទីពីរ កុំសរសេរសួរពីរូបរាងភ្ញៀវ", "ដូចជា ធាត់មែនទេ? មុខមានមុនមែនទេ?", "ហើយកុំសន្យាលទ្ធផលហួស។"],
+     "visual": {"type": "compare", "bad": "បងធាត់មែនទេ?", "good": "អាវពាក់ស្រួល គ្រប់ទំហំ"}},
+    {"role": "tip", "label": "ទីបី", "keyword": "Request Review", "lines": ["ទីបី កែឲ្យត្រូវ", "រួចចុចស្នើឲ្យពិនិត្យឡើងវិញ", "ជាធម្មតា Post ដែលកែត្រូវ នឹងឆ្លងកាត់។"],
+     "visual": {"type": "flow", "steps": [{"label": "១", "text": "អានមូលហេតុ"}, {"label": "២", "text": "កែពាក្យ និងរូប"}, {"label": "៣", "text": "Request Review"}]}},
+    {"role": "cta", "lines": ["បងធ្លាប់ជាប់ Rejected ដោយសារអ្វី?", "Comment ប្រាប់យើងផង", "ហើយ Follow ADS BOX។"],
+     "visual": {"type": "cta", "services": ["Boost Post", "Boost Live", "Boost TikTok"]}}
+  ],
+  "written_at": "2026-11-09T17:45:00+07:00"
+}
