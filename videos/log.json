@@ -2987,9 +2987,127 @@
       "article_url": "https://adsbox.agency/knowledge/daily-spend-and-order-report/",
       "video_title": "Boost ចាយ $15 បាន Order តែ ៣ គួរបិទចោលទេ? មើលលេខរាល់ថ្ងៃសិន",
       "hook": "ថ្ងៃនេះ Boost ចាយ $15 បាន Order តែ ៣ ប៉ុណ្ណោះ។ គួរបិទ Boost ចោលទាំងអស់ទេ?",
-      "status": "scripted",
+      "status": "sent",
       "scripted_at": "2026-11-09T07:24:41+07:00",
-      "error": ""
+      "error": "",
+      "render_started_at": "2026-11-09T07:25:25+07:00",
+      "sent_at": "2026-11-09T07:30:02+07:00",
+      "rendered_at": "2026-11-09T07:30:02+07:00",
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/42540034373",
+      "duration": 62.03,
+      "size_mb": 15.9,
+      "render_seconds": 262,
+      "voice": "kiri:Vannak",
+      "music": "adsbox-original-1.mp3",
+      "style": "custom animation only",
+      "visuals": [
+        "story",
+        "dashboard",
+        "flow",
+        "orders",
+        "compare",
+        "checklist",
+        "takeaway",
+        "cta"
+      ],
+      "resolution": "1080x1920",
+      "fps": 30,
+      "subtitle_sync": "transcript",
+      "footage": [],
+      "footage_share": 0,
+      "stock_footage": "none (removed)",
+      "telegram": {
+        "ok": true,
+        "message_id": 230,
+        "chat": "configured",
+        "at": "2026-11-09T07:30:02+07:00",
+        "file_id": "BAACAgUAAxkDAAPmavEUA0HJd6jiyaRgmpotgyc4UjkAAtUlAAL6-IhXvcMScKhwod49BA",
+        "items": [
+          {
+            "item": "video",
+            "message_id": 230,
+            "file_name": "daily-spend-and-order-report.mp4",
+            "file_size": 15910806,
+            "width": 1080,
+            "height": 1920,
+            "file_id": "BAACAgUAAxkDAAPmavEUA0HJd6jiyaRgmpotgyc4UjkAAtUlAAL6-IhXvcMScKhwod49BA"
+          },
+          {
+            "item": "facebook_caption",
+            "message_id": 231
+          },
+          {
+            "item": "thumbnail",
+            "message_id": 232,
+            "file_name": "daily-spend-and-order-report-thumbnail.jpg",
+            "file_size": 273376
+          }
+        ],
+        "sent_count": 3,
+        "local_sizes": {
+          "video": 15910806,
+          "thumbnail": 273376
+        }
+      },
+      "speech_match": [
+        0.964,
+        0.993,
+        1,
+        0.978,
+        0.993,
+        1,
+        0.95,
+        0.944
+      ],
+      "scene_sync": [
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript"
+      ],
+      "archive": {
+        "assets": [
+          {
+            "id": 725667596,
+            "name": "daily-spend-and-order-report-thumb.jpg",
+            "size": 273376,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/daily-spend-and-order-report-thumb.jpg"
+          },
+          {
+            "id": 725667597,
+            "name": "daily-spend-and-order-report.mp4",
+            "size": 15910806,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/daily-spend-and-order-report.mp4"
+          }
+        ],
+        "release_id": 430382508
+      },
+      "quality": {
+        "width": 1080,
+        "height": 1920,
+        "fps": "30/1",
+        "duration": 62.03,
+        "video_codec": "h264",
+        "audio_codec": "aac",
+        "loudness": "-13.2 LUFS",
+        "decode_errors": false,
+        "visual_mix": {
+          "motion_graphics": 0.58,
+          "phone_chat": 0,
+          "illustrated": 0.1,
+          "product_dashboard": 0.31
+        }
+      },
+      "article_id": "daily-spend-and-order-report",
+      "video_id": 725667597,
+      "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/daily-spend-and-order-report.mp4",
+      "created_at": "2026-11-09T07:30:02+07:00",
+      "telegram_status": "delivered",
+      "production_status": "complete"
     }
   ]
 }
