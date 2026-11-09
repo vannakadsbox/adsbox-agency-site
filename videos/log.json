@@ -2980,6 +2980,16 @@
         "status": "ready",
         "cover": "set"
       }
+    },
+    {
+      "slug": "daily-spend-and-order-report",
+      "article_title": "Boost ចាយលុយរាល់ថ្ងៃ តែបាន Order ប៉ុន្មាន? អានរបាយការណ៍ប្រចាំថ្ងៃមុន 11.11",
+      "article_url": "https://adsbox.agency/knowledge/daily-spend-and-order-report/",
+      "video_title": "Boost ចាយ $15 បាន Order តែ ៣ គួរបិទចោលទេ? មើលលេខរាល់ថ្ងៃសិន",
+      "hook": "ថ្ងៃនេះ Boost ចាយ $15 បាន Order តែ ៣ ប៉ុណ្ណោះ។ គួរបិទ Boost ចោលទាំងអស់ទេ?",
+      "status": "scripted",
+      "scripted_at": "2026-11-09T07:24:41+07:00",
+      "error": ""
     }
   ]
 }

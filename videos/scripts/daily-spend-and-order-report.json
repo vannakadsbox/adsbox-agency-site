@@ -1,0 +1,179 @@
+{
+  "slug": "daily-spend-and-order-report",
+  "video_title": "Boost ចាយ $15 បាន Order តែ ៣ គួរបិទចោលទេ? មើលលេខរាល់ថ្ងៃសិន",
+  "topic": "កត់លុយចាយ Boost និងចំនួន Order រាល់ព្រឹក ដើម្បីដឹងថាចំណេញ ឬខាត មុន 11.11 ហើយដឹងថាពេលណាត្រូវកែ។",
+  "thumbnail_text": "Order តិចមួយថ្ងៃ គួរបិទ Boost ទេ?",
+  "description": "ចាយ Boost រាល់ថ្ងៃ តែដឹងទេថាបាន Order ប៉ុន្មាន?\nកត់លេខពីរ រាល់ព្រឹក ៥ នាទី មុន 11.11 ចូលមក។\nបងៗកត់ដោយរបៀបណា? Comment ប្រាប់ផង។\n#ADSBOX #Boost #លក់អនឡាញ #1111",
+  "facebook_caption": "😟 ថ្ងៃនេះ Boost ចាយលុយ តែបាន Order តិច គួរបិទចោលទេ?\n\nមុនសម្រេចចិត្ត សាកធ្វើបែបនេះសិន៖\n✅ កត់លុយចាយ និង Order រាល់ព្រឹក\n✅ យកលុយចាយ ចែកនឹងចំនួន Order\n✅ ធ្លាក់ពីរថ្ងៃជាប់ ទើបកែ\n✅ មើល Post ការឆ្លើយសារ និង Boost មុន\n\nតែ ៥ នាទីមួយព្រឹក ដឹងថាចំណេញ ឬខាត មុន 11.11 ចប់។\n\nបងៗកត់លេខ Boost និង Order ដោយរបៀបណា? Comment ប្រាប់យើងផង 👇\n\n#ADSBOX #Boost #លក់អនឡាញ #1111",
+  "scenes": [
+    {
+      "role": "hook",
+      "lines": [
+        "ថ្ងៃនេះ Boost ចាយ $15",
+        "បាន Order តែ ៣ ប៉ុណ្ណោះ។",
+        "គួរបិទ Boost ចោលទាំងអស់ទេ?"
+      ],
+      "keyword": "បិទ Boost ចោលទេ?",
+      "visual": {
+        "type": "story",
+        "scene": "desk",
+        "mood": "worried",
+        "title": "ចាយ $15 បាន ៣ Order",
+        "bubbles": [
+          "ចាយ $15",
+          "បាន ៣ Order",
+          "បិទចោលទេ?"
+        ]
+      }
+    },
+    {
+      "role": "problem",
+      "lines": [
+        "ជិត 11.11 ហាងច្រើនថែមថវិកា Boost។",
+        "បើមិនកត់លេខរាល់ថ្ងៃ",
+        "ដឹងថាខាត ពេល Promotion ចប់ហើយ។"
+      ],
+      "keyword": "ដឹងថាខាត ពេលយឺត",
+      "visual": {
+        "type": "dashboard",
+        "title": "Boost ម្សិលមិញ (ឧទាហរណ៍)",
+        "metrics": [
+          {
+            "label": "លុយចាយ",
+            "value": "$15"
+          },
+          {
+            "label": "Order",
+            "value": "?"
+          },
+          {
+            "label": "មួយ Order",
+            "value": "?"
+          }
+        ],
+        "alert": "មិនដឹងថាចំណេញ ឬខាត"
+      }
+    },
+    {
+      "role": "tip",
+      "label": "គន្លឹះទី ១",
+      "lines": [
+        "កត់តែលេខពីរ រៀងរាល់ព្រឹក។",
+        "ម្សិលមិញចាយប៉ុន្មាន បាន Order ប៉ុន្មាន។",
+        "យកលុយចាយ ចែកនឹងចំនួន Order។"
+      ],
+      "keyword": "លុយចាយ ÷ Order",
+      "visual": {
+        "type": "flow",
+        "steps": [
+          {
+            "label": "១",
+            "text": "លុយចាយ"
+          },
+          {
+            "label": "២",
+            "text": "ចំនួន Order"
+          },
+          {
+            "label": "៣",
+            "text": "ចែក = មួយ Order ប៉ុន្មាន"
+          }
+        ]
+      }
+    },
+    {
+      "role": "example",
+      "lines": [
+        "ឧទាហរណ៍ ហាងខោអាវមួយ ចាយ $15 រាល់ថ្ងៃ។",
+        "ថ្ងៃទី១ បាន ១០ Order ថ្ងៃទី២ បាន ៨។",
+        "មានតែថ្ងៃទី៣ ទេ ដែលបានតែ ៣។"
+      ],
+      "visual": {
+        "type": "orders",
+        "title": "ឧទាហរណ៍ (លេខគំរូ)",
+        "rows": [
+          {
+            "name": "ថ្ងៃទី១",
+            "code": "$15",
+            "qty": "១០ Order"
+          },
+          {
+            "name": "ថ្ងៃទី២",
+            "code": "$15",
+            "qty": "៨ Order"
+          },
+          {
+            "name": "ថ្ងៃទី៣",
+            "code": "$15",
+            "qty": "៣ Order"
+          }
+        ]
+      }
+    },
+    {
+      "role": "tip",
+      "label": "គន្លឹះទី ២",
+      "lines": [
+        "លេខធ្លាក់តែមួយថ្ងៃ កុំបិទ Boost ភ្លាម។",
+        "ធ្លាក់ពីរថ្ងៃជាប់គ្នា",
+        "ទើបកែ Post ឬកាត់ថវិកា។"
+      ],
+      "keyword": "ធ្លាក់ ២ ថ្ងៃ ទើបកែ",
+      "visual": {
+        "type": "compare",
+        "bad": "ធ្លាក់មួយថ្ងៃ បិទ Boost ចោល",
+        "good": "ធ្លាក់ពីរថ្ងៃជាប់ ទើបកែ"
+      }
+    },
+    {
+      "role": "tip",
+      "label": "គន្លឹះទី ៣",
+      "lines": [
+        "រកមូលហេតុសិន៖ Post ប្ដូររូបថ្មីទេ?",
+        "សារចូលច្រើន តែឆ្លើយយឺតទេ?",
+        "ហើយ Boost នៅដើរធម្មតាទេ?"
+      ],
+      "keyword": "រកមូលហេតុសិន",
+      "visual": {
+        "type": "checklist",
+        "items": [
+          "Post ប្ដូររូបថ្មីទេ?",
+          "ឆ្លើយសារយឺតទេ?",
+          "Boost នៅដើរទេ?"
+        ]
+      }
+    },
+    {
+      "role": "summary",
+      "lines": [
+        "មុន 11.11 កំណត់ទុកថា",
+        "មួយ Order ចាយបានច្រើនបំផុតប៉ុន្មាន។"
+      ],
+      "visual": {
+        "type": "takeaway",
+        "quote": "មើល Order រាល់ថ្ងៃ មិនមែនមើលតែ Like"
+      }
+    },
+    {
+      "role": "cta",
+      "lines": [
+        "ចង់បានរបាយការណ៍នេះរាល់ថ្ងៃ មើល ADS BOX",
+        "នៅ adsbox.agency។ ចុះបងៗកត់លេខរបៀបណា?",
+        "Comment ប្រាប់ផង។"
+      ],
+      "visual": {
+        "type": "cta",
+        "services": [
+          "Boost Post",
+          "Boost Live",
+          "ADS BOX System"
+        ]
+      }
+    }
+  ],
+  "article": {
+    "title": "Boost ចាយលុយរាល់ថ្ងៃ តែបាន Order ប៉ុន្មាន? អានរបាយការណ៍ប្រចាំថ្ងៃមុន 11.11",
+    "url": "https://adsbox.agency/knowledge/daily-spend-and-order-report/"
+  },
+  "written_at": "2026-11-09T07:24:41+07:00"
+}
