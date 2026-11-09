@@ -101,7 +101,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": true,
     "discount": 0,
-    "updated": "2026-11-08"
+    "updated": "2026-11-09"
    },
    {
     "name": "24MerlTos",
@@ -150,13 +150,13 @@ window.ACCOUNTS = {
    {
     "name": "មើលរឿងបកប្រែAi",
     "url": "https://www.facebook.com/profile.php?id=61593965015950",
-    "followers": 79,
+    "followers": 90,
     "picture": "assets/accounts/fb-61593965015950.webp",
     "cover": "assets/opt/adsbox-cover-168a39-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-08"
+    "updated": "2026-11-09"
    },
    {
     "name": "Aiសម្រាយកុន",
@@ -172,13 +172,13 @@ window.ACCOUNTS = {
    {
     "name": "អ្នកផុសរឿងAi",
     "url": "https://www.facebook.com/profile.php?id=61593831312583",
-    "followers": 4164,
+    "followers": 4165,
     "picture": "assets/accounts/fb-61593831312583.webp",
     "cover": "assets/opt/adsbox-cover-919002-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-08"
+    "updated": "2026-11-09"
    },
    {
     "name": "TVMovie",
@@ -216,13 +216,13 @@ window.ACCOUNTS = {
    {
     "name": "Nito H Lim-ហ៊ា នីតូTopFan",
     "url": "https://www.facebook.com/profile.php?id=61592119824989",
-    "followers": 11336,
+    "followers": 11329,
     "picture": "assets/accounts/fb-61592119824989.webp",
     "cover": "assets/opt/adsbox-cover-e5c98d-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-08"
+    "updated": "2026-11-09"
    },
    {
     "name": "Thorn Saroeun",
@@ -269,15 +269,15 @@ window.ACCOUNTS = {
     "updated": "2026-11-07"
    },
    {
-    "name": "យឹម អេង",
+    "name": "NixKa Online Shop",
     "url": "https://www.facebook.com/profile.php?id=61580042356068",
-    "followers": 12405,
+    "followers": 12407,
     "picture": "assets/accounts/fb-61580042356068.webp",
     "cover": "assets/accounts/fb-61580042356068-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-08"
+    "updated": "2026-11-09"
    },
    {
     "name": "សាន សុភ័ក្រ",
@@ -337,13 +337,13 @@ window.ACCOUNTS = {
    {
     "name": "Amazing DN28",
     "url": "https://www.facebook.com/profile.php?id=100067947746179",
-    "followers": 1880,
+    "followers": 1881,
     "picture": "assets/accounts/fb-100067947746179.webp",
     "cover": "assets/accounts/fb-100067947746179-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-08"
+    "updated": "2026-11-09"
    },
    {
     "name": "Amazing DN29",
@@ -376,7 +376,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-08"
+    "updated": "2026-11-09"
    },
    {
     "name": "Content 4U",
@@ -698,15 +698,15 @@ window.ACCOUNTS = {
     "updated": "2026-11-07"
    },
    {
-    "name": "យឹម អេង",
+    "name": "NixKa Online Shop",
     "url": "https://www.facebook.com/profile.php?id=61580042356068&sk=reels_tab",
-    "followers": 12405,
+    "followers": 12407,
     "picture": "assets/accounts/fb-61580042356068.webp",
     "cover": "assets/opt/adsbox-cover-a69ac9-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-08"
+    "updated": "2026-11-09"
    },
    {
     "name": "U Drama",
@@ -767,7 +767,7 @@ window.ACCOUNTS = {
     "type": "",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-08"
+    "updated": "2026-11-09"
    },
    {
     "name": "sombunthoeun24",
@@ -778,7 +778,7 @@ window.ACCOUNTS = {
     "type": "",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-08"
+    "updated": "2026-11-09"
    },
    {
     "name": "sotheakanha08",
@@ -789,7 +789,7 @@ window.ACCOUNTS = {
     "type": "",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-08"
+    "updated": "2026-11-09"
    }
   ]
  }
