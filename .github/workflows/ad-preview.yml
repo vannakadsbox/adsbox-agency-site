@@ -1,0 +1,29 @@
+name: Ad preview assets
+# Voice (Kiri) and AI seller photos for an ad preview; the files go to the private draft release "video-archive"
+# as <slug>-preview-assets.zip. Nothing is posted anywhere.
+on:
+  workflow_dispatch:
+    inputs:
+      ad:
+        description: "Ad file in videos/ads (without .json)"
+        default: boost-live-ad
+permissions:
+  contents: write
+jobs:
+  assets:
+    runs-on: ubuntu-latest
+    env:
+      KIRI_API_KEY: ${{ secrets.KIRI_API_KEY }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CF_AI_TOKEN: ${{ secrets.CF_AI_TOKEN }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: sudo apt-get update -q && sudo apt-get install -y -q ffmpeg && pip install -q "edge-tts>=7.0"
+      - run: python3 tools/reel/ad_preview.py "videos/ads/${{ github.event.inputs.ad }}.json" out
+      - run: |
+          cd out && zip -q "../${{ github.event.inputs.ad }}-preview-assets.zip" * && cd ..
+          gh release upload video-archive "${{ github.event.inputs.ad }}-preview-assets.zip" --clobber

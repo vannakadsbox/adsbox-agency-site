@@ -1,0 +1,19 @@
+{
+  "slug": "boost-live-ad",
+  "voice": "Vannak",
+  "instruction": "Warm confident Cambodian consultant, friendly, clear, medium-quick pace, natural pauses",
+  "note": "Preview (animatic) of the Boost Live ad. Host scenes use the locked ADS BOX AI Host still (kept out of this public repo); seller scenes use AI photos.",
+  "seller": "a Cambodian woman about 27 with shoulder-length black hair in a low ponytail, cream short-sleeve blouse, small gold stud earrings, in a small home live-selling corner with a clothing rack, a ring light and a phone on a tripod, warm evening light",
+  "scenes": [
+    {"id": 1, "who": "seller", "text": "បងៗ Boost Live រាល់ថ្ងៃ… តែចុងខែ ហេតុអីអត់សល់លុយ?", "photo": "close-up of SELLER at night looking down at her phone with a worried frown, phone glow on her face, ring light blurred behind, phone screen facing away"},
+    {"id": 2, "who": "seller", "text": "អ្នកមើលចូលច្រើន… Comment ក៏មាន…", "photo": "medium shot of SELLER smiling and talking to a phone on a tripod, holding up a folded pastel blouse toward it"},
+    {"id": 3, "who": "seller", "text": "តែ Comment ចូលលឿនពេក ឆ្លើយមិនទាន់… ភ្ញៀវរង់ចាំយូរ ក៏ទៅផេកគេ។", "photo": "SELLER looking overwhelmed between two smartphones, one on a tripod and one in her hand, biting her lip"},
+    {"id": 4, "who": "host", "text": "តែបងធ្លាប់ឆ្ងល់អត់? Order មួយ បងចំណាយលុយ Boost អស់ប៉ុន្មាន?"},
+    {"id": 5, "who": "host", "text": "ឧទាហរណ៍ លេខគំរូ៖ Boost ម្ភៃដុល្លារ បាន Order ប្រាំ។ ចំណេញមួយឈុត បីដុល្លារ… បានតែដប់ប្រាំ។ ខាតប្រាំដុល្លារ ទាំងដែលលក់ដាច់!"},
+    {"id": 6, "who": "host", "text": "ADS BOX ជួយ Boost ពេលកំពុងឡាយ ឲ្យត្រូវគោលដៅ។"},
+    {"id": 7, "who": "host", "text": "មានរបាយការណ៍លុយ និង Order រាល់ថ្ងៃ បងដឹងភ្លាមថា ចំណេញ ឬខាត។"},
+    {"id": 8, "who": "seller", "text": "ហើយ ADS BOX System ចាប់ Order ពី Comment ឲ្យ មិនឲ្យភ្ញៀវធ្លាក់បាត់។", "photo": "SELLER calm and smiling at the phone on the tripod while a small white thermal label printer on the wooden table prints a blank label"},
+    {"id": 9, "who": "seller", "text": "បងគ្រាន់តែផ្ដោតលើការលក់ ក្រុមយើងតាមដានជាមួយបង។", "photo": "SELLER's hands taping a brown parcel box with a folded pastel blouse inside on a wooden table, she smiles gently"},
+    {"id": 10, "who": "host", "text": "Boost Live ចាប់ពីមួយរយម្ភៃដុល្លារក្នុងមួយខែ។ ផ្ញើ Link ផេកមក Telegram ឲ្យក្រុមយើងមើលមុនថា លុយបងលេចត្រង់ណា!"}
+  ]
+}
