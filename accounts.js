@@ -7,35 +7,35 @@ window.ACCOUNTS = {
    {
     "name": "18Drama",
     "url": "https://www.facebook.com/profile.php?id=61594923069579",
-    "followers": 31,
+    "followers": 37,
     "picture": "assets/accounts/fb-61594923069579.webp",
     "cover": "assets/opt/adsbox-cover-6e5638-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-09"
+    "updated": "2026-11-10"
    },
    {
     "name": "16Drama",
     "url": "https://www.facebook.com/profile.php?id=61594897690891",
-    "followers": 38,
+    "followers": 40,
     "picture": "assets/accounts/fb-61594897690891.webp",
     "cover": "assets/opt/adsbox-cover-330cfe-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-09"
+    "updated": "2026-11-10"
    },
    {
     "name": "31Drama",
     "url": "https://www.facebook.com/profile.php?id=61594894031772",
-    "followers": 31,
+    "followers": 33,
     "picture": "assets/accounts/fb-61594894031772.webp",
     "cover": "assets/opt/adsbox-cover-cbd100-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-09"
+    "updated": "2026-11-10"
    },
    {
     "name": "20Drama",
@@ -46,7 +46,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-09"
+    "updated": "2026-11-10"
    },
    {
     "name": "19Drama",
@@ -57,7 +57,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-09"
+    "updated": "2026-11-10"
    },
    {
     "name": "8Drama",
@@ -68,18 +68,18 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-09"
+    "updated": "2026-11-10"
    },
    {
     "name": "3Drama",
     "url": "https://www.facebook.com/profile.php?id=61594765991841",
-    "followers": 70,
+    "followers": 72,
     "picture": "assets/accounts/fb-61594765991841.webp",
     "cover": "assets/opt/adsbox-cover-0d5afe-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-09"
+    "updated": "2026-11-10"
    },
    {
     "name": "អ្នកមើលកុនAi",
@@ -90,7 +90,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-09"
+    "updated": "2026-11-10"
    },
    {
     "name": "Thon SreyPhors - ថន ស្រីភ័ស",
@@ -106,13 +106,13 @@ window.ACCOUNTS = {
    {
     "name": "24MerlTos",
     "url": "https://www.facebook.com/profile.php?id=61594235184973",
-    "followers": 402,
+    "followers": 408,
     "picture": "assets/accounts/fb-61594235184973.webp",
     "cover": "assets/opt/adsbox-cover-de2e8b-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-08"
+    "updated": "2026-11-10"
    },
    {
     "name": "អេអាយដ្រាម៉ា",
@@ -123,7 +123,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-08"
+    "updated": "2026-11-10"
    },
    {
     "name": "មើលកុនAi",
@@ -134,7 +134,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-08"
+    "updated": "2026-11-10"
    },
    {
     "name": "PostAi",
