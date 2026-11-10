@@ -3244,9 +3244,127 @@
       "article_url": "https://adsbox.agency/knowledge/product-photos-that-sell-before-after/",
       "video_title": "ចាយ Boost ហើយភ្ញៀវសួរតែពណ៌ ហើយស្ងាត់? កែរូបថតមុន និងក្រោយ",
       "hook": "ផុសអាវថ្មី ចាយ Boost ទៀត តែភ្ញៀវសួរតែ «ពណ៌អីខ្លះ?» ហើយស្ងាត់?",
-      "status": "scripted",
+      "status": "sent",
       "scripted_at": "2026-11-10T07:25:02+07:00",
-      "error": ""
+      "error": "",
+      "render_started_at": "2026-11-10T07:25:41+07:00",
+      "sent_at": "2026-11-10T07:29:55+07:00",
+      "rendered_at": "2026-11-10T07:29:55+07:00",
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/42728142174",
+      "duration": 47.33,
+      "size_mb": 13.7,
+      "render_seconds": 241,
+      "voice": "kiri:Vannak",
+      "music": "adsbox-original-1.mp3",
+      "style": "custom animation only",
+      "visuals": [
+        "question",
+        "leaving",
+        "compare",
+        "checklist",
+        "flow",
+        "chat",
+        "takeaway",
+        "cta"
+      ],
+      "resolution": "1080x1920",
+      "fps": 30,
+      "subtitle_sync": "transcript",
+      "footage": [],
+      "footage_share": 0,
+      "stock_footage": "none (removed)",
+      "telegram": {
+        "ok": true,
+        "message_id": 244,
+        "chat": "configured",
+        "at": "2026-11-10T07:29:55+07:00",
+        "file_id": "BAACAgUAAxkDAAP0avJlfqCLx7KTussj4SSUAwXqzfAAAoogAAJB3phXTl3k4w4m_Hw9BA",
+        "items": [
+          {
+            "item": "video",
+            "message_id": 244,
+            "file_name": "product-photos-that-sell-before-after.mp4",
+            "file_size": 13728396,
+            "width": 1080,
+            "height": 1920,
+            "file_id": "BAACAgUAAxkDAAP0avJlfqCLx7KTussj4SSUAwXqzfAAAoogAAJB3phXTl3k4w4m_Hw9BA"
+          },
+          {
+            "item": "facebook_caption",
+            "message_id": 245
+          },
+          {
+            "item": "thumbnail",
+            "message_id": 246,
+            "file_name": "product-photos-that-sell-before-after-thumbnail.jpg",
+            "file_size": 189734
+          }
+        ],
+        "sent_count": 3,
+        "local_sizes": {
+          "video": 13728396,
+          "thumbnail": 189734
+        }
+      },
+      "speech_match": [
+        0.991,
+        0.992,
+        0.993,
+        0.99,
+        0.992,
+        0.99,
+        0.907,
+        0.968
+      ],
+      "scene_sync": [
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript"
+      ],
+      "archive": {
+        "assets": [
+          {
+            "id": 729521775,
+            "name": "product-photos-that-sell-before-after-thumb.jpg",
+            "size": 189734,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/product-photos-that-sell-before-after-thumb.jpg"
+          },
+          {
+            "id": 729521779,
+            "name": "product-photos-that-sell-before-after.mp4",
+            "size": 13728396,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/product-photos-that-sell-before-after.mp4"
+          }
+        ],
+        "release_id": 430382508
+      },
+      "quality": {
+        "width": 1080,
+        "height": 1920,
+        "fps": "30/1",
+        "duration": 47.33,
+        "video_codec": "h264",
+        "audio_codec": "aac",
+        "loudness": "-13.4 LUFS",
+        "decode_errors": false,
+        "visual_mix": {
+          "motion_graphics": 0.67,
+          "phone_chat": 0.22,
+          "illustrated": 0.11,
+          "product_dashboard": 0
+        }
+      },
+      "article_id": "product-photos-that-sell-before-after",
+      "video_id": 729521779,
+      "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/product-photos-that-sell-before-after.mp4",
+      "created_at": "2026-11-10T07:29:55+07:00",
+      "telegram_status": "delivered",
+      "production_status": "complete"
     }
   ]
 }
