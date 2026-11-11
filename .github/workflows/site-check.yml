@@ -25,3 +25,8 @@ jobs:
           for u in https://adsbox.biz/ https://www.adsbox.biz/; do
             echo "::notice::LINK $u: $(curl -sSL -o /tmp/p.html -m 25 -w '%{http_code} final=%{url_effective}' $u 2>&1 | tail -c 300) | title: $(grep -oiE '<title[^>]*>[^<]*' /tmp/p.html 2>/dev/null | head -1 | sed 's/<title[^>]*>//' | tail -c 200) | mentions: $(grep -oiE 'ADS ?BOX|\$ ?29|free|ឥតគិតថ្លៃ|live|messenger|sticker' /tmp/p.html 2>/dev/null | sort | uniq -c | tr '\n' ' ' | tail -c 300)"
           done
+          # Live knowledge pages: title shown and a marker phrase from the current version.
+          for s in cost-per-message-vs-cost-per-order when-to-raise-or-cut-boost-budget daily-spend-and-order-report; do
+            curl -sSL -m 25 -o /tmp/k.html "https://adsbox.agency/knowledge/$s/"
+            echo "::notice::PAGE $s: h1=$(grep -oE '<h1[^>]*>[^<]*' /tmp/k.html | head -1 | sed 's/<h1[^>]*>//' | tail -c 200) | Decision Matrix: $(grep -c 'ADS BOX Decision Matrix' /tmp/k.html)"
+          done
