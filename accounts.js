@@ -156,29 +156,29 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-10"
+    "updated": "2026-11-11"
    },
    {
-    "name": "Drama24h",
+    "name": "RiNa Shop",
     "url": "https://www.facebook.com/profile.php?id=61592794354641",
-    "followers": 8343,
+    "followers": 10643,
     "picture": "assets/accounts/fb-61592794354641.webp",
     "cover": "assets/accounts/fb-61592794354641-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-10"
+    "updated": "2026-11-11"
    },
    {
     "name": "Merl24Drama",
     "url": "https://www.facebook.com/profile.php?id=61592985212544",
-    "followers": 10762,
+    "followers": 10757,
     "picture": "assets/accounts/fb-61592985212544.webp",
     "cover": "assets/accounts/fb-61592985212544-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-10"
+    "updated": "2026-11-11"
    },
    {
     "name": "2Drama",
@@ -189,7 +189,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-10"
+    "updated": "2026-11-11"
    },
    {
     "name": "NNDrama",
@@ -200,7 +200,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-10"
+    "updated": "2026-11-11"
    },
    {
     "name": "OneDrama",
@@ -211,7 +211,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-10"
+    "updated": "2026-11-11"
    },
    {
     "name": "មើលដ្រាម៉ា",
@@ -244,7 +244,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-10"
+    "updated": "2026-11-11"
    },
    {
     "name": "32Drama",
@@ -255,7 +255,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-10"
+    "updated": "2026-11-11"
    },
    {
     "name": "38Drama",
@@ -533,17 +533,6 @@ window.ACCOUNTS = {
     "updated": "2026-11-08"
    },
    {
-    "name": "Merlrg24h",
-    "url": "https://www.facebook.com/profile.php?id=61593372051825",
-    "followers": 4924,
-    "picture": "assets/accounts/fb-61593372051825.webp",
-    "cover": "assets/opt/adsbox-cover-1cdc4c-1565780390.webp",
-    "type": "ផេកខ្មែរ",
-    "sold": false,
-    "discount": 0,
-    "updated": "2026-11-08"
-   },
-   {
     "name": "MerDrama",
     "url": "https://www.facebook.com/profile.php?id=61593165279972",
     "followers": 2056,
@@ -597,17 +586,6 @@ window.ACCOUNTS = {
     "sold": false,
     "discount": 0,
     "updated": "2026-11-07"
-   },
-   {
-    "name": "NixKa Online Shop",
-    "url": "https://www.facebook.com/profile.php?id=61580042356068",
-    "followers": 12406,
-    "picture": "assets/accounts/fb-61580042356068.webp",
-    "cover": "assets/accounts/fb-61580042356068-cover.webp",
-    "type": "ផេកខ្មែរ",
-    "sold": false,
-    "discount": 0,
-    "updated": "2026-11-10"
    },
    {
     "name": "សាន សុភ័ក្រ",
@@ -846,17 +824,6 @@ window.ACCOUNTS = {
     "followers": 33,
     "picture": "assets/accounts/fb-61595188437036.webp",
     "cover": "assets/accounts/fb-61595188437036-cover.webp",
-    "type": "ផេកខ្មែរ",
-    "sold": false,
-    "discount": 0,
-    "updated": "2026-11-04"
-   },
-   {
-    "name": "ជីង យ៉ុងហ្វូ សេវាបោះដុំសម្ររាប់តុបតែងសម្ភារៈពិដានអគារ",
-    "url": "https://www.facebook.com/profile.php?id=61594355044975",
-    "followers": 8043,
-    "picture": "assets/accounts/fb-61594355044975.webp",
-    "cover": "assets/accounts/fb-61594355044975-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
