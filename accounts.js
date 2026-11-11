@@ -24,7 +24,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-10"
+    "updated": "2026-11-11"
    },
    {
     "name": "6M",
@@ -57,7 +57,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-10"
+    "updated": "2026-11-11"
    },
    {
     "name": "44Drama",
@@ -68,7 +68,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-10"
+    "updated": "2026-11-11"
    },
    {
     "name": "40Drama",
@@ -90,7 +90,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-10"
+    "updated": "2026-11-11"
    },
    {
     "name": "45Drama",
@@ -101,7 +101,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-10"
+    "updated": "2026-11-11"
    },
    {
     "name": "កុនសម្រាយAi",
@@ -112,18 +112,18 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-10"
+    "updated": "2026-11-11"
    },
    {
     "name": "U Drama",
     "url": "https://www.facebook.com/profile.php?id=61588652091475",
-    "followers": 12246,
+    "followers": 12242,
     "picture": "assets/accounts/fb-61588652091475.webp",
     "cover": "assets/accounts/fb-61588652091475-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-10"
+    "updated": "2026-11-11"
    },
    {
     "name": "DayDrama",
@@ -145,7 +145,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-10"
+    "updated": "2026-11-11"
    },
    {
     "name": "MovieAi",
@@ -1041,13 +1041,13 @@ window.ACCOUNTS = {
    {
     "name": "U Drama",
     "url": "https://www.facebook.com/profile.php?id=61588652091475&sk=reels_tab",
-    "followers": 12246,
+    "followers": 12242,
     "picture": "assets/accounts/fb-61588652091475.webp",
     "cover": "assets/opt/adsbox-cover-7ff99d-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-10"
+    "updated": "2026-11-11"
    },
    {
     "name": "TV24k",
