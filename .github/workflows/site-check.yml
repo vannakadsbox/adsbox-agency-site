@@ -21,3 +21,7 @@ jobs:
           echo "::notice::github.io: $(curl -sS -o /dev/null -m 20 -w '%{http_code} -> %{redirect_url}' https://vannakadsbox.github.io/adsbox-agency-site/ 2>&1 | tail -c 300)"
           echo "::notice::Pages: $(gh api repos/${{ github.repository }}/pages --jq '{status,cname,https_enforced,cert:.https_certificate.state,build_type}' 2>&1 | tail -c 400)"
           echo "::notice::WHOIS: $(whois adsbox.agency 2>/dev/null | grep -iE 'expir|status|name server' | head -6 | tr '\n' ' ' | tail -c 600)"
+          # ADS BOX System sign-up page linked from articles (owner, 11 Nov 2026: verify before publishing).
+          for u in https://adsbox.biz/ https://www.adsbox.biz/; do
+            echo "::notice::LINK $u: $(curl -sSL -o /tmp/p.html -m 25 -w '%{http_code} final=%{url_effective}' $u 2>&1 | tail -c 300) | title: $(grep -oiE '<title[^>]*>[^<]*' /tmp/p.html 2>/dev/null | head -1 | sed 's/<title[^>]*>//' | tail -c 200) | mentions: $(grep -oiE 'ADS ?BOX|\$ ?29|free|ឥតគិតថ្លៃ|live|messenger|sticker' /tmp/p.html 2>/dev/null | sort | uniq -c | tr '\n' ' ' | tail -c 300)"
+          done
