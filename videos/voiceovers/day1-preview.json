@@ -1,0 +1,60 @@
+{
+ "slug": "day1-preview",
+ "note": "Preview only (owner, 12 Nov 2026): voice for the Day 1 video preview with the new host; nothing is posted.",
+ "voices": {
+  "host": {
+   "voice": "Vannak",
+   "instruction": "Energetic Cambodian storyteller, casual and punchy, quick pace, lively questions"
+  }
+ },
+ "lines": [
+  {
+   "id": "s00",
+   "who": "host",
+   "start": 0,
+   "text": "លក់អាវ 12 ដុល្លារ ថ្លៃដើម 6 ដុល្លារ, បងគិតថាចំណេញ 6 ដុល្លារ មែនទេ?"
+  },
+  {
+   "id": "s01",
+   "who": "host",
+   "start": 0,
+   "text": "តែចុងខែ ហេតុអីលុយមិនសល់ដូចគិត? ព្រោះមានចំណាយតូចៗ ដែលយើងភ្លេចដក។"
+  },
+  {
+   "id": "s02",
+   "who": "host",
+   "start": 0,
+   "text": "Order ចូល មិនទាន់ជាលុយទេ។ ត្រូវបញ្ជាក់ ដឹកដល់ ហើយភ្ញៀវបង់លុយសិន។"
+  },
+  {
+   "id": "s03",
+   "who": "host",
+   "start": 0,
+   "text": "ឧទាហរណ៍ លេខគំរូ៖ លក់មួយឈុត 12 ដុល្លារ, ដកថ្លៃដើម 6 ដុល្លារ ខ្ចប់ និងដឹក 1.80 ដុល្លារ, ដកលុយ Boost និង Order មិនទទួលទៀត"
+  },
+  {
+   "id": "s04",
+   "who": "host",
+   "start": 0,
+   "text": "នៅសល់ប្រហែល 1.50 ដុល្លារ ប៉ុណ្ណោះ, មិនមែន 6 ដុល្លារ ដូចយើងគិតទេ!"
+  },
+  {
+   "id": "s05",
+   "who": "host",
+   "start": 0,
+   "text": "ចង់ឲ្យសល់ច្រើន? បញ្ជាក់ Order មុនផ្ញើ, ឲ្យភ្ញៀវទិញ ២ ឈុត, ហើយ Boost តែ Post ដែលនាំ Order ពិត។"
+  },
+  {
+   "id": "s06",
+   "who": "host",
+   "start": 0,
+   "text": "គិតចំណេញលើ Order ដឹកដល់ហើយបានលុយ, មិនមែនលើ Order ចូលទេ។"
+  },
+  {
+   "id": "s07",
+   "who": "host",
+   "start": 0,
+   "text": "បងធ្លាប់គណនាចំណេញពិតហើយឬនៅ? Comment ប្រាប់យើងផង។ រូបមន្តពេញ នៅ Ads Box dot agency"
+  }
+ ]
+}
