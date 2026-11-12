@@ -69,7 +69,7 @@ def main():
     print("Kiri voices:", voices, "| female:", female)
     first = next(l for l in spec["lines"] if spec["voices"][l["who"]]["voice"] == "FEMALE") if any(
         v["voice"] == "FEMALE" for v in spec["voices"].values()) else None
-    if first:
+    if first and not os.environ.get("FEMALE_VOICE"):
         for n in female + ["edge:Sreymom"]:
             f = os.path.join(out, f"sample-{re.sub(r'[^A-Za-z0-9]+', '', n)}.mp3")
             try:

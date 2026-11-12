@@ -18,6 +18,7 @@ jobs:
     env:
       KIRI_API_KEY: ${{ secrets.KIRI_API_KEY }}
       FEMALE_VOICE: ${{ github.event.inputs.female_voice }}
+      VOICE_TEMPO: "1.0"
       GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4

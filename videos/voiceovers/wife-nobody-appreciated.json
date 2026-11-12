@@ -2,7 +2,7 @@
   "slug": "wife-nobody-appreciated",
   "note": "Khmer voice-over lines for the owner's story video, one per on-screen subtitle card. start = when that card appears (seconds).",
   "voices": {
-    "narrator": {"voice": "FEMALE", "instruction": "Gentle, warm Cambodian woman telling a sad family story, soft and slow, tender pauses"},
+    "narrator": {"voice": "FEMALE", "instruction": "Warm, gentle Cambodian woman storyteller, emotional but natural medium pace, short pauses"},
     "dara": {"voice": "Dara", "instruction": ""}
   },
   "lines": [

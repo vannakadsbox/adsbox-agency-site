@@ -92,7 +92,7 @@ def kiri_speak(text, name, out):
     # Steady pace (owner, 8 Nov 2026: "I love the voice last night"): Kiri sometimes reads the same voice ~13% slower.
     # Speed each scene so it lands at the pace the owner liked (about 9.3 Khmer letters a second after processing);
     # never faster than 1.10x or slower than 0.92x, so the voice always sounds natural.
-    tempo = 0.95
+    tempo = float(os.environ.get("VOICE_TEMPO") or 0.95)  # VOICE_TEMPO: one-off override (voice-over tool); daily videos unchanged
     try:
         import re as _re
         n = len(_re.findall(r"[\u1780-\u17FF]", text))
