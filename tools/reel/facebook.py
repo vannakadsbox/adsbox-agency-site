@@ -76,6 +76,7 @@ def publish(slug, mp4, draft=False):
     script = C.read_json(os.path.join(C.SCRIPTS, f"{slug}.json")) or {}
     if not script:
         raise SystemExit(f"videos/scripts/{slug}.json not found")
+    caption = str(script.get("facebook_caption") or script.get("description") or "").strip()
     name, pt = page_token()
     s = graph("POST", f"{PAGE_ID}/video_reels", {"upload_phase": "start", "access_token": pt})
     vid = s.get("video_id")
