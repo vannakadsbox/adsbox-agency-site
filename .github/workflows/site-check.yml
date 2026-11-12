@@ -26,7 +26,7 @@ jobs:
             echo "::notice::LINK $u: $(curl -sSL -o /tmp/p.html -m 25 -w '%{http_code} final=%{url_effective}' $u 2>&1 | tail -c 300) | title: $(grep -oiE '<title[^>]*>[^<]*' /tmp/p.html 2>/dev/null | head -1 | sed 's/<title[^>]*>//' | tail -c 200) | mentions: $(grep -oiE 'ADS ?BOX|\$ ?29|free|ឥតគិតថ្លៃ|live|messenger|sticker' /tmp/p.html 2>/dev/null | sort | uniq -c | tr '\n' ' ' | tail -c 300)"
           done
           # Live knowledge pages: title shown and a marker phrase from the current version.
-          for s in cost-per-message-vs-cost-per-order when-to-raise-or-cut-boost-budget daily-spend-and-order-report; do
+          for s in test-two-boost-posts-clothing-shop stop-customers-refusing-parcels split-monthly-ad-budget-test-scale-reserve sell-more-on-live prepare-big-sale-day-promotion-without-losing-profit simple-stock-management-for-online-shops boost-budget-new-page prepare-11-11-promotion-without-losing-profit; do
             curl -sSL -m 25 -o /tmp/k.html "https://adsbox.agency/knowledge/$s/"
-            echo "::notice::PAGE $s: h1=$(grep -oE '<h1[^>]*>[^<]*' /tmp/k.html | head -1 | sed 's/<h1[^>]*>//' | tail -c 200) | Decision Matrix: $(grep -c 'ADS BOX Decision Matrix' /tmp/k.html)"
+            echo "::notice::PAGE $s: h1=$(grep -oE '<h1[^>]*>[^<]*' /tmp/k.html | head -1 | sed 's/<h1[^>]*>//' | tail -c 200) | next-path: $(grep -c 'បន្ទាប់ក្នុងផ្លូវរៀន' /tmp/k.html) | redirect: $(grep -oE 'url=/knowledge/[^"]+' /tmp/k.html | head -1)"
           done
