@@ -1,0 +1,299 @@
+{
+ "slug": "real-profit-per-order",
+ "video_title": "លក់អាវ $12 ថ្លៃដើម $6 ចំណេញ $6 មែនទេ? លុយ $4.50 បាត់ទៅណា?",
+ "topic": "របៀបគណនាចំណេញពិតក្នុងមួយ Order ក្រោយដកថ្លៃខ្ចប់ ដឹក លុយ Boost និង Order មិនទទួល។",
+ "thumbnail_text": "ចំណេញ $6 មែនទេ?",
+ "description": "លក់ $12 ថ្លៃដើម $6 តែសល់ពិតប្រហែល $1.50 (លេខគំរូ)។ លុយ $4.50 បាត់ទៅណា?\n#ADSBOX #លក់អនឡាញ #គណនាចំណេញ #BoostPost",
+ "facebook_caption": "លក់អាវ $12 ថ្លៃដើម $6… ចំណេញ $6 មែនទេ? 🤔\nក្នុងឧទាហរណ៍នេះ សល់ពិតប្រហែល $1.50 ប៉ុណ្ណោះ។ លុយ $4.50 ទៅលើ៖\n✅ ថ្លៃខ្ចប់ $0.30\n✅ ថ្លៃដឹក $1.50\n✅ លុយ Boost $1.88 ក្នុងមួយ Order ដឹកដល់\n✅ ខាតពី Order មិនទទួល $0.83\nចង់ដឹងថា ហាងបងចំណេញពិតប៉ុន្មាន? Comment «PROFIT» 👇\n#ADSBOX #លក់អនឡាញ #គណនាចំណេញ #BoostPost",
+ "scenes": [
+  {
+   "role": "hook",
+   "lines": [
+    "លក់អាវ $12។",
+    "ថ្លៃដើម $6។",
+    "បងគិតថា ចំណេញ $6 មែនទេ?"
+   ],
+   "visual": {
+    "type": "question",
+    "title": "ចំណេញ $6 មែន?",
+    "bubbles": [
+     "យកមួយឈុត",
+     "ថ្លៃដឹកប៉ុន្មាន?",
+     "ដឹកដល់ពេលណា?"
+    ]
+   }
+  },
+  {
+   "role": "problem",
+   "lines": [
+    "តែលុយក្នុងដៃបងពិតៗ",
+    "អាចសល់តែ $1.50 ប៉ុណ្ណោះ!",
+    "លុយ $4.50 បាត់ទៅណា?"
+   ],
+   "visual": {
+    "type": "vanish",
+    "host": false,
+    "expected_label": "បងគិតថាចំណេញ",
+    "expected": "$6",
+    "real_label": "សល់ពិត (លេខគំរូ)",
+    "real": "$1.50",
+    "gap": "$4.50 បាត់ទៅណា?"
+   }
+  },
+  {
+   "role": "tip",
+   "lines": [
+    "ព្រោះ Order មួយ មិនទាន់ជាលុយទេ។",
+    "ត្រូវបញ្ជាក់ ដឹកដល់ ហើយភ្ញៀវបង់លុយ",
+    "ទើបក្លាយជាចំណេញពិត។"
+   ],
+   "visual": {
+    "type": "funnel",
+    "host": false,
+    "title": "Order មួយ មិនទាន់ជាលុយទេ",
+    "steps": [
+     "លុយ Boost",
+     "Message",
+     "Order",
+     "បញ្ជាក់ Order",
+     "ដឹកដល់",
+     "ភ្ញៀវបង់លុយ",
+     "ចំណេញពិត"
+    ]
+   }
+  },
+  {
+   "role": "example",
+   "lines": [
+    "ឧទាហរណ៍ លេខគំរូ៖ លក់មួយឈុត $12។",
+    "ដកថ្លៃដើម $6។",
+    "ថ្លៃខ្ចប់ $0.30។",
+    "ថ្លៃដឹក $1.50។"
+   ],
+   "visual": {
+    "type": "waterfall",
+    "host": false,
+    "start": {
+     "label": "លក់មួយឈុត · លុយនៅសល់",
+     "amount": 12
+    },
+    "show": 3,
+    "rows": [
+     {
+      "icon": "product",
+      "label": "ថ្លៃដើមទំនិញ",
+      "value": "$6",
+      "amount": 6,
+      "at": [
+       1,
+       0
+      ]
+     },
+     {
+      "icon": "pack",
+      "label": "ថ្លៃខ្ចប់",
+      "value": "$0.30",
+      "amount": 0.3,
+      "at": [
+       2,
+       0
+      ]
+     },
+     {
+      "icon": "ship",
+      "label": "ថ្លៃដឹក",
+      "value": "$1.50",
+      "amount": 1.5,
+      "at": [
+       3,
+       0
+      ]
+     }
+    ],
+    "groups": [
+     {
+      "text": "ថ្លៃដើម + ខ្ចប់ + ដឹក = −$7.80",
+      "at": [
+       3,
+       0.9
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "role": "example",
+   "lines": [
+    "ដកលុយ Boost $1.88 ក្នុងមួយ Order។",
+    "មកពី $60 ចែកនឹង Order ដឹកដល់ ៣២។",
+    "ហើយខាតពី Order មិនទទួល $0.83។",
+    "មកពីកញ្ចប់ ៨ ដែលត្រូវដឹកត្រឡប់។"
+   ],
+   "visual": {
+    "type": "waterfall",
+    "host": false,
+    "start": {
+     "label": "លក់មួយឈុត · លុយនៅសល់",
+     "amount": 12
+    },
+    "done": 3,
+    "rows": [
+     {
+      "icon": "product",
+      "label": "ថ្លៃដើមទំនិញ",
+      "value": "$6",
+      "amount": 6
+     },
+     {
+      "icon": "pack",
+      "label": "ថ្លៃខ្ចប់",
+      "value": "$0.30",
+      "amount": 0.3
+     },
+     {
+      "icon": "ship",
+      "label": "ថ្លៃដឹក",
+      "value": "$1.50",
+      "amount": 1.5
+     },
+     {
+      "icon": "boost",
+      "label": "លុយ Boost",
+      "value": "$1.88",
+      "amount": 1.88,
+      "note": "$60 ÷ 32 Order ដឹកដល់ ≈ $1.88",
+      "at": [
+       0,
+       0
+      ],
+      "note_at": [
+       1,
+       0
+      ]
+     },
+     {
+      "icon": "refused",
+      "label": "Order មិនទទួល",
+      "value": "$0.83",
+      "amount": 0.83,
+      "note": "8 កញ្ចប់ × ($0.30 + $1.50 + $1.50 ត្រឡប់) = $26.40 ÷ 32 ≈ $0.83",
+      "at": [
+       2,
+       0
+      ],
+      "note_at": [
+       3,
+       0
+      ]
+     }
+    ],
+    "groups": [
+     {
+      "text": "Boost + Order មិនទទួល = −$2.71",
+      "at": [
+       3,
+       0.9
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "role": "example",
+   "lines": [
+    "ចុងក្រោយ សល់តែ…",
+    "$1.50 ប៉ុណ្ណោះ!",
+    "លុយ $4.50 បាត់ទៅលើចំណាយទាំងនេះ។"
+   ],
+   "visual": {
+    "type": "waterfall",
+    "start": {
+     "label": "លក់មួយឈុត · លុយនៅសល់",
+     "amount": 12
+    },
+    "done": 5,
+    "rows": [
+     {
+      "icon": "product",
+      "label": "ថ្លៃដើមទំនិញ",
+      "value": "$6",
+      "amount": 6
+     },
+     {
+      "icon": "pack",
+      "label": "ថ្លៃខ្ចប់",
+      "value": "$0.30",
+      "amount": 0.3
+     },
+     {
+      "icon": "ship",
+      "label": "ថ្លៃដឹក",
+      "value": "$1.50",
+      "amount": 1.5
+     },
+     {
+      "icon": "boost",
+      "label": "លុយ Boost",
+      "value": "$1.88",
+      "amount": 1.88,
+      "note": "$60 ÷ 32 Order ដឹកដល់ ≈ $1.88"
+     },
+     {
+      "icon": "refused",
+      "label": "Order មិនទទួល",
+      "value": "$0.83",
+      "amount": 0.83,
+      "note": "8 កញ្ចប់ × ($0.30 + $1.50 + $1.50 ត្រឡប់) = $26.40 ÷ 32 ≈ $0.83"
+     }
+    ],
+    "result": {
+     "label": "ចំណេញពិតមួយ Order",
+     "value": "$1.49 ≈ $1.50",
+     "at": [
+      1,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "role": "summary",
+   "lines": [
+    "ចំណេញពិត មិនមែនលក់ ដកថ្លៃដើមទេ។",
+    "ត្រូវដកខ្ចប់ ដឹក Boost",
+    "និងការខាតពី Order មិនទទួលផង។"
+   ],
+   "visual": {
+    "type": "takeaway",
+    "host": false,
+    "quote": "ចំណេញពិត មិនមែន\nតម្លៃលក់ − ថ្លៃដើម ទេ",
+    "chips": [
+     "− ខ្ចប់",
+     "− ដឹក",
+     "− Boost",
+     "− Order មិនទទួល"
+    ]
+   }
+  },
+  {
+   "role": "cta",
+   "lines": [
+    "ហាងបងចំណេញពិតប៉ុន្មាន ក្នុងមួយ Order?",
+    "Comment ពាក្យ PROFIT មក",
+    "ក្រុម ADS BOX នៅទីនេះ ជួយបង។"
+   ],
+   "visual": {
+    "type": "cta2",
+    "question": "ហាងបងចំណេញពិតប៉ុន្មាន ក្នុងមួយ Order?",
+    "comment": "PROFIT",
+    "comment_line": 1,
+    "services": [
+     "Boost Post",
+     "Boost Live",
+     "ADS BOX System"
+    ]
+   }
+  }
+ ],
+ "note": "Owner-approved preview (12 Nov 2026), rendered outside the daily workflow; sent to Telegram by send-prerendered.yml."
+}

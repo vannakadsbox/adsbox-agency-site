@@ -1,0 +1,53 @@
+{
+ "slug": "real-profit-per-order",
+ "style": "custom animation only",
+ "photos": 0,
+ "duration": 64.63,
+ "size_mb": 18.1,
+ "resolution": "1080x1920",
+ "fps": 30,
+ "scenes": 8,
+ "visuals": [
+  "question",
+  "vanish",
+  "funnel",
+  "waterfall",
+  "waterfall",
+  "waterfall",
+  "takeaway",
+  "cta2"
+ ],
+ "voice": "kiri:Vannak",
+ "music": "adsbox-original-1.mp3",
+ "subtitle_sync": "line",
+ "render_seconds": 252,
+ "footage": [],
+ "stock_footage": "none",
+ "visual_mix": {
+  "motion_graphics": 0.9,
+  "phone_chat": 0.1,
+  "illustrated": 0,
+  "product_dashboard": 0
+ },
+ "speech_match": [
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null
+ ],
+ "scene_sync": [
+  "line",
+  "line",
+  "line",
+  "line",
+  "line",
+  "line",
+  "line",
+  "line"
+ ],
+ "footage_share": 0
+}

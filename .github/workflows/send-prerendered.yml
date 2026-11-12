@@ -1,0 +1,47 @@
+name: Send a pre-rendered video
+# Sends a video that was rendered outside the daily workflow (an owner-approved preview) to Telegram exactly like a daily
+# video: the MP4, the Facebook caption with the Publish button, and the 1080x1920 thumbnail. The files are pushed to
+# videos/prerendered/ (<slug>.mp4, <slug>-thumb.jpg, <slug>-cover.jpg, <slug>-meta.json); this workflow moves them into the
+# private draft release "video-archive", sends them, and removes them from the repository. Nothing is posted publicly.
+on:
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: "Video slug (needs videos/scripts/<slug>.json and the four files in video-archive)"
+        required: true
+permissions:
+  contents: write
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      TELEGRAM_VIDEO_CHAT_ID: ${{ secrets.TELEGRAM_VIDEO_CHAT_ID }}
+      FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+      RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: sudo apt-get update -q && sudo apt-get install -y -q ffmpeg && pip install -q pyyaml
+      - name: Send to Telegram
+        run: |
+          slug="${{ github.event.inputs.slug }}"; out="out/$slug"; mkdir -p "$out"
+          cp "videos/prerendered/$slug.mp4" "videos/prerendered/$slug-thumb.jpg" "videos/prerendered/$slug-cover.jpg" "$out/"
+          cp "videos/prerendered/$slug-meta.json" "$out/meta.json"
+          gh release upload video-archive "$out/$slug.mp4" "$out/$slug-thumb.jpg" --clobber
+          gh api "repos/${{ github.repository }}/releases" -q ".[] | select(.tag_name==\"video-archive\") | {release_id: .id, assets: [.assets[] | select(.name==\"$slug.mp4\" or .name==\"$slug-thumb.jpg\") | {name, id, size, url: .browser_download_url}]}" > "$out/archive.json"
+          python3 tools/reel/deliver.py sent --slug "$slug" --dir "$out" --archive "$out/archive.json" --run "$RUN_URL"
+          [ -n "${FB_PAGE_ID:-}" ] && gh workflow run facebook.yml -f action=loop || true
+      - name: Save the production log
+        if: always()
+        run: |
+          git config user.name "ADS BOX video bot"; git config user.email "noreply@anthropic.com"
+          git rm -q --cached videos/prerendered/${{ github.event.inputs.slug }}* 2>/dev/null || true
+          git add videos/log.json; git diff --cached --quiet && exit 0
+          git commit -q -m "Video log: ${{ github.event.inputs.slug }} (pre-rendered) [skip ci]"
+          for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin HEAD:main && exit 0; sleep 5; done
+          exit 1
