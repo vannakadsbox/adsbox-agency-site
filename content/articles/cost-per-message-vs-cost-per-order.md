@@ -4,6 +4,7 @@ slug: "cost-per-message-vs-cost-per-order"
 summary: "Order មិនមែនជាចំណេញទេ។ រៀនតាមដានលុយចាយ → Message → Order → Confirmed → Delivered → Paid → Profit ហើយគណនាថា Boost មួយណាពិតជានៅសល់លុយ។"
 tag: "លេខ និងចំណេញ"
 date: 2026-10-26
+updated: 2026-11-12
 emoji: "💬 📦 💵"
 cover: ""
 seo_title: "Cost per Order មិនគ្រប់គ្រាន់៖ គណនាចំណេញពិតពី Boost Facebook"

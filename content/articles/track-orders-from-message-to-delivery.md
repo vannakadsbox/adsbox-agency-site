@@ -4,6 +4,7 @@ slug: "track-orders-from-message-to-delivery"
 summary: "របៀបរៀបចំការតាមដាន Order ជាដំណាក់កាលច្បាស់ៗ ពីពេលអតិថិជនឆាតកុម្ម៉ង់ រហូតដល់ទំនិញដល់ដៃ ដើម្បីកាត់បន្ថយការផ្ញើខុស និងសារសួរដដែលៗ។"
 tag: "លក់អនឡាញ"
 date: 2026-10-27
+updated: 2026-11-12
 emoji: "📦 📋 🚚"
 cover: ""
 seo_title: "តាមដាន Order លក់អនឡាញ ពីសារដល់ការដឹកជញ្ជូន"
@@ -67,5 +68,9 @@ draft: false
 ## សរុប
 
 ការតាមដាន Order ល្អ មិនមែនបង្កើតលក់ថ្មីដោយផ្ទាល់ទេ តែវាការពារលុយដែលអ្នកលក់បានរួចហើយ ហើយធ្វើឲ្យអតិថិជនចង់ទិញម្ដងទៀត។
+
+**បន្ទាប់ក្នុងផ្លូវរៀន៖** [ការពារ Order បោះបង់មុនផ្ញើ](/knowledge/stop-customers-refusing-parcels/)
+
+**អត្ថបទពាក់ព័ន្ធ៖** [របាយការណ៍ Boost ប្រចាំថ្ងៃ](/knowledge/daily-spend-and-order-report/) · [ចាប់ Order ពី Comment Live ដោយស្វ័យប្រវត្តិ](/knowledge/auto-capture-orders-from-live-comments/) · [គ្រប់គ្រងស្តុកសាមញ្ញ](/knowledge/simple-stock-management-for-online-shops/)
 
 បើហាងរបស់អ្នកលក់តាម Live ហើយចង់ឲ្យការចាប់ Order ពី Comment ការឆ្លើយ Messenger និងការព្រីនស្ទីកឃ័រដឹកជញ្ជូន នៅក្នុងប្រព័ន្ធតែមួយ សូមមើល [ADS BOX System](/#adsbox-system) ដែលមានគម្រោងឥតគិតថ្លៃសម្រាប់សាកល្បង ឬឆាតសួរក្រុមការងារតាម [Telegram](https://t.me/vannakdm)។

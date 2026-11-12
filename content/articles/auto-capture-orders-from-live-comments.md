@@ -4,6 +4,7 @@ slug: "auto-capture-orders-from-live-comments"
 summary: "Comment Live ហូរលឿនពេក កត់ដោយដៃមិនទាន់? រៀនរៀបចំកូដទំនិញ ចាប់ Order ពី Comment ដោយស្វ័យប្រវត្តិ ឆ្លើយ Messenger និងបោះពុម្ពស្ទីគ័រក្នុងប្រព័ន្ធតែមួយ។"
 tag: "ADS BOX"
 date: 2026-10-30
+updated: 2026-11-12
 emoji: "🎥 💬 📦"
 cover: ""
 seo_title: "ចាប់ Order ពី Comment Live ដោយស្វ័យប្រវត្តិ"
@@ -68,5 +69,9 @@ draft: false
 បើចង់ដឹងពីរបៀបចែកតួនាទីក្នុងក្រុម សូមអានបន្ថែម [ចែកការងារក្រុមលក់អនឡាញ៖ Admin, Live Host និងអ្នកខ្ចប់](/knowledge/split-roles-admin-live-host-packer/)។
 
 ## ចាប់ផ្ដើមសាកល្បង
+
+**បន្ទាប់ក្នុងផ្លូវរៀន៖** [ចែកការងារ Admin អ្នក Live និងអ្នកខ្ចប់](/knowledge/split-roles-admin-live-host-packer/)
+
+**អត្ថបទពាក់ព័ន្ធ៖** [ដាក់កូដទំនិញពេល Live](/knowledge/product-codes-for-live-orders/) · [រៀបចំ Live មុន ពេល និងក្រោយ](/knowledge/sell-more-on-live/) · [របាយការណ៍ Boost ប្រចាំថ្ងៃ](/knowledge/daily-spend-and-order-report/)
 
 ប្រព័ន្ធ ADS BOX មានគម្រោងឥតគិតថ្លៃ ហើយគម្រោងបង់ប្រាក់ចាប់ពី $29 ក្នុងមួយខែ។ អ្នកអាច [ចុះឈ្មោះនៅ adsbox.biz](https://adsbox.biz/) ឬ [ឆាតមកក្រុមយើងតាម Telegram](https://t.me/vannakdm) ដើម្បីសួរថាតើវាសមនឹងរបៀប Live របស់ហាងអ្នកឬទេ។

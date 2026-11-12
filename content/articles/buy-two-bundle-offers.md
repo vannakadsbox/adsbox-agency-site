@@ -4,6 +4,7 @@ slug: "buy-two-bundle-offers"
 summary: "រៀនរៀបកញ្ចប់ទំនិញ (Bundle) និង Promotion ទិញ ២ ឲ្យអតិថិជនមានហេតុផលទិញច្រើនជាងមួយ ដោយមិនចាំបាច់កាត់តម្លៃទំនិញនីមួយៗ។"
 tag: "លក់អនឡាញ"
 date: 2026-11-02
+updated: 2026-11-12
 emoji: "🎁 🛍️ 🏷️"
 cover: ""
 seo_title: "Promotion ទិញ ២៖ របៀបរៀបកញ្ចប់ទំនិញលក់អនឡាញ"
@@ -11,7 +12,7 @@ seo_description: "ស្វែងយល់ពី ៥ ជំហានរៀបក
 primary_keyword: "Promotion ទិញ ២"
 keywords: ["កញ្ចប់ទំនិញ Bundle", "Promotion លក់អនឡាញ", "ទិញ ២ តម្លៃពិសេស", "យុទ្ធសាស្ត្របញ្ចុះតម្លៃ", "លក់ទំនិញជាឈុត"]
 category: "promotions"
-image_alt: "អាវយឺតពណ៌ស និងខ្មៅ ពីរដុំ ចងជាកញ្ចប់ជាមួយខ្សែបូ លើតុឈើ"
+image_alt: "អាវយឺតពណ៌ស និងខ្មៅ ពីរឈុត ចងជាកញ្ចប់ជាមួយខ្សែបូ លើតុឈើ"
 image_prompt: "Flat lay photo of two neatly folded t-shirts in white and black tied together with a ribbon next to a small gift tag, on a light wooden table, soft natural light, online shop product bundle concept, no text, no faces, no brands"
 source: "auto-morning"
 generated_at: "2026-11-02T06:57:50+07:00"
@@ -31,7 +32,7 @@ draft: false
 
 មិនមែនគ្រប់ទំនិញសុទ្ធតែសមនឹងប្រភេទតែមួយទេ៖
 
-- **ទិញ ២ ដុំ តម្លៃពិសេស**៖ សមសម្រាប់ទំនិញប្រើអស់ ហើយត្រូវទិញម្ដងទៀត ដូចជា សាប៊ូ ឬម្សៅកាហ្វេ។
+- **ទិញ ២ តម្លៃពិសេស**៖ សមសម្រាប់ទំនិញប្រើអស់ ហើយត្រូវទិញម្ដងទៀត ដូចជា សាប៊ូ ឬម្សៅកាហ្វេ។
 - **ទិញ ២ មុខផ្សេងគ្នា ជាកញ្ចប់**៖ សមសម្រាប់ទំនិញដែលប្រើជាមួយគ្នា។
 - **ទិញ ២ ជ្រើសពណ៌ ឬទំហំតាមចិត្ត**៖ សមសម្រាប់សម្លៀកបំពាក់ ឬកាបូប ដែលអតិថិជនចូលចិត្តមានច្រើនពណ៌។
 
@@ -62,5 +63,9 @@ draft: false
 ## សង្ខេប
 
 Promotion ទិញ ២ ដែលល្អ មិនមែនជាការបោះចោលទំនិញលក់មិនដាច់ទេ តែជាការជួយអតិថិជនឲ្យទិញអ្វីដែលគេត្រូវការរួចហើយ ក្នុងតម្លៃសមរម្យ។
+
+**បន្ទាប់ក្នុងផ្លូវរៀន៖** [សរសេរតម្លៃ និង Promotion ឲ្យច្បាស់](/knowledge/write-prices-and-promotions-clearly/)
+
+**អត្ថបទពាក់ព័ន្ធ៖** [គណនាតម្លៃ Promotion កុំឲ្យខាត](/knowledge/price-promotion-without-losing-profit/) · [បង្កើនទំហំ Order ដោយទំនិញបន្ថែម](/knowledge/increase-order-size-with-add-ons/) · [Checklist ៧ ថ្ងៃ មុនថ្ងៃ Sale](/knowledge/prepare-big-sale-day-promotion-without-losing-profit/)
 
 បើអ្នកចង់ឲ្យ Post ឬ Live ដែលមានកញ្ចប់ Promotion ទៅដល់អ្នកទិញត្រឹមត្រូវ ក្រុម ADS BOX អាចជួយរៀបចំ Boost Post និង Boost Live បាន។ មើល [សេវាកម្មរបស់យើង](/#services) ឬឆាតមកកាន់ [Telegram](https://t.me/vannakdm) ដោយផ្ញើលីងផេករបស់អ្នក។

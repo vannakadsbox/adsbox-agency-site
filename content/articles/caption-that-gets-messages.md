@@ -4,6 +4,7 @@ slug: "caption-that-gets-messages"
 summary: "Caption ល្អ ប្រាប់តម្លៃច្បាស់ បង្ហាញអត្ថប្រយោជន៍ និងប្រាប់អតិថិជនថាត្រូវធ្វើអ្វីបន្ទាប់។"
 tag: "Boost Post"
 date: 2026-10-24
+updated: 2026-11-12
 emoji: "✍️ 💬 🔥"
 draft: false
 ---
@@ -26,3 +27,7 @@ draft: false
 បញ្ចប់ដោយប្រយោគមួយ ដូចជា «ចុច Send Message ហើយផ្ញើលេខកូដ A01 ដើម្បីកម្ម៉ង់»។ ការណែនាំច្បាស់ ធ្វើឲ្យមានសារច្រើនជាងមុន។
 
 សាក Caption ២ ផ្សេងគ្នា លើរូបដដែល ហើយ Boost ថវិកាតិចៗ ២ ថ្ងៃ។ Caption ណាដែលថ្លៃក្នុងមួយសារទាបជាង គឺជាអ្នកឈ្នះ។
+
+**បន្ទាប់ក្នុងផ្លូវរៀន៖** [Caption ឆ្លើយសំណួរភ្ញៀវមុន](/knowledge/caption-answers-questions-first/)
+
+**អត្ថបទពាក់ព័ន្ធ៖** [សរសេរតម្លៃ និង Promotion ឲ្យច្បាស់](/knowledge/write-prices-and-promotions-clearly/) · [រូបទំនិញមុន និងក្រោយ](/knowledge/product-photos-that-sell-before-after/)

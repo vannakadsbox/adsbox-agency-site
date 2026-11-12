@@ -4,6 +4,7 @@ slug: "read-ads-manager-in-5-minutes"
 summary: "មិនចាំបាច់យល់គ្រប់ Column ទេ។ រៀនមើលលេខ ៥ សំខាន់ក្នុង Ads Manager តាមលំដាប់ ដើម្បីដឹងថា Boost របស់អ្នកដំណើរការល្អ ឬត្រូវកែត្រង់ណា។"
 tag: "ថវិកា និងរបាយការណ៍"
 date: 2026-11-03
+updated: 2026-11-12
 emoji: "📊 ⏱️ 📱"
 cover: ""
 seo_title: "អានលទ្ធផល Ads Manager ក្នុង ៥ នាទី៖ លេខ ៥ សំខាន់"
@@ -64,5 +65,9 @@ draft: false
 ## ធ្វើឲ្យក្លាយជាទម្លាប់
 
 ចាប់ពីថ្ងៃនេះ ទុកពេល ៥ នាទីរៀងរាល់ព្រឹក មើលលេខទាំង ៥ តាមលំដាប់ខាងលើ ហើយកត់ចំណាំខ្លីមួយ។ ក្រោយមួយសប្ដាហ៍ អ្នកនឹងចាប់ផ្ដើមមើលឃើញលំនាំនៃផេករបស់អ្នកផ្ទាល់។
+
+**បន្ទាប់ក្នុងផ្លូវរៀន៖** [របាយការណ៍ Boost ប្រចាំថ្ងៃ](/knowledge/daily-spend-and-order-report/)
+
+**អត្ថបទពាក់ព័ន្ធ៖** [គណនាពីលុយចាយ Boost ដល់ចំណេញពិត](/knowledge/cost-per-message-vs-cost-per-order/) · [Boost គួរបន្ថែម កាត់ ឬបិទ?](/knowledge/when-to-raise-or-cut-boost-budget/) · [Boost Post មួយណាឲ្យចំ?](/knowledge/choose-which-post-to-boost/)
 
 បើអ្នកចង់មានក្រុមជួយតាមដានលេខ Boost រៀងរាល់ថ្ងៃ និងទទួលរបាយការណ៍ចំណាយ និងចំនួន Order ប្រចាំថ្ងៃ ក្រុម ADS BOX អាចជួយបាន។ សូមមើល [សេវាកម្មរបស់យើង](/#services) ឬឆាតមក [Telegram](https://t.me/vannakdm) ដោយផ្ញើលីងផេករបស់អ្នក។

@@ -4,6 +4,7 @@ slug: "page-restricted-what-to-do"
 summary: "កុំបង្កើតផេកថ្មីភ្លាមៗ។ ពិនិត្យ Account Quality ហើយដាក់សំណើពិនិត្យឡើងវិញឲ្យបានត្រឹមត្រូវ។"
 tag: "ថែទាំផេក"
 date: 2026-10-06
+updated: 2026-11-12
 emoji: "🛡️ ⚠️ ✅"
 cover: ""
 ---
@@ -22,3 +23,7 @@ cover: ""
 ចុច Request Review ហើយពន្យល់ឲ្យខ្លី និងច្បាស់។ ដាក់តែម្តង ហើយរង់ចាំ។ ការដាក់ច្រើនដង មិនធ្វើឲ្យលឿនជាងមុនទេ។
 
 បើអ្នកត្រូវការជំនួយ ក្រុមការងារ ADS BOX អាចពិនិត្យផេករបស់អ្នក ហើយណែនាំជំហានបន្ទាប់បាន។
+
+**បន្ទាប់ក្នុងផ្លូវរៀន៖** [Boost Post មួយណាឲ្យចំ?](/knowledge/choose-which-post-to-boost/)
+
+**អត្ថបទពាក់ព័ន្ធ៖** [អានលទ្ធផល Ads Manager ក្នុង ៥ នាទី](/knowledge/read-ads-manager-in-5-minutes/) · [ចែកថវិកា Boost ប្រចាំខែ](/knowledge/split-monthly-ad-budget-test-scale-reserve/)

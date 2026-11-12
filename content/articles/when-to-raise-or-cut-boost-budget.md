@@ -4,6 +4,7 @@ slug: "when-to-raise-or-cut-boost-budget"
 summary: "កុំប្ដូរថវិកា Boost តាមអារម្មណ៍។ កំណត់បន្ទាត់ក្រហមពី Cost per Delivered Order មើលលេខឲ្យគ្រប់ថ្ងៃ ហើយដើរតាមសំណួរ ៥ ដើម្បីដឹងថាគួរបន្ថែម រក្សា កែ ឬផ្អាក។"
 tag: "Facebook Boost"
 date: 2026-11-02
+updated: 2026-11-12
 emoji: "📈 🧭 📉"
 cover: ""
 seo_title: "គួរបង្កើនថវិកា Boost ឬអត់? វិធីសម្រេចចិត្តតាមលេខ"

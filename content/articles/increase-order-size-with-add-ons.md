@@ -4,6 +4,7 @@ slug: "increase-order-size-with-add-ons"
 summary: "រៀនណែនាំទំនិញប្រើជាមួយគ្នា និងរៀបចំឈុតទំនិញ ដើម្បីឲ្យ Order នីមួយៗធំជាងមុន ដោយមិនរុញលក់ និងមិនចំណាយផ្សាយបន្ថែម។"
 tag: "លក់អនឡាញ"
 date: 2026-10-31
+updated: 2026-11-12
 emoji: "🛍️ ➕ 📦"
 cover: ""
 seo_title: "បង្កើនទំហំ Order៖ វិធីណែនាំទំនិញបន្ថែមសម្រាប់ហាងអនឡាញ"
@@ -72,5 +73,9 @@ draft: false
 ## សរុប
 
 ការបង្កើនទំហំ Order មិនមែនជាការរុញលក់ទេ។ វាជាការជួយអតិថិជនឲ្យបានរបស់ដែលគាត់ត្រូវការ ក្នុងពេលតែមួយ។ ចាប់ផ្ដើមពីឈុតទំនិញមួយ និងសារណែនាំមួយឃ្លា ហើយសាកល្បងមើលរយៈពេលមួយសប្ដាហ៍។
+
+**បន្ទាប់ក្នុងផ្លូវរៀន៖** [Boost គួរបន្ថែម កាត់ ឬបិទ?](/knowledge/when-to-raise-or-cut-boost-budget/)
+
+**អត្ថបទពាក់ព័ន្ធ៖** [Promotion ទិញ ២ និងកញ្ចប់ទំនិញ](/knowledge/buy-two-bundle-offers/) · [គណនាតម្លៃ Promotion កុំឲ្យខាត](/knowledge/price-promotion-without-losing-profit/) · [គណនាពីលុយចាយ Boost ដល់ចំណេញពិត](/knowledge/cost-per-message-vs-cost-per-order/)
 
 ចង់បានសារពីអតិថិជនពិតបន្ថែម ដើម្បីឲ្យមានឱកាសលក់ឈុតទំនិញទាំងនេះ? ក្រុម ADS BOX អាចជួយគ្រប់គ្រង Boost Post និង Boost Live សម្រាប់ផេករបស់អ្នក។ មើល [សេវាកម្មរបស់យើង](/#services) ឬឆាតមកយើងតាម [Telegram](https://t.me/vannakdm)។

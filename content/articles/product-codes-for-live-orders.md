@@ -4,6 +4,7 @@ slug: "product-codes-for-live-orders"
 summary: "របៀបរៀបចំលេខកូដទំនិញសម្រាប់ Facebook Live ឲ្យអតិថិជន Comment កុម្ម៉ង់បានលឿន ហើយ Admin កត់ Order មិនច្រឡំទំហំ ឬពណ៌។"
 tag: "លក់ Live"
 date: 2026-10-31
+updated: 2026-11-12
 emoji: "🏷️ 📱 🛍️"
 cover: ""
 seo_title: "លេខកូដទំនិញពេល Live៖ ៥ គន្លឹះកុម្ម៉ង់ងាយ មិនច្រឡំ"
@@ -73,5 +74,9 @@ draft: false
 ## សង្ខេប
 
 លេខកូដទំនិញគឺជាការងារតូច តែជួយឲ្យ Live រលូន៖ អតិថិជនកុម្ម៉ង់ងាយ, Admin កត់ត្រាត្រូវ, ហើយអ្នកខ្ចប់មិនផ្ញើខុស។ សាកល្បងប្រើវានៅ Live បន្ទាប់ ហើយកែតម្រូវតាមទំនិញរបស់អ្នក។
+
+**បន្ទាប់ក្នុងផ្លូវរៀន៖** [ចាប់ Order ពី Comment Live ដោយស្វ័យប្រវត្តិ](/knowledge/auto-capture-orders-from-live-comments/)
+
+**អត្ថបទពាក់ព័ន្ធ៖** [រៀបចំ Live មុន ពេល និងក្រោយ](/knowledge/sell-more-on-live/) · [គ្រប់គ្រងស្តុកសាមញ្ញ](/knowledge/simple-stock-management-for-online-shops/) · [ចែកការងារ Admin អ្នក Live និងអ្នកខ្ចប់](/knowledge/split-roles-admin-live-host-packer/)
 
 បើអ្នកចង់ឲ្យ Live របស់អ្នកមានអ្នកមើលច្រើនឡើង ក្រុម ADS BOX មានសេវាកម្ម Boost Live ដែលជួយនាំអ្នកមើលចូលលឿនពេលកំពុង Live។ មើល [សេវាកម្មរបស់យើង](/#services) ឬឆាតមកកាន់ [Telegram](https://t.me/vannakdm) ដោយផ្ញើ Link ផេករបស់អ្នក។

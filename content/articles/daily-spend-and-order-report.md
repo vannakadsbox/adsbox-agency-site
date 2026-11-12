@@ -4,6 +4,7 @@ slug: "daily-spend-and-order-report"
 summary: "តារាងគំរូ និងទម្លាប់ ៥ នាទីរាល់ព្រឹក៖ លុយចាយ សារ Order Order បញ្ជាក់ ដឹកដល់ និងមិនទទួល។ ដឹងភ្លាមថា Boost លេចលុយនៅ Post នៅ Messenger ឬនៅការដឹក។"
 tag: "លេខ និងចំណេញ"
 date: 2026-11-09
+updated: 2026-11-12
 emoji: "📊 ☀️ 📝"
 cover: ""
 seo_title: "របាយការណ៍ Boost ប្រចាំថ្ងៃ៖ តារាងគំរូ ដើម្បីដឹងថាលុយលេចនៅកន្លែងណា"

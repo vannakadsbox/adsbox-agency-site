@@ -4,6 +4,7 @@ slug: "after-sale-messages-repeat-customers"
 summary: "រៀនផ្ញើសារក្រោយការលក់ត្រូវពេល ពីសារបញ្ជាក់ការដឹក ដល់សាររំលឹកពេលទំនិញជិតអស់ ដើម្បីឲ្យអតិថិជនចាំផេក ហើយទិញម្ដងទៀត។"
 tag: "សេវាអតិថិជន"
 date: 2026-10-29
+updated: 2026-11-12
 emoji: "💬 📦 🔁"
 cover: ""
 seo_title: "សារក្រោយការលក់ ឲ្យអតិថិជនត្រឡប់មកទិញម្ដងទៀត"
@@ -69,4 +70,6 @@ draft: false
 
 ចង់ដឹងបន្ថែមពីរបៀបឆ្លើយសារឲ្យក្លាយជា Order? អានអត្ថបទ [ឆ្លើយសារអតិថិជនយ៉ាងណា ឲ្យសំណួរ «តម្លៃប៉ុន្មាន?» ក្លាយជា Order](/knowledge/turn-customer-questions-into-orders/)។
 
-បើអ្នកចង់បានអតិថិជនថ្មីបន្ថែម ដើម្បីបំពេញបញ្ជីអតិថិជនចាស់របស់អ្នក ក្រុម ADS BOX អាចជួយគ្រប់គ្រង Boost Post និង Boost Live ដោយផ្ដោតលើ Order។ មើល[សេវាកម្មរបស់យើង](/#services) ឬឆាតមកកាន់ [Telegram](https://t.me/vannakdm)។
+**បន្ទាប់ក្នុងផ្លូវរៀន៖** [កម្មវិធីភ្ញៀវប្រចាំសម្រាប់ហាងតូច](/knowledge/simple-loyalty-program-small-shop/)
+
+**អត្ថបទពាក់ព័ន្ធ៖** [កំហុសពេលឆ្លើយភ្ញៀវត្អូញត្អែរ](/knowledge/mistakes-handling-customer-complaints/) · [ឆ្លើយ «តម្លៃប៉ុន្មាន?» ឲ្យក្លាយជា Order](/knowledge/turn-customer-questions-into-orders/) · [បង្កើនទំហំ Order ដោយទំនិញបន្ថែម](/knowledge/increase-order-size-with-add-ons/)
