@@ -56,7 +56,7 @@ def say(text, name, instruction, out):
     if name == "edge:Sreymom":
         return edge(text, out)
     os.environ["KIRI_INSTRUCTION"] = instruction or ""
-    voice.kiri_speak(text, name, out)
+    return voice.kiri_speak(text, name, out)
 
 
 def main():
@@ -88,9 +88,11 @@ def main():
         if only and l["id"] not in only:
             continue
         f = os.path.join(out, l["id"] + ".mp3")
-        say(l["text"], pick[l["who"]], l.get("instruction") or spec["voices"][l["who"]].get("instruction"), f)
+        got = say(l["text"], pick[l["who"]], l.get("instruction") or spec["voices"][l["who"]].get("instruction"), f)
         rows.append({"id": l["id"], "who": l["who"], "voice": pick[l["who"]], "seconds": round(voice.length(f), 2)})
         rows[-1]["match"] = getattr(voice.kiri_speak, "match", None)
+        if isinstance(got, tuple) and got and got[0]:
+            rows[-1]["marks"] = got[0]  # word timings from Kiri's own transcript (used to place pauses and subtitles)
         print(rows[-1])
     json.dump({"voices": pick, "lines": rows}, open(os.path.join(out, "lines.json"), "w"), ensure_ascii=False, indent=1)
 
