@@ -3511,6 +3511,128 @@
         "status": "ready",
         "cover": "set"
       }
+    },
+    {
+      "slug": "real-profit-per-order",
+      "status": "sent",
+      "error": "",
+      "sent_at": "2026-11-12T18:33:33+07:00",
+      "rendered_at": "2026-11-12T18:33:33+07:00",
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/43210071071",
+      "duration": 64.63,
+      "size_mb": 18.1,
+      "render_seconds": 252,
+      "voice": "kiri:Vannak",
+      "music": "adsbox-original-1.mp3",
+      "style": "custom animation only",
+      "visuals": [
+        "question",
+        "vanish",
+        "funnel",
+        "waterfall",
+        "waterfall",
+        "waterfall",
+        "takeaway",
+        "cta2"
+      ],
+      "resolution": "1080x1920",
+      "fps": 30,
+      "subtitle_sync": "line",
+      "footage": [],
+      "footage_share": 0,
+      "stock_footage": "none (removed)",
+      "telegram": {
+        "ok": true,
+        "message_id": 256,
+        "chat": "configured",
+        "at": "2026-11-12T18:33:33+07:00",
+        "file_id": "BAACAgUAAxkDAAIBAAFq9aQFGl3MH9itDyIprnmnfYA3vgACSSMAApOesVd2eUlFqk8wOj0E",
+        "items": [
+          {
+            "item": "video",
+            "message_id": 256,
+            "file_name": "real-profit-per-order.mp4",
+            "file_size": 18101545,
+            "width": 1080,
+            "height": 1920,
+            "file_id": "BAACAgUAAxkDAAIBAAFq9aQFGl3MH9itDyIprnmnfYA3vgACSSMAApOesVd2eUlFqk8wOj0E"
+          },
+          {
+            "item": "facebook_caption",
+            "message_id": 257
+          },
+          {
+            "item": "thumbnail",
+            "message_id": 258,
+            "file_name": "real-profit-per-order-thumbnail.jpg",
+            "file_size": 227377
+          }
+        ],
+        "sent_count": 3,
+        "local_sizes": {
+          "video": 18101545,
+          "thumbnail": 227377
+        }
+      },
+      "speech_match": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "scene_sync": [
+        "line",
+        "line",
+        "line",
+        "line",
+        "line",
+        "line",
+        "line",
+        "line"
+      ],
+      "archive": {
+        "assets": [
+          {
+            "id": 739239107,
+            "name": "real-profit-per-order-thumb.jpg",
+            "size": 227377,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/real-profit-per-order-thumb.jpg"
+          },
+          {
+            "id": 739239109,
+            "name": "real-profit-per-order.mp4",
+            "size": 18101545,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/real-profit-per-order.mp4"
+          }
+        ],
+        "release_id": 430382508
+      },
+      "quality": {
+        "width": 1080,
+        "height": 1920,
+        "fps": "30/1",
+        "duration": 64.63,
+        "video_codec": "h264",
+        "audio_codec": "aac",
+        "loudness": "-14.7 LUFS",
+        "decode_errors": false,
+        "visual_mix": {
+          "motion_graphics": 0.9,
+          "phone_chat": 0.1,
+          "illustrated": 0,
+          "product_dashboard": 0
+        }
+      },
+      "article_id": "real-profit-per-order",
+      "video_id": 739239109,
+      "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/real-profit-per-order.mp4",
+      "created_at": "2026-11-12T18:33:33+07:00",
+      "telegram_status": "delivered",
+      "production_status": "complete"
     }
   ]
 }
