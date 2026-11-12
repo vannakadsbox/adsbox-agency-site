@@ -13,7 +13,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-10"
+    "updated": "2026-11-12"
    },
    {
     "name": "13Drama",
@@ -24,7 +24,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-11"
+    "updated": "2026-11-12"
    },
    {
     "name": "6M",
@@ -57,18 +57,18 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-11"
+    "updated": "2026-11-12"
    },
    {
     "name": "44Drama",
     "url": "https://www.facebook.com/profile.php?id=61595207608137",
-    "followers": 40,
+    "followers": 41,
     "picture": "assets/accounts/fb-61595207608137.webp",
     "cover": "assets/accounts/fb-61595207608137-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-11"
+    "updated": "2026-11-12"
    },
    {
     "name": "40Drama",
@@ -90,7 +90,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-11"
+    "updated": "2026-11-12"
    },
    {
     "name": "45Drama",
@@ -101,7 +101,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-11"
+    "updated": "2026-11-12"
    },
    {
     "name": "កុនសម្រាយAi",
@@ -112,18 +112,18 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-11"
+    "updated": "2026-11-12"
    },
    {
     "name": "U Drama",
     "url": "https://www.facebook.com/profile.php?id=61588652091475",
-    "followers": 12242,
+    "followers": 12238,
     "picture": "assets/accounts/fb-61588652091475.webp",
     "cover": "assets/accounts/fb-61588652091475-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-11"
+    "updated": "2026-11-12"
    },
    {
     "name": "DayDrama",
@@ -139,13 +139,13 @@ window.ACCOUNTS = {
    {
     "name": "Drama24TV",
     "url": "https://www.facebook.com/profile.php?id=61593444931873",
-    "followers": 660,
+    "followers": 661,
     "picture": "assets/accounts/fb-61593444931873.webp",
     "cover": "assets/accounts/fb-61593444931873-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-11"
+    "updated": "2026-11-12"
    },
    {
     "name": "MovieAi",
@@ -156,7 +156,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-11"
+    "updated": "2026-11-12"
    },
    {
     "name": "RiNa Shop",
@@ -447,13 +447,13 @@ window.ACCOUNTS = {
    {
     "name": "24MerlTos",
     "url": "https://www.facebook.com/profile.php?id=61594235184973",
-    "followers": 408,
+    "followers": 436,
     "picture": "assets/accounts/fb-61594235184973.webp",
     "cover": "assets/opt/adsbox-cover-de2e8b-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-10"
+    "updated": "2026-11-12"
    },
    {
     "name": "អេអាយដ្រាម៉ា",
@@ -464,18 +464,18 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-10"
+    "updated": "2026-11-12"
    },
    {
     "name": "មើលកុនAi",
     "url": "https://www.facebook.com/profile.php?id=61594001741197",
-    "followers": 120,
+    "followers": 131,
     "picture": "assets/accounts/fb-61594001741197.webp",
     "cover": "assets/opt/adsbox-cover-91f194-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-10"
+    "updated": "2026-11-12"
    },
    {
     "name": "PostAi",
@@ -1008,13 +1008,13 @@ window.ACCOUNTS = {
    {
     "name": "U Drama",
     "url": "https://www.facebook.com/profile.php?id=61588652091475&sk=reels_tab",
-    "followers": 12242,
+    "followers": 12238,
     "picture": "assets/accounts/fb-61588652091475.webp",
     "cover": "assets/opt/adsbox-cover-7ff99d-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-11"
+    "updated": "2026-11-12"
    },
    {
     "name": "TV24k",
