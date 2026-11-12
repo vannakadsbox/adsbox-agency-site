@@ -1,0 +1,194 @@
+{
+ "slug": "day1-preview-v3",
+ "note": "Preview V3 voice (owner direction 12 Nov 2026 17:30): one recording per subtitle line, expert explaining to a shop owner; nothing is posted.",
+ "voices": {
+  "host": {
+   "voice": "Vannak",
+   "instruction": "Curious, surprised Cambodian consultant talking to a shop owner, natural and warm, not an advert"
+  }
+ },
+ "lines": [
+  {
+   "id": "s00l0",
+   "who": "host",
+   "start": 0,
+   "text": "លក់អាវ 12 ដុល្លារ",
+   "instruction": "Curious and surprised, clear on the price, natural Cambodian consultant"
+  },
+  {
+   "id": "s00l1",
+   "who": "host",
+   "start": 0,
+   "text": "ថ្លៃដើម 6 ដុល្លារ",
+   "instruction": "Curious and surprised, clear on the price, natural Cambodian consultant"
+  },
+  {
+   "id": "s00l2",
+   "who": "host",
+   "start": 0,
+   "text": "បងគិតថា ចំណេញ 6 ដុល្លារ មែនទេ?",
+   "instruction": "Surprised question to a shop owner, as if the answer is not what they think"
+  },
+  {
+   "id": "s01l0",
+   "who": "host",
+   "start": 0,
+   "text": "តែលុយក្នុងដៃបងពិតៗ",
+   "instruction": "Asking a shop owner sincerely, strong stress on លុយក្នុងដៃ, not rushed"
+  },
+  {
+   "id": "s01l1",
+   "who": "host",
+   "start": 0,
+   "text": "អាចសល់តែ 1.50 ដុល្លារ ប៉ុណ្ណោះ!",
+   "instruction": "Sincerely asking a shop owner directly, not rushed, stressing the words លុយក្នុងដៃ"
+  },
+  {
+   "id": "s01l2",
+   "who": "host",
+   "start": 0,
+   "text": "លុយ 4.50 ដុល្លារ បាត់ទៅណា?",
+   "instruction": "Sincerely asking a shop owner directly, not rushed, stressing the words លុយក្នុងដៃ"
+  },
+  {
+   "id": "s02l0",
+   "who": "host",
+   "start": 0,
+   "text": "ព្រោះ Order មួយ មិនទាន់ជាលុយទេ។",
+   "instruction": "Confident expert explaining simply to a shop owner, natural conversational pace, clear"
+  },
+  {
+   "id": "s02l1",
+   "who": "host",
+   "start": 0,
+   "text": "ត្រូវបញ្ជាក់ ដឹកដល់ ហើយភ្ញៀវបង់លុយ",
+   "instruction": "Confident expert explaining simply to a shop owner, natural conversational pace, clear"
+  },
+  {
+   "id": "s02l2",
+   "who": "host",
+   "start": 0,
+   "text": "ទើបក្លាយជាចំណេញពិត។",
+   "instruction": "Confident expert explaining simply to a shop owner, natural conversational pace, clear"
+  },
+  {
+   "id": "s03l0",
+   "who": "host",
+   "start": 0,
+   "text": "ឧទាហរណ៍ លេខគំរូ៖ លក់មួយឈុត 12 ដុល្លារ",
+   "instruction": "Slow, clear expert reading numbers to a shop owner, every price spoken distinctly"
+  },
+  {
+   "id": "s03l1",
+   "who": "host",
+   "start": 0,
+   "text": "ដកថ្លៃដើម 6 ដុល្លារ",
+   "instruction": "Slow, clear expert reading numbers to a shop owner, every price spoken distinctly"
+  },
+  {
+   "id": "s03l2",
+   "who": "host",
+   "start": 0,
+   "text": "ថ្លៃខ្ចប់ 0.30 ដុល្លារ",
+   "instruction": "Slow, clear expert reading numbers to a shop owner, every price spoken distinctly"
+  },
+  {
+   "id": "s03l3",
+   "who": "host",
+   "start": 0,
+   "text": "ថ្លៃដឹក 1.50 ដុល្លារ",
+   "instruction": "Slow, clear expert reading numbers to a shop owner, every price spoken distinctly"
+  },
+  {
+   "id": "s04l0",
+   "who": "host",
+   "start": 0,
+   "text": "ដកលុយ Boost 1.88 ដុល្លារ ក្នុងមួយ Order",
+   "instruction": "Slow, clear expert explaining where each number comes from, every number distinct"
+  },
+  {
+   "id": "s04l1",
+   "who": "host",
+   "start": 0,
+   "text": "មកពី 60 ដុល្លារ ចែកនឹង Order ដឹកដល់ ៣២",
+   "instruction": "Slow, clear expert explaining where each number comes from, every number distinct"
+  },
+  {
+   "id": "s04l2",
+   "who": "host",
+   "start": 0,
+   "text": "ហើយខាតពី Order មិនទទួល 0.83 ដុល្លារ",
+   "instruction": "Slow, clear expert explaining where each number comes from, every number distinct"
+  },
+  {
+   "id": "s04l3",
+   "who": "host",
+   "start": 0,
+   "text": "មកពីកញ្ចប់ ៨ ដែលត្រូវដឹកត្រឡប់",
+   "instruction": "Slow, clear expert explaining where each number comes from, every number distinct"
+  },
+  {
+   "id": "s05l0",
+   "who": "host",
+   "start": 0,
+   "text": "ចុងក្រោយ សល់តែ",
+   "instruction": "Calm expert, slowing down before revealing the answer, quiet build-up"
+  },
+  {
+   "id": "s05l1",
+   "who": "host",
+   "start": 0,
+   "text": "1.50 ដុល្លារ ប៉ុណ្ណោះ!",
+   "instruction": "Reveal with strong emphasis on the number, clear and confident, a little slower"
+  },
+  {
+   "id": "s05l2",
+   "who": "host",
+   "start": 0,
+   "text": "លុយ 4.50 ដុល្លារ បាត់ទៅលើចំណាយទាំងនេះ។",
+   "instruction": "Calm expert revealing the answer to a shop owner, natural and clear"
+  },
+  {
+   "id": "s06l0",
+   "who": "host",
+   "start": 0,
+   "text": "ចំណេញពិត មិនមែនលក់ ដកថ្លៃដើមទេ។",
+   "instruction": "Confident, warm expert giving the one key lesson, clear and natural"
+  },
+  {
+   "id": "s06l1",
+   "who": "host",
+   "start": 0,
+   "text": "ត្រូវដកខ្ចប់ ដឹក Boost",
+   "instruction": "Confident, warm expert giving the one key lesson, clear and natural"
+  },
+  {
+   "id": "s06l2",
+   "who": "host",
+   "start": 0,
+   "text": "និងការខាតពី Order មិនទទួលផង។",
+   "instruction": "Confident, warm expert giving the one key lesson, clear and natural"
+  },
+  {
+   "id": "s07l0",
+   "who": "host",
+   "start": 0,
+   "text": "ហាងបងចំណេញពិតប៉ុន្មាន ក្នុងមួយ Order?",
+   "instruction": "Friendly, confident, helpful expert inviting the shop owner, warm, not a sales pitch"
+  },
+  {
+   "id": "s07l1",
+   "who": "host",
+   "start": 0,
+   "text": "Comment ពាក្យ PROFIT មក",
+   "instruction": "Friendly, confident, helpful expert inviting the shop owner, warm, not a sales pitch"
+  },
+  {
+   "id": "s07l2",
+   "who": "host",
+   "start": 0,
+   "text": "ក្រុម Ads Box នៅទីនេះ ជួយបង។",
+   "instruction": "Friendly, confident, helpful expert inviting the shop owner, warm, not a sales pitch"
+  }
+ ]
+}
