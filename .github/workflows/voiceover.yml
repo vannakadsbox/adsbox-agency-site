@@ -1,0 +1,31 @@
+name: Voice-over lines
+# One Khmer voice file per line of videos/voiceovers/<file>.json; the files go to the private draft release
+# "video-archive" as <file>-voiceover.zip. Nothing is posted anywhere.
+on:
+  workflow_dispatch:
+    inputs:
+      file:
+        description: "Spec file in videos/voiceovers (without .json)"
+        default: wife-nobody-appreciated
+      female_voice:
+        description: "Optional: female voice to use (Kiri name, or edge:Sreymom). Empty = automatic."
+        default: ""
+permissions:
+  contents: write
+jobs:
+  voice:
+    runs-on: ubuntu-latest
+    env:
+      KIRI_API_KEY: ${{ secrets.KIRI_API_KEY }}
+      FEMALE_VOICE: ${{ github.event.inputs.female_voice }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: sudo apt-get update -q && sudo apt-get install -y -q ffmpeg && pip install -q "edge-tts>=7.0"
+      - run: python3 tools/reel/voiceover.py "videos/voiceovers/${{ github.event.inputs.file }}.json" out
+      - run: |
+          cd out && zip -q "../${{ github.event.inputs.file }}-voiceover.zip" * && cd ..
+          gh release upload video-archive "${{ github.event.inputs.file }}-voiceover.zip" --clobber

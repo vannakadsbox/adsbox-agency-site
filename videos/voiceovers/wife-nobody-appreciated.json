@@ -1,0 +1,36 @@
+{
+  "slug": "wife-nobody-appreciated",
+  "note": "Khmer voice-over lines for the owner's story video, one per on-screen subtitle card. start = when that card appears (seconds).",
+  "voices": {
+    "narrator": {"voice": "FEMALE", "instruction": "Gentle, warm Cambodian woman telling a sad family story, soft and slow, tender pauses"},
+    "dara": {"voice": "Dara", "instruction": ""}
+  },
+  "lines": [
+    {"id": "n01", "who": "narrator", "start": 0.5,  "text": "រៀងរាល់ព្រឹក ស្រីនាងតែងក្រោកពីព្រលឹម មុនគេទាំងអស់"},
+    {"id": "n02", "who": "narrator", "start": 4.5,  "text": "ដើម្បីរៀបចំអាហារពេលព្រឹកជូនប្តី និងកូនស្រីជាទីស្រឡាញ់។"},
+    {"id": "n03", "who": "narrator", "start": 9.0,  "text": "នាងព្យាយាមនិយាយរកប្តី..."},
+    {"id": "n04", "who": "narrator", "start": 13.0, "text": "ប៉ុន្តែភ្នែករបស់ដារ៉ា នៅតែជាប់នឹងទូរស័ព្ទ។"},
+    {"id": "n05", "who": "narrator", "start": 16.3, "text": "សំឡេងរបស់នាង ហាក់ដូចជាគ្មាននរណាឮឡើយ។"},
+    {"id": "n06", "who": "narrator", "start": 20.5, "text": "បោសផ្ទះ ដាំស្ល បោកខោអាវ មើលថែកូន..."},
+    {"id": "n07", "who": "narrator", "start": 24.5, "text": "ការងាររបស់នាងមិនដែលចប់ទេ។"},
+    {"id": "n08", "who": "narrator", "start": 27.5, "text": "ទោះហត់យ៉ាងណា នាងនៅតែញញឹមដាក់កូនជានិច្ច។"},
+    {"id": "n09", "who": "narrator", "start": 32.3, "text": "ល្ងាចមួយ ដារ៉ាត្រឡប់មកផ្ទះវិញ។"},
+    {"id": "d01", "who": "dara", "start": 34.3, "text": "ផ្ទះរញ៉េរញ៉ៃអញ្ចឹង!", "instruction": "Annoyed, irritated Cambodian husband just home from work, sharp and loud"},
+    {"id": "d02", "who": "dara", "start": 36.3, "text": "ពេញមួយថ្ងៃ អូននៅផ្ទះធ្វើអីខ្លះ?", "instruction": "Annoyed, irritated Cambodian husband, harsh complaining tone"},
+    {"id": "n10", "who": "narrator", "start": 39.2, "text": "ស្រីនាងនៅស្ងៀម... ខំទប់ទឹកភ្នែកមិនឱ្យហូរ។"},
+    {"id": "n11", "who": "narrator", "start": 43.5, "text": "យប់ជ្រៅ ក្បែរកូនស្រីដែលកំពុងដេកលក់"},
+    {"id": "n12", "who": "narrator", "start": 46.0, "text": "ទឹកភ្នែកដែលនាងលាក់ទុកពេញមួយថ្ងៃ ក៏ហូរចុះមកស្ងាត់ៗ។"},
+    {"id": "n13", "who": "narrator", "start": 49.5, "text": "នាងមិនត្អូញត្អែរទេ..."},
+    {"id": "n14", "who": "narrator", "start": 51.3, "text": "នាងគ្រាន់តែចង់ឱ្យគេមើលឃើញតម្លៃរបស់នាងប៉ុណ្ណោះ។"},
+    {"id": "n15", "who": "narrator", "start": 55.5, "text": "ថ្ងៃមួយ ដារ៉ាប្រទះឃើញថង់ថ្នាំ និងសៀវភៅកត់ត្រារបស់ប្រពន្ធ។"},
+    {"id": "n16", "who": "narrator", "start": 59.3, "text": "នាងឈឺ តែមិនដែលប្រាប់គាត់"},
+    {"id": "n17", "who": "narrator", "start": 61.8, "text": "ហើយលុយដែលនាងខំសន្សំ គឺសម្រាប់អនាគតកូនស្រី។"},
+    {"id": "n18", "who": "narrator", "start": 65.3, "text": "ពេលនោះ គាត់ស្តាយក្រោយជាខ្លាំង។"},
+    {"id": "d03", "who": "dara", "start": 67.5, "text": "អូន... បងសុំទោស។", "instruction": "Remorseful Cambodian husband, soft, voice breaking with regret, slow"},
+    {"id": "d04", "who": "dara", "start": 70.0, "text": "បងមិនដែលមើលឃើញថា អូនលំបាកដើម្បីគ្រួសារយើងប៉ុណ្ណឹងទេ។", "instruction": "Remorseful Cambodian husband, soft, sincere, full of regret"},
+    {"id": "d05", "who": "dara", "start": 73.3, "text": "ពីថ្ងៃនេះទៅ បងនឹងមិនឱ្យអូនហត់តែម្នាក់ឯងទៀតទេ។", "instruction": "Loving Cambodian husband making a sincere promise, warm and gentle"},
+    {"id": "n19", "who": "narrator", "start": 76.8, "text": "លើកនេះ ទឹកភ្នែករបស់នាង មិនមែនជាទឹកភ្នែកនៃការឈឺចាប់ទៀតទេ។"},
+    {"id": "n20", "who": "narrator", "start": 80.5, "text": "កុំចាំដល់ពេលបាត់បង់នរណាម្នាក់ ទើបដឹងពីតម្លៃរបស់គេ។"},
+    {"id": "n21", "who": "narrator", "start": 84.3, "text": "ចូរឱ្យតម្លៃមនុស្សដែលស្រឡាញ់អ្នក តាំងពីថ្ងៃនេះទៅ។"}
+  ]
+}
