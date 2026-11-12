@@ -3,35 +3,35 @@ window.CLIENTS = [
  {
   "name": "ផ្ទះ បង្អែមព្រិលត្រចៀកកាំ",
   "url": "https://web.facebook.com/profile.php?id=100088869350470",
-  "followers": 32498,
+  "followers": 32521,
   "picture": "assets/accounts/fb-100088869350470.webp",
   "category": "ម្ហូបអាហារ"
  },
  {
   "name": "World of Shopping",
   "url": "https://web.facebook.com/worldofshopping168",
-  "followers": 6151,
+  "followers": 6153,
   "picture": "assets/accounts/fb-worldofshopping168.webp",
   "category": "ហាងលក់អនឡាញ"
  },
  {
   "name": "មានលាភ999 លក់គ្រាប់ធញជាតិ ដំណាប់ ផ្លែឈើ",
   "url": "https://web.facebook.com/profile.php?id=61550509391405",
-  "followers": 6588,
+  "followers": 6594,
   "picture": "assets/accounts/fb-61550509391405.webp",
   "category": "ម្ហូបអាហារ"
  },
  {
   "name": "CosMe | Phnom Penh",
   "url": "https://web.facebook.com/profile.php?id=100068655260640",
-  "followers": 8533,
+  "followers": 8535,
   "picture": "assets/accounts/fb-100068655260640.webp",
   "category": "សម្ផស្ស"
  },
  {
   "name": "Healthy Glow | Phnom Penh",
   "url": "https://web.facebook.com/profile.php?id=100083063480749",
-  "followers": 17842,
+  "followers": 17843,
   "picture": "assets/accounts/fb-100083063480749.webp",
   "category": "សម្ផស្ស"
  },
@@ -52,7 +52,7 @@ window.CLIENTS = [
  {
   "name": "Borey ChhayLy | Phnom Penh",
   "url": "https://web.facebook.com/BoreyChhayly168",
-  "followers": 48428,
+  "followers": 48429,
   "picture": "assets/accounts/fb-boreychhayly168.webp",
   "category": ""
  }
