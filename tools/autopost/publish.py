@@ -168,7 +168,7 @@ def apply(a, brief, s):
     done = C.slot_record(h, brief["date"], brief["slot"], ("published",) if s["mode"] == "live" else ("published", "dry_run"))
     if done: return 3, f"Already done: {brief['slot']} {brief['date']} is {done['status']} ({done.get('slug')})", []
     rec = {"date": brief["date"], "slot": brief["slot"], "category": brief["category"]["id"], "angle": brief.get("suggested_angle"),
-           "attempts": a.attempts, "generated_at": now}
+           "attempts": a.attempts, "generated_at": now, "plan_day": (brief.get("plan_topic") or {}).get("day")}
     if a.record_failure is not None:
         rec.update(status="failed", error=a.record_failure[:500], failed_at=now)
         h["runs"].append(rec); h["runs"] = h["runs"][-400:]; C.save_json("history.json", h)

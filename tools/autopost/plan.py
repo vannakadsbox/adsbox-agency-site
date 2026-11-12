@@ -13,21 +13,21 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import common as C
 
 RULES = [
-    "Write in natural, professional Khmer that a Cambodian shop owner reads easily on a phone. Short paragraphs (1-3 sentences). Use everyday words; English only for common platform terms (Facebook, Boost Post, Live, TikTok, Messenger, Ads Manager).",
+    # Knowledge rules approved by the owner on 11-12 Nov 2026 (Knowledge Center audit, Phase 2 and the 30-day plan).
+    "TOPIC: write the article for 'plan_topic' (title idea, format, CTA and note). You may polish the title (keep the meaning), but keep the topic, the format and the CTA. Category and tag come from the brief.",
+    "Write in natural Khmer that a Cambodian shop owner understands on first reading on a phone: talk like an experienced consultant, use «បងៗ», short paragraphs (1-3 sentences), everyday words; English only for platform terms and metric names (Boost Post, Live, Messenger, Ads Manager, Cost per Order, Conversion Rate...). Clothes are counted with «ឈុត», never «ដុំ».",
     "Length: about 300-600 Khmer words (roughly {min_k}-{max_k} Khmer characters in the body).",
-    "Structure: a hook in the first paragraph; a clear problem or opportunity; 3-6 practical steps or tips under '## ' headings (or a numbered list); one concrete example for a Cambodian online seller; a short natural call to action at the end.",
-    "Educate first. Mention ADS BOX only in the closing call to action, unless the category is the ADS BOX System. Link the call to action to /#services, /#adsbox-system or https://t.me/vannakdm.",
-    "You may add one internal link to a related earlier article from 'related_articles' using /knowledge/<slug>/. No external links other than https://t.me/vannakdm and https://adsbox.biz/.",
-    "State only facts about ADS BOX that appear in 'facts'. No other prices, discounts, packages, client counts, statistics or features. If unsure, leave ADS BOX out.",
-    "Examples must be clearly illustrative (\"ឧទាហរណ៍\" / a sample shop) with no real business or person names, and no claims that ADS BOX achieved a result for anyone.",
-    "Never promise or guarantee orders, sales or results. Never give advice that breaks Facebook or TikTok rules (fake accounts, fake likes or comments, buying accounts).",
-    "NEW TOPIC EVERY DAY (owner, 9 Nov 2026): the seller problem and the main advice must be clearly different from every article in 'last_7_days' (not the same subject in other words). E.g. if a recent article was about boost spend vs orders, messages vs orders or daily numbers, do not write about counting, measuring or reporting boost results again this week. Mention a shared event (like 11.11) in at most one article every few days, not every day.",
-    "Do not repeat a title, angle or main advice from 'recent_titles'. Choose a clearly different angle; the suggested angle is a starting point.",
-    "STYLE (owner, 5 Nov 2026): talk like an experienced consultant chatting with a seller, in plain everyday Khmer that is understood on first reading (no bookish or figurative phrases; «បងៗ» is welcome). Open with a situation the seller recognises, often as a question. Clothes are counted with «ឈុត», never «ដុំ».",
-    "VARY THE FORMAT: most recent titles use '៥ គន្លឹះ…' or '៥ ជំហាន…'. Look at 'recent_titles' and pick a different shape when that pattern dominates: a myth vs truth, a before/after, a short story of a sample shop, a 'do this, not that', a checklist before an event, a question sellers often ask, or a common mistake. Numbers in titles are fine, just not every time.",
-    "CONTENT PLAN (owner, 7 Nov 2026): write for the main reader first: a Cambodian online seller (often a woman of 25-35 selling clothes or cosmetics by Facebook Live or posts) who pays for boosts and wants orders at a low cost, not likes. Rotate between these five shapes that people share and save: (1) myth vs truth, (2) what changed on Facebook or TikTok and what sellers should do (only changes you are sure of; otherwise skip this shape), (3) before/after, (4) a question sellers often ask, answered, (5) behind the scenes of how a boost is checked day by day (general practice only, no client data). End with one question readers can answer in the comments.",
-    "BE TIMELY: check 'date'. If a Cambodian selling moment is within about 10 days (11.11, 12.12, payday at month end, Water Festival, Khmer New Year, Pchum Ben, year-end gifts), connect the topic to it when it fits naturally, without inventing exact holiday dates you are unsure of.",
-    "No keyword stuffing: the primary keyword appears naturally in the title, the first paragraph and at most 2-3 more times.",
+    "Structure for practical articles: a problem the seller recognises → why it happens → what to check → what to do → a labelled example with numbers → mistakes to avoid → a short checklist (lines starting with '- ☐ ') → «## សរុបមួយប្រយោគ» → «### បងអាចធ្វើថ្ងៃនេះ» with 3-4 '- ☐ ' actions → the learning-path and related-article lines → the CTA paragraph last. Short formats (script pack, template, FAQ) may skip parts. Use '## ' headings.",
+    "FORMAT: follow plan_topic.format. Never write a plain '៥ គន្លឹះ…' numbered-tips article. Script packs give copy-ready messages; metric explainers go formula → labelled example → how to judge it against the shop's OWN last 7 days and own profit per order → what moves it → what to do; calculators show each step of the sum; decision trees use 'បើ … → …' lines.",
+    "MONEY FUNNEL: every article about money uses the same funnel: លុយចាយ → Message → Order → Confirmed → Delivered → Paid → Profit. Never treat Orders as profit. Keep contribution profit (before fixed costs) separate from net profit, and say which one a number is.",
+    "NUMBERS: there is no universal 'good' Cost per Message, Cost per Order or conversion rate. Compare with the shop's own numbers. Any guideline number is labelled 'guideline ដែល ADS BOX ណែនាំ មិនមែនជាច្បាប់របស់ Meta / Facebook ទេ'. Any assumed cost (delivery, packaging, return fee) is labelled as an assumption ('ឧទាហរណ៍នេះសន្មត់ថា…'). Check every sum before writing it.",
+    "EXAMPLES: every invented shop or figure is introduced with «**ឧទាហរណ៍សម្រាប់បង្ហាញវិធីគណនា** (មិនមែនទិន្នន័យអតិថិជនពិត)». Never use the word «ករណីសិក្សា». No client names, client results, testimonials or real-business names.",
+    "CLAIMS: no «យើងឃើញញឹកញាប់», no 'Facebook នឹង…' promises, no guaranteed orders; prefer «អាច», «បង្កើនឱកាស», «ជួយកាត់បន្ថយ». Only state Facebook/TikTok features you are sure of; otherwise give general advice. Never advise anything that breaks platform rules (fake accounts, bought likes or reviews).",
+    "LINKS: near the end add one line «**បន្ទាប់ក្នុងផ្លូវរៀន៖** [title](/knowledge/<slug>/)» when an obvious next step exists, and one line «**អត្ថបទពាក់ព័ន្ធ៖** » with 2-4 links separated by ' · ', chosen ONLY from 'all_articles' (exact slugs). In the body you may link the funnel article /knowledge/cost-per-message-vs-cost-per-order/ where it helps.",
+    "CTA: the last paragraph is the CTA named in plan_topic.cta: one soft bridge line (e.g. «បើបងអនុវត្តរួច តែមិនមានពេលតាមដាន…»), then the service, written fresh, with only facts and prices from 'facts', linking https://t.me/vannakdm (services) or https://adsbox.biz/ (System). Educate first; mention ADS BOX nowhere else unless the category is the ADS BOX System. 'system-soft' means one gentle line only, no selling.",
+    "CAMBODIA: write for Cambodian online sellers (often selling clothes or cosmetics by Facebook posts and Live, Messenger-first, COD, delivery companies, Phnom Penh vs province delivery, $ prices). Connect to a near selling moment (12.12, payday, Khmer New Year) only when plan_topic says so or it fits naturally.",
+    "SEO: a problem-first title with words sellers type; one primary keyword used naturally in the title, first paragraph and at most 2-3 more times; seo_title at most 60 characters.",
+    "Do not repeat a title, angle or main advice from 'recent_titles' or 'last_7_days'; where the topic is close to an older article, take the new angle in plan_topic and link the older article instead of repeating it.",
 ]
 
 SCHEMA = {
@@ -91,6 +91,20 @@ def pick_angle(cat, hist):
     return sorted(angles, key=lambda a: (used.count(a), angles.index(a)))[0]
 
 
+def plan_topic(date, hist, s):
+    """content/autopost/plan30.json (owner-approved 30-day plan): the next topic not yet published.
+    Topics with a 'window' [from, until] are written only inside it and go first once it opens."""
+    p = C.load_json("plan30.json", None)
+    if not p:
+        return None
+    ok = ("published",) if s["mode"] == "live" else ("published", "dry_run")
+    done = {r.get("plan_day") for r in hist["runs"] if r.get("status") in ok}
+    left = [t for t in p["topics"] if t["day"] not in done and (not t.get("window") or t["window"][1] >= date)]
+    timely = [t for t in left if t.get("window") and t["window"][0] <= date]
+    rest = [t for t in left if not t.get("window")]
+    return (timely or rest or [None])[0]
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--now"); ap.add_argument("--slot", choices=C.SLOTS); ap.add_argument("--date")
@@ -125,7 +139,12 @@ def main():
     cats = C.load_json("categories.json")
     arts = C.existing_articles()
     camp = campaign_for(date)
-    cat = pick_category(slot, cats, h, arts, camp and camp.get(slot))
+    topic = plan_topic(date, h, s)
+    if topic:
+        every = {c["id"]: c for x in cats.values() for c in x}
+        cat = every[topic["category"]]
+    else:
+        cat = pick_category(slot, cats, h, arts, camp and camp.get(slot))
     other = C.slot_record(h, date, "evening" if slot == "morning" else "morning", ("published", "dry_run"))
     recent = [{"title": x["title"], "date": x["date"], "category": x["category"]} for x in arts[:60]]
     recent += [{"title": r.get("title"), "date": r.get("date"), "category": r.get("category"), "dry_run": True}
@@ -135,8 +154,8 @@ def main():
     brief = {
         "date": date, "slot": slot, "mode": s["mode"], "max_attempts": s["max_attempts"],
         "now": now.isoformat(timespec="minutes"),
-        "category": {k: cat[k] for k in ("id", "kh", "en")}, "tag": cat["tag"], "suggested_angle": pick_angle(cat, h),
-        "slot_focus": ("This month's focus: " + camp["goal"]) if camp else "Morning: practical education for sellers (sales, captions, customers, mistakes, trust)." if slot == "morning"
+        "category": {k: cat[k] for k in ("id", "kh", "en")}, "tag": cat["tag"], "suggested_angle": (topic["title_idea"] if topic else pick_angle(cat, h)),
+        "slot_focus": "Knowledge 30-day plan, day %s of 30." % topic["day"] if topic else ("This month's focus: " + camp["goal"]) if camp else "Morning: practical education for sellers (sales, captions, customers, mistakes, trust)." if slot == "morning"
                       else "Evening: marketing and business improvement (ads, Live, budget, analytics, operations, team, ADS BOX).",
         "must_differ_from_today": other and {"title": other.get("title"), "category": other.get("category")},
         "recent_titles": recent,
@@ -146,13 +165,15 @@ def main():
                           for v in (read_json_safe(os.path.join(C.ROOT, "videos", "log.json")).get("videos") or [])
                           if str(v.get("sent_at", ""))[:10] >= (datetime.date.fromisoformat(date) - datetime.timedelta(days=7)).isoformat()],
         "related_articles": related,
+        "plan_topic": topic,
+        "all_articles": [{"slug": x["slug"], "title": x["title"]} for x in arts],
         "facts": read(os.path.join(C.AUTO, "facts.md")),
         "rules": [r.format(min_k=s["min_khmer_chars"], max_k=s["max_khmer_chars"]) for r in RULES] + ([camp["rule"]] if camp else []),
         "campaign": camp and {"name": camp["name"], "goal": camp["goal"]},
         "output_schema": SCHEMA,
     }
     with open(a.out, "w", encoding="utf-8") as f: json.dump(brief, f, ensure_ascii=False, indent=2)
-    print(f"Due: {slot} article for {date} (mode {s['mode']}). Category: {cat['en']}. Brief written to {a.out}")
+    print(f"Due: {slot} article for {date} (mode {s['mode']}). Plan day: {topic and topic['day']}. Category: {cat['en']}. Brief written to {a.out}")
     return 0
 
 

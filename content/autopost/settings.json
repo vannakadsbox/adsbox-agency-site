@@ -1,5 +1,5 @@
 {
-  "enabled": false,
+  "enabled": true,
   "mode": "live",
   "timezone": "Asia/Phnom_Penh (UTC+7)",
   "morning": {
@@ -15,5 +15,5 @@
   "alert_after_minutes": 50,
   "max_attempts": 3,
   "min_khmer_chars": 1300,
-  "max_khmer_chars": 3800
+  "max_khmer_chars": 5000
 }
