@@ -161,46 +161,46 @@ window.ACCOUNTS = {
    {
     "name": "RiNa Shop",
     "url": "https://www.facebook.com/profile.php?id=61592794354641",
-    "followers": 10643,
+    "followers": 10639,
     "picture": "assets/accounts/fb-61592794354641.webp",
     "cover": "assets/accounts/fb-61592794354641-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-11"
+    "updated": "2026-11-12"
    },
    {
     "name": "Merl24Drama",
     "url": "https://www.facebook.com/profile.php?id=61592985212544",
-    "followers": 10757,
+    "followers": 10754,
     "picture": "assets/accounts/fb-61592985212544.webp",
     "cover": "assets/accounts/fb-61592985212544-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-11"
+    "updated": "2026-11-12"
    },
    {
     "name": "2Drama",
     "url": "https://www.facebook.com/profile.php?id=61594994700769",
-    "followers": 473,
+    "followers": 475,
     "picture": "assets/accounts/fb-61594994700769.webp",
     "cover": "assets/accounts/fb-61594994700769-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-11"
+    "updated": "2026-11-12"
    },
    {
     "name": "NNDrama",
     "url": "https://www.facebook.com/profile.php?id=61594910973822",
-    "followers": 505,
+    "followers": 506,
     "picture": "assets/accounts/fb-61594910973822.webp",
     "cover": "assets/accounts/fb-61594910973822-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-11"
+    "updated": "2026-11-12"
    },
    {
     "name": "OneDrama",
@@ -211,7 +211,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-11"
+    "updated": "2026-11-12"
    },
    {
     "name": "មើលដ្រាម៉ា",
@@ -238,13 +238,13 @@ window.ACCOUNTS = {
    {
     "name": "37Drama",
     "url": "https://www.facebook.com/profile.php?id=61595193898766",
-    "followers": 24,
+    "followers": 26,
     "picture": "assets/accounts/fb-61595193898766.webp",
     "cover": "assets/accounts/fb-61595193898766-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-11"
+    "updated": "2026-11-12"
    },
    {
     "name": "32Drama",
@@ -255,18 +255,18 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-11"
+    "updated": "2026-11-12"
    },
    {
     "name": "38Drama",
     "url": "https://www.facebook.com/profile.php?id=61595037455702",
-    "followers": 46,
+    "followers": 54,
     "picture": "assets/accounts/fb-61595037455702.webp",
     "cover": "assets/accounts/fb-61595037455702-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-10"
+    "updated": "2026-11-12"
    },
    {
     "name": "61594970018581",
@@ -590,57 +590,57 @@ window.ACCOUNTS = {
    {
     "name": "សាន សុភ័ក្រ",
     "url": "https://www.facebook.com/profile.php?id=61579777127821",
-    "followers": 626,
+    "followers": 633,
     "picture": "assets/accounts/fb-61579777127821.webp",
     "cover": "assets/accounts/fb-61579777127821-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-07"
+    "updated": "2026-11-12"
    },
    {
     "name": "Gen Z",
     "url": "https://www.facebook.com/profile.php?id=61584362071001",
-    "followers": 296,
+    "followers": 295,
     "picture": "assets/accounts/fb-61584362071001.webp",
     "cover": "assets/accounts/fb-61584362071001-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-07"
+    "updated": "2026-11-12"
    },
    {
     "name": "Monkey koko | Phnom Penh",
     "url": "https://www.facebook.com/profile.php?id=61554724723948",
-    "followers": 432,
+    "followers": 442,
     "picture": "assets/accounts/fb-61554724723948.webp",
     "cover": "assets/accounts/fb-61554724723948-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-07"
+    "updated": "2026-11-12"
    },
    {
     "name": "BK Gaming",
     "url": "https://www.facebook.com/profile.php?id=61567313732962",
-    "followers": 23549,
+    "followers": 23541,
     "picture": "assets/accounts/fb-61567313732962.webp",
     "cover": "assets/accounts/fb-61567313732962-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-07"
+    "updated": "2026-11-12"
    },
    {
     "name": "រីករាយ សារ៉ាយ",
     "url": "https://www.facebook.com/profile.php?id=100070479835153",
-    "followers": 194,
+    "followers": 195,
     "picture": "assets/accounts/fb-100070479835153.webp",
     "cover": "assets/accounts/fb-100070479835153-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-07"
+    "updated": "2026-11-12"
    },
    {
     "name": "Amazing DN28",
@@ -656,24 +656,24 @@ window.ACCOUNTS = {
    {
     "name": "Amazing DN29",
     "url": "https://www.facebook.com/profile.php?id=100067999853796",
-    "followers": 1638,
+    "followers": 1645,
     "picture": "assets/accounts/fb-100067999853796.webp",
     "cover": "assets/accounts/fb-100067999853796-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-07"
+    "updated": "2026-11-12"
    },
    {
     "name": "Merlrg",
     "url": "https://www.facebook.com/profile.php?id=61591792125334",
-    "followers": 417,
+    "followers": 420,
     "picture": "assets/accounts/fb-61591792125334.webp",
     "cover": "assets/accounts/fb-61591792125334-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-07"
+    "updated": "2026-11-12"
    },
    {
     "name": "Amazing DN32",
@@ -695,7 +695,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-07"
+    "updated": "2026-11-12"
    },
    {
     "name": "MerlTvshow",
