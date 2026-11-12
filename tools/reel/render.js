@@ -24,7 +24,7 @@ const EXPL = STYLE !== "creative";
 const HOST = (() => { try { return (JSON.parse(fs.readFileSync(path.join(ROOT, "videos", "settings.json"), "utf8")).presenter || "vannak") !== "none"; } catch (e) { return true; } })();
 
 const FPS = 30, W = 1080, H = 1920;
-const LEAD = 0.25, FIRST_LEAD = 0.9, TAIL = 0.35, OUTRO = 4.2;
+const LEAD = 0.15, FIRST_LEAD = 0.6, TAIL = 0.25, OUTRO = 4.2;  // owner review 12 Nov 2026: no empty gaps between scenes
 const arg = (n) => { const i = process.argv.indexOf(n); return i > 0 ? process.argv[i + 1] : null; };
 const b64 = (f) => fs.readFileSync(path.join(ROOT, f)).toString("base64");
 // Photo style (owner, 7 Nov 2026, style C): scene index -> realistic AI photo made by tools/reel/photos.py (--photos DIR).
@@ -164,6 +164,8 @@ function voice(scenes, dir) {
   });
   const tf = path.join(dir, "texts.json");
   fs.writeFileSync(tf, JSON.stringify(scenes.map((s) => s.text)));
+  // Per scene: the spoken subtitle lines (for the pauses after numbers) and the scene's voice direction (owner, 12 Nov 2026).
+  fs.writeFileSync(path.join(dir, "scenes.json"), JSON.stringify(scenes.map((s) => ({ lines: s.said, instruction: s.voice || "" }))));
   const res = JSON.parse(execFileSync("python3", [path.join(__dirname, "voice.py"), process.env.REEL_VOICE || "km-KH-PisethNeural", dir, tf], { encoding: "utf8" }));
   scenes.forEach((sc, i) => { sc.voice = path.join(dir, i + ".mp3"); sc.voiceLen = res[i].len; sc.marks = res[i].marks; sc.markKind = res[i].kind; sc.match = res[i].match; });
 }
@@ -278,8 +280,9 @@ function page(script, scenes, total) {
       html += `<section class="scene" style="${A("in" + dir, enter, 0.6, "cubic-bezier(.22,1,.36,1)")},${A("out" + dir, exit, 0.42, "cubic-bezier(.55,0,.75,.35)", "forwards").replace("animation:", "")}">
 <div class="stage" style="${A(i % 2 ? "camB" : "camA", enter, sc.dur + 0.3, "ease-in-out")}">${make(v, x, b64)}</div></section>`;
     }
-    // Vannak presents every scene from the space under the subtitles (story scenes already show him in the picture).
-    if (HOST && (v.type !== "story" || ph || icon)) {
+    // The host presents from the space under the subtitles; a scene can hide him with visual.host = false (owner, 12 Nov 2026:
+    // host only on the hook, the key explanation and the CTA).
+    if (HOST && v.host !== false && (v.type !== "story" || ph || icon)) {
       const mood = { hook: "surprised", problem: "think", summary: "happy", cta: "wave" }[sc.role] || "smile";
       html += `<div class="host${ph ? " hsm" : ""}" style="${A("hostIn", enter + 0.05, 0.5, "cubic-bezier(.22,1,.36,1)")},${A("hostOut", exit, 0.35, "ease-in", "forwards").replace("animation:", "")}">${S.presenter(mood, 400, x, b64)}</div>`;
     }

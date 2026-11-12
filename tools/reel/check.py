@@ -36,19 +36,61 @@ VISUALS = {
     "deadline": {"bad": ("text", 22), "good": ("text", 32), "result?": ("text", 24)},
     "delivery": {"rows": ("pairs", (2, 3), 22), "total?": ("pair", 26)},
     "caption": {"page?": ("text", 16), "lines": ("texts", (3, 6), 34), "highlight?": ("texts", (0, 4), 12), "stamp?": ("text", 12)},
-    "takeaway": {"quote": ("text", 46)},
+    "takeaway": {"quote": ("text", 46), "chips?": ("texts", (2, 4), 20)},
+    "funnel": {"steps": ("texts", (3, 8), 20)},
+    "vanish": {"expected_label": ("text", 20), "expected": ("text", 8), "real_label": ("text", 20), "real": ("text", 8), "gap": ("text", 26)},
+    "waterfall": {"start": ("any", 0), "rows": ("any", 0)},
+    "cta2": {"question": ("text", 60), "comment": ("text", 12), "services?": ("texts", (2, 4), 24), "url?": ("text", 24)},
     "cta": {"services?": ("texts", (2, 4), 24), "url?": ("text", 24)},  # no services = "follow ADS BOX" card (education first)
 }
 
 
+def money(v):
+    m = re.fullmatch(r"\$(\d+(?:\.\d{1,2})?)", str(v).strip())
+    return float(m.group(1)) if m else None
+
+
+def waterfall_problems(i, v):
+    """Calculation QA (owner, 12 Nov 2026): every number shown must match its amount and the sum must be right."""
+    out = []
+    st, rows = v.get("start") or {}, v.get("rows") or []
+    if not isinstance(st, dict) or not isinstance(st.get("amount"), (int, float)) or not st.get("label"):
+        return [f"Scene {i}: waterfall needs start {{label, amount}}"]
+    if not isinstance(rows, list) or not (1 <= len(rows) <= 6):
+        return [f"Scene {i}: waterfall needs 1-6 rows"]
+    bal = round(float(st["amount"]), 2)
+    for k, r in enumerate(rows):
+        if not isinstance(r, dict) or r.get("icon") not in ("product", "pack", "ship", "boost", "refused") or not r.get("label"):
+            out.append(f"Scene {i}: waterfall row {k + 1} needs icon (product|pack|ship|boost|refused), label, value, amount"); continue
+        if len(str(r.get("label"))) > 34 or len(str(r.get("note") or "")) > 80:
+            out.append(f"Scene {i}: waterfall row {k + 1}: label max 34, note max 80 characters")
+        a = r.get("amount")
+        if not isinstance(a, (int, float)) or money(r.get("value")) is None or abs(money(r.get("value")) - a) > 0.001:
+            out.append(f"Scene {i}: waterfall row {k + 1}: value {r.get('value')} must be the amount {a} written as $")
+            continue
+        bal = round(bal - a, 2)
+    res = v.get("result")
+    if res:
+        shown = [float(x) for x in re.findall(r"\$(\d+(?:\.\d+)?)", str(res.get("value", "")))]
+        if not shown or min(abs(x - bal) for x in shown) > 0.015:
+            out.append(f"Scene {i}: waterfall result {res.get('value')} does not match the calculation (${bal:.2f} left)")
+    if bal < 0:
+        out.append(f"Scene {i}: waterfall takes away more than the start amount")
+    return out
+
+
 def visual_problems(i, v):
     out = []
+    if isinstance(v, dict) and v.get("type") == "waterfall":
+        out += waterfall_problems(i, v)
     if not isinstance(v, dict) or v.get("type") not in VISUALS:
         return [f"Scene {i}: visual.type must be one of {sorted(VISUALS)}"]
     for key, spec in VISUALS[v["type"]].items():
         opt = key.endswith("?")
         k = key.rstrip("?")
         val = v.get(k)
+        if spec[0] == "any":
+            continue
         if val in (None, "", []):
             if not opt:
                 out.append(f"Scene {i}: visual {v['type']} needs '{k}'")
@@ -92,7 +134,7 @@ def footage_problems(scenes):
             q = f.get("queries") if isinstance(f, dict) else None
             if not (isinstance(q, list) and 1 <= len(q) <= 3 and all(isinstance(x, str) and 3 <= len(x) <= 60 and not re.search(r"[\u1780-\u17FF]", x) for x in q)):
                 out.append(f"Scene {i}: footage must be {{\"queries\": [1-3 short English searches]}}")
-            if (sc.get("visual") or {}).get("type") == "cta":
+            if (sc.get("visual") or {}).get("type") in ("cta", "cta2"):
                 out.append(f"Scene {i}: the cta scene keeps its animation (no footage)")
         ic = sc.get("icon3d")
         if ic is not None and not (isinstance(ic, str) and 8 <= len(ic) <= 200 and not re.search(r"[\u1780-\u17FF]", ic)):
@@ -135,8 +177,8 @@ def problems(script, brief, s):
         if role not in ROLES:
             out.append(f"Scene {i}: role must be one of {sorted(ROLES)}")
         lines = sc.get("lines")
-        if not isinstance(lines, list) or not (1 <= len(lines) <= 3):
-            out.append(f"Scene {i}: 1-3 lines")
+        if not isinstance(lines, list) or not (1 <= len(lines) <= 4):  # 4 for a calculation scene (owner, 12 Nov 2026)
+            out.append(f"Scene {i}: 1-4 lines")
             continue
         for ln in lines:
             ln = str(ln)
@@ -152,6 +194,8 @@ def problems(script, brief, s):
         total += n
         if any(BRAND.search(str(x)) for x in lines):
             brand += n
+        if sc.get("voice") is not None and (not isinstance(sc.get("voice"), str) or len(sc["voice"]) > 100):
+            out.append(f"Scene {i}: voice must be an English direction of max 100 characters")
         kw = str(sc.get("keyword") or "")
         if len(kw) > 28:
             out.append(f"Scene {i}: keyword max 28 characters")
@@ -169,7 +213,7 @@ def problems(script, brief, s):
         out.append("Scene 1 must be the hook")
     if (scenes[0].get("visual") or {}).get("type") not in ("question", "story", "chat"):
         out.append("Scene 1 (the hook) must use the 'question', 'story' or 'chat' visual")
-    if (scenes[-1].get("visual") or {}).get("type") != "cta":
+    if (scenes[-1].get("visual") or {}).get("type") not in ("cta", "cta2"):
         out.append("The last scene must use the 'cta' visual")
     if BRAND.search(" ".join(scenes[0].get("lines") or [])):
         out.append("The hook must not mention ADS BOX")

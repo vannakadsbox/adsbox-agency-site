@@ -10,7 +10,7 @@ VOICE "kiri:<Name>" (e.g. kiri:Sophon) uses Kiri TTS instead (KIRI_API_KEY; KIRI
 Kiri gives no word timing with speech, so each scene is transcribed by Kiri (word timestamps) and the spoken
 timing is mapped onto the script text; if that fails the subtitles fall back to proportional timing.
 """
-import shutil, asyncio, json, os, subprocess, sys
+import shutil, asyncio, json, os, re, subprocess, sys
 
 import edge_tts
 
@@ -145,16 +145,91 @@ def kiri_speak(text, name, out):
     return marks, kind
 
 
+# --- Pauses after numbers (owner's voice direction, 12 Nov 2026) --------------------------------------------------------
+# A subtitle line that ends with «។» or «!» and holds a number gets a short pause after it so viewers can read the screen;
+# a line ending with «…» gets a longer pause (the moment before a reveal). The pause is placed where Kiri already paused
+# (word timing + silence), never inside a word; if no real pause is found there, nothing is inserted.
+def _want(line, scene_no):
+    t = str(line).strip()
+    if t.endswith("…"):
+        return 0.6
+    if re.search(r"[0-9០-៩]|ដុល្លារ", t) and re.search(r"[។!]$", t):
+        return 0.4 if scene_no == 0 else 0.45
+    return 0.0
+
+
+def add_pauses(f, text, lines, marks, scene_no):
+    import subprocess as sp
+    wants = [_want(l, scene_no) for l in lines[:-1]]
+    if not any(wants) or not marks:
+        return marks
+    dur = length(f)
+    e = sp.run(["ffmpeg", "-hide_banner", "-i", f, "-af", "silencedetect=n=-40dB:d=0.06", "-f", "null", "-"], capture_output=True, text=True).stderr
+    runs = list(zip([float(x) for x in re.findall(r"silence_start: ([0-9.]+)", e)], [float(x) for x in re.findall(r"silence_end: ([0-9.]+)", e)]))
+    ends, p = [], 0
+    for l in lines:
+        at = text.find(l, p)
+        if at < 0:
+            return marks
+        p = at + len(l); ends.append(p)
+    placed, pos = [], 0
+    for s0, e0, w in marks:
+        w = str(w).strip(); at = text.find(w, pos) if w else -1
+        if at >= 0:
+            placed.append((at, at + len(w), s0, e0)); pos = at + len(w)
+    inserts, last = [], 0.2
+    for j, want in enumerate(wants):
+        if not want:
+            continue
+        before = [m for m in placed if m[1] <= ends[j] + 1]
+        est = before[-1][3] if before else dur * ends[j] / max(1, len(text))
+        cand = [r for r in runs if r[0] > last and r[1] < dur - 0.1 and min(abs(r[1] - est), abs((r[0] + r[1]) / 2 - est)) <= 0.45]
+        if not cand:
+            continue
+        r = max(cand, key=lambda r: r[1] - r[0]); extra = want - (r[1] - r[0])
+        if extra > 0.03:
+            inserts.append(((r[0] + r[1]) / 2, extra)); last = r[1]
+    if not inserts:
+        return marks
+    parts, prev, tmp = [], 0.0, f + ".parts"
+    os.makedirs(tmp, exist_ok=True)
+    for k, (c, extra) in enumerate(inserts + [(dur, 0)]):
+        seg = os.path.join(tmp, f"{k}.wav")
+        sp.run(["ffmpeg", "-y", "-loglevel", "error", "-i", f, "-af", f"atrim={prev}:{c},asetpts=PTS-STARTPTS", "-ar", "44100", "-ac", "1", seg], check=True)
+        parts.append(seg)
+        if extra:
+            sl = os.path.join(tmp, f"{k}s.wav")
+            sp.run(["ffmpeg", "-y", "-loglevel", "error", "-f", "lavfi", "-i", "anullsrc=r=44100:cl=mono", "-t", f"{extra:.2f}", sl], check=True)
+            parts.append(sl)
+        prev = c
+    lst = os.path.join(tmp, "list.txt")
+    open(lst, "w").write("".join(f"file '{x}'\n" for x in parts))
+    sp.run(["ffmpeg", "-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", lst, "-ar", "44100", "-ac", "1", "-b:a", "192k", f + ".tmp.mp3"], check=True)
+    os.replace(f + ".tmp.mp3", f)
+    shutil.rmtree(tmp, ignore_errors=True)
+    out = []
+    for s0, e0, w in marks:
+        shift = sum(x for c, x in inserts if c <= s0)
+        out.append([round(s0 + shift, 3), round(e0 + shift, 3), w])
+    print(f"Scene {scene_no + 1}: {len(inserts)} pause(s) after numbers ({', '.join(f'{x:.2f}s' for _, x in inserts)} added).", file=sys.stderr)
+    return out
+
+
 async def main():
     voice, out_dir = sys.argv[1], sys.argv[2]
     texts = json.load(open(sys.argv[3], encoding="utf-8"))
     os.makedirs(out_dir, exist_ok=True)
+    # Per scene: the subtitle lines as spoken and an optional voice direction ("voice" in the script), written by render.js.
+    sp_path = os.path.join(os.path.dirname(os.path.abspath(sys.argv[3])), "scenes.json")
+    info = json.load(open(sp_path, encoding="utf-8")) if os.path.exists(sp_path) else [{} for _ in texts]
+    base_instruction = os.environ.get("KIRI_INSTRUCTION", "")
     res = []
     for i, t in enumerate(texts):
         f = os.path.join(out_dir, f"{i}.mp3")
         if voice.startswith("kiri:"):
             # Kiri sometimes misreads a line (seen with the owner's own voice, 7 Nov 2026): when the transcript matches
             # the script poorly, record that scene again (up to 2 more times) and keep the best take.
+            os.environ["KIRI_INSTRUCTION"] = (info[i].get("instruction") or base_instruction)[:100]
             best = None
             for take in range(3):
                 tf = f if take == 0 else f"{f}.take{take}.mp3"
@@ -170,7 +245,12 @@ async def main():
             for take in (1, 2):
                 if os.path.exists(f"{f}.take{take}.mp3"):
                     os.remove(f"{f}.take{take}.mp3")
-            res.append({"len": length(f), "marks": best[1], "kind": best[2], "match": best[3]})
+            mk = best[1]
+            try:
+                mk = add_pauses(f, t, info[i].get("lines") or [], best[1], i)
+            except Exception as ex:  # a pause is a nicety: never fail the voice for it
+                print(f"Scene {i + 1}: pauses skipped ({ex})", file=sys.stderr)
+            res.append({"len": length(f), "marks": mk, "kind": best[2], "match": best[3]})
             continue
         else:
             marks, kind = await speak(t, voice, f)

@@ -10,6 +10,11 @@ const A = (name, t, d = 0.55, ease = "cubic-bezier(.2,.9,.25,1)", fill = "both",
 // --- Small pictures (flat, in brand colours) ----------------------------------------------------------------------
 const ICON = {
   check: '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+  shirt: '<path d="M8 3l-5 3 2 4 3-1v12h8V9l3 1 2-4-5-3q-2 2-4 2T8 3z"/>',
+  box: '<path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/>',
+  truck: '<path d="M2 6h11v10H2zM13 9h5l3 3v4h-8z"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/>',
+  back: '<path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/>',
+  megaphone: '<path d="M3 10v4h3l7 4V6L6 10z"/><path d="M17 8a5 5 0 0 1 0 8"/>',
   x: '<path d="M6 6l12 12M18 6L6 18"/>',
   alert: '<path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18h.01"/>',
   down: '<path d="M12 4v15M5 12l7 7 7-7"/>',
@@ -163,7 +168,7 @@ ${v.stamp ? `<div class="stamp2" style="${A("stamp", x.T(x.n - 1) + 0.2, 0.5)}">
 };
 
 V.takeaway = (v, x) => `${header(x.sc, x)}<div class="tk" style="${A("rise", x.start + 0.4, 0.7)}"><div class="qq">“</div>
-<p>${esc(v.quote)}</p><i class="ul2" style="${A("drawX", x.T(x.n - 1), 0.7)}"></i>
+<p style="white-space:pre-line">${esc(v.quote)}</p><i class="ul2" style="${A("drawX", x.T(x.n - 1), 0.7)}"></i>${(v.chips || []).length ? `<div class="tk-ch">${v.chips.map((c, i) => `<span style="${A("popIn", x.T(Math.min(1, x.n - 1)) + i * 0.3, 0.4)}">${esc(c)}</span>`).join("")}</div>` : ""}
 <div class="eye" style="${A("popIn", x.T(0) + 0.4, 0.5)}">${icon("eye", 64, "#0b1430", 2.4)}</div></div>`;
 
 V.cta = (v, x, b64) => {
@@ -181,13 +186,13 @@ ${(v.services || []).map((s, i) => `<div class="cc-row" style="${A("slideR", t1 
 <svg class="tap" width="110" height="110" viewBox="0 0 24 24" fill="#fff" stroke="#0b1430" stroke-width="1.2" style="${A("tap", tu + 0.5, 1.1, "ease-in-out", "both", " infinite")}" aria-hidden="true"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V10l4.2.8a2 2 0 0 1 1.6 2.3l-.9 4.6A3 3 0 0 1 14 20H11a3 3 0 0 1-2.4-1.2L5.3 14.4a1.4 1.4 0 0 1 2-2z"/></svg></div>`;
 };
 
-// Vannak, the owner's own presenter character (assets/video/presenter, 800x1080 transparent poses).
+// The ADS BOX AI Host (owner, 12 Nov 2026; assets/video/presenter, 800x1080 transparent cut-out photos, background removed).
 // While the voice speaks, the mouth-open "talk" pose flickers over the resting pose, so he looks like he is talking.
 const VMOOD = { worried: "think", sad: "think", happy: "happy", neutral: "smile", surprised: "surprised", think: "think", smile: "smile", wave: "wave", talk: "smile" };
 function presenter(mood, w, x, b64, cls = "") {
   const pose = VMOOD[mood] || "smile";
   const img = (n) => `data:image/png;base64,${b64("assets/video/presenter/vannak-" + n + ".png")}`;
-  const talks = ["smile", "happy", "neutral"].includes(pose);
+  const talks = false; // the presenter is the real-photo ADS BOX AI Host (12 Nov 2026): no mouth flicker on a photo
   const t0 = x.sc.vStart, n = Math.max(1, Math.floor((x.sc.voiceLen || 2) / 0.34));
   return `<div class="vk ${cls}" style="width:${w}px"><img src="${img(pose)}" alt="">` +
     (talks ? `<img class="vk-talk" src="${img("talk")}" alt="" style="animation:vkTalk .34s linear ${t0.toFixed(3)}s ${n} both">` : "") + `</div>`;
@@ -236,6 +241,83 @@ V.sticker = (v, x) => `${header(x.sc, x)}<div class="prn" style="${A("rise", x.s
 <div class="stk" style="${A("printOut", x.F(0.15), 1.4, "cubic-bezier(.2,.8,.3,1)")}"><div class="stk-h"><b>ADS BOX</b><small>ស្ទីគ័រដឹកជញ្ជូន · ឧទាហរណ៍</small></div>
 <p><small>ឈ្មោះ</small>${esc(v.name)}</p><p><small>ទូរស័ព្ទ</small>${esc(v.phone)}</p><p><small>អាសយដ្ឋាន</small>${esc(v.address)}</p><p class="it"><small>ទំនិញ</small>${esc(v.items)}</p>
 <div class="bar"></div></div>`;
+
+
+// --- V2 (owner review, 12 Nov 2026): money visuals that a seller can follow number by number ----------------------
+// Time of subtitle line j plus a fraction of that line.
+const LT = (x, j, f = 0) => { const s = x.sc.subs[Math.max(0, Math.min(j, x.sc.subs.length - 1))]; return s.start + f * Math.max(0.3, s.end - s.start); };
+
+// Sales funnel: every stage lights up in turn; the last one (real profit) is yellow.
+V.funnel = (v, x) => {
+  const st = v.steps || [];
+  const t0 = x.start + 0.35, t1 = x.F(0.92), step = (t1 - t0) / Math.max(1, st.length);
+  return `${v.title ? `<div class="fn-t" style="${A("rise", x.start + 0.2)}">${esc(v.title)}</div>` : ""}<div class="fn">${st.map((s, i) => {
+    const w = 940 - i * (440 / Math.max(1, st.length - 1)), last = i === st.length - 1;
+    return `${i ? `<i class="fn-a" style="${A("popIn", t0 + i * step - 0.08, 0.3)}">${icon("down", 34, last ? "#ffd23f" : "#9fb6ff", 3)}</i>` : ""}<div class="fn-s${last ? " fn-y" : ""}" style="width:${w}px;${A("slideR", t0 + i * step, 0.45)}"><b>${i + 1}</b><span>${esc(s)}</span></div>`;
+  }).join("")}</div>`;
+};
+
+// "Where did the money go?": the profit the seller expects is crossed out, the real one lands, the gap asks a question.
+V.vanish = (v, x) => {
+  const tb = LT(x, 0, 0.1), tg = LT(x, 1, 0.1), tq = LT(x, x.n - 1, 0.05);
+  return `<div class="vn">
+<div class="vn-c vn-b" style="${A("rise", tb, 0.5)}"><small>${esc(v.expected_label)}</small><b>${esc(v.expected)}</b><i class="strike" style="${A("drawX", tg - 0.05, 0.4)}"></i></div>
+<div class="vn-ar" style="${A("popIn", tg, 0.4)}">${icon("down", 70, "#ffd23f", 3)}</div>
+<div class="vn-c vn-g" style="${A("popIn", tg + 0.15, 0.55, "cubic-bezier(.3,1.5,.5,1)")}"><small>${esc(v.real_label)}</small><b>${esc(v.real)}</b></div>
+<div class="vn-q" style="${A("popIn", tq, 0.6, "cubic-bezier(.3,1.5,.5,1)")}"><span style="${A("pulse", tq + 0.7, 1.1, "ease-in-out", "both", " infinite")}">${esc(v.gap)}</span></div></div>`;
+};
+
+// Money breakdown: the sale price as one bar; each cost is taken out of it in turn (its slice turns red and drops),
+// the remaining money is counted down, and each row shows where the number comes from.
+// rows: [{icon, label, value, note?, at:[line, fraction], amount}], start: {label, amount}, done: rows already shown (static),
+// groups: [{after: rowIndex, text, at:[line, fraction]}], result?: {label, value, at}
+V.waterfall = (v, x, b64) => {
+  const rows = v.rows || [], done = v.done || 0, show = v.show ?? rows.length, total = v.start.amount, W = 960;
+  const tAt = (r, i) => (i < done ? -1 : LT(x, (r.at || [0])[0], (r.at || [0, 0])[1] || 0));
+  const fmt = (n) => "$" + (Math.round(n * 100) % 100 === 0 ? String(Math.round(n)) : n.toFixed(2));
+  // remaining money after each step
+  const bal = [total]; rows.forEach((r) => bal.push(Math.round((bal[bal.length - 1] - r.amount) * 100) / 100));
+  const times = rows.map((r, i) => (i >= show ? Infinity : tAt(r, i)));
+  const tStart = x.start + 0.25;
+  // balance counter: one number per stage, each visible in its own window
+  let counter = "";
+  bal.forEach((b, k) => {
+    if (k < done || k > show) return;
+    const on = k === done && done ? -1 : (k === 0 ? tStart : times[k - 1]);
+    const off = k < show ? times[k] : null;
+    const an = [];
+    if (on >= 0) an.push(A("cntIn", on + 0.05, 0.35).replace("animation:", ""));
+    if (off !== null) an.push(A("fadeOutQ", off, 0.18, "ease-in", "forwards").replace("animation:", ""));
+    counter += `<b class="${k === bal.length - 1 ? "wf-last" : ""}" style="${on < 0 ? "opacity:1;" : ""}${an.length ? "animation:" + an.join(",") : ""}">${fmt(b)}</b>`;
+  });
+  // bar slices
+  let left = 0, bar = "";
+  rows.forEach((r, i) => {
+    const w = Math.round(W * r.amount / total), t = times[i];
+    bar += `<i class="wf-sl wf-${esc(r.icon)}" style="left:${left}px;width:${w}px;${t === Infinity ? "" : t < 0 ? "opacity:.16;transform:translateY(26px)" : A("sliceOut", t, 0.6, "ease-in", "forwards")}"></i>`;
+    left += w;
+  });
+  bar += `<i class="wf-sl wf-keep" style="left:${left}px;width:${W - left}px"></i>`;
+  const ICONS = { product: "shirt", pack: "box", ship: "truck", boost: "megaphone", refused: "back" };
+  const list = rows.slice(0, show).map((r, i) => {
+    const t = times[i], st = t < 0 ? "" : A("slideR", t, 0.45);
+    const note = r.note ? `<small style="${t < 0 ? "" : A("rise", r.note_at ? LT(x, r.note_at[0], r.note_at[1] || 0) : t + 0.3, 0.45)}">${esc(r.note)}</small>` : "";
+    return `<div class="wf-r${t < 0 ? " wf-old" : ""}" style="${st}"><span class="wf-i wf-${esc(r.icon)}">${icon(ICONS[r.icon] || "check", 38, "#fff", 2.6)}</span><div><p>${esc(r.label)}</p>${note}</div><em>−${esc(r.value)}</em></div>`;
+  }).join("");
+  const groups = (v.groups || []).map((g) => `<div class="wf-g" style="${A("popIn", LT(x, g.at[0], g.at[1] || 0), 0.45, "cubic-bezier(.3,1.5,.5,1)")}">${esc(g.text)}</div>`).join("");
+  const res = v.result ? `<div class="wf-res" style="${A("popIn", LT(x, v.result.at[0], v.result.at[1] || 0), 0.55, "cubic-bezier(.3,1.5,.5,1)")}"><span>${esc(v.result.label)}</span><b>${esc(v.result.value)}</b></div>` : "";
+  return `<div class="wf">
+<div class="wf-top" style="${done ? "" : A("rise", tStart - 0.1, 0.5)}"><div><small>${esc(v.start.label)}</small><span class="wf-ex">${esc(v.tag || "លេខគំរូ")}</span></div><div class="wf-cnt">${counter}</div></div>
+<div class="wf-bar" style="${done ? "" : A("rise", tStart, 0.5)}">${bar}</div>
+<div class="wf-list">${list}</div>${groups}${res}</div>`;
+};
+
+V.cta2 = (v, x, b64) => {
+  const tc = LT(x, v.comment_line ?? x.n - 1, 0), tl = Math.max(tc + 0.9, LT(x, x.n - 1, 0.5));
+  return `<div class="c2-q" style="${A("rise", x.start + 0.2, 0.6)}">${esc(v.question)}</div>
+<div class="c2-c" style="${A("popIn", tc, 0.6, "cubic-bezier(.3,1.5,.5,1)")}"><span class="c2-ic">${icon("chat", 56, "#0b1430", 2.4)}</span><span>Comment</span><b style="${A("pulse", tc + 0.7, 1.1, "ease-in-out", "both", " infinite")}">“${esc(v.comment)}”</b></div>
+<div class="c2-card" style="${A("rise", tl, 0.6)}"><img src="data:image/png;base64,${b64("assets/logo-mark.png")}" alt=""><div><b>ADS BOX</b><p>${(v.services || []).map(esc).join(" <i>|</i> ")}</p><small>${esc(v.url || "adsbox.agency")}</small></div></div>`;
+};
 
 const TYPES = Object.keys(V);
 
@@ -333,6 +415,7 @@ const CSS = `
 .st-seller{position:absolute;left:290px;bottom:0}
 .st-vk{left:230px;bottom:-40px}
 .vk{position:relative}.vk img{display:block;width:100%;height:auto}
+.vk img:first-child{transform-origin:50% 100%;animation:vkBreathe 3.4s ease-in-out infinite}@keyframes vkBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.012) translateY(-2px)}}
 .vk .vk-talk{position:absolute;left:0;top:0;opacity:0}
 @keyframes vkTalk{0%,45%{opacity:1}46%,100%{opacity:0}}
 .st-cust{position:absolute;right:60px;bottom:0}
@@ -364,6 +447,58 @@ const CSS = `
 .stk .it{color:#1f4fd1}
 .stk .bar{height:80px;margin-top:16px;background:repeating-linear-gradient(90deg,#0b1430 0 6px,transparent 6px 10px,#0b1430 10px 12px,transparent 12px 20px)}
 @keyframes flyUp{0%{opacity:0;transform:translateY(40px) scale(.7)}15%{opacity:1;transform:none}80%{opacity:1}100%{opacity:0;transform:translateY(-520px)}}
+.fn-t{position:absolute;left:0;right:0;top:150px;text-align:center;font-size:56px;font-weight:700;color:#ffd23f}
+.fn{position:absolute;left:0;right:0;top:240px;display:flex;flex-direction:column;align-items:center;gap:0}
+.fn-s{display:flex;align-items:center;gap:22px;height:84px;padding:0 34px;border-radius:24px;background:linear-gradient(90deg,#2a55d8,#3f7dff);box-shadow:0 14px 34px rgba(0,0,0,.3)}
+.fn-s b{font-family:L,M,sans-serif;font-size:36px;font-weight:800;width:56px;height:56px;border-radius:50%;background:#fff;color:#0b1430;display:grid;place-items:center;flex:none}
+.fn-s span{font-size:46px;font-weight:700;white-space:nowrap}
+.fn-y{background:#ffd23f;color:#0b1430}.fn-y b{background:#0b1430;color:#ffd23f}
+.fn-a{display:block;height:34px;display:grid;place-items:center}
+.vn{position:absolute;left:0;right:0;top:170px;display:flex;flex-direction:column;align-items:center;gap:18px}
+.vn-c{position:relative;text-align:center;padding:18px 70px 26px;border-radius:34px}
+.vn-c small{display:block;font-size:44px;font-weight:600;opacity:.85}
+.vn-c b{font-family:L,M,sans-serif;font-size:170px;font-weight:800;line-height:1.1}
+.vn-b{background:rgba(255,255,255,.08);border:4px dashed rgba(255,255,255,.35)}.vn-b .strike{left:40px;right:40px;top:58%;height:14px}
+.vn-g{background:#ffd23f;color:#0b1430;box-shadow:0 30px 70px rgba(255,210,63,.3)}
+.vn-q span{display:inline-block;font-size:60px;font-weight:800;color:#fff;background:#ff5d6c;padding:12px 44px 20px;border-radius:999px;margin-top:20px}
+.wf{position:absolute;left:0;right:0;top:110px}
+.wf-top{display:flex;align-items:flex-end;justify-content:space-between;padding:0 6px}
+.wf-top small{display:block;font-size:40px;font-weight:600;color:#c9d6ff}
+.wf-ex{display:inline-block;margin-top:8px;font-size:30px;font-weight:700;color:#0b1430;background:#ffd23f;padding:2px 18px 6px;border-radius:12px}
+.wf-cnt{position:relative;width:420px;height:150px}
+.wf-cnt b{position:absolute;right:0;bottom:0;font-family:L,M,sans-serif;font-size:136px;font-weight:800;line-height:1;opacity:0}
+.wf-cnt b.wf-last{color:#ffd23f}
+.wf-bar{position:relative;height:74px;margin-top:22px;border-radius:20px;background:rgba(255,255,255,.06)}
+.wf-sl{position:absolute;top:0;height:74px;border-right:3px solid #0b1430}
+.wf-sl:first-child{border-radius:20px 0 0 20px}
+.wf-product{background:#7d93ff}.wf-pack{background:#c58bff}.wf-ship{background:#2ed39a}.wf-boost{background:#3f7dff}.wf-refused{background:#ff8a5c}
+.wf-keep{background:#ffd23f;border-radius:0 20px 20px 0;border:none}
+.wf-list{margin-top:34px;display:flex;flex-direction:column;gap:16px}
+.wf-r{display:flex;align-items:center;gap:22px;background:#fff;color:#0b1430;border-radius:26px;padding:16px 28px;box-shadow:0 16px 40px rgba(0,0,0,.3)}
+.wf-r.wf-old{opacity:.55;padding:8px 28px}.wf-r.wf-old small{display:none}.wf-r.wf-old p{font-size:38px;line-height:1.3}.wf-r.wf-old em{font-size:46px}.wf-r.wf-old .wf-i{width:56px;height:56px}
+.wf-r p{font-size:44px;font-weight:700;line-height:1.4}
+.wf-r small{display:block;font-size:32px;font-weight:600;color:#3f5fb8;line-height:1.35}
+.wf-r>div{flex:1}
+.wf-r em{font-family:L,M,sans-serif;font-style:normal;font-size:56px;font-weight:800;color:#e53950;white-space:nowrap}
+.wf-i{width:70px;height:70px;border-radius:20px;display:grid;place-items:center;flex:none}
+.wf-g{display:inline-block;margin:14px 0 0 92px;font-size:38px;font-weight:700;color:#ffd23f;border-left:6px solid #ffd23f;padding:2px 20px 6px}
+.wf-res{margin-top:16px;display:flex;justify-content:space-between;align-items:center;background:#ffd23f;color:#0b1430;border-radius:26px;padding:16px 30px 22px}
+.wf-res span{font-size:42px;font-weight:700}.wf-res b{font-family:L,M,sans-serif;font-size:62px;font-weight:800}
+.c2-q{position:absolute;left:20px;right:20px;top:150px;text-align:center;font-size:62px;font-weight:700;line-height:1.5}
+.c2-c{position:absolute;left:0;right:0;top:420px;margin:0 auto;width:fit-content;display:flex;align-items:center;gap:22px;background:#fff;color:#0b1430;border-radius:999px;padding:20px 46px 26px 26px;box-shadow:0 30px 70px rgba(0,0,0,.4)}
+.c2-c span{font-family:L,M,sans-serif;font-size:58px;font-weight:700}
+.c2-ic{width:90px;height:90px;border-radius:50%;background:#ffd23f;display:grid;place-items:center}
+.c2-c b{display:inline-block;font-family:L,M,sans-serif;font-size:72px;font-weight:800;color:#3f7dff}
+.c2-card{position:absolute;left:40px;right:40px;top:680px;display:flex;align-items:center;gap:30px;background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.18);border-radius:34px;padding:28px 34px}
+.c2-card img{width:120px;height:120px}
+.c2-card b{font-family:L,M,sans-serif;font-size:52px;font-weight:800}
+.c2-card p{font-family:L,M,sans-serif;font-size:34px;font-weight:700;color:#c9d6ff;display:flex;flex-wrap:wrap;gap:4px 10px;margin:6px 0}.c2-card p i{color:#ffd23f;font-style:normal}
+.c2-card small{display:block;font-family:L,M,sans-serif;font-size:40px;font-weight:800;color:#ffd23f}
+.tk-ch{display:flex;flex-wrap:wrap;gap:16px;margin-top:40px}.tk-ch span{font-size:42px;font-weight:700;color:#0b1430;background:#ffd23f;padding:6px 24px 12px;border-radius:16px}
+.wf-res.wf-top-res{position:absolute;left:0;right:0;top:-20px}
+@keyframes sliceOut{0%{opacity:1}30%{opacity:1;background:#ff3b52}100%{opacity:.16;transform:translateY(26px);background:#ff3b52}}
+@keyframes cntIn{from{opacity:0;transform:translateY(-30px) scale(.9)}to{opacity:1;transform:none}}
+@keyframes fadeOutQ{to{opacity:0;transform:translateY(30px)}}
 @keyframes growY{from{transform:scaleY(0)}to{transform:none}}
 @keyframes printOut{from{clip-path:inset(0 0 100% 0);transform:translateY(-60px)}to{clip-path:inset(0 0 0 0);transform:none}}
 @property --n{syntax:'<integer>';inherits:false;initial-value:0}

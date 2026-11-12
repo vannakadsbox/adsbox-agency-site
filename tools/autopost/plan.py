@@ -166,6 +166,7 @@ def main():
                           if str(v.get("sent_at", ""))[:10] >= (datetime.date.fromisoformat(date) - datetime.timedelta(days=7)).isoformat()],
         "related_articles": related,
         "plan_topic": topic,
+        "prewritten_draft": (topic or {}).get("prewritten"),
         "all_articles": [{"slug": x["slug"], "title": x["title"]} for x in arts],
         "facts": read(os.path.join(C.AUTO, "facts.md")),
         "rules": [r.format(min_k=s["min_khmer_chars"], max_k=s["max_khmer_chars"]) for r in RULES] + ([camp["rule"]] if camp else []),
