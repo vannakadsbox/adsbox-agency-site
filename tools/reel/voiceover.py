@@ -83,7 +83,10 @@ def main():
         pick[who] = (os.environ.get("FEMALE_VOICE") or (female[0] if female else "edge:Sreymom")) if v["voice"] == "FEMALE" else v["voice"]
     print("Using:", pick)
     rows = []
+    only = [x for x in os.environ.get("ONLY", "").replace(" ", "").split(",") if x]
     for l in spec["lines"]:
+        if only and l["id"] not in only:
+            continue
         f = os.path.join(out, l["id"] + ".mp3")
         say(l["text"], pick[l["who"]], l.get("instruction") or spec["voices"][l["who"]].get("instruction"), f)
         rows.append({"id": l["id"], "who": l["who"], "voice": pick[l["who"]], "seconds": round(voice.length(f), 2)})

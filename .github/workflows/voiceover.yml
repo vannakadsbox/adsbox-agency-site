@@ -7,6 +7,9 @@ on:
       file:
         description: "Spec file in videos/voiceovers (without .json)"
         default: wife-nobody-appreciated
+      only:
+        description: "Optional: only these line ids, comma separated (e.g. d01,d02). Empty = all lines."
+        default: ""
       female_voice:
         description: "Optional: female voice to use (Kiri name, or edge:Sreymom). Empty = automatic."
         default: ""
@@ -19,6 +22,7 @@ jobs:
       KIRI_API_KEY: ${{ secrets.KIRI_API_KEY }}
       FEMALE_VOICE: ${{ github.event.inputs.female_voice }}
       VOICE_TEMPO: "1.0"
+      ONLY: ${{ github.event.inputs.only }}
       GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4

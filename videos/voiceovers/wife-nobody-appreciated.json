@@ -3,7 +3,7 @@
   "note": "Khmer voice-over lines for the owner's story video, one per on-screen subtitle card. start = when that card appears (seconds).",
   "voices": {
     "narrator": {"voice": "FEMALE", "instruction": "Warm, gentle Cambodian woman storyteller, emotional but natural medium pace, short pauses"},
-    "dara": {"voice": "Dara", "instruction": ""}
+    "dara": {"voice": "Vannak", "instruction": ""}
   },
   "lines": [
     {"id": "n01", "who": "narrator", "start": 0.5,  "text": "រៀងរាល់ព្រឹក ស្រីនាងតែងក្រោកពីព្រលឹម មុនគេទាំងអស់"},
