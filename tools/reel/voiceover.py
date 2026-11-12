@@ -64,14 +64,18 @@ def main():
     os.makedirs(out, exist_ok=True)
     os.environ["VOICE_FINISH"] = ""
     voices = kiri_voices(out)
-    female = [n for n, g in voices if g.startswith("f") or g == "woman"]
+    not_khmer = {"Meilin", "Hoa", "Xiaoyu", "Ava", "Linh", "Olivia", "Emma", "Sota"}  # Chinese, Vietnamese, English, Japanese
+    female = [n for n, g in voices if (g.startswith("f") or g == "woman") and n not in not_khmer]
     print("Kiri voices:", voices, "| female:", female)
     first = next(l for l in spec["lines"] if spec["voices"][l["who"]]["voice"] == "FEMALE") if any(
         v["voice"] == "FEMALE" for v in spec["voices"].values()) else None
     if first:
-        for n in female[:4] + ["edge:Sreymom"]:
+        for n in female + ["edge:Sreymom"]:
+            f = os.path.join(out, f"sample-{re.sub(r'[^A-Za-z0-9]+', '', n)}.mp3")
             try:
-                say(first["text"], n, spec["voices"][first["who"]].get("instruction"), os.path.join(out, f"sample-{re.sub(r'[^A-Za-z0-9]+', '', n)}.mp3"))
+                voice.kiri_speak.match = None
+                say(first["text"], n, spec["voices"][first["who"]].get("instruction"), f)
+                print(f"SAMPLE {n}: {voice.length(f):.2f}s, transcript match {voice.kiri_speak.match}")
             except BaseException as ex:  # noqa: BLE001
                 print(f"sample {n} failed: {ex}")
     pick = {}
@@ -83,6 +87,7 @@ def main():
         f = os.path.join(out, l["id"] + ".mp3")
         say(l["text"], pick[l["who"]], l.get("instruction") or spec["voices"][l["who"]].get("instruction"), f)
         rows.append({"id": l["id"], "who": l["who"], "voice": pick[l["who"]], "seconds": round(voice.length(f), 2)})
+        rows[-1]["match"] = getattr(voice.kiri_speak, "match", None)
         print(rows[-1])
     json.dump({"voices": pick, "lines": rows}, open(os.path.join(out, "lines.json"), "w"), ensure_ascii=False, indent=1)
 
