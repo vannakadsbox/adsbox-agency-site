@@ -1,0 +1,68 @@
+{
+ "slug": "day1-preview-v3s",
+ "note": "Preview V3 voice, one natural take per scene with the owner's direction (12 Nov 2026 17:30); nothing is posted.",
+ "voices": {
+  "host": {
+   "voice": "Vannak",
+   "instruction": "Curious, surprised consultant talking to a shop owner, short pause after each price, natural"
+  }
+ },
+ "lines": [
+  {
+   "id": "s00",
+   "who": "host",
+   "start": 0,
+   "text": "លក់អាវ 12 ដុល្លារ, ថ្លៃដើម 6 ដុល្លារ, បងគិតថា ចំណេញ 6 ដុល្លារ មែនទេ?",
+   "instruction": "Curious, surprised consultant talking to a shop owner, short pause after each price, natural"
+  },
+  {
+   "id": "s01",
+   "who": "host",
+   "start": 0,
+   "text": "តែលុយក្នុងដៃបងពិតៗ, អាចសល់តែ 1.50 ដុល្លារ ប៉ុណ្ណោះ! លុយ 4.50 ដុល្លារ បាត់ទៅណា?",
+   "instruction": "Sincerely asking the shop owner, not rushed, stress លុយក្នុងដៃ, then a puzzled question"
+  },
+  {
+   "id": "s02",
+   "who": "host",
+   "start": 0,
+   "text": "ព្រោះ Order មួយ មិនទាន់ជាលុយទេ។ ត្រូវបញ្ជាក់ ដឹកដល់ ហើយភ្ញៀវបង់លុយ, ទើបក្លាយជាចំណេញពិត។",
+   "instruction": "Confident expert explaining simply to a shop owner, natural conversational pace, energetic"
+  },
+  {
+   "id": "s03",
+   "who": "host",
+   "start": 0,
+   "text": "ឧទាហរណ៍ លេខគំរូ៖ លក់មួយឈុត 12 ដុល្លារ, ដកថ្លៃដើម 6 ដុល្លារ, ថ្លៃខ្ចប់ 0.30 ដុល្លារ, ថ្លៃដឹក 1.50 ដុល្លារ",
+   "instruction": "Expert explaining numbers slowly and clearly to a shop owner, each price distinct, small pauses"
+  },
+  {
+   "id": "s04",
+   "who": "host",
+   "start": 0,
+   "text": "ដកលុយ Boost 1.88 ដុល្លារ ក្នុងមួយ Order, មកពី 60 ដុល្លារ ចែកនឹង Order ដឹកដល់ ៣២, ហើយខាតពី Order មិនទទួល 0.83 ដុល្លារ, មកពីកញ្ចប់ ៨ ដែលត្រូវដឹកត្រឡប់",
+   "instruction": "Expert explaining where each number comes from, slow and clear, each number distinct"
+  },
+  {
+   "id": "s05",
+   "who": "host",
+   "start": 0,
+   "text": "ចុងក្រោយ សល់តែ, 1.50 ដុល្លារ ប៉ុណ្ណោះ! លុយ 4.50 ដុល្លារ បាត់ទៅលើចំណាយទាំងនេះ។",
+   "instruction": "Calm expert, short pause before the final number, then strong clear emphasis on it"
+  },
+  {
+   "id": "s06",
+   "who": "host",
+   "start": 0,
+   "text": "ចំណេញពិត មិនមែនលក់ ដកថ្លៃដើមទេ។ ត្រូវដកខ្ចប់ ដឹក Boost, និងការខាតពី Order មិនទទួលផង។",
+   "instruction": "Confident, warm expert giving the one key lesson to a shop owner, clear and natural"
+  },
+  {
+   "id": "s07",
+   "who": "host",
+   "start": 0,
+   "text": "ហាងបងចំណេញពិតប៉ុន្មាន ក្នុងមួយ Order? Comment ពាក្យ PROFIT មក, ក្រុម Ads Box នៅទីនេះ ជួយបង។",
+   "instruction": "Friendly, confident, helpful expert inviting the shop owner to comment, warm, not salesy"
+  }
+ ]
+}
