@@ -70,8 +70,12 @@ def get_thumb(slug):
 
 def publish(slug, mp4, draft=False):
     """Facebook Reels upload: start -> upload the file -> finish with the caption. Returns (video_id, url)."""
-    script = C.read_json(os.path.join(C.SCRIPTS, f"{slug}.json"))
-    caption = str(script.get("facebook_caption") or script.get("description") or "").strip()
+    # The publisher stays awake for ~55 minutes: fetch the latest scripts first, so a video sent after it started still
+    # finds its caption (bug seen 12 Nov 2026: the tap crashed on a script added after the run began).
+    subprocess.run(["git", "pull", "-q", "--rebase"], capture_output=True)
+    script = C.read_json(os.path.join(C.SCRIPTS, f"{slug}.json")) or {}
+    if not script:
+        raise SystemExit(f"videos/scripts/{slug}.json not found")
     name, pt = page_token()
     s = graph("POST", f"{PAGE_ID}/video_reels", {"upload_phase": "start", "access_token": pt})
     vid = s.get("video_id")
@@ -144,7 +148,7 @@ def poll():
                 continue
             try:
                 vid, url, name, status = publish(slug, mp4)
-            except SystemExit as ex:
+            except (SystemExit, Exception) as ex:  # any failure is reported in Telegram instead of stopping the publisher
                 note("error", f"{slug}: {ex}")
                 tg("sendMessage", {"text": f"⚠️ បង្ហោះទៅ Facebook មិនបានសម្រេច៖ {ex}", "reply_to_message_id": str(msg.get("message_id", ""))})
                 continue
