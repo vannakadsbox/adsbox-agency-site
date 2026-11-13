@@ -1,0 +1,47 @@
+{
+ "slug": "enc-day02",
+ "note": "EN CHOMREY Day 02 (owner, 13 Nov 2026): Khmer voice-over, Kiri Bora, one take per scene.",
+ "voices": {
+  "host": {
+   "voice": "Bora",
+   "instruction": "Curious, confident marketing expert with a surprising hook, natural pace, short pause after the question"
+  }
+ },
+ "lines": [
+  {
+   "id": "s0",
+   "who": "host",
+   "start": 0,
+   "text": "Boost Post រាល់ថ្ងៃ, តែលក់នៅតែមិនដាច់? ព្រោះ Boost Post, មិនមែនជាយុទ្ធសាស្ត្រទាំងមូលទេ។",
+   "instruction": "Curious, confident marketing expert with a surprising hook, natural pace, short pause after the ques"
+  },
+  {
+   "id": "s1",
+   "who": "host",
+   "start": 0,
+   "text": "ម្ចាស់អាជីវកម្មជាច្រើន ចុច Boost ភ្លាមៗ, ពេលចង់បានការលក់។ តែ Boost គ្រាន់តែជួយឲ្យ, មនុស្សច្រើនឃើញ Post ប៉ុណ្ណោះ, មិនមែនធ្វើឲ្យគេទិញទេ។",
+   "instruction": "Calm expert describing a common habit of business owners, clear, medium pace"
+  },
+  {
+   "id": "s2",
+   "who": "host",
+   "start": 0,
+   "text": "Boost គឺជាផ្នែកតូចមួយ, ក្នុងយុទ្ធសាស្ត្រ។ យុទ្ធសាស្ត្រពិត ត្រូវមានផលិតផលល្អ, តម្លៃច្បាស់ មាតិកាទាក់ទាញ, ហើយទើប Ads ជួយពង្រីក។",
+   "instruction": "Analytical expert explaining the bigger picture, confident, medium pace"
+  },
+  {
+   "id": "s3",
+   "who": "host",
+   "start": 0,
+   "text": "ដូច្នេះ មុន Boost, សូមពិនិត្យ ៣ ចំណុច៖ មួយ Post នេះ សម្រាប់អតិថិជនណា? ពីរ Offer និងតម្លៃ ច្បាស់ឬនៅ? បី ពេលគេ Inbox, អ្នករៀបចំឆ្លើយ, និងបិទការលក់ហើយឬនៅ?",
+   "instruction": "Helpful expert giving a practical checklist, clear, short pause after each of the three points"
+  },
+  {
+   "id": "s4",
+   "who": "host",
+   "start": 0,
+   "text": "Boost ត្រូវតែមានយុទ្ធសាស្ត្រ, នៅពីក្រោយ។ Save វីដេអូនេះទុក, មុនចុច Boost លើកក្រោយ។",
+   "instruction": "Friendly, confident expert with a warm closing invitation, natural"
+  }
+ ]
+}
