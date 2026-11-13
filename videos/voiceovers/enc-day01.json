@@ -1,0 +1,47 @@
+{
+ "slug": "enc-day01",
+ "note": "EN CHOMREY Day 01 (owner, 13 Nov 2026): Khmer voice-over, Kiri Bora, one take per scene.",
+ "voices": {
+  "host": {
+   "voice": "Bora",
+   "instruction": "Curious, confident marketing expert asking a surprising question, short pause before the last words"
+  }
+ },
+ "lines": [
+  {
+   "id": "s0",
+   "who": "host",
+   "start": 0,
+   "text": "Video មានអ្នកមើលរាប់ពាន់, តែគ្មាន Order សូម្បីមួយ… មកពីអ្វី?",
+   "instruction": "Curious, confident marketing expert asking a surprising question, short pause before the last words"
+  },
+  {
+   "id": "s1",
+   "who": "host",
+   "start": 0,
+   "text": "ម្ចាស់អាជីវកម្មខ្លះគិតថា, អ្នកមើលច្រើន គឺលក់ដាច់។ ក៏បន្ថែមលុយ Ads ទៀត, តែលទ្ធផលនៅដដែល។",
+   "instruction": "Calm expert describing a common mistake of business owners, natural and clear, medium pace"
+  },
+  {
+   "id": "s2",
+   "who": "host",
+   "start": 0,
+   "text": "តាមពិត អ្នកមើល មិនមែនជាអ្នកទិញទេ។ បញ្ហាច្រើនតែនៅ ៣ ចំណុច៖ មួយ Audience មិនត្រូវគោលដៅ។ ពីរ Offer មិនច្បាស់។ បី គ្មានហេតុផលឲ្យទុកចិត្ត។",
+   "instruction": "Analytical expert explaining the real reason, confident, short pause after each of the three points"
+  },
+  {
+   "id": "s3",
+   "who": "host",
+   "start": 0,
+   "text": "ដូច្នេះ កំណត់ Audience ឲ្យត្រូវ, សរសេរតម្លៃ និងរបៀបទិញឲ្យច្បាស់, ហើយបង្ហាញភស្តុតាងពិត, ដូចជា រូបទំនិញពិត ឬមតិអតិថិជនពិត។",
+   "instruction": "Helpful expert giving practical advice, clear and confident, medium pace"
+  },
+  {
+   "id": "s4",
+   "who": "host",
+   "start": 0,
+   "text": "អ្នកកំពុងជួបបញ្ហាមួយណា? Comment លេខ ១ ២ ឬ ៣ ប្រាប់ខ្ញុំ។",
+   "instruction": "Friendly, confident expert inviting viewers to comment, warm and natural"
+  }
+ ]
+}
