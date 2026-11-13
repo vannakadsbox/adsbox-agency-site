@@ -1,0 +1,47 @@
+{
+ "slug": "ench-ads-vs-strategy",
+ "note": "Owner request 13 Nov 2026: Khmer voice-over for the EN CHOMREY 'Ads vs Strategy' video (owner's script); nothing is posted.",
+ "voices": {
+  "host": {
+   "voice": "Vannak",
+   "instruction": "Energetic, confident marketing expert explaining to business owners, brisk natural pace, clear"
+  }
+ },
+ "lines": [
+  {
+   "id": "a",
+   "who": "host",
+   "start": 0.2,
+   "text": "អ្នកដឹងទេ? ការចេះរត់ Facebook Ads មិនមានន័យថាអ្នកចេះធ្វើ Marketing Strategy នោះទេ! អ្នកធ្វើ Ads ផ្តោតលើការរៀបចំ Campaign កំណត់ Audience និងគ្រប់គ្រង Budget ដើម្បីផ្សព្វផ្សាយផលិតផល។",
+   "instruction": "Energetic, confident marketing expert explaining to business owners, brisk natural pace, clear"
+  },
+  {
+   "id": "b",
+   "who": "host",
+   "start": 12.0,
+   "text": "ប៉ុន្តែ Marketing Strategist ចាប់ផ្តើមពីការសិក្សាអាជីវកម្ម អតិថិជន គូប្រកួតប្រជែង និងរៀបចំយុទ្ធសាស្ត្រទាំងមូល។",
+   "instruction": "Energetic, confident marketing expert explaining to business owners, brisk natural pace, clear"
+  },
+  {
+   "id": "c",
+   "who": "host",
+   "start": 19.0,
+   "text": "គាត់ត្រូវដឹងថា តើត្រូវធ្វើដូចម្តេចដើម្បីទាក់ទាញអតិថិជន បម្លែងការចាប់អារម្មណ៍ទៅជាការលក់ និងបង្កើនប្រាក់ចំណេញ។",
+   "instruction": "Energetic, confident marketing expert explaining to business owners, brisk natural pace, clear"
+  },
+  {
+   "id": "d",
+   "who": "host",
+   "start": 27.0,
+   "text": "ចុងក្រោយ Ads គឺជាឧបករណ៍មួយក្នុង Marketing Strategy ប៉ុន្តែយុទ្ធសាស្ត្រល្អ គឺជាអ្វីដែលជួយឱ្យអាជីវកម្មរីកចម្រើន។",
+   "instruction": "Confident expert giving the key conclusion, clear and warm, brisk natural pace"
+  },
+  {
+   "id": "e",
+   "who": "host",
+   "start": 35.0,
+   "text": "Follow En Chomrey សម្រាប់ចំណេះដឹង Digital Marketing និង Business Growth។",
+   "instruction": "Friendly, confident invitation to follow the page, warm, brisk"
+  }
+ ]
+}
