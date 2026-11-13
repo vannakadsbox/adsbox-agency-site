@@ -3649,9 +3649,127 @@
       "article_url": "https://adsbox.agency/knowledge/prepare-big-sale-day-promotion-without-losing-profit/",
       "video_title": "12.12 ចុះតម្លៃអាវពី $12 មក $9 លក់ដាច់ តែខាត? គិតលេខមុនថ្ងៃ Sale",
       "hook": "12.12 ជិតមកដល់ហើយ។ បងចុះតម្លៃអាវ ពី $12 មក $9… លក់ដាច់ តែចំណេញ ឬខាត?",
-      "status": "scripted",
+      "status": "sent",
       "scripted_at": "2026-11-13T07:25:43+07:00",
-      "error": ""
+      "error": "",
+      "render_started_at": "2026-11-13T07:26:28+07:00",
+      "sent_at": "2026-11-13T07:32:09+07:00",
+      "rendered_at": "2026-11-13T07:32:09+07:00",
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/43336994581",
+      "duration": 64.7,
+      "size_mb": 17.9,
+      "render_seconds": 326,
+      "voice": "kiri:Vannak",
+      "music": "adsbox-original-1.mp3",
+      "style": "custom animation only",
+      "visuals": [
+        "question",
+        "vanish",
+        "delivery",
+        "waterfall",
+        "waterfall",
+        "checklist",
+        "takeaway",
+        "cta2"
+      ],
+      "resolution": "1080x1920",
+      "fps": 30,
+      "subtitle_sync": "transcript",
+      "footage": [],
+      "footage_share": 0,
+      "stock_footage": "none (removed)",
+      "telegram": {
+        "ok": true,
+        "message_id": 264,
+        "chat": "configured",
+        "at": "2026-11-13T07:32:09+07:00",
+        "file_id": "BAACAgUAAxkDAAIBCGr2WoJZY_GlGRctQeFm0g3vDaiyAAJsKAACm0ewV8tB8XpN9ZIWPQQ",
+        "items": [
+          {
+            "item": "video",
+            "message_id": 264,
+            "file_name": "prepare-big-sale-day-promotion-without-losing-profit.mp4",
+            "file_size": 17900672,
+            "width": 1080,
+            "height": 1920,
+            "file_id": "BAACAgUAAxkDAAIBCGr2WoJZY_GlGRctQeFm0g3vDaiyAAJsKAACm0ewV8tB8XpN9ZIWPQQ"
+          },
+          {
+            "item": "facebook_caption",
+            "message_id": 265
+          },
+          {
+            "item": "thumbnail",
+            "message_id": 266,
+            "file_name": "prepare_big_sale_day_promotion_without_losing_profit_thumbnail.jpg",
+            "file_size": 225931
+          }
+        ],
+        "sent_count": 3,
+        "local_sizes": {
+          "video": 17900672,
+          "thumbnail": 225931
+        }
+      },
+      "speech_match": [
+        0.986,
+        0.99,
+        1,
+        0.943,
+        0.961,
+        1,
+        1,
+        0.936
+      ],
+      "scene_sync": [
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript"
+      ],
+      "archive": {
+        "assets": [
+          {
+            "id": 741650580,
+            "name": "prepare-big-sale-day-promotion-without-losing-profit-thumb.jpg",
+            "size": 225931,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/prepare-big-sale-day-promotion-without-losing-profit-thumb.jpg"
+          },
+          {
+            "id": 741650585,
+            "name": "prepare-big-sale-day-promotion-without-losing-profit.mp4",
+            "size": 17900672,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/prepare-big-sale-day-promotion-without-losing-profit.mp4"
+          }
+        ],
+        "release_id": 430382508
+      },
+      "quality": {
+        "width": 1080,
+        "height": 1920,
+        "fps": "30/1",
+        "duration": 64.7,
+        "video_codec": "h264",
+        "audio_codec": "aac",
+        "loudness": "-13.3 LUFS",
+        "decode_errors": false,
+        "visual_mix": {
+          "motion_graphics": 0.89,
+          "phone_chat": 0.11,
+          "illustrated": 0,
+          "product_dashboard": 0
+        }
+      },
+      "article_id": "prepare-big-sale-day-promotion-without-losing-profit",
+      "video_id": 741650585,
+      "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/prepare-big-sale-day-promotion-without-losing-profit.mp4",
+      "created_at": "2026-11-13T07:32:09+07:00",
+      "telegram_status": "delivered",
+      "production_status": "complete"
     }
   ]
 }
