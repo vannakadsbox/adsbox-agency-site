@@ -1,0 +1,260 @@
+{
+  "slug": "prepare-big-sale-day-promotion-without-losing-profit",
+  "video_title": "12.12 ចុះតម្លៃអាវពី $12 មក $9 លក់ដាច់ តែខាត? គិតលេខមុនថ្ងៃ Sale",
+  "topic": "របៀបគិតតម្លៃ Promotion ថ្ងៃ Sale ធំ ឲ្យនៅមានចំណេញ ក្រោយដកថ្លៃខ្ចប់ ដឹក និងលុយ Boost ហើយហេតុអី «ទិញ ២ ឈុត» ល្អជាងចុះតម្លៃខ្លាំង។",
+  "thumbnail_text": "Sale 12.12 លក់ដាច់ តែខាត?",
+  "description": "ចុះតម្លៃអាវពី $12 មក $9 ថ្ងៃ 12.12 លក់ដាច់ តែខាត $1 រាល់ Order (លេខគំរូ)។\nលក់ «ទិញ ២ ឈុត $22» វិញ នៅចំណេញ $6។\n#ADSBOX #លក់អនឡាញ #Promotion #1212 #BoostPost",
+  "facebook_caption": "12.12 ជិតមកដល់ហើយ បងត្រៀម Promotion ហើយឬនៅ? 🛍️\nចុះតម្លៃខ្លាំង លក់ដាច់មែន តែអាចខាតដោយមិនដឹងខ្លួន!\n✅ ជ្រើសទំនិញតែ ២ ឬ ៣ មុខ\n✅ គិតតម្លៃ ដកថ្លៃខ្ចប់ ដឹក និងលុយ Boost\n✅ សាកលក់ «ទិញ ២ ឈុត» ជំនួសការចុះតម្លៃ\n✅ ប្រកាសប្រាប់ភ្ញៀវ ៣ ថ្ងៃមុន\n✅ បញ្ជាក់ Order មុនខ្ចប់\nលក់ដាច់ ហើយនៅមានចំណេញពិត។\nSale នេះ ហាងបងចង់លក់ទំនិញអ្វី? Comment «SALE» មក 👇\n#ADSBOX #លក់អនឡាញ #Promotion #1212",
+  "scenes": [
+    {
+      "role": "hook",
+      "lines": [
+        "12.12 ជិតមកដល់ហើយ។",
+        "បងចុះតម្លៃអាវ ពី $12 មក $9…",
+        "លក់ដាច់ តែចំណេញ ឬខាត?"
+      ],
+      "voice": "Curious, surprised consultant talking to a shop owner, short pause after each price, natural",
+      "visual": {
+        "type": "question",
+        "title": "Sale តែខាត?",
+        "bubbles": [
+          "$9 មែនទេបង?",
+          "យក ២ ឈុត",
+          "ដឹកថ្ងៃណា?"
+        ]
+      }
+    },
+    {
+      "role": "problem",
+      "lines": [
+        "បងគិតថា $9 ដកថ្លៃដើម $6…",
+        "នៅចំណេញ $3។",
+        "តែតាមពិត ខាត $1 រាល់ Order!",
+        "លុយ $4 បាត់ទៅណា?"
+      ],
+      "voice": "Sincerely asking the shop owner, not rushed, stress the loss and the missing money",
+      "visual": {
+        "type": "vanish",
+        "host": false,
+        "expected_label": "បងគិតថាចំណេញ",
+        "expected": "$3",
+        "real_label": "ពិតៗ (លេខគំរូ)",
+        "real": "−$1",
+        "gap": "$4 បាត់ទៅណា?"
+      }
+    },
+    {
+      "role": "example",
+      "lines": [
+        "លេខគំរូ៖ លក់មួយឈុត $9។",
+        "ដកថ្លៃដើម $6។",
+        "ថ្លៃខ្ចប់ និងដឹក $2។",
+        "លុយ Boost ប្រហែល $2។"
+      ],
+      "voice": "Expert explaining numbers slowly and clearly to a shop owner, each price distinct",
+      "visual": {
+        "type": "delivery",
+        "host": false,
+        "rows": [
+          {
+            "label": "ថ្លៃដើមអាវ",
+            "value": "−$6"
+          },
+          {
+            "label": "ខ្ចប់ + ដឹក",
+            "value": "−$2"
+          },
+          {
+            "label": "លុយ Boost",
+            "value": "−$2"
+          }
+        ],
+        "total": {
+          "label": "លក់ $9 · នៅសល់ (លេខគំរូ)",
+          "value": "−$1"
+        }
+      }
+    },
+    {
+      "role": "tip",
+      "lines": [
+        "ចុះបើលក់ ទិញ ២ ឈុត $22 វិញ?",
+        "ដកថ្លៃដើម ២ ឈុត $12។",
+        "ផ្ញើមួយកញ្ចប់ ខ្ចប់ និងដឹក $2។",
+        "លុយ Boost នៅតែ $2។"
+      ],
+      "voice": "Expert explaining numbers slowly and clearly, a hopeful turn on the first line",
+      "visual": {
+        "type": "waterfall",
+        "host": false,
+        "start": {
+          "label": "ទិញ ២ ឈុត · លុយនៅសល់",
+          "amount": 22
+        },
+        "show": 3,
+        "rows": [
+          {
+            "icon": "product",
+            "label": "ថ្លៃដើម ២ ឈុត",
+            "value": "$12",
+            "amount": 12,
+            "note": "$6 × ២ ឈុត",
+            "at": [
+              1,
+              0
+            ],
+            "note_at": [
+              1,
+              0.5
+            ]
+          },
+          {
+            "icon": "ship",
+            "label": "ខ្ចប់ + ដឹក (មួយកញ្ចប់)",
+            "value": "$2",
+            "amount": 2,
+            "at": [
+              2,
+              0
+            ]
+          },
+          {
+            "icon": "boost",
+            "label": "លុយ Boost",
+            "value": "$2",
+            "amount": 2,
+            "note": "ប្រហែល $2 ក្នុងមួយ Order ដឹកដល់",
+            "at": [
+              3,
+              0
+            ],
+            "note_at": [
+              3,
+              0.5
+            ]
+          }
+        ],
+        "groups": [
+          {
+            "text": "ដើម + ខ្ចប់ដឹក + Boost = −$16",
+            "at": [
+              3,
+              0.9
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "role": "example",
+      "lines": [
+        "ចុងក្រោយ នៅសល់…",
+        "$6 ក្នុងមួយ Order។",
+        "ភ្ញៀវបានតម្លៃពិសេស $11 មួយឈុត។",
+        "ព្រោះថ្លៃដឹក និង Boost ចែកលើពីរឈុត។"
+      ],
+      "voice": "Calm expert, short pause before the final number, then strong clear emphasis on it",
+      "visual": {
+        "type": "waterfall",
+        "start": {
+          "label": "ទិញ ២ ឈុត · លុយនៅសល់",
+          "amount": 22
+        },
+        "done": 3,
+        "rows": [
+          {
+            "icon": "product",
+            "label": "ថ្លៃដើម ២ ឈុត",
+            "value": "$12",
+            "amount": 12,
+            "note": "$6 × ២ ឈុត"
+          },
+          {
+            "icon": "ship",
+            "label": "ខ្ចប់ + ដឹក (មួយកញ្ចប់)",
+            "value": "$2",
+            "amount": 2
+          },
+          {
+            "icon": "boost",
+            "label": "លុយ Boost",
+            "value": "$2",
+            "amount": 2,
+            "note": "ប្រហែល $2 ក្នុងមួយ Order ដឹកដល់"
+          }
+        ],
+        "result": {
+          "label": "ចំណេញមួយ Order",
+          "value": "$6",
+          "at": [
+            1,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "role": "tip",
+      "lines": [
+        "ជ្រើសទំនិញតែ ២ ឬ ៣ មុខ។",
+        "ប្រកាសប្រាប់ភ្ញៀវ ៣ ថ្ងៃមុន។",
+        "ហើយបញ្ជាក់ Order មុនខ្ចប់។"
+      ],
+      "voice": "Practical, friendly expert listing quick steps, light energy, clear pause between steps",
+      "visual": {
+        "type": "checklist",
+        "host": false,
+        "bad": "ចុះតម្លៃគ្រប់ទំនិញ",
+        "items": [
+          "ជ្រើសទំនិញតែ ២-៣ មុខ",
+          "ប្រកាសប្រាប់ភ្ញៀវ ៣ ថ្ងៃមុន",
+          "បញ្ជាក់ Order មុនខ្ចប់"
+        ]
+      }
+    },
+    {
+      "role": "summary",
+      "lines": [
+        "Promotion ល្អ មិនមែនចុះតម្លៃខ្លាំងទេ។",
+        "គឺគិតលេខមុន ហើយត្រៀមមុន។"
+      ],
+      "voice": "Warm, confident expert, slow and clear, emphasise the lesson",
+      "visual": {
+        "type": "takeaway",
+        "host": false,
+        "quote": "Promotion ល្អ មិនមែន\nចុះតម្លៃខ្លាំងជាងគេទេ",
+        "chips": [
+          "− ថ្លៃដើម",
+          "− ខ្ចប់ ដឹក",
+          "− Boost"
+        ]
+      }
+    },
+    {
+      "role": "cta",
+      "lines": [
+        "Sale នេះ ហាងបងចង់លក់ទំនិញអ្វី?",
+        "Comment ពាក្យ SALE មក",
+        "ក្រុម ADS BOX រីករាយជួយបងគិត។"
+      ],
+      "voice": "Friendly, confident, helpful expert inviting the shop owner to comment, warm, not salesy",
+      "visual": {
+        "type": "cta2",
+        "question": "Sale នេះ ហាងបងចង់លក់ទំនិញអ្វី?",
+        "comment": "SALE",
+        "comment_line": 1,
+        "services": [
+          "Boost Post",
+          "Boost Live",
+          "Design"
+        ],
+        "url": "adsbox.agency"
+      }
+    }
+  ],
+  "article": {
+    "title": "ថ្ងៃ Sale ធំជិតមកដល់ (12.12, ចូលឆ្នាំ…)៖ Checklist ៧ ថ្ងៃ ត្រៀម Promotion កុំឲ្យលក់ដាច់ តែខាត",
+    "url": "https://adsbox.agency/knowledge/prepare-big-sale-day-promotion-without-losing-profit/"
+  },
+  "written_at": "2026-11-13T07:25:43+07:00"
+}
