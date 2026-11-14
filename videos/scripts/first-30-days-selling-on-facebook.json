@@ -1,0 +1,218 @@
+{
+  "slug": "first-30-days-selling-on-facebook",
+  "video_title": "ទើបបើកផេក Boost ភ្លាមៗ? ផែនការ ៣០ ថ្ងៃ ពីរៀបផេក ដល់ចំណេញពិត",
+  "topic": "ផែនការ ៣០ ថ្ងៃដំបូងសម្រាប់ហាងថ្មីលើ Facebook មួយសប្ដាហ៍ការងារមួយ ហើយគិតលេខពីលុយ Boost ដល់ចំណេញពិត។",
+  "thumbnail_text": "ទើបបើកផេក ចាប់ពីណា?",
+  "description": "ទើបបើកផេកលក់? កុំ Boost ភ្លាមៗ។\nផែនការ ៣០ ថ្ងៃ ៤ សប្ដាហ៍ ហើយគិតលេខដល់ចំណេញពិត (លេខគំរូ)។\n#ADSBOX #លក់អនឡាញ #ហាងថ្មី #BoostPost",
+  "facebook_caption": "ទើបបើកផេក ហើយមិនដឹងចាប់ផ្ដើមពីណា? 🤔\nសាកផែនការ ៣០ ថ្ងៃនេះ៖\n✅ សប្ដាហ៍ ១៖ រៀបផេក និងតម្លៃ\n✅ សប្ដាហ៍ ២៖ ផុសរាល់ថ្ងៃ ឆ្លើយសារឲ្យលឿន\n✅ សប្ដាហ៍ ៣៖ Boost តូចៗ តែ Post ល្អជាងគេ\n✅ សប្ដាហ៍ ៤៖ គិតលេខដល់ចំណេញពិត\nចុងខែ បងមានលេខពិត សម្រាប់សម្រេចចិត្ត។\nផេកបងនៅសប្ដាហ៍ទីប៉ុន្មានហើយ? Comment «START» 👇\n#ADSBOX #លក់អនឡាញ #ហាងថ្មី #BoostPost",
+  "scenes": [
+    {
+      "role": "hook",
+      "lines": [
+        "ទើបបើកផេកលក់អាវ។",
+        "Boost ភ្លាមៗ ថ្ងៃទី ១…",
+        "តែមិនដឹងលុយទៅណា?"
+      ],
+      "voice": "Curious, surprised consultant talking to a new shop owner, short pause after each line",
+      "visual": {
+        "type": "question",
+        "title": "ផេកថ្មី ចាប់ពីណា",
+        "bubbles": [
+          "អាវនេះប៉ុន្មាន?",
+          "មានពណ៌អីខ្លះ?",
+          "ដឹកខេត្តបានអត់?"
+        ]
+      }
+    },
+    {
+      "role": "problem",
+      "lines": [
+        "ហាងថ្មីច្រើនតែធ្វើគ្រប់យ៉ាងពេលតែមួយ។",
+        "ល្អជាង ចែក ៣០ ថ្ងៃ ជា ៤ សប្ដាហ៍។"
+      ],
+      "voice": "Sincerely talking to the shop owner, not rushed, stress 'everything at once' and 'four weeks'",
+      "visual": {
+        "type": "compare",
+        "host": false,
+        "bad": "ធ្វើគ្រប់យ៉ាង ពេលតែមួយ",
+        "good": "មួយសប្ដាហ៍ ការងារមួយ"
+      }
+    },
+    {
+      "role": "tip",
+      "lines": [
+        "សប្ដាហ៍ទី ១ រៀបផេក និងតម្លៃ។",
+        "ទី ២ ផុសរាល់ថ្ងៃ ឆ្លើយសារឲ្យលឿន។",
+        "ទី ៣ Boost តូចៗ តែ Post ល្អជាងគេ។",
+        "ទី ៤ គិតលេខដល់ចំណេញ។"
+      ],
+      "voice": "Confident expert walking through a plan, clear steady pace, small pause between weeks",
+      "visual": {
+        "type": "flow",
+        "host": false,
+        "steps": [
+          {
+            "label": "សប្ដាហ៍ ១",
+            "text": "រៀបផេក និងតម្លៃ"
+          },
+          {
+            "label": "សប្ដាហ៍ ២",
+            "text": "ផុស និងឆ្លើយសារ"
+          },
+          {
+            "label": "សប្ដាហ៍ ៣",
+            "text": "Boost តូចៗ"
+          },
+          {
+            "label": "សប្ដាហ៍ ៤",
+            "text": "គិតលេខដល់ចំណេញ"
+          }
+        ]
+      }
+    },
+    {
+      "role": "tip",
+      "lines": [
+        "ព្រោះ Order មិនទាន់ជាលុយទេ។",
+        "ត្រូវដឹកដល់ ហើយភ្ញៀវបង់លុយសិន។"
+      ],
+      "voice": "Expert explaining calmly, stress 'not money yet', natural and clear",
+      "visual": {
+        "type": "funnel",
+        "host": false,
+        "title": "Order មិនទាន់ជាលុយទេ",
+        "steps": [
+          "លុយ Boost",
+          "Message",
+          "Order",
+          "បញ្ជាក់ Order",
+          "ដឹកដល់",
+          "ភ្ញៀវបង់លុយ",
+          "ចំណេញពិត"
+        ]
+      }
+    },
+    {
+      "role": "example",
+      "lines": [
+        "លេខគំរូ៖ ចាយ Boost បាន Order ១២។",
+        "ដឹកដល់ ហើយបានលុយ ៩ ឈុត។",
+        "ចំណេញមុន Boost ៩ ឈុត $37.80។",
+        "ដក Boost ទាំងខែ $30។"
+      ],
+      "voice": "Expert explaining numbers slowly and clearly to a shop owner, each number distinct",
+      "visual": {
+        "type": "waterfall",
+        "host": false,
+        "start": {
+          "label": "ចំណេញមុន Boost · ៩ ឈុត",
+          "amount": 37.8
+        },
+        "show": 1,
+        "rows": [
+          {
+            "icon": "boost",
+            "label": "លុយ Boost ទាំងខែ",
+            "value": "$30",
+            "amount": 30,
+            "note": "សប្ដាហ៍ទី ៣–៤ ចាយ $30",
+            "at": [
+              3,
+              0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "role": "example",
+      "lines": [
+        "ដកកញ្ចប់មិនទទួល ១ ទៀត $3.30។",
+        "ចុងក្រោយ សល់តែ…",
+        "$4.50 ប៉ុណ្ណោះ!"
+      ],
+      "voice": "Calm expert, short pause before the final number, then strong clear emphasis on it",
+      "visual": {
+        "type": "waterfall",
+        "start": {
+          "label": "ចំណេញមុន Boost · ៩ ឈុត",
+          "amount": 37.8
+        },
+        "done": 1,
+        "rows": [
+          {
+            "icon": "boost",
+            "label": "លុយ Boost ទាំងខែ",
+            "value": "$30",
+            "amount": 30,
+            "note": "សប្ដាហ៍ទី ៣–៤ ចាយ $30"
+          },
+          {
+            "icon": "refused",
+            "label": "កញ្ចប់មិនទទួល ១",
+            "value": "$3.30",
+            "amount": 3.3,
+            "note": "$0.30 ខ្ចប់ + $1.50 ដឹក + $1.50 ត្រឡប់ = $3.30",
+            "at": [
+              0,
+              0
+            ]
+          }
+        ],
+        "result": {
+          "label": "ចំណេញពិតមួយខែ",
+          "value": "$4.50",
+          "at": [
+            2,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "role": "summary",
+      "lines": [
+        "៣០ ថ្ងៃដំបូង មិនមែនដើម្បីលក់ច្រើនទេ។",
+        "គឺដើម្បីដឹងលេខពិត ដល់ចំណេញ។"
+      ],
+      "voice": "Warm expert, slow and clear, one sentence to remember",
+      "visual": {
+        "type": "takeaway",
+        "host": false,
+        "quote": "៣០ ថ្ងៃដំបូង\nគឺដើម្បីដឹងលេខពិត",
+        "chips": [
+          "រៀបផេក",
+          "ផុសទៀង",
+          "Boost តូចៗ",
+          "វាស់លេខ"
+        ]
+      }
+    },
+    {
+      "role": "cta",
+      "lines": [
+        "ផេកបង នៅសប្ដាហ៍ទីប៉ុន្មានហើយ?",
+        "Comment ពាក្យ START មក",
+        "ក្រុម ADS BOX រីករាយជួយបង។"
+      ],
+      "voice": "Friendly, confident, helpful expert inviting the shop owner to comment, warm, not salesy",
+      "visual": {
+        "type": "cta2",
+        "question": "ផេកបង នៅសប្ដាហ៍ទីប៉ុន្មានហើយ?",
+        "comment": "START",
+        "comment_line": 1,
+        "services": [
+          "Boost Post",
+          "ADS BOX System",
+          "Online selling courses"
+        ],
+        "url": "adsbox.agency"
+      }
+    }
+  ],
+  "article": {
+    "title": "ចាប់ផ្ដើមលក់អនឡាញតាម Facebook៖ ផែនការ ៣០ ថ្ងៃដំបូង សម្រាប់ហាងថ្មី",
+    "url": "https://adsbox.agency/knowledge/first-30-days-selling-on-facebook/"
+  },
+  "written_at": "2026-11-14T07:25:09+07:00"
+}
