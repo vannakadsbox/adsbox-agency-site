@@ -1,0 +1,61 @@
+{
+ "slug": "enc-day03",
+ "note": "EN CHOMREY Day 03 (owner, 14 Nov 2026): '3 mistakes that make businesses lose money on Ads'. Khmer voice-over, Kiri Bora, one take per scene; nothing is posted.",
+ "voices": {
+  "host": {
+   "voice": "Bora",
+   "instruction": "Curious, confident marketing expert with a surprising hook, natural pace, short pause after the question"
+  }
+ },
+ "lines": [
+  {
+   "id": "s0",
+   "who": "host",
+   "start": 0,
+   "text": "ចាយលុយលើ Ads រាល់ខែ, តែលុយបាត់ ដោយមិនដឹងថាទៅណា?",
+   "instruction": "Curious, confident marketing expert with a surprising hook, natural pace, short pause after the ques"
+  },
+  {
+   "id": "s1",
+   "who": "host",
+   "start": 0,
+   "text": "ម្ចាស់អាជីវកម្មជាច្រើន ខាតលុយលើ Ads, ដោយសារ ៣ កំហុសនេះ។",
+   "instruction": "Calm, confident expert introducing a common problem, clear, medium pace"
+  },
+  {
+   "id": "s2",
+   "who": "host",
+   "start": 0,
+   "text": "កំហុសទីមួយ៖ គ្មានគោលដៅច្បាស់។ មិនដឹងថាចង់បាន Message, ឬចង់បាន Order។",
+   "instruction": "Analytical expert counting mistakes, clear numbers, short pause after each mistake"
+  },
+  {
+   "id": "s3",
+   "who": "host",
+   "start": 0,
+   "text": "កំហុសទីពីរ៖ ដាក់ Ads ទៅមនុស្សគ្រប់គ្នា, ជំនួសឲ្យអតិថិជនដែលត្រូវគោលដៅ។",
+   "instruction": "Analytical expert counting mistakes, clear numbers, short pause after each mistake"
+  },
+  {
+   "id": "s4",
+   "who": "host",
+   "start": 0,
+   "text": "កំហុសទីបី៖ មិនវាស់លទ្ធផល, ហើយបន្តចាយលុយដដែលៗ។",
+   "instruction": "Analytical expert counting mistakes, clear numbers, short pause after each mistake"
+  },
+  {
+   "id": "s5",
+   "who": "host",
+   "start": 0,
+   "text": "ដូច្នេះ មុនចាយលុយ, កំណត់គោលដៅមួយ, ជ្រើស Audience ឲ្យត្រូវ, ហើយពិនិត្យលទ្ធផលរាល់ថ្ងៃ។",
+   "instruction": "Helpful expert giving practical steps, confident, warm, medium pace"
+  },
+  {
+   "id": "s6",
+   "who": "host",
+   "start": 0,
+   "text": "អ្នកធ្លាប់ជួបកំហុសមួយណា? Comment លេខ ១ ២ ឬ ៣ ហើយ Follow EN CHOMREY។",
+   "instruction": "Friendly, confident invitation to comment and follow, warm, not salesy"
+  }
+ ]
+}
