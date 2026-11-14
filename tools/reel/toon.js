@@ -1,5 +1,6 @@
 // The ADS BOX toon presenter (owner, 14 Nov 2026: "use the style video and voice for daily videos, keep color branding").
-// A flat cartoon host in ADS BOX colours (blue #3f7dff blazer, navy #0b1430 lapels, yellow #ffd23f pocket square) whose
+// A flat cartoon of the owner, drawn from his photo (owner, 14 Nov 2026 08:07: "change character to my pic"): side-swept dark hair,
+// thin moustache, white ADS BOX polo with blue trim and logo (as on the ADS BOX host photos); whose
 // mouth follows the loudness of the Kiri voice frame by frame, with blinks and a gentle head bob.
 // Frames are drawn by pausing every CSS animation at the frame time (render.js), so all motion here is CSS keyframes.
 const { execFileSync } = require("child_process");
@@ -67,31 +68,37 @@ function toon(mood, w, sc) {
   return `<div class="toon" style="width:${w}px">${lv ? `<style>${mouthCss(id, lv)}</style>` : ""}
 <svg viewBox="0 0 600 820" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 <ellipse cx="300" cy="808" rx="230" ry="14" fill="#000" opacity=".12"/>
-<path d="M95 820 C95 650 150 585 235 560 L300 610 L365 560 C450 585 505 650 505 820 Z" fill="#3f7dff"/>
-<path d="M245 562 L300 690 L355 562 L330 548 L300 600 L270 548 Z" fill="#fff"/>
-<path d="M268 548 L300 602 L282 618 L250 566 Z" fill="#eef2ff"/><path d="M332 548 L300 602 L318 618 L350 566 Z" fill="#eef2ff"/>
-<path d="M293 606 L307 606 L312 690 L300 704 L288 690 Z" fill="#0b1430"/>
-<path d="M235 560 L300 700 L268 712 L218 600 Z" fill="#0b1430"/><path d="M365 560 L300 700 L332 712 L382 600 Z" fill="#0b1430"/>
-<path d="M395 668 L440 662 L436 680 L398 684 Z" fill="#ffd23f"/>
-<path d="M268 470 L268 560 Q300 588 332 560 L332 470 Z" fill="#b97b52"/>
-<path d="M268 520 Q300 545 332 520 L332 500 Q300 528 268 500 Z" fill="#a86d47" opacity=".7"/>
+<path d="M95 820 C95 650 150 590 238 566 L300 600 L362 566 C450 590 505 650 505 820 Z" fill="#fff"/>
+<path d="M140 760 C150 700 175 670 200 660 C185 700 190 740 205 820 L150 820 Z" fill="#dbe6fb" opacity=".8"/><path d="M460 760 C450 700 425 670 400 660 C415 700 410 740 395 820 L450 820 Z" fill="#dbe6fb" opacity=".8"/>
+<path d="M150 740 C170 720 190 735 182 760 M430 720 C412 708 398 726 410 745" stroke="#9db8ee" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M286 590 L314 590 L312 680 L288 680 Z" fill="#f3f6fc"/><path d="M296 596 L304 596 L304 676 L296 676 Z" fill="#1f5fe0"/>
+<circle cx="300" cy="618" r="5" fill="#fff" stroke="#c8d3ea" stroke-width="2"/><circle cx="300" cy="648" r="5" fill="#fff" stroke="#c8d3ea" stroke-width="2"/>
+<path d="M268 470 L268 562 Q300 590 332 562 L332 470 Z" fill="#d29d78"/>
+<path d="M268 520 Q300 545 332 520 L332 500 Q300 528 268 500 Z" fill="#c48c66" opacity=".7"/>
+<path d="M262 552 L300 600 L272 628 L232 572 Z" fill="#fff" stroke="#d5deef" stroke-width="3"/><path d="M338 552 L300 600 L328 628 L368 572 Z" fill="#fff" stroke="#d5deef" stroke-width="3"/>
+<path d="M236 576 L272 626" stroke="#1f5fe0" stroke-width="6" stroke-linecap="round"/><path d="M364 576 L328 626" stroke="#1f5fe0" stroke-width="6" stroke-linecap="round"/>
+<g transform="translate(372 628)"><rect x="0" y="0" width="34" height="30" rx="3" fill="none" stroke="#1f5fe0" stroke-width="4"/><path d="M8 25 L17 6 L26 25 M12 18 L22 18" stroke="#1f5fe0" stroke-width="4" fill="none" stroke-linejoin="round"/><text x="17" y="52" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-weight="800" font-size="15" fill="#1f5fe0">ADS BOX</text></g>
 <g class="t-head" style="animation:tBob 3.4s ease-in-out -${off.toFixed(2)}s infinite">
-<ellipse cx="196" cy="365" rx="20" ry="30" fill="#c68b5e"/><ellipse cx="404" cy="365" rx="20" ry="30" fill="#c68b5e"/>
-<path d="M200 330 C200 230 400 230 400 330 L398 400 C394 470 340 505 300 505 C260 505 206 470 202 400 Z" fill="#c68b5e"/>
-<path d="M196 340 C180 250 225 185 305 182 C385 180 425 235 410 330 C402 300 392 280 372 270 C350 288 300 290 262 268 C240 285 214 300 205 340 Z" fill="#1b1612"/>
-<path d="M262 268 C285 235 340 228 372 270 C345 250 300 248 262 268 Z" fill="#2c241d"/><path d="M240 230 C270 200 330 190 380 215 C340 205 290 210 250 240 Z" fill="#3a2f26"/>
-<g transform="translate(0 ${brow})"><path d="M235 318 Q258 304 282 314" stroke="#1b1612" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M318 314 Q342 304 365 318" stroke="#1b1612" stroke-width="9" fill="none" stroke-linecap="round"/></g>
-<g class="t-eye" style="animation:tBlink 4.2s linear -${(off * 1.3).toFixed(2)}s infinite"><ellipse cx="258" cy="350" rx="17" ry="12" fill="#fff"/><circle cx="260" cy="351" r="8.5" fill="#2a1a10"/><circle cx="263" cy="347" r="2.6" fill="#fff"/></g>
-<g class="t-eye" style="animation:tBlink 4.2s linear -${(off * 1.3).toFixed(2)}s infinite"><ellipse cx="342" cy="350" rx="17" ry="12" fill="#fff"/><circle cx="344" cy="351" r="8.5" fill="#2a1a10"/><circle cx="347" cy="347" r="2.6" fill="#fff"/></g>
-<path d="M300 365 Q292 400 290 410 Q300 418 312 410" stroke="#9c6440" stroke-width="5" fill="none" stroke-linecap="round"/>
-<g ${anim(0)}><path d="M268 445 Q300 462 332 445" stroke="#6b2f22" stroke-width="7" fill="none" stroke-linecap="round"/></g>
-<g ${anim(1)}><path d="M272 440 Q300 446 328 440 Q326 466 300 468 Q274 466 272 440 Z" fill="#5a2018"/><path d="M280 456 Q300 470 320 456 Q310 466 300 466 Q290 466 280 456Z" fill="#d9675a"/></g>
-<g ${anim(2)}><path d="M270 436 Q300 442 330 436 Q330 482 300 486 Q270 482 270 436 Z" fill="#5a2018"/><path d="M272 437 Q300 443 328 437 L327 446 Q300 450 273 446 Z" fill="#fff"/><path d="M282 470 Q300 488 318 470 Q310 482 300 482 Q290 482 282 470Z" fill="#d9675a"/></g>
+<ellipse cx="208" cy="368" rx="18" ry="28" fill="#d9a580"/><ellipse cx="392" cy="368" rx="18" ry="28" fill="#d9a580"/>
+<path d="M212 330 C212 236 388 236 388 330 L386 398 C382 462 336 500 300 502 C264 500 218 462 214 398 Z" fill="#e2b08a"/>
+<path d="M210 360 C204 330 206 300 216 282 L232 300 C224 318 222 340 224 362 Z" fill="#3b2a1f" opacity=".85"/><path d="M390 360 C396 330 394 300 384 282 L368 300 C376 318 378 340 376 362 Z" fill="#3b2a1f" opacity=".85"/>
+<path d="M214 318 C204 262 228 206 286 184 C318 172 352 176 378 194 C402 212 414 246 404 296 L392 318 L376 292 L360 312 L344 284 L326 304 L308 280 L288 298 L270 276 L250 296 L232 280 Z" fill="#2a1d14"/>
+<path d="M232 240 C258 204 306 186 350 194 M244 264 C274 226 330 214 376 232 M262 282 C292 252 340 246 384 262 M300 182 C336 178 368 192 388 216" stroke="#5a3f2c" stroke-width="6" fill="none" stroke-linecap="round"/>
+<path d="M286 186 C300 174 330 168 352 176" stroke="#6b4c35" stroke-width="5" fill="none" stroke-linecap="round"/>
+<g transform="translate(0 ${brow})"><path d="M240 332 Q262 324 284 328" stroke="#2a1d14" stroke-width="8" fill="none" stroke-linecap="round"/><path d="M316 328 Q338 324 360 332" stroke="#2a1d14" stroke-width="8" fill="none" stroke-linecap="round"/></g>
+<g class="t-eye" style="animation:tBlink 4.2s linear -${(off * 1.3).toFixed(2)}s infinite"><path d="M245 360 Q262 346 279 360 Q262 368 245 360 Z" fill="#fff"/><circle cx="263" cy="358" r="7" fill="#24170f"/><circle cx="265.5" cy="355.5" r="2.2" fill="#fff"/></g>
+<g class="t-eye" style="animation:tBlink 4.2s linear -${(off * 1.3).toFixed(2)}s infinite"><path d="M321 360 Q338 346 355 360 Q338 368 321 360 Z" fill="#fff"/><circle cx="339" cy="358" r="7" fill="#24170f"/><circle cx="341.5" cy="355.5" r="2.2" fill="#fff"/></g>
+<path d="M300 372 Q293 398 290 408 Q300 416 311 408" stroke="#b57d58" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M276 428 Q288 420 300 424 Q312 420 324 428" stroke="#2a1d14" stroke-width="5" fill="none" stroke-linecap="round" opacity=".85"/>
+<g ${anim(0)}><path d="M272 447 Q300 460 328 447" stroke="#7a3a2a" stroke-width="6" fill="none" stroke-linecap="round"/></g>
+<g ${anim(1)}><path d="M274 442 Q300 448 326 442 Q324 466 300 468 Q276 466 274 442 Z" fill="#5a2018"/><path d="M282 457 Q300 470 318 457 Q310 466 300 466 Q290 466 282 457Z" fill="#d9675a"/></g>
+<g ${anim(2)}><path d="M272 438 Q300 444 328 438 Q328 482 300 486 Q272 482 272 438 Z" fill="#5a2018"/><path d="M274 439 Q300 445 326 439 L325 448 Q300 452 275 448 Z" fill="#fff"/><path d="M284 470 Q300 488 316 470 Q310 482 300 482 Q290 482 284 470Z" fill="#d9675a"/></g>
 </g>
 ${raised ? `<g style="transform-origin:150px 640px;animation:tWave 2.6s ease-in-out infinite">
-<path d="M150 640 C120 610 110 560 128 520" stroke="#3f7dff" stroke-width="58" fill="none" stroke-linecap="round"/>
-<path d="M104 528 C96 500 98 452 112 446 C122 442 128 452 128 462 L130 440 C132 428 148 428 150 442 L152 452 C154 440 170 440 171 454 L172 470 C176 460 190 462 190 476 L188 520 C186 545 165 560 140 558 C122 556 108 546 104 528 Z" fill="#c68b5e"/></g>`
-    : `<path d="M150 650 C150 700 180 720 230 715" stroke="#3f7dff" stroke-width="58" fill="none" stroke-linecap="round"/><ellipse cx="248" cy="712" rx="30" ry="24" fill="#c68b5e"/>`}
+<path d="M128 520 C118 560 124 600 146 632" stroke="#e2b08a" stroke-width="44" fill="none" stroke-linecap="round"/>
+<path d="M150 690 C140 664 140 640 148 618" stroke="#fff" stroke-width="66" fill="none" stroke-linecap="round"/><path d="M118 622 L178 616" stroke="#1f5fe0" stroke-width="10" stroke-linecap="round"/>
+<path d="M104 528 C96 500 98 452 112 446 C122 442 128 452 128 462 L130 440 C132 428 148 428 150 442 L152 452 C154 440 170 440 171 454 L172 470 C176 460 190 462 190 476 L188 520 C186 545 165 560 140 558 C122 556 108 546 104 528 Z" fill="#e2b08a"/></g>`
+    : ``}
 </svg></div>`;
 }
 
