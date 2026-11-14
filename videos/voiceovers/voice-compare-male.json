@@ -1,0 +1,63 @@
+{
+ "slug": "voice-compare-male",
+ "note": "Owner, 14 Nov 2026: compare Kiri male Khmer voices (other than Vannak) on the same professional line.",
+ "voices": {
+  "chanda": {
+   "voice": "Chanda",
+   "instruction": "Professional marketing expert sharing advice with business owners, warm, confident, natural pace"
+  },
+  "bora": {
+   "voice": "Bora",
+   "instruction": "Professional marketing expert sharing advice with business owners, warm, confident, natural pace"
+  },
+  "arun": {
+   "voice": "Arun",
+   "instruction": "Professional marketing expert sharing advice with business owners, warm, confident, natural pace"
+  },
+  "sophon": {
+   "voice": "Sophon",
+   "instruction": "Professional marketing expert sharing advice with business owners, warm, confident, natural pace"
+  },
+  "dara": {
+   "voice": "Dara",
+   "instruction": "Professional marketing expert sharing advice with business owners, warm, confident, natural pace"
+  }
+ },
+ "lines": [
+  {
+   "id": "chanda",
+   "who": "chanda",
+   "start": 0,
+   "text": "បងប្អូនម្ចាស់អាជីវកម្ម! Boost Post មិនមែនជាយុទ្ធសាស្ត្រទាំងមូលទេ។ មុនចាយលុយលើ Ads សូមពិនិត្យថា អ្នកលក់ឲ្យនរណា, Offer ច្បាស់ឬនៅ, ហើយរៀបចំឆ្លើយ Inbox រួចហើយឬនៅ។",
+   "instruction": "Professional marketing expert sharing advice with business owners, warm, confident, natural pace"
+  },
+  {
+   "id": "bora",
+   "who": "bora",
+   "start": 0,
+   "text": "បងប្អូនម្ចាស់អាជីវកម្ម! Boost Post មិនមែនជាយុទ្ធសាស្ត្រទាំងមូលទេ។ មុនចាយលុយលើ Ads សូមពិនិត្យថា អ្នកលក់ឲ្យនរណា, Offer ច្បាស់ឬនៅ, ហើយរៀបចំឆ្លើយ Inbox រួចហើយឬនៅ។",
+   "instruction": "Professional marketing expert sharing advice with business owners, warm, confident, natural pace"
+  },
+  {
+   "id": "arun",
+   "who": "arun",
+   "start": 0,
+   "text": "បងប្អូនម្ចាស់អាជីវកម្ម! Boost Post មិនមែនជាយុទ្ធសាស្ត្រទាំងមូលទេ។ មុនចាយលុយលើ Ads សូមពិនិត្យថា អ្នកលក់ឲ្យនរណា, Offer ច្បាស់ឬនៅ, ហើយរៀបចំឆ្លើយ Inbox រួចហើយឬនៅ។",
+   "instruction": "Professional marketing expert sharing advice with business owners, warm, confident, natural pace"
+  },
+  {
+   "id": "sophon",
+   "who": "sophon",
+   "start": 0,
+   "text": "បងប្អូនម្ចាស់អាជីវកម្ម! Boost Post មិនមែនជាយុទ្ធសាស្ត្រទាំងមូលទេ។ មុនចាយលុយលើ Ads សូមពិនិត្យថា អ្នកលក់ឲ្យនរណា, Offer ច្បាស់ឬនៅ, ហើយរៀបចំឆ្លើយ Inbox រួចហើយឬនៅ។",
+   "instruction": "Professional marketing expert sharing advice with business owners, warm, confident, natural pace"
+  },
+  {
+   "id": "dara",
+   "who": "dara",
+   "start": 0,
+   "text": "បងប្អូនម្ចាស់អាជីវកម្ម! Boost Post មិនមែនជាយុទ្ធសាស្ត្រទាំងមូលទេ។ មុនចាយលុយលើ Ads សូមពិនិត្យថា អ្នកលក់ឲ្យនរណា, Offer ច្បាស់ឬនៅ, ហើយរៀបចំឆ្លើយ Inbox រួចហើយឬនៅ។",
+   "instruction": "Professional marketing expert sharing advice with business owners, warm, confident, natural pace"
+  }
+ ]
+}
