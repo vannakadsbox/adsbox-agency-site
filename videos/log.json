@@ -3786,9 +3786,127 @@
       "article_url": "https://adsbox.agency/knowledge/first-30-days-selling-on-facebook/",
       "video_title": "ទើបបើកផេក Boost ភ្លាមៗ? ផែនការ ៣០ ថ្ងៃ ពីរៀបផេក ដល់ចំណេញពិត",
       "hook": "ទើបបើកផេកលក់អាវ។ Boost ភ្លាមៗ ថ្ងៃទី ១… តែមិនដឹងលុយទៅណា?",
-      "status": "scripted",
+      "status": "sent",
       "scripted_at": "2026-11-14T07:25:09+07:00",
-      "error": ""
+      "error": "",
+      "render_started_at": "2026-11-14T07:26:40+07:00",
+      "sent_at": "2026-11-14T07:32:17+07:00",
+      "rendered_at": "2026-11-14T07:32:17+07:00",
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/43534057592",
+      "duration": 58.9,
+      "size_mb": 17,
+      "render_seconds": 322,
+      "voice": "kiri:Vannak",
+      "music": "adsbox-original-1.mp3",
+      "style": "custom animation only",
+      "visuals": [
+        "question",
+        "compare",
+        "flow",
+        "funnel",
+        "waterfall",
+        "waterfall",
+        "takeaway",
+        "cta2"
+      ],
+      "resolution": "1080x1920",
+      "fps": 30,
+      "subtitle_sync": "transcript",
+      "footage": [],
+      "footage_share": 0,
+      "stock_footage": "none (removed)",
+      "telegram": {
+        "ok": true,
+        "message_id": 269,
+        "chat": "configured",
+        "at": "2026-11-14T07:32:17+07:00",
+        "file_id": "BAACAgUAAxkDAAIBDWr3rAqy-hJ9E3kGPsd-qIY1y1UMAALnIAACm0fAV20XgBAvGepdPQQ",
+        "items": [
+          {
+            "item": "video",
+            "message_id": 269,
+            "file_name": "first-30-days-selling-on-facebook.mp4",
+            "file_size": 16962873,
+            "width": 1080,
+            "height": 1920,
+            "file_id": "BAACAgUAAxkDAAIBDWr3rAqy-hJ9E3kGPsd-qIY1y1UMAALnIAACm0fAV20XgBAvGepdPQQ"
+          },
+          {
+            "item": "facebook_caption",
+            "message_id": 270
+          },
+          {
+            "item": "thumbnail",
+            "message_id": 271,
+            "file_name": "first-30-days-selling-on-facebook-thumbnail.jpg",
+            "file_size": 227744
+          }
+        ],
+        "sent_count": 3,
+        "local_sizes": {
+          "video": 16962873,
+          "thumbnail": 227744
+        }
+      },
+      "speech_match": [
+        0.98,
+        1,
+        1,
+        1,
+        1,
+        0.848,
+        1,
+        1
+      ],
+      "scene_sync": [
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript"
+      ],
+      "archive": {
+        "assets": [
+          {
+            "id": 745728406,
+            "name": "first-30-days-selling-on-facebook-thumb.jpg",
+            "size": 227744,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/first-30-days-selling-on-facebook-thumb.jpg"
+          },
+          {
+            "id": 745728407,
+            "name": "first-30-days-selling-on-facebook.mp4",
+            "size": 16962873,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/first-30-days-selling-on-facebook.mp4"
+          }
+        ],
+        "release_id": 430382508
+      },
+      "quality": {
+        "width": 1080,
+        "height": 1920,
+        "fps": "30/1",
+        "duration": 58.9,
+        "video_codec": "h264",
+        "audio_codec": "aac",
+        "loudness": "-13.2 LUFS",
+        "decode_errors": false,
+        "visual_mix": {
+          "motion_graphics": 0.9,
+          "phone_chat": 0.1,
+          "illustrated": 0,
+          "product_dashboard": 0
+        }
+      },
+      "article_id": "first-30-days-selling-on-facebook",
+      "video_id": 745728407,
+      "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/first-30-days-selling-on-facebook.mp4",
+      "created_at": "2026-11-14T07:32:17+07:00",
+      "telegram_status": "delivered",
+      "production_status": "complete"
     }
   ]
 }
