@@ -605,10 +605,11 @@ body{width:${W}px;height:${H}px;overflow:hidden;font-family:M,L,sans-serif;color
 .u{position:absolute;left:80px;bottom:${HOST ? 150 : 240}px;font-family:L,M,sans-serif;font-weight:800;font-size:46px}
 .sh2{position:absolute;left:0;right:0;bottom:0;height:900px;background:linear-gradient(rgba(11,20,48,0),rgba(11,20,48,.99) 28%)}
 .vkt{position:absolute;right:-30px;bottom:-120px;width:640px}
+${S.PRESENTER === "toon" ? `.vkt{bottom:-40px;right:0}.toon svg{display:block;width:100%;height:auto}` : ""}
 ${STYLE === "paper" ? `.sh{background:linear-gradient(rgba(246,248,252,0) 35%,rgba(246,248,252,.94) 72%)}
 .sh2{background:linear-gradient(rgba(246,248,252,0),#f6f8fc 28%)}
 .t span{background:#0c1430;color:#fff}.t span:last-child{background:#ffd23f;color:#0c1430}.u{color:#0059e0}` : ""}
-</style></head><body><div class="sh"></div>${HOST ? `<div class="sh2"></div><img class="vkt" src="data:image/png;base64,${b64("assets/video/presenter/vannak-happy.png")}" alt="">` : ""}<div class="t"><span>${esc(script.thumbnail_text)}</span></div><div class="u">adsbox.agency</div></body></html>`, { waitUntil: "load" });
+</style></head><body><div class="sh"></div>${HOST ? `<div class="sh2"></div>${S.PRESENTER === "toon" ? `<div class="vkt">${S.TOON.toon("happy", 640)}</div>` : `<img class="vkt" src="data:image/png;base64,${b64("assets/video/presenter/vannak-happy.png")}" alt="">`}` : ""}<div class="t"><span>${esc(script.thumbnail_text)}</span></div><div class="u">adsbox.agency</div></body></html>`, { waitUntil: "load" });
   await pg.evaluate(() => document.fonts.ready);
   await pg.screenshot({ path: out, type: "jpeg", quality: 90 });
   await b.close();
@@ -634,6 +635,8 @@ ${STYLE === "paper" ? `.sh{background:linear-gradient(rgba(246,248,252,0) 35%,rg
 
   if (!process.argv.includes("--no-voice")) voice(scenes, path.join(work, "voice"));
   const total = timeline(scenes);
+  // Toon presenter: mouth shape per frame from each scene's voice (lip sync).
+  if (S.PRESENTER === "toon") scenes.forEach((sc) => { if (sc.voice && fs.existsSync(sc.voice)) sc.mouth = S.TOON.mouthLevels(sc.voice); });
   console.log(`Timeline ${total.toFixed(1)}s: ${scenes.length} scenes (${scenes.map((s) => (s.visual || {}).type).join(", ")}), subtitle timing: ${scenes.map((s) => s.sync).join(",")}`);
 
   const fdir = path.join(work, "frames"); fs.mkdirSync(fdir);

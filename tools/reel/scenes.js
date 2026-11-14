@@ -189,7 +189,14 @@ ${(v.services || []).map((s, i) => `<div class="cc-row" style="${A("slideR", t1 
 // The ADS BOX AI Host (owner, 12 Nov 2026; assets/video/presenter, 800x1080 transparent cut-out photos, background removed).
 // While the voice speaks, the mouth-open "talk" pose flickers over the resting pose, so he looks like he is talking.
 const VMOOD = { worried: "think", sad: "think", happy: "happy", neutral: "smile", surprised: "surprised", think: "think", smile: "smile", wave: "wave", talk: "smile" };
+// Toon presenter (owner, 14 Nov 2026): videos/settings.json "presenter": "toon" (REEL_PRESENTER overrides for tests).
+const PRESENTER = process.env.REEL_PRESENTER || (() => { try { return JSON.parse(require("fs").readFileSync(require("path").join(__dirname, "..", "..", "videos", "settings.json"), "utf8")).presenter || "vannak"; } catch (e) { return "vannak"; } })();
+const TOON = require("./toon");
 function presenter(mood, w, x, b64, cls = "") {
+  if (PRESENTER === "toon") {
+    const tm = { worried: "think", sad: "think", neutral: "smile", talk: "smile" }[mood] || mood;
+    return `<div class="vk ${cls}" style="width:${w}px">${TOON.toon(tm, w, x && x.sc)}</div>`;
+  }
   const pose = VMOOD[mood] || "smile";
   const img = (n) => `data:image/png;base64,${b64("assets/video/presenter/vannak-" + n + ".png")}`;
   const talks = false; // the presenter is the real-photo ADS BOX AI Host (12 Nov 2026): no mouth flicker on a photo
@@ -520,4 +527,4 @@ const CSS = `
 @keyframes spinH{from{transform:rotate(0)}to{transform:rotate(120deg)}}
 `;
 
-module.exports = { presenter, V, TYPES, CSS, A, esc, icon };
+module.exports = { presenter, V, TYPES, CSS: CSS + (PRESENTER === "toon" ? TOON.CSS : ""), A, esc, icon, PRESENTER, TOON };
