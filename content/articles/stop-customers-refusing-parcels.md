@@ -107,6 +107,6 @@ Order ដែលភ្ញៀវបញ្ជាក់មុនខ្ចប់ គ�
 
 **បន្ទាប់ក្នុងផ្លូវរៀន៖** [បង្កើនតម្លៃក្នុងមួយ Order ដោយទំនិញបន្ថែម](/knowledge/increase-order-size-with-add-ons/)
 
-**អត្ថបទពាក់ព័ន្ធ៖** [គណនាពីលុយចាយ Boost ដល់ចំណេញពិត](/knowledge/cost-per-message-vs-cost-per-order/) · [តាមដាន Order ពីសារដល់ដៃអតិថិជន](/knowledge/track-orders-from-message-to-delivery/) · [Saved Replies ក្នុង Messenger](/knowledge/messenger-saved-replies-tips/) · [របាយការណ៍ Boost ប្រចាំថ្ងៃ](/knowledge/daily-spend-and-order-report/)
+**អត្ថបទពាក់ព័ន្ធ៖** [គណនាពីលុយចាយ Boost ដល់ចំណេញពិត](/knowledge/cost-per-message-vs-cost-per-order/) · [តាមដាន Order ពីសារដល់ដៃអតិថិជន](/knowledge/track-orders-from-message-to-delivery/) · [ឆ្លើយសារយឺត ១ ម៉ោង បាត់ Order ប៉ុន្មាន?](/knowledge/organize-messenger-inbox-reply-fast/) · [របាយការណ៍ Boost ប្រចាំថ្ងៃ](/knowledge/daily-spend-and-order-report/)
 
 បើការកត់ Order ពី Comment និង Messenger ធ្វើឲ្យ Admin រវល់ពេក រហូតភ្លេចបញ្ជាក់ ADS BOX System អាចជួយចាប់ Order ពី Comment Live ឆ្លើយ Messenger និងបោះពុម្ពស្ទីគ័រដឹក ក្នុងប្រព័ន្ធតែមួយ។ មានគម្រោងឥតគិតថ្លៃ ហើយគម្រោងបង់ប្រាក់ចាប់ពី $29 ក្នុងមួយខែ។ [ចុះឈ្មោះនៅ adsbox.biz](https://adsbox.biz/) ឬ [សួរតាម Telegram](https://t.me/vannakdm)។

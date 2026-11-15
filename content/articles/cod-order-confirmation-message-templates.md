@@ -105,6 +105,6 @@ draft: false
 
 **បន្ទាប់ក្នុងផ្លូវរៀន៖** [តាមដាន Order ពីសារដល់ដៃអតិថិជន](/knowledge/track-orders-from-message-to-delivery/)
 
-**អត្ថបទពាក់ព័ន្ធ៖** [Saved Replies ក្នុង Messenger](/knowledge/messenger-saved-replies-tips/) · [រៀបចំ Inbox ជា ៣ ក្រុម](/knowledge/organize-messenger-inbox-reply-fast/) · [ចំណេញមួយ Order ពិតប៉ុន្មាន?](/knowledge/real-profit-per-order/)
+**អត្ថបទពាក់ព័ន្ធ៖** [ឆ្លើយសារយឺត ១ ម៉ោង បាត់ Order ប៉ុន្មាន?](/knowledge/organize-messenger-inbox-reply-fast/) · [ចំណេញមួយ Order ពិតប៉ុន្មាន?](/knowledge/real-profit-per-order/)
 
 បើបងមាន Order ច្រើនពី Live រហូត Admin មិនទាន់ផ្ញើសារបញ្ជាក់គ្រប់គ្នា ADS BOX System អាចជួយចាប់ Order ពី Comment Live ឆ្លើយ Messenger ដោយស្វ័យប្រវត្តិ និងបោះពុម្ពស្ទីគ័រដឹក ក្នុងប្រព័ន្ធតែមួយ។ មានគម្រោងឥតគិតថ្លៃ ហើយគម្រោងបង់ប្រាក់ចាប់ពី $29 ក្នុងមួយខែ។ [ចុះឈ្មោះនៅ adsbox.biz](https://adsbox.biz/) ឬ [សួរតាម Telegram](https://t.me/vannakdm)។

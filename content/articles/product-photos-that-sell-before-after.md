@@ -62,7 +62,7 @@ draft: false
 
 ក្រោយមក គាត់ចំណាយពេលព្រឹកមួយម៉ោង ថតរ៉ូបទាំងអស់ក្បែរបង្អួច៖ ពីមុខ ពីក្រោយ សាច់ក្រណាត់ និងពេលពាក់។ គាត់ប្រើរូបទាំងនេះទាំងលើ Post និងពេល Admin ឆ្លើយ Messenger។ សំណួរដដែលៗបានតិចជាងមុន ហើយ Admin មានពេលផ្ដោតលើភ្ញៀវដែលរៀបនឹងកុម្ម៉ង់។
 
-បន្ទាប់ពីរូបល្អហើយ កុំភ្លេចសរសេរតម្លៃឲ្យច្បាស់ផងដែរ។ បងៗអាចអាន [គន្លឹះសរសេរតម្លៃ និង Promotion ក្នុង Caption](/knowledge/write-prices-and-promotions-clearly/) បន្ថែម។
+បន្ទាប់ពីរូបល្អហើយ កុំភ្លេចសរសេរតម្លៃឲ្យច្បាស់ផងដែរ។ បងៗអាចអាន [Caption ដែលធ្វើឲ្យ Cost per Message ថោក ហើយសារក្លាយជា Order](/knowledge/caption-answers-questions-first/) បន្ថែម។
 
 ## មុនចុច Boost សូមពិនិត្យរូបម្ដងទៀត
 
@@ -74,4 +74,4 @@ Boost ជួយឲ្យមនុស្សច្រើនឃើញ Post តែ�
 
 **បន្ទាប់ក្នុងផ្លូវរៀន៖** [ចែកថវិកា Boost ប្រចាំខែ](/knowledge/split-monthly-ad-budget-test-scale-reserve/)
 
-**អត្ថបទពាក់ព័ន្ធ៖** [Caption ឆ្លើយសំណួរភ្ញៀវមុន](/knowledge/caption-answers-questions-first/) · [របៀបសាកល្បង Boost Post ពីរ](/knowledge/test-two-boost-posts-clothing-shop/) · [វីដេអូ TikTok ៣ ប្រភេទសម្រាប់ហាងតូច](/knowledge/tiktok-three-video-types-for-small-shops/)
+**អត្ថបទពាក់ព័ន្ធ៖** [Caption ឆ្លើយសំណួរភ្ញៀវមុន](/knowledge/caption-answers-questions-first/) · [របៀបសាកល្បង Boost Post ពីរ](/knowledge/test-two-boost-posts-clothing-shop/) · [Boost TikTok សម្រាប់អ្នកលក់ Facebook](/knowledge/should-facebook-sellers-start-tiktok/)

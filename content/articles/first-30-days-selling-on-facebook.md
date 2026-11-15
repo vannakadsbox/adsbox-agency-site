@@ -99,6 +99,6 @@ $4.50 នេះជាចំណេញមុនដកថ្លៃថេរ (contri
 
 **បន្ទាប់ក្នុងផ្លូវរៀន៖** [គន្លឹះសរសេរ Caption ឆ្លើយសំណួរអតិថិជនជាមុន](/knowledge/caption-answers-questions-first/)
 
-**អត្ថបទពាក់ព័ន្ធ៖** [ចំណេញមួយ Order ពិតប៉ុន្មាន?](/knowledge/real-profit-per-order/) · [របាយការណ៍ Boost ប្រចាំថ្ងៃ](/knowledge/daily-spend-and-order-report/) · [Saved Replies ក្នុង Messenger](/knowledge/messenger-saved-replies-tips/)
+**អត្ថបទពាក់ព័ន្ធ៖** [ចំណេញមួយ Order ពិតប៉ុន្មាន?](/knowledge/real-profit-per-order/) · [របាយការណ៍ Boost ប្រចាំថ្ងៃ](/knowledge/daily-spend-and-order-report/) · [ឆ្លើយសារយឺត ១ ម៉ោង បាត់ Order ប៉ុន្មាន?](/knowledge/organize-messenger-inbox-reply-fast/)
 
 បើបងចាប់ផ្ដើមលក់ហើយ តែកត់ Order ពីសារ និង Comment មិនទាន់ទាន់។ ADS BOX System ជួយចាប់ Order ពី Comment Live ដោយស្វ័យប្រវត្តិ ឆ្លើយសារ Messenger និងព្រីនស្ទីគ័រដឹកជញ្ជូន ក្នុងប្រព័ន្ធតែមួយ។ មាន Free plan សម្រាប់សាកប្រើ ហើយ Paid plan ចាប់ពី $29 / ខែ។ ចុះឈ្មោះនៅ [adsbox.biz](https://adsbox.biz/)។

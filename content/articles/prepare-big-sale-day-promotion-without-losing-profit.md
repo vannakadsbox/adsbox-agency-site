@@ -79,6 +79,6 @@ Promotion ល្អ មិនមែនចុះតម្លៃខ្លាំង
 
 **បន្ទាប់ក្នុងផ្លូវរៀន៖** [ចុះតម្លៃ Promotion យ៉ាងណាកុំឲ្យខាត](/knowledge/price-promotion-without-losing-profit/)
 
-**អត្ថបទពាក់ព័ន្ធ៖** [Promotion ទិញ ២ និងកញ្ចប់ទំនិញ](/knowledge/buy-two-bundle-offers/) · [សរសេរតម្លៃ និង Promotion ឲ្យច្បាស់](/knowledge/write-prices-and-promotions-clearly/) · [ការពារ Order បោះបង់មុនផ្ញើ](/knowledge/stop-customers-refusing-parcels/) · [គ្រប់គ្រងស្តុកសាមញ្ញ](/knowledge/simple-stock-management-for-online-shops/)
+**អត្ថបទពាក់ព័ន្ធ៖** [ទិញ ២ ថែម ១ ឬ ទិញ ៥ ថែម ២](/knowledge/price-promotion-without-losing-profit/) · [Caption ដែលធ្វើឲ្យ Cost per Message ថោក ហើយសារក្លាយជា Order](/knowledge/caption-answers-questions-first/) · [ការពារ Order បោះបង់មុនផ្ញើ](/knowledge/stop-customers-refusing-parcels/) · [គ្រប់គ្រងស្តុកសាមញ្ញ](/knowledge/simple-stock-management-for-online-shops/)
 
 បើបងចង់ឲ្យ Post Promotion ទៅដល់ភ្ញៀវត្រូវគោលដៅ មុនថ្ងៃ Sale ក្រុម ADS BOX មានសេវាគ្រប់គ្រងផេក Boost Post ($79 / ខែ) ដែលកំណត់គោលដៅ ថវិកា និងតាមដានលទ្ធផលគិតជា Order។ ផ្ញើ Link ផេកមកតាម [Telegram](https://t.me/vannakdm)។
