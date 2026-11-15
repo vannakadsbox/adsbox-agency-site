@@ -192,6 +192,7 @@ def apply(a, brief, s):
            "plan_id": (brief.get("plan_topic") or {}).get("plan_id"),
            "topic_id": (brief.get("plan_topic") or {}).get("topic_id"),
            "rotation_category": (brief.get("plan_topic") or {}).get("rotation_category"),
+           "format": (brief.get("plan_topic") or {}).get("format"),
            "notes": brief.get("planner_notes") or []}
     if a.record_failure is not None:
         rec.update(status="failed", error=a.record_failure[:500], failed_at=now)
