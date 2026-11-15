@@ -4,8 +4,8 @@ window.ARTICLES = [
   "id": "cod-order-confirmation-message-templates",
   "date": "2026-11-15",
   "tag": {
-   "kh": "លក់អនឡាញ",
-   "en": "លក់អនឡាញ"
+   "kh": "ចំណេញពិត",
+   "en": "ចំណេញពិត"
   },
   "title": {
    "kh": "បញ្ជាក់ Order មុនផ្ញើ (COD)៖ សារគំរូ Copy បាន សម្រាប់ ៥ ស្ថានភាពដែល Admin ជួបរាល់ថ្ងៃ",
@@ -25,8 +25,8 @@ window.ARTICLES = [
   "id": "first-30-days-selling-on-facebook",
   "date": "2026-11-14",
   "tag": {
-   "kh": "លក់អនឡាញ",
-   "en": "លក់អនឡាញ"
+   "kh": "Boost → Order → ចំណេញ",
+   "en": "Boost → Order → ចំណេញ"
   },
   "title": {
    "kh": "ចាប់ផ្ដើមលក់អនឡាញតាម Facebook៖ ផែនការ ៣០ ថ្ងៃដំបូង សម្រាប់ហាងថ្មី",
@@ -46,8 +46,8 @@ window.ARTICLES = [
   "id": "real-profit-per-order",
   "date": "2026-11-13",
   "tag": {
-   "kh": "ថវិកា និងរបាយការណ៍",
-   "en": "ថវិកា និងរបាយការណ៍"
+   "kh": "ចំណេញពិត",
+   "en": "ចំណេញពិត"
   },
   "title": {
    "kh": "ចំណេញមួយ Order ពិតប៉ុន្មាន? គណនាក្រោយដកថ្លៃដើម ខ្ចប់ ដឹក និងលុយ Boost",
@@ -67,8 +67,8 @@ window.ARTICLES = [
   "id": "prepare-big-sale-day-promotion-without-losing-profit",
   "date": "2026-11-12",
   "tag": {
-   "kh": "លក់អនឡាញ",
-   "en": "លក់អនឡាញ"
+   "kh": "ចំណេញពិត",
+   "en": "ចំណេញពិត"
   },
   "title": {
    "kh": "ថ្ងៃ Sale ធំជិតមកដល់ (12.12, ចូលឆ្នាំ…)៖ Checklist ៧ ថ្ងៃ ត្រៀម Promotion កុំឲ្យលក់ដាច់ តែខាត",
@@ -88,8 +88,8 @@ window.ARTICLES = [
   "id": "facebook-live-selling-myths",
   "date": "2026-11-11",
   "tag": {
-   "kh": "លក់ Live",
-   "en": "លក់ Live"
+   "kh": "Live → Order",
+   "en": "Live → Order"
   },
   "title": {
    "kh": "Live កាន់តែយូរ លក់កាន់តែដាច់? ការយល់ខុស ៤ អំពីការលក់តាម Facebook Live",
@@ -109,8 +109,8 @@ window.ARTICLES = [
   "id": "product-photos-that-sell-before-after",
   "date": "2026-11-10",
   "tag": {
-   "kh": "លក់អនឡាញ",
-   "en": "លក់អនឡាញ"
+   "kh": "Boost → Order → ចំណេញ",
+   "en": "Boost → Order → ចំណេញ"
   },
   "title": {
    "kh": "រូបទំនិញមិនទាក់ចិត្តភ្ញៀវ? មុន និងក្រោយ ការថតរូបដោយទូរស័ព្ទ ដែលជួយលក់",
@@ -130,8 +130,8 @@ window.ARTICLES = [
   "id": "daily-spend-and-order-report",
   "date": "2026-11-09",
   "tag": {
-   "kh": "លេខ និងចំណេញ",
-   "en": "លេខ និងចំណេញ"
+   "kh": "Behind ADS BOX",
+   "en": "Behind ADS BOX"
   },
   "title": {
    "kh": "របាយការណ៍ Boost ប្រចាំថ្ងៃ៖ កត់លេខ ៦ ក្នុង ៥ នាទី ដើម្បីដឹងថាលុយលេចនៅកន្លែងណា",
@@ -151,8 +151,8 @@ window.ARTICLES = [
   "id": "stop-customers-refusing-parcels",
   "date": "2026-11-08",
   "tag": {
-   "kh": "លក់អនឡាញ",
-   "en": "លក់អនឡាញ"
+   "kh": "ចំណេញពិត",
+   "en": "ចំណេញពិត"
   },
   "title": {
    "kh": "ភ្ញៀវកុម្ម៉ង់ហើយ ដល់ពេលដឹកមិនទទួល៖ គណនាថាខាតប៉ុន្មាន ហើយការពារ Order បោះបង់មុនផ្ញើ",
@@ -172,8 +172,8 @@ window.ARTICLES = [
   "id": "simple-loyalty-program-small-shop",
   "date": "2026-11-07",
   "tag": {
-   "kh": "សេវាអតិថិជន",
-   "en": "សេវាអតិថិជន"
+   "kh": "ចំណេញពិត",
+   "en": "ចំណេញពិត"
   },
   "title": {
    "kh": "កម្មវិធីភ្ញៀវប្រចាំសម្រាប់ហាងតូច៖ កុំបញ្ចុះតម្លៃធំ តែធ្វើបែបនេះវិញ",
@@ -193,8 +193,8 @@ window.ARTICLES = [
   "id": "tiktok-three-video-types-for-small-shops",
   "date": "2026-11-07",
   "tag": {
-   "kh": "TikTok",
-   "en": "TikTok"
+   "kh": "Boost → Order → ចំណេញ",
+   "en": "Boost → Order → ចំណេញ"
   },
   "title": {
    "kh": "TikTok សម្រាប់ហាងតូច៖ វីដេអូ ៣ ប្រភេទ ថតដោយទូរស័ព្ទមួយគ្រឿង",
@@ -214,8 +214,8 @@ window.ARTICLES = [
   "id": "simple-daily-targets-for-sales-team",
   "date": "2026-11-06",
   "tag": {
-   "kh": "លក់អនឡាញ",
-   "en": "លក់អនឡាញ"
+   "kh": "Boost → Order → ចំណេញ",
+   "en": "Boost → Order → ចំណេញ"
   },
   "title": {
    "kh": "ក្រុមរវល់ពេញថ្ងៃ តែមិនដឹងថាថ្ងៃនេះលក់បានល្អឬអត់? ដាក់គោលដៅប្រចាំថ្ងៃឲ្យក្រុមលក់",
@@ -235,8 +235,8 @@ window.ARTICLES = [
   "id": "should-facebook-sellers-start-tiktok",
   "date": "2026-11-05",
   "tag": {
-   "kh": "TikTok",
-   "en": "TikTok"
+   "kh": "Boost → Order → ចំណេញ",
+   "en": "Boost → Order → ចំណេញ"
   },
   "title": {
    "kh": "លក់តាម Facebook ដាច់ហើយ តើហាងតូចគួរចាប់ផ្ដើម TikTok ឥឡូវនេះទេ?",
@@ -256,8 +256,8 @@ window.ARTICLES = [
   "id": "messenger-saved-replies-tips",
   "date": "2026-11-04",
   "tag": {
-   "kh": "Messenger",
-   "en": "Messenger"
+   "kh": "Boost → Order → ចំណេញ",
+   "en": "Boost → Order → ចំណេញ"
   },
   "title": {
    "kh": "Saved Replies ក្នុង Messenger៖ ៥ គន្លឹះរៀបចំសារឆ្លើយស្រាប់ ឲ្យលឿន តែនៅកក់ក្ដៅ",
@@ -277,8 +277,8 @@ window.ARTICLES = [
   "id": "simple-stock-management-for-online-shops",
   "date": "2026-11-04",
   "tag": {
-   "kh": "លក់អនឡាញ",
-   "en": "លក់អនឡាញ"
+   "kh": "ចំណេញពិត",
+   "en": "ចំណេញពិត"
   },
   "title": {
    "kh": "លក់ហើយទើបដឹងថាអស់ស្តុក? ៥ ទម្លាប់គ្រប់គ្រងស្តុកសម្រាប់ហាងអនឡាញតូច",
@@ -298,8 +298,8 @@ window.ARTICLES = [
   "id": "answer-customer-doubts-before-ordering",
   "date": "2026-11-03",
   "tag": {
-   "kh": "សេវាអតិថិជន",
-   "en": "សេវាអតិថិជន"
+   "kh": "Boost → Order → ចំណេញ",
+   "en": "Boost → Order → ចំណេញ"
   },
   "title": {
    "kh": "អតិថិជនសួរហើយនៅស្ទាក់ស្ទើរ? ៥ ការព្រួយបារម្ភ និងរបៀបឆ្លើយឲ្យគេហ៊ានកុម្ម៉ង់",
@@ -319,8 +319,8 @@ window.ARTICLES = [
   "id": "read-ads-manager-in-5-minutes",
   "date": "2026-11-03",
   "tag": {
-   "kh": "ថវិកា និងរបាយការណ៍",
-   "en": "ថវិកា និងរបាយការណ៍"
+   "kh": "Boost → Order → ចំណេញ",
+   "en": "Boost → Order → ចំណេញ"
   },
   "title": {
    "kh": "អានលទ្ធផល Ads Manager ក្នុង ៥ នាទី៖ លេខ ៥ ដែលអ្នកលក់អនឡាញគួរមើលរៀងរាល់ថ្ងៃ",
@@ -340,8 +340,8 @@ window.ARTICLES = [
   "id": "buy-two-bundle-offers",
   "date": "2026-11-02",
   "tag": {
-   "kh": "លក់អនឡាញ",
-   "en": "លក់អនឡាញ"
+   "kh": "ចំណេញពិត",
+   "en": "ចំណេញពិត"
   },
   "title": {
    "kh": "Promotion ទិញ ២៖ ៥ ជំហានរៀបកញ្ចប់ទំនិញ ឲ្យអតិថិជនចង់ទិញច្រើន",
@@ -361,8 +361,8 @@ window.ARTICLES = [
   "id": "when-to-raise-or-cut-boost-budget",
   "date": "2026-11-02",
   "tag": {
-   "kh": "Facebook Boost",
-   "en": "Facebook Boost"
+   "kh": "Boost → Order → ចំណេញ",
+   "en": "Boost → Order → ចំណេញ"
   },
   "title": {
    "kh": "Boost $10/ថ្ងៃ គួរបន្ថែម កាត់ ឬបិទ? សួរ ៥ សំណួរនេះ មុនប្ដូរថវិកា",
@@ -382,8 +382,8 @@ window.ARTICLES = [
   "id": "choose-which-post-to-boost",
   "date": "2026-11-01",
   "tag": {
-   "kh": "Boost Post",
-   "en": "Boost Post"
+   "kh": "Boost → Order → ចំណេញ",
+   "en": "Boost → Order → ចំណេញ"
   },
   "title": {
    "kh": "Boost Post មួយណាឲ្យចំ? ៥ ចំណុចពិនិត្យ មុនចាយលុយលើ Post",
@@ -403,8 +403,8 @@ window.ARTICLES = [
   "id": "write-prices-and-promotions-clearly",
   "date": "2026-11-01",
   "tag": {
-   "kh": "លក់អនឡាញ",
-   "en": "លក់អនឡាញ"
+   "kh": "Boost → Order → ចំណេញ",
+   "en": "Boost → Order → ចំណេញ"
   },
   "title": {
    "kh": "សរសេរតម្លៃ និង Promotion ក្នុង Caption ឲ្យច្បាស់៖ ៥ គន្លឹះកុំឲ្យអតិថិជនច្រឡំ",
@@ -424,8 +424,8 @@ window.ARTICLES = [
   "id": "increase-order-size-with-add-ons",
   "date": "2026-10-31",
   "tag": {
-   "kh": "លក់អនឡាញ",
-   "en": "លក់អនឡាញ"
+   "kh": "ចំណេញពិត",
+   "en": "ចំណេញពិត"
   },
   "title": {
    "kh": "បង្កើនទំហំ Order៖ ៥ វិធីណែនាំទំនិញបន្ថែម ពេលអតិថិជនកំពុងកុម្ម៉ង់",
@@ -445,8 +445,8 @@ window.ARTICLES = [
   "id": "product-codes-for-live-orders",
   "date": "2026-10-31",
   "tag": {
-   "kh": "លក់ Live",
-   "en": "លក់ Live"
+   "kh": "Live → Order",
+   "en": "Live → Order"
   },
   "title": {
    "kh": "ដាក់លេខកូដទំនិញពេល Live៖ ៥ គន្លឹះឲ្យអតិថិជនកុម្ម៉ង់ងាយ និងមិនច្រឡំ",
@@ -466,8 +466,8 @@ window.ARTICLES = [
   "id": "auto-capture-orders-from-live-comments",
   "date": "2026-10-30",
   "tag": {
-   "kh": "ADS BOX",
-   "en": "ADS BOX"
+   "kh": "Behind ADS BOX",
+   "en": "Behind ADS BOX"
   },
   "title": {
    "kh": "ចាប់ Order ពី Comment Live ដោយស្វ័យប្រវត្តិ៖ ៤ ជំហានមិនឲ្យ Order របូត",
@@ -487,8 +487,8 @@ window.ARTICLES = [
   "id": "mistakes-handling-customer-complaints",
   "date": "2026-10-30",
   "tag": {
-   "kh": "លក់អនឡាញ",
-   "en": "លក់អនឡាញ"
+   "kh": "ចំណេញពិត",
+   "en": "ចំណេញពិត"
   },
   "title": {
    "kh": "កំហុស ៥ ពេលឆ្លើយតបអតិថិជនត្អូញត្អែរ ដែលធ្វើឲ្យបាត់ភ្ញៀវចាស់",
@@ -508,8 +508,8 @@ window.ARTICLES = [
   "id": "after-sale-messages-repeat-customers",
   "date": "2026-10-29",
   "tag": {
-   "kh": "សេវាអតិថិជន",
-   "en": "សេវាអតិថិជន"
+   "kh": "ចំណេញពិត",
+   "en": "ចំណេញពិត"
   },
   "title": {
    "kh": "សារក្រោយការលក់ ៥ ប្រភេទ ដែលធ្វើឲ្យអតិថិជនចាស់ត្រឡប់មកទិញម្ដងទៀត",
@@ -529,8 +529,8 @@ window.ARTICLES = [
   "id": "test-two-boost-posts-clothing-shop",
   "date": "2026-10-29",
   "tag": {
-   "kh": "Facebook Boost",
-   "en": "Facebook Boost"
+   "kh": "Boost → Order → ចំណេញ",
+   "en": "Boost → Order → ចំណេញ"
   },
   "title": {
    "kh": "Boost Post ពីរ មួយណាលក់ដាច់ពិត? របៀបសាកល្បងដោយប្ដូរតែរឿងមួយ ហើយវាស់ដល់ Order ដឹកដល់",
@@ -550,8 +550,8 @@ window.ARTICLES = [
   "id": "organize-messenger-inbox-reply-fast",
   "date": "2026-10-28",
   "tag": {
-   "kh": "Messenger",
-   "en": "Messenger"
+   "kh": "Boost → Order → ចំណេញ",
+   "en": "Boost → Order → ចំណេញ"
   },
   "title": {
    "kh": "ឆ្លើយសារ Messenger លឿន មិនឲ្យបាត់ Order៖ រៀបចំ Inbox ជា ៣ ក្រុម",
@@ -571,8 +571,8 @@ window.ARTICLES = [
   "id": "split-roles-admin-live-host-packer",
   "date": "2026-10-28",
   "tag": {
-   "kh": "លក់អនឡាញ",
-   "en": "លក់អនឡាញ"
+   "kh": "Live → Order",
+   "en": "Live → Order"
   },
   "title": {
    "kh": "ចែកការងារក្រុមលក់អនឡាញ៖ Admin, Live Host និងអ្នកខ្ចប់ ធ្វើអ្វីខ្លះ?",
@@ -592,8 +592,8 @@ window.ARTICLES = [
   "id": "track-orders-from-message-to-delivery",
   "date": "2026-10-27",
   "tag": {
-   "kh": "លក់អនឡាញ",
-   "en": "លក់អនឡាញ"
+   "kh": "Behind ADS BOX",
+   "en": "Behind ADS BOX"
   },
   "title": {
    "kh": "តាមដាន Order ពីសារដល់ដៃអតិថិជន៖ ៥ ជំហានការពារការផ្ញើខុស និងភ្លេច",
@@ -613,8 +613,8 @@ window.ARTICLES = [
   "id": "turn-customer-questions-into-orders",
   "date": "2026-10-27",
   "tag": {
-   "kh": "សេវាអតិថិជន",
-   "en": "សេវាអតិថិជន"
+   "kh": "Boost → Order → ចំណេញ",
+   "en": "Boost → Order → ចំណេញ"
   },
   "title": {
    "kh": "ឆ្លើយសារអតិថិជនយ៉ាងណា ឲ្យសំណួរ «តម្លៃប៉ុន្មាន?» ក្លាយជា Order",
@@ -634,8 +634,8 @@ window.ARTICLES = [
   "id": "cost-per-message-vs-cost-per-order",
   "date": "2026-10-26",
   "tag": {
-   "kh": "លេខ និងចំណេញ",
-   "en": "លេខ និងចំណេញ"
+   "kh": "Boost → Order → ចំណេញ",
+   "en": "Boost → Order → ចំណេញ"
   },
   "title": {
    "kh": "សារថោក Order ច្រើន តែចុងខែលុយមិនសល់? គណនាពីលុយចាយ Boost ដល់ចំណេញពិត",
@@ -655,8 +655,8 @@ window.ARTICLES = [
   "id": "price-promotion-without-losing-profit",
   "date": "2026-10-26",
   "tag": {
-   "kh": "លក់អនឡាញ",
-   "en": "លក់អនឡាញ"
+   "kh": "ចំណេញពិត",
+   "en": "ចំណេញពិត"
   },
   "title": {
    "kh": "គណនាតម្លៃ Promotion យ៉ាងណា ឲ្យលក់ដាច់ តែមិនខាតចំណេញ",
@@ -676,8 +676,8 @@ window.ARTICLES = [
   "id": "caption-answers-questions-first",
   "date": "2026-10-25",
   "tag": {
-   "kh": "លក់អនឡាញ",
-   "en": "លក់អនឡាញ"
+   "kh": "Boost → Order → ចំណេញ",
+   "en": "Boost → Order → ចំណេញ"
   },
   "title": {
    "kh": "គន្លឹះសរសេរ Caption ឆ្លើយសំណួរអតិថិជនជាមុន កាត់បន្ថយសារសួរដដែលៗ",
@@ -697,8 +697,8 @@ window.ARTICLES = [
   "id": "split-monthly-ad-budget-test-scale-reserve",
   "date": "2026-10-25",
   "tag": {
-   "kh": "ថវិកា និងរបាយការណ៍",
-   "en": "ថវិកា និងរបាយការណ៍"
+   "kh": "Boost → Order → ចំណេញ",
+   "en": "Boost → Order → ចំណេញ"
   },
   "title": {
    "kh": "Boost $5, $10, $20 ឬ $30 ក្នុងមួយថ្ងៃ៖ ចែកថវិកាប្រចាំខែជា សាកល្បង ពង្រីក និងបម្រុង",
@@ -718,8 +718,8 @@ window.ARTICLES = [
   "id": "caption-that-gets-messages",
   "date": "2026-10-24",
   "tag": {
-   "kh": "Boost Post",
-   "en": "Boost Post"
+   "kh": "Boost → Order → ចំណេញ",
+   "en": "Boost → Order → ចំណេញ"
   },
   "title": {
    "kh": "គួរសរសេរ Caption បែបណា ឲ្យអតិថិជនឆាតមកសួរ?",
@@ -739,8 +739,8 @@ window.ARTICLES = [
   "id": "sell-more-on-live",
   "date": "2026-10-14",
   "tag": {
-   "kh": "លក់ Live",
-   "en": "លក់ Live"
+   "kh": "Live → Order",
+   "en": "Live → Order"
   },
   "title": {
    "kh": "Live មានអ្នកមើលច្រើន តែ Order តិច? រៀបចំ Live មុន ពេល និងក្រោយ ហើយវាស់លេខឲ្យត្រូវ",
@@ -760,8 +760,8 @@ window.ARTICLES = [
   "id": "page-restricted-what-to-do",
   "date": "2026-10-06",
   "tag": {
-   "kh": "ថែទាំផេក",
-   "en": "ថែទាំផេក"
+   "kh": "Boost → Order → ចំណេញ",
+   "en": "Boost → Order → ចំណេញ"
   },
   "title": {
    "kh": "ផេកត្រូវបាន​ restricted? ត្រូវធ្វើអ្វីមុនគេ",
