@@ -2,7 +2,7 @@
 title: "Live កាន់តែយូរ លក់កាន់តែដាច់? ការយល់ខុស ៤ អំពីការលក់តាម Facebook Live"
 slug: "facebook-live-selling-myths"
 summary: "Live ៣ ម៉ោង អ្នកមើលច្រើន តែ Order តិច? មើលការយល់ខុស ៤ អំពីការលក់តាម Facebook Live និងអ្វីដែលគួរធ្វើវិញ ដើម្បីឲ្យភ្ញៀវមើលបន្ត ហើយកុម្ម៉ង់។"
-tag: "លក់ Live"
+tag: "Live → Order"
 date: 2026-11-11
 updated: 2026-11-12
 emoji: "📱 🎥 🛍️"

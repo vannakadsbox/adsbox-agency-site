@@ -2,7 +2,7 @@
 title: "TikTok សម្រាប់ហាងតូច៖ វីដេអូ ៣ ប្រភេទ ថតដោយទូរស័ព្ទមួយគ្រឿង"
 slug: "tiktok-three-video-types-for-small-shops"
 summary: "ចង់ផុស TikTok តែមិនដឹងថតអ្វី? វីដេអូ ៣ ប្រភេទងាយៗ ដែលហាងតូចថតបានដោយទូរស័ព្ទមួយគ្រឿង៖ ខ្ចប់ Order ពិត មុន និងក្រោយ និងឆ្លើយសំណួរភ្ញៀវ។"
-tag: "TikTok"
+tag: "Boost → Order → ចំណេញ"
 date: 2026-11-07
 updated: 2026-11-12
 emoji: "📱 🎬 📦"

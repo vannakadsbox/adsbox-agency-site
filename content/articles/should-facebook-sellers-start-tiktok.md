@@ -2,7 +2,7 @@
 title: "លក់តាម Facebook ដាច់ហើយ តើហាងតូចគួរចាប់ផ្ដើម TikTok ឥឡូវនេះទេ?"
 slug: "should-facebook-sellers-start-tiktok"
 summary: "Facebook លក់បានល្អហើយ តែឮគេនិយាយរឿង TikTok រហូត? អានសំណួរ ៤ ដែលជួយបងៗសម្រេចចិត្តថា គួរចាប់ផ្ដើមឥឡូវ ឬរង់ចាំសិន។"
-tag: "TikTok"
+tag: "Boost → Order → ចំណេញ"
 date: 2026-11-05
 updated: 2026-11-12
 emoji: "📱 🤔 🚀"

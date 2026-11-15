@@ -2,7 +2,7 @@
 title: "របាយការណ៍ Boost ប្រចាំថ្ងៃ៖ កត់លេខ ៦ ក្នុង ៥ នាទី ដើម្បីដឹងថាលុយលេចនៅកន្លែងណា"
 slug: "daily-spend-and-order-report"
 summary: "តារាងគំរូ និងទម្លាប់ ៥ នាទីរាល់ព្រឹក៖ លុយចាយ សារ Order Order បញ្ជាក់ ដឹកដល់ និងមិនទទួល។ ដឹងភ្លាមថា Boost លេចលុយនៅ Post នៅ Messenger ឬនៅការដឹក។"
-tag: "លេខ និងចំណេញ"
+tag: "Behind ADS BOX"
 date: 2026-11-09
 updated: 2026-11-12
 emoji: "📊 ☀️ 📝"

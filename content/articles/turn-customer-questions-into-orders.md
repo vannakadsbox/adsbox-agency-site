@@ -2,7 +2,7 @@
 title: "ឆ្លើយសារអតិថិជនយ៉ាងណា ឲ្យសំណួរ «តម្លៃប៉ុន្មាន?» ក្លាយជា Order"
 slug: "turn-customer-questions-into-orders"
 summary: "វិធី ៥ ជំហានឆ្លើយសារ Messenger ដែលដឹកដៃអតិថិជនពីការសួរតម្លៃ ទៅជាការកុម្ម៉ង់ពិត ដោយមិនបង្ខំ។"
-tag: "សេវាអតិថិជន"
+tag: "Boost → Order → ចំណេញ"
 date: 2026-10-27
 updated: 2026-11-12
 emoji: "💬 🛍️ ✅"

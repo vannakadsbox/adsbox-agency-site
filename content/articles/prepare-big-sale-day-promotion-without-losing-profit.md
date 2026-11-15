@@ -2,7 +2,7 @@
 title: "ថ្ងៃ Sale ធំជិតមកដល់ (12.12, ចូលឆ្នាំ…)៖ Checklist ៧ ថ្ងៃ ត្រៀម Promotion កុំឲ្យលក់ដាច់ តែខាត"
 slug: "prepare-big-sale-day-promotion-without-losing-profit"
 summary: "Checklist ៧ ថ្ងៃ សម្រាប់ថ្ងៃ Sale ធំ៖ ជ្រើសទំនិញ គណនាតម្លៃ Promotion រួមទាំងលុយ Boost ប្រកាសមុន ត្រៀមស្តុក និងបញ្ជាក់ Order ក្រោយថ្ងៃ Sale។"
-tag: "លក់អនឡាញ"
+tag: "ចំណេញពិត"
 date: 2026-11-12
 emoji: "🛍️ 📅 ✅"
 cover: ""

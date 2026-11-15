@@ -11,6 +11,11 @@ Keep this file up to date when services, prices or features change.
 - ADS BOX measures success in orders, not likes, and the goal is a low cost per order.
 - ADS BOX does not promise an exact number of orders: orders depend on the product, price and photos. The team checks every day and adjusts quickly.
 
+## Knowledge Center positioning (owner-approved 15 Nov 2026)
+- Knowledge Center title: «ចំណេះដឹង Boost → Order → ចំណេញ ពីក្រុម ADS BOX». Sub-line: «រៀនមើលលុយ Boost គិតជា Order និងចំណេញពិត មិនមែន Like».
+- Every article connects back to Boost → Order → Cost → Profit. Five pillars: Boost → Order → ចំណេញ; Case Study និងទិន្នន័យពិត; Live → Order; ចំណេញពិត; Behind ADS BOX.
+- ADS BOX PM workflows, AI alert types and triggers, and daily report contents are only what this file states. Until the owner adds them here, describe them only in the general words above; never invent steps, alerts, triggers, report fields or features.
+
 ## Services and prices (confirmed)
 - Boost Post (សេវាកម្មគ្រប់គ្រងផេក Boost Post): targeting, budget and result tracking so posts get messages from real customers. Price: $79 / month.
 - Boost Live (សេវាកម្មគ្រប់គ្រងផេក Boost Live): boosting while live to bring viewers in fast and raise orders. Price: from $120 / month.
@@ -43,7 +48,7 @@ Keep this file up to date when services, prices or features change.
 - ADS BOX System sign-up: https://adsbox.biz/
 
 ## Never write
-- Client names, client results, reviews or testimonials (real or invented).
+- Client names, client results, reviews or testimonials (real or invented). Case studies and real data are published only as owner-approved prewritten articles: ADS BOX's own Page/data first; client data only with explicit permission and anonymized.
 - Statistics, percentages or study results presented as fact. Example amounts in a clearly hypothetical example are fine.
 - Guaranteed orders, sales or results.
 - Advice that breaks Facebook or TikTok rules: fake accounts, fake likes or comments, buying or renting accounts.

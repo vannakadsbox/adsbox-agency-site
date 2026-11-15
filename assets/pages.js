@@ -8,9 +8,11 @@
   }
   document.addEventListener("click", function (e) {
     var b = e.target.closest(".chip"); if (!b) return;
-    var tag = b.getAttribute("data-tag");
+    var tag = b.getAttribute("data-tag"), series = b.getAttribute("data-series");
     document.querySelectorAll(".chip").forEach(function (c) { c.setAttribute("aria-pressed", c === b); });
-    document.querySelectorAll(".card[data-tag]").forEach(function (c) { c.hidden = tag !== "all" && c.getAttribute("data-tag") !== tag; });
+    document.querySelectorAll(".card[data-tag]").forEach(function (c) {
+      c.hidden = series ? c.getAttribute("data-series") !== series : (tag !== "all" && c.getAttribute("data-tag") !== tag);
+    });
   });
   apply();
 })();

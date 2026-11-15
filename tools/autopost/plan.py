@@ -28,6 +28,12 @@ RULES = [
     "CAMBODIA: write for Cambodian online sellers (often selling clothes or cosmetics by Facebook posts and Live, Messenger-first, COD, delivery companies, Phnom Penh vs province delivery, $ prices). Connect to a near selling moment (12.12, payday, Khmer New Year) only when plan_topic says so or it fits naturally.",
     "SEO: a problem-first title with words sellers type; one primary keyword used naturally in the title, first paragraph and at most 2-3 more times; seo_title at most 60 characters.",
     "Do not repeat a title, angle or main advice from 'recent_titles' or 'last_7_days'; where the topic is close to an older article, take the new angle in plan_topic and link the older article instead of repeating it.",
+    # Knowledge v2 rules approved by the owner on 15 Nov 2026 (5 pillars, signature series, data policy).
+    "PILLAR: the article belongs to the pillar in 'tag' and must connect clearly to Boost → Order → Cost → Profit. Never write a generic online-selling tip that does not lead back to ad spend, Orders, cost per Order or profit.",
+    "ADS BOX POINT OF VIEW: include one short paragraph that starts with «**របៀបដែល ADS BOX មើល៖**» (1-2 sentences) saying how ADS BOX judges this topic in Orders, cost per Order and profit, not Likes or messages alone. Use only facts from `facts`.",
+    "CTA BY TYPE: the closing CTA follows plan_topic.cta exactly in type (Educational, Profit, Service, System or Case). 80/20: about 80% useful teaching and evidence first; ADS BOX appears only in the 'របៀបដែល ADS BOX មើល' paragraph and the one closing CTA paragraph. Never put a CTA before the first useful section.",
+    "DATA POLICY: never write a case study and never present invented, assumed or reconstructed client results as real. Never use the words «ករណីសិក្សា» or «Case Study» and never the tag «Case Study និងទិន្នន័យពិត». Every invented number is labelled «ឧទាហរណ៍». Do not describe ADS BOX PM workflows, AI alerts, reports or system features beyond what `facts` states.",
+    "SERIES: if plan_topic.series is not empty, copy it unchanged into the 'series' field and write the article as one episode of that series (a short line near the top may name the series); otherwise leave 'series' empty.",
 ]
 
 SCHEMA = {
@@ -40,6 +46,7 @@ SCHEMA = {
     "keywords": "list of 3-8 related search phrases (strings)",
     "tag": "copy the 'tag' given in the brief",
     "category": "copy the 'category.id' given in the brief",
+    "series": "copy plan_topic.series exactly (one of the ADS BOX signature series), or an empty string when there is none",
     "emoji": "exactly 3 emoji separated by spaces, for the auto-generated cover",
     "image_prompt": "English prompt for a featured image (photo or illustration) that fits the article; no text in the image, no real people's faces or brands",
     "image_alt": "Khmer description of that featured image, 10-150 characters",
@@ -98,8 +105,11 @@ def plan_topic(date, hist, s):
     if not p:
         return None
     ok = ("published",) if s["mode"] == "live" else ("published", "dry_run")
-    done = {r.get("plan_day") for r in hist["runs"] if r.get("status") in ok}
-    left = [t for t in p["topics"] if t["day"] not in done and (not t.get("window") or t["window"][1] >= date)]
+    pid = p.get("plan_id")  # runs of an older plan (no or another plan_id) do not count as done days of this plan
+    done = {r.get("plan_day") for r in hist["runs"] if r.get("status") in ok and r.get("plan_id") == pid}
+    # Topics that need owner-approved content (case studies, real data, Behind ADS BOX facts) wait until a prewritten file exists.
+    ready = lambda t: not t.get("requires_prewritten") or (t.get("prewritten") and os.path.exists(os.path.join(C.ROOT, t["prewritten"])))
+    left = [dict(t, plan_id=pid) for t in p["topics"] if t["day"] not in done and ready(t) and (not t.get("window") or t["window"][1] >= date)]
     timely = [t for t in left if t.get("window") and t["window"][0] <= date]
     rest = [t for t in left if not t.get("window")]
     return (timely or rest or [None])[0]
@@ -140,6 +150,11 @@ def main():
     arts = C.existing_articles()
     camp = campaign_for(date)
     topic = plan_topic(date, h, s)
+    if not topic and (C.load_json("plan30.json", None) or {}).get("plan_id"):
+        # Knowledge v2 (owner, 15 Nov 2026): never fall back to the old rotating generic topics.
+        print("Nothing to write: every ready topic in the Knowledge plan is done; the remaining days wait for owner content "
+              "(Behind ADS BOX facts, case-study permission or approved data) or for their date window. Add a new plan to continue.")
+        return 3
     if topic:
         every = {c["id"]: c for x in cats.values() for c in x}
         cat = every[topic["category"]]
@@ -149,12 +164,14 @@ def main():
     recent = [{"title": x["title"], "date": x["date"], "category": x["category"]} for x in arts[:60]]
     recent += [{"title": r.get("title"), "date": r.get("date"), "category": r.get("category"), "dry_run": True}
                for r in h["runs"][-30:] if r.get("status") == "dry_run" and r.get("title")]
-    related = [{"slug": x["slug"], "title": x["title"], "tag": x["tag"]} for x in arts if x["tag"] == cat["tag"]][:8] or \
+    tag = (topic or {}).get("tag") or cat["tag"]
+    related = [{"slug": x["slug"], "title": x["title"], "tag": x["tag"]} for x in arts if x["tag"] == tag][:8] or \
               [{"slug": x["slug"], "title": x["title"], "tag": x["tag"]} for x in arts[:5]]
     brief = {
         "date": date, "slot": slot, "mode": s["mode"], "max_attempts": s["max_attempts"],
         "now": now.isoformat(timespec="minutes"),
-        "category": {k: cat[k] for k in ("id", "kh", "en")}, "tag": cat["tag"], "suggested_angle": (topic["title_idea"] if topic else pick_angle(cat, h)),
+        "category": {k: cat[k] for k in ("id", "kh", "en")}, "tag": (topic or {}).get("tag") or cat["tag"], "suggested_angle": (topic["title_idea"] if topic else pick_angle(cat, h)),
+        "series": (topic or {}).get("series") or "",
         "slot_focus": "Knowledge 30-day plan, day %s of 30." % topic["day"] if topic else ("This month's focus: " + camp["goal"]) if camp else "Morning: practical education for sellers (sales, captions, customers, mistakes, trust)." if slot == "morning"
                       else "Evening: marketing and business improvement (ads, Live, budget, analytics, operations, team, ADS BOX).",
         "must_differ_from_today": other and {"title": other.get("title"), "category": other.get("category")},

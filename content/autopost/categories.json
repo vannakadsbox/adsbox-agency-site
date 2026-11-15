@@ -2,7 +2,7 @@
   "morning": [
     {
       "id": "sales-growth",
-      "tag": "លក់អនឡាញ",
+      "tag": "Boost → Order → ចំណេញ",
       "kh": "បង្កើនការលក់អនឡាញនៅកម្ពុជា",
       "en": "Growing online sales in Cambodia",
       "angles": [
@@ -14,7 +14,7 @@
     },
     {
       "id": "captions",
-      "tag": "លក់អនឡាញ",
+      "tag": "Boost → Order → ចំណេញ",
       "kh": "Caption លក់ និងការសរសេរពាក្យលក់",
       "en": "Sales captions and copywriting",
       "angles": [
@@ -26,7 +26,7 @@
     },
     {
       "id": "promotions",
-      "tag": "លក់អនឡាញ",
+      "tag": "ចំណេញពិត",
       "kh": "Promotion និងយុទ្ធសាស្ត្របញ្ចុះតម្លៃ",
       "en": "Promotions and discount strategies",
       "angles": [
@@ -38,7 +38,7 @@
     },
     {
       "id": "engagement",
-      "tag": "សេវាអតិថិជន",
+      "tag": "Boost → Order → ចំណេញ",
       "kh": "ការទាក់ទាញអតិថិជន និងបំប្លែងជា Order",
       "en": "Customer engagement and conversion",
       "angles": [
@@ -50,7 +50,7 @@
     },
     {
       "id": "customer-service",
-      "tag": "Messenger",
+      "tag": "Boost → Order → ចំណេញ",
       "kh": "សេវាអតិថិជន និងការគ្រប់គ្រងសារ",
       "en": "Customer service and message management",
       "angles": [
@@ -62,7 +62,7 @@
     },
     {
       "id": "retention",
-      "tag": "សេវាអតិថិជន",
+      "tag": "ចំណេញពិត",
       "kh": "រក្សាអតិថិជន និងឲ្យទិញម្តងទៀត",
       "en": "Customer retention and repeat purchases",
       "angles": [
@@ -74,7 +74,7 @@
     },
     {
       "id": "mistakes",
-      "tag": "លក់អនឡាញ",
+      "tag": "Boost → Order → ចំណេញ",
       "kh": "កំហុសទូទៅរបស់អ្នកលក់អនឡាញ",
       "en": "Common online selling mistakes",
       "angles": [
@@ -88,7 +88,7 @@
   "evening": [
     {
       "id": "facebook-ads",
-      "tag": "Boost Post",
+      "tag": "Boost → Order → ចំណេញ",
       "kh": "Facebook Ads និង Boost Post",
       "en": "Facebook Ads and Boost Post",
       "angles": [
@@ -100,7 +100,7 @@
     },
     {
       "id": "live-selling",
-      "tag": "លក់ Live",
+      "tag": "Live → Order",
       "kh": "បច្ចេកទេសលក់តាម Facebook Live",
       "en": "Facebook Live selling",
       "angles": [
@@ -112,7 +112,7 @@
     },
     {
       "id": "tiktok-marketing",
-      "tag": "TikTok",
+      "tag": "Boost → Order → ចំណេញ",
       "kh": "ចំណេះដឹង TikTok និង Boost TikTok",
       "en": "TikTok know-how and Boost TikTok",
       "angles": [
@@ -126,7 +126,7 @@
     },
     {
       "id": "budget",
-      "tag": "ថវិកា និងរបាយការណ៍",
+      "tag": "Boost → Order → ចំណេញ",
       "kh": "គ្រប់គ្រងថវិកាផ្សាយពាណិជ្ជកម្ម",
       "en": "Advertising budget optimization",
       "angles": [
@@ -138,7 +138,7 @@
     },
     {
       "id": "analytics",
-      "tag": "ថវិកា និងរបាយការណ៍",
+      "tag": "ចំណេញពិត",
       "kh": "វិភាគលទ្ធផល Campaign និងរបាយការណ៍",
       "en": "Campaign analytics and reporting",
       "angles": [
@@ -150,7 +150,7 @@
     },
     {
       "id": "operations",
-      "tag": "លក់អនឡាញ",
+      "tag": "ចំណេញពិត",
       "kh": "ប្រតិបត្តិការអាជីវកម្មអនឡាញ",
       "en": "Online business operations",
       "angles": [
@@ -162,7 +162,7 @@
     },
     {
       "id": "team",
-      "tag": "លក់អនឡាញ",
+      "tag": "Live → Order",
       "kh": "ផលិតភាពក្រុមលក់",
       "en": "Sales team productivity",
       "angles": [
@@ -173,20 +173,8 @@
       ]
     },
     {
-      "id": "case-study",
-      "tag": "Boost Post",
-      "kh": "ករណីសិក្សាទីផ្សារ (ឧទាហរណ៍)",
-      "en": "Practical marketing case studies (illustrative)",
-      "angles": [
-        "an example clothing shop testing two posts",
-        "an example skincare shop planning a Live week",
-        "an example food shop using Messenger replies",
-        "an example shop cutting wasted ad spend"
-      ]
-    },
-    {
       "id": "adsbox-system",
-      "tag": "ADS BOX",
+      "tag": "Behind ADS BOX",
       "kh": "ប្រព័ន្ធ ADS BOX និងមុខងារដែលមានពិត",
       "en": "ADS BOX System and its verified features",
       "angles": [
@@ -195,6 +183,15 @@
         "a Project Manager for your Page",
         "starting with the free plan"
       ]
+    }
+  ],
+  "plan_only": [
+    {
+      "id": "case-study",
+      "tag": "Case Study និងទិន្នន័យពិត",
+      "kh": "Case Study និងទិន្នន័យពិត",
+      "en": "Case studies and real data (owner-approved prewritten articles only; never rotated or auto-written)",
+      "angles": []
     }
   ]
 }

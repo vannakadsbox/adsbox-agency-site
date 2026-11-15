@@ -2,7 +2,7 @@
 title: "គណនាតម្លៃ Promotion យ៉ាងណា ឲ្យលក់ដាច់ តែមិនខាតចំណេញ"
 slug: "price-promotion-without-losing-profit"
 summary: "រៀនគណនាថ្លៃដើមពិត និងចំនួនដែលត្រូវលក់បន្ថែម មុនពេលបញ្ចុះតម្លៃ ព្រមទាំងរបៀប Promotion ដែលការពារចំណេញ។"
-tag: "លក់អនឡាញ"
+tag: "ចំណេញពិត"
 date: 2026-10-26
 updated: 2026-11-12
 emoji: "🏷️ 🧮 💰"

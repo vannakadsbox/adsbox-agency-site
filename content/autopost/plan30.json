@@ -1,288 +1,320 @@
 {
- "note": "Phase 4 30-day Knowledge plan (owner said 'Back to work with daily article and daily video', 12 Nov 2026). plan.py gives the next unpublished topic; items with 'window' are written only inside those dates and go first when their window opens.",
+ "plan_id": "knowledge-v2",
+ "note": "Knowledge v2 30-day plan (owner-approved 15 Nov 2026: 5 pillars, signature series, 20 new articles). plan.py gives the next unpublished topic of THIS plan_id. Topics with 'window' are written only inside those dates and go first when their window opens. Topics with 'requires_prewritten' are skipped until the owner adds an approved 'prewritten' file (Behind ADS BOX facts, case-study permission, approved data); the auto-writer never writes them.",
  "topics": [
   {
    "day": 1,
-   "category": "analytics",
-   "pillar": "H",
-   "title_idea": "ចំណេញមួយ Order ពិតប៉ុន្មាន? គណនាក្រោយដកថ្លៃដើម ខ្ចប់ ដឹក និងលុយ Boost",
+   "category": "budget",
+   "tag": "Boost → Order → ចំណេញ",
+   "series": "",
+   "title_idea": "Boost បានប៉ុន្មានទើបមិនខាត? គណនា Cost per Order អតិបរមា សម្រាប់ទំនិញ $20",
    "format": "calculator walkthrough",
-   "cta": "Boost Post management ($79 / month)",
-   "note": "Owner-approved article (12 Nov 2026) that the approved video «Real Profit Per Order» explains; publish it exactly as written.",
-   "prewritten": "content/autopost/prewritten/real-profit-per-order.json"
+   "cta": "Educational: «សាកគណនា Cost per Order របស់អ្នកមើល។» + link to the matching ADS BOX article (no service pitch)",
+   "note": "New #1. Max CPO = price − product cost − packing/delivery − refused-parcel loss − target profit, with a labelled ឧទាហរណ៍ for a $20 item. Link real-profit-per-order and cost-per-message-vs-cost-per-order."
   },
   {
    "day": 2,
-   "category": "sales-growth",
-   "pillar": "A",
-   "title_idea": "ចាប់ផ្ដើមលក់អនឡាញតាម Facebook៖ ផែនការ ៣០ ថ្ងៃដំបូង សម្រាប់ហាងថ្មី",
-   "format": "step-by-step guide",
-   "cta": "ADS BOX System (adsbox.biz, free plan, paid from $29 / month)",
-   "note": "Beginner path step 1. Next in path: choose a product that still makes profit (Day 7) once it exists, otherwise caption-answers-questions-first."
+   "category": "analytics",
+   "tag": "ចំណេញពិត",
+   "series": "ចំណេញពិតប៉ុន្មាន?",
+   "title_idea": "លក់បាន $10,000 មិនមែនចំណេញ $10,000៖ Revenue, ចំណេញដុល, ចំណេញក្នុងមួយ Order និងចំណេញសុទ្ធ",
+   "format": "metric explainer",
+   "cta": "Profit: «ផ្ញើតម្លៃផលិតផល + Margin មកយើង ដើម្បីពិនិត្យថា Cost per Order ប៉ុន្មានទើបសមរម្យ។» → Telegram",
+   "note": "New #6. Define the four levels exactly: Revenue; Gross Profit = revenue − product cost; Contribution Profit = gross − packing, delivery, refused loss, ad cost; Net Profit = contribution − fixed costs. One worked ឧទាហរណ៍. Link real-profit-per-order."
   },
   {
    "day": 3,
-   "category": "operations",
-   "pillar": "F",
-   "title_idea": "បញ្ជាក់ Order មុនផ្ញើ (COD)៖ សារគំរូសម្រាប់ ៥ ស្ថានភាព",
-   "format": "script pack",
-   "cta": "ADS BOX System (adsbox.biz, free plan, paid from $29 / month)",
-   "note": "Copy-ready confirmation messages; link stop-customers-refusing-parcels."
+   "category": "facebook-ads",
+   "tag": "Boost → Order → ចំណេញ",
+   "series": "",
+   "title_idea": "Like ច្រើន តែ Order តិច៖ ហេតុអ្វី Like មិនមែន Order ហើយគួរមើលលេខអ្វីវិញ",
+   "format": "analysis",
+   "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Post management ($79 / month), /#services",
+   "note": "New #2. Funnel លុយចាយ → Message → Order → Delivered → Profit; why Likes/reach do not measure sales. Link cost-per-message-vs-cost-per-order and read-ads-manager-in-5-minutes."
   },
   {
    "day": 4,
-   "category": "analytics",
-   "pillar": "H",
-   "title_idea": "Order ដឹកដល់ប៉ុន្មានភាគរយ? Delivery Success Rate និងរបៀបបង្កើនវា",
-   "format": "metric explainer",
-   "cta": "ADS BOX System (adsbox.biz, free plan, paid from $29 / month)",
-   "note": "Metric: Delivery Success Rate = delivered ÷ confirmed orders."
+   "category": "live-selling",
+   "tag": "Live → Order",
+   "series": "Live → Order",
+   "title_idea": "Boost Live ប៉ុន្មានទើបសម? វាស់ Cost per Order ពី Live មួយ",
+   "format": "decision guide",
+   "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Live (from $120 / month), /#services",
+   "note": "New #4. Budget per Live from the shop's max Cost per Order and Orders per Live; labelled ឧទាហរណ៍. Link sell-more-on-live."
   },
   {
    "day": 5,
-   "category": "live-selling",
-   "pillar": "C",
-   "title_idea": "Script Live ៣០ នាទី៖ បើក បង្ហាញទំនិញ ឆ្លើយ Comment និងបិទការលក់",
-   "format": "script pack",
-   "cta": "Boost Live (from $120 / month)",
-   "note": "Live side path; link sell-more-on-live and product-codes-for-live-orders."
+   "category": "analytics",
+   "tag": "Boost → Order → ចំណេញ",
+   "series": "លុយ Boost ទៅណា?",
+   "title_idea": "លុយ Boost $100 ទៅណា? បំបែកពី Message ដល់ Order ដឹកដល់ និងចំណេញ",
+   "format": "data breakdown (illustrative)",
+   "cta": "Educational: «សាកគណនា Cost per Order របស់អ្នកមើល។» + link to the matching ADS BOX article (no service pitch)",
+   "note": "New #3. Illustrative numbers only, every figure labelled ឧទាហរណ៍; NOT a case study and never real client data. Step-by-step: $100 → messages → orders → confirmed → delivered → profit."
   },
   {
    "day": 6,
-   "category": "facebook-ads",
-   "pillar": "B",
-   "title_idea": "សារចូលច្រើន តែគ្មាន Order? ពិនិត្យតាមលំដាប់ ដើម្បីរកចំណុចខុស",
-   "format": "troubleshooting",
-   "cta": "Boost Post management ($79 / month)",
-   "note": "Check in order: who messages, reply speed, price/delivery clarity, product/photo, follow-up."
+   "category": "adsbox-system",
+   "tag": "Behind ADS BOX",
+   "series": "Behind ADS BOX",
+   "title_idea": "Project Manager ADS BOX ពិនិត្យអ្វីខ្លះរាល់ព្រឹក?",
+   "format": "behind the scenes",
+   "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Post management ($79 / month), /#services",
+   "note": "New #5. OWNER FACTS REQUIRED: written only from the PM checklist the owner provides. Never invent PM steps, AI alerts, reports or features.",
+   "requires_prewritten": true
   },
   {
    "day": 7,
-   "category": "sales-growth",
-   "pillar": "A",
-   "title_idea": "ជ្រើសទំនិញលក់អនឡាញ៖ ទំនិញណានៅមានចំណេញ ក្រោយដកលុយ Boost និងថ្លៃដឹក?",
-   "format": "decision tree",
-   "cta": "Boost Post management ($79 / month)",
-   "note": "Beginner path step 2."
+   "category": "budget",
+   "tag": "Boost → Order → ចំណេញ",
+   "series": "Boost នេះ បន្ត ឬបិទ?",
+   "title_idea": "Boost នេះ បន្ត ឬបិទ? ស្ថានភាពទី ១៖ Cost per Order ល្អ តែការដឹកធ្លាក់",
+   "format": "decision guide (scenario)",
+   "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Post management ($79 / month), /#services",
+   "note": "Series episode. One labelled ឧទាហរណ៍ scenario judged with the ADS BOX Decision Matrix (from when-to-raise-or-cut-boost-budget). Link that article."
   },
   {
    "day": 8,
-   "category": "customer-service",
-   "pillar": "D",
-   "title_idea": "ភ្ញៀវសុំចុះតម្លៃ៖ សារឆ្លើយគំរូ កុំឲ្យបាត់ភ្ញៀវ ហើយកុំឲ្យបាត់ចំណេញ",
-   "format": "script pack",
-   "cta": "ADS BOX System (adsbox.biz, free plan, paid from $29 / month)",
-   "note": "Offer value instead of discount: bundle, free gift within margin, delivery."
+   "category": "analytics",
+   "tag": "ចំណេញពិត",
+   "series": "",
+   "title_idea": "Order ដឹកដល់ប៉ុន្មានភាគរយ? Delivery Success Rate និងរបៀបបង្កើនវា",
+   "format": "metric explainer",
+   "cta": "Profit: «ផ្ញើតម្លៃផលិតផល + Margin មកយើង ដើម្បីពិនិត្យថា Cost per Order ប៉ុន្មានទើបសមរម្យ។» → Telegram",
+   "note": "From the old plan (day 4). Delivery Success Rate = delivered ÷ confirmed orders. Link stop-customers-refusing-parcels and cod-order-confirmation-message-templates."
   },
   {
    "day": 9,
-   "category": "analytics",
-   "pillar": "H",
-   "title_idea": "សារ ១០០ បានប៉ុន្មាន Order? Conversion Rate ពីសារទៅ Order",
-   "format": "metric explainer",
-   "cta": "Boost Post management ($79 / month)",
-   "note": "Metric: Message → Order conversion rate; compare with the shop's own last 7 days."
+   "category": "live-selling",
+   "tag": "Live → Order",
+   "series": "Live → Order",
+   "title_idea": "Live Comment ច្រើន តែ Order តិច៖ អត្រា Comment ទៅ Order និងកន្លែងដែល Order បាត់",
+   "format": "real problem",
+   "cta": "System: «សាក ADS BOX System ដើម្បីគ្រប់គ្រង Order ឥតគិតថ្លៃ។» → https://adsbox.biz/ (free plan, paid from $29 / month)",
+   "note": "New #9. Comment → confirmed Order rate; fixes: product codes, reply speed, auto-capture. Link product-codes-for-live-orders and auto-capture-orders-from-live-comments."
   },
   {
    "day": 10,
-   "category": "promotions",
-   "pillar": "A",
-   "title_idea": "ដឹកជូនឥតគិតថ្លៃ៖ ចំណេញ ឬខាត? គណនាមុនប្រកាស",
-   "format": "calculator walkthrough",
-   "cta": "Boost Post management ($79 / month)",
-   "note": "Phnom Penh vs province delivery cost; minimum order for free delivery."
+   "category": "budget",
+   "tag": "Boost → Order → ចំណេញ",
+   "series": "",
+   "title_idea": "Cost per Order ស្រាប់តែឡើង ២ ដង៖ ពិនិត្យ ៤ កន្លែងតាមលំដាប់",
+   "format": "troubleshooting",
+   "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Post management ($79 / month), /#services",
+   "note": "New #8. Check in order: Post → Messenger → delivery → offer/profit (ADS BOX Decision Matrix). Link when-to-raise-or-cut-boost-budget."
   },
   {
    "day": 11,
-   "category": "tiktok-marketing",
-   "pillar": "E",
-   "title_idea": "Boost វីដេអូ TikTok លើកដំបូង៖ ជ្រើសវីដេអូ កំណត់ថវិកា និងវាស់ជា Order",
-   "format": "step-by-step guide",
-   "cta": "Boost TikTok (from $99 / month)",
-   "note": "Only TikTok features you are sure of; general steps, no menu-by-menu claims."
+   "category": "adsbox-system",
+   "tag": "Behind ADS BOX",
+   "series": "Behind ADS BOX",
+   "title_idea": "ពេល Cost per Order ឡើងខ្ពស់ខុសធម្មតា ADS BOX ធ្វើអ្វី?",
+   "format": "behind the scenes",
+   "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Post management ($79 / month), /#services",
+   "note": "New #10. OWNER FACTS REQUIRED: only the real AI alert triggers and team response the owner provides. Never invent.",
+   "requires_prewritten": true
   },
   {
    "day": 12,
-   "category": "budget",
-   "pillar": "H",
-   "title_idea": "សម្រេចចិត្ត Boost ដោយចំណេញ៖ ថ្លៃ Boost ក្នុងមួយ Order ដឹកដល់ ទល់នឹងចំណេញក្នុងមួយ Order",
-   "format": "scenario analysis",
-   "cta": "Boost Post management ($79 / month)",
-   "note": "Advanced path step 11. Three example shops: raise / hold / cut."
+   "category": "analytics",
+   "tag": "Boost → Order → ចំណេញ",
+   "series": "លុយ Boost ទៅណា?",
+   "title_idea": "ថវិកា $300 បាន Order ២៥០ ($1.20/Order)៖ ចំណេញ ឬអត់?",
+   "format": "data / analysis (illustrative)",
+   "cta": "Profit: «ផ្ញើតម្លៃផលិតផល + Margin មកយើង ដើម្បីពិនិត្យថា Cost per Order ប៉ុន្មានទើបសមរម្យ។» → Telegram",
+   "note": "New #11. Illustrative numbers only, labelled ឧទាហរណ៍; NOT a case study. Show why a low Cost per Order is not automatically profit: margin, delivery, refusals."
   },
   {
    "day": 13,
-   "category": "operations",
-   "pillar": "F",
-   "title_idea": "ខ្ចប់ទំនិញលឿន កុំខុសទំហំ កុំខុសអាសយដ្ឋាន៖ Checklist ខ្ចប់មុនប្រគល់អ្នកដឹក",
-   "format": "checklist",
-   "cta": "ADS BOX System (adsbox.biz, free plan, paid from $29 / month)",
-   "note": "Packing SOP."
+   "category": "analytics",
+   "tag": "ចំណេញពិត",
+   "series": "ចំណេញពិតប៉ុន្មាន?",
+   "title_idea": "Order ច្រើន តែលុយមិនសល់៖ ហេតុអ្វីអ្នកលក់មាន Order តែគ្មានសាច់ប្រាក់",
+   "format": "real problem",
+   "cta": "Profit: «ផ្ញើតម្លៃផលិតផល + Margin មកយើង ដើម្បីពិនិត្យថា Cost per Order ប៉ុន្មានទើបសមរម្យ។» → Telegram",
+   "note": "New #12. Cash timing: ad spend paid now, COD money later, stock, refusals. Labelled ឧទាហរណ៍."
   },
   {
    "day": 14,
-   "category": "analytics",
-   "pillar": "H",
-   "title_idea": "Order ចូល តែបញ្ជាក់មិនបាន ឬភ្ញៀវលុបចោល? Confirmation Rate និង Cancellation Rate",
-   "format": "metric explainer",
-   "cta": "ADS BOX System (adsbox.biz, free plan, paid from $29 / month)",
-   "note": "Two metrics in one article."
+   "category": "facebook-ads",
+   "tag": "Boost → Order → ចំណេញ",
+   "series": "",
+   "title_idea": "Boost Post ល្អ ធៀប Boost Post អាក្រក់៖ សញ្ញា ៦ ក្នុង ៤៨ ម៉ោង",
+   "format": "decision guide",
+   "cta": "Educational: «សាកគណនា Cost per Order របស់អ្នកមើល។» + link to the matching ADS BOX article (no service pitch)",
+   "note": "New #13. Signals measured against the shop's own max Cost per Order (link the calculator from day 1) and test-two-boost-posts-clothing-shop. Not a plain listicle: each signal = what you see → what it means → what to do."
   },
   {
    "day": 15,
-   "category": "facebook-ads",
-   "pillar": "B",
-   "title_idea": "Boost Post ឬ Ads Manager៖ ហាងតូចគួរប្រើមួយណា?",
-   "format": "comparison and FAQ",
-   "cta": "Boost Post management ($79 / month)",
-   "note": "Only general, well-known differences; no claims about specific Meta features you are unsure of."
+   "category": "live-selling",
+   "tag": "Live → Order",
+   "series": "Live → Order",
+   "title_idea": "Live មាន Order ច្រើន តែនៅខាត៖ គណនាចំណេញពិតក្រោយ Live មួយ",
+   "format": "calculator walkthrough",
+   "cta": "Profit: «ផ្ញើតម្លៃផលិតផល + Margin មកយើង ដើម្បីពិនិត្យថា Cost per Order ប៉ុន្មានទើបសមរម្យ។» → Telegram",
+   "note": "New #14. Profit per Live = Orders × contribution per Order − Boost Live − refused-parcel loss. Labelled ឧទាហរណ៍."
   },
   {
    "day": 16,
-   "category": "live-selling",
-   "pillar": "C",
-   "title_idea": "ទំនិញអស់ស្តុក ពេលកំពុង Live៖ ធ្វើអ្វីភ្លាម និងការពារលើកក្រោយ",
-   "format": "troubleshooting",
-   "cta": "ADS BOX System (adsbox.biz, free plan, paid from $29 / month)",
-   "note": "Stock topic, so the CTA is the ADS BOX System."
+   "category": "promotions",
+   "tag": "ចំណេញពិត",
+   "series": "ចំណេញពិតប៉ុន្មាន?",
+   "title_idea": "Promotion 12.12 ទិញ ៥ ថែម ២ ឬទិញ ២ តម្លៃពិសេស៖ គណនាមួយណានៅចំណេញ",
+   "format": "calculator walkthrough",
+   "cta": "Profit: «ផ្ញើតម្លៃផលិតផល + Margin មកយើង ដើម្បីពិនិត្យថា Cost per Order ប៉ុន្មានទើបសមរម្យ។» → Telegram",
+   "note": "From the old plan (day 22). Include Boost cost per Order in the calculation. Link price-promotion-without-losing-profit.",
+   "window": [
+    "2026-12-04",
+    "2026-12-11"
+   ]
   },
   {
    "day": 17,
-   "category": "analytics",
-   "pillar": "H",
-   "title_idea": "ភ្ញៀវម្នាក់ទិញជាមធ្យមប៉ុន្មាន? Average Order Value និងវិធីបង្កើន",
-   "format": "metric explainer",
-   "cta": "Boost Post management ($79 / month)",
-   "note": "Link increase-order-size-with-add-ons."
+   "category": "live-selling",
+   "tag": "Live → Order",
+   "series": "Live → Order",
+   "title_idea": "Live ថ្ងៃ 12.12៖ រៀបចំទំនិញ តម្លៃ និងម៉ោង Live ឲ្យភ្ញៀវម៉ង់ទាន់",
+   "format": "step-by-step guide",
+   "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Live (from $120 / month), /#services",
+   "note": "From the old plan (day 24). Link sell-more-on-live.",
+   "window": [
+    "2026-12-04",
+    "2026-12-11"
+   ]
   },
   {
    "day": 18,
-   "category": "retention",
-   "pillar": "G",
-   "title_idea": "ច្បាប់ប្ដូរទំនិញ និងសងលុយ សម្រាប់ហាងអនឡាញ៖ គំរូសរសេរឲ្យច្បាស់មុនភ្ញៀវសួរ",
-   "format": "template",
-   "cta": "one soft line about the ADS BOX System (adsbox.biz) or a related article; no selling",
-   "note": "Customer service: soft one-line System mention only, no selling."
+   "category": "case-study",
+   "tag": "Case Study និងទិន្នន័យពិត",
+   "series": "ADS BOX Case Study",
+   "title_idea": "ADS BOX Case Study៖ ហាងសម្លៀកបំពាក់ Live ពី $1.45 មក $0.75 ក្នុងមួយ Order",
+   "format": "case study",
+   "cta": "Case: «ចង់ឲ្យ ADS BOX ជួយពិនិត្យទិន្នន័យ Page របស់អ្នក?» → Telegram",
+   "note": "New #7. PERMISSION REQUIRED: only after the client's explicit permission, anonymized, prewritten and approved by the owner. If no permission, replace with an ADS BOX-own-Page study. Never auto-written.",
+   "requires_prewritten": true
   },
   {
    "day": 19,
-   "category": "budget",
-   "pillar": "H",
-   "title_idea": "ចំណាយប៉ុន្មាន ដើម្បីបានភ្ញៀវថ្មីម្នាក់? Customer Acquisition Cost សម្រាប់ហាងតូច",
-   "format": "calculator walkthrough",
-   "cta": "Boost Post management ($79 / month)",
-   "note": "Advanced path step 12."
+   "category": "facebook-ads",
+   "tag": "Boost → Order → ចំណេញ",
+   "series": "",
+   "title_idea": "សារចូលច្រើន តែគ្មាន Order? ពិនិត្យតាមលំដាប់ ដើម្បីរកចំណុចខុស",
+   "format": "troubleshooting",
+   "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Post management ($79 / month), /#services",
+   "note": "From the old plan (day 6). Check: who messages, reply speed, price/delivery clarity, product/photo, follow-up. Link turn-customer-questions-into-orders."
   },
   {
    "day": 20,
-   "category": "customer-service",
-   "pillar": "D",
-   "title_idea": "ភ្ញៀវសួរ «ថ្លៃដឹកប៉ុន្មាន?» ហើយបាត់៖ សរសេរថ្លៃដឹក ភ្នំពេញ និងខេត្ត ឲ្យច្បាស់",
-   "format": "before / after",
-   "cta": "ADS BOX System (adsbox.biz, free plan, paid from $29 / month)",
-   "note": ""
+   "category": "live-selling",
+   "tag": "Live → Order",
+   "series": "Live → Order",
+   "title_idea": "Boost Live ពេលណា? ម៉ោង និងរយៈពេល Boost ក្នុង Live មួយ",
+   "format": "decision guide",
+   "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Live (from $120 / month), /#services",
+   "note": "New #17. Only general advice that is safe; do not state Facebook features you are not sure of. Link day 4 article if published."
   },
   {
    "day": 21,
-   "category": "budget",
-   "pillar": "H",
-   "title_idea": "លុយ Boost ស៊ីប៉ុន្មានភាគរយនៃចំណូលលក់? Advertising Cost Ratio",
-   "format": "metric explainer",
-   "cta": "Boost Post management ($79 / month)",
-   "note": ""
+   "category": "sales-growth",
+   "tag": "ចំណេញពិត",
+   "series": "",
+   "title_idea": "ទំនិញណាគួរ Boost? ជ្រើសទំនិញតាម Margin មុនជ្រើស Post",
+   "format": "decision guide",
+   "cta": "Profit: «ផ្ញើតម្លៃផលិតផល + Margin មកយើង ដើម្បីពិនិត្យថា Cost per Order ប៉ុន្មានទើបសមរម្យ។» → Telegram",
+   "note": "New #19. Rank products by contribution per Order vs max Cost per Order. Link choose-which-post-to-boost."
   },
   {
    "day": 22,
-   "category": "promotions",
-   "pillar": "A",
-   "title_idea": "Promotion 12.12 ទិញ ៥ ថែម ២ ឬទិញ ២ តម្លៃពិសេស៖ គណនាមួយណានៅចំណេញ",
-   "format": "calculator walkthrough",
-   "cta": "Boost Post management ($79 / month)",
-   "note": "12.12. Link prepare-big-sale-day-promotion-without-losing-profit.",
-   "window": [
-    "2026-12-04",
-    "2026-12-11"
-   ]
+   "category": "adsbox-system",
+   "tag": "Behind ADS BOX",
+   "series": "Behind ADS BOX",
+   "title_idea": "ពី Comment Live ដល់ Order ដល់អតិថិជន៖ ដំណើរការក្នុង ADS BOX System",
+   "format": "behind the scenes",
+   "cta": "System: «សាក ADS BOX System ដើម្បីគ្រប់គ្រង Order ឥតគិតថ្លៃ។» → https://adsbox.biz/ (free plan, paid from $29 / month)",
+   "note": "New #18. Use ONLY the ADS BOX System facts in facts.md (catches orders from Live comments, replies on Messenger, prints shipping stickers). Never invent screens, limits or features."
   },
   {
    "day": 23,
-   "category": "operations",
-   "pillar": "F",
-   "title_idea": "ថ្ងៃ 12.12 សារចូលច្រើន៖ ផែនការឆ្លើយសារ និងបញ្ជាក់ Order ក្នុងថ្ងៃតែមួយ",
-   "format": "scenario analysis",
-   "cta": "ADS BOX System (adsbox.biz, free plan, paid from $29 / month)",
-   "note": "12.12.",
-   "window": [
-    "2026-12-04",
-    "2026-12-11"
-   ]
+   "category": "tiktok-marketing",
+   "tag": "Boost → Order → ចំណេញ",
+   "series": "",
+   "title_idea": "Boost TikTok បាន View ច្រើន តែ Order តិច៖ វាស់ TikTok គិតជា Order",
+   "format": "analysis",
+   "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost TikTok (from $99 / month), /#services",
+   "note": "New #20. Track TikTok → message/link → Order → Cost per Order. Link should-facebook-sellers-start-tiktok."
   },
   {
    "day": 24,
-   "category": "live-selling",
-   "pillar": "C",
-   "title_idea": "Live ថ្ងៃ 12.12៖ រៀបចំទំនិញ តម្លៃ និងម៉ោង Live ឲ្យភ្ញៀវម៉ង់ទាន់",
-   "format": "checklist",
-   "cta": "Boost Live (from $120 / month)",
-   "note": "12.12.",
-   "window": [
-    "2026-12-04",
-    "2026-12-11"
-   ]
+   "category": "analytics",
+   "tag": "Boost → Order → ចំណេញ",
+   "series": "",
+   "title_idea": "សារ ១០០ បានប៉ុន្មាន Order? Conversion Rate ពីសារទៅ Order",
+   "format": "metric explainer",
+   "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Post management ($79 / month), /#services",
+   "note": "From the old plan (day 9). Link turn-customer-questions-into-orders."
   },
   {
    "day": 25,
-   "category": "analytics",
-   "pillar": "H",
-   "title_idea": "លុយលេចធ្លាយនៅដំណាក់កាលណា? វិភាគ Funnel ពីលុយចាយដល់ចំណេញ",
-   "format": "decision tree",
-   "cta": "Boost Post management ($79 / month)",
-   "note": "Advanced path step 13."
+   "category": "case-study",
+   "tag": "Case Study និងទិន្នន័យពិត",
+   "series": "ADS BOX Case Study",
+   "title_idea": "ADS BOX Case Study៖ ហាងថែរក្សាស្បែក ៦៩ Order ក្នុងមួយថ្ងៃ $2.17 ក្នុងមួយ Order — ល្អឬអត់?",
+   "format": "case study",
+   "cta": "Case: «ចង់ឲ្យ ADS BOX ជួយពិនិត្យទិន្នន័យ Page របស់អ្នក?» → Telegram",
+   "note": "New #15. PERMISSION REQUIRED, as day 18. Never auto-written.",
+   "requires_prewritten": true
   },
   {
    "day": 26,
-   "category": "tiktok-marketing",
-   "pillar": "E",
-   "title_idea": "TikTok មានអ្នកមើលច្រើន តែគ្មាន Order? ការយល់ខុស និងការពិត",
-   "format": "myth vs reality",
-   "cta": "Boost TikTok (from $99 / month)",
-   "note": "Link the two TikTok articles."
+   "category": "budget",
+   "tag": "Boost → Order → ចំណេញ",
+   "series": "Boost នេះ បន្ត ឬបិទ?",
+   "title_idea": "Boost នេះ បន្ត ឬបិទ? ស្ថានភាពទី ២៖ សារថោក តែ Order តិច",
+   "format": "decision guide (scenario)",
+   "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Post management ($79 / month), /#services",
+   "note": "Series episode, labelled ឧទាហរណ៍, different scenario from day 7."
   },
   {
    "day": 27,
-   "category": "retention",
-   "pillar": "G",
-   "title_idea": "សុំមតិភ្ញៀវក្រោយទទួលទំនិញ៖ ពេលណាសួរ និងសារគំរូ",
-   "format": "script pack",
-   "cta": "one soft line about the ADS BOX System (adsbox.biz) or a related article; no selling",
-   "note": "Real customers only; never fake reviews."
+   "category": "case-study",
+   "tag": "Case Study និងទិន្នន័យពិត",
+   "series": "លុយ Boost ទៅណា?",
+   "title_idea": "Cost per Order មធ្យមតាមប្រភេទទំនិញ (ទិន្នន័យសរុប ADS BOX)",
+   "format": "aggregated data",
+   "cta": "Case: «ចង់ឲ្យ ADS BOX ជួយពិនិត្យទិន្នន័យ Page របស់អ្នក?» → Telegram",
+   "note": "New #16. DATA APPROVAL REQUIRED: aggregated, anonymized ADS BOX data the owner exports and approves. Never auto-written.",
+   "requires_prewritten": true
   },
   {
    "day": 28,
-   "category": "analytics",
-   "pillar": "H",
-   "title_idea": "ភ្ញៀវចាស់ត្រឡប់មកទិញប៉ុន្មាន? Repeat Customer Rate",
+   "category": "budget",
+   "tag": "ចំណេញពិត",
+   "series": "",
+   "title_idea": "ចំណាយប៉ុន្មាន ដើម្បីបានភ្ញៀវថ្មីម្នាក់? Customer Acquisition Cost សម្រាប់ហាងអនឡាញ",
    "format": "metric explainer",
-   "cta": "ADS BOX System (adsbox.biz, free plan, paid from $29 / month)",
-   "note": "Leads into after-sale-messages-repeat-customers."
+   "cta": "Profit: «ផ្ញើតម្លៃផលិតផល + Margin មកយើង ដើម្បីពិនិត្យថា Cost per Order ប៉ុន្មានទើបសមរម្យ។» → Telegram",
+   "note": "From the old plan (day 19). Link after-sale-messages-repeat-customers (repeat customers cost no new Boost)."
   },
   {
    "day": 29,
-   "category": "budget",
-   "pillar": "B",
-   "title_idea": "ចែកថវិកា Boost Post, Boost Live និង TikTok៖ ៣ ស្ថានភាពហាង",
-   "format": "scenario analysis",
-   "cta": "Boost Post management ($79 / month)",
-   "note": "Advanced path step 14."
+   "category": "adsbox-system",
+   "tag": "Behind ADS BOX",
+   "series": "Behind ADS BOX",
+   "title_idea": "AI របស់ ADS BOX ដឹងថា Boost មានបញ្ហា យ៉ាងណា?",
+   "format": "behind the scenes",
+   "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Post management ($79 / month), /#services",
+   "note": "OWNER FACTS REQUIRED: only real alert types and triggers from the owner. Never invent.",
+   "requires_prewritten": true
   },
   {
    "day": 30,
    "category": "analytics",
-   "pillar": "I",
+   "tag": "Boost → Order → ចំណេញ",
+   "series": "",
    "title_idea": "ពិនិត្យលេខចុងខែ ក្នុង ១៥ នាទី៖ លុយចាយ Order ដឹកដល់ និងចំណេញ",
    "format": "checklist",
-   "cta": "Boost Post management ($79 / month)",
-   "note": "Swapped in because no real System screenshots yet (see plan doc)."
+   "cta": "Educational: «សាកគណនា Cost per Order របស់អ្នកមើល។» + link to the matching ADS BOX article (no service pitch)",
+   "note": "From the old plan (day 30). Link daily-spend-and-order-report."
   }
  ]
 }
