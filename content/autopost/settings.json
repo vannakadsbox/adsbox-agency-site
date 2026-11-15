@@ -16,5 +16,5 @@
   "max_attempts": 3,
   "min_khmer_chars": 1300,
   "max_khmer_chars": 5000,
-  "rotation_start": "2026-11-23"
+  "rotation_start": "2026-11-16"
 }

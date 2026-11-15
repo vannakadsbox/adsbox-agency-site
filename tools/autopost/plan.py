@@ -164,9 +164,15 @@ def rotation_topic(date, hist, arts, s):
         cat, opts = alt, options(alt) if alt else []
     if not opts:
         return None, notes, "Nothing to write: no ready topic in today's category or its fallback. Add topics to rotation.json."
-    t = dict(opts[0])
+    # House styles should not repeat two days in a row: skip ahead to the first topic in a different style
+    # (date-window topics keep priority; if every option has yesterday's style, keep the queue order).
+    last = next((r.get("format") for r in reversed(hist["runs"]) if r.get("status") in ok and r.get("format")), None)
+    first = opts[0]
+    if last and first.get("format") == last and not first.get("window"):
+        first = next((o for o in opts if o.get("format") != last), first)
+    t = dict(first)
     if t.pop("_note", None):
-        notes.append(opts[0]["_note"])
+        notes.append(first["_note"])
     left = len(opts) - 1
     if left <= rot.get("queue_low_alert", 2):
         notes.append(f"Queue '{cat}' has {left} topic(s) left after today; please approve more.")

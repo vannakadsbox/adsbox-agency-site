@@ -22,7 +22,7 @@ def main():
         wd = datetime.date.fromisoformat(d).strftime("%a")
         if not t:
             print(f"{d} {wd}  —  {msg}"); continue
-        hist["runs"].append({"date": d, "status": "published", "topic_id": t["topic_id"]})
+        hist["runs"].append({"date": d, "status": "published", "topic_id": t["topic_id"], "format": t["format"]})
         print(f"{d} {wd}  {t['rotation_category']:16s} {t['format']:13s} {t['topic']}")
         for n in notes:
             print(f"{'':16}note: {n}")
