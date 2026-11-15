@@ -139,7 +139,7 @@ window.ACCOUNTS = {
    {
     "name": "Drama24TV",
     "url": "https://www.facebook.com/profile.php?id=61593444931873",
-    "followers": 675,
+    "followers": 690,
     "picture": "assets/accounts/fb-61593444931873.webp",
     "cover": "assets/accounts/fb-61593444931873-cover.webp",
     "type": "ផេកខ្មែរ",
@@ -172,7 +172,7 @@ window.ACCOUNTS = {
    {
     "name": "Choose Mee",
     "url": "https://www.facebook.com/profile.php?id=61592985212544",
-    "followers": 10777,
+    "followers": 10780,
     "picture": "assets/accounts/fb-61592985212544.webp",
     "cover": "assets/accounts/fb-61592985212544-cover.webp",
     "type": "ផេកខ្មែរ",
@@ -183,24 +183,24 @@ window.ACCOUNTS = {
    {
     "name": "2Drama",
     "url": "https://www.facebook.com/profile.php?id=61594994700769",
-    "followers": 478,
+    "followers": 482,
     "picture": "assets/accounts/fb-61594994700769.webp",
     "cover": "assets/accounts/fb-61594994700769-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-13"
+    "updated": "2026-11-15"
    },
    {
     "name": "NNDrama",
     "url": "https://www.facebook.com/profile.php?id=61594910973822",
-    "followers": 507,
+    "followers": 523,
     "picture": "assets/accounts/fb-61594910973822.webp",
     "cover": "assets/accounts/fb-61594910973822-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-13"
+    "updated": "2026-11-15"
    },
    {
     "name": "OneDrama",
@@ -211,7 +211,7 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-13"
+    "updated": "2026-11-15"
    },
    {
     "name": "មើលដ្រាម៉ា",
