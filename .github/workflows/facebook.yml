@@ -1,19 +1,26 @@
-# Facebook Page publishing, owner-approved: each video's caption message in Telegram has a "Publish" button;
-# this workflow checks for taps every few minutes and posts that video to the Page as a Reel. Nothing posts without a tap.
+# Facebook Page publishing, owner-approved: each video's caption message in Telegram has a "Publish" button.
+# Since Nov 2026 a tap goes to the Render webhook (tools/fbhook/app.py), which starts this workflow with action "tap"
+# for that one video. There is no schedule any more: GitHub runs only when a video is tapped (or when run by hand).
 name: Facebook publish
 on:
-  schedule:
-    # Each run stays awake ~55 minutes checking for taps every 20 seconds; runs queue one after another.
-    - cron: "*/20 * * * *"
   workflow_dispatch:
     inputs:
       action:
-        description: "check = test the Facebook token · draft = upload the slug below as an unpublished draft Reel · poll = handle Publish taps now"
+        description: "tap = publish one tapped video (from the webhook) · check = test the Facebook token · draft / offer / cover = slug below · webhook-set / webhook-info / webhook-delete = Telegram webhook · poll = manual fallback (only without a webhook)"
         type: choice
-        options: [check, draft, offer, cover, poll, loop]
+        options: [tap, check, draft, offer, cover, webhook-set, webhook-info, webhook-delete, poll]
         default: check
       slug:
-        description: "draft / offer / cover: video slug"
+        description: "tap / draft / offer / cover: video slug"
+        required: false
+      message_id:
+        description: "tap: Telegram message id of the video caption (filled in by the webhook)"
+        required: false
+      chat:
+        description: "tap: Telegram chat id (filled in by the webhook)"
+        required: false
+      url:
+        description: "webhook-set: https://<render-service>.onrender.com/telegram"
         required: false
 permissions:
   contents: write
@@ -23,13 +30,18 @@ concurrency:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 70
+    timeout-minutes: 20
     env:
       FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
       FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
       TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       TELEGRAM_VIDEO_CHAT_ID: ${{ secrets.TELEGRAM_VIDEO_CHAT_ID }}
+      TELEGRAM_WEBHOOK_SECRET: ${{ secrets.TELEGRAM_WEBHOOK_SECRET }}
+      IN_SLUG: ${{ github.event.inputs.slug }}
+      IN_MSG: ${{ github.event.inputs.message_id }}
+      IN_CHAT: ${{ github.event.inputs.chat }}
+      IN_URL: ${{ github.event.inputs.url }}
       GH_TOKEN: ${{ github.token }}
     steps:
       - name: Skip quietly until Facebook is set up
@@ -40,19 +52,17 @@ jobs:
       - name: Run
         if: steps.on.outputs.go == '1'
         run: |
-          act="${{ github.event.inputs.action }}"; [ -z "$act" ] && act=loop
-          if [ "$act" = draft ]; then
-            gh release download video-archive -p "${{ github.event.inputs.slug }}.mp4" -O /tmp/v.mp4 --clobber
-            python3 tools/reel/facebook.py publish "${{ github.event.inputs.slug }}" /tmp/v.mp4 --draft
-          elif [ "$act" = cover ]; then
-            python3 tools/reel/facebook.py cover "${{ github.event.inputs.slug }}"
-          elif [ "$act" = offer ]; then
-            python3 tools/reel/facebook.py offer "${{ github.event.inputs.slug }}"
-          elif [ "$act" = loop ]; then
-            python3 tools/reel/facebook.py loop 55
-          else
-            python3 tools/reel/facebook.py "$act"
-          fi
+          act="${{ github.event.inputs.action }}"
+          case "$act" in
+            tap)    python3 tools/reel/facebook.py tap "$IN_SLUG" "$IN_MSG" "$IN_CHAT" ;;
+            draft)  gh release download video-archive -p "$IN_SLUG.mp4" -O /tmp/v.mp4 --clobber
+                    python3 tools/reel/facebook.py publish "$IN_SLUG" /tmp/v.mp4 --draft ;;
+            cover|offer) python3 tools/reel/facebook.py "$act" "$IN_SLUG" ;;
+            webhook-set)    python3 tools/reel/facebook.py webhook set "$IN_URL" ;;
+            webhook-info)   python3 tools/reel/facebook.py webhook info ;;
+            webhook-delete) python3 tools/reel/facebook.py webhook delete ;;
+            *)      python3 tools/reel/facebook.py "$act" ;;
+          esac
       - name: Save the production log
         if: always() && steps.on.outputs.go == '1'
         run: |
