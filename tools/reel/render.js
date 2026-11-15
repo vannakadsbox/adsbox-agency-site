@@ -240,6 +240,81 @@ function highlight(line, keyword) {
   return h;
 }
 
+// --- Cinematic template style (owner, 15 Nov 2026: "change video for daily create" -> the DAY03 template) -------------
+// Talking scenes: the toon host large on a navy studio, zoom jump cuts on each subtitle line, white captions that rise in
+// a few words at a time (numbers and prices in yellow, short money lines big), one emoji sticker.
+// Picture scenes: the scene's ADS BOX picture in the top part, the host talking in a rounded card below (template's
+// checklist screen). ADS BOX colours, logo, intro and outro are kept.
+const CINE_EMO = { hook: "🤔", problem: "😥", cta: "👉", summary: "✅" };
+function cineChunks(sc) {
+  const out = [];
+  sc.subs.forEach((s, j) => {
+    const line = s.text, said = (sc.said || [])[j] || line, base = (sc.lineAt || [])[j] || 0;
+    const groups = []; let cur = "", from = 0, k = 0;
+    const flush = () => { if (cur.trim()) groups.push([from, cur.trim()]); cur = ""; };
+    for (const { segment } of SEG.segment(line)) {
+      if (!cur) from = k;
+      cur += segment; k += segment.length;
+      const vis = cur.replace(/[ា-៓៝\s]/g, "").length;
+      if ((/[។?!,៖]\s*$/.test(segment) && vis >= 4) || vis >= 12) flush();
+    }
+    flush();
+    if (groups.length > 1 && groups[groups.length - 1][1].replace(/[ា-៓៝\s។?!,៖]/g, "").length < 3) {
+      const last = groups.pop(); groups[groups.length - 1][1] += " " + last[1];
+    }
+    const T = (kk) => {
+      const frac = line.length ? kk / line.length : 0;
+      const tt = sc.at ? sc.vStart + sc.at(base + Math.round(frac * said.length)) : s.start + frac * Math.max(0.3, s.end - s.start - 0.2);
+      return Math.max(s.start, Math.min(tt, s.end - 0.25));
+    };
+    groups.forEach(([kk, txt], g) => {
+      let t0 = g === 0 ? s.start : T(kk);
+      if (out.length) t0 = Math.max(t0, out[out.length - 1].t0 + 0.3);
+      out.push({ t0, txt, line: j });
+    });
+  });
+  out.forEach((c, i) => { c.t1 = i + 1 < out.length ? out[i + 1].t0 - 0.03 : sc.subs[sc.subs.length - 1].end; });
+  return out;
+}
+function cineScene(sc, i, x, v, make, enter, exit) {
+  const talk = HOST && v.host !== false && !["cta", "cta2"].includes(v.type);
+  const mood = { hook: "surprised", problem: "think", summary: "happy", cta: "wave" }[sc.role] || "smile";
+  const fade = `${A("inE", enter, 0.25, "ease-out")},${A("outE", exit, 0.25, "ease-in", "forwards").replace("animation:", "")}`;
+  let h = "";
+  if (talk) {
+    const zoom = sc.subs.map((s, j) => `${(i + j) % 2 ? "zIn" : "zOut"} .001s linear ${s.start.toFixed(3)}s forwards`).join(",");
+    h += `<section class="scene ctalk" style="${fade}"><div class="cz" style="animation:${zoom}">${S.presenter(mood, 1200, x, b64)}</div></section>`;
+    const emo = CINE_EMO[sc.role];
+    if (emo) h += `<div class="cemo" style="${A("emoPop", sc.subs[0].start + 0.3, 0.45, "ease-out")},${A("sout", Math.min(sc.subs[0].start + 2.2, exit), 0.2, "ease-in", "forwards").replace("animation:", "")}">${emo}</div>`;
+  } else {
+    h += `<section class="scene ccard" style="${fade}"><div class="cstage">${make(v, x, b64)}</div>` +
+      (HOST ? `<div class="cbox">${S.presenter(mood, 560, x, b64)}</div>` : "") + `</section>`;
+  }
+  cineChunks(sc).forEach((c) => {
+    const vis = c.txt.replace(/[ា-៓៝\s]/g, "").length;
+    const big = /[$%0-9០-៩]/.test(c.txt) && vis <= 10;
+    h += `<div class="cc ${talk ? "ct" : "cb"}${big ? " big" : ""}" style="${A("ccIn", c.t0, 0.32, "cubic-bezier(.2,.8,.3,1)")},${A("sout", Math.max(c.t0 + 0.2, c.t1 - 0.08), 0.08, "ease-in", "forwards").replace("animation:", "")}"><span>${highlight(c.txt)}</span></div>`;
+  });
+  return h;
+}
+const CINE = `.grid,.blob,.fl,.sweep,.spark{display:none}
+.bg{background:radial-gradient(circle at 50% 40%,#16295f 0%,#0b1430 72%)}
+.ctalk{background:radial-gradient(circle at 50% 44%,#2b5bd6 0%,#14286a 40%,#0b1430 78%)}
+.ctalk .cz{position:absolute;left:-60px;top:300px;width:1200px;transform-origin:50% 30%}
+.ccard .cstage{position:absolute;left:90px;right:90px;top:230px;height:1010px;transform:scale(.8);transform-origin:50% 0}
+.ccard .cbox{position:absolute;left:260px;top:1235px;width:560px;height:640px;border-radius:56px;overflow:hidden;
+  background:radial-gradient(circle at 50% 40%,#2b5bd6,#0b1430 80%);box-shadow:0 30px 60px rgba(0,0,0,.45);border:3px solid rgba(255,255,255,.14)}
+.ccard .cbox .vk{position:absolute;left:0;top:-20px}
+.cc{position:absolute;z-index:3;left:40px;right:40px;text-align:center;opacity:0;font-weight:700;font-size:74px;line-height:1.3;color:#fff;
+  -webkit-text-stroke:12px rgba(5,9,26,.92);paint-order:stroke fill;text-shadow:0 6px 24px rgba(0,0,0,.6)}
+.cc.ct{top:1440px}.cc.cb{top:1085px;font-size:62px}
+.cc.big{font-size:116px;font-weight:800;color:#ffd23f}.cc.cb.big{font-size:92px;top:1060px}
+.cc em{font-style:normal;color:#ffd23f}
+.cemo{position:absolute;z-index:3;left:770px;top:560px;font-family:'Noto Color Emoji',sans-serif;font-size:170px;line-height:1;opacity:0;filter:drop-shadow(0 10px 14px rgba(0,0,0,.4))}
+@keyframes ccIn{from{opacity:0;transform:translateY(34px);filter:blur(10px)}to{opacity:1;transform:none;filter:none}}
+@keyframes zIn{to{transform:scale(1.12)}}@keyframes zOut{to{transform:scale(1)}}
+@keyframes emoPop{0%{opacity:0;transform:scale(.3) rotate(8deg)}60%{opacity:1;transform:scale(1.15) rotate(8deg)}100%{opacity:1;transform:scale(1) rotate(8deg)}}`;
+
 function page(script, scenes, total) {
   const end = total - OUTRO;
   let css = "", html = "";
@@ -256,6 +331,7 @@ function page(script, scenes, total) {
     };
     const v = sc.visual || {};
     const make = S.V[v.type] || S.V.takeaway;
+    if (STYLE === "cine") { html += cineScene(sc, i, x, v, make, enter, exit); return; }
     const ph0 = PHOTOS[String(i)] && v.type !== "cta" && fs.existsSync(PHOTOS[String(i)]) ? PHOTOS[String(i)] : null;
     const icon = ICONS[String(i)] && v.type !== "cta" && fs.existsSync(ICONS[String(i)]) ? ICONS[String(i)] : null;
     const kw = sc.keyword || v.title || "";
@@ -426,6 +502,7 @@ ${hybrid ? `html,body{background:transparent!important}
 ${S.CSS}
 ${STYLE === "paper" ? PAPER : ""}
 ${STYLE === "neon" ? NEON : ""}
+${STYLE === "cine" ? CINE : ""}
 ${css}
 </style></head><body>
 <div class="bgall"><div class="bg"></div><div class="grid"></div><span class="blob b1"></span><span class="blob b2"></span>${floats}</div>

@@ -121,7 +121,7 @@ jobs:
       - name: Install tools
         if: steps.todo.outputs.slugs != ''
         run: |
-          sudo apt-get update -q && sudo apt-get install -y -q ffmpeg
+          sudo apt-get update -q && sudo apt-get install -y -q ffmpeg fonts-noto-color-emoji
           npm install --no-save --no-package-lock playwright@1.48.2
           npx playwright install --with-deps chromium
           pip install -q pyyaml pillow "edge-tts>=7.0"
