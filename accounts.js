@@ -244,73 +244,73 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-13"
+    "updated": "2026-11-15"
    },
    {
     "name": "32Drama",
     "url": "https://www.facebook.com/profile.php?id=61595062684572",
-    "followers": 23,
+    "followers": 26,
     "picture": "assets/accounts/fb-61595062684572.webp",
     "cover": "assets/accounts/fb-61595062684572-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-13"
+    "updated": "2026-11-15"
    },
    {
     "name": "38Drama",
     "url": "https://www.facebook.com/profile.php?id=61595037455702",
-    "followers": 91,
+    "followers": 170,
     "picture": "assets/accounts/fb-61595037455702.webp",
     "cover": "assets/accounts/fb-61595037455702-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-13"
+    "updated": "2026-11-15"
    },
    {
     "name": "33Drama",
     "url": "https://www.facebook.com/profile.php?id=61594970018581",
-    "followers": 14,
+    "followers": 16,
     "picture": "assets/accounts/fb-61594970018581.webp",
     "cover": "assets/accounts/fb-61594970018581-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-13"
+    "updated": "2026-11-15"
    },
    {
     "name": "35Drama",
     "url": "https://www.facebook.com/profile.php?id=61594855783328",
-    "followers": 33,
+    "followers": 42,
     "picture": "assets/accounts/fb-61594855783328.webp",
     "cover": "assets/accounts/fb-61594855783328-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-13"
+    "updated": "2026-11-15"
    },
    {
     "name": "34Drama",
     "url": "https://www.facebook.com/profile.php?id=61594786426578",
-    "followers": 22,
+    "followers": 23,
     "picture": "assets/accounts/fb-61594786426578.webp",
     "cover": "assets/accounts/fb-61594786426578-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-13"
+    "updated": "2026-11-15"
    },
    {
-    "name": "61593764142607",
+    "name": "មើលរឿងអេអាយ",
     "url": "https://www.facebook.com/profile.php?id=61593764142607",
-    "followers": 0,
-    "picture": "",
-    "cover": "",
+    "followers": 129,
+    "picture": "assets/accounts/fb-61593764142607.webp",
+    "cover": "assets/accounts/fb-61593764142607-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": ""
+    "updated": "2026-11-15"
    },
    {
     "name": "6Drama",
