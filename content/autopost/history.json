@@ -645,6 +645,29 @@
       "status": "published",
       "published_at": "2026-11-15T06:58:05+07:00",
       "url": "https://adsbox.agency/knowledge/cod-order-confirmation-message-templates/"
+    },
+    {
+      "date": "2026-11-16",
+      "slot": "morning",
+      "category": "boost-post",
+      "angle": "រឿងហាងអាវ $20៖ Boost បានប៉ុន្មានទើបមិនខាត? គណនា Cost per Order អតិបរមា",
+      "attempts": 1,
+      "generated_at": "2026-11-16T06:57:55+07:00",
+      "plan_day": "bp-max-cpo-calculator",
+      "plan_id": "rotation",
+      "topic_id": "bp-max-cpo-calculator",
+      "rotation_category": "boost-post",
+      "format": "Story",
+      "notes": [],
+      "title": "រឿងហាងអាវ $20៖ Boost បានប៉ុន្មានទើបមិនខាត? គណនា Cost per Order អតិបរមា",
+      "slug": "max-cost-per-order-before-losing-money",
+      "summary": "ហាងអាវ $20 ចាយ Boost $7.50 ក្នុងមួយ Order ហើយគិតថាមិនអី តែចំណេញស្ទើរសូន្យ។ រឿងឧទាហរណ៍នេះ បង្ហាញវិធីគណនា Cost per Order អតិបរមា និងគោលដៅ ជំហានម្ដងៗ។",
+      "primary_keyword": "Cost per Order អតិបរមា",
+      "tag": "Boost → Order → ចំណេញ",
+      "khmer_chars": 2444,
+      "status": "published",
+      "published_at": "2026-11-16T06:57:55+07:00",
+      "url": "https://adsbox.agency/knowledge/max-cost-per-order-before-losing-money/"
     }
   ]
 }
