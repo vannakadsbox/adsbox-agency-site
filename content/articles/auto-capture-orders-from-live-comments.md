@@ -2,7 +2,7 @@
 title: "ចាប់ Order ពី Comment Live ដោយស្វ័យប្រវត្តិ៖ ៤ ជំហានមិនឲ្យ Order របូត"
 slug: "auto-capture-orders-from-live-comments"
 summary: "Comment Live ហូរលឿនពេក កត់ដោយដៃមិនទាន់? រៀនរៀបចំកូដទំនិញ ចាប់ Order ពី Comment ដោយស្វ័យប្រវត្តិ ឆ្លើយ Messenger និងបោះពុម្ពស្ទីគ័រក្នុងប្រព័ន្ធតែមួយ។"
-tag: "ADS BOX"
+tag: "Behind ADS BOX"
 date: 2026-10-30
 updated: 2026-11-12
 emoji: "🎥 💬 📦"

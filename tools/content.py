@@ -114,6 +114,7 @@ def load_articles():
             "seo_description": str(fm.get("seo_description") or "").strip(),
             "keywords": [str(k).strip() for k in (fm.get("keywords") or []) if str(k).strip()] if isinstance(fm.get("keywords"), list) else [],
             "category": str(fm.get("category") or "").strip(),
+            "series": str(fm.get("series") or "").strip(),   # ADS BOX signature series (optional)
             "image_alt": str(fm.get("image_alt") or "").strip(),
             "modified": (fm.get("updated").isoformat()[:10] if hasattr(fm.get("updated"), "isoformat") else str(fm.get("updated") or "")[:10]) or None,
         })

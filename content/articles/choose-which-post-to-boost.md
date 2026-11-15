@@ -2,7 +2,7 @@
 title: "Boost Post មួយណាឲ្យចំ? ៥ ចំណុចពិនិត្យ មុនចាយលុយលើ Post"
 slug: "choose-which-post-to-boost"
 summary: "មិនមែន Post ដែលមាន Like ច្រើនសុទ្ធតែសមនឹង Boost ទេ។ រៀនពិនិត្យ ៥ ចំណុច ដើម្បីជ្រើស Post ដែលទំនងនាំសារសួរទិញពិត។"
-tag: "Boost Post"
+tag: "Boost → Order → ចំណេញ"
 date: 2026-11-01
 updated: 2026-11-12
 emoji: "🎯 📱 💡"

@@ -2,7 +2,7 @@
 title: "Saved Replies ក្នុង Messenger៖ ៥ គន្លឹះរៀបចំសារឆ្លើយស្រាប់ ឲ្យលឿន តែនៅកក់ក្ដៅ"
 slug: "messenger-saved-replies-tips"
 summary: "រៀនរៀបចំ Saved Replies ក្នុង Messenger សម្រាប់សំណួរដដែលៗ ឲ្យ Admin ឆ្លើយលឿន ត្រឹមត្រូវ និងនៅតែស្ដាប់ទៅដូចមនុស្សនិយាយ។"
-tag: "Messenger"
+tag: "Boost → Order → ចំណេញ"
 date: 2026-11-04
 updated: 2026-11-12
 emoji: "💬 ⚡ 📋"

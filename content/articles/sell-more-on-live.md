@@ -2,7 +2,7 @@
 title: "Live មានអ្នកមើលច្រើន តែ Order តិច? រៀបចំ Live មុន ពេល និងក្រោយ ហើយវាស់លេខឲ្យត្រូវ"
 slug: "sell-more-on-live"
 summary: "មគ្គុទ្ទេសក៍ Facebook Live សម្រាប់ហាងតូច៖ Checklist មុន Live ស្គ្រីបនិយាយពេល Live ការដោះស្រាយ Comment លឿន និងស្តុកអស់ និងលេខ ៥ ដែលប្រាប់ថា Live នៅសល់លុយឬអត់។"
-tag: "លក់ Live"
+tag: "Live → Order"
 date: 2026-10-14
 updated: 2026-11-12
 emoji: "🔴 🎙️ 📦"

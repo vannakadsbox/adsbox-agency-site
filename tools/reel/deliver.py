@@ -110,7 +110,7 @@ def caption_text(script, meta):
             f"💡 {e(script['topic'])}\n\n"
             f"📖 អានអត្ថបទពេញ 👉 {e(script['article']['url'])}\n\n"
             f"⏱ រយៈពេល {dur} វិនាទី · 📐 {e(meta.get('resolution'))}\n"
-            f"🛍 គន្លឹះលក់អនឡាញពី ADS BOX")
+            f"📊 Boost → Order → ចំណេញ ពី ADS BOX")
 
 
 def facebook_caption(script):

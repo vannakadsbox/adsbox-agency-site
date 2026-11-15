@@ -2,7 +2,7 @@
 title: "សារថោក Order ច្រើន តែចុងខែលុយមិនសល់? គណនាពីលុយចាយ Boost ដល់ចំណេញពិត"
 slug: "cost-per-message-vs-cost-per-order"
 summary: "Order មិនមែនជាចំណេញទេ។ រៀនតាមដានលុយចាយ → Message → Order → Confirmed → Delivered → Paid → Profit ហើយគណនាថា Boost មួយណាពិតជានៅសល់លុយ។"
-tag: "លេខ និងចំណេញ"
+tag: "Boost → Order → ចំណេញ"
 date: 2026-10-26
 updated: 2026-11-12
 emoji: "💬 📦 💵"

@@ -2,7 +2,7 @@
 title: "សរសេរតម្លៃ និង Promotion ក្នុង Caption ឲ្យច្បាស់៖ ៥ គន្លឹះកុំឲ្យអតិថិជនច្រឡំ"
 slug: "write-prices-and-promotions-clearly"
 summary: "តម្លៃ និង Promotion ដែលសរសេរមិនច្បាស់ ធ្វើឲ្យអតិថិជនសួរដដែលៗ ឬបោះបង់។ រៀន ៥ គន្លឹះសរសេរតម្លៃក្នុង Caption ឲ្យអានងាយ និងទុកចិត្ត។"
-tag: "លក់អនឡាញ"
+tag: "Boost → Order → ចំណេញ"
 date: 2026-11-01
 updated: 2026-11-12
 emoji: "🏷️ 💵 📱"

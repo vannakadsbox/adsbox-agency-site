@@ -18,8 +18,11 @@ import argparse, datetime, json, os, re, subprocess, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import common as C
 
-ALLOWED_TAGS = ["Boost Post", "Boost Live", "TikTok", "លក់ Live", "ថែទាំផេក", "រចនា", "Messenger", "ចំណេះដឹង",
-                "លក់អនឡាញ", "សេវាអតិថិជន", "ថវិកា និងរបាយការណ៍", "ADS BOX"]
+# Knowledge pillar tags (owner-approved 15 Nov 2026). "Case Study និងទិន្នន័យពិត" is deliberately NOT allowed here:
+# the auto-writer never writes case studies; those are owner-approved prewritten articles only.
+ALLOWED_TAGS = ["Boost → Order → ចំណេញ", "Live → Order", "ចំណេញពិត", "Behind ADS BOX"]
+CASE_TAG = "Case Study និងទិន្នន័យពិត"   # allowed only for an owner-approved prewritten draft
+SERIES = ["លុយ Boost ទៅណា?", "ADS BOX Case Study", "Live → Order", "ចំណេញពិតប៉ុន្មាន?", "Behind ADS BOX", "Boost នេះ បន្ត ឬបិទ?"]
 ALLOWED_PRICES = {"79", "99", "120", "29"}      # confirmed: Boost Post $79/mo, Boost TikTok from $99/mo, Boost Live from $120/mo, System from $29/mo
 ALLOWED_LINK = re.compile(r"^(/(#[a-z-]+)?$|/#[a-z-]+$|/knowledge/[a-z0-9-]+/?$|https://(www\.)?adsbox\.agency(/[\w\-/#]*)?$|https://t\.me/vannakdm/?$|https://adsbox\.biz/?$)")
 CLIENT_NAMES = ["CEO Master", "Borey Chhay", "Skin Seven", "EEWS", "La Rose", "Mabel", "LS Clinic", "Kume", "Derma Beaut",
@@ -65,7 +68,23 @@ def validate(d, brief, s, existing=None, history=None):
     if not isinstance(kw, list) or not 3 <= len(kw) <= 8 or not all(isinstance(x, str) and x.strip() for x in kw):
         errs.append("keywords: give a list of 3-8 phrases")
     if d.get("tag") != brief["tag"]: errs.append(f"tag: must be '{brief['tag']}'")
-    if d.get("tag") not in ALLOWED_TAGS: errs.append("tag: not an allowed tag")
+    prewritten = bool(brief.get("prewritten_draft"))
+    if d.get("tag") not in ALLOWED_TAGS and not (prewritten and d.get("tag") == CASE_TAG): errs.append("tag: not an allowed tag")
+    # Data policy (owner, 15 Nov 2026): the auto-writer never writes case studies or presents results as real client data.
+    if not prewritten and re.search(r"ករណីសិក្សា|case\s*study", " ".join(str(d.get(k) or "") for k in ("title", "summary", "seo_title", "body")), re.I):
+        errs.append("data policy: do not write a case study or use «ករណីសិក្សា» / «Case Study»; label invented numbers «ឧទាហរណ៍»")
+    # House styles (owner, 16 Nov 2026): the draft must actually use the style in plan_topic.format.
+    fmt = (brief.get("plan_topic") or {}).get("format", "")
+    b_ = str(d.get("body") or "")
+    if fmt == "Story" and not re.search(r"មិនមែន(?:ទិន្នន័យ)?អតិថិជនពិត", b_):
+        errs.append("style: a Story must open with «**រឿងឧទាហរណ៍** (មិនមែនអតិថិជនពិត)»")
+    if fmt == "FAQ" and len(re.findall(r"(?m)^###\s+\S", b_)) < 4:
+        errs.append("style: an FAQ needs at least 4 questions as '### ' headings")
+    if fmt == "Myth vs Truth" and (b_.count("ការយល់ខុស") < 3 or b_.count("ការពិត") < 3):
+        errs.append("style: Myth vs Truth needs at least 3 «ការយល់ខុស៖ … / ការពិត៖ …» pairs")
+    series = d.get("series") or ""
+    if series not in [""] + SERIES: errs.append("series: must be empty or one of " + ", ".join(SERIES))
+    elif series != ((brief.get("plan_topic") or {}).get("series") or ""): errs.append("series: copy plan_topic.series exactly")
     if d.get("category") != brief["category"]["id"]: errs.append(f"category: must be '{brief['category']['id']}'")
     em = str(d.get("emoji") or "").split()
     if len(em) != 3: errs.append("emoji: give exactly 3 emoji separated by spaces")
@@ -147,7 +166,8 @@ def article_file(d, brief, now):
           ("date", brief["date"]), ("emoji", yq(" ".join(str(d["emoji"]).split()))), ("cover", '""'),
           ("seo_title", yq(d["seo_title"])), ("seo_description", yq(d["seo_description"])),
           ("primary_keyword", yq(d["primary_keyword"])), ("keywords", "[" + ", ".join(yq(k.strip()) for k in d["keywords"]) + "]"),
-          ("category", yq(d["category"])), ("image_alt", yq(d["image_alt"])), ("image_prompt", yq(d["image_prompt"])),
+          ("category", yq(d["category"]))] + ([("series", yq(d["series"]))] if d.get("series") else []) + [
+          ("image_alt", yq(d["image_alt"])), ("image_prompt", yq(d["image_prompt"])),
           ("source", yq(f"auto-{brief['slot']}")), ("generated_at", yq(now)), ("draft", "false")]
     return "---\n" + "".join(f"{k}: {v}\n" for k, v in fm) + "---\n" + d["body"].strip() + "\n"
 
@@ -168,7 +188,11 @@ def apply(a, brief, s):
     done = C.slot_record(h, brief["date"], brief["slot"], ("published",) if s["mode"] == "live" else ("published", "dry_run"))
     if done: return 3, f"Already done: {brief['slot']} {brief['date']} is {done['status']} ({done.get('slug')})", []
     rec = {"date": brief["date"], "slot": brief["slot"], "category": brief["category"]["id"], "angle": brief.get("suggested_angle"),
-           "attempts": a.attempts, "generated_at": now, "plan_day": (brief.get("plan_topic") or {}).get("day")}
+           "attempts": a.attempts, "generated_at": now, "plan_day": (brief.get("plan_topic") or {}).get("day"),
+           "plan_id": (brief.get("plan_topic") or {}).get("plan_id"),
+           "topic_id": (brief.get("plan_topic") or {}).get("topic_id"),
+           "rotation_category": (brief.get("plan_topic") or {}).get("rotation_category"),
+           "notes": brief.get("planner_notes") or []}
     if a.record_failure is not None:
         rec.update(status="failed", error=a.record_failure[:500], failed_at=now)
         h["runs"].append(rec); h["runs"] = h["runs"][-400:]; C.save_json("history.json", h)

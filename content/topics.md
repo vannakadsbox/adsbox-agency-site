@@ -1,44 +1,43 @@
-# Daily knowledge article plan
+# Daily knowledge article plan (retired list)
 
-The daily routine takes the first unchecked topic, writes the article as `content/articles/<slug>.md`, runs `python3 tools/build.py`, and ticks it here.
-Add, remove or reorder topics any time.
+The old topic list that used to be here is retired (owner decision, 15 Nov 2026). Do not use it.
 
-## Writing rules
-- Khmer only. Simple words a shop owner uses. 250–400 words.
-- Practical: steps a seller can do today. Use real-looking examples ($ amounts, product codes like A01).
-- Never invent client names, results or reviews. Never promise guaranteed orders.
-- No advice that breaks Facebook or TikTok rules (no fake accounts, fake engagement, or buying accounts).
-- End with one line on how ADS BOX can help, when it fits naturally.
-- Tags to use: Boost Post, Boost Live, TikTok, លក់ Live / Live selling, ថែទាំផេក / Page care, រចនា / Design, Messenger.
+The daily writer now follows **`content/autopost/rotation.json`**: the approved weekly rotation (owner, 16 Nov 2026), starting on `rotation_start` in settings.
 
-## Topics
-- [x] How to write a caption that makes customers message you
-- [ ] What "cost per message" means and how to calculate it
-- [ ] 5 mistakes that waste money when boosting a post
-- [ ] Choosing the right audience: age, location and interests
-- [ ] Best times to go Live in Cambodia and how to test yours
-- [ ] How to plan a 30-minute Live that sells
-- [ ] Photo tips: take product photos with just a phone
-- [ ] How to reply to Messenger fast without losing orders
-- [ ] Boost Post vs Boost Live: which one fits your product?
-- [ ] How to start on TikTok as a small shop
-- [ ] TikTok video ideas that sell (with 5 examples)
-- [ ] How to read Facebook Ads Manager numbers in 5 minutes
-- [ ] Why your boost was rejected and how to fix it
-- [ ] How to protect your Page: admin roles and 2-factor login
-- [ ] Getting the blue verified badge: who can apply and what you need
-- [ ] How to price a promotion without losing profit
-- [ ] Short video editing tips for promo videos
-- [ ] Retargeting: showing ads to people who already watched your Live
-- [ ] How much budget to start with for Boost Live
-- [ ] How to collect customer reviews the right way
-- [ ] Using product codes to manage Live orders
-- [ ] Building a Telegram channel for repeat customers
-- [ ] Holiday sales: preparing for Khmer New Year and Pchum Ben
-- [ ] How to test 2 photos and find the winner
-- [ ] Why cheap clicks don't always mean cheap orders
-- [ ] Setting up a Live studio on a small budget
-- [ ] What to post on days you don't boost
-- [ ] How to handle negative comments on your Page
-- [ ] Reading your daily ADS BOX report: what each number means
-- [ ] When to stop a boost and when to keep it running
+## Weekly rotation (category → pillar)
+- Mon — Boost Post → Boost → Order → ចំណេញ
+- Tue — Boost Live → Live → Order
+- Wed — Boost TikTok → Boost → Order → ចំណេញ
+- Thu — Facebook Page Care → Boost → Order → ចំណេញ
+- Fri — Boost → Order → Profit → ចំណេញពិត
+- Sat — Real problem / decision guide → pillar of the problem
+- Sun — ADS BOX expertise / behind the scenes / data → Behind ADS BOX (COO-confirmed facts only) or Case Study (approved real data only); otherwise a labelled «ឧទាហរណ៍» analysis
+
+Each category is a queue in rotation.json. Add new topics at the end of a queue (with related / not_duplicate_of filled in). The writer alerts in Telegram when a queue has 2 or fewer topics left.
+
+## Pillars (target share)
+1. Boost → Order → ចំណេញ — 25%
+2. Case Study និងទិន្នន័យពិត — 25% (owner-approved real data only)
+3. Live → Order — 20%
+4. ចំណេញពិត — 15%
+5. Behind ADS BOX — 15%
+
+## Signature series
+- លុយ Boost ទៅណា? — spend analysis
+- ADS BOX Case Study — real, permission-approved results only
+- Live → Order — Facebook Live selling and Boost Live
+- ចំណេញពិតប៉ុន្មាន? — real profit per Order
+- Behind ADS BOX — PM, AI, daily report (owner-provided facts only)
+- Boost នេះ បន្ត ឬបិទ? — one decision scenario per week
+
+## Filter for any new topic (pass at least 4 of 6)
+1. Helps an online seller make a better decision?
+2. Connects to Ads → Order → Cost → Profit?
+3. Shows ADS BOX expertise?
+4. Builds trust?
+5. Supports a real ADS BOX product or service?
+6. Could bring a qualified customer?
+
+## Data policy
+- Start with ADS BOX's own Page/data. Client data only after explicit permission, anonymized.
+- Invented numbers are always labelled «ឧទាហរណ៍» and are never called a case study.

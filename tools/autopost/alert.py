@@ -42,7 +42,8 @@ def new_failures(old_path):
     for r in added:
         if r.get("status") != "published": continue
         ok &= send(f"✅ ADS BOX: បានបោះពុម្ពអត្ថបទ{SLOT_KH.get(r.get('slot'), r.get('slot'))} ថ្ងៃ {r.get('date')}\n"
-                   f"{r.get('title', '')}\n{r.get('url', '')}")
+                   f"{r.get('title', '')}\n{r.get('url', '')}"
+                   + "".join(f"\nℹ️ {x}" for x in (r.get("notes") or [])))
     for r in fresh:
         ok &= send(f"⚠️ ADS BOX: អត្ថបទ{SLOT_KH.get(r.get('slot'), r.get('slot'))} ថ្ងៃ {r.get('date')} មិនបានបោះពុម្ពទេ។\n"
                    f"Knowledge auto-post failed after {r.get('attempts')} attempt(s): {r.get('error')}\n"

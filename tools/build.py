@@ -132,7 +132,7 @@ for i, a in enumerate(articles):
     main = f'''<article class="wrap article">
   <a class="back" href="/knowledge/">{bi("← ចំណេះដឹងទាំងអស់", "← All articles")}</a>
   {cover}
-  <div class="meta">{'<span class="pill">' + bi(a["tag"]["kh"], a["tag"]["en"]) + '</span>' if a.get("cover") else ""}{bi(date_kh(a["date"]), date_en(a["date"]))}</div>
+  <div class="meta">{'<span class="pill">' + bi(a["tag"]["kh"], a["tag"]["en"]) + '</span>' if a.get("cover") else ""}{'<span class="pill series">' + bi("ស៊េរី៖ " + a["series"], "Series: " + a["series"]) + '</span>' if a.get("series") else ""}{bi(date_kh(a["date"]), date_en(a["date"]))}</div>
   {bi(a["summary"]["kh"], a["summary"]["en"], "p", "lead")}
   <div class="body">{a["html"]}</div>
   <aside class="cta-box">
@@ -145,27 +145,42 @@ for i, a in enumerate(articles):
 <section class="wrap related"><h2>{bi("អត្ថបទផ្សេងទៀត", "More articles")}</h2><div class="cards">{rel_html}</div></section>'''
     write(f"knowledge/{a['id']}/index.html", page(f"{seo_title} · ADS BOX", seo_desc, url, "article", main, extra, share_image(a)))
 
-tags = []
-for a in articles:
-    if a["tag"]["en"] not in [t["en"] for t in tags]: tags.append(a["tag"])
+# Knowledge pillars, in menu order (owner-approved 15 Nov 2026). A chip shows once its pillar has an article;
+# any other tag still in use is listed after them.
+PILLARS = ["Boost → Order → ចំណេញ", "Case Study និងទិន្នន័យពិត", "Live → Order", "ចំណេញពិត", "Behind ADS BOX"]
+used = {a["tag"]["en"]: a["tag"] for a in articles}
+tags = [used[p] for p in PILLARS if p in used] + [t for k, t in used.items() if k not in PILLARS]
+# "Start here" path for new readers: slugs in reading order; missing slugs are skipped.
+START_HERE = ["first-30-days-selling-on-facebook", "likes-vs-orders", "cost-per-message-vs-cost-per-order",
+              "max-cost-per-order-calculator", "when-to-raise-or-cut-boost-budget", "real-profit-per-order"]
+_by_id = {a["id"]: a for a in articles}
+_path = [_by_id[s] for s in START_HERE if s in _by_id]
+start_here = ('<div class="start-here">' + bi("ចាប់ផ្ដើមនៅទីនេះ", "Start here", "h2") + '<ol>' + "".join(
+    f'<li><a href="/knowledge/{a["id"]}/">{bi(a["title"]["kh"], a["title"]["en"])}</a></li>' for a in _path) + '</ol></div>') if _path else ""
 chips = f'<button type="button" class="chip" data-tag="all" aria-pressed="true">{bi("ទាំងអស់", "All")}</button>' + "".join(
     f'<button type="button" class="chip" data-tag="{e(t["en"])}" aria-pressed="false">{bi(t["kh"], t["en"])}</button>' for t in tags)
+# Signature series (owner-approved 15 Nov 2026): one extra chip per series that has articles.
+_series = []
+for a in articles:
+    if a.get("series") and a["series"] not in _series: _series.append(a["series"])
+chips += "".join(f'<button type="button" class="chip chip-series" data-series="{e(x)}" aria-pressed="false">{bi("ស៊េរី៖ " + x, "Series: " + x)}</button>' for x in _series)
 def thumb(a):
     if a.get("cover"): src = "/" + a["cover"]
     elif os.path.exists(os.path.join(ROOT, "assets", "covers", a["id"] + ".png")): src = f"/assets/covers/{a['id']}.png"
     else: return ""
     return f'<img class="card-img" src="{e(src)}" alt="{e(a.get("image_alt") or "")}" width="1200" height="630" loading="lazy" decoding="async">'
-cards = "".join(f'''<a class="card" href="/knowledge/{a["id"]}/" data-tag="{e(a["tag"]["en"])}">{thumb(a)}
+cards = "".join(f'''<a class="card" href="/knowledge/{a["id"]}/" data-tag="{e(a["tag"]["en"])}" data-series="{e(a.get("series") or "")}">{thumb(a)}
   <div class="meta"><span class="pill">{bi(a["tag"]["kh"], a["tag"]["en"])}</span>{bi(date_kh(a["date"]), date_en(a["date"]))}</div>
   {bi(a["title"]["kh"], a["title"]["en"], "h3")}{bi(a["summary"]["kh"], a["summary"]["en"], "p")}</a>''' for a in articles)
 main = f'''<section class="wrap list">
   {bi("ចំណេះដឹង", "Knowledge", "div", "eyebrow")}
-  {bi("គន្លឹះលក់អនឡាញ ពីក្រុម ADS BOX", "Online selling tips from the ADS BOX team", "h1")}
-  {bi("អត្ថបទថ្មីរៀងរាល់ថ្ងៃ អំពី Boost Post, Live, TikTok និងការថែទាំ Page។", "A new article every day on Boost Post, Live, TikTok and Page care.", "p", "lead")}
+  {bi("ចំណេះដឹង Boost → Order → ចំណេញ ពីក្រុម ADS BOX", "Boost → Order → Profit knowledge from the ADS BOX team", "h1")}
+  {bi("រៀនមើលលុយ Boost គិតជា Order និងចំណេញពិត មិនមែន Like", "Learn to read your Boost money in Orders and real profit, not Likes.", "p", "lead")}
+  {start_here}
   <div class="chips" role="group" aria-label="Filter by topic">{chips}</div>
   <div class="cards grid">{cards}</div>
 </section>'''
-write("knowledge/index.html", page("ចំណេះដឹង · ADS BOX Knowledge", "គន្លឹះលក់អនឡាញ ពីក្រុម ADS BOX។ Online selling tips from the ADS BOX team.", f"{SITE}/knowledge/", "website", main))
+write("knowledge/index.html", page("ចំណេះដឹង · ADS BOX Knowledge", "ចំណេះដឹង Boost → Order → ចំណេញ ពីក្រុម ADS BOX។ រៀនមើលលុយ Boost គិតជា Order និងចំណេញពិត មិនមែន Like។", f"{SITE}/knowledge/", "website", main))
 
 # Old article addresses that moved (content/redirects.json): a small page that sends readers and Google to the new one.
 _rp = os.path.join(ROOT, "content", "redirects.json")

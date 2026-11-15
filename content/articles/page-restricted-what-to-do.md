@@ -2,7 +2,7 @@
 title: "ផេកត្រូវបាន​ restricted? ត្រូវធ្វើអ្វីមុនគេ"
 slug: "page-restricted-what-to-do"
 summary: "កុំបង្កើតផេកថ្មីភ្លាមៗ។ ពិនិត្យ Account Quality ហើយដាក់សំណើពិនិត្យឡើងវិញឲ្យបានត្រឹមត្រូវ។"
-tag: "ថែទាំផេក"
+tag: "Boost → Order → ចំណេញ"
 date: 2026-10-06
 updated: 2026-11-12
 emoji: "🛡️ ⚠️ ✅"

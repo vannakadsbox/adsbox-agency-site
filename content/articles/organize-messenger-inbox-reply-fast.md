@@ -2,7 +2,7 @@
 title: "ឆ្លើយសារ Messenger លឿន មិនឲ្យបាត់ Order៖ រៀបចំ Inbox ជា ៣ ក្រុម"
 slug: "organize-messenger-inbox-reply-fast"
 summary: "របៀបរៀបចំ Inbox ដោយប្រើ Label សារត្រៀម និងម៉ោងពិនិត្យ ដើម្បីឆ្លើយអតិថិជនដែលចង់ទិញមុនគេ ហើយមិនភ្លេច Order។"
-tag: "Messenger"
+tag: "Boost → Order → ចំណេញ"
 date: 2026-10-28
 updated: 2026-11-12
 emoji: "💬 🏷️ ⏱️"

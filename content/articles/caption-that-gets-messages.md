@@ -2,7 +2,7 @@
 title: "គួរសរសេរ Caption បែបណា ឲ្យអតិថិជនឆាតមកសួរ?"
 slug: "caption-that-gets-messages"
 summary: "Caption ល្អ ប្រាប់តម្លៃច្បាស់ បង្ហាញអត្ថប្រយោជន៍ និងប្រាប់អតិថិជនថាត្រូវធ្វើអ្វីបន្ទាប់។"
-tag: "Boost Post"
+tag: "Boost → Order → ចំណេញ"
 date: 2026-10-24
 updated: 2026-11-12
 emoji: "✍️ 💬 🔥"

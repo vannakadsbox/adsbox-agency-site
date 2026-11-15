@@ -2,7 +2,7 @@
 title: "ចែកការងារក្រុមលក់អនឡាញ៖ Admin, Live Host និងអ្នកខ្ចប់ ធ្វើអ្វីខ្លះ?"
 slug: "split-roles-admin-live-host-packer"
 summary: "របៀបចែកតួនាទី Admin, Live Host និងអ្នកខ្ចប់ឲ្យច្បាស់ ដើម្បីឲ្យក្រុមតូចលក់បានរលូន មិនជាន់ការងារគ្នា។"
-tag: "លក់អនឡាញ"
+tag: "Live → Order"
 date: 2026-10-28
 updated: 2026-11-12
 emoji: "👥 🎥 📦"

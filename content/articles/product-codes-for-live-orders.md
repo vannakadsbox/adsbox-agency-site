@@ -2,7 +2,7 @@
 title: "ដាក់លេខកូដទំនិញពេល Live៖ ៥ គន្លឹះឲ្យអតិថិជនកុម្ម៉ង់ងាយ និងមិនច្រឡំ"
 slug: "product-codes-for-live-orders"
 summary: "របៀបរៀបចំលេខកូដទំនិញសម្រាប់ Facebook Live ឲ្យអតិថិជន Comment កុម្ម៉ង់បានលឿន ហើយ Admin កត់ Order មិនច្រឡំទំហំ ឬពណ៌។"
-tag: "លក់ Live"
+tag: "Live → Order"
 date: 2026-10-31
 updated: 2026-11-12
 emoji: "🏷️ 📱 🛍️"

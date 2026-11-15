@@ -2,7 +2,7 @@
 title: "Boost Post ពីរ មួយណាលក់ដាច់ពិត? របៀបសាកល្បងដោយប្ដូរតែរឿងមួយ ហើយវាស់ដល់ Order ដឹកដល់"
 slug: "test-two-boost-posts-clothing-shop"
 summary: "ឈប់ទាយថា Post ណាល្អ។ សាកល្បង Boost Post ពីរ ដោយប្ដូរតែរឿងមួយ ដាក់លក្ខខណ្ឌដូចគ្នា ហើយសម្រេចចិត្តពី Cost per Delivered Order មិនមែនពី Like ឬសារ។"
-tag: "Facebook Boost"
+tag: "Boost → Order → ចំណេញ"
 date: 2026-10-29
 updated: 2026-11-12
 emoji: "🅰️ 🆚 🅱️"

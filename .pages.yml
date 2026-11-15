@@ -310,23 +310,17 @@ content:
       required: true
     - name: tag
       label: ប្រធានបទ
+      description: "សសរស្តម្ភ (Pillar) របស់អត្ថបទ។ «Case Study និងទិន្នន័យពិត» ប្រើតែសម្រាប់ទិន្នន័យពិតរបស់ ADS BOX ឬទិន្នន័យអតិថិជនដែលបានអនុញ្ញាតរួច។ លេខគំរូ ត្រូវដាក់ស្លាក «ឧទាហរណ៍»។"
       type: select
       required: true
-      default: Boost Post
+      default: Boost → Order → ចំណេញ
       options:
         values:
-        - Boost Post
-        - Boost Live
-        - TikTok
-        - លក់ Live
-        - ថែទាំផេក
-        - រចនា
-        - Messenger
-        - ចំណេះដឹង
-        - លក់អនឡាញ
-        - សេវាអតិថិជន
-        - ថវិកា និងរបាយការណ៍
-        - ADS BOX
+        - Boost → Order → ចំណេញ
+        - Case Study និងទិន្នន័យពិត
+        - Live → Order
+        - ចំណេញពិត
+        - Behind ADS BOX
     - name: date
       label: កាលបរិច្ឆេទ
       type: date

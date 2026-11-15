@@ -2,7 +2,7 @@
 title: "បញ្ជាក់ Order មុនផ្ញើ (COD)៖ សារគំរូ Copy បាន សម្រាប់ ៥ ស្ថានភាពដែល Admin ជួបរាល់ថ្ងៃ"
 slug: "cod-order-confirmation-message-templates"
 summary: "សារគំរូ ៥ ត្រៀម Copy សម្រាប់បញ្ជាក់ Order COD៖ Order ថ្មី ភ្ញៀវស្ងាត់ ភ្ញៀវខេត្ត ទំនិញអស់ និងឥវ៉ាន់ចេញហើយ ដើម្បីខ្ចប់តែ Order ដែលភ្ញៀវពិតជាយក។"
-tag: "លក់អនឡាញ"
+tag: "ចំណេញពិត"
 date: 2026-11-15
 emoji: "💬 ✅ 📦"
 cover: ""
