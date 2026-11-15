@@ -3923,9 +3923,127 @@
       "article_url": "https://adsbox.agency/knowledge/cod-order-confirmation-message-templates/",
       "video_title": "ភ្ញៀវថា «យក» ហើយស្ងាត់? សារបញ្ជាក់ Order COD មុនខ្ចប់",
       "hook": "ភ្ញៀវ Comment ថា «យក»… បងខ្ចប់ភ្លាម ឬផ្ញើសារសិន?",
-      "status": "scripted",
+      "status": "sent",
       "scripted_at": "2026-11-15T07:24:48+07:00",
-      "error": ""
+      "error": "",
+      "render_started_at": "2026-11-15T07:25:45+07:00",
+      "sent_at": "2026-11-15T07:31:43+07:00",
+      "rendered_at": "2026-11-15T07:31:43+07:00",
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/43658041389",
+      "duration": 58.87,
+      "size_mb": 15,
+      "render_seconds": 343,
+      "voice": "kiri:Arun",
+      "music": "adsbox-original-1.mp3",
+      "style": "custom animation only",
+      "visuals": [
+        "question",
+        "funnel",
+        "delivery",
+        "deadline",
+        "compare",
+        "flow",
+        "takeaway",
+        "cta2"
+      ],
+      "resolution": "1080x1920",
+      "fps": 30,
+      "subtitle_sync": "transcript,proportional",
+      "footage": [],
+      "footage_share": 0,
+      "stock_footage": "none (removed)",
+      "telegram": {
+        "ok": true,
+        "message_id": 280,
+        "chat": "configured",
+        "at": "2026-11-15T07:31:43+07:00",
+        "file_id": "BAACAgUAAxkDAAIBGGr4_WfIWYHAlTEIY2EMyzhkrmNZAAINHgACHojIV2e1Y1I_yIcuPQQ",
+        "items": [
+          {
+            "item": "video",
+            "message_id": 280,
+            "file_name": "cod-order-confirmation-message-templates.mp4",
+            "file_size": 15011972,
+            "width": 1080,
+            "height": 1920,
+            "file_id": "BAACAgUAAxkDAAIBGGr4_WfIWYHAlTEIY2EMyzhkrmNZAAINHgACHojIV2e1Y1I_yIcuPQQ"
+          },
+          {
+            "item": "facebook_caption",
+            "message_id": 281
+          },
+          {
+            "item": "thumbnail",
+            "message_id": 282,
+            "file_name": "cod-order-confirmation-message-templates-thumbnail.jpg",
+            "file_size": 187038
+          }
+        ],
+        "sent_count": 3,
+        "local_sizes": {
+          "video": 15011972,
+          "thumbnail": 187038
+        }
+      },
+      "speech_match": [
+        0.976,
+        0.972,
+        0.989,
+        0.991,
+        1,
+        0.991,
+        1,
+        1
+      ],
+      "scene_sync": [
+        "transcript",
+        "proportional",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript"
+      ],
+      "archive": {
+        "assets": [
+          {
+            "id": 749268022,
+            "name": "cod-order-confirmation-message-templates-thumb.jpg",
+            "size": 187038,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/cod-order-confirmation-message-templates-thumb.jpg"
+          },
+          {
+            "id": 749268021,
+            "name": "cod-order-confirmation-message-templates.mp4",
+            "size": 15011972,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/cod-order-confirmation-message-templates.mp4"
+          }
+        ],
+        "release_id": 430382508
+      },
+      "quality": {
+        "width": 1080,
+        "height": 1920,
+        "fps": "30/1",
+        "duration": 58.87,
+        "video_codec": "h264",
+        "audio_codec": "aac",
+        "loudness": "-13.2 LUFS",
+        "decode_errors": false,
+        "visual_mix": {
+          "motion_graphics": 0.91,
+          "phone_chat": 0.09,
+          "illustrated": 0,
+          "product_dashboard": 0
+        }
+      },
+      "article_id": "cod-order-confirmation-message-templates",
+      "video_id": 749268021,
+      "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/cod-order-confirmation-message-templates.mp4",
+      "created_at": "2026-11-15T07:31:43+07:00",
+      "telegram_status": "delivered",
+      "production_status": "complete"
     }
   ]
 }
