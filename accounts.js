@@ -51,24 +51,24 @@ window.ACCOUNTS = {
    {
     "name": "46Drama",
     "url": "https://www.facebook.com/profile.php?id=61595319713399",
-    "followers": 21,
+    "followers": 51,
     "picture": "assets/accounts/fb-61595319713399.webp",
     "cover": "assets/accounts/fb-61595319713399-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-14"
+    "updated": "2026-11-15"
    },
    {
     "name": "44Drama",
     "url": "https://www.facebook.com/profile.php?id=61595207608137",
-    "followers": 42,
+    "followers": 51,
     "picture": "assets/accounts/fb-61595207608137.webp",
     "cover": "assets/accounts/fb-61595207608137-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-14"
+    "updated": "2026-11-15"
    },
    {
     "name": "40Drama",
@@ -90,18 +90,18 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-14"
+    "updated": "2026-11-15"
    },
    {
     "name": "45Drama",
     "url": "https://www.facebook.com/profile.php?id=61594889022373",
-    "followers": 31,
+    "followers": 38,
     "picture": "assets/accounts/fb-61594889022373.webp",
     "cover": "assets/accounts/fb-61594889022373-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-14"
+    "updated": "2026-11-15"
    },
    {
     "name": "កុនសម្រាយAi",
@@ -112,18 +112,18 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-14"
+    "updated": "2026-11-15"
    },
    {
     "name": "U Drama",
     "url": "https://www.facebook.com/profile.php?id=61588652091475",
-    "followers": 12225,
+    "followers": 12221,
     "picture": "assets/accounts/fb-61588652091475.webp",
     "cover": "assets/accounts/fb-61588652091475-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-14"
+    "updated": "2026-11-15"
    },
    {
     "name": "DayDrama",
@@ -139,13 +139,13 @@ window.ACCOUNTS = {
    {
     "name": "Drama24TV",
     "url": "https://www.facebook.com/profile.php?id=61593444931873",
-    "followers": 662,
+    "followers": 675,
     "picture": "assets/accounts/fb-61593444931873.webp",
     "cover": "assets/accounts/fb-61593444931873-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-14"
+    "updated": "2026-11-15"
    },
    {
     "name": "MovieAi",
@@ -156,29 +156,29 @@ window.ACCOUNTS = {
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-13"
+    "updated": "2026-11-15"
    },
    {
     "name": "RiNa Shop",
     "url": "https://www.facebook.com/profile.php?id=61592794354641",
-    "followers": 10693,
+    "followers": 10716,
     "picture": "assets/accounts/fb-61592794354641.webp",
     "cover": "assets/accounts/fb-61592794354641-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-13"
+    "updated": "2026-11-15"
    },
    {
     "name": "Choose Mee",
     "url": "https://www.facebook.com/profile.php?id=61592985212544",
-    "followers": 10780,
+    "followers": 10777,
     "picture": "assets/accounts/fb-61592985212544.webp",
     "cover": "assets/accounts/fb-61592985212544-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-13"
+    "updated": "2026-11-15"
    },
    {
     "name": "2Drama",
@@ -1008,13 +1008,13 @@ window.ACCOUNTS = {
    {
     "name": "U Drama",
     "url": "https://www.facebook.com/profile.php?id=61588652091475&sk=reels_tab",
-    "followers": 12225,
+    "followers": 12221,
     "picture": "assets/accounts/fb-61588652091475.webp",
     "cover": "assets/opt/adsbox-cover-7ff99d-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-14"
+    "updated": "2026-11-15"
    },
    {
     "name": "TV24k",
