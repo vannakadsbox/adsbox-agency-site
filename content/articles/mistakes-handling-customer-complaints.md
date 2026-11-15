@@ -64,4 +64,4 @@ draft: false
 
 **បន្ទាប់ក្នុងផ្លូវរៀន៖** [សារក្រោយការលក់ ឲ្យភ្ញៀវទិញម្ដងទៀត](/knowledge/after-sale-messages-repeat-customers/)
 
-**អត្ថបទពាក់ព័ន្ធ៖** [ភ្ញៀវសួរហើយនៅស្ទាក់ស្ទើរ](/knowledge/answer-customer-doubts-before-ordering/) · [កម្មវិធីភ្ញៀវប្រចាំសម្រាប់ហាងតូច](/knowledge/simple-loyalty-program-small-shop/) · [តាមដាន Order ពីសារដល់ដៃអតិថិជន](/knowledge/track-orders-from-message-to-delivery/)
+**អត្ថបទពាក់ព័ន្ធ៖** [សារច្រើន តែ Order តិច?](/knowledge/turn-customer-questions-into-orders/) · [ភ្ញៀវចាស់ទិញម្ដងទៀត = Order ដែលមិនចាំបាច់ចាយ Boost ម្ដងទៀត](/knowledge/after-sale-messages-repeat-customers/) · [តាមដាន Order ពីសារដល់ដៃអតិថិជន](/knowledge/track-orders-from-message-to-delivery/)

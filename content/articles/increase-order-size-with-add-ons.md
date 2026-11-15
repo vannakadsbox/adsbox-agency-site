@@ -76,6 +76,6 @@ draft: false
 
 **បន្ទាប់ក្នុងផ្លូវរៀន៖** [Boost គួរបន្ថែម កាត់ ឬបិទ?](/knowledge/when-to-raise-or-cut-boost-budget/)
 
-**អត្ថបទពាក់ព័ន្ធ៖** [Promotion ទិញ ២ និងកញ្ចប់ទំនិញ](/knowledge/buy-two-bundle-offers/) · [គណនាតម្លៃ Promotion កុំឲ្យខាត](/knowledge/price-promotion-without-losing-profit/) · [គណនាពីលុយចាយ Boost ដល់ចំណេញពិត](/knowledge/cost-per-message-vs-cost-per-order/)
+**អត្ថបទពាក់ព័ន្ធ៖** [ទិញ ២ ថែម ១ ឬ ទិញ ៥ ថែម ២](/knowledge/price-promotion-without-losing-profit/) · [គណនាពីលុយចាយ Boost ដល់ចំណេញពិត](/knowledge/cost-per-message-vs-cost-per-order/)
 
 ចង់បានសារពីអតិថិជនពិតបន្ថែម ដើម្បីឲ្យមានឱកាសលក់ឈុតទំនិញទាំងនេះ? ក្រុម ADS BOX អាចជួយគ្រប់គ្រង Boost Post និង Boost Live សម្រាប់ផេករបស់អ្នក។ មើល [សេវាកម្មរបស់យើង](/#services) ឬឆាតមកយើងតាម [Telegram](https://t.me/vannakdm)។
