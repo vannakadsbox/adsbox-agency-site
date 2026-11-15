@@ -3926,13 +3926,13 @@
       "status": "sent",
       "scripted_at": "2026-11-15T07:24:48+07:00",
       "error": "",
-      "render_started_at": "2026-11-15T07:25:45+07:00",
-      "sent_at": "2026-11-15T07:31:43+07:00",
+      "render_started_at": "2026-11-15T09:42:01+07:00",
+      "sent_at": "2026-11-15T09:47:24+07:00",
       "rendered_at": "2026-11-15T07:31:43+07:00",
-      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/43658041389",
-      "duration": 58.87,
-      "size_mb": 15,
-      "render_seconds": 343,
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/43668940917",
+      "duration": 60.57,
+      "size_mb": 9.9,
+      "render_seconds": 307,
       "voice": "kiri:Arun",
       "music": "adsbox-original-1.mp3",
       "style": "custom animation only",
@@ -3948,56 +3948,56 @@
       ],
       "resolution": "1080x1920",
       "fps": 30,
-      "subtitle_sync": "transcript,proportional",
+      "subtitle_sync": "transcript",
       "footage": [],
       "footage_share": 0,
       "stock_footage": "none (removed)",
       "telegram": {
         "ok": true,
-        "message_id": 280,
+        "message_id": 283,
         "chat": "configured",
-        "at": "2026-11-15T07:31:43+07:00",
-        "file_id": "BAACAgUAAxkDAAIBGGr4_WfIWYHAlTEIY2EMyzhkrmNZAAINHgACHojIV2e1Y1I_yIcuPQQ",
+        "at": "2026-11-15T09:47:24+07:00",
+        "file_id": "BAACAgUAAxkDAAIBG2r5HTTLNlR-xDZFyCnugrKKlTlIAAIyHgACHojIV-K28Ibp_nSmPQQ",
         "items": [
           {
             "item": "video",
-            "message_id": 280,
+            "message_id": 283,
             "file_name": "cod-order-confirmation-message-templates.mp4",
-            "file_size": 15011972,
+            "file_size": 9919842,
             "width": 1080,
             "height": 1920,
-            "file_id": "BAACAgUAAxkDAAIBGGr4_WfIWYHAlTEIY2EMyzhkrmNZAAINHgACHojIV2e1Y1I_yIcuPQQ"
+            "file_id": "BAACAgUAAxkDAAIBG2r5HTTLNlR-xDZFyCnugrKKlTlIAAIyHgACHojIV-K28Ibp_nSmPQQ"
           },
           {
             "item": "facebook_caption",
-            "message_id": 281
+            "message_id": 284
           },
           {
             "item": "thumbnail",
-            "message_id": 282,
+            "message_id": 285,
             "file_name": "cod-order-confirmation-message-templates-thumbnail.jpg",
-            "file_size": 187038
+            "file_size": 150163
           }
         ],
         "sent_count": 3,
         "local_sizes": {
-          "video": 15011972,
-          "thumbnail": 187038
+          "video": 9919842,
+          "thumbnail": 150163
         }
       },
       "speech_match": [
-        0.976,
-        0.972,
+        0.951,
+        0.991,
         0.989,
         0.991,
+        0.923,
+        0.958,
         1,
-        0.991,
-        1,
-        1
+        0.994
       ],
       "scene_sync": [
         "transcript",
-        "proportional",
+        "transcript",
         "transcript",
         "transcript",
         "transcript",
@@ -4008,15 +4008,15 @@
       "archive": {
         "assets": [
           {
-            "id": 749268022,
+            "id": 749594808,
             "name": "cod-order-confirmation-message-templates-thumb.jpg",
-            "size": 187038,
+            "size": 150163,
             "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/cod-order-confirmation-message-templates-thumb.jpg"
           },
           {
-            "id": 749268021,
+            "id": 749594804,
             "name": "cod-order-confirmation-message-templates.mp4",
-            "size": 15011972,
+            "size": 9919842,
             "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/cod-order-confirmation-message-templates.mp4"
           }
         ],
@@ -4026,20 +4026,20 @@
         "width": 1080,
         "height": 1920,
         "fps": "30/1",
-        "duration": 58.87,
+        "duration": 60.57,
         "video_codec": "h264",
         "audio_codec": "aac",
         "loudness": "-13.2 LUFS",
         "decode_errors": false,
         "visual_mix": {
-          "motion_graphics": 0.91,
-          "phone_chat": 0.09,
+          "motion_graphics": 0.93,
+          "phone_chat": 0.07,
           "illustrated": 0,
           "product_dashboard": 0
         }
       },
       "article_id": "cod-order-confirmation-message-templates",
-      "video_id": 749268021,
+      "video_id": 749594804,
       "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/cod-order-confirmation-message-templates.mp4",
       "created_at": "2026-11-15T07:31:43+07:00",
       "telegram_status": "delivered",
