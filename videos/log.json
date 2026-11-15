@@ -3916,6 +3916,16 @@
         "status": "ready",
         "cover": "set"
       }
+    },
+    {
+      "slug": "cod-order-confirmation-message-templates",
+      "article_title": "បញ្ជាក់ Order មុនផ្ញើ (COD)៖ សារគំរូ Copy បាន សម្រាប់ ៥ ស្ថានភាពដែល Admin ជួបរាល់ថ្ងៃ",
+      "article_url": "https://adsbox.agency/knowledge/cod-order-confirmation-message-templates/",
+      "video_title": "ភ្ញៀវថា «យក» ហើយស្ងាត់? សារបញ្ជាក់ Order COD មុនខ្ចប់",
+      "hook": "ភ្ញៀវ Comment ថា «យក»… បងខ្ចប់ភ្លាម ឬផ្ញើសារសិន?",
+      "status": "scripted",
+      "scripted_at": "2026-11-15T07:24:48+07:00",
+      "error": ""
     }
   ]
 }

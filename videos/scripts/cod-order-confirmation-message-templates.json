@@ -1,0 +1,182 @@
+{
+  "slug": "cod-order-confirmation-message-templates",
+  "video_title": "ភ្ញៀវថា «យក» ហើយស្ងាត់? សារបញ្ជាក់ Order COD មុនខ្ចប់",
+  "topic": "សារបញ្ជាក់ Order COD ខ្លីៗ ដែល Admin ប្រើបានថ្ងៃនេះ ដើម្បីខ្ចប់តែ Order ដែលភ្ញៀវពិតជាយក និងជៀសខាតថ្លៃដឹក ថ្លៃខ្ចប់។",
+  "thumbnail_text": "ខ្ចប់ភ្លាម ឬបញ្ជាក់សិន?",
+  "description": "ភ្ញៀវថា «យក» តែដឹកដល់មិនទទួល?\nផ្ញើសារបញ្ជាក់ Order មុនខ្ចប់ សរុបតម្លៃឲ្យច្បាស់ ហើយខ្ចប់តែ Order ដែលភ្ញៀវបញ្ជាក់។\nអានសារគំរូទាំង ៥ នៅ adsbox.agency\n#ADSBOX #លក់អនឡាញ #COD #Messenger",
+  "facebook_caption": "ភ្ញៀវថា «យក» ហើយស្ងាត់ ឬដឹកដល់មិនទទួល? 😥\nសាកសារបញ្ជាក់ Order COD ងាយៗនេះ មុនខ្ចប់៖\n✅ ផ្ញើសារសរុប ប្រាប់តម្លៃសរុបពេលទទួល\n✅ ភ្ញៀវស្ងាត់ រំលឹកម្ដង ប្រាប់ម៉ោងកំណត់\n✅ ទំនិញអស់ ឲ្យជម្រើស ២\n✅ ខ្ចប់តែ Order ដែលភ្ញៀវបញ្ជាក់ហើយ\nខាតថ្លៃដឹក ថ្លៃខ្ចប់ តិចជាងមុន 💪\nថ្ងៃនេះហាងបងបញ្ជាក់ Order បានប៉ុន្មាន? Comment ពាក្យ CONFIRM មក 👇\n#ADSBOX #លក់អនឡាញ #COD #OrderOnline",
+  "scenes": [
+    {
+      "role": "hook",
+      "lines": [
+        "ភ្ញៀវ Comment ថា «យក»…",
+        "បងខ្ចប់ភ្លាម ឬផ្ញើសារសិន?"
+      ],
+      "voice": "Curious consultant asking a shop owner, light surprise, short pause after the first line",
+      "visual": {
+        "type": "question",
+        "title": "ខ្ចប់ភ្លាម ឬសួរសិន?",
+        "bubbles": [
+          "យក ១ ឈុតបង",
+          "ពណ៌ស M",
+          "យកៗ"
+        ]
+      }
+    },
+    {
+      "role": "problem",
+      "lines": [
+        "Order មិនទាន់បញ្ជាក់",
+        "មិនទាន់ជាលុយទេបង។",
+        "បញ្ជាក់សិន ទើបខ្ចប់។"
+      ],
+      "voice": "Sincere expert explaining to the shop owner, not rushed, stress «មិនទាន់ជាលុយ»",
+      "keyword": "បញ្ជាក់ មុនខ្ចប់",
+      "visual": {
+        "type": "funnel",
+        "title": "ផ្លូវលុយរបស់ហាង",
+        "steps": [
+          "លុយ Boost",
+          "Message",
+          "Order",
+          "បញ្ជាក់ Order",
+          "ដឹកដល់",
+          "ភ្ញៀវបង់លុយ",
+          "ចំណេញពិត"
+        ],
+        "host": false
+      }
+    },
+    {
+      "role": "tip",
+      "label": "សារទី ១",
+      "lines": [
+        "ផ្ញើសារសរុបភ្លាម។",
+        "រ៉ូប $15 បូកដឹក $1.5…",
+        "បង់ពេលទទួល $16.5។",
+        "ភ្ញៀវឆ្លើយតែ «ចាស» បានហើយ។"
+      ],
+      "voice": "Expert explaining slowly and clearly, each price distinct, small pause before the total",
+      "visual": {
+        "type": "delivery",
+        "rows": [
+          {
+            "label": "រ៉ូបពណ៌ស M ១ ឈុត",
+            "value": "$15"
+          },
+          {
+            "label": "ថ្លៃដឹក",
+            "value": "$1.5"
+          }
+        ],
+        "total": {
+          "label": "សរុបបង់ពេលទទួល",
+          "value": "$16.5"
+        },
+        "host": false
+      }
+    },
+    {
+      "role": "tip",
+      "label": "សារទី ២",
+      "lines": [
+        "ភ្ញៀវស្ងាត់? កុំទាន់ខ្ចប់ទុក។",
+        "រំលឹកម្ដង ថាផ្ញើមុនម៉ោង ៤ ល្ងាច។"
+      ],
+      "voice": "Calm, practical advice, gentle tone, stress «ម្ដង» and the 4pm time",
+      "visual": {
+        "type": "deadline",
+        "bad": "ខ្ចប់ទុកមុន ចាំភ្ញៀវ",
+        "good": "រំលឹកម្ដង៖ ផ្ញើមុនម៉ោង ៤ ល្ងាច",
+        "host": false
+      }
+    },
+    {
+      "role": "tip",
+      "label": "សារទី ៣",
+      "lines": [
+        "ទំនិញអស់? កុំសួរថា «ចង់បានអីវិញ?»",
+        "ឲ្យជម្រើស ២ ងាយជ្រើសជាង។"
+      ],
+      "voice": "Friendly expert with energy, contrast the bad question and the better way",
+      "visual": {
+        "type": "compare",
+        "bad": "អស់ហើយ បងចង់បានអីវិញ?",
+        "good": "ជម្រើស ២៖ ស L ឬ ផ្កាឈូក M",
+        "host": false
+      }
+    },
+    {
+      "role": "example",
+      "label": "លេខគំរូ",
+      "lines": [
+        "លេខគំរូ៖ ៣ Order ស្ងាត់ មួយខាត $2.30។",
+        "មួយថ្ងៃ ៣ Order ស្មើ $6.90។",
+        "ចុះមួយសប្ដាហ៍ ជៀសខាតបាន…",
+        "$48.30 ឯណោះ!"
+      ],
+      "voice": "Expert explaining numbers slowly, pause before the weekly number, then clear emphasis",
+      "visual": {
+        "type": "flow",
+        "steps": [
+          {
+            "label": "មួយ Order",
+            "text": "ដឹក $2 + ខ្ចប់ $0.30 = $2.30"
+          },
+          {
+            "label": "មួយថ្ងៃ",
+            "text": "៣ × $2.30 = $6.90"
+          },
+          {
+            "label": "៧ ថ្ងៃ",
+            "text": "៧ × $6.90 = $48.30"
+          }
+        ]
+      }
+    },
+    {
+      "role": "summary",
+      "lines": [
+        "ចាំមួយប្រយោគនេះ៖",
+        "ខ្ចប់តែ Order ដែលភ្ញៀវបញ្ជាក់ហើយ។"
+      ],
+      "voice": "Warm, confident, slower, the middle sentence firm and memorable",
+      "visual": {
+        "type": "takeaway",
+        "quote": "ខ្ចប់តែ Order\nដែលភ្ញៀវបញ្ជាក់ហើយ",
+        "chips": [
+          "សរុបតម្លៃ",
+          "ម៉ោងកំណត់",
+          "ជម្រើស ២"
+        ],
+        "host": false
+      }
+    },
+    {
+      "role": "cta",
+      "lines": [
+        "ថ្ងៃនេះ ហាងបងបញ្ជាក់ Order បានប៉ុន្មាន?",
+        "Comment ពាក្យ CONFIRM មក",
+        "ADS BOX រីករាយជួយបងមើល។"
+      ],
+      "voice": "Friendly, confident, helpful expert inviting the shop owner to comment, warm, not salesy",
+      "visual": {
+        "type": "cta2",
+        "question": "ថ្ងៃនេះ ហាងបងបញ្ជាក់ Order បានប៉ុន្មាន?",
+        "comment": "CONFIRM",
+        "comment_line": 1,
+        "services": [
+          "ADS BOX System",
+          "Boost Live",
+          "Boost Post"
+        ],
+        "url": "adsbox.agency"
+      }
+    }
+  ],
+  "article": {
+    "title": "បញ្ជាក់ Order មុនផ្ញើ (COD)៖ សារគំរូ Copy បាន សម្រាប់ ៥ ស្ថានភាពដែល Admin ជួបរាល់ថ្ងៃ",
+    "url": "https://adsbox.agency/knowledge/cod-order-confirmation-message-templates/"
+  },
+  "written_at": "2026-11-15T07:24:48+07:00"
+}
