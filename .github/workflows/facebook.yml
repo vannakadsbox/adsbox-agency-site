@@ -1,14 +1,14 @@
 # Facebook Page publishing, owner-approved: each video's caption message in Telegram has a "Publish" button.
-# Since Nov 2026 a tap goes to the Render webhook (tools/fbhook/app.py), which starts this workflow with action "tap"
+# Since Nov 2026 a tap goes to the Cloudflare Worker (workers/fbhook, deployed by fbhook-deploy.yml), which starts this workflow with action "tap"
 # for that one video. There is no schedule any more: GitHub runs only when a video is tapped (or when run by hand).
 name: Facebook publish
 on:
   workflow_dispatch:
     inputs:
       action:
-        description: "tap = publish one tapped video (from the webhook) · check = test the Facebook token · draft / offer / cover = slug below · webhook-set / webhook-info / webhook-delete = Telegram webhook · poll = manual fallback (only without a webhook)"
+        description: "tap = publish one tapped video (from the webhook) · check = test the Facebook token · draft / offer / cover = slug below · webhook-info / webhook-delete = Telegram webhook (connect it with the Facebook webhook (Cloudflare) workflow) · poll = manual fallback (only without a webhook)"
         type: choice
-        options: [tap, check, draft, offer, cover, webhook-set, webhook-info, webhook-delete, poll]
+        options: [tap, check, draft, offer, cover, webhook-info, webhook-delete, poll]
         default: check
       slug:
         description: "tap / draft / offer / cover: video slug"
@@ -18,9 +18,6 @@ on:
         required: false
       chat:
         description: "tap: Telegram chat id (filled in by the webhook)"
-        required: false
-      url:
-        description: "webhook-set: https://<render-service>.onrender.com/telegram"
         required: false
 permissions:
   contents: write
@@ -37,11 +34,9 @@ jobs:
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
       TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       TELEGRAM_VIDEO_CHAT_ID: ${{ secrets.TELEGRAM_VIDEO_CHAT_ID }}
-      TELEGRAM_WEBHOOK_SECRET: ${{ secrets.TELEGRAM_WEBHOOK_SECRET }}
       IN_SLUG: ${{ github.event.inputs.slug }}
       IN_MSG: ${{ github.event.inputs.message_id }}
       IN_CHAT: ${{ github.event.inputs.chat }}
-      IN_URL: ${{ github.event.inputs.url }}
       GH_TOKEN: ${{ github.token }}
     steps:
       - name: Skip quietly until Facebook is set up
@@ -58,7 +53,6 @@ jobs:
             draft)  gh release download video-archive -p "$IN_SLUG.mp4" -O /tmp/v.mp4 --clobber
                     python3 tools/reel/facebook.py publish "$IN_SLUG" /tmp/v.mp4 --draft ;;
             cover|offer) python3 tools/reel/facebook.py "$act" "$IN_SLUG" ;;
-            webhook-set)    python3 tools/reel/facebook.py webhook set "$IN_URL" ;;
             webhook-info)   python3 tools/reel/facebook.py webhook info ;;
             webhook-delete) python3 tools/reel/facebook.py webhook delete ;;
             *)      python3 tools/reel/facebook.py "$act" ;;
