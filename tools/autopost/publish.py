@@ -180,7 +180,10 @@ def apply(a, brief, s):
     if done: return 3, f"Already done: {brief['slot']} {brief['date']} is {done['status']} ({done.get('slug')})", []
     rec = {"date": brief["date"], "slot": brief["slot"], "category": brief["category"]["id"], "angle": brief.get("suggested_angle"),
            "attempts": a.attempts, "generated_at": now, "plan_day": (brief.get("plan_topic") or {}).get("day"),
-           "plan_id": (brief.get("plan_topic") or {}).get("plan_id")}
+           "plan_id": (brief.get("plan_topic") or {}).get("plan_id"),
+           "topic_id": (brief.get("plan_topic") or {}).get("topic_id"),
+           "rotation_category": (brief.get("plan_topic") or {}).get("rotation_category"),
+           "notes": brief.get("planner_notes") or []}
     if a.record_failure is not None:
         rec.update(status="failed", error=a.record_failure[:500], failed_at=now)
         h["runs"].append(rec); h["runs"] = h["runs"][-400:]; C.save_json("history.json", h)

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Tests for the Knowledge v2 rules (owner-approved 15 Nov 2026): pillar tags, the v2 30-day plan,
-the data policy (no auto-written case studies) and the signature series. Run:
+"""Tests for the Knowledge v2 daily writer: weekly rotation (owner-approved 16 Nov 2026), pillar tags,
+data policy (no auto-written case studies / invented processes), duplicate guard and series. Run:
     python3 tools/autopost/test_knowledge_v2.py
 
 Works on a temporary copy of content/, so nothing in the real site changes.
@@ -14,97 +14,143 @@ import publish as P
 import plan as PL
 
 SAMPLE = P.load(os.path.join(HERE, "fixtures", "sample-draft.json"))
-NOW = "2026-11-17T07:00"  # morning slot window
+MON, TUE, SUN1, SUN2, SAT_1212 = "2026-11-23", "2026-11-24", "2026-11-29", "2026-12-06", "2026-12-12"
 
 
-class V2(unittest.TestCase):
+class Rotation(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.mkdtemp()
         shutil.copytree(os.path.join(C.ROOT, "content"), os.path.join(self.tmp, "content"))
         self.saved = (C.ROOT, C.AUTO, C.ARTICLES, C.DRY_RUNS)
         C.ROOT = self.tmp; C.AUTO = os.path.join(self.tmp, "content", "autopost")
         C.ARTICLES = os.path.join(self.tmp, "content", "articles"); C.DRY_RUNS = os.path.join(C.AUTO, "dry-runs")
-        # Old plan days 1-3 were published before v2 (no plan_id): they must not count as v2 days.
-        C.save_json("history.json", {"runs": [
-            {"date": "2026-11-1%d" % (2 + i), "slot": "morning", "status": "published", "plan_day": i, "category": "analytics"}
-            for i in (1, 2, 3)]})
-        s = C.load_json("settings.json"); s.update(enabled=True, mode="dry_run"); s["morning"]["enabled"] = True
+        C.save_json("history.json", {"runs": [{"date": "2026-11-13", "slot": "morning", "status": "published", "plan_day": 1}]})
+        s = C.load_json("settings.json"); s.update(enabled=True, mode="dry_run", rotation_start=MON); s["morning"]["enabled"] = True
         C.save_json("settings.json", s)
 
     def tearDown(self):
         C.ROOT, C.AUTO, C.ARTICLES, C.DRY_RUNS = self.saved
         shutil.rmtree(self.tmp)
 
-    def plan(self, now=NOW):
+    def pick(self, date):
+        return PL.rotation_topic(date, C.history(), C.existing_articles(), C.settings())
+
+    def plan(self, date):
         out = os.path.join(self.tmp, "brief.json")
-        sys.argv = ["plan.py", "--now", now, "--out", out]
+        sys.argv = ["plan.py", "--now", f"{date}T07:00", "--out", out]
         code = PL.main()
         return code, (P.load(out) if code == 0 else None)
 
-    def mark_done(self, *days):
+    def done(self, *ids):
         h = C.history()
-        for d in days:
-            h["runs"].append({"date": "2026-11-01", "slot": "evening", "status": "published", "plan_day": d, "plan_id": "knowledge-v2"})
+        h["runs"] += [{"date": "2026-11-01", "slot": "morning", "status": "published", "topic_id": i} for i in ids]
         C.save_json("history.json", h)
 
-    def test_old_plan_days_do_not_block_v2(self):
-        code, b = self.plan()
+    def rot(self):
+        return C.load_json("rotation.json")
+
+    def save_rot(self, r):
+        C.save_json("rotation.json", r)
+
+    def test_weekday_decides_category_and_pillar(self):
+        t = self.pick(MON)[0]
+        self.assertEqual((t["rotation_category"], t["topic_id"], t["tag"]), ("boost-post", "bp-max-cpo-calculator", "Boost → Order → ចំណេញ"))
+        t = self.pick(TUE)[0]
+        self.assertEqual((t["rotation_category"], t["tag"]), ("boost-live", "Live → Order"))
+
+    def test_nothing_before_rotation_start(self):
+        t, _, msg = self.pick("2026-11-20")
+        self.assertIsNone(t); self.assertIn("starts on", msg)
+
+    def test_brief_has_every_planning_field(self):
+        code, b = self.plan(MON)
         self.assertEqual(code, 0)
-        self.assertEqual(b["plan_topic"]["day"], 1)
-        self.assertEqual(b["plan_topic"]["plan_id"], "knowledge-v2")
+        for k in ("topic", "category", "pillar", "format", "reader_problem", "kpi", "cta", "related",
+                  "not_duplicate_of", "requires_real_data", "requires_coo_approval"):
+            self.assertIn(k, b["plan_topic"], k)
+        self.assertEqual(b["tag"], "Boost → Order → ចំណេញ")
+        self.assertEqual(b["category"]["id"], "boost-post")
+        self.assertTrue(any("MONEY FUNNEL AND TERMS" in r and "Refused Parcel Loss" in r for r in b["rules"]))
+        self.assertTrue(any(r.startswith("ADS BOX POINT OF VIEW (optional)") for r in b["rules"]))
 
-    def test_brief_uses_pillar_tag_and_series(self):
-        self.mark_done(1)
-        b = self.plan()[1]
-        self.assertEqual(b["plan_topic"]["day"], 2)
-        self.assertEqual(b["tag"], "ចំណេញពិត")
-        self.assertEqual(b["series"], "ចំណេញពិតប៉ុន្មាន?")
+    def test_used_topic_never_reused(self):
+        self.done("bp-max-cpo-calculator")
+        self.assertEqual(self.pick(MON)[0]["topic_id"], "bp-likes-vs-orders")
 
-    def test_owner_content_days_are_skipped_without_prewritten(self):
-        self.mark_done(1, 2, 3, 4, 5)
-        self.assertEqual(self.plan()[1]["plan_topic"]["day"], 7)  # day 6 (Behind ADS BOX) waits for owner facts
-        self.mark_done(*[d for d in range(7, 31) if d not in (6, 11, 16, 17, 18, 25, 27, 29)])
-        self.assertEqual(self.plan()[0], 3)  # only owner-content and future-window days left: nothing auto-written
+    def test_coo_topic_falls_back_without_approval(self):
+        self.done("ex-where-100-went")
+        t, notes, _ = self.pick(SUN2)
+        self.assertEqual(t["topic_id"], "ex-300-budget-review")
+        self.assertTrue(any("COO-confirmed facts" in n for n in notes))
 
-    def test_no_case_study_topic_reaches_the_writer(self):
-        self.mark_done(*range(1, 31))
-        h = C.history(); h["runs"] = [r for r in h["runs"] if r.get("plan_day") not in (18, 25, 27)]; C.save_json("history.json", h)
-        self.assertEqual(self.plan()[0], 3)
+    def test_unapproved_prewritten_is_ignored_and_approved_one_runs(self):
+        self.done("ex-where-100-went")
+        r = self.rot(); r["queues"]["adsbox-expertise"][1]["prewritten"] = "content/autopost/prewritten/pm.json"; self.save_rot(r)
+        os.makedirs(os.path.join(self.tmp, "content", "autopost", "prewritten"), exist_ok=True)
+        path = os.path.join(self.tmp, "content", "autopost", "prewritten", "pm.json")
+        json.dump({"title": "x"}, open(path, "w"))                                   # no approval record
+        self.assertEqual(self.pick(SUN2)[0]["topic_id"], "ex-300-budget-review")
+        json.dump({"title": "x", "approved_by": "COO", "approved_at": "2026-11-20"}, open(path, "w"))
+        self.assertEqual(self.pick(SUN2)[0]["topic_id"], "ex-pm-morning-check")
 
+    def test_real_data_needs_source_and_client_permission(self):
+        r = self.rot(); q = r["queues"]["adsbox-expertise"]
+        bench = next(t for t in q if t["topic_id"] == "ex-cpo-benchmark"); bench["prewritten"] = "content/autopost/prewritten/b.json"
+        r["queues"]["adsbox-expertise"] = [bench]; self.save_rot(r)
+        os.makedirs(os.path.join(self.tmp, "content", "autopost", "prewritten"), exist_ok=True)
+        path = os.path.join(self.tmp, "content", "autopost", "prewritten", "b.json")
+        base = {"approved_by": "COO", "approved_at": "2026-11-20"}
+        for extra, expect in (({}, "ex-delivery-success-rate"),
+                              ({"data_source": "client_permitted"}, "ex-delivery-success-rate"),
+                              ({"data_source": "client_permitted", "client_permission": "confirmed"}, "ex-cpo-benchmark"),
+                              ({"data_source": "adsbox_own"}, "ex-cpo-benchmark")):
+            json.dump(dict(base, **extra), open(path, "w"))
+            self.assertEqual(self.pick(SUN1)[0]["topic_id"], expect, extra)
+
+    def test_window_topic_goes_first_inside_its_dates_only(self):
+        self.assertNotEqual(self.pick("2026-12-05")[0]["topic_id"], "ds-1212-continue")
+        self.assertEqual(self.pick(SAT_1212)[0]["topic_id"], "ds-1212-continue")
+
+    def test_too_similar_topic_is_skipped_and_noted(self):
+        r = self.rot(); r["queues"]["boost-post"][0]["topic"] = "សារថោក Order ច្រើន តែចុងខែលុយមិនសល់? គណនាពីលុយចាយ Boost ដល់ចំណេញពិត"
+        self.save_rot(r)
+        t, notes, _ = self.pick(MON)
+        self.assertEqual(t["topic_id"], "bp-likes-vs-orders")
+        self.assertTrue(any(n.startswith("Skipped 'bp-max-cpo-calculator'") for n in notes))
+
+    def test_empty_category_uses_its_fallback_never_old_generic(self):
+        r = self.rot(); r["queues"]["boost-tiktok"] = []; self.save_rot(r)
+        t, notes, _ = self.pick("2026-11-25")
+        self.assertEqual(t["rotation_category"], "boost-post")
+        r["queues"] = {k: [] for k in r["queues"]}; self.save_rot(r)
+        code, _ = self.plan("2026-11-25")
+        self.assertEqual(code, 3)
+
+    def test_queue_low_is_noted(self):
+        r = self.rot(); r["queues"]["boost-post"] = r["queues"]["boost-post"][:3]; self.save_rot(r)
+        self.assertTrue(any("left after today" in n for n in self.pick(MON)[1]))
+
+    # Validator (publish.py)
     def errs(self, brief, **change):
         d = copy.deepcopy(SAMPLE); d.update(change)
         return P.validate(d, brief, C.settings())
 
     def test_case_study_tag_and_words_rejected_for_auto_articles(self):
-        b = self.plan()[1]
-        e = self.errs(b, tag=P.CASE_TAG)
-        self.assertIn("tag: not an allowed tag", e)
-        e = self.errs(b, body=SAMPLE["body"] + "\n\nករណីសិក្សា៖ ហាងមួយ")
-        self.assertTrue(any(x.startswith("data policy") for x in e))
-        e = self.errs(b, title="Case Study៖ លទ្ធផលពិតរបស់ហាងមួយ ពីការ Boost Post")
-        self.assertTrue(any(x.startswith("data policy") for x in e))
+        b = self.plan(MON)[1]
+        self.assertIn("tag: not an allowed tag", self.errs(b, tag=P.CASE_TAG))
+        self.assertTrue(any(x.startswith("data policy") for x in self.errs(b, body=SAMPLE["body"] + "\n\nករណីសិក្សា៖ ហាងមួយ")))
 
     def test_case_study_tag_allowed_only_for_prewritten(self):
-        b = self.plan()[1]; b["prewritten_draft"] = "content/autopost/prewritten/x.json"
-        e = self.errs(b, tag=P.CASE_TAG)
-        self.assertNotIn("tag: not an allowed tag", e)
-        self.assertFalse(any(x.startswith("data policy") for x in self.errs(b, body=SAMPLE["body"] + "\n\nCase Study")))
+        b = self.plan(MON)[1]; b["prewritten_draft"] = "content/autopost/prewritten/x.json"
+        self.assertNotIn("tag: not an allowed tag", self.errs(b, tag=P.CASE_TAG))
 
-    def test_series_must_match_plan(self):
-        self.mark_done(1)
-        b = self.plan()[1]
-        self.assertIn("series: copy plan_topic.series exactly", self.errs(b, series=""))
-        self.assertIn("series: must be empty or one of " + ", ".join(P.SERIES), self.errs(b, series="x"))
-        self.assertFalse(any(x.startswith("series") for x in self.errs(b, series="ចំណេញពិតប៉ុន្មាន?")))
-
-    def test_series_written_to_front_matter(self):
-        self.mark_done(1)
-        b = self.plan()[1]
-        d = copy.deepcopy(SAMPLE); d.update(series="ចំណេញពិតប៉ុន្មាន?", tag=b["tag"])
-        text = P.article_file(d, b, "2026-11-17T07:00:00+07:00")
-        self.assertIn('series: "ចំណេញពិតប៉ុន្មាន?"', text)
-        d["series"] = ""
-        self.assertNotIn("series:", P.article_file(d, b, "2026-11-17T07:00:00+07:00"))
+    def test_run_record_keeps_topic_id(self):
+        b = self.plan(MON)[1]
+        class A: pass
+        a = A(); a.record_failure = "test"; a.attempts = 1; a.draft = None; a.dry_run = False
+        P.apply(a, b, C.settings())
+        r = C.history()["runs"][-1]
+        self.assertEqual((r["topic_id"], r["rotation_category"]), ("bp-max-cpo-calculator", "boost-post"))
 
 
 if __name__ == "__main__":

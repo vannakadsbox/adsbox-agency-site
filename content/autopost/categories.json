@@ -193,5 +193,56 @@
       "en": "Case studies and real data (owner-approved prewritten articles only; never rotated or auto-written)",
       "angles": []
     }
+  ],
+  "rotation": [
+    {
+      "id": "boost-post",
+      "tag": "Boost → Order → ចំណេញ",
+      "kh": "Boost Post",
+      "en": "Boost Post (Monday)",
+      "angles": []
+    },
+    {
+      "id": "boost-live",
+      "tag": "Live → Order",
+      "kh": "Boost Live",
+      "en": "Boost Live (Tuesday)",
+      "angles": []
+    },
+    {
+      "id": "boost-tiktok",
+      "tag": "Boost → Order → ចំណេញ",
+      "kh": "Boost TikTok",
+      "en": "Boost TikTok (Wednesday)",
+      "angles": []
+    },
+    {
+      "id": "page-care",
+      "tag": "Boost → Order → ចំណេញ",
+      "kh": "ថែទាំផេក",
+      "en": "Facebook Page Care (Thursday)",
+      "angles": []
+    },
+    {
+      "id": "profit",
+      "tag": "ចំណេញពិត",
+      "kh": "Boost → Order → ចំណេញ",
+      "en": "Boost → Order → Profit (Friday)",
+      "angles": []
+    },
+    {
+      "id": "decision",
+      "tag": "Boost → Order → ចំណេញ",
+      "kh": "បញ្ហាពិត / ការសម្រេចចិត្ត",
+      "en": "Real problem / decision guide (Saturday)",
+      "angles": []
+    },
+    {
+      "id": "adsbox-expertise",
+      "tag": "Behind ADS BOX",
+      "kh": "ជំនាញ ADS BOX / ទិន្នន័យ",
+      "en": "ADS BOX expertise / behind the scenes / data (Sunday)",
+      "angles": []
+    }
   ]
 }

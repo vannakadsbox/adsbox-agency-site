@@ -14,12 +14,13 @@ import common as C
 
 RULES = [
     # Knowledge rules approved by the owner on 11-12 Nov 2026 (Knowledge Center audit, Phase 2 and the 30-day plan).
-    "TOPIC: write the article for 'plan_topic' (title idea, format, CTA and note). You may polish the title (keep the meaning), but keep the topic, the format and the CTA. Category and tag come from the brief.",
+    "TOPIC: write today's topic from the weekly rotation ('plan_topic': topic, category, pillar, format, reader_problem, kpi, cta, related, not_duplicate_of). You may polish the title (keep the meaning), but keep the topic, the format, the KPI and the CTA type. Category and tag come from the brief.",
+    "BUSINESS QUESTION: the article must clearly answer at least one of: how much money is spent · how many Orders it brings · what the Cost per Order is · whether it is profitable · when to continue · when to stop · which number to watch · what to do next. Use plan_topic.kpi with a formula or a labelled example.",
     "Write in natural Khmer that a Cambodian shop owner understands on first reading on a phone: talk like an experienced consultant, use «បងៗ», short paragraphs (1-3 sentences), everyday words; English only for platform terms and metric names (Boost Post, Live, Messenger, Ads Manager, Cost per Order, Conversion Rate...). Clothes are counted with «ឈុត», never «ដុំ».",
     "Length: about 300-600 Khmer words (roughly {min_k}-{max_k} Khmer characters in the body).",
     "Structure for practical articles: a problem the seller recognises → why it happens → what to check → what to do → a labelled example with numbers → mistakes to avoid → a short checklist (lines starting with '- ☐ ') → «## សរុបមួយប្រយោគ» → «### បងអាចធ្វើថ្ងៃនេះ» with 3-4 '- ☐ ' actions → the learning-path and related-article lines → the CTA paragraph last. Short formats (script pack, template, FAQ) may skip parts. Use '## ' headings.",
-    "FORMAT: follow plan_topic.format. Never write a plain '៥ គន្លឹះ…' numbered-tips article. Script packs give copy-ready messages; metric explainers go formula → labelled example → how to judge it against the shop's OWN last 7 days and own profit per order → what moves it → what to do; calculators show each step of the sum; decision trees use 'បើ … → …' lines.",
-    "MONEY FUNNEL: every article about money uses the same funnel: លុយចាយ → Message → Order → Confirmed → Delivered → Paid → Profit. Never treat Orders as profit. Keep contribution profit (before fixed costs) separate from net profit, and say which one a number is.",
+    "FORMAT: follow plan_topic.format (Data Analysis, Decision Guide, Calculator, Real Problem, Comparison, FAQ, Step-by-Step, Explainer, Behind the Scenes). Never a plain '៥ គន្លឹះ…' list of tips: every point must lead to an Order, cost or profit result. Calculators show each step of the sum; decision guides use 'បើ … → …' lines; comparisons use the same budget and the same KPI for both sides.",
+    "MONEY FUNNEL AND TERMS: money articles use the funnel លុយចាយ → Message → Order → Confirmed → Delivered → Paid → Profit and EXACTLY these definitions (say which one a number is): Revenue = money received from customers; Gross Profit = Revenue − Product Cost; Contribution Profit = Gross Profit − Packing − Delivery − Refused Parcel Loss − Ad Cost; Net Profit = Contribution Profit − Rent − Salaries − Fixed Costs. Never treat Orders or Revenue as profit.",
     "NUMBERS: there is no universal 'good' Cost per Message, Cost per Order or conversion rate. Compare with the shop's own numbers. Any guideline number is labelled 'guideline ដែល ADS BOX ណែនាំ មិនមែនជាច្បាប់របស់ Meta / Facebook ទេ'. Any assumed cost (delivery, packaging, return fee) is labelled as an assumption ('ឧទាហរណ៍នេះសន្មត់ថា…'). Check every sum before writing it.",
     "EXAMPLES: every invented shop or figure is introduced with «**ឧទាហរណ៍សម្រាប់បង្ហាញវិធីគណនា** (មិនមែនទិន្នន័យអតិថិជនពិត)». Never use the word «ករណីសិក្សា». No client names, client results, testimonials or real-business names.",
     "CLAIMS: no «យើងឃើញញឹកញាប់», no 'Facebook នឹង…' promises, no guaranteed orders; prefer «អាច», «បង្កើនឱកាស», «ជួយកាត់បន្ថយ». Only state Facebook/TikTok features you are sure of; otherwise give general advice. Never advise anything that breaks platform rules (fake accounts, bought likes or reviews).",
@@ -30,7 +31,9 @@ RULES = [
     "Do not repeat a title, angle or main advice from 'recent_titles' or 'last_7_days'; where the topic is close to an older article, take the new angle in plan_topic and link the older article instead of repeating it.",
     # Knowledge v2 rules approved by the owner on 15 Nov 2026 (5 pillars, signature series, data policy).
     "PILLAR: the article belongs to the pillar in 'tag' and must connect clearly to Boost → Order → Cost → Profit. Never write a generic online-selling tip that does not lead back to ad spend, Orders, cost per Order or profit.",
-    "ADS BOX POINT OF VIEW: include one short paragraph that starts with «**របៀបដែល ADS BOX មើល៖**» (1-2 sentences) saying how ADS BOX judges this topic in Orders, cost per Order and profit, not Likes or messages alone. Use only facts from `facts`.",
+    "ADS BOX POINT OF VIEW (optional): where it fits naturally (money, Boost and decision topics) you may use the sentence «ADS BOX មិនមើលតែចំនួន Message ឬ Like ទេ។ យើងមើលថា លុយដែលបានចំណាយ បង្កើត Order បានប៉ុន្មាន និង Cost ក្នុងមួយ Order ប៉ុន្មាន។» or a short «**របៀបដែល ADS BOX មើល៖**» paragraph, at most once. Never force it. Use only facts from `facts`.",
+    "PAGE CARE: Page Care articles must link Page health to selling results (Cost per Message, Message → Order, spend at risk). State Facebook features only if certain; otherwise give general advice. Never promise that a Page or account will be restored.",
+    "NO DUPLICATES: read plan_topic.related and plan_topic.not_duplicate_of first. Write only the new angle given there and link the older article for anything it already covers. Never rewrite an existing article under a new title.",
     "CTA BY TYPE: the closing CTA follows plan_topic.cta exactly in type (Educational, Profit, Service, System or Case). 80/20: about 80% useful teaching and evidence first; ADS BOX appears only in the 'របៀបដែល ADS BOX មើល' paragraph and the one closing CTA paragraph. Never put a CTA before the first useful section.",
     "DATA POLICY: never write a case study and never present invented, assumed or reconstructed client results as real. Never use the words «ករណីសិក្សា» or «Case Study» and never the tag «Case Study និងទិន្នន័យពិត». Every invented number is labelled «ឧទាហរណ៍». Do not describe ADS BOX PM workflows, AI alerts, reports or system features beyond what `facts` states.",
     "SERIES: if plan_topic.series is not empty, copy it unchanged into the 'series' field and write the article as one episode of that series (a short line near the top may name the series); otherwise leave 'series' empty.",
@@ -98,6 +101,79 @@ def pick_angle(cat, hist):
     return sorted(angles, key=lambda a: (used.count(a), angles.index(a)))[0]
 
 
+def _prewritten_ok(t):
+    """An owner-approved prewritten article: the file exists and records who approved it, when, and the data source."""
+    path = t.get("prewritten")
+    if not path or not os.path.exists(os.path.join(C.ROOT, path)):
+        return False
+    d = read_json_safe(os.path.join(C.ROOT, path))
+    if not (d.get("approved_by") and d.get("approved_at")):
+        return False
+    if t.get("requires_real_data"):
+        src = d.get("data_source")
+        if src not in ("adsbox_own", "client_permitted"):
+            return False
+        if src == "client_permitted" and d.get("client_permission") != "confirmed":
+            return False
+    return True
+
+
+def rotation_topic(date, hist, arts, s):
+    """content/autopost/rotation.json (owner-approved weekly rotation, 16 Nov 2026).
+    Returns (topic or None, notes, message)."""
+    rot = C.load_json("rotation.json", None)
+    if not rot:
+        return None, [], None
+    start = s.get("rotation_start")
+    if start and date < start:
+        return None, [], f"The weekly rotation starts on {start}."
+    ok = ("published",) if s["mode"] == "live" else ("published", "dry_run")
+    used = {r.get("topic_id") or (r.get("plan_day") if r.get("plan_id") == "rotation" else None)
+            for r in hist["runs"] if r.get("status") in ok}
+    titles = [a["title"] for a in arts]
+    notes = []
+    ready = lambda t: not (t.get("requires_real_data") or t.get("requires_coo_approval")) or _prewritten_ok(t)
+    in_window = lambda t: not t.get("window") or t["window"][0] <= date <= t["window"][1]
+
+    def options(cat):
+        q = rot["queues"].get(cat, [])
+        timely, rest = [], []
+        for t in q:
+            if t["topic_id"] in used or not in_window(t):
+                continue
+            pick = dict(t, _note=None) if ready(t) else None
+            if pick is None and t.get("fallback") and t["fallback"]["topic_id"] not in used and ready(t["fallback"]):
+                pick = dict(t["fallback"], fallback_for=t["topic_id"],
+                            _note=f"'{t['topic_id']}' is waiting for {'approved real data' if t.get('requires_real_data') else 'COO-confirmed facts'}; "
+                                  f"today's article is its fallback '{t['fallback']['topic_id']}'.")
+            if pick is None:
+                continue
+            near = next((x for x in titles if C.similarity(pick["topic"], x) >= 0.55), None)
+            if near:
+                notes.append(f"Skipped '{pick['topic_id']}': too similar to the existing article «{near}».")
+                continue
+            (timely if t.get("window") else rest).append(pick)
+        return timely + rest
+
+    wd = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"][datetime.date.fromisoformat(date).weekday()]
+    cat = rot["weekday_category"][wd]
+    opts = options(cat)
+    if not opts:
+        alt = rot.get("category_fallback", {}).get(cat)
+        notes.append(f"No ready topic in '{cat}' today; using the next '{alt}' topic.")
+        cat, opts = alt, options(alt) if alt else []
+    if not opts:
+        return None, notes, "Nothing to write: no ready topic in today's category or its fallback. Add topics to rotation.json."
+    t = dict(opts[0])
+    if t.pop("_note", None):
+        notes.append(opts[0]["_note"])
+    left = len(opts) - 1
+    if left <= rot.get("queue_low_alert", 2):
+        notes.append(f"Queue '{cat}' has {left} topic(s) left after today; please approve more.")
+    t.update(plan_id="rotation", day=t["topic_id"], title_idea=t["topic"], tag=t["pillar"], rotation_category=cat)
+    return t, notes, None
+
+
 def plan_topic(date, hist, s):
     """content/autopost/plan30.json (owner-approved 30-day plan): the next topic not yet published.
     Topics with a 'window' [from, until] are written only inside it and go first once it opens."""
@@ -149,7 +225,13 @@ def main():
     cats = C.load_json("categories.json")
     arts = C.existing_articles()
     camp = campaign_for(date)
-    topic = plan_topic(date, h, s)
+    notes = []
+    if C.load_json("rotation.json", None):
+        topic, notes, msg = rotation_topic(date, h, arts, s)
+        if not topic:
+            print(msg); return 3
+    else:
+        topic = plan_topic(date, h, s)
     if not topic and (C.load_json("plan30.json", None) or {}).get("plan_id"):
         # Knowledge v2 (owner, 15 Nov 2026): never fall back to the old rotating generic topics.
         print("Nothing to write: every ready topic in the Knowledge plan is done; the remaining days wait for owner content "
@@ -172,7 +254,7 @@ def main():
         "now": now.isoformat(timespec="minutes"),
         "category": {k: cat[k] for k in ("id", "kh", "en")}, "tag": (topic or {}).get("tag") or cat["tag"], "suggested_angle": (topic["title_idea"] if topic else pick_angle(cat, h)),
         "series": (topic or {}).get("series") or "",
-        "slot_focus": "Knowledge 30-day plan, day %s of 30." % topic["day"] if topic else ("This month's focus: " + camp["goal"]) if camp else "Morning: practical education for sellers (sales, captions, customers, mistakes, trust)." if slot == "morning"
+        "slot_focus": (f"Weekly rotation: {topic['rotation_category']} ({topic['topic_id']})" if topic.get("plan_id") == "rotation" else "Knowledge 30-day plan, day %s of 30." % topic["day"]) if topic else ("This month's focus: " + camp["goal"]) if camp else "Morning: practical education for sellers (sales, captions, customers, mistakes, trust)." if slot == "morning"
                       else "Evening: marketing and business improvement (ads, Live, budget, analytics, operations, team, ADS BOX).",
         "must_differ_from_today": other and {"title": other.get("title"), "category": other.get("category")},
         "recent_titles": recent,
@@ -183,7 +265,8 @@ def main():
                           if str(v.get("sent_at", ""))[:10] >= (datetime.date.fromisoformat(date) - datetime.timedelta(days=7)).isoformat()],
         "related_articles": related,
         "plan_topic": topic,
-        "prewritten_draft": (topic or {}).get("prewritten"),
+        "prewritten_draft": (topic or {}).get("prewritten") if (topic and (not (topic.get("requires_real_data") or topic.get("requires_coo_approval")) or _prewritten_ok(topic))) else None,
+        "planner_notes": notes,
         "all_articles": [{"slug": x["slug"], "title": x["title"]} for x in arts],
         "facts": read(os.path.join(C.AUTO, "facts.md")),
         "rules": [r.format(min_k=s["min_khmer_chars"], max_k=s["max_khmer_chars"]) for r in RULES] + ([camp["rule"]] if camp else []),

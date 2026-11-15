@@ -1,0 +1,989 @@
+{
+ "note": "Knowledge v2 weekly rotation (owner-approved 16 Nov 2026). The weekday picks the category; each category is a queue used in order. Topics with 'window' are eligible only inside the dates and go first in their category. requires_real_data / requires_coo_approval topics run only with an approved prewritten file (approved_by + approved_at; client_permission: confirmed for client data); until then their 'fallback' runs. Never falls back to the old generic categories.",
+ "weekday_category": {
+  "Mon": "boost-post",
+  "Tue": "boost-live",
+  "Wed": "boost-tiktok",
+  "Thu": "page-care",
+  "Fri": "profit",
+  "Sat": "decision",
+  "Sun": "adsbox-expertise"
+ },
+ "category_fallback": {
+  "boost-post": "decision",
+  "boost-live": "profit",
+  "boost-tiktok": "boost-post",
+  "page-care": "boost-post",
+  "profit": "decision",
+  "decision": "profit",
+  "adsbox-expertise": "profit"
+ },
+ "queue_low_alert": 2,
+ "queues": {
+  "boost-post": [
+   {
+    "topic_id": "bp-max-cpo-calculator",
+    "category": "boost-post",
+    "topic": "Boost បានប៉ុន្មានទើបមិនខាត? គណនា Cost per Order អតិបរមា សម្រាប់ទំនិញ $20",
+    "pillar": "Boost → Order → ចំណេញ",
+    "format": "Calculator",
+    "reader_problem": "មិនដឹងថា Cost per Order ប៉ុន្មានគឺថ្លៃពេក",
+    "kpi": "Max Cost per Order",
+    "cta": "Educational: «សាកគណនា Cost per Order របស់អ្នកមើល។» + link to the matching ADS BOX article (no service pitch)",
+    "related": [
+     "cost-per-message-vs-cost-per-order",
+     "real-profit-per-order"
+    ],
+    "not_duplicate_of": {
+     "real-profit-per-order": "per-product spending limit, not profit per Order"
+    },
+    "requires_real_data": false,
+    "requires_coo_approval": false
+   },
+   {
+    "topic_id": "bp-likes-vs-orders",
+    "category": "boost-post",
+    "topic": "Like ច្រើន តែ Order តិច៖ ហេតុអ្វី Like មិនមែន Order ហើយគួរមើលលេខអ្វីវិញ",
+    "pillar": "Boost → Order → ចំណេញ",
+    "format": "Analysis",
+    "reader_problem": "ចាយលុយបាន Like តែលក់មិនដាច់",
+    "kpi": "Message → Order rate, Cost per Order",
+    "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Post management ($79 / month), /#services",
+    "related": [
+     "read-ads-manager-in-5-minutes",
+     "cost-per-message-vs-cost-per-order"
+    ],
+    "not_duplicate_of": {
+     "read-ads-manager-in-5-minutes": "why vanity numbers mislead, not a tour of Ads Manager"
+    },
+    "requires_real_data": false,
+    "requires_coo_approval": false
+   },
+   {
+    "topic_id": "bp-good-vs-bad-48h",
+    "category": "boost-post",
+    "topic": "Boost Post ល្អ ធៀប Boost Post អាក្រក់៖ សញ្ញាដែលមើលឃើញក្នុង ៤៨ ម៉ោង",
+    "pillar": "Boost → Order → ចំណេញ",
+    "format": "Decision Guide",
+    "reader_problem": "ទុក Boost អាក្រក់យូរពេក",
+    "kpi": "Cost per Order vs max",
+    "cta": "Educational: «សាកគណនា Cost per Order របស់អ្នកមើល។» + link to the matching ADS BOX article (no service pitch)",
+    "related": [
+     "test-two-boost-posts-clothing-shop",
+     "choose-which-post-to-boost",
+     "when-to-raise-or-cut-boost-budget"
+    ],
+    "not_duplicate_of": {
+     "when-to-raise-or-cut-boost-budget": "first 48 hours of a new Boost, not budget changes on a running one"
+    },
+    "requires_real_data": false,
+    "requires_coo_approval": false
+   },
+   {
+    "topic_id": "bp-product-by-margin",
+    "category": "boost-post",
+    "topic": "ទំនិញណាគួរ Boost? ជ្រើសទំនិញតាម Margin មុនជ្រើស Post",
+    "pillar": "ចំណេញពិត",
+    "format": "Decision Guide",
+    "reader_problem": "Boost ទំនិញដែលចំណេញតិច",
+    "kpi": "Contribution Profit per Order",
+    "cta": "Profit: «ផ្ញើតម្លៃផលិតផល + Margin មកយើង ដើម្បីពិនិត្យថា Cost per Order ប៉ុន្មានទើបសមរម្យ។» → Telegram",
+    "related": [
+     "choose-which-post-to-boost",
+     "real-profit-per-order"
+    ],
+    "not_duplicate_of": {
+     "choose-which-post-to-boost": "which product, not which post"
+    },
+    "requires_real_data": false,
+    "requires_coo_approval": false
+   },
+   {
+    "topic_id": "bp-goal-message-vs-engagement",
+    "category": "boost-post",
+    "topic": "Boost Post គោលដៅ Message ធៀប Engagement៖ មួយណានាំ Order",
+    "pillar": "Boost → Order → ចំណេញ",
+    "format": "Comparison",
+    "reader_problem": "ជ្រើសគោលដៅ Boost ខុស",
+    "kpi": "Cost per Order by goal",
+    "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Post management ($79 / month), /#services",
+    "related": [
+     "choose-which-post-to-boost",
+     "cost-per-message-vs-cost-per-order"
+    ],
+    "not_duplicate_of": {},
+    "requires_real_data": false,
+    "requires_coo_approval": false
+   },
+   {
+    "topic_id": "bp-duration-3-vs-7",
+    "category": "boost-post",
+    "topic": "Boost ៣ ថ្ងៃ ធៀប ៧ ថ្ងៃ៖ រយៈពេល Boost ប៉ះពាល់ Cost per Order យ៉ាងណា",
+    "pillar": "Boost → Order → ចំណេញ",
+    "format": "Comparison",
+    "reader_problem": "មិនដឹងថាគួរ Boost យូរប៉ុន្មាន",
+    "kpi": "Cost per Order by day",
+    "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Post management ($79 / month), /#services",
+    "related": [
+     "split-monthly-ad-budget-test-scale-reserve"
+    ],
+    "not_duplicate_of": {},
+    "requires_real_data": false,
+    "requires_coo_approval": false
+   },
+   {
+    "topic_id": "bp-video-vs-photo",
+    "category": "boost-post",
+    "topic": "Video ធៀបរូបភាព៖ វាស់ដោយ Cost per Order មិនមែន View",
+    "pillar": "Boost → Order → ចំណេញ",
+    "format": "Comparison",
+    "reader_problem": "ស្មានថា Video តែងតែល្អជាង",
+    "kpi": "Cost per Order per creative",
+    "cta": "Educational: «សាកគណនា Cost per Order របស់អ្នកមើល។» + link to the matching ADS BOX article (no service pitch)",
+    "related": [
+     "product-photos-that-sell-before-after",
+     "test-two-boost-posts-clothing-shop"
+    ],
+    "not_duplicate_of": {
+     "test-two-boost-posts-clothing-shop": "photo vs video as the one variable"
+    },
+    "requires_real_data": false,
+    "requires_coo_approval": false
+   },
+   {
+    "topic_id": "bp-mistakes-raise-cpo",
+    "category": "boost-post",
+    "topic": "កំហុស Boost Post ដែលធ្វើឲ្យ Cost per Order ឡើង ហើយត្រូវកែយ៉ាងណា",
+    "pillar": "Boost → Order → ចំណេញ",
+    "format": "Real Problem",
+    "reader_problem": "លុយ Boost អស់ តែមិនដឹងខុសត្រង់ណា",
+    "kpi": "Cost per Order",
+    "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Post management ($79 / month), /#services",
+    "related": [
+     "when-to-raise-or-cut-boost-budget",
+     "choose-which-post-to-boost"
+    ],
+    "not_duplicate_of": {},
+    "requires_real_data": false,
+    "requires_coo_approval": false
+   },
+   {
+    "topic_id": "bp-new-product-first-test",
+    "category": "boost-post",
+    "topic": "ទំនិញថ្មី៖ សាក Boost $10 ដំបូងយ៉ាងណា ដើម្បីដឹងថាលក់ដាច់ឬអត់",
+    "pillar": "Boost → Order → ចំណេញ",
+    "format": "Step-by-Step",
+    "reader_problem": "មិនដឹងសាកទំនិញថ្មីដោយមិនខាតច្រើន",
+    "kpi": "Cost per Order of the test",
+    "cta": "Educational: «សាកគណនា Cost per Order របស់អ្នកមើល។» + link to the matching ADS BOX article (no service pitch)",
+    "related": [
+     "split-monthly-ad-budget-test-scale-reserve",
+     "test-two-boost-posts-clothing-shop"
+    ],
+    "not_duplicate_of": {},
+    "requires_real_data": false,
+    "requires_coo_approval": false
+   }
+  ],
+  "boost-live": [
+   {
+    "topic_id": "bl-budget-per-live",
+    "category": "boost-live",
+    "topic": "Boost Live ប៉ុន្មានទើបសម? វាស់ Cost per Order ពី Live មួយ",
+    "pillar": "Live → Order",
+    "format": "Decision Guide",
+    "reader_problem": "ថវិកា Boost Live គ្រាន់តែទាយ",
+    "kpi": "Cost per Order per Live",
+    "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Live (from $120 / month), /#services",
+    "related": [
+     "sell-more-on-live"
+    ],
+    "not_duplicate_of": {
+     "sell-more-on-live": "budget per Live, not how to run the Live"
+    },
+    "requires_real_data": false,
+    "requires_coo_approval": false,
+    "series": "Live → Order"
+   },
+   {
+    "topic_id": "bl-comments-to-orders",
+    "category": "boost-live",
+    "topic": "Live Comment ច្រើន តែ Order តិច៖ អត្រា Comment ទៅ Order និងកន្លែងដែល Order បាត់",
+    "pillar": "Live → Order",
+    "format": "Real Problem",
+    "reader_problem": "Comment មិនក្លាយជា Order",
+    "kpi": "Comment → confirmed Order rate",
+    "cta": "System: «សាក ADS BOX System ដើម្បីគ្រប់គ្រង Order ឥតគិតថ្លៃ។» → https://adsbox.biz/ (free plan, paid from $29 / month)",
+    "related": [
+     "product-codes-for-live-orders",
+     "auto-capture-orders-from-live-comments"
+    ],
+    "not_duplicate_of": {
+     "auto-capture-orders-from-live-comments": "measuring the leak, not the system steps"
+    },
+    "requires_real_data": false,
+    "requires_coo_approval": false,
+    "series": "Live → Order"
+   },
+   {
+    "topic_id": "bl-1212-live",
+    "category": "boost-live",
+    "topic": "Live ថ្ងៃ 12.12៖ រៀបចំទំនិញ តម្លៃ ម៉ោង និងថវិកា Boost Live",
+    "pillar": "Live → Order",
+    "format": "Step-by-Step",
+    "reader_problem": "Live ថ្ងៃ Sale មិនទាន់ត្រៀម",
+    "kpi": "Cost per Order on sale day",
+    "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Live (from $120 / month), /#services",
+    "related": [
+     "sell-more-on-live",
+     "prepare-big-sale-day-promotion-without-losing-profit"
+    ],
+    "not_duplicate_of": {
+     "prepare-big-sale-day-promotion-without-losing-profit": "the Live itself on 12.12, not the 7-day promotion checklist"
+    },
+    "requires_real_data": false,
+    "requires_coo_approval": false,
+    "series": "Live → Order",
+    "window": [
+     "2026-12-08",
+     "2026-12-11"
+    ]
+   },
+   {
+    "topic_id": "bl-profit-after-live",
+    "category": "boost-live",
+    "topic": "Live មាន Order ច្រើន តែនៅខាត៖ គណនាចំណេញពិតក្រោយ Live មួយ",
+    "pillar": "Live → Order",
+    "format": "Calculator",
+    "reader_problem": "Live រវល់ តែលុយមិនសល់",
+    "kpi": "Profit per Live",
+    "cta": "Profit: «ផ្ញើតម្លៃផលិតផល + Margin មកយើង ដើម្បីពិនិត្យថា Cost per Order ប៉ុន្មានទើបសមរម្យ។» → Telegram",
+    "related": [
+     "sell-more-on-live",
+     "real-profit-per-order"
+    ],
+    "not_duplicate_of": {
+     "real-profit-per-order": "profit of a whole Live session"
+    },
+    "requires_real_data": false,
+    "requires_coo_approval": false,
+    "series": "Live → Order"
+   },
+   {
+    "topic_id": "bl-when-to-boost",
+    "category": "boost-live",
+    "topic": "Boost Live ពេលណា? ម៉ោង និងរយៈពេល Boost ក្នុង Live មួយ",
+    "pillar": "Live → Order",
+    "format": "Decision Guide",
+    "reader_problem": "Boost លឿនពេក ឬយឺតពេក",
+    "kpi": "Cost per Order by Boost timing",
+    "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Live (from $120 / month), /#services",
+    "related": [
+     "sell-more-on-live"
+    ],
+    "not_duplicate_of": {},
+    "requires_real_data": false,
+    "requires_coo_approval": false,
+    "series": "Live → Order"
+   },
+   {
+    "topic_id": "bl-duration-vs-orders",
+    "category": "boost-live",
+    "topic": "Live យូរប៉ុន្មានទើបល្អ? រយៈពេល Live ធៀប Order និង Cost per Order",
+    "pillar": "Live → Order",
+    "format": "Analysis",
+    "reader_problem": "Live យូរ តែ Order មិនកើន",
+    "kpi": "Orders per hour of Live",
+    "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Live (from $120 / month), /#services",
+    "related": [
+     "facebook-live-selling-myths",
+     "sell-more-on-live"
+    ],
+    "not_duplicate_of": {
+     "facebook-live-selling-myths": "measure Orders per hour, not the myth list"
+    },
+    "requires_real_data": false,
+    "requires_coo_approval": false
+   },
+   {
+    "topic_id": "bl-raise-live-budget",
+    "category": "boost-live",
+    "topic": "ពេលណាគួរបង្កើនថវិកា Boost Live? សញ្ញាពង្រីក ៣",
+    "pillar": "Live → Order",
+    "format": "Decision Guide",
+    "reader_problem": "មិនហ៊ានបង្កើនថវិកា Live",
+    "kpi": "Cost per Order trend over 3 Lives",
+    "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Live (from $120 / month), /#services",
+    "related": [
+     "when-to-raise-or-cut-boost-budget"
+    ],
+    "not_duplicate_of": {
+     "when-to-raise-or-cut-boost-budget": "Live-specific scaling signals"
+    },
+    "requires_real_data": false,
+    "requires_coo_approval": false
+   },
+   {
+    "topic_id": "bl-mistakes-lose-money",
+    "category": "boost-live",
+    "topic": "កំហុស Boost Live ដែលធ្វើឲ្យខាតលុយ",
+    "pillar": "Live → Order",
+    "format": "Real Problem",
+    "reader_problem": "Boost Live ហើយខាត",
+    "kpi": "Cost per Order vs max",
+    "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Live (from $120 / month), /#services",
+    "related": [
+     "sell-more-on-live"
+    ],
+    "not_duplicate_of": {},
+    "requires_real_data": false,
+    "requires_coo_approval": false
+   }
+  ],
+  "boost-tiktok": [
+   {
+    "topic_id": "tt-views-to-orders",
+    "category": "boost-tiktok",
+    "topic": "Boost TikTok បាន View ច្រើន តែ Order តិច៖ ពិនិត្យ View → Message → Order",
+    "pillar": "Boost → Order → ចំណេញ",
+    "format": "Real Problem",
+    "reader_problem": "View ច្រើន តែលក់មិនដាច់",
+    "kpi": "View → Message → Order",
+    "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost TikTok (from $99 / month), /#services",
+    "related": [
+     "should-facebook-sellers-start-tiktok"
+    ],
+    "not_duplicate_of": {
+     "should-facebook-sellers-start-tiktok": "measurement funnel, not how to start"
+    },
+    "requires_real_data": false,
+    "requires_coo_approval": false
+   },
+   {
+    "topic_id": "tt-product-fit",
+    "category": "boost-tiktok",
+    "topic": "ទំនិញណាសមនឹង TikTok? Margin តម្លៃ និងប្រភេទទំនិញ មុន Boost TikTok",
+    "pillar": "Boost → Order → ចំណេញ",
+    "format": "Decision Guide",
+    "reader_problem": "ដាក់ទំនិញខុសលើ TikTok",
+    "kpi": "Max Cost per Order",
+    "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost TikTok (from $99 / month), /#services",
+    "related": [
+     "should-facebook-sellers-start-tiktok"
+    ],
+    "not_duplicate_of": {
+     "should-facebook-sellers-start-tiktok": "product fit by margin"
+    },
+    "requires_real_data": false,
+    "requires_coo_approval": false
+   },
+   {
+    "topic_id": "tt-vs-facebook",
+    "category": "boost-tiktok",
+    "topic": "TikTok ធៀប Facebook៖ $50 ដូចគ្នា វាស់ Cost per Order យ៉ាងណាឲ្យយុត្តិធម៌",
+    "pillar": "Boost → Order → ចំណេញ",
+    "format": "Comparison",
+    "reader_problem": "ប្រៀបធៀបពីរ Platform មិនបាន",
+    "kpi": "Cost per Order per platform",
+    "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost TikTok (from $99 / month), /#services",
+    "related": [
+     "should-facebook-sellers-start-tiktok",
+     "cost-per-message-vs-cost-per-order"
+    ],
+    "not_duplicate_of": {},
+    "requires_real_data": false,
+    "requires_coo_approval": false
+   },
+   {
+    "topic_id": "tt-when-to-stop",
+    "category": "boost-tiktok",
+    "topic": "Boost TikTok បិទពេលណា? សញ្ញាឈប់ ធៀប សញ្ញាពង្រីក",
+    "pillar": "Boost → Order → ចំណេញ",
+    "format": "Decision Guide",
+    "reader_problem": "Scale ឬឈប់ខុសពេល",
+    "kpi": "Cost per Order trend",
+    "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost TikTok (from $99 / month), /#services",
+    "related": [
+     "should-facebook-sellers-start-tiktok"
+    ],
+    "not_duplicate_of": {},
+    "requires_real_data": false,
+    "requires_coo_approval": false
+   },
+   {
+    "topic_id": "tt-messages-no-close",
+    "category": "boost-tiktok",
+    "topic": "TikTok មាន Message តែបិទ Order មិនបាន៖ ពិនិត្យអ្វី",
+    "pillar": "Boost → Order → ចំណេញ",
+    "format": "Real Problem",
+    "reader_problem": "Message ពី TikTok មិនក្លាយជា Order",
+    "kpi": "Message → Order rate (TikTok)",
+    "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost TikTok (from $99 / month), /#services",
+    "related": [
+     "turn-customer-questions-into-orders"
+    ],
+    "not_duplicate_of": {
+     "turn-customer-questions-into-orders": "TikTok traffic specifics only"
+    },
+    "requires_real_data": false,
+    "requires_coo_approval": false
+   },
+   {
+    "topic_id": "tt-when-to-scale",
+    "category": "boost-tiktok",
+    "topic": "ពេលណាគួរ Scale Boost TikTok?",
+    "pillar": "Boost → Order → ចំណេញ",
+    "format": "Decision Guide",
+    "reader_problem": "មិនដឹងពេលបង្កើនថវិកា TikTok",
+    "kpi": "Cost per Order stable 3+ days",
+    "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost TikTok (from $99 / month), /#services",
+    "related": [
+     "should-facebook-sellers-start-tiktok"
+    ],
+    "not_duplicate_of": {},
+    "requires_real_data": false,
+    "requires_coo_approval": false
+   },
+   {
+    "topic_id": "tt-common-mistakes",
+    "category": "boost-tiktok",
+    "topic": "កំហុស Boost TikTok ទូទៅ ដែលធ្វើឲ្យខាតលុយ",
+    "pillar": "Boost → Order → ចំណេញ",
+    "format": "Real Problem",
+    "reader_problem": "Boost TikTok ខាតមិនដឹងមូលហេតុ",
+    "kpi": "Cost per Order",
+    "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost TikTok (from $99 / month), /#services",
+    "related": [
+     "should-facebook-sellers-start-tiktok"
+    ],
+    "not_duplicate_of": {},
+    "requires_real_data": false,
+    "requires_coo_approval": false
+   }
+  ],
+  "page-care": [
+   {
+    "topic_id": "pc-health-before-boost",
+    "category": "page-care",
+    "topic": "មុនចាយលុយ Boost៖ ពិនិត្យសុខភាពផេក ដែលប៉ះពាល់ Cost per Message",
+    "pillar": "Boost → Order → ចំណេញ",
+    "format": "Step-by-Step",
+    "reader_problem": "Boost លុយលើផេកមិនទាន់ត្រៀម",
+    "kpi": "Cost per Message",
+    "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Post management ($79 / month), /#services",
+    "related": [
+     "page-restricted-what-to-do",
+     "caption-answers-questions-first"
+    ],
+    "not_duplicate_of": {
+     "page-restricted-what-to-do": "pre-Boost check, not restriction recovery"
+    },
+    "requires_real_data": false,
+    "requires_coo_approval": false
+   },
+   {
+    "topic_id": "pc-page-trust",
+    "category": "page-care",
+    "topic": "ភ្ញៀវមើលអ្វីមុនហ៊ាន Order? ទំនុកចិត្តលើផេក និង Message → Order",
+    "pillar": "Boost → Order → ចំណេញ",
+    "format": "Analysis",
+    "reader_problem": "ផេកមើលទៅមិនគួរទុកចិត្ត",
+    "kpi": "Message → Order rate",
+    "cta": "Educational: «សាកគណនា Cost per Order របស់អ្នកមើល។» + link to the matching ADS BOX article (no service pitch)",
+    "related": [
+     "turn-customer-questions-into-orders"
+    ],
+    "not_duplicate_of": {
+     "turn-customer-questions-into-orders": "Page-level trust, not Messenger replies"
+    },
+    "requires_real_data": false,
+    "requires_coo_approval": false
+   },
+   {
+    "topic_id": "pc-content-between-boosts",
+    "category": "page-care",
+    "topic": "Post ថ្ងៃមិន Boost៖ Content ប្រភេទណាជួយឲ្យ Boost ក្រោយបាន Order ថោក",
+    "pillar": "Boost → Order → ចំណេញ",
+    "format": "Step-by-Step",
+    "reader_problem": "ផេកស្ងាត់រវាងការ Boost",
+    "kpi": "Cost per Message on next Boost",
+    "cta": "Educational: «សាកគណនា Cost per Order របស់អ្នកមើល។» + link to the matching ADS BOX article (no service pitch)",
+    "related": [
+     "product-photos-that-sell-before-after",
+     "caption-answers-questions-first"
+    ],
+    "not_duplicate_of": {},
+    "requires_real_data": false,
+    "requires_coo_approval": false
+   },
+   {
+    "topic_id": "pc-admin-roles-protect",
+    "category": "page-care",
+    "topic": "Admin និងសិទ្ធិផេក៖ ការពារផេកពីការបាត់ មុនចាយ Boost លុយធំ",
+    "pillar": "Boost → Order → ចំណេញ",
+    "format": "Step-by-Step",
+    "reader_problem": "ហានិភ័យបាត់ផេក និងលុយ Boost",
+    "kpi": "Spend at risk",
+    "cta": "Service: Page and account troubleshooting (price: contact us) → Telegram",
+    "related": [
+     "page-restricted-what-to-do"
+    ],
+    "not_duplicate_of": {
+     "page-restricted-what-to-do": "prevention (roles, two-factor login), not recovery"
+    },
+    "requires_real_data": false,
+    "requires_coo_approval": false
+   },
+   {
+    "topic_id": "pc-negative-comments",
+    "category": "page-care",
+    "topic": "Comment អវិជ្ជមានលើ Post ដែលកំពុង Boost៖ ឆ្លើយយ៉ាងណាកុំឲ្យបាត់ Order",
+    "pillar": "Boost → Order → ចំណេញ",
+    "format": "Step-by-Step",
+    "reader_problem": "Comment អាក្រក់ធ្វើឲ្យភ្ញៀវផ្សេងមិនហ៊ានទិញ",
+    "kpi": "Message → Order rate",
+    "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Post management ($79 / month), /#services",
+    "related": [
+     "mistakes-handling-customer-complaints"
+    ],
+    "not_duplicate_of": {
+     "mistakes-handling-customer-complaints": "public comments on boosted posts"
+    },
+    "requires_real_data": false,
+    "requires_coo_approval": false
+   },
+   {
+    "topic_id": "pc-content-consistency",
+    "category": "page-care",
+    "topic": "ភាពជាប់លាប់នៃ Content និង Cost per Message",
+    "pillar": "Boost → Order → ចំណេញ",
+    "format": "Analysis",
+    "reader_problem": "ផុសមិនទៀង ហើយ Boost ថ្លៃ",
+    "kpi": "Cost per Message",
+    "cta": "Educational: «សាកគណនា Cost per Order របស់អ្នកមើល។» + link to the matching ADS BOX article (no service pitch)",
+    "related": [
+     "caption-answers-questions-first"
+    ],
+    "not_duplicate_of": {},
+    "requires_real_data": false,
+    "requires_coo_approval": false
+   }
+  ],
+  "profit": [
+   {
+    "topic_id": "pf-revenue-vs-profit",
+    "category": "profit",
+    "topic": "លក់បាន $10,000 មិនមែនចំណេញ $10,000៖ Revenue, ចំណេញដុល, Contribution, ចំណេញសុទ្ធ",
+    "pillar": "ចំណេញពិត",
+    "format": "Explainer",
+    "reader_problem": "គិតថាលក់បាន = ចំណេញ",
+    "kpi": "4 profit levels",
+    "cta": "Profit: «ផ្ញើតម្លៃផលិតផល + Margin មកយើង ដើម្បីពិនិត្យថា Cost per Order ប៉ុន្មានទើបសមរម្យ។» → Telegram",
+    "related": [
+     "real-profit-per-order"
+    ],
+    "not_duplicate_of": {
+     "real-profit-per-order": "the four levels for a month, not per Order"
+    },
+    "requires_real_data": false,
+    "requires_coo_approval": false,
+    "series": "ចំណេញពិតប៉ុន្មាន?"
+   },
+   {
+    "topic_id": "pf-orders-no-cash",
+    "category": "profit",
+    "topic": "Order ច្រើន តែលុយមិនសល់៖ ហេតុអ្វីមាន Order តែគ្មានសាច់ប្រាក់",
+    "pillar": "ចំណេញពិត",
+    "format": "Real Problem",
+    "reader_problem": "មាន Order តែគ្មានលុយ",
+    "kpi": "Cash timing",
+    "cta": "Profit: «ផ្ញើតម្លៃផលិតផល + Margin មកយើង ដើម្បីពិនិត្យថា Cost per Order ប៉ុន្មានទើបសមរម្យ។» → Telegram",
+    "related": [
+     "real-profit-per-order",
+     "stop-customers-refusing-parcels"
+    ],
+    "not_duplicate_of": {},
+    "requires_real_data": false,
+    "requires_coo_approval": false,
+    "series": "ចំណេញពិតប៉ុន្មាន?"
+   },
+   {
+    "topic_id": "pf-monthly-break-even",
+    "category": "profit",
+    "topic": "ត្រូវលក់ប៉ុន្មាន Order ក្នុងមួយខែ ទើបរួចថ្លៃផ្ទះ និងប្រាក់ខែ?",
+    "pillar": "ចំណេញពិត",
+    "format": "Calculator",
+    "reader_problem": "មិនដឹង Break-even ប្រចាំខែ",
+    "kpi": "Break-even Orders / month",
+    "cta": "Profit: «ផ្ញើតម្លៃផលិតផល + Margin មកយើង ដើម្បីពិនិត្យថា Cost per Order ប៉ុន្មានទើបសមរម្យ។» → Telegram",
+    "related": [
+     "real-profit-per-order"
+    ],
+    "not_duplicate_of": {},
+    "requires_real_data": false,
+    "requires_coo_approval": false,
+    "series": "ចំណេញពិតប៉ុន្មាន?"
+   },
+   {
+    "topic_id": "pf-cac-vs-repeat",
+    "category": "profit",
+    "topic": "ចំណាយប៉ុន្មាន ដើម្បីបានភ្ញៀវថ្មីម្នាក់? Customer Acquisition Cost ធៀបភ្ញៀវចាស់",
+    "pillar": "ចំណេញពិត",
+    "format": "Explainer",
+    "reader_problem": "មិនដឹងថ្លៃបានភ្ញៀវថ្មី",
+    "kpi": "CAC",
+    "cta": "Profit: «ផ្ញើតម្លៃផលិតផល + Margin មកយើង ដើម្បីពិនិត្យថា Cost per Order ប៉ុន្មានទើបសមរម្យ។» → Telegram",
+    "related": [
+     "after-sale-messages-repeat-customers"
+    ],
+    "not_duplicate_of": {
+     "after-sale-messages-repeat-customers": "the cost number, not after-sale messages"
+    },
+    "requires_real_data": false,
+    "requires_coo_approval": false,
+    "series": "ចំណេញពិតប៉ុន្មាន?"
+   },
+   {
+    "topic_id": "pf-ad-cost-ratio",
+    "category": "profit",
+    "topic": "លុយ Boost ស៊ីប៉ុន្មានភាគរយនៃចំណូល? Ad Cost Ratio",
+    "pillar": "ចំណេញពិត",
+    "format": "Explainer",
+    "reader_problem": "មិនដឹងថាលុយ Boost ច្រើនពេកឬអត់",
+    "kpi": "Ad cost ÷ revenue",
+    "cta": "Profit: «ផ្ញើតម្លៃផលិតផល + Margin មកយើង ដើម្បីពិនិត្យថា Cost per Order ប៉ុន្មានទើបសមរម្យ។» → Telegram",
+    "related": [
+     "real-profit-per-order"
+    ],
+    "not_duplicate_of": {},
+    "requires_real_data": false,
+    "requires_coo_approval": false,
+    "series": "ចំណេញពិតប៉ុន្មាន?"
+   },
+   {
+    "topic_id": "pf-product-mix",
+    "category": "profit",
+    "topic": "ចំណេញតាមទំនិញនីមួយៗ៖ ទំនិញណាពិតជាចិញ្ចឹមហាង",
+    "pillar": "ចំណេញពិត",
+    "format": "Analysis",
+    "reader_problem": "មិនដឹងថាទំនិញណាចំណេញពិត",
+    "kpi": "Contribution Profit per product",
+    "cta": "Profit: «ផ្ញើតម្លៃផលិតផល + Margin មកយើង ដើម្បីពិនិត្យថា Cost per Order ប៉ុន្មានទើបសមរម្យ។» → Telegram",
+    "related": [
+     "real-profit-per-order"
+    ],
+    "not_duplicate_of": {},
+    "requires_real_data": false,
+    "requires_coo_approval": false,
+    "series": "ចំណេញពិតប៉ុន្មាន?"
+   }
+  ],
+  "decision": [
+   {
+    "topic_id": "ds-cpo-doubled",
+    "category": "decision",
+    "topic": "Cost per Order ស្រាប់តែឡើង ២ ដង៖ ពិនិត្យ ៤ កន្លែងតាមលំដាប់",
+    "pillar": "Boost → Order → ចំណេញ",
+    "format": "Decision Guide",
+    "reader_problem": "Cost per Order ឡើងភ្លាមៗ",
+    "kpi": "Cost per Order",
+    "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Post management ($79 / month), /#services",
+    "related": [
+     "when-to-raise-or-cut-boost-budget",
+     "daily-spend-and-order-report"
+    ],
+    "not_duplicate_of": {
+     "when-to-raise-or-cut-boost-budget": "a sudden spike, not routine budget changes"
+    },
+    "requires_real_data": false,
+    "requires_coo_approval": false
+   },
+   {
+    "topic_id": "ds-continue-or-stop-1",
+    "category": "decision",
+    "topic": "Boost នេះ បន្ត ឬបិទ? #១៖ Cost per Order ល្អ តែការដឹកធ្លាក់",
+    "pillar": "Boost → Order → ចំណេញ",
+    "format": "Decision Guide",
+    "reader_problem": "មិនច្បាស់ថាគួរបន្ត",
+    "kpi": "Cost per Delivered Order",
+    "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Post management ($79 / month), /#services",
+    "related": [
+     "when-to-raise-or-cut-boost-budget",
+     "stop-customers-refusing-parcels"
+    ],
+    "not_duplicate_of": {},
+    "requires_real_data": false,
+    "requires_coo_approval": false,
+    "series": "Boost នេះ បន្ត ឬបិទ?"
+   },
+   {
+    "topic_id": "ds-1212-continue",
+    "category": "decision",
+    "topic": "ថ្ងៃ 12.12 Cost per Order ឡើង៖ បន្ត ឬបិទ Boost ពេលថ្ងៃ Sale?",
+    "pillar": "Boost → Order → ចំណេញ",
+    "format": "Decision Guide",
+    "reader_problem": "ថ្លៃ Boost ឡើងនៅថ្ងៃ Sale",
+    "kpi": "Cost per Order vs sale margin",
+    "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Post management ($79 / month), /#services",
+    "related": [
+     "prepare-big-sale-day-promotion-without-losing-profit",
+     "when-to-raise-or-cut-boost-budget"
+    ],
+    "not_duplicate_of": {},
+    "requires_real_data": false,
+    "requires_coo_approval": false,
+    "series": "Boost នេះ បន្ត ឬបិទ?",
+    "window": [
+     "2026-12-12",
+     "2026-12-12"
+    ]
+   },
+   {
+    "topic_id": "ds-continue-or-stop-2",
+    "category": "decision",
+    "topic": "Boost នេះ បន្ត ឬបិទ? #២៖ Live អ្នកមើលឡើង តែ Cost per Order ឡើងដែរ",
+    "pillar": "Live → Order",
+    "format": "Decision Guide",
+    "reader_problem": "អ្នកមើលច្រើន តែថ្លៃជាង",
+    "kpi": "Cost per Order per Live",
+    "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Live (from $120 / month), /#services",
+    "related": [
+     "sell-more-on-live"
+    ],
+    "not_duplicate_of": {},
+    "requires_real_data": false,
+    "requires_coo_approval": false,
+    "series": "Boost នេះ បន្ត ឬបិទ?"
+   },
+   {
+    "topic_id": "ds-winning-post-fatigue",
+    "category": "decision",
+    "topic": "Post ដែលធ្លាប់ល្អ ស្រាប់តែ Cost per Order ឡើងក្រោយ ១ សប្ដាហ៍៖ ត្រូវធ្វើអ្វី",
+    "pillar": "Boost → Order → ចំណេញ",
+    "format": "Decision Guide",
+    "reader_problem": "Post ឈ្នះ ឈប់ឈ្នះ",
+    "kpi": "Cost per Order trend",
+    "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Post management ($79 / month), /#services",
+    "related": [
+     "when-to-raise-or-cut-boost-budget"
+    ],
+    "not_duplicate_of": {},
+    "requires_real_data": false,
+    "requires_coo_approval": false,
+    "series": "Boost នេះ បន្ត ឬបិទ?"
+   },
+   {
+    "topic_id": "ds-new-page-no-orders",
+    "category": "decision",
+    "topic": "ផេកថ្មី Boost $5/ថ្ងៃ ១ សប្ដាហ៍ មិនទាន់មាន Order៖ បន្ត ឬប្ដូរ?",
+    "pillar": "Boost → Order → ចំណេញ",
+    "format": "Decision Guide",
+    "reader_problem": "ផេកថ្មី មិនទាន់លក់បាន",
+    "kpi": "Cost per Message, first Orders",
+    "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Post management ($79 / month), /#services",
+    "related": [
+     "first-30-days-selling-on-facebook",
+     "split-monthly-ad-budget-test-scale-reserve"
+    ],
+    "not_duplicate_of": {},
+    "requires_real_data": false,
+    "requires_coo_approval": false,
+    "series": "Boost នេះ បន្ត ឬបិទ?"
+   },
+   {
+    "topic_id": "ds-continue-or-stop-3",
+    "category": "decision",
+    "topic": "Boost នេះ បន្ត ឬបិទ? #៣៖ Cost per Order ល្អ តែចំណេញក្នុងមួយ Order ទាប",
+    "pillar": "ចំណេញពិត",
+    "format": "Decision Guide",
+    "reader_problem": "Order ថោក តែចំណេញតិច",
+    "kpi": "Contribution Profit per Order",
+    "cta": "Profit: «ផ្ញើតម្លៃផលិតផល + Margin មកយើង ដើម្បីពិនិត្យថា Cost per Order ប៉ុន្មានទើបសមរម្យ។» → Telegram",
+    "related": [
+     "real-profit-per-order"
+    ],
+    "not_duplicate_of": {},
+    "requires_real_data": false,
+    "requires_coo_approval": false,
+    "series": "Boost នេះ បន្ត ឬបិទ?"
+   }
+  ],
+  "adsbox-expertise": [
+   {
+    "topic_id": "ex-where-100-went",
+    "category": "adsbox-expertise",
+    "topic": "លុយ Boost $100 ទៅណា? (ឧទាហរណ៍)",
+    "pillar": "Boost → Order → ចំណេញ",
+    "format": "Data Analysis",
+    "reader_problem": "មើលមិនឃើញថាលុយលេចនៅណា",
+    "kpi": "Each funnel step",
+    "cta": "Case: «ចង់ឲ្យ ADS BOX ជួយពិនិត្យទិន្នន័យ Page របស់អ្នក?» → Telegram",
+    "related": [
+     "cost-per-message-vs-cost-per-order"
+    ],
+    "not_duplicate_of": {
+     "cost-per-message-vs-cost-per-order": "one worked $100 walk-through only"
+    },
+    "requires_real_data": false,
+    "requires_coo_approval": false,
+    "series": "លុយ Boost ទៅណា?"
+   },
+   {
+    "topic_id": "ex-pm-morning-check",
+    "category": "adsbox-expertise",
+    "topic": "Project Manager ADS BOX ពិនិត្យអ្វីខ្លះរាល់ព្រឹក?",
+    "pillar": "Behind ADS BOX",
+    "format": "Behind the Scenes",
+    "reader_problem": "«ខ្ញុំបានអ្វីពី ADS BOX?»",
+    "kpi": "As provided by the COO",
+    "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Post management ($79 / month), /#services",
+    "related": [
+     "daily-spend-and-order-report"
+    ],
+    "not_duplicate_of": {},
+    "requires_real_data": false,
+    "requires_coo_approval": true,
+    "series": "Behind ADS BOX",
+    "fallback": {
+     "topic_id": "ex-300-budget-review",
+     "category": "adsbox-expertise",
+     "topic": "ថវិកា $300, Order ២៥០ ($1.20)៖ ចំណេញឬអត់? (ឧទាហរណ៍)",
+     "pillar": "ចំណេញពិត",
+     "format": "Data Analysis",
+     "reader_problem": "Cost per Order ទាប មិនមែនមានន័យថាចំណេញ",
+     "kpi": "Contribution Profit per Order",
+     "cta": "Profit: «ផ្ញើតម្លៃផលិតផល + Margin មកយើង ដើម្បីពិនិត្យថា Cost per Order ប៉ុន្មានទើបសមរម្យ។» → Telegram",
+     "related": [
+      "real-profit-per-order"
+     ],
+     "not_duplicate_of": {},
+     "requires_real_data": false,
+     "requires_coo_approval": false,
+     "series": "លុយ Boost ទៅណា?"
+    }
+   },
+   {
+    "topic_id": "ex-ai-alerts",
+    "category": "adsbox-expertise",
+    "topic": "AI របស់ ADS BOX ប្រាប់ថា Boost មានបញ្ហា — ពេលណា ហើយក្រុមធ្វើអ្វី?",
+    "pillar": "Behind ADS BOX",
+    "format": "Behind the Scenes",
+    "reader_problem": "«អ្នកណាមើលលុយខ្ញុំ?»",
+    "kpi": "As provided by the COO",
+    "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Post management ($79 / month), /#services",
+    "related": [
+     "daily-spend-and-order-report"
+    ],
+    "not_duplicate_of": {},
+    "requires_real_data": false,
+    "requires_coo_approval": true,
+    "series": "Behind ADS BOX",
+    "fallback": {
+     "topic_id": "ex-month-end-check",
+     "category": "adsbox-expertise",
+     "topic": "ពិនិត្យលេខចុងខែ ក្នុង ១៥ នាទី៖ លុយចាយ Order ដឹកដល់ និងចំណេញ",
+     "pillar": "Boost → Order → ចំណេញ",
+     "format": "Step-by-Step",
+     "reader_problem": "មិនដឹងពិនិត្យលេខចុងខែ",
+     "kpi": "Monthly Cost per Delivered Order",
+     "cta": "Educational: «សាកគណនា Cost per Order របស់អ្នកមើល។» + link to the matching ADS BOX article (no service pitch)",
+     "related": [
+      "daily-spend-and-order-report"
+     ],
+     "not_duplicate_of": {},
+     "requires_real_data": false,
+     "requires_coo_approval": false
+    }
+   },
+   {
+    "topic_id": "ex-cpo-benchmark",
+    "category": "adsbox-expertise",
+    "topic": "Cost per Order មធ្យមតាមប្រភេទទំនិញ (ទិន្នន័យសរុប ADS BOX)",
+    "pillar": "Case Study និងទិន្នន័យពិត",
+    "format": "Data Analysis",
+    "reader_problem": "គ្មានលេខប្រៀបធៀប",
+    "kpi": "Cost per Order by category",
+    "cta": "Case: «ចង់ឲ្យ ADS BOX ជួយពិនិត្យទិន្នន័យ Page របស់អ្នក?» → Telegram",
+    "related": [
+     "cost-per-message-vs-cost-per-order"
+    ],
+    "not_duplicate_of": {},
+    "requires_real_data": true,
+    "requires_coo_approval": false,
+    "series": "លុយ Boost ទៅណា?",
+    "fallback": {
+     "topic_id": "ex-delivery-success-rate",
+     "category": "adsbox-expertise",
+     "topic": "Order ដឹកដល់ប៉ុន្មានភាគរយ? Delivery Success Rate (ឧទាហរណ៍)",
+     "pillar": "ចំណេញពិត",
+     "format": "Explainer",
+     "reader_problem": "Order មិនទទួល ស៊ីចំណេញ",
+     "kpi": "Delivered ÷ confirmed Orders",
+     "cta": "Profit: «ផ្ញើតម្លៃផលិតផល + Margin មកយើង ដើម្បីពិនិត្យថា Cost per Order ប៉ុន្មានទើបសមរម្យ។» → Telegram",
+     "related": [
+      "stop-customers-refusing-parcels",
+      "cod-order-confirmation-message-templates"
+     ],
+     "not_duplicate_of": {
+      "stop-customers-refusing-parcels": "the rate and how to track it"
+     },
+     "requires_real_data": false,
+     "requires_coo_approval": false
+    }
+   },
+   {
+    "topic_id": "ex-how-adsbox-decides",
+    "category": "adsbox-expertise",
+    "topic": "ADS BOX សម្រេចចិត្តបន្ត ឬបិទ Campaign យ៉ាងណា?",
+    "pillar": "Behind ADS BOX",
+    "format": "Behind the Scenes",
+    "reader_problem": "«ពួកគេសម្រេចចិត្តដោយផ្អែកលើអ្វី?»",
+    "kpi": "As provided by the COO",
+    "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Post management ($79 / month), /#services",
+    "related": [
+     "when-to-raise-or-cut-boost-budget"
+    ],
+    "not_duplicate_of": {},
+    "requires_real_data": false,
+    "requires_coo_approval": true,
+    "series": "Behind ADS BOX",
+    "fallback": {
+     "topic_id": "ex-where-50-went",
+     "category": "adsbox-expertise",
+     "topic": "លុយ Boost $50 លើ Live ទៅណា? (ឧទាហរណ៍)",
+     "pillar": "Live → Order",
+     "format": "Data Analysis",
+     "reader_problem": "មើលមិនឃើញថាលុយ Live លេចនៅណា",
+     "kpi": "Each Live funnel step",
+     "cta": "Service: «ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ?» → Boost Live (from $120 / month), /#services",
+     "related": [
+      "sell-more-on-live"
+     ],
+     "not_duplicate_of": {},
+     "requires_real_data": false,
+     "requires_coo_approval": false,
+     "series": "លុយ Boost ទៅណា?"
+    }
+   },
+   {
+    "topic_id": "ex-system-comment-to-customer",
+    "category": "adsbox-expertise",
+    "topic": "ពី Comment Live ដល់ Order ដល់អតិថិជន៖ ADS BOX System ធ្វើការយ៉ាងណា",
+    "pillar": "Behind ADS BOX",
+    "format": "Behind the Scenes",
+    "reader_problem": "Order ពី Live រញ៉េរញ៉ៃ",
+    "kpi": "Orders captured",
+    "cta": "System: «សាក ADS BOX System ដើម្បីគ្រប់គ្រង Order ឥតគិតថ្លៃ។» → https://adsbox.biz/ (free plan, paid from $29 / month)",
+    "related": [
+     "auto-capture-orders-from-live-comments"
+    ],
+    "not_duplicate_of": {
+     "auto-capture-orders-from-live-comments": "the full journey in the system, facts.md only"
+    },
+    "requires_real_data": false,
+    "requires_coo_approval": false,
+    "series": "Behind ADS BOX"
+   }
+  ]
+ }
+}

@@ -14,6 +14,9 @@ Keep this file up to date when services, prices or features change.
 ## Knowledge Center positioning (owner-approved 15 Nov 2026)
 - Knowledge Center title: «ចំណេះដឹង Boost → Order → ចំណេញ ពីក្រុម ADS BOX». Sub-line: «រៀនមើលលុយ Boost គិតជា Order និងចំណេញពិត មិនមែន Like».
 - Every article connects back to Boost → Order → Cost → Profit. Five pillars: Boost → Order → ចំណេញ; Case Study និងទិន្នន័យពិត; Live → Order; ចំណេញពិត; Behind ADS BOX.
+- Money terms (use exactly): Revenue = money received from customers. Gross Profit = Revenue − Product Cost. Contribution Profit = Gross Profit − Packing − Delivery − Refused Parcel Loss − Ad Cost. Net Profit = Contribution Profit − Rent − Salaries − Fixed Costs.
+- Data sources, in this order: ADS BOX's own verified data; anonymized client data only with explicit permission; otherwise numbers clearly labelled «ឧទាហរណ៍». Never present invented numbers as ADS BOX or client results.
+- The ADS BOX point of view («ADS BOX មិនមើលតែចំនួន Message ឬ Like ទេ…») is optional: use it only where it fits naturally.
 - ADS BOX PM workflows, AI alert types and triggers, and daily report contents are only what this file states. Until the owner adds them here, describe them only in the general words above; never invent steps, alerts, triggers, report fields or features.
 
 ## Services and prices (confirmed)

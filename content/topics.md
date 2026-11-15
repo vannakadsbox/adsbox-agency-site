@@ -2,7 +2,18 @@
 
 The old topic list that used to be here is retired (owner decision, 15 Nov 2026). Do not use it.
 
-The daily writer now follows **`content/autopost/plan30.json`** (plan_id `knowledge-v2`): the approved 5-pillar, 30-day plan.
+The daily writer now follows **`content/autopost/rotation.json`**: the approved weekly rotation (owner, 16 Nov 2026), starting on `rotation_start` in settings.
+
+## Weekly rotation (category → pillar)
+- Mon — Boost Post → Boost → Order → ចំណេញ
+- Tue — Boost Live → Live → Order
+- Wed — Boost TikTok → Boost → Order → ចំណេញ
+- Thu — Facebook Page Care → Boost → Order → ចំណេញ
+- Fri — Boost → Order → Profit → ចំណេញពិត
+- Sat — Real problem / decision guide → pillar of the problem
+- Sun — ADS BOX expertise / behind the scenes / data → Behind ADS BOX (COO-confirmed facts only) or Case Study (approved real data only); otherwise a labelled «ឧទាហរណ៍» analysis
+
+Each category is a queue in rotation.json. Add new topics at the end of a queue (with related / not_duplicate_of filled in). The writer alerts in Telegram when a queue has 2 or fewer topics left.
 
 ## Pillars (target share)
 1. Boost → Order → ចំណេញ — 25%
