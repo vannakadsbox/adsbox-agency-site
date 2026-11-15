@@ -211,7 +211,7 @@ describe("saving content", () => {
 
 describe("articles", () => {
   test("unchanged article stays byte-identical", async () => {
-    for (const slug of ["sell-more-on-live", "boost-budget-new-page", "caption-that-gets-messages", "page-restricted-what-to-do"]) {
+    for (const slug of ["sell-more-on-live", "split-monthly-ad-budget-test-scale-reserve", "caption-that-gets-messages", "page-restricted-what-to-do"]) {
       const path = `content/articles/${slug}.md`;
       const before = gh.text(path);
       const a = (await call("writer", "GET", `/api/articles/${slug}`)).body;
@@ -248,7 +248,9 @@ describe("articles", () => {
     assert.equal((await call("writer", "PUT", "/api/articles/Bad_Slug", { data: {}, body: "", sha: null })).status, 400);
   });
   test("list shows titles and newest first", async () => {
-    const r = (await call("viewer", "GET", "/api/articles")).body;
+    // More articles than one batch: the screen asks again until every title is loaded (titles are cached per file version).
+    let r = (await call("viewer", "GET", "/api/articles")).body;
+    for (let i = 0; r.pending && i < 20; i++) r = (await call("viewer", "GET", "/api/articles")).body;
     assert.equal(r.pending, 0);
     assert.ok(r.items.length >= 4);
     assert.ok(r.items.every(i => i.title && i.date));
@@ -322,3 +324,42 @@ describe("admin powers (27 Oct)", () => {
     assert.equal((await call("sales", "PUT", "/api/data/accounts", again)).status, 400);
   });
 });
+
+// 15 Nov 2026 health check: every real article and content file opens and saves unchanged through the panel,
+// so the Knowledge Center fields (and anything the auto-publisher adds) survive an edit.
+describe("every current file round-trips", () => {
+  test("all articles: open + save without changes keeps their content", async () => {
+    const { parseArticle } = await import("../src/content.js");
+    const slugs = [...gh.files.keys()].filter(p => /^content\/articles\/[a-z0-9-]+\.md$/.test(p)).map(p => p.slice(17, -3));
+    assert.ok(slugs.length >= 30, "articles found: " + slugs.length);
+    for (const slug of slugs) {
+      const path = `content/articles/${slug}.md`, before = gh.text(path);
+      const a = (await call("writer", "GET", `/api/articles/${slug}`));
+      assert.equal(a.status, 200, slug);
+      const r = await call("writer", "PUT", `/api/articles/${slug}`, { data: a.body.data, body: a.body.body, sha: a.body.sha });
+      assert.equal(r.status, 200, slug + ": " + JSON.stringify(r.body));
+      assert.deepEqual(parseArticle(gh.text(path)), parseArticle(before), slug);
+    }
+  });
+  test("all data sections: open + save without changes keeps their content", async () => {
+    const { FILES } = await import("../src/content.js");
+    for (const name of Object.keys(FILES).filter(n => n !== "history")) {   // history is read-only by design
+      const g = await call("owner", "GET", `/api/data/${name}`);
+      assert.equal(g.status, 200, name);
+      const path = FILES[name].path || FILES[name];
+      const before = typeof path === "string" && gh.files.has(path) ? JSON.parse(gh.text(path)) : null;
+      const r = await call("owner", "PUT", `/api/data/${name}`, { data: g.body.data, sha: g.body.sha });
+      assert.equal(r.status, 200, name + ": " + JSON.stringify(r.body));
+      if (before) assert.deepEqual(JSON.parse(gh.text(path)), before, name);
+    }
+  });
+});
+test("a tag the panel list doesn't know is kept, but HTML in a tag is refused", async () => {
+  const a = (await call("writer", "GET", "/api/articles/sell-more-on-live")).body;
+  a.data.tag = "ប្រធានបទថ្មី";
+  assert.equal((await call("writer", "PUT", "/api/articles/sell-more-on-live", { data: a.data, body: a.body, sha: a.sha })).status, 200);
+  const b = (await call("writer", "GET", "/api/articles/sell-more-on-live")).body;
+  b.data.tag = "<script>";
+  assert.equal((await call("writer", "PUT", "/api/articles/sell-more-on-live", { data: b.data, body: b.body, sha: b.sha })).status, 400);
+});
+

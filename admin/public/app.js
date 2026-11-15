@@ -595,7 +595,7 @@ async function articleEditor(item, slug) {
           sw(!data.draft, "🌐 បង្ហាញលើវេបសាយ", v => { data.draft = !v; setDirty(); }, !edit),
           isNew ? field(slugBox, "slug", "តំណភ្ជាប់ (អក្សរឡាតាំង)", { placeholder: "sell-more-on-live", hint: "adsbox.agency/knowledge/<តំណ>/ · មិនអាចប្តូរក្រោយបង្កើត" })
             : h("div", { class: "field" }, h("span", { class: "lbl" }, "តំណភ្ជាប់"), h("a", { href: `${S.me.site}/knowledge/${slug}/`, target: "_blank", rel: "noopener", style: "word-break:break-all" }, `/knowledge/${slug}/`)),
-          field(data, "tag", "ប្រធានបទ", { type: "select", options: S.me.tags, disabled: !edit }),
+          field(data, "tag", "ប្រធានបទ", { type: "select", options: data.tag && !S.me.tags.includes(data.tag) ? [...S.me.tags, data.tag] : S.me.tags, disabled: !edit }),
           field(data, "date", "កាលបរិច្ឆេទ", { type: "date", disabled: !edit }),
           field(data, "emoji", "😀 Emoji លើរូបគម្រប", { disabled: !edit, hint: "Emoji ៣ ដកឃ្លា · រូបគម្របបង្កើតដោយស្វ័យប្រវត្តិ" }),
           imagePicker({ label: "🖼️ រូបគម្របផ្ទាល់ខ្លួន (ស្រេចចិត្ត)", value: data.cover, disabled: !edit, onChange: v => (data.cover = v), hint: "1200×630 · ទុកទទេ = រូបស្វ័យប្រវត្តិ" })),

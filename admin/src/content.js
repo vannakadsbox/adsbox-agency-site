@@ -18,7 +18,7 @@ const SLUG = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const TIME = /^([01][0-9]|2[0-3]):[0-5][0-9]$/;
 const DATE = /^\d{4}-\d{2}-\d{2}$/;
 const IMAGE = /^(\/assets\/(?!.*\.\.)[A-Za-z0-9._\/ -]+\.(jpe?g|png|webp|gif)|upload:\d+)?$/i;   // no ".." segments
-export const ARTICLE_TAGS = ["Boost Post", "Boost Live", "TikTok", "លក់ Live", "ថែទាំផេក", "រចនា", "Messenger", "ចំណេះដឹង", "លក់អនឡាញ", "សេវាអតិថិជន", "ថវិកា និងរបាយការណ៍", "ADS BOX"];
+export const ARTICLE_TAGS = ["Boost Post", "Boost Live", "TikTok", "លក់ Live", "ថែទាំផេក", "រចនា", "Messenger", "ចំណេះដឹង", "លក់អនឡាញ", "សេវាអតិថិជន", "ថវិកា និងរបាយការណ៍", "Facebook Boost", "លេខ និងចំណេញ", "ADS BOX"];
 
 class Invalid extends Error {}
 export { Invalid };
@@ -213,7 +213,8 @@ export function cleanArticle(d, body, before, slug) {
     title: str(d.title, "ចំណងជើង", { required: true, max: 200 }),
     slug,
     summary: str(d.summary, "សេចក្តីសង្ខេប", { required: true, max: 500 }),
-    tag: ARTICLE_TAGS.includes(d.tag) ? d.tag : fail("ប្រធានបទ: សូមជ្រើសរើស"),
+    // A tag from the list, or one the article already has (the Knowledge Center / auto-publisher can add new ones): plain text only.
+    tag: ARTICLE_TAGS.includes(d.tag) || (typeof d.tag === "string" && /^[^<>"\n]{1,40}$/.test(d.tag.trim()) && d.tag === d.tag.trim()) ? d.tag : fail("ប្រធានបទ: សូមជ្រើសរើស"),
     date: str(d.date, "កាលបរិច្ឆេទ", { required: true, re: DATE }),
     ...optional(before, { emoji: str(d.emoji, "Emoji", { max: 40 }), cover: img(d.cover, "រូបគម្រប"), draft: bool(d.draft) }),
   };
