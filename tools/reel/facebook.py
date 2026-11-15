@@ -3,12 +3,14 @@
 
   python3 tools/reel/facebook.py check                       Page reachable with the token? (prints the Page name only)
   python3 tools/reel/facebook.py publish SLUG MP4 [--draft]  upload MP4 as a Reel with the script's facebook_caption
-  python3 tools/reel/facebook.py poll                        handle "Publish" taps from Telegram (run every few minutes)
+  python3 tools/reel/facebook.py tap SLUG MESSAGE_ID CHAT    publish one video after a "Publish" tap (started by the Render webhook)
+  python3 tools/reel/facebook.py webhook set URL|info|delete  point the Telegram bot's button taps at the Render webhook
+  python3 tools/reel/facebook.py poll                        old manual fallback: read taps by polling (only works with no webhook)
 
 Secrets (environment only, never printed): FB_PAGE_ID, FB_PAGE_TOKEN (system-user token; the Page token is fetched from it),
 TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID / TELEGRAM_VIDEO_CHAT_ID. Taps are accepted only from those chats.
 """
-import json, os, subprocess, sys, time, urllib.parse
+import json, os, re, subprocess, sys, time, urllib.parse
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import common as C  # noqa: E402
@@ -124,6 +126,32 @@ def tg(method, fields):
     return deliver.tg(method, fields)
 
 
+def handle_tap(slug, message_id):
+    """Publish one tapped video (once), then replace its button with a link and confirm in Telegram."""
+    reply = str(message_id or "")
+    rec = next((v for v in C.log().get("videos", []) if v.get("slug") == slug), {})
+    done = (rec.get("facebook") or {}).get("state") == "published"
+    if done:
+        url = rec["facebook"]["url"]
+    else:
+        mp4 = f"/tmp/{slug}.mp4"
+        if subprocess.run(["gh", "release", "download", "video-archive", "-p", f"{slug}.mp4", "-O", mp4, "--clobber"]).returncode:
+            tg("sendMessage", {"text": f"⚠️ រកវីដេអូ {slug} មិនឃើញ មិនទាន់បានបង្ហោះទេ។", "reply_to_message_id": reply})
+            return False
+        try:
+            vid, url, name, status = publish(slug, mp4)
+        except (SystemExit, Exception) as ex:  # any failure is reported in Telegram instead of stopping the publisher
+            note("error", f"{slug}: {ex}")
+            tg("sendMessage", {"text": f"⚠️ បង្ហោះទៅ Facebook មិនបានសម្រេច៖ {ex}", "reply_to_message_id": reply})
+            return False
+        note("notice", f"{slug}: published Reel {vid} on {name} (status {status.get('video_status')})")
+    if reply:  # replace the button with a link, so it cannot be tapped twice
+        tg("editMessageReplyMarkup", {"message_id": reply,
+                                      "reply_markup": json.dumps({"inline_keyboard": [[{"text": "✅ បានបង្ហោះ · មើលលើ Facebook", "url": url}]]})})
+    tg("sendMessage", {"text": f"✅ បានបង្ហោះទៅ Facebook Page ហើយ\n{url}", "reply_to_message_id": reply, "disable_web_page_preview": "true"})
+    return True
+
+
 def poll():
     """Read button taps ("fbpub:<slug>") from Telegram and publish those videos."""
     r = tg("getUpdates", {"allowed_updates": json.dumps(["callback_query"]), "timeout": "0"})
@@ -138,27 +166,7 @@ def poll():
             continue
         slug = data.split(":", 1)[1]
         tg("answerCallbackQuery", {"callback_query_id": q.get("id", ""), "text": "កំពុងបង្ហោះទៅ Facebook..."})
-        rec = next((v for v in C.log().get("videos", []) if v.get("slug") == slug), {})
-        done = (rec.get("facebook") or {}).get("state") == "published"
-        if done:
-            url = rec["facebook"]["url"]
-        else:
-            mp4 = f"/tmp/{slug}.mp4"
-            if subprocess.run(["gh", "release", "download", "video-archive", "-p", f"{slug}.mp4", "-O", mp4, "--clobber"]).returncode:
-                tg("sendMessage", {"text": f"⚠️ រកវីដេអូ {slug} មិនឃើញ មិនទាន់បានបង្ហោះទេ។", "reply_to_message_id": str(msg.get("message_id", ""))})
-                continue
-            try:
-                vid, url, name, status = publish(slug, mp4)
-            except (SystemExit, Exception) as ex:  # any failure is reported in Telegram instead of stopping the publisher
-                note("error", f"{slug}: {ex}")
-                tg("sendMessage", {"text": f"⚠️ បង្ហោះទៅ Facebook មិនបានសម្រេច៖ {ex}", "reply_to_message_id": str(msg.get("message_id", ""))})
-                continue
-            note("notice", f"{slug}: published Reel {vid} on {name} (status {status.get('video_status')})")
-        # Replace the button with a link, so it cannot be tapped twice.
-        tg("editMessageReplyMarkup", {"message_id": str(msg.get("message_id", "")),
-                                      "reply_markup": json.dumps({"inline_keyboard": [[{"text": "✅ បានបង្ហោះ · មើលលើ Facebook", "url": url}]]})})
-        tg("sendMessage", {"text": f"✅ បានបង្ហោះទៅ Facebook Page ហើយ\n{url}", "reply_to_message_id": str(msg.get("message_id", "")),
-                           "disable_web_page_preview": "true"})
+        handle_tap(slug, msg.get("message_id", ""))
     if last is not None:
         tg("getUpdates", {"offset": str(last + 1), "timeout": "0"})  # confirm, so each tap is handled once
     print(f"Handled {len(ups)} update(s).")
@@ -171,8 +179,8 @@ def main():
             name, _ = page_token()
             note("notice", f"Facebook OK: the token can post to the Page '{name}'.")
             wh = tg("getWebhookInfo", {})
-            if (wh.get("result") or {}).get("url"):
-                note("warning", "This Telegram bot has a webhook; the Publish button cannot be read by polling.")
+            if not (wh.get("result") or {}).get("url"):
+                note("warning", "No Telegram webhook is set: Publish taps will not reach the Render webhook. Run: webhook set <URL>.")
         elif cmd == "publish":
             vid, url, name, status = publish(sys.argv[2], sys.argv[3], draft="--draft" in sys.argv)
             note("notice", f"Reel {vid} ({'draft, not public' if '--draft' in sys.argv else 'published'}) on '{name}', status {status}")
@@ -207,6 +215,31 @@ def main():
             note("notice", f"Page video_reels: {json.dumps(r, ensure_ascii=False)[:2500]}")
             r = graph("GET", f"{PAGE_ID}/videos", {"fields": "id,created_time,permalink_url,published", "limit": "25", "access_token": pt})
             note("notice", f"Page videos: {json.dumps(r, ensure_ascii=False)[:2500]}")
+        elif cmd == "tap":  # one tap, forwarded by the Render webhook (tools/fbhook/app.py)
+            slug, message_id = sys.argv[2], (sys.argv[3] if len(sys.argv) > 3 else "")
+            chat = sys.argv[4] if len(sys.argv) > 4 else ""
+            if not re.fullmatch(r"[a-z0-9]+(-[a-z0-9]+)*", slug or ""):
+                raise SystemExit(f"bad slug: {slug!r}")
+            if chat and chat not in CHATS:
+                raise SystemExit("tap from a chat that is not allowed")
+            if not handle_tap(slug, message_id):
+                return 1
+        elif cmd == "webhook":  # set / show / remove the bot's webhook (taps then go to Render, not to polling)
+            sub = sys.argv[2] if len(sys.argv) > 2 else "info"
+            if sub == "set":
+                secret = os.environ.get("TELEGRAM_WEBHOOK_SECRET", "").strip()
+                if not secret or len(sys.argv) < 4:
+                    raise SystemExit("usage: webhook set https://<render-service>/telegram (needs TELEGRAM_WEBHOOK_SECRET)")
+                r = tg("setWebhook", {"url": sys.argv[3], "secret_token": secret,
+                                      "allowed_updates": json.dumps(["callback_query"]), "drop_pending_updates": "false"})
+            elif sub == "delete":
+                r = tg("deleteWebhook", {"drop_pending_updates": "false"})
+            else:
+                r = tg("getWebhookInfo", {})
+                res = r.get("result") or {}
+                r = {"ok": r.get("ok"), "url": res.get("url"), "pending": res.get("pending_update_count"),
+                     "last_error": res.get("last_error_message"), "allowed_updates": res.get("allowed_updates")}
+            note("notice" if r.get("ok") else "error", f"webhook {sub}: {json.dumps(r, ensure_ascii=False)[:500]}")
         elif cmd == "poll":
             poll()
         elif cmd == "loop":  # stay awake and check for taps every 20 seconds (GitHub's short schedules are irregular)

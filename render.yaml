@@ -1,0 +1,32 @@
+# Render Blueprint: the ADS BOX Facebook publish webhook (tools/fbhook/app.py).
+# It receives "Publish" button taps from Telegram and starts the GitHub "Facebook publish" workflow for that video only.
+# Secrets are entered in the Render dashboard (sync: false = never stored in this file).
+services:
+  - type: web
+    name: adsbox-fb-webhook
+    runtime: python
+    plan: free            # sleeps when idle; the first tap after a quiet period wakes it (~30-60 s). Use "starter" to stay awake.
+    region: singapore
+    branch: main
+    rootDir: tools/fbhook
+    buildCommand: "true"  # standard library only, nothing to install
+    startCommand: python3 app.py
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_WEBHOOK_SECRET
+        generateValue: true
+      - key: ALLOWED_CHAT_IDS
+        sync: false
+      - key: GITHUB_TOKEN
+        sync: false
+      - key: GITHUB_REPO
+        value: vannakadsbox/adsbox-agency-site
+      - key: GITHUB_WORKFLOW
+        value: facebook.yml
+      - key: GITHUB_REF
+        value: main
+      - key: SET_WEBHOOK_ON_START   # set to "true" only when the owner approves the switch from polling
+        value: ""

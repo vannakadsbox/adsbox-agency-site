@@ -35,7 +35,6 @@ jobs:
           gh release upload video-archive "$out/$slug.mp4" "$out/$slug-thumb.jpg" --clobber
           gh api "repos/${{ github.repository }}/releases" -q ".[] | select(.tag_name==\"video-archive\") | {release_id: .id, assets: [.assets[] | select(.name==\"$slug.mp4\" or .name==\"$slug-thumb.jpg\") | {name, id, size, url: .browser_download_url}]}" > "$out/archive.json"
           python3 tools/reel/deliver.py sent --slug "$slug" --dir "$out" --archive "$out/archive.json" --run "$RUN_URL"
-          [ -n "${FB_PAGE_ID:-}" ] && gh workflow run facebook.yml -f action=loop || true
       - name: Save the production log
         if: always()
         run: |
