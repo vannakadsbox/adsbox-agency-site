@@ -4,7 +4,7 @@ slug: "simple-daily-targets-for-sales-team"
 summary: "ក្រុមលក់ធ្វើការច្រើន តែគ្មានគោលដៅច្បាស់ ក៏ពិបាកដឹងថាថ្ងៃនេះល្អឬអត់។ មើលរបៀបដាក់គោលដៅប្រចាំថ្ងៃងាយៗ ដែលក្រុមតូចអាចធ្វើតាមបានភ្លាម។"
 tag: "Boost → Order → ចំណេញ"
 date: 2026-11-06
-updated: 2026-11-12
+updated: 2026-11-16
 emoji: "🎯 📋 🤝"
 cover: ""
 seo_title: "ដាក់គោលដៅប្រចាំថ្ងៃឲ្យក្រុមលក់អនឡាញ"
@@ -71,4 +71,4 @@ draft: false
 
 **អត្ថបទពាក់ព័ន្ធ៖** [ចែកការងារ Admin អ្នក Live និងអ្នកខ្ចប់](/knowledge/split-roles-admin-live-host-packer/) · [តាមដាន Order ពីសារដល់ដៃអតិថិជន](/knowledge/track-orders-from-message-to-delivery/) · [របាយការណ៍ Boost ប្រចាំថ្ងៃ](/knowledge/daily-spend-and-order-report/)
 
-បើក្រុមចំណាយពេលច្រើនលើការរាប់ Order ដោយដៃ ជាជាងលក់ ADS BOX System អាចជួយចាប់ Order ពី Comment Live ឆ្លើយ Messenger និងបោះពុម្ពស្ទីគ័រដឹក ដូច្នេះក្រុមមានពេលផ្ដោតលើគោលដៅ។ មានគម្រោងឥតគិតថ្លៃ និងគម្រោងបង់ប្រាក់ចាប់ពី $29 ក្នុងមួយខែ៖ [adsbox.biz](https://adsbox.biz/) ឬ [Telegram](https://t.me/vannakdm)។
+បើ Order ច្រើនរហូតកត់មិនទាន់ សាក ADS BOX System ដើម្បីគ្រប់គ្រង Order ពី Comment Live និង Messenger ឥតគិតថ្លៃ (គម្រោងបង់ប្រាក់ចាប់ពី $29 / ខែ) នៅ [adsbox.biz](https://adsbox.biz/)។

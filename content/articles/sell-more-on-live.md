@@ -4,7 +4,7 @@ slug: "sell-more-on-live"
 summary: "មគ្គុទ្ទេសក៍ Facebook Live សម្រាប់ហាងតូច៖ Checklist មុន Live ស្គ្រីបនិយាយពេល Live ការដោះស្រាយ Comment លឿន និងស្តុកអស់ និងលេខ ៥ ដែលប្រាប់ថា Live នៅសល់លុយឬអត់។"
 tag: "Live → Order"
 date: 2026-10-14
-updated: 2026-11-12
+updated: 2026-11-16
 emoji: "🔴 🎙️ 📦"
 cover: ""
 seo_title: "លក់តាម Facebook Live៖ ស្គ្រីប Checklist និងលេខដែលត្រូវមើល"
@@ -107,8 +107,17 @@ Live ដែលលក់ដាច់ពិត គឺ Live ដែលអ្នក�
 - ☐ សរសេរប្រយោគបើក Live និងសារសរុប Order ទុក
 - ☐ កត់លេខ ៥ ពី Live ចុងក្រោយ (បើនៅចាំ ឬមើលក្នុង Facebook)
 
+## អានបន្តក្នុងប្រធានបទ «Live → Order»
+
+- [Live ៣ ម៉ោង តែ Order តិច?](/knowledge/facebook-live-selling-myths/)
+- [ដាក់លេខកូដទំនិញពេល Live](/knowledge/product-codes-for-live-orders/)
+- [ចែកការងារក្រុមលក់អនឡាញ](/knowledge/split-roles-admin-live-host-packer/)
+- [ចាប់ Order ពី Comment Live ដោយស្វ័យប្រវត្តិ](/knowledge/auto-capture-orders-from-live-comments/)
+- [លក់ហើយទើបដឹងថាអស់ស្តុក?](/knowledge/simple-stock-management-for-online-shops/)
+- [បញ្ជាក់ Order មុនផ្ញើ (COD)](/knowledge/cod-order-confirmation-message-templates/)
+
 **បន្ទាប់ក្នុងផ្លូវរៀន៖** [ដាក់កូដទំនិញ ដើម្បីកត់ Order ពី Live មិនច្រឡំ](/knowledge/product-codes-for-live-orders/)
 
 **អត្ថបទពាក់ព័ន្ធ៖** [ការយល់ខុសអំពីការលក់តាម Live](/knowledge/facebook-live-selling-myths/) · [ចែកតួនាទី Admin អ្នក Live និងអ្នកខ្ចប់](/knowledge/split-roles-admin-live-host-packer/) · [គ្រប់គ្រងស្តុកសាមញ្ញ](/knowledge/simple-stock-management-for-online-shops/) · [ចាប់ Order ពី Comment Live ដោយស្វ័យប្រវត្តិ](/knowledge/auto-capture-orders-from-live-comments/)
 
-បើបងរៀបចំ Live បានល្អហើយ តែចង់ឲ្យមានអ្នកមើលចូលលឿនពេលកំពុងលក់ ក្រុម ADS BOX មានសេវាគ្រប់គ្រងផេក Boost Live (ចាប់ពី $120 / ខែ) ដែល Boost ពេលកំពុង Live ដើម្បីនាំអ្នកមើលចូលលឿន ហើយតាមដានលទ្ធផលគិតជា Order។ ADS BOX មិនសន្យាចំនួន Order ទេ ព្រោះវាអាស្រ័យលើទំនិញ តម្លៃ និងការ Live។ ផ្ញើ Link ផេកមកតាម [Telegram](https://t.me/vannakdm)។
+ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ? ក្រុម ADS BOX មានសេវា Boost Live (ចាប់ពី $120 / ខែ) ដើម្បីនាំអ្នកមើលដែលចង់ទិញពិតចូល Live។ មើល [សេវាកម្មរបស់យើង](/#services) ឬឆាតមក [Telegram](https://t.me/vannakdm)។

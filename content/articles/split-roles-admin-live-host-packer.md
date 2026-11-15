@@ -4,7 +4,7 @@ slug: "split-roles-admin-live-host-packer"
 summary: "របៀបចែកតួនាទី Admin, Live Host និងអ្នកខ្ចប់ឲ្យច្បាស់ ដើម្បីឲ្យក្រុមតូចលក់បានរលូន មិនជាន់ការងារគ្នា។"
 tag: "Live → Order"
 date: 2026-10-28
-updated: 2026-11-12
+updated: 2026-11-16
 emoji: "👥 🎥 📦"
 cover: ""
 seo_title: "ចែកការងារក្រុមលក់អនឡាញ៖ Admin, Live Host, អ្នកខ្ចប់"
@@ -72,4 +72,4 @@ Admin ក៏ជាអ្នកប្រាប់ Live Host ពេលទំនិ
 
 **អត្ថបទពាក់ព័ន្ធ៖** [រៀបចំ Live មុន ពេល និងក្រោយ](/knowledge/sell-more-on-live/) · [គោលដៅប្រចាំថ្ងៃសម្រាប់ក្រុមលក់](/knowledge/simple-daily-targets-for-sales-team/) · [ឆ្លើយសារ Messenger លឿន មិនឲ្យបាត់ Order](/knowledge/organize-messenger-inbox-reply-fast/)
 
-បើចង់កាត់បន្ថយការងារ Admin ដោយចាប់ Order ពី Comment ឆ្លើយ Messenger និងព្រីន Sticker ដឹកជញ្ជូនក្នុងប្រព័ន្ធតែមួយ អាចសាកល្បង [ប្រព័ន្ធ ADS BOX](/#adsbox-system) ឬឆាតសួរក្រុមការងារតាម [Telegram](https://t.me/vannakdm)។
+បើ Order ច្រើនរហូតកត់មិនទាន់ សាក ADS BOX System ដើម្បីគ្រប់គ្រង Order ពី Comment Live និង Messenger ឥតគិតថ្លៃ (គម្រោងបង់ប្រាក់ចាប់ពី $29 / ខែ) នៅ [adsbox.biz](https://adsbox.biz/)។

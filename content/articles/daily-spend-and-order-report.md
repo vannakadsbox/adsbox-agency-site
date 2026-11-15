@@ -4,7 +4,7 @@ slug: "daily-spend-and-order-report"
 summary: "តារាងគំរូ និងទម្លាប់ ៥ នាទីរាល់ព្រឹក៖ លុយចាយ សារ Order Order បញ្ជាក់ ដឹកដល់ និងមិនទទួល។ ដឹងភ្លាមថា Boost លេចលុយនៅ Post នៅ Messenger ឬនៅការដឹក។"
 tag: "Behind ADS BOX"
 date: 2026-11-09
-updated: 2026-11-12
+updated: 2026-11-16
 emoji: "📊 ☀️ 📝"
 cover: ""
 seo_title: "របាយការណ៍ Boost ប្រចាំថ្ងៃ៖ តារាងគំរូ ដើម្បីដឹងថាលុយលេចនៅកន្លែងណា"
@@ -121,8 +121,16 @@ draft: false
 - ☐ បង្កើត Label «Order» និង «បញ្ជាក់រួច» ក្នុង Messenger
 - ☐ សួរក្រុមហ៊ុនដឹក ពីរបៀបទទួលបញ្ជីដឹកដល់ មិនទទួល និងថ្ងៃផ្ទេរលុយ
 
+## អានបន្តក្នុងប្រធានបទ «លេខដែលត្រូវកត់រាល់ថ្ងៃ»
+
+- [អាន Ads Manager ក្នុង ៥ នាទីរាល់ព្រឹក](/knowledge/read-ads-manager-in-5-minutes/)
+- [Boost $10/ថ្ងៃ គួរបន្ថែម កាត់ ឬបិទ?](/knowledge/when-to-raise-or-cut-boost-budget/)
+- [ក្រុមរវល់ពេញថ្ងៃ តែមិនដឹងថាថ្ងៃនេះលក់បានល្អឬអត់?](/knowledge/simple-daily-targets-for-sales-team/)
+- [Order ភ្លេចខ្ចប់ ផ្ញើខុស ត្រឡប់មកវិញ = លុយ Boost បាត់](/knowledge/track-orders-from-message-to-delivery/)
+- [បញ្ជាក់ Order មុនផ្ញើ (COD)](/knowledge/cod-order-confirmation-message-templates/)
+
 **បន្ទាប់ក្នុងផ្លូវរៀន៖** [ការពារ Order បោះបង់មុនផ្ញើ](/knowledge/stop-customers-refusing-parcels/)
 
 **អត្ថបទពាក់ព័ន្ធ៖** [អានលទ្ធផល Ads Manager ក្នុង ៥ នាទី](/knowledge/read-ads-manager-in-5-minutes/) · [តាមដាន Order ពីសារដល់ដៃអតិថិជន](/knowledge/track-orders-from-message-to-delivery/) · [ចាប់ Order ពី Comment Live ដោយស្វ័យប្រវត្តិ](/knowledge/auto-capture-orders-from-live-comments/)
 
-បើការរាប់ Order ពី Comment និង Messenger ស៊ីពេល Admin ច្រើនពេក ADS BOX System អាចជួយចាប់ Order ពី Comment Live ឆ្លើយ Messenger និងបោះពុម្ពស្ទីគ័រដឹក ក្នុងប្រព័ន្ធតែមួយ។ មានគម្រោងឥតគិតថ្លៃ ហើយគម្រោងបង់ប្រាក់ចាប់ពី $29 ក្នុងមួយខែ។ [ចុះឈ្មោះនៅ adsbox.biz](https://adsbox.biz/) ឬ [សួរក្រុមការងារតាម Telegram](https://t.me/vannakdm)។ អតិថិជនដែលប្រើសេវា Boost របស់ ADS BOX ទទួលបានរបាយការណ៍លុយចាយ និងចំនួន Order រាល់ថ្ងៃរួចហើយ ហើយគ្រាន់តែបំពេញជួរដឹកដល់ពីក្រុមហ៊ុនដឹក។
+បើ Order ច្រើនរហូតកត់មិនទាន់ សាក ADS BOX System ដើម្បីគ្រប់គ្រង Order ពី Comment Live និង Messenger ឥតគិតថ្លៃ (គម្រោងបង់ប្រាក់ចាប់ពី $29 / ខែ) នៅ [adsbox.biz](https://adsbox.biz/)។

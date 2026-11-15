@@ -4,7 +4,7 @@ slug: "simple-stock-management-for-online-shops"
 summary: "ការលក់ទំនិញដែលអស់ពីស្តុក ធ្វើឲ្យអតិថិជនខកចិត្ត។ រៀន ៥ ទម្លាប់សាមញ្ញ ដើម្បីដឹងចំនួនស្តុកពិតរៀងរាល់ថ្ងៃ។"
 tag: "ចំណេញពិត"
 date: 2026-11-04
-updated: 2026-11-12
+updated: 2026-11-16
 emoji: "📦 📋 ✅"
 cover: ""
 seo_title: "គ្រប់គ្រងស្តុកទំនិញ៖ ៥ ទម្លាប់សម្រាប់ហាងអនឡាញ"
@@ -66,4 +66,4 @@ draft: false
 
 **អត្ថបទពាក់ព័ន្ធ៖** [ដាក់កូដទំនិញពេល Live](/knowledge/product-codes-for-live-orders/) · [រៀបចំ Live មុន ពេល និងក្រោយ](/knowledge/sell-more-on-live/) · [តាមដាន Order ពីសារដល់ដៃអតិថិជន](/knowledge/track-orders-from-message-to-delivery/)
 
-បើបងលក់តាម Live ហើយ Order ពី Comment ចូលលឿនជាងការកត់ ADS BOX System អាចជួយចាប់ Order ពី Comment Live ដោយស្វ័យប្រវត្តិ ឆ្លើយ Messenger និងបោះពុម្ពស្ទីគ័រដឹក។ មានគម្រោងឥតគិតថ្លៃ ហើយគម្រោងបង់ប្រាក់ចាប់ពី $29 ក្នុងមួយខែ។ [មើលនៅ adsbox.biz](https://adsbox.biz/) ឬ [សួរតាម Telegram](https://t.me/vannakdm)។
+បើ Order ច្រើនរហូតកត់មិនទាន់ សាក ADS BOX System ដើម្បីគ្រប់គ្រង Order ពី Comment Live និង Messenger ឥតគិតថ្លៃ (គម្រោងបង់ប្រាក់ចាប់ពី $29 / ខែ) នៅ [adsbox.biz](https://adsbox.biz/)។
