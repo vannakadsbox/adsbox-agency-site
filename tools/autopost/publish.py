@@ -73,6 +73,15 @@ def validate(d, brief, s, existing=None, history=None):
     # Data policy (owner, 15 Nov 2026): the auto-writer never writes case studies or presents results as real client data.
     if not prewritten and re.search(r"ករណីសិក្សា|case\s*study", " ".join(str(d.get(k) or "") for k in ("title", "summary", "seo_title", "body")), re.I):
         errs.append("data policy: do not write a case study or use «ករណីសិក្សា» / «Case Study»; label invented numbers «ឧទាហរណ៍»")
+    # House styles (owner, 16 Nov 2026): the draft must actually use the style in plan_topic.format.
+    fmt = (brief.get("plan_topic") or {}).get("format", "")
+    b_ = str(d.get("body") or "")
+    if fmt == "Story" and not re.search(r"មិនមែន(?:ទិន្នន័យ)?អតិថិជនពិត", b_):
+        errs.append("style: a Story must open with «**រឿងឧទាហរណ៍** (មិនមែនអតិថិជនពិត)»")
+    if fmt == "FAQ" and len(re.findall(r"(?m)^###\s+\S", b_)) < 4:
+        errs.append("style: an FAQ needs at least 4 questions as '### ' headings")
+    if fmt == "Myth vs Truth" and (b_.count("ការយល់ខុស") < 3 or b_.count("ការពិត") < 3):
+        errs.append("style: Myth vs Truth needs at least 3 «ការយល់ខុស៖ … / ការពិត៖ …» pairs")
     series = d.get("series") or ""
     if series not in [""] + SERIES: errs.append("series: must be empty or one of " + ", ".join(SERIES))
     elif series != ((brief.get("plan_topic") or {}).get("series") or ""): errs.append("series: copy plan_topic.series exactly")

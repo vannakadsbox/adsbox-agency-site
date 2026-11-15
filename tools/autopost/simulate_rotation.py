@@ -23,7 +23,7 @@ def main():
         if not t:
             print(f"{d} {wd}  —  {msg}"); continue
         hist["runs"].append({"date": d, "status": "published", "topic_id": t["topic_id"]})
-        print(f"{d} {wd}  {t['rotation_category']:16s} {t['pillar']:24s} {t['topic_id']:30s} {t['topic']}")
+        print(f"{d} {wd}  {t['rotation_category']:16s} {t['format']:13s} {t['topic']}")
         for n in notes:
             print(f"{'':16}note: {n}")
 

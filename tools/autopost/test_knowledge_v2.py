@@ -144,6 +144,16 @@ class Rotation(unittest.TestCase):
         b = self.plan(MON)[1]; b["prewritten_draft"] = "content/autopost/prewritten/x.json"
         self.assertNotIn("tag: not an allowed tag", self.errs(b, tag=P.CASE_TAG))
 
+    def test_house_styles_are_checked(self):
+        b = self.plan(MON)[1]                                     # Mon 23 Nov = Story
+        self.assertEqual(b["plan_topic"]["format"], "Story")
+        self.assertTrue(any(x.startswith("style: a Story") for x in self.errs(b)))
+        self.assertFalse(any(x.startswith("style:") for x in self.errs(b, body="**រឿងឧទាហរណ៍** (មិនមែនអតិថិជនពិត)\n\n" + SAMPLE["body"])))
+        b["plan_topic"]["format"] = "FAQ"
+        self.assertTrue(any(x.startswith("style: an FAQ") for x in self.errs(b)))
+        b["plan_topic"]["format"] = "Myth vs Truth"
+        self.assertTrue(any(x.startswith("style: Myth vs Truth") for x in self.errs(b)))
+
     def test_run_record_keeps_topic_id(self):
         b = self.plan(MON)[1]
         class A: pass
