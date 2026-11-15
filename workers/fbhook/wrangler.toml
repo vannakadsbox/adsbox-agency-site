@@ -1,0 +1,10 @@
+# ADS BOX Facebook publish webhook. Deployed by .github/workflows/fbhook-deploy.yml (never by hand).
+name = "adsbox-fb-webhook"
+main = "worker.js"
+compatibility_date = "2026-11-01"
+workers_dev = true
+
+[vars]
+GITHUB_REPO = "vannakadsbox/adsbox-agency-site"
+GITHUB_WORKFLOW = "facebook.yml"
+GITHUB_REF = "main"

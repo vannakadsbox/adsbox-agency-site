@@ -1,0 +1,111 @@
+# Deploys the Facebook publish webhook (workers/fbhook, a Cloudflare Worker) and, when asked, connects the
+# Telegram bot's button taps to it. All secrets come from this repository's secrets; nothing is typed by hand.
+#
+# Run by hand (Actions → "Facebook webhook (Cloudflare)" → Run workflow):
+#   step = deploy      deploy / update the Worker only (taps are not touched)
+#   step = connect     deploy, give the Worker a new webhook secret and point the bot's taps at it
+#   step = disconnect  remove the bot's webhook (rollback; taps are then not handled until connected again)
+#   step = status      show where the bot's taps go (no changes)
+# Secrets used: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID, TELEGRAM_BOT_TOKEN, TELEGRAM_VIDEO_CHAT_ID or
+# TELEGRAM_CHAT_ID, and FB_DISPATCH_TOKEN (fine-grained, Actions read/write on this repo) or else ADMIN_GITHUB_TOKEN.
+name: Facebook webhook (Cloudflare)
+on:
+  workflow_dispatch:
+    inputs:
+      step:
+        description: "deploy · connect · disconnect · status"
+        type: choice
+        options: [deploy, connect, disconnect, status]
+        default: deploy
+  push:
+    branches: [main]
+    paths: ["workers/fbhook/**"]   # code changes redeploy the Worker; they never change the webhook
+permissions:
+  contents: read
+concurrency:
+  group: fbhook-deploy
+  cancel-in-progress: false
+jobs:
+  webhook:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      STEP: ${{ github.event.inputs.step || 'deploy' }}
+      TG: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Tests
+        if: env.STEP == 'deploy' || env.STEP == 'connect'
+        run: node --test workers/fbhook/worker.test.mjs
+      - name: Where do taps go now?
+        run: |
+          [ -n "$TG" ] || { echo "::error::TELEGRAM_BOT_TOKEN is not set"; exit 1; }
+          curl -sS "https://api.telegram.org/bot$TG/getWebhookInfo" | jq '{url: .result.url, pending: .result.pending_update_count, last_error: .result.last_error_message}'
+      - name: Check the GitHub token can start the Facebook workflow
+        if: env.STEP == 'deploy' || env.STEP == 'connect'
+        id: ghtoken
+        env:
+          T1: ${{ secrets.FB_DISPATCH_TOKEN }}
+          T2: ${{ secrets.ADMIN_GITHUB_TOKEN }}
+        run: |
+          # A harmless test: start facebook.yml with action "check" (it only reads the Page name).
+          for name in FB_DISPATCH_TOKEN ADMIN_GITHUB_TOKEN; do
+            tok=$([ "$name" = FB_DISPATCH_TOKEN ] && echo "$T1" || echo "$T2"); [ -n "$tok" ] || continue
+            code=$(curl -sS -o /dev/null -w '%{http_code}' -X POST -H "Authorization: Bearer $tok" -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/${{ github.repository }}/actions/workflows/facebook.yml/dispatches" -d '{"ref":"main","inputs":{"action":"check"}}')
+            if [ "$code" = 204 ]; then echo "use=$name" >> "$GITHUB_OUTPUT"; echo "::notice::$name can start the Facebook workflow"; exit 0; fi
+            echo "::warning::$name cannot start the Facebook workflow (HTTP $code)"
+          done
+          echo "::error::No token can start facebook.yml. Add a repository secret FB_DISPATCH_TOKEN: a fine-grained token for this repository with Actions: Read and write."
+          exit 1
+      - name: Deploy the Worker
+        if: env.STEP == 'deploy' || env.STEP == 'connect'
+        id: deploy
+        working-directory: workers/fbhook
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          npx --yes wrangler@4.127.1 deploy 2>&1 | tee /tmp/deploy.txt
+          url=$(grep -oE 'https://[a-z0-9.-]+\.workers\.dev' /tmp/deploy.txt | head -1)
+          [ -n "$url" ] || { echo "::error::No workers.dev address in the deploy output (is the workers.dev subdomain enabled?)"; exit 1; }
+          echo "url=$url" >> "$GITHUB_OUTPUT"; echo "::notice::Worker address: $url"
+      - name: Worker secrets (bot token, chat, GitHub token)
+        if: env.STEP == 'deploy' || env.STEP == 'connect'
+        working-directory: workers/fbhook
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CHAT: ${{ secrets.TELEGRAM_VIDEO_CHAT_ID || secrets.TELEGRAM_CHAT_ID }}
+          T1: ${{ secrets.FB_DISPATCH_TOKEN }}
+          T2: ${{ secrets.ADMIN_GITHUB_TOKEN }}
+          USE: ${{ steps.ghtoken.outputs.use }}
+        run: |
+          [ -n "$CHAT" ] || { echo "::error::TELEGRAM_VIDEO_CHAT_ID / TELEGRAM_CHAT_ID is not set"; exit 1; }
+          gh_tok=$([ "$USE" = FB_DISPATCH_TOKEN ] && echo "$T1" || echo "$T2")
+          printf '%s' "$TG"     | npx --yes wrangler@4.127.1 secret put TELEGRAM_BOT_TOKEN >/dev/null
+          printf '%s' "$CHAT"   | npx --yes wrangler@4.127.1 secret put ALLOWED_CHAT_IDS >/dev/null
+          printf '%s' "$gh_tok" | npx --yes wrangler@4.127.1 secret put GITHUB_TOKEN >/dev/null
+          echo "Secrets updated (values not shown)."
+      - name: Connect the bot's taps to the Worker
+        if: env.STEP == 'connect'
+        working-directory: workers/fbhook
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          URL: ${{ steps.deploy.outputs.url }}
+        run: |
+          secret=$(openssl rand -hex 32); echo "::add-mask::$secret"
+          printf '%s' "$secret" | npx --yes wrangler@4.127.1 secret put WEBHOOK_SECRET >/dev/null
+          sleep 10
+          code=$(curl -sS -o /dev/null -w '%{http_code}' "$URL/healthz")
+          [ "$code" = 200 ] || { echo "::error::Worker health check returned $code; webhook NOT changed"; exit 1; }
+          curl -sS "https://api.telegram.org/bot$TG/setWebhook" -H "Content-Type: application/json" \
+            -d "{\"url\":\"$URL/telegram\",\"secret_token\":\"$secret\",\"allowed_updates\":[\"callback_query\"]}" | jq '{ok, description}'
+          curl -sS "https://api.telegram.org/bot$TG/getWebhookInfo" | jq '{url: .result.url, pending: .result.pending_update_count}'
+      - name: Disconnect (rollback)
+        if: env.STEP == 'disconnect'
+        run: curl -sS "https://api.telegram.org/bot$TG/deleteWebhook" | jq '{ok, description}'

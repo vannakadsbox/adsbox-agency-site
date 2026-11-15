@@ -3,8 +3,8 @@
 
   python3 tools/reel/facebook.py check                       Page reachable with the token? (prints the Page name only)
   python3 tools/reel/facebook.py publish SLUG MP4 [--draft]  upload MP4 as a Reel with the script's facebook_caption
-  python3 tools/reel/facebook.py tap SLUG MESSAGE_ID CHAT    publish one video after a "Publish" tap (started by the Render webhook)
-  python3 tools/reel/facebook.py webhook set URL|info|delete  point the Telegram bot's button taps at the Render webhook
+  python3 tools/reel/facebook.py tap SLUG MESSAGE_ID CHAT    publish one video after a "Publish" tap (started by the Cloudflare Worker)
+  python3 tools/reel/facebook.py webhook info|delete         show / remove the bot's webhook (connect it with fbhook-deploy.yml)
   python3 tools/reel/facebook.py poll                        old manual fallback: read taps by polling (only works with no webhook)
 
 Secrets (environment only, never printed): FB_PAGE_ID, FB_PAGE_TOKEN (system-user token; the Page token is fetched from it),
@@ -180,7 +180,7 @@ def main():
             note("notice", f"Facebook OK: the token can post to the Page '{name}'.")
             wh = tg("getWebhookInfo", {})
             if not (wh.get("result") or {}).get("url"):
-                note("warning", "No Telegram webhook is set: Publish taps will not reach the Render webhook. Run: webhook set <URL>.")
+                note("warning", "No Telegram webhook is set: Publish taps will not reach the Cloudflare Worker. Run the \"Facebook webhook (Cloudflare)\" workflow with step connect.")
         elif cmd == "publish":
             vid, url, name, status = publish(sys.argv[2], sys.argv[3], draft="--draft" in sys.argv)
             note("notice", f"Reel {vid} ({'draft, not public' if '--draft' in sys.argv else 'published'}) on '{name}', status {status}")
@@ -215,7 +215,7 @@ def main():
             note("notice", f"Page video_reels: {json.dumps(r, ensure_ascii=False)[:2500]}")
             r = graph("GET", f"{PAGE_ID}/videos", {"fields": "id,created_time,permalink_url,published", "limit": "25", "access_token": pt})
             note("notice", f"Page videos: {json.dumps(r, ensure_ascii=False)[:2500]}")
-        elif cmd == "tap":  # one tap, forwarded by the Render webhook (tools/fbhook/app.py)
+        elif cmd == "tap":  # one tap, forwarded by the Cloudflare Worker (workers/fbhook)
             slug, message_id = sys.argv[2], (sys.argv[3] if len(sys.argv) > 3 else "")
             chat = sys.argv[4] if len(sys.argv) > 4 else ""
             if not re.fullmatch(r"[a-z0-9]+(-[a-z0-9]+)*", slug or ""):
@@ -224,7 +224,7 @@ def main():
                 raise SystemExit("tap from a chat that is not allowed")
             if not handle_tap(slug, message_id):
                 return 1
-        elif cmd == "webhook":  # set / show / remove the bot's webhook (taps then go to Render, not to polling)
+        elif cmd == "webhook":  # set / show / remove the bot's webhook (connect is done by fbhook-deploy.yml)
             sub = sys.argv[2] if len(sys.argv) > 2 else "info"
             if sub == "set":
                 secret = os.environ.get("TELEGRAM_WEBHOOK_SECRET", "").strip()
