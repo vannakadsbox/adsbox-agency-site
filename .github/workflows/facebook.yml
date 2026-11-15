@@ -21,8 +21,10 @@ on:
         required: false
 permissions:
   contents: write
+# One queue per video: GitHub keeps only one waiting run per group, so a shared group could cancel a second tap
+# that arrives while another video is uploading. Taps on the same video still run one after another.
 concurrency:
-  group: facebook-publish
+  group: facebook-publish-${{ github.event.inputs.slug || github.run_id }}
   cancel-in-progress: false
 jobs:
   publish:
