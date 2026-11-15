@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="km">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="បង្កើតរូបប្រូម៉ូសិនទំនិញឥតគិតថ្លៃ៖ AI លុបផ្ទៃខាងក្រោយ គំរូ ១០ ម៉ូដ ទាញយក PNG។">
+<link rel="icon" href="/assets/favicon.png">
+<!-- PREVIEW (owner review, 15 Nov 2026): not linked from the site, not in the sitemap, noindex.
+     Background removal: U²-Net small (Apache-2.0, github.com/xuebinqin/U-2-Net), runs in the visitor's browser
+     with onnxruntime-web (MIT). Photos never leave the device. -->
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font-size:14px}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>បង្កើតរូបប្រូម៉ូសិនទំនិញ ឥតគិតថ្លៃ · ADS BOX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@600;700;800;900&family=Kantumruy+Pro:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: workbench. Controls on the left, the poster on a sticky light-box on the right; one column on phones with the poster first.
+   The page is the quiet tool; the posters carry the colour. */
+:root{
+  --bg:#eef1f7; --panel:#ffffff; --ink:#0d1a3a; --muted:#5b6785; --line:#d9e0ee; --soft:#e7eeff;
+  --brand:#1d4aa6; --brand-ink:#ffffff; --sun:#ffd23f; --ok:#13854a; --warn:#b4540a;
+  --check-a:#ffffff; --check-b:#e3e8f2;
+  --f-ui:"Kantumruy Pro","Noto Sans Khmer",system-ui,sans-serif;
+  --f-num:"Be Vietnam Pro","Kantumruy Pro",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0a1022; --panel:#121a33; --ink:#e8edfb; --muted:#9aa6c6; --line:#24304f; --soft:#1a2547;
+  --brand:#6f95ff; --brand-ink:#0a1022; --sun:#ffd23f; --ok:#41c785; --warn:#f0a35a;
+  --check-a:#1a2240; --check-b:#141b33; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0a1022; --panel:#121a33; --ink:#e8edfb; --muted:#9aa6c6; --line:#24304f; --soft:#1a2547;
+  --brand:#6f95ff; --brand-ink:#0a1022; --sun:#ffd23f; --ok:#41c785; --warn:#f0a35a;
+  --check-a:#1a2240; --check-b:#141b33; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 40px}
+.wrap{max-width:1200px;margin:0 auto}
+header.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding-block:18px 6px}
+.brand{display:flex;align-items:center;gap:10px}
+.mark{font-family:var(--f-num);font-weight:900;font-size:22px;letter-spacing:.04em;color:var(--brand)}
+.chip{font-family:var(--f-num);font-size:11px;font-weight:800;letter-spacing:.06em;padding:3px 9px;border-radius:999px;background:var(--soft);color:var(--brand)}
+.free{font-weight:700;font-size:13px;padding:4px 12px;border-radius:999px;background:var(--sun);color:#1b1400}
+h1{font-size:clamp(24px,4vw,36px);line-height:1.3;margin:6px 0 4px;text-wrap:balance}
+.lede{color:var(--muted);margin:0 0 18px;max-width:64ch}
+.bench{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,440px);gap:20px;align-items:start}
+@media (max-width:900px){.bench{grid-template-columns:minmax(0,1fr)}.stage{order:-1;position:static!important}}
+.controls{display:grid;gap:14px;min-width:0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;min-width:0}
+.card h2{font-size:16px;margin:0 0 12px;display:flex;align-items:center;gap:8px}
+.card h2 b{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:8px;background:var(--soft);color:var(--brand);font-family:var(--f-num);font-size:12px}
+.drop{display:grid;place-items:center;text-align:center;gap:2px;padding:16px;border:2px dashed var(--line);border-radius:14px;cursor:pointer;color:var(--muted)}
+.drop:hover,.drop.on{border-color:var(--brand);background:var(--soft)}
+.drop strong{color:var(--ink)}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (max-width:480px){.grid2{grid-template-columns:minmax(0,1fr)}}
+.full{grid-column:1/-1}
+label{display:grid;gap:4px;font-size:13px;color:var(--muted);min-width:0}
+input[type=text],input[type=number],input[type=tel],select{width:100%;font:inherit;font-size:15px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:9px 11px}
+input:focus-visible,select:focus-visible,button:focus-visible,.tpl:focus-visible,.drop:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+input[type=range]{width:100%;accent-color:var(--brand)}
+input[type=color]{width:44px;height:34px;border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:2px}
+.btn{font:inherit;font-weight:600;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:10px;padding:8px 14px;cursor:pointer}
+.btn.primary{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+.btn.big{width:100%;padding:13px;font-size:16px}
+.note{font-size:12.5px;color:var(--muted);margin:8px 0 0}
+.seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{font:inherit;font-size:13px;border:0;background:var(--panel);color:var(--ink);padding:7px 12px;cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--brand);color:var(--brand-ink)}
+.status{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:8px;min-height:22px}
+.status.ok{color:var(--ok)}.status.warn{color:var(--warn)}
+.spin{width:14px;height:14px;border-radius:50%;border:2px solid var(--line);border-top-color:var(--brand);animation:sp .8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.thumbs{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.thumbs img{width:64px;height:64px;object-fit:contain;border-radius:10px;border:1px solid var(--line);background:repeating-conic-gradient(var(--check-a) 0 25%,var(--check-b) 0 50%) 0 0/10px 10px}
+.tpls{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+@media (max-width:640px){.tpls{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:400px){.tpls{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.tpl{border:2px solid var(--line);border-radius:12px;padding:5px;background:var(--panel);cursor:pointer;display:grid;gap:4px;text-align:center;font-size:12px;line-height:1.35;color:var(--ink);font-family:var(--f-ui)}
+.tpl canvas{width:100%;aspect-ratio:4/5;border-radius:8px;background:repeating-conic-gradient(var(--check-a) 0 25%,var(--check-b) 0 50%) 0 0/10px 10px}
+.tpl[aria-pressed=true]{border-color:var(--brand);box-shadow:0 0 0 3px var(--soft)}
+.stage{position:sticky;top:max(12px,env(safe-area-inset-top,0px));display:grid;gap:12px}
+.view{position:relative;border-radius:16px;border:1px solid var(--line);overflow:hidden;background:repeating-conic-gradient(var(--check-a) 0 25%,var(--check-b) 0 50%) 0 0/18px 18px;display:grid;place-items:center;padding:14px}
+#preview{max-width:100%;max-height:66vh;width:auto;height:auto;display:block;touch-action:none;cursor:grab;border-radius:6px}
+#preview.drag{cursor:grabbing}
+.hint{font-size:12.5px;color:var(--muted);text-align:center;margin:0}
+.tag{position:absolute;left:10px;top:10px;font-size:11px;font-weight:700;background:var(--panel);color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:2px 9px}
+dialog{border:0;border-radius:18px;padding:0;max-width:min(560px,94vw);width:100%;background:var(--panel);color:var(--ink)}
+dialog::backdrop{background:rgba(5,10,25,.6)}
+.dlg{display:grid;gap:12px;padding:18px}
+.dlg h3{margin:0;font-size:18px}
+.out{border-radius:12px;max-height:60vh;justify-self:center;background:repeating-conic-gradient(var(--check-a) 0 25%,var(--check-b) 0 50%) 0 0/14px 14px}
+.why{margin:22px 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:760px){.why{grid-template-columns:minmax(0,1fr)}}
+.why div{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;font-size:13.5px;color:var(--muted)}
+.why strong{display:block;color:var(--ink);font-size:15px;margin-bottom:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/" style="text-decoration:none"><span class="mark">ADS BOX</span><span class="chip">GRAPHIC</span></a>
+    <span class="free">ឥតគិតថ្លៃ · មិនចាំបាច់ចុះឈ្មោះ</span>
+  </header>
+  <h1>បង្កើតរូបប្រូម៉ូសិនទំនិញ ក្នុង ១ នាទី</h1>
+  <p class="lede">បង្ហោះរូបទំនិញ AI លុបផ្ទៃខាងក្រោយឲ្យ ដាក់ឈ្មោះ តម្លៃ និងកាដូថែម ហើយទាញយក PNG សម្រាប់ Facebook Post, Live ឬ Story។ រូបរបស់អ្នកដំណើរការក្នុង Browser របស់អ្នកផ្ទាល់ មិនបញ្ជូនទៅណាទេ។</p>
+
+  <div class="bench">
+    <div class="controls">
+      <section class="card" aria-labelledby="s1">
+        <h2 id="s1"><b>1</b>រូបទំនិញ</h2>
+        <label class="drop" id="drop" for="file" tabindex="0">
+          <strong>អូសរូបមកទីនេះ ឬចុចដើម្បីជ្រើស</strong>
+          <span>JPG · PNG · WEBP · ថតពីទូរស័ព្ទក៏បាន</span>
+        </label>
+        <input type="file" id="file" accept="image/*" hidden>
+        <div class="row" style="margin-top:12px;justify-content:space-between">
+          <div class="seg" id="mode" role="group" aria-label="របៀបលុបផ្ទៃខាងក្រោយ">
+            <button type="button" data-m="ai" aria-pressed="true">AI លុបផ្ទៃ</button>
+            <button type="button" data-m="fast" aria-pressed="false">ផ្ទៃពណ៌តែមួយ</button>
+            <button type="button" data-m="none" aria-pressed="false">មិនលុប</button>
+          </div>
+          <button class="btn" type="button" id="sample">ប្រើរូបគំរូ</button>
+        </div>
+        <p class="status" id="status" role="status"></p>
+        <div class="grid2">
+          <label id="tolWrap" hidden>កម្រិតលុបផ្ទៃ <input type="range" id="tol" min="10" max="120" value="46"></label>
+          <label>ទំហំទំនិញ <input type="range" id="scale" min="50" max="160" value="100"></label>
+        </div>
+        <div class="row" style="margin-top:12px">
+          <div class="thumbs" id="giftThumb" aria-live="polite"></div>
+          <label class="btn" for="giftFile" style="display:inline-block">+ រូបកាដូថែម (មិនបង្ខំ)</label>
+          <input type="file" id="giftFile" accept="image/*" hidden>
+          <button class="btn" type="button" id="giftClear" hidden>ដករូបកាដូ</button>
+        </div>
+        <p class="note">អូសរូបនៅលើផ្ទាំងមើលមុន ដើម្បីរំកិលទំនិញ។</p>
+      </section>
+
+      <section class="card" aria-labelledby="s2">
+        <h2 id="s2"><b>2</b>ព័ត៌មានទំនិញ</h2>
+        <div class="grid2">
+          <label>ឈ្មោះហាង / ម៉ាក <input type="text" id="shop" maxlength="28"></label>
+          <label>ស្លាកមូល (Badge) <input type="text" id="badge" maxlength="18"></label>
+          <label class="full">ពិពណ៌នាខ្លី (បន្ទាត់តូចខាងលើ) <input type="text" id="sub" maxlength="50"></label>
+          <label class="full">ឈ្មោះទំនិញ <input type="text" id="name" maxlength="60"></label>
+          <label>តម្លៃលក់ <input type="number" id="price" min="0" step="0.01" inputmode="decimal"></label>
+          <label>តម្លៃដើម (ឆូតចោល) <input type="number" id="old" min="0" step="0.01" inputmode="decimal"></label>
+          <label>រូបិយប័ណ្ណ <select id="cur"><option value="USD">ដុល្លារ ($)</option><option value="KHR">រៀល (៛)</option></select></label>
+          <label>លេខកូដ / SKU <input type="text" id="code" maxlength="14"></label>
+          <label>ចំណងជើងប្រូម៉ូសិន <input type="text" id="promo" maxlength="26"></label>
+          <label>កាដូថែម <input type="text" id="gift" maxlength="30"></label>
+          <label>អក្សរលើប៊ូតុង <input type="text" id="cta" maxlength="18"></label>
+          <label>លេខទូរស័ព្ទ <input type="tel" id="phone" maxlength="20"></label>
+        </div>
+        <p class="note">ឧបករណ៍ប្រើតែព័ត៌មានដែលអ្នកបញ្ចូល។ ភាគរយបញ្ចុះតម្លៃ គណនាពីតម្លៃដើម និងតម្លៃលក់របស់អ្នក។</p>
+      </section>
+
+      <section class="card" aria-labelledby="s3">
+        <h2 id="s3"><b>3</b>ជ្រើសគំរូ (១០ ម៉ូដ)</h2>
+        <div class="tpls" id="tpls"></div>
+      </section>
+
+      <section class="card" aria-labelledby="s4">
+        <h2 id="s4"><b>4</b>ទំហំ និងពណ៌</h2>
+        <div class="seg" id="sizes" role="group" aria-label="ទំហំ">
+          <button type="button" data-s="1080x1350" aria-pressed="true">Post 4:5</button>
+          <button type="button" data-s="1080x1920" aria-pressed="false">Story 9:16</button>
+          <button type="button" data-s="1080x1080" aria-pressed="false">ការ៉េ 1:1</button>
+          <button type="button" data-s="1920x1080" aria-pressed="false">Live 16:9</button>
+        </div>
+        <div class="row" style="margin-top:14px">
+          <label class="row" style="display:flex;color:var(--ink);font-size:14px">ពណ៌ស៊ុម <input type="color" id="color" value="#1f6bff"></label>
+          <button class="btn" type="button" id="colorReset">ពណ៌តាមគំរូ</button>
+        </div>
+        <div class="row" style="margin-top:12px">
+          <label class="row" style="display:flex;color:var(--ink);font-size:14px"><input type="checkbox" id="transp" style="width:18px;height:18px;accent-color:var(--brand)"> ផ្ទៃខាងក្រោយថ្លា</label>
+          <label class="row" style="display:flex;color:var(--ink);font-size:14px"><input type="checkbox" id="credit" checked style="width:18px;height:18px;accent-color:var(--brand)"> បង្ហាញ adsbox.agency តូចៗ</label>
+        </div>
+      </section>
+    </div>
+
+    <aside class="stage" aria-label="មើលមុន">
+      <div class="view"><span class="tag" id="demoTag">ឧទាហរណ៍</span><canvas id="preview" width="1080" height="1350" aria-label="រូបមើលមុន"></canvas></div>
+      <p class="hint" id="dim">1080 × 1350 px · PNG</p>
+      <button class="btn primary big" type="button" id="export">⬇ ទាញយក PNG</button>
+    </aside>
+  </div>
+
+  <section class="why" aria-label="ហេតុអ្វីប្រើ">
+    <div><strong>ឥតគិតថ្លៃ ១០០%</strong>មិនចាំបាច់ចុះឈ្មោះ មិនកំណត់ចំនួនរូប។</div>
+    <div><strong>AI លុបផ្ទៃក្នុងទូរស័ព្ទ</strong>រូបមិនចេញពីឧបករណ៍របស់អ្នក។ ដំណើរការលើកដំបូង ចំណាយពេលពីរបីវិនាទី។</div>
+    <div><strong>ត្រៀមសម្រាប់គ្រប់កន្លែង</strong>Post 4:5, Story 9:16, ការ៉េ 1:1 និង Live 16:9 ផ្ទៃថ្លាក៏បាន។</div>
+  </section>
+</div>
+
+<dialog id="dlg" aria-labelledby="dlgT">
+  <div class="dlg">
+    <div class="row" style="justify-content:space-between"><h3 id="dlgT">រូបរបស់អ្នករួចរាល់</h3><button class="btn" type="button" id="close">បិទ</button></div>
+    <img class="out" id="outImg" alt="រូបទំនិញដែលបានបង្កើត">
+    <a class="btn primary big" id="dl" download="adsbox-graphic.png" style="text-align:center;text-decoration:none">⬇ រក្សាទុក PNG</a>
+    <p class="note" style="margin:0">ប្រសិនបើមិនទាញយក៖ ចុចសង្កត់លើរូប (ទូរស័ព្ទ) ឬ Right-click → Save image (កុំព្យូទ័រ)។</p>
+  </div>
+</dialog>
+
+<script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.14.0/dist/ort.webgl.min.js"></script>
+<script>
+(() => {
+const $ = (id) => document.getElementById(id);
+const F_KH = '"Kantumruy Pro","Noto Sans Khmer",sans-serif';
+const F_MIX = '"Be Vietnam Pro","Kantumruy Pro","Noto Sans Khmer",sans-serif';
+const seg = typeof Intl !== "undefined" && Intl.Segmenter ? new Intl.Segmenter("km", { granularity: "word" }) : null;
+
+// ---------------- state ----------------
+const S = { tpl: "blue", W: 1080, H: 1350, transparent: false, credit: true, mode: "ai", color: null,
+  raw: null, product: null, giftRaw: null, gift: null, scale: 1, dx: 0, dy: 0, box: null };
+
+// ---------------- 10 promo-card styles (modelled on the owner's pharmacy promo reference) ----------------
+// f1/f2 frame gradient, inA/inB card inside, band (bottom strip), plate (price panel), price/old ink, button, hot = discount colour.
+const STYLES = [
+  { id: "blue", name: "ថែមជូន ខៀវ", f1: "#2f86ff", f2: "#0b4fd4", inA: "#ffffff", inB: "#e3ebf6", ink: "#0d1a3a", plateA: "#ffffff", plateB: "#eaf1fb", price: "frame", old: "#6b7590", btn: "#ffffff", btnInk: "frame", hot: "#e5283f", gift: true, seal: true, pageA: "#dfe6f0", pageB: "#f5f7fb", headline: "ការផ្ដល់ជូនពិសេស" },
+  { id: "noir", name: "ខ្មៅ ក្រហម", f1: "#2a2a2a", f2: "#050505", inA: "#ffffff", inB: "#eceff3", ink: "#111111", plateA: "#1b1b1b", plateB: "#000000", price: "#ffffff", old: "#b9b9b9", btn: "#e31b23", btnInk: "#ffffff", hot: "#e31b23", gift: true, seal: true, pageA: "#dcdfe4", pageB: "#f4f5f7", headline: "តម្លៃពិសេសសប្តាហ៍នេះ" },
+  { id: "solo", name: "ទំនិញតែមួយ", f1: "#13a4ff", f2: "#0072d6", inA: "#ffffff", inB: "#e6f2fb", ink: "#0b2340", plateA: "#ffffff", plateB: "#e9f4fd", price: "frame", old: "#6b7a8f", btn: "#ffffff", btnInk: "frame", hot: "#e5283f", gift: false, seal: true, pageA: "#dbe8f3", pageB: "#f4f8fb", headline: "ទំនិញពេញនិយម" },
+  { id: "combo", name: "ទិញ ២ ថែម ១", f1: "#ef2b36", f2: "#b10f19", inA: "#ffffff", inB: "#f6e9ea", ink: "#2a0a0d", plateA: "#ffffff", plateB: "#fbeff0", price: "frame", old: "#7d6a6c", btn: "#ffd23f", btnInk: "#2a0a0d", hot: "#ffd23f", gift: true, seal: false, combo: true, pageA: "#f1dfe0", pageB: "#fbf5f5", headline: "ទិញ ២ ថែម ១" },
+  { id: "discount", name: "បញ្ចុះតម្លៃ %", f1: "#14b8a6", f2: "#0b7f74", inA: "#ffffff", inB: "#e3f4f2", ink: "#0a2b28", plateA: "#ffffff", plateB: "#e8f7f5", price: "frame", old: "#64807c", btn: "#ffffff", btnInk: "frame", hot: "#e5283f", gift: false, seal: false, discount: true, pageA: "#d9ecea", pageB: "#f3faf9", headline: "បញ្ចុះតម្លៃពិសេស" },
+  { id: "brand", name: "ម៉ាកប្រណីត", f1: "#16295e", f2: "#070f2a", inA: "#ffffff", inB: "#eef0f6", ink: "#0b1430", plateA: "#0e1d47", plateB: "#070f2a", price: "#e7c46b", old: "#9aa6c6", btn: "#e7c46b", btnInk: "#0b1430", hot: "#e7c46b", gift: true, seal: true, strip: true, pageA: "#dfe2ea", pageB: "#f6f7fa", headline: "Official Store" },
+  { id: "flash", name: "Flash Sale", f1: "#ff4b2b", f2: "#d3140c", inA: "#ffffff", inB: "#fff1e8", ink: "#2b0b05", plateA: "#ffd23f", plateB: "#ffc107", price: "#b40d0d", old: "#7a4a1a", btn: "#2b0b05", btnInk: "#ffffff", hot: "#ffd23f", gift: false, seal: false, flash: true, pageA: "#ffe3d6", pageB: "#fff6f1", headline: "FLASH SALE" },
+  { id: "live", name: "លក់ Live", f1: "#ff2d6f", f2: "#c20049", inA: "#ffffff", inB: "#fbe9f0", ink: "#2d0716", plateA: "#ffffff", plateB: "#fdeef4", price: "frame", old: "#7e6470", btn: "#ffffff", btnInk: "frame", hot: "#ffd23f", gift: true, seal: false, live: true, pageA: "#f6dde7", pageB: "#fdf5f8", headline: "LIVE ឥឡូវនេះ" },
+  { id: "gift", name: "កាដូធំ", f1: "#ff7aa8", f2: "#d83c78", inA: "#ffffff", inB: "#fdecf3", ink: "#3a1023", plateA: "#ffffff", plateB: "#fff0f6", price: "frame", old: "#86667a", btn: "#ffffff", btnInk: "frame", hot: "#ffd23f", gift: true, bigGift: true, seal: true, pageA: "#f8e1ea", pageB: "#fdf6f9", headline: "ទិញហើយបានកាដូ" },
+  { id: "clean", name: "សាមញ្ញស្អាត", f1: "#d5dbe6", f2: "#bfc7d6", inA: "#ffffff", inB: "#f1f3f7", ink: "#111827", plateA: "#ffffff", plateB: "#f3f5f8", price: "#111827", old: "#7c8596", btn: "#111827", btnInk: "#ffffff", hot: "#e5283f", gift: false, seal: false, thin: true, pageA: "#e9ecf1", pageB: "#f8f9fb", headline: "ទំនិញថ្មី" },
+];
+const ST = (id) => STYLES.find((s) => s.id === id) || STYLES[0];
+function shade(hex, k) { const n = parseInt(hex.slice(1), 16); let r = n >> 16, g = (n >> 8) & 255, b = n & 255; const f = (v) => Math.max(0, Math.min(255, Math.round(k < 0 ? v * (1 + k) : v + (255 - v) * k))); return "#" + [f(r), f(g), f(b)].map((v) => v.toString(16).padStart(2, "0")).join(""); }
+function style(id) {
+  const s = { ...ST(id) };
+  if (S.color && !s.thin) { s.f1 = S.color; s.f2 = shade(S.color, -0.32); }
+  if (s.price === "frame") s.price = s.f2; if (s.btnInk === "frame") s.btnInk = s.f2;
+  return s;
+}
+
+// ---------------- data ----------------
+const val = (id) => ($(id).value || "").trim();
+function data() {
+  const price = parseFloat($("price").value), old = parseFloat($("old").value), cur = $("cur").value;
+  const fmt = (v) => isFinite(v) && v > 0 ? (cur === "KHR" ? Math.round(v).toLocaleString("en-US") + "៛" : "$" + (Number.isInteger(v) ? v : v.toFixed(2))) : "";
+  const off = isFinite(price) && isFinite(old) && old > price && price > 0 ? Math.round((old - price) / old * 100) : 0;
+  return { shop: val("shop"), badge: val("badge"), sub: val("sub"), name: val("name") || "ឈ្មោះទំនិញរបស់អ្នក", code: val("code"), promo: val("promo"), gift: val("gift"), cta: val("cta") || "ទិញឥឡូវ", phone: val("phone"),
+    priceN: isFinite(price) && price > 0 ? price : 0, cur, old: fmt(old), price: fmt(price), off };
+}
+
+// ---------------- drawing helpers ----------------
+function rr(c, x, y, w, h, r) { r = Math.max(0, Math.min(r, w / 2, h / 2)); c.beginPath(); c.moveTo(x + r, y); c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r); c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath(); }
+function grad(c, y0, y1, a, b) { const g = c.createLinearGradient(0, y0, 0, y1); g.addColorStop(0, a); g.addColorStop(1, b); return g; }
+function words(t) { return seg ? [...seg.segment(t)].map((s) => s.segment) : t.split(/(\s+)/); }
+function fit(c, text, weight, family, size, min, maxW, maxLines) {
+  for (let s = size; s >= min; s -= 2) {
+    c.font = `${weight} ${s}px ${family}`;
+    const lines = []; let cur = "";
+    for (const w of words(text)) { const t = cur + w; if (c.measureText(t.trim()).width <= maxW || !cur.trim()) cur = t; else { lines.push(cur.trim()); cur = w.trimStart(); } }
+    if (cur.trim()) lines.push(cur.trim());
+    if (lines.length <= maxLines && lines.every((l) => c.measureText(l).width <= maxW)) return { s, lines };
+  }
+  c.font = `${weight} ${min}px ${family}`; return { s: min, lines: [text] };
+}
+function text(c, t, x, y, { size = 40, weight = 800, family = F_MIX, color = "#fff", align = "center", maxW = 9999, lines = 1, min = 16, lh = 1.28 } = {}) {
+  if (!t) return 0;
+  const f = fit(c, t, weight, family, size, min, maxW, lines);
+  c.fillStyle = color; c.textAlign = align; c.textBaseline = "middle";
+  const step = f.s * lh, top = y - ((f.lines.length - 1) * step) / 2;
+  f.lines.forEach((l, i) => c.fillText(l, x, top + i * step));
+  return f.lines.length * step;
+}
+function pill(c, t, cx, cy, { size = 34, bg = "#fff", fg = "#111", weight = 800, padX = 0.9, family = F_MIX, maxW = 9999 } = {}) {
+  if (!t) return 0;
+  let s = size; c.font = `${weight} ${s}px ${family}`;
+  while (c.measureText(t).width + s * padX * 2 > maxW && s > 14) { s -= 2; c.font = `${weight} ${s}px ${family}`; }
+  const w = c.measureText(t).width + s * padX * 2, h = s * 1.75;
+  c.fillStyle = bg; rr(c, cx - w / 2, cy - h / 2, w, h, h / 2); c.fill();
+  c.fillStyle = fg; c.textAlign = "center"; c.textBaseline = "middle"; c.fillText(t, cx, cy + s * 0.05);
+  return w;
+}
+// Big price like the reference: main number large, decimals (or ,000) small and raised, unit underneath.
+function priceParts(d) {
+  const v = d.priceN; if (!v) return null;
+  if (d.cur === "KHR") { const n = Math.round(v); return n >= 1000 ? { pre: "", main: Math.floor(n / 1000).toLocaleString("en-US"), sup: "," + String(n % 1000).padStart(3, "0"), unit: "៛" } : { pre: "", main: String(n), sup: "", unit: "៛" }; }
+  const i = Math.floor(v), cts = Math.round((v - i) * 100);
+  return { pre: "$", main: i.toLocaleString("en-US"), sup: cts ? "." + String(cts).padStart(2, "0") : "", unit: "" };
+}
+function bigPrice(c, d, x, base, size, color, maxW, align = "left") {
+  const p = priceParts(d); if (!p) return;
+  let s = size;
+  const widths = (s) => { c.font = `900 ${s * 0.56}px ${F_MIX}`; const a = c.measureText(p.pre).width; c.font = `900 ${s}px ${F_MIX}`; const b = c.measureText(p.main).width; c.font = `800 ${s * 0.44}px ${F_MIX}`; const e = Math.max(c.measureText(p.sup).width, p.unit ? s * 0.3 : 0); return [a, b, e, a + b + e + s * 0.04]; };
+  let w = widths(s); while (w[3] > maxW && s > 30) { s -= 4; w = widths(s); }
+  let cx = align === "center" ? x - w[3] / 2 : align === "right" ? x - w[3] : x;
+  c.fillStyle = color; c.textAlign = "left"; c.textBaseline = "alphabetic";
+  c.font = `900 ${s * 0.56}px ${F_MIX}`; c.fillText(p.pre, cx, base - s * 0.3); cx += w[0];
+  c.font = `900 ${s}px ${F_MIX}`; c.fillText(p.main, cx, base); cx += w[1] + s * 0.04;
+  c.font = `800 ${s * 0.44}px ${F_MIX}`; c.fillText(p.sup, cx, base - s * 0.42);
+  if (p.unit) { c.font = `700 ${s * 0.3}px ${F_KH}`; c.fillText(p.unit, cx, base - s * 0.02); }
+}
+function strike(c, t, x, y, size, color, align = "left") {
+  if (!t) return;
+  c.font = `700 ${size}px ${F_MIX}`; c.fillStyle = color; c.textAlign = align; c.textBaseline = "middle"; c.fillText(t, x, y);
+  const w = c.measureText(t).width, x0 = align === "left" ? x : align === "center" ? x - w / 2 : x - w;
+  c.strokeStyle = color; c.lineWidth = Math.max(2, size / 11); c.beginPath(); c.moveTo(x0 - 4, y + size * 0.04); c.lineTo(x0 + w + 4, y + size * 0.04); c.stroke();
+}
+function giftIcon(c, cx, cy, s, col, ribbon) {
+  c.fillStyle = col; rr(c, cx - s / 2, cy - s * 0.18, s, s * 0.68, s * 0.06); c.fill();
+  rr(c, cx - s * 0.56, cy - s * 0.42, s * 1.12, s * 0.26, s * 0.06); c.fill();
+  c.fillStyle = ribbon; c.fillRect(cx - s * 0.08, cy - s * 0.42, s * 0.16, s * 0.92);
+  c.beginPath(); c.ellipse(cx - s * 0.18, cy - s * 0.52, s * 0.18, s * 0.11, -0.5, 0, Math.PI * 2); c.ellipse(cx + s * 0.18, cy - s * 0.52, s * 0.18, s * 0.11, 0.5, 0, Math.PI * 2); c.fill();
+}
+// Product image fitted into a box (card units), with the user's scale and drag offset and a soft studio shadow.
+function drawImg(c, img, box, { user = true, shadow = true } = {}) {
+  if (!img) return;
+  const sc = user ? S.scale : 1, k = Math.min(box.w / img.width, box.h / img.height) * sc, w = img.width * k, h = img.height * k;
+  const x = box.x + (box.w - w) / 2 + (user ? S.dx * box.w : 0), y = box.y + (box.h - h) / 2 + (user ? S.dy * box.h : 0);
+  if (shadow) { c.save(); c.fillStyle = "rgba(10,20,40,.16)"; c.filter = "blur(10px)"; c.beginPath(); c.ellipse(x + w / 2, y + h - 4, w * 0.38, Math.max(8, h * 0.035), 0, 0, Math.PI * 2); c.fill(); c.restore();
+    c.save(); c.shadowColor = "rgba(10,20,40,.22)"; c.shadowBlur = 26; c.shadowOffsetY = 16; c.drawImage(img, x, y, w, h); c.restore(); }
+  else c.drawImage(img, x, y, w, h);
+}
+
+// ---------------- the promo card (drawn in card units: width 1000, height ch) ----------------
+function card(c, ch, d, s, rec) {
+  const T = s.thin ? 8 : 18, R = 46;
+  // frame and inside
+  c.save(); c.shadowColor = "rgba(10,20,40,.18)"; c.shadowBlur = 40; c.shadowOffsetY = 18;
+  c.fillStyle = grad(c, 0, ch, s.f1, s.f2); rr(c, 0, 0, 1000, ch, R); c.fill(); c.restore();
+  c.fillStyle = grad(c, 0, ch, s.inA, s.inB); rr(c, T, T, 1000 - 2 * T, ch - 2 * T, R - 12); c.fill();
+  c.save(); rr(c, T, T, 1000 - 2 * T, ch - 2 * T, R - 12); c.clip();
+  // soft light behind the product
+  const glow = c.createRadialGradient(s.gift ? 300 : 500, ch * 0.45, 20, s.gift ? 300 : 500, ch * 0.45, 460); glow.addColorStop(0, "rgba(255,255,255,.95)"); glow.addColorStop(1, "rgba(255,255,255,0)");
+  c.fillStyle = glow; c.fillRect(0, 0, 1000, ch);
+  let top = T + 26;
+  // brand strip inside the top of the card (style "brand")
+  if (s.strip) { c.fillStyle = grad(c, T, T + 120, s.f1, s.f2); c.fillRect(T, T, 1000 - 2 * T, 112); text(c, d.shop || "OFFICIAL STORE", 500, T + 56, { size: 50, weight: 900, color: s.price === "#e7c46b" ? "#e7c46b" : "#fff", maxW: 760 }); top = T + 130; }
+  // flash ribbon
+  if (s.flash) { c.fillStyle = grad(c, T, T + 96, s.f1, s.f2); c.fillRect(T, T, 1000 - 2 * T, 96); text(c, d.promo || "FLASH SALE", 500, T + 50, { size: 58, weight: 900, color: "#fff", maxW: 800 }); top = T + 112; }
+  // title: small line, then the product name in bold
+  const tx = s.seal && d.badge ? 540 : 500, tw = s.seal && d.badge ? 740 : 820;
+  let ty = top + 28;
+  if (d.sub) { text(c, d.sub, tx, ty, { size: 30, weight: 700, color: s.ink, maxW: tw, family: F_MIX }); ty += 44; }
+  const nh = text(c, d.name, tx, ty + 36, { size: 58, weight: 900, color: s.ink, maxW: tw, lines: 2, min: 30, lh: 1.18 });
+  const bodyTop = ty + 36 + nh / 2 + 18;
+  // price band (bottom) and plate
+  const bandTop = ch - 230;
+  c.fillStyle = grad(c, bandTop, ch, s.f1, s.f2); c.fillRect(0, bandTop + 40, 1000, ch);
+  c.fillStyle = grad(c, bandTop, ch, s.plateA, s.plateB);
+  c.beginPath(); c.moveTo(0, bandTop); c.lineTo(520, bandTop); c.bezierCurveTo(600, bandTop, 590, ch, 660, ch); c.lineTo(0, ch); c.closePath(); c.fill();
+  strike(c, d.old, 64, bandTop + 58, 46, s.old);
+  bigPrice(c, d, 56, ch - 50, 130, s.price, 520);
+  // button
+  const bx = 820, by = bandTop + 40 + (ch - bandTop - 40) / 2;
+  c.save(); c.shadowColor = "rgba(0,0,0,.18)"; c.shadowBlur = 14; c.shadowOffsetY = 6;
+  const ctaText = s.live && d.code ? "Comment " + d.code : d.cta;
+  pill(c, ctaText, bx, by, { size: 44, bg: s.btn, fg: s.btnInk, maxW: 300, weight: 900 }); c.restore();
+  // product + gift
+  const zoneTop = bodyTop, zoneBot = bandTop - 14;
+  let pbox;
+  const hasGift = s.gift && (d.gift || S.gift);
+  if (hasGift) {
+    const gw = s.bigGift ? 470 : 410, gx = 1000 - T - 26 - gw, gy = zoneTop + (s.bigGift ? 20 : 70), gh = Math.max(220, zoneBot - gy - (s.bigGift ? 20 : 60));
+    pbox = { x: T + 20, y: zoneTop, w: gx - T - 40, h: zoneBot - zoneTop };
+    rec(pbox); drawImg(c, S.product, pbox);
+    // gift box: coloured frame, header label, white inner panel, value pill
+    c.save(); c.shadowColor = "rgba(10,20,40,.2)"; c.shadowBlur = 24; c.shadowOffsetY = 12;
+    c.fillStyle = grad(c, gy, gy + gh, shade(s.f1, 0.08), s.f2); rr(c, gx, gy, gw, gh, 34); c.fill(); c.restore();
+    const label = s.combo ? (d.promo || "ទិញ ២ ថែម ១") : "ថែមជូន";
+    text(c, label, gx + gw / 2, gy + 50, { size: s.combo ? 50 : 44, weight: 900, color: s.combo ? s.hot : "#fff", maxW: gw - 50 });
+    const ix = gx + 18, iy = gy + 96, iw = gw - 36, ih = gh - 96 - 84;
+    c.fillStyle = "#ffffff"; rr(c, ix, iy, iw, ih, 24); c.fill();
+    if (S.gift) drawImg(c, S.gift, { x: ix + 20, y: iy + 16, w: iw - 40, h: ih - 32 }, { user: false, shadow: true });
+    else giftIcon(c, ix + iw / 2, iy + ih / 2 + 10, Math.min(iw, ih) * 0.42, s.f1, s.hot === "#ffd23f" ? "#ffd23f" : "#e5283f");
+    if (d.gift) { pill(c, d.gift, gx + gw / 2, gy + gh - 42, { size: 30, bg: s.hot === "#ffd23f" ? "#ffd23f" : "#e5283f", fg: s.hot === "#ffd23f" ? "#2a0a0d" : "#fff", maxW: gw - 30, weight: 800 }); }
+  } else {
+    pbox = { x: 110, y: zoneTop, w: 780, h: zoneBot - zoneTop };
+    rec(pbox); drawImg(c, S.product, pbox);
+  }
+  // discount tag
+  if ((s.discount || s.flash) && d.off) {
+    const cx = 860, cy = zoneTop + 90, r = 92;
+    c.fillStyle = s.discount ? s.hot : "#ffd23f"; c.beginPath(); for (let i = 0; i < 32; i++) { const a = (Math.PI * i) / 16, rr2 = i % 2 ? r * 0.88 : r; c.lineTo(cx + Math.cos(a) * rr2, cy + Math.sin(a) * rr2); } c.closePath(); c.fill();
+    text(c, "-" + d.off + "%", cx, cy - 6, { size: 62, weight: 900, color: s.discount ? "#fff" : "#b40d0d", maxW: r * 1.6 });
+    text(c, "OFF", cx, cy + 42, { size: 26, weight: 800, color: s.discount ? "#fff" : "#b40d0d" });
+  }
+  // code chip under the product
+  if (d.code && !s.live) pill(c, "CODE " + d.code, pbox.x + pbox.w / 2, zoneBot - 22, { size: 26, bg: s.f2, fg: "#fff", maxW: pbox.w });
+  c.restore();
+  // seal badge (overlaps the frame, top left)
+  if (s.seal && d.badge) {
+    const cx = 92, cy = top + 80, r = 64;
+    c.save(); c.shadowColor = "rgba(0,0,0,.18)"; c.shadowBlur = 12; c.fillStyle = "#fff"; c.beginPath(); c.arc(cx, cy, r, 0, Math.PI * 2); c.fill(); c.restore();
+    c.fillStyle = s.f1; c.beginPath(); c.arc(cx, cy, r - 9, 0, Math.PI * 2); c.fill();
+    c.strokeStyle = "rgba(255,255,255,.7)"; c.lineWidth = 2.5; c.setLineDash([5, 5]); c.beginPath(); c.arc(cx, cy, r - 17, 0, Math.PI * 2); c.stroke(); c.setLineDash([]);
+    text(c, d.badge, cx, cy, { size: 24, weight: 800, color: "#fff", maxW: (r - 22) * 2, lines: 2, min: 14, lh: 1.15 });
+  }
+  if (s.live) { pill(c, "● LIVE", 110, T + 46, { size: 30, bg: "#e5283f", fg: "#fff", weight: 900 }); }
+}
+
+// ---------------- the whole poster for each size ----------------
+function draw(c, W, H, id, forPreview) {
+  c.clearRect(0, 0, W, H);
+  const s = style(id), d = data();
+  const page = () => { if (S.transparent) return; c.fillStyle = grad(c, 0, H, s.pageA, s.pageB); c.fillRect(0, 0, W, H); };
+  const rec = (ox, oy, k) => (b) => { if (forPreview) S.box = { x: ox + b.x * k, y: oy + b.y * k, w: b.w * k, h: b.h * k }; };
+  const at = (ox, oy, k, ch) => { c.save(); c.translate(ox, oy); c.scale(k, k); card(c, ch, d, s, rec(ox, oy, k)); c.restore(); };
+  const ink = S.transparent ? "#ffffff" : s.ink;
+  page();
+  if (W > H) {                                   // Live 16:9: card left, call to action right
+    at(60, 40, 1, 1000);
+    const x = 1110, w = W - x - 70;
+    if (d.shop) text(c, d.shop, x, 190, { size: 72, weight: 900, color: ink, align: "left", maxW: w });
+    const hl = d.promo || s.headline; c.font = `900 56px ${F_MIX}`; const hw = Math.min(w, c.measureText(hl).width + 80);
+    c.fillStyle = grad(c, 270, 370, s.f1, s.f2); rr(c, x, 270, hw, 100, 50); c.fill(); text(c, hl, x + hw / 2, 322, { size: 56, weight: 900, color: "#fff", maxW: hw - 50 });
+    text(c, "Comment លេខកូដ ដើម្បីកម្ម៉ង់", x, 470, { size: 44, weight: 700, color: ink, align: "left", maxW: w });
+    if (d.code) { c.font = `900 120px ${F_MIX}`; const cw2 = Math.min(w, c.measureText(d.code).width + 90); c.fillStyle = s.hot === "#e5283f" || s.hot === "#e31b23" ? "#ffd23f" : s.hot; rr(c, x, 530, cw2, 170, 30); c.fill(); text(c, d.code, x + cw2 / 2, 618, { size: 120, weight: 900, color: "#111", maxW: cw2 - 40 }); }
+    if (d.phone) text(c, "☎ " + d.phone, x, 800, { size: 52, weight: 800, color: ink, align: "left", maxW: w });
+  } else if (H / W > 1.6) {                      // Story 9:16: header, card, footer
+    const hl = d.promo || s.headline;
+    if (d.shop) text(c, d.shop, W / 2, 130, { size: 76, weight: 900, color: ink, maxW: W - 120 });
+    c.font = `900 60px ${F_MIX}`; const hw = Math.min(W - 120, c.measureText(hl).width + 100);
+    c.fillStyle = grad(c, 0, 380, s.f1, s.f2); rr(c, (W - hw) / 2, d.shop ? 210 : 150, hw, 110, 55); c.fill();
+    text(c, hl, W / 2, (d.shop ? 210 : 150) + 57, { size: 60, weight: 900, color: "#fff", maxW: hw - 60 });
+    at(40, 380, 1, 1270);
+    const fy = 1765;
+    if (d.phone) pill(c, "☎ " + d.phone, d.code ? 300 : W / 2, fy, { size: 40, bg: S.transparent ? "rgba(0,0,0,.55)" : "#111827", fg: "#fff", maxW: 480 });
+    if (d.code) pill(c, "Comment " + d.code, d.phone ? 780 : W / 2, fy, { size: 40, bg: s.f2, fg: "#fff", maxW: 480 });
+  } else if (H > W) {                            // Post 4:5
+    at(40, 40, 1, 1270);
+  } else {                                       // square
+    at(40, 40, 1, 1000);
+  }
+  if (S.credit) { c.font = `700 22px ${F_MIX}`; c.textAlign = "right"; c.textBaseline = "alphabetic"; c.lineWidth = 4; c.strokeStyle = "rgba(0,0,0,.28)"; c.fillStyle = "rgba(255,255,255,.92)"; c.strokeText("adsbox.agency", W - 26, H - 14); c.fillText("adsbox.agency", W - 26, H - 14); }
+}
+
+// ---------------- background removal ----------------
+// 1) AI: U²-Net small (Apache-2.0), built into this page, runs on the device's graphics chip.
+let session = null, aiState = "idle";
+async function aiSession() {
+  if (session) return session;
+  if (!window.ort) throw new Error("no-runtime");
+  const res = await fetch("/assets/tools/u2netp.onnx"); if (!res.ok) throw new Error("model " + res.status);
+  session = await ort.InferenceSession.create(await res.arrayBuffer(), { executionProviders: ["webgl"] });
+  return session;
+}
+async function aiCut(src) {
+  const s = await aiSession(), z = 320;
+  const cv = document.createElement("canvas"); cv.width = cv.height = z; const x = cv.getContext("2d", { willReadFrequently: true }); x.drawImage(src, 0, 0, z, z);
+  const d = x.getImageData(0, 0, z, z).data, t = new Float32Array(3 * z * z), m = [0.485, 0.456, 0.406], sd = [0.229, 0.224, 0.225];
+  let mx = 1; for (let i = 0; i < z * z; i++) mx = Math.max(mx, d[i * 4], d[i * 4 + 1], d[i * 4 + 2]);
+  for (let i = 0; i < z * z; i++) for (let k = 0; k < 3; k++) t[k * z * z + i] = (d[i * 4 + k] / mx - m[k]) / sd[k];
+  const o = (await s.run({ [s.inputNames[0]]: new ort.Tensor("float32", t, [1, 3, z, z]) }))[s.outputNames[0]].data;
+  let lo = 1e9, hi = -1e9; for (const v of o) { if (v < lo) lo = v; if (v > hi) hi = v; }
+  const mc = document.createElement("canvas"); mc.width = mc.height = z; const mctx = mc.getContext("2d"), mi = mctx.createImageData(z, z);
+  for (let i = 0; i < z * z; i++) { const a = (o[i] - lo) / (hi - lo || 1); mi.data[i * 4 + 3] = Math.round(255 * Math.min(1, Math.max(0, (a - 0.22) / 0.56))); }
+  mctx.putImageData(mi, 0, 0);
+  const out = document.createElement("canvas"); out.width = src.width; out.height = src.height; const oc = out.getContext("2d");
+  oc.imageSmoothingEnabled = true; oc.imageSmoothingQuality = "high"; oc.drawImage(mc, 0, 0, src.width, src.height);
+  oc.globalCompositeOperation = "source-in"; oc.drawImage(src, 0, 0);
+  return crop(out);
+}
+// 2) Fast: flood fill from the photo edges (plain backgrounds), including enclosed holes.
+function fastCut(src, tol) {
+  const W = src.width, H = src.height, cv = document.createElement("canvas"); cv.width = W; cv.height = H;
+  const c = cv.getContext("2d", { willReadFrequently: true }); c.drawImage(src, 0, 0); const im = c.getImageData(0, 0, W, H), p = im.data, n = W * H;
+  const bg = new Uint8Array(n), q = new Int32Array(n); let qh = 0, qt = 0; const samples = [];
+  const dist = (a, b) => { const dr = a[0] - b[0], dg = a[1] - b[1], db = a[2] - b[2]; return Math.sqrt(0.3 * dr * dr + 0.59 * dg * dg + 0.11 * db * db) * 1.4; };
+  const take = (x, y) => { const i = (y * W + x) * 4, col = [p[i], p[i + 1], p[i + 2]]; if (!samples.some((s) => dist(s, col) < 30) && samples.length < 6) samples.push(col); };
+  for (let x = 0; x < W; x += Math.max(1, (W / 40) | 0)) { take(x, 0); take(x, H - 1); }
+  for (let y = 0; y < H; y += Math.max(1, (H / 40) | 0)) { take(0, y); take(W - 1, y); }
+  const near = (i) => { const col = [p[i * 4], p[i * 4 + 1], p[i * 4 + 2]]; let m = 1e9; for (const s of samples) m = Math.min(m, dist(s, col)); return m; };
+  const push = (i) => { if (!bg[i] && near(i) < tol) { bg[i] = 1; q[qt++] = i; } };
+  for (let x = 0; x < W; x++) { push(x); push((H - 1) * W + x); } for (let y = 0; y < H; y++) { push(y * W); push(y * W + W - 1); }
+  const step = Math.max(10, tol * 0.45);
+  while (qh < qt) { const i = q[qh++], x = i % W, y = (i / W) | 0, a = [p[i * 4], p[i * 4 + 1], p[i * 4 + 2]];
+    for (const j of [x > 0 ? i - 1 : -1, x < W - 1 ? i + 1 : -1, y > 0 ? i - W : -1, y < H - 1 ? i + W : -1]) { if (j < 0 || bg[j]) continue; const b = [p[j * 4], p[j * 4 + 1], p[j * 4 + 2]]; if (dist(a, b) < step && near(j) < tol * 1.25) { bg[j] = 1; q[qt++] = j; } } }
+  const seen = new Uint8Array(n), comp = new Int32Array(n), minArea = n * 0.0015;
+  for (let s0 = 0; s0 < n; s0++) { if (bg[s0] || seen[s0] || near(s0) >= tol * 0.8) continue; let h = 0, t2 = 0; comp[t2++] = s0; seen[s0] = 1;
+    while (h < t2) { const i = comp[h++], x = i % W, y = (i / W) | 0; for (const j of [x > 0 ? i - 1 : -1, x < W - 1 ? i + 1 : -1, y > 0 ? i - W : -1, y < H - 1 ? i + W : -1]) { if (j < 0 || bg[j] || seen[j] || near(j) >= tol * 0.8) continue; seen[j] = 1; comp[t2++] = j; } }
+    if (t2 >= minArea) for (let k = 0; k < t2; k++) bg[comp[k]] = 1; }
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) { const i = y * W + x; if (bg[i]) { p[i * 4 + 3] = 0; continue; } let k = 0; if (x > 0 && bg[i - 1]) k++; if (x < W - 1 && bg[i + 1]) k++; if (y > 0 && bg[i - W]) k++; if (y < H - 1 && bg[i + W]) k++; if (k) p[i * 4 + 3] = k >= 2 ? 120 : 190; }
+  c.putImageData(im, 0, 0); return crop(cv);
+}
+function crop(cv) {
+  const c = cv.getContext("2d", { willReadFrequently: true }), W = cv.width, H = cv.height, p = c.getImageData(0, 0, W, H).data;
+  let x0 = W, y0 = H, x1 = -1, y1 = -1;
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) if (p[(y * W + x) * 4 + 3] > 24) { if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
+  if (x1 < 0) return cv;
+  const o = document.createElement("canvas"); o.width = x1 - x0 + 1; o.height = y1 - y0 + 1; o.getContext("2d").drawImage(cv, x0, y0, o.width, o.height, 0, 0, o.width, o.height); return o;
+}
+function setStatus(msg, kind = "", busy = false) { const el = $("status"); el.className = "status " + kind; el.innerHTML = (busy ? '<span class="spin" aria-hidden="true"></span>' : "") + msg; }
+let job = 0;
+async function cutout(raw, mode = S.mode) {
+  if (mode === "none") return raw;
+  if (mode === "fast") return fastCut(raw, +$("tol").value);
+  try {
+    setStatus(session ? "AI កំពុងលុបផ្ទៃខាងក្រោយ…" : "កំពុងបើក AI (លើកដំបូងយូរបន្តិច)…", "", true);
+    const t0 = performance.now(); const out = await aiCut(raw);
+    setStatus(`✓ AI បានលុបផ្ទៃខាងក្រោយ (${((performance.now() - t0) / 1000).toFixed(1)} វិនាទី)`, "ok");
+    return out;
+  } catch (e) {
+    setStatus("ឧបករណ៍នេះមិនអាចដំណើរការ AI បាន ប្រើរបៀប «ផ្ទៃពណ៌តែមួយ» ជំនួស។", "warn");
+    return fastCut(raw, +$("tol").value);
+  }
+}
+async function processAll(mode) {
+  const my = ++job;
+  if (S.raw) { const p = await cutout(S.raw, mode); if (my !== job) return; S.product = p; }
+  if (S.giftRaw) { const g = await cutout(S.giftRaw, mode); if (my !== job) return; S.gift = g; showGift(); }
+  render();
+}
+function toCanvas(img) { const k = Math.min(1, 1400 / Math.max(img.width, img.height)), cv = document.createElement("canvas"); cv.width = Math.round(img.width * k); cv.height = Math.round(img.height * k); cv.getContext("2d").drawImage(img, 0, 0, cv.width, cv.height); return cv; }
+function loadImage(src, target, mode) {
+  const img = new Image();
+  img.onload = () => { const cv = toCanvas(img); if (target === "gift") S.giftRaw = cv; else { S.raw = cv; S.dx = 0; S.dy = 0; } processAll(mode); };
+  img.onerror = () => setStatus("មិនអាចបើករូបនេះបាន សូមសាករូប JPG ឬ PNG ផ្សេង។", "warn");
+  img.src = src;
+}
+function showGift() { $("giftThumb").innerHTML = S.gift ? "" : ""; if (S.gift) { const i = new Image(); i.src = S.gift.toDataURL(); i.alt = "រូបកាដូ"; $("giftThumb").appendChild(i); } $("giftClear").hidden = !S.gift; }
+// Sample: a skincare bottle on a grey studio background (drawn here, so the demo works offline).
+function samplePhoto() {
+  const cv = document.createElement("canvas"); cv.width = 900; cv.height = 1100; const c = cv.getContext("2d");
+  const g = c.createRadialGradient(450, 450, 60, 450, 550, 800); g.addColorStop(0, "#f4f4f4"); g.addColorStop(1, "#d6d8dc"); c.fillStyle = g; c.fillRect(0, 0, 900, 1100);
+  c.fillStyle = "rgba(0,0,0,.16)"; c.beginPath(); c.ellipse(450, 985, 230, 28, 0, 0, Math.PI * 2); c.fill();
+  const bg = c.createLinearGradient(260, 0, 640, 0); bg.addColorStop(0, "#1f7fb3"); bg.addColorStop(0.45, "#4fb3e0"); bg.addColorStop(1, "#16628c");
+  c.fillStyle = bg; rr(c, 260, 330, 380, 650, 70); c.fill();
+  c.fillStyle = "#2a6f8f"; rr(c, 330, 210, 240, 140, 24); c.fill(); c.fillStyle = "#e9f3f7"; rr(c, 395, 120, 110, 100, 18); c.fill(); c.fillRect(470, 150, 120, 26);
+  c.fillStyle = "#ffffff"; rr(c, 300, 470, 300, 260, 26); c.fill();
+  c.fillStyle = "#1f6f99"; c.font = "900 64px Arial"; c.textAlign = "center"; c.fillText("HYDRA", 450, 570); c.font = "700 28px Arial"; c.fillText("GEL CLEANSER", 450, 618);
+  c.fillStyle = "#7cc4e4"; rr(c, 350, 650, 200, 10, 5); c.fill(); c.font = "700 26px Arial"; c.fillStyle = "#e9f6fc"; c.fillText("473 ml", 450, 900);
+  return cv.toDataURL("image/png");
+}
+
+// ---------------- UI ----------------
+const pv = $("preview"), pctx = pv.getContext("2d");
+let raf = 0, tt = 0;
+function render() { cancelAnimationFrame(raf); raf = requestAnimationFrame(() => { draw(pctx, S.W, S.H, S.tpl, true); clearTimeout(tt); tt = setTimeout(thumbs, 160); save(); }); }
+function thumbs() { document.querySelectorAll(".tpl canvas").forEach((cv) => { const c = cv.getContext("2d"); c.setTransform(1, 0, 0, 1, 0, 0); c.clearRect(0, 0, cv.width, cv.height); c.scale(cv.width / 1080, cv.height / 1350); draw(c, 1080, 1350, cv.dataset.t, false); }); }
+$("tpls").innerHTML = STYLES.map((s) => `<button type="button" class="tpl" data-id="${s.id}" aria-pressed="${s.id === S.tpl}"><canvas width="216" height="270" data-t="${s.id}"></canvas>${s.name}</button>`).join("");
+$("tpls").addEventListener("click", (e) => { const b = e.target.closest(".tpl"); if (!b) return; S.tpl = b.dataset.id; document.querySelectorAll(".tpl").forEach((x) => x.setAttribute("aria-pressed", x === b)); render(); });
+$("sizes").addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; const [w, h] = b.dataset.s.split("x").map(Number); S.W = w; S.H = h; pv.width = w; pv.height = h; $("dim").textContent = `${w} × ${h} px · PNG`; document.querySelectorAll("#sizes button").forEach((x) => x.setAttribute("aria-pressed", x === b)); render(); });
+$("mode").addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; S.mode = b.dataset.m; $("tolWrap").hidden = S.mode !== "fast"; document.querySelectorAll("#mode button").forEach((x) => x.setAttribute("aria-pressed", x === b)); if (S.mode !== "ai") setStatus(""); processAll(); });
+["shop", "badge", "sub", "name", "price", "old", "cur", "code", "promo", "gift", "cta", "phone"].forEach((id) => $(id).addEventListener("input", () => { $("demoTag").hidden = true; render(); }));
+$("transp").addEventListener("change", (e) => { S.transparent = e.target.checked; render(); });
+$("credit").addEventListener("change", (e) => { S.credit = e.target.checked; render(); });
+$("scale").addEventListener("input", (e) => { S.scale = e.target.value / 100; render(); });
+$("color").addEventListener("input", (e) => { S.color = e.target.value; render(); });
+$("colorReset").addEventListener("click", () => { S.color = null; render(); });
+let tolT = 0; $("tol").addEventListener("input", () => { clearTimeout(tolT); tolT = setTimeout(() => processAll(), 150); });
+$("sample").addEventListener("click", () => loadImage(samplePhoto()));
+$("file").addEventListener("change", (e) => { const f = e.target.files && e.target.files[0]; if (f) { $("demoTag").hidden = true; loadImage(URL.createObjectURL(f)); } e.target.value = ""; });
+$("giftFile").addEventListener("change", (e) => { const f = e.target.files && e.target.files[0]; if (f) loadImage(URL.createObjectURL(f), "gift"); e.target.value = ""; });
+$("giftClear").addEventListener("click", () => { S.gift = null; S.giftRaw = null; showGift(); render(); });
+const drop = $("drop");
+["dragenter", "dragover"].forEach((ev) => drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.add("on"); }));
+["dragleave", "drop"].forEach((ev) => drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.remove("on"); }));
+drop.addEventListener("drop", (e) => { const f = e.dataTransfer.files && e.dataTransfer.files[0]; if (f && f.type.startsWith("image/")) { $("demoTag").hidden = true; loadImage(URL.createObjectURL(f)); } });
+drop.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); $("file").click(); } });
+window.addEventListener("paste", (e) => { const it = [...((e.clipboardData || {}).items || [])].find((i) => i.type.startsWith("image/")); if (it) loadImage(URL.createObjectURL(it.getAsFile())); });
+let dragging = null;
+pv.addEventListener("pointerdown", (e) => { if (!S.product || !S.box) return; dragging = { x: e.clientX, y: e.clientY, dx: S.dx, dy: S.dy }; pv.setPointerCapture(e.pointerId); pv.classList.add("drag"); });
+pv.addEventListener("pointermove", (e) => { if (!dragging) return; const r = pv.getBoundingClientRect(), k = S.W / r.width; S.dx = dragging.dx + ((e.clientX - dragging.x) * k) / S.box.w; S.dy = dragging.dy + ((e.clientY - dragging.y) * k) / S.box.h; render(); });
+["pointerup", "pointercancel"].forEach((ev) => pv.addEventListener(ev, () => { dragging = null; pv.classList.remove("drag"); }));
+// export and save
+let dls = null, lastBlob = null;
+if (window.claude && window.claude.use) window.claude.use("downloads").then((n) => { dls = n; }).catch(() => {});
+$("export").addEventListener("click", () => {
+  const cv = document.createElement("canvas"); cv.width = S.W; cv.height = S.H; draw(cv.getContext("2d"), S.W, S.H, S.tpl, false);
+  cv.toBlob((blob) => { lastBlob = blob; const url = URL.createObjectURL(blob); $("outImg").src = url; $("dl").href = url; $("dl").textContent = "⬇ រក្សាទុក PNG";
+    $("dl").download = `adsbox-${(val("code") || S.tpl).replace(/[^\w-]+/g, "") || "graphic"}-${S.W}x${S.H}.png`;
+    const dg = $("dlg"); if (dg.showModal) dg.showModal(); else dg.setAttribute("open", ""); }, "image/png");
+});
+$("dl").addEventListener("click", async (e) => {
+  if (!dls || !lastBlob) return;            // normal website: the link downloads
+  e.preventDefault();
+  try { await dls.save({ filename: $("dl").download, data: lastBlob }); $("dl").textContent = "✓ បានរក្សាទុក"; }
+  catch (err) { if (err && err.code !== "declined") $("dl").textContent = "ចុចសង្កត់លើរូប ដើម្បីរក្សាទុក"; }
+});
+$("close").addEventListener("click", () => $("dlg").close());
+const FIELDS = ["shop", "badge", "sub", "name", "price", "old", "cur", "code", "promo", "gift", "cta", "phone"];
+function save() { try { localStorage.setItem("adsbox-graphic-2", JSON.stringify({ tpl: S.tpl, f: Object.fromEntries(FIELDS.map((k) => [k, $(k).value])) })); } catch (e) {} }
+
+// ---------------- start with a filled example ----------------
+const EX = { shop: "HYDRA SKIN", badge: "ពេញនិយម", sub: "សម្រាប់ស្បែកខ្លាញ់ និងស្បែកចម្រុះ", name: "ជែលលាងមុខ HYDRA 473ml", price: "18.90", old: "24", cur: "USD", code: "HS-473", promo: "", gift: "ថែមកាបូបតូច", cta: "ទិញឥឡូវ", phone: "012 345 678" };
+let saved = null; try { saved = JSON.parse(localStorage.getItem("adsbox-graphic-2") || "null"); } catch (e) {}
+Object.entries(saved && saved.f ? saved.f : EX).forEach(([k, v]) => { if ($(k)) $(k).value = v; });
+if (saved) { S.tpl = saved.tpl || S.tpl; $("demoTag").hidden = true; document.querySelectorAll(".tpl").forEach((x) => x.setAttribute("aria-pressed", x.dataset.id === S.tpl)); }
+const fontsReady = document.fonts && document.fonts.load ? Promise.all(["900 40px 'Be Vietnam Pro'", "800 40px 'Be Vietnam Pro'", "700 40px 'Be Vietnam Pro'", "700 40px 'Kantumruy Pro'", "600 40px 'Kantumruy Pro'"].map((f) => document.fonts.load(f, "កA$1"))).catch(() => {}) : Promise.resolve();
+render();
+Promise.race([fontsReady, new Promise((r) => setTimeout(r, 2500))]).then(() => loadImage(samplePhoto(), null, "fast"));  // first view instant; uploads use AI
+})();
+</script>
+
+</body>
+</html>
