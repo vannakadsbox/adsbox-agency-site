@@ -18,13 +18,13 @@ window.ACCOUNTS = {
    {
     "name": "13Drama",
     "url": "https://www.facebook.com/profile.php?id=61595136570112",
-    "followers": 37,
+    "followers": 43,
     "picture": "assets/accounts/fb-61595136570112.webp",
     "cover": "assets/accounts/fb-61595136570112-cover.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
-    "updated": "2026-11-14"
+    "updated": "2026-11-15"
    },
    {
     "name": "6M",
