@@ -668,6 +668,29 @@
       "status": "published",
       "published_at": "2026-11-16T06:57:55+07:00",
       "url": "https://adsbox.agency/knowledge/max-cost-per-order-before-losing-money/"
+    },
+    {
+      "date": "2026-11-17",
+      "slot": "morning",
+      "category": "boost-live",
+      "angle": "សំណួរ-ចម្លើយ៖ Boost Live មួយដង គួរចាយប៉ុន្មាន?",
+      "attempts": 1,
+      "generated_at": "2026-11-17T06:58:03+07:00",
+      "plan_day": "bl-budget-per-live",
+      "plan_id": "rotation",
+      "topic_id": "bl-budget-per-live",
+      "rotation_category": "boost-live",
+      "format": "FAQ",
+      "notes": [],
+      "title": "Boost Live មួយដង គួរចាយប៉ុន្មាន? សំណួរ-ចម្លើយ ៧ ពីថវិកា ដល់ Cost per Order",
+      "slug": "how-much-to-spend-per-boost-live",
+      "summary": "ថវិកា Boost Live មិនគួរទាយ។ សំណួរ-ចម្លើយ ៧ ជាមួយឧទាហរណ៍គណនា៖ កំណត់ថវិកាពី Order គោលដៅ វាស់ Cost per Order ក្នុងមួយ Live ហើយដឹងពេលបន្ថែម ឬកាត់។",
+      "primary_keyword": "ថវិកា Boost Live",
+      "tag": "Live → Order",
+      "khmer_chars": 2342,
+      "status": "published",
+      "published_at": "2026-11-17T06:58:03+07:00",
+      "url": "https://adsbox.agency/knowledge/how-much-to-spend-per-boost-live/"
     }
   ]
 }
