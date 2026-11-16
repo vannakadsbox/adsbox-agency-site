@@ -4051,9 +4051,127 @@
       "article_url": "https://adsbox.agency/knowledge/max-cost-per-order-before-losing-money/",
       "video_title": "អាវ $20 Boost បានប៉ុន្មាន ទើបមិនខាត? គិតបន្ទាត់ខាត Cost per Order",
       "hook": "អាវ $20 ចាយ Boost $7.50 មួយ Order។ មើលទៅថោក មែនទេបង? តែចុងសប្ដាហ៍ ស្ទើរគ្មានលុយសល់!",
-      "status": "scripted",
+      "status": "sent",
       "scripted_at": "2026-11-16T07:25:12+07:00",
-      "error": ""
+      "error": "",
+      "render_started_at": "2026-11-16T07:26:10+07:00",
+      "sent_at": "2026-11-16T07:32:31+07:00",
+      "rendered_at": "2026-11-16T07:32:31+07:00",
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/43780258780",
+      "duration": 82,
+      "size_mb": 11.9,
+      "render_seconds": 364,
+      "voice": "kiri:Arun",
+      "music": "adsbox-original-1.mp3",
+      "style": "custom animation only",
+      "visuals": [
+        "question",
+        "vanish",
+        "waterfall",
+        "waterfall",
+        "flow",
+        "checklist",
+        "takeaway",
+        "cta2"
+      ],
+      "resolution": "1080x1920",
+      "fps": 30,
+      "subtitle_sync": "transcript",
+      "footage": [],
+      "footage_share": 0,
+      "stock_footage": "none (removed)",
+      "telegram": {
+        "ok": true,
+        "message_id": 289,
+        "chat": "configured",
+        "at": "2026-11-16T07:32:31+07:00",
+        "file_id": "BAACAgUAAxkDAAIBIWr6TxbO-UBrPWVZNgNi6UdIuTTmAAL2HgACwuzRV4Q2K90zb_4EPQQ",
+        "items": [
+          {
+            "item": "video",
+            "message_id": 289,
+            "file_name": "max-cost-per-order-before-losing-money.mp4",
+            "file_size": 11852282,
+            "width": 1080,
+            "height": 1920,
+            "file_id": "BAACAgUAAxkDAAIBIWr6TxbO-UBrPWVZNgNi6UdIuTTmAAL2HgACwuzRV4Q2K90zb_4EPQQ"
+          },
+          {
+            "item": "facebook_caption",
+            "message_id": 290
+          },
+          {
+            "item": "thumbnail",
+            "message_id": 291,
+            "file_name": "max-cost-per-order-before-losing-money-thumbnail.jpg",
+            "file_size": 156070
+          }
+        ],
+        "sent_count": 3,
+        "local_sizes": {
+          "video": 11852282,
+          "thumbnail": 156070
+        }
+      },
+      "speech_match": [
+        0.941,
+        0.989,
+        0.875,
+        0.879,
+        0.989,
+        1,
+        1,
+        1
+      ],
+      "scene_sync": [
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript"
+      ],
+      "archive": {
+        "assets": [
+          {
+            "id": 752865332,
+            "name": "max-cost-per-order-before-losing-money-thumb.jpg",
+            "size": 156070,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/max-cost-per-order-before-losing-money-thumb.jpg"
+          },
+          {
+            "id": 752865328,
+            "name": "max-cost-per-order-before-losing-money.mp4",
+            "size": 11852282,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/max-cost-per-order-before-losing-money.mp4"
+          }
+        ],
+        "release_id": 430382508
+      },
+      "quality": {
+        "width": 1080,
+        "height": 1920,
+        "fps": "30/1",
+        "duration": 82.0,
+        "video_codec": "h264",
+        "audio_codec": "aac",
+        "loudness": "-13.2 LUFS",
+        "decode_errors": false,
+        "visual_mix": {
+          "motion_graphics": 0.88,
+          "phone_chat": 0.12,
+          "illustrated": 0,
+          "product_dashboard": 0
+        }
+      },
+      "article_id": "max-cost-per-order-before-losing-money",
+      "video_id": 752865328,
+      "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/max-cost-per-order-before-losing-money.mp4",
+      "created_at": "2026-11-16T07:32:31+07:00",
+      "telegram_status": "delivered",
+      "production_status": "complete"
     }
   ]
 }
