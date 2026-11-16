@@ -1,0 +1,274 @@
+{
+  "slug": "max-cost-per-order-before-losing-money",
+  "video_title": "អាវ $20 Boost បានប៉ុន្មាន ទើបមិនខាត? គិតបន្ទាត់ខាត Cost per Order",
+  "topic": "របៀបគណនា Cost per Order អតិបរមា (បន្ទាត់ខាត) និង Cost per Order គោលដៅ ពីតម្លៃលក់ ថ្លៃដើម ថ្លៃខ្ចប់ ថ្លៃដឹក និង Order មិនទទួល។",
+  "thumbnail_text": "Boost $7.50 មួយ Order ថោក ឬខាត?",
+  "description": "អាវ $20 ចាយ Boost $7.50 មួយ Order មើលទៅថោក តែសល់តែ $0.25 (លេខគំរូ)។\nគិតបន្ទាត់ខាត $7.75 និងគោលដៅ $4.15 មុន Boost។\n#ADSBOX #លក់អនឡាញ #BoostPost #CostPerOrder",
+  "facebook_caption": "Boost $7.50 មួយ Order សម្រាប់អាវ $20 ថោក ឬខាត? 🤔\nគិតលេខពីរនេះ មុនចាយលុយ Boost៖\n✅ ដកថ្លៃដើម ខ្ចប់ និងដឹក\n✅ កុំភ្លេច Order ភ្ញៀវមិនទទួល\n✅ ចែកនឹង Order បញ្ជាក់ = បន្ទាត់ខាត\n✅ កំណត់គោលដៅ ពីចំណេញដែលចង់បាន\nដឹងច្បាស់ថា Post ណាគួរបន្ត Post ណាគួរឈប់។\nទំនិញហាងបង Boost បានប៉ុន្មានក្នុងមួយ Order? Comment «COST» មក 👇\n#ADSBOX #លក់អនឡាញ #BoostPost #CostPerOrder",
+  "scenes": [
+    {
+      "role": "hook",
+      "lines": [
+        "អាវ $20 ចាយ Boost $7.50 មួយ Order។",
+        "មើលទៅថោក មែនទេបង?",
+        "តែចុងសប្ដាហ៍ ស្ទើរគ្មានលុយសល់!"
+      ],
+      "voice": "Curious, surprised consultant talking to a shop owner, short pause after each price, natural",
+      "visual": {
+        "type": "question",
+        "title": "ថោក តែខាត?",
+        "bubbles": [
+          "អាវនេះ $20 មែន?",
+          "យក ១ ឈុត",
+          "ដឹកថ្ងៃណា?"
+        ]
+      }
+    },
+    {
+      "role": "problem",
+      "lines": [
+        "លេខគំរូ៖ ចាយ $75 បាន Order ១០។",
+        "លក់បាន ៩ ឈុត $180…",
+        "តែចំណេញសល់តែ $2.50។",
+        "លុយទៅណាអស់?"
+      ],
+      "voice": "Sincerely asking the shop owner, not rushed, stress the small money left",
+      "visual": {
+        "type": "vanish",
+        "host": false,
+        "expected_label": "លក់បាន ១ សប្ដាហ៍",
+        "expected": "$180",
+        "real_label": "សល់ពិត (លេខគំរូ)",
+        "real": "$2.50",
+        "gap": "$177.50 បាត់ទៅណា?"
+      }
+    },
+    {
+      "role": "example",
+      "lines": [
+        "ភ្ញៀវបង់លុយ ៩ ឈុត បាន $180។",
+        "ដកថ្លៃដើមអាវ $81។",
+        "ដកថ្លៃខ្ចប់ $4.50។",
+        "ដកថ្លៃដឹក $13.50។"
+      ],
+      "voice": "Expert explaining numbers slowly and clearly to a shop owner, each price distinct",
+      "visual": {
+        "type": "waterfall",
+        "host": false,
+        "start": {
+          "label": "លុយបានពីភ្ញៀវ ៩ ឈុត",
+          "amount": 180
+        },
+        "show": 3,
+        "rows": [
+          {
+            "icon": "product",
+            "label": "ថ្លៃដើមអាវ",
+            "value": "$81",
+            "amount": 81,
+            "note": "៩ ឈុត × $9",
+            "at": [
+              1,
+              0
+            ],
+            "note_at": [
+              1,
+              0.5
+            ]
+          },
+          {
+            "icon": "pack",
+            "label": "ថ្លៃខ្ចប់",
+            "value": "$4.50",
+            "amount": 4.5,
+            "note": "៩ × $0.50",
+            "at": [
+              2,
+              0
+            ],
+            "note_at": [
+              2,
+              0.5
+            ]
+          },
+          {
+            "icon": "ship",
+            "label": "ថ្លៃដឹក",
+            "value": "$13.50",
+            "amount": 13.5,
+            "note": "៩ × $1.50",
+            "at": [
+              3,
+              0
+            ],
+            "note_at": [
+              3,
+              0.5
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "role": "example",
+      "lines": [
+        "ភ្ញៀវមិនទទួល ១ កញ្ចប់ ខាត $3.50។",
+        "នៅសល់ មុនដកលុយ Boost…",
+        "$77.50។"
+      ],
+      "voice": "Calm expert, short pause before the final number, then strong clear emphasis on it",
+      "visual": {
+        "type": "waterfall",
+        "host": false,
+        "start": {
+          "label": "លុយបានពីភ្ញៀវ ៩ ឈុត",
+          "amount": 180
+        },
+        "done": 3,
+        "rows": [
+          {
+            "icon": "product",
+            "label": "ថ្លៃដើមអាវ",
+            "value": "$81",
+            "amount": 81,
+            "note": "៩ ឈុត × $9"
+          },
+          {
+            "icon": "pack",
+            "label": "ថ្លៃខ្ចប់",
+            "value": "$4.50",
+            "amount": 4.5,
+            "note": "៩ × $0.50"
+          },
+          {
+            "icon": "ship",
+            "label": "ថ្លៃដឹក",
+            "value": "$13.50",
+            "amount": 13.5,
+            "note": "៩ × $1.50"
+          },
+          {
+            "icon": "refused",
+            "label": "កញ្ចប់មិនទទួល",
+            "value": "$3.50",
+            "amount": 3.5,
+            "note": "ខ្ចប់ $0.50 + ដឹកទៅ $1.50 + ត្រឡប់ $1.50",
+            "at": [
+              0,
+              0
+            ],
+            "note_at": [
+              0,
+              0.5
+            ]
+          }
+        ],
+        "groups": [
+          {
+            "text": "ដកថ្លៃទាំងអស់ = −$102.50",
+            "at": [
+              1,
+              0.5
+            ]
+          }
+        ],
+        "result": {
+          "label": "សល់មុនដក Boost",
+          "value": "$77.50",
+          "at": [
+            2,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "role": "example",
+      "lines": [
+        "យក $77.50 ចែកនឹង Order ១០…",
+        "បន្ទាត់ខាតគឺ $7.75។",
+        "ចាយ $7.50 សល់តែ $0.25 មួយ Order!"
+      ],
+      "voice": "Calm expert, short pause before the final number, then strong clear emphasis on it",
+      "visual": {
+        "type": "flow",
+        "steps": [
+          {
+            "label": "សល់មុន Boost",
+            "text": "$77.50"
+          },
+          {
+            "label": "ចែក",
+            "text": "Order បញ្ជាក់ ១០"
+          },
+          {
+            "label": "បន្ទាត់ខាត",
+            "text": "$7.75 មួយ Order"
+          }
+        ]
+      }
+    },
+    {
+      "role": "tip",
+      "lines": [
+        "ចង់ចំណេញ $4 មួយ Order ដឹកដល់?",
+        "គោលដៅគឺ $4.15។",
+        "លើស $7.75 ពីរបីថ្ងៃ ឈប់ Post នោះ។"
+      ],
+      "voice": "Practical, friendly expert, clear pause after each price",
+      "visual": {
+        "type": "checklist",
+        "host": false,
+        "items": [
+          "ក្រោម $4.15 · ល្អ បន្តបាន",
+          "$4.15 ដល់ $7.75 · ត្រូវកែ",
+          "លើស $7.75 · កំពុងខាត"
+        ]
+      }
+    },
+    {
+      "role": "summary",
+      "lines": [
+        "មុន Boost ដឹងលេខពីរនេះសិន។",
+        "បន្ទាត់ខាត និងគោលដៅ។"
+      ],
+      "voice": "Warm, confident expert, slow and clear, emphasise the lesson",
+      "visual": {
+        "type": "takeaway",
+        "host": false,
+        "quote": "ដឹងបន្ទាត់ខាតសិន\nទើបចាយលុយ Boost",
+        "chips": [
+          "− ថ្លៃដើម",
+          "− ខ្ចប់ ដឹក",
+          "− មិនទទួល"
+        ]
+      }
+    },
+    {
+      "role": "cta",
+      "lines": [
+        "ទំនិញហាងបង Boost បានប៉ុន្មាន?",
+        "Comment ពាក្យ COST មក",
+        "ក្រុម ADS BOX រីករាយជួយបងគិត។"
+      ],
+      "voice": "Friendly, confident, helpful expert inviting the shop owner to comment, warm, not salesy",
+      "visual": {
+        "type": "cta2",
+        "question": "ទំនិញហាងបង Boost បានប៉ុន្មានក្នុងមួយ Order?",
+        "comment": "COST",
+        "comment_line": 1,
+        "services": [
+          "Boost Post",
+          "Boost Live",
+          "Boost TikTok"
+        ],
+        "url": "adsbox.agency"
+      }
+    }
+  ],
+  "article": {
+    "title": "រឿងហាងអាវ $20៖ Boost បានប៉ុន្មានទើបមិនខាត? គណនា Cost per Order អតិបរមា",
+    "url": "https://adsbox.agency/knowledge/max-cost-per-order-before-losing-money/"
+  },
+  "written_at": "2026-11-16T07:25:12+07:00"
+}
