@@ -1,0 +1,813 @@
+<!doctype html>
+<html lang="km">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="បង្កើតរូបប្រូម៉ូសិនទំនិញឥតគិតថ្លៃ៖ AI លុបផ្ទៃខាងក្រោយ គំរូ ១០ ម៉ូដ សម្រាប់ Post, Story, Live ទាញយក PNG។ មិនចាំបាច់ចុះឈ្មោះ។">
+<link rel="canonical" href="https://adsbox.agency/graphic-maker/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://adsbox.agency/graphic-maker/">
+<meta property="og:title" content="បង្កើតរូបប្រូម៉ូសិនទំនិញ ឥតគិតថ្លៃ · ADS BOX">
+<meta property="og:description" content="បង្កើតរូបប្រូម៉ូសិនទំនិញឥតគិតថ្លៃ៖ AI លុបផ្ទៃខាងក្រោយ គំរូ ១០ ម៉ូដ សម្រាប់ Post, Story, Live ទាញយក PNG។ មិនចាំបាច់ចុះឈ្មោះ។">
+<meta property="og:image" content="https://adsbox.agency/assets/tools/graphic-maker-share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/favicon.png">
+<!-- Public free tool (owner: "Please Live", 16 Nov 2026).
+     Background removal: U²-Net small (Apache-2.0, github.com/xuebinqin/U-2-Net), runs in the visitor's browser
+     with onnxruntime-web (MIT). Photos never leave the device. -->
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font-size:14px}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>បង្កើតរូបប្រូម៉ូសិនទំនិញ ឥតគិតថ្លៃ · ADS BOX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;600;700;800;900&family=Kantumruy+Pro:wght@400;500;600;700&family=Koulen&family=Playfair+Display:wght@700;800&display=swap">
+<style>
+/* Layout: workbench. Controls on the left, the poster on a sticky light-box on the right; one column on phones with the poster first.
+   The page is the quiet tool; the posters carry the colour. */
+:root{
+  --bg:#eef1f7; --panel:#ffffff; --ink:#0d1a3a; --muted:#5b6785; --line:#d9e0ee; --soft:#e7eeff;
+  --brand:#1d4aa6; --brand-ink:#ffffff; --sun:#ffd23f; --ok:#13854a; --warn:#b4540a;
+  --check-a:#ffffff; --check-b:#e3e8f2;
+  --f-ui:"Kantumruy Pro","Noto Sans Khmer",system-ui,sans-serif;
+  --f-num:"Be Vietnam Pro","Kantumruy Pro",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0a1022; --panel:#121a33; --ink:#e8edfb; --muted:#9aa6c6; --line:#24304f; --soft:#1a2547;
+  --brand:#6f95ff; --brand-ink:#0a1022; --sun:#ffd23f; --ok:#41c785; --warn:#f0a35a;
+  --check-a:#1a2240; --check-b:#141b33; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0a1022; --panel:#121a33; --ink:#e8edfb; --muted:#9aa6c6; --line:#24304f; --soft:#1a2547;
+  --brand:#6f95ff; --brand-ink:#0a1022; --sun:#ffd23f; --ok:#41c785; --warn:#f0a35a;
+  --check-a:#1a2240; --check-b:#141b33; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 40px}
+.wrap{max-width:1200px;margin:0 auto}
+header.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding-block:18px 6px}
+.brand{display:flex;align-items:center;gap:10px}
+.mark{font-family:var(--f-num);font-weight:900;font-size:22px;letter-spacing:.04em;color:var(--brand)}
+.chip{font-family:var(--f-num);font-size:11px;font-weight:800;letter-spacing:.06em;padding:3px 9px;border-radius:999px;background:var(--soft);color:var(--brand)}
+.free{font-weight:700;font-size:13px;padding:4px 12px;border-radius:999px;background:var(--sun);color:#1b1400}
+h1{font-size:clamp(24px,4vw,36px);line-height:1.3;margin:6px 0 4px;text-wrap:balance}
+.lede{color:var(--muted);margin:0 0 18px;max-width:64ch}
+.bench{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,440px);gap:20px;align-items:start}
+@media (max-width:900px){.bench{grid-template-columns:minmax(0,1fr)}.stage{order:-1;position:static!important}}
+.controls{display:grid;gap:14px;min-width:0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;min-width:0}
+.card h2{font-size:16px;margin:0 0 12px;display:flex;align-items:center;gap:8px}
+.card h2 b{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:8px;background:var(--soft);color:var(--brand);font-family:var(--f-num);font-size:12px}
+.drop{display:grid;place-items:center;text-align:center;gap:2px;padding:16px;border:2px dashed var(--line);border-radius:14px;cursor:pointer;color:var(--muted)}
+.drop:hover,.drop.on{border-color:var(--brand);background:var(--soft)}
+.drop strong{color:var(--ink)}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (max-width:480px){.grid2{grid-template-columns:minmax(0,1fr)}}
+.full{grid-column:1/-1}
+label{display:grid;gap:4px;font-size:13px;color:var(--muted);min-width:0}
+input[type=text],input[type=number],input[type=tel],select{width:100%;font:inherit;font-size:15px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:9px 11px}
+input:focus-visible,select:focus-visible,button:focus-visible,.tpl:focus-visible,.drop:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+input[type=range]{width:100%;accent-color:var(--brand)}
+input[type=color]{width:44px;height:34px;border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:2px}
+.btn{font:inherit;font-weight:600;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:10px;padding:8px 14px;cursor:pointer}
+.btn.primary{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+.btn.big{width:100%;padding:13px;font-size:16px}
+.note{font-size:12.5px;color:var(--muted);margin:8px 0 0}
+.seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{font:inherit;font-size:13px;border:0;background:var(--panel);color:var(--ink);padding:7px 12px;cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--brand);color:var(--brand-ink)}
+.status{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:8px;min-height:22px}
+.status.ok{color:var(--ok)}.status.warn{color:var(--warn)}
+.spin{width:14px;height:14px;border-radius:50%;border:2px solid var(--line);border-top-color:var(--brand);animation:sp .8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.thumbs{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.thumbs img{width:64px;height:64px;object-fit:contain;border-radius:10px;border:1px solid var(--line);background:repeating-conic-gradient(var(--check-a) 0 25%,var(--check-b) 0 50%) 0 0/10px 10px}
+.tpls{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+@media (max-width:640px){.tpls{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:400px){.tpls{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.tpl{border:2px solid var(--line);border-radius:12px;padding:5px;background:var(--panel);cursor:pointer;display:grid;gap:4px;text-align:center;font-size:12px;line-height:1.35;color:var(--ink);font-family:var(--f-ui)}
+.tpl canvas{width:100%;height:auto;border-radius:8px;background:repeating-conic-gradient(var(--check-a) 0 25%,var(--check-b) 0 50%) 0 0/10px 10px}
+.tpl[aria-pressed=true]{border-color:var(--brand);box-shadow:0 0 0 3px var(--soft)}
+.stage{position:sticky;top:max(12px,env(safe-area-inset-top,0px));display:grid;gap:12px}
+.view{position:relative;border-radius:16px;border:1px solid var(--line);overflow:hidden;background:repeating-conic-gradient(var(--check-a) 0 25%,var(--check-b) 0 50%) 0 0/18px 18px;display:grid;place-items:center;padding:14px}
+#preview{max-width:100%;max-height:66vh;width:auto;height:auto;display:block;touch-action:none;cursor:grab;border-radius:6px}
+#preview.drag{cursor:grabbing}
+.hint{font-size:12.5px;color:var(--muted);text-align:center;margin:0}
+.tag{position:absolute;left:10px;top:10px;font-size:11px;font-weight:700;background:var(--panel);color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:2px 9px}
+dialog{border:0;border-radius:18px;padding:0;max-width:min(560px,94vw);width:100%;background:var(--panel);color:var(--ink)}
+dialog::backdrop{background:rgba(5,10,25,.6)}
+.dlg{display:grid;gap:12px;padding:18px}
+.dlg h3{margin:0;font-size:18px}
+.out{border-radius:12px;max-height:60vh;justify-self:center;background:repeating-conic-gradient(var(--check-a) 0 25%,var(--check-b) 0 50%) 0 0/14px 14px}
+.why{margin:22px 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:760px){.why{grid-template-columns:minmax(0,1fr)}}
+.why div{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;font-size:13.5px;color:var(--muted)}
+.why strong{display:block;color:var(--ink);font-size:15px;margin-bottom:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/" style="text-decoration:none"><span class="mark">ADS BOX</span><span class="chip">GRAPHIC</span></a>
+    <span class="free">ឥតគិតថ្លៃ · មិនចាំបាច់ចុះឈ្មោះ</span>
+  </header>
+  <h1>បង្កើតរូបប្រូម៉ូសិនទំនិញ ក្នុង ១ នាទី</h1>
+  <p class="lede">បង្ហោះរូបទំនិញ AI លុបផ្ទៃខាងក្រោយឲ្យ ដាក់ឈ្មោះ តម្លៃ និងកាដូថែម ហើយទាញយក PNG សម្រាប់ Facebook Post, Live ឬ Story។ រូបរបស់អ្នកដំណើរការក្នុង Browser របស់អ្នកផ្ទាល់ មិនបញ្ជូនទៅណាទេ។</p>
+
+  <div class="bench">
+    <div class="controls">
+      <section class="card" aria-labelledby="s1">
+        <h2 id="s1"><b>1</b>រូបទំនិញ</h2>
+        <label class="drop" id="drop" for="file" tabindex="0">
+          <strong>អូសរូបមកទីនេះ ឬចុចដើម្បីជ្រើស</strong>
+          <span>JPG · PNG · WEBP · ថតពីទូរស័ព្ទក៏បាន</span>
+        </label>
+        <input type="file" id="file" accept="image/*" hidden>
+        <div class="row" style="margin-top:12px;justify-content:space-between">
+          <div class="seg" id="mode" role="group" aria-label="របៀបលុបផ្ទៃខាងក្រោយ">
+            <button type="button" data-m="ai" aria-pressed="true">AI លុបផ្ទៃ</button>
+            <button type="button" data-m="fast" aria-pressed="false">ផ្ទៃពណ៌តែមួយ</button>
+            <button type="button" data-m="none" aria-pressed="false">មិនលុប</button>
+          </div>
+          <button class="btn" type="button" id="sample">ប្រើរូបគំរូ</button>
+        </div>
+        <p class="status" id="status" role="status"></p>
+        <div class="grid2">
+          <label id="tolWrap" hidden>កម្រិតលុបផ្ទៃ <input type="range" id="tol" min="10" max="120" value="46"></label>
+          <label>ទំហំទំនិញ <input type="range" id="scale" min="50" max="160" value="100"></label>
+        </div>
+        <div class="row" style="margin-top:12px">
+          <div class="thumbs" id="giftThumb" aria-live="polite"></div>
+          <label class="btn" for="giftFile" style="display:inline-block">+ រូបកាដូថែម (មិនបង្ខំ)</label>
+          <input type="file" id="giftFile" accept="image/*" hidden>
+          <button class="btn" type="button" id="giftClear" hidden>ដករូបកាដូ</button>
+        </div>
+        <p class="note">អូសរូបនៅលើផ្ទាំងមើលមុន ដើម្បីរំកិលទំនិញ។</p>
+      </section>
+
+      <section class="card" aria-labelledby="s2">
+        <h2 id="s2"><b>2</b>ព័ត៌មានទំនិញ</h2>
+        <div class="grid2">
+          <label class="full">ឈ្មោះទំនិញ <input type="text" id="name" maxlength="70"></label>
+          <label class="full">ពិពណ៌នាខ្លី <input type="text" id="sub" maxlength="50"></label>
+          <label>តម្លៃលក់ <input type="number" id="price" min="0" step="0.01" inputmode="decimal"></label>
+          <label>តម្លៃដើម (ឆូតចោល) <input type="number" id="old" min="0" step="0.01" inputmode="decimal"></label>
+          <label>រូបិយប័ណ្ណ <select id="cur"><option value="USD">ដុល្លារ ($)</option><option value="KHR">រៀល (៛)</option></select></label>
+          <label>លេខកូដ / SKU <input type="text" id="code" maxlength="14"></label>
+          <label>ទំហំ <input type="text" id="psize" maxlength="30" placeholder="S M L XL"></label>
+          <label>ពណ៌ <input type="text" id="pcolour" maxlength="30" placeholder="ខ្មៅ ស"></label>
+          <label>ស្តុក <select id="stock"><option value="">មិនបង្ហាញ</option><option>មានស្តុក</option><option>ជិតអស់ស្តុក</option><option>ចំនួនមានកំណត់</option><option>កម្ម៉ង់មុន</option></select></label>
+          <label>លេខទូរស័ព្ទ <input type="tel" id="phone" maxlength="20"></label>
+          <label>ស្លាក (Label) <input type="text" id="label" maxlength="22"></label>
+          <label>ចំណងជើងប្រូម៉ូសិន <input type="text" id="promo" maxlength="26"></label>
+          <label>កាដូថែម <input type="text" id="gift" maxlength="30"></label>
+          <label>អក្សរ CTA / ប៊ូតុង <input type="text" id="cta" maxlength="30"></label>
+        </div>
+        <p class="note">ឧបករណ៍ប្រើតែព័ត៌មានដែលអ្នកបញ្ចូល។ ភាគរយបញ្ចុះតម្លៃ គណនាពីតម្លៃដើម និងតម្លៃលក់របស់អ្នក។</p>
+      </section>
+
+      <section class="card" aria-labelledby="s3">
+        <h2 id="s3"><b>3</b>ជ្រើសគំរូ (១០ ម៉ូដខុសៗគ្នា)</h2>
+        <div class="tpls" id="tpls"></div>
+      </section>
+
+      <section class="card" aria-labelledby="s4">
+        <h2 id="s4"><b>4</b>ទំហំ និងពណ៌</h2>
+        <div class="seg" id="sizes" role="group" aria-label="ទំហំ">
+          <button type="button" data-s="1080x1920" aria-pressed="true">បញ្ឈរ 9:16</button>
+          <button type="button" data-s="1080x1080" aria-pressed="false">ការ៉េ 1:1</button>
+          <button type="button" data-s="1920x1080" aria-pressed="false">ផ្តេក 16:9</button>
+          <button type="button" data-s="1080x1350" aria-pressed="false">Post 4:5</button>
+        </div>
+        <div class="row" style="margin-top:14px">
+          <label class="row" style="display:flex;color:var(--ink);font-size:14px">ពណ៌ស៊ុម <input type="color" id="color" value="#1f6bff"></label>
+          <button class="btn" type="button" id="colorReset">ពណ៌តាមគំរូ</button>
+        </div>
+        <div class="row" style="margin-top:12px">
+          <label class="row" style="display:flex;color:var(--ink);font-size:14px"><input type="checkbox" id="transp" style="width:18px;height:18px;accent-color:var(--brand)"> ផ្ទៃខាងក្រោយថ្លា</label>
+          <label class="row" style="display:flex;color:var(--ink);font-size:14px"><input type="checkbox" id="credit" checked style="width:18px;height:18px;accent-color:var(--brand)"> បង្ហាញ adsbox.agency តូចៗ</label>
+        </div>
+      </section>
+    </div>
+
+    <aside class="stage" aria-label="មើលមុន">
+      <div class="view"><span class="tag" id="demoTag">ឧទាហរណ៍</span><canvas id="preview" width="1080" height="1920" aria-label="រូបមើលមុន"></canvas></div>
+      <p class="hint" id="dim">1080 × 1920 px · PNG</p>
+      <button class="btn primary big" type="button" id="export">⬇ ទាញយក PNG</button>
+    </aside>
+  </div>
+
+  <section class="why" aria-label="ហេតុអ្វីប្រើ">
+    <div><strong>ឥតគិតថ្លៃ ១០០%</strong>មិនចាំបាច់ចុះឈ្មោះ មិនកំណត់ចំនួនរូប។</div>
+    <div><strong>AI លុបផ្ទៃក្នុងទូរស័ព្ទ</strong>រូបមិនចេញពីឧបករណ៍របស់អ្នក។ ដំណើរការលើកដំបូង ចំណាយពេលពីរបីវិនាទី។</div>
+    <div><strong>ត្រៀមសម្រាប់គ្រប់កន្លែង</strong>Post 4:5, Story 9:16, ការ៉េ 1:1 និង Live 16:9 ផ្ទៃថ្លាក៏បាន។</div>
+  </section>
+</div>
+
+<dialog id="dlg" aria-labelledby="dlgT">
+  <div class="dlg">
+    <div class="row" style="justify-content:space-between"><h3 id="dlgT">រូបរបស់អ្នករួចរាល់</h3><button class="btn" type="button" id="close">បិទ</button></div>
+    <img class="out" id="outImg" alt="រូបទំនិញដែលបានបង្កើត">
+    <a class="btn primary big" id="dl" download="adsbox-graphic.png" style="text-align:center;text-decoration:none">⬇ រក្សាទុក PNG</a>
+    <p class="note" style="margin:0">ប្រសិនបើមិនទាញយក៖ ចុចសង្កត់លើរូប (ទូរស័ព្ទ) ឬ Right-click → Save image (កុំព្យូទ័រ)។</p>
+  </div>
+</dialog>
+
+<script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.14.0/dist/ort.webgl.min.js"></script>
+<script>
+(() => {
+const $ = (id) => document.getElementById(id);
+const seg = typeof Intl !== "undefined" && Intl.Segmenter ? new Intl.Segmenter("km", { granularity: "word" }) : null;
+
+// ---------------- fonts ----------------
+const F_KH = '"Kantumruy Pro","Noto Sans Khmer",sans-serif';
+const F_MIX = '"Be Vietnam Pro","Kantumruy Pro","Noto Sans Khmer",sans-serif';
+const F_DISP = '"Koulen","Be Vietnam Pro","Kantumruy Pro",sans-serif';
+const F_LUX = '"Playfair Display","Kantumruy Pro",serif';
+
+// ---------------- state ----------------
+const S = { tpl: "clean", W: 1080, H: 1920, transparent: false, credit: true, mode: "ai", color: null,
+  raw: null, product: null, giftRaw: null, gift: null, scale: 1, dx: 0, dy: 0, box: null };
+let REC = false;   // true while drawing the on-screen preview: remembers where the product sits, for dragging
+
+// ---------------- 10 template concepts ----------------
+// Each one has its own layout, type, shapes and price/CTA area, and its own layout for tall (9:16, 4:5), square and wide (16:9).
+const TPLS = [
+  { id: "clean", name: "Clean Product", kh: "ស្អាតសាមញ្ញ", A: "#1d4aa6" },
+  { id: "flash", name: "Flash Sale", kh: "លក់ដាច់ថ្ងៃនេះ", A: "#e8202b" },
+  { id: "live", name: "Live Selling", kh: "សម្រាប់ Live", A: "#e5283f" },
+  { id: "lux", name: "Luxury", kh: "ប្រណីត", A: "#c9a55a" },
+  { id: "modern", name: "Modern", kh: "ទំនើប", A: "#2b5cff" },
+  { id: "new", name: "New Arrival", kh: "ទំនិញថ្មី", A: "#7a5af8" },
+  { id: "offer", name: "Special Offer", kh: "ប័ណ្ណប្រូម៉ូសិន", A: "#0b5bd3" },
+  { id: "price", name: "Price Focus", kh: "តម្លៃធំ", A: "#0f766e" },
+  { id: "comment", name: "Comment / Order", kh: "Comment កម្ម៉ង់", A: "#0a7cff" },
+  { id: "bold", name: "Bold Sale", kh: "Facebook / TikTok", A: "#ffd400" },
+];
+function shade(hex, k) { const n = parseInt(hex.slice(1), 16); const r = n >> 16, g = (n >> 8) & 255, b = n & 255; const f = (v) => Math.max(0, Math.min(255, Math.round(k < 0 ? v * (1 + k) : v + (255 - v) * k))); return "#" + [f(r), f(g), f(b)].map((v) => v.toString(16).padStart(2, "0")).join(""); }
+function alpha(hex, a) { const n = parseInt(hex.slice(1), 16); return `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},${a})`; }
+
+// ---------------- data ----------------
+const val = (id) => ($(id).value || "").trim();
+function data() {
+  const price = parseFloat($("price").value), old = parseFloat($("old").value), cur = $("cur").value;
+  const fmt = (v) => isFinite(v) && v > 0 ? (cur === "KHR" ? Math.round(v).toLocaleString("en-US") + "៛" : "$" + (Number.isInteger(v) ? v : v.toFixed(2))) : "";
+  const has = isFinite(price) && price > 0, hasOld = isFinite(old) && old > price && has;
+  const off = hasOld ? Math.round((old - price) / old * 100) : 0;
+  return { label: val("label"), sub: val("sub"), name: val("name") || "ឈ្មោះទំនិញរបស់អ្នក", code: val("code"), promo: val("promo"), gift: val("gift"), cta: val("cta"), phone: val("phone"),
+    size: val("psize"), colour: val("pcolour"), stock: val("stock"), cur, priceN: has ? price : 0, price: fmt(price), old: hasOld ? fmt(old) : "", off, save: hasOld ? fmt(Math.round((old - price) * 100) / 100) : "" };
+}
+const meta = (d) => [d.code && "CODE " + d.code, d.phone && "☎ " + d.phone].filter(Boolean).join("     ");
+
+// ---------------- drawing helpers ----------------
+function rr(c, x, y, w, h, r) { r = Math.max(0, Math.min(r, w / 2, h / 2)); c.beginPath(); c.moveTo(x + r, y); c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r); c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath(); }
+function lin(c, x0, y0, x1, y1, a, b) { const g = c.createLinearGradient(x0, y0, x1, y1); g.addColorStop(0, a); g.addColorStop(1, b); return g; }
+function words(t) { return seg ? [...seg.segment(t)].map((s) => s.segment) : t.split(/(\s+)/); }
+function fit(c, text, weight, family, size, min, maxW, maxLines) {
+  for (let s = size; s >= min; s -= Math.max(1, size / 40)) {
+    c.font = `${weight} ${s}px ${family}`;
+    const lines = []; let cur = "";
+    for (const w of words(text)) { const t = cur + w; if (c.measureText(t.trim()).width <= maxW || !cur.trim()) cur = t; else { lines.push(cur.trim()); cur = w.trimStart(); } }
+    if (cur.trim()) lines.push(cur.trim());
+    if (lines.length <= maxLines && lines.every((l) => c.measureText(l).width <= maxW)) return { s, lines };
+  }
+  // still too long at the smallest size: keep the allowed lines and end with …
+  c.font = `${weight} ${min}px ${family}`;
+  const lines = []; let cur = "";
+  for (const w of words(text)) { const t = cur + w; if (c.measureText(t.trim()).width <= maxW || !cur.trim()) cur = t; else { lines.push(cur.trim()); cur = w.trimStart(); } }
+  if (cur.trim()) lines.push(cur.trim());
+  const keep = lines.slice(0, maxLines); if (lines.length > maxLines) { let l = keep[maxLines - 1]; while (l && c.measureText(l + "…").width > maxW) l = l.slice(0, -1); keep[maxLines - 1] = l + "…"; }
+  return { s: min, lines: keep };
+}
+function text(c, t, x, y, { size = 40, weight = 800, fam = F_MIX, color = "#fff", align = "center", maxW = 9999, lines = 1, lh = 1.28 } = {}) {
+  if (!t) return 0;
+  const f = fit(c, t, weight, fam, size, Math.max(12, size * 0.55), maxW, lines);
+  c.font = `${weight} ${f.s}px ${fam}`; c.fillStyle = color; c.textAlign = align; c.textBaseline = "middle";
+  const step = f.s * lh, top = y - ((f.lines.length - 1) * step) / 2;
+  f.lines.forEach((l, i) => c.fillText(l, x, top + i * step));
+  return f.lines.length * step;
+}
+function strike(c, t, x, y, size, color, align = "left") {
+  if (!t) return;
+  c.font = `700 ${size}px ${F_MIX}`; c.fillStyle = color; c.textAlign = align; c.textBaseline = "middle"; c.fillText(t, x, y);
+  const w = c.measureText(t).width, x0 = align === "left" ? x : align === "center" ? x - w / 2 : x - w;
+  c.strokeStyle = color; c.lineWidth = Math.max(2, size / 11); c.beginPath(); c.moveTo(x0 - 3, y + size * 0.05); c.lineTo(x0 + w + 3, y + size * 0.05); c.stroke();
+}
+// Price: big main number, small raised decimals (or ,000 for riel), unit below them.
+function priceParts(d) {
+  const v = d.priceN; if (!v) return null;
+  if (d.cur === "KHR") return { pre: "", main: Math.round(v).toLocaleString("en-US"), sup: "៛", unit: "" };
+  const i = Math.floor(v), cts = Math.round((v - i) * 100);
+  return { pre: "$", main: i.toLocaleString("en-US"), sup: cts ? "." + String(cts).padStart(2, "0") : "", unit: "" };
+}
+function priceWidth(c, p, s, fam) { c.font = `900 ${s * 0.56}px ${fam}`; const a = c.measureText(p.pre).width; c.font = `900 ${s}px ${fam}`; const b = c.measureText(p.main).width; c.font = `800 ${s * 0.44}px ${fam}`; const e = Math.max(c.measureText(p.sup).width, p.unit ? s * 0.32 : 0); return [a, b, e, a + b + e + s * 0.04]; }
+function bigPrice(c, d, x, base, size, color, maxW, align = "left", fam = F_MIX) {
+  const p = priceParts(d); if (!p) return 0;
+  let s = size, w = priceWidth(c, p, s, fam); while (w[3] > maxW && s > 20) { s -= 2; w = priceWidth(c, p, s, fam); }
+  let cx = align === "center" ? x - w[3] / 2 : align === "right" ? x - w[3] : x;
+  c.fillStyle = color; c.textAlign = "left"; c.textBaseline = "alphabetic";
+  c.font = `900 ${s * 0.56}px ${fam}`; c.fillText(p.pre, cx, base - s * 0.3); cx += w[0];
+  c.font = `900 ${s}px ${fam}`; c.fillText(p.main, cx, base); cx += w[1] + s * 0.04;
+  c.font = `800 ${s * 0.44}px ${fam}`; c.fillText(p.sup, cx, base - s * 0.42);
+  if (p.unit) { c.font = `700 ${s * 0.32}px ${F_KH}`; c.fillText(p.unit, cx, base - s * 0.02); }
+  return s;
+}
+// Rectangular tag (never round): optional rotation.
+function tag(c, t, cx, cy, { size = 30, bg = "#111", fg = "#fff", r = 6, rot = 0, padX = 0.7, weight = 800, fam = F_MIX, maxW = 9999 } = {}) {
+  if (!t) return 0;
+  let s = size; c.font = `${weight} ${s}px ${fam}`; while (c.measureText(t).width + s * padX * 2 > maxW && s > 12) { s -= 1; c.font = `${weight} ${s}px ${fam}`; }
+  const w = c.measureText(t).width + s * padX * 2, h = s * 1.75;
+  c.save(); c.translate(cx, cy); if (rot) c.rotate(rot); c.fillStyle = bg; rr(c, -w / 2, -h / 2, w, h, r); c.fill();
+  c.fillStyle = fg; c.textAlign = "center"; c.textBaseline = "middle"; c.fillText(t, 0, s * 0.05); c.restore();
+  return w;
+}
+function giftIcon(c, cx, cy, s, col, rib) {
+  c.fillStyle = col; rr(c, cx - s / 2, cy - s * 0.18, s, s * 0.68, s * 0.06); c.fill(); rr(c, cx - s * 0.56, cy - s * 0.42, s * 1.12, s * 0.26, s * 0.06); c.fill();
+  c.fillStyle = rib; c.fillRect(cx - s * 0.08, cy - s * 0.42, s * 0.16, s * 0.92); c.fillRect(cx - s * 0.56, cy - s * 0.33, s * 1.12, s * 0.08);
+}
+// The product inside its own zone: contain-fit, user scale and drag, optional floor or drop shadow. Text zones never overlap this zone.
+function product(c, z, shadow = "floor", img = S.product, user = true) {
+  if (REC && user) S.box = z;
+  if (!img) return;
+  const sc = user ? S.scale : 1, k = Math.min(z.w / img.width, z.h / img.height) * sc, w = img.width * k, h = img.height * k;
+  const x = z.x + (z.w - w) / 2 + (user ? S.dx * z.w : 0), y = z.y + (z.h - h) / 2 + (user ? S.dy * z.h : 0);
+  if (shadow === "floor") { c.save(); c.fillStyle = "rgba(15,20,30,.18)"; c.filter = "blur(12px)"; c.beginPath(); c.ellipse(x + w / 2, y + h - 2, w * 0.36, Math.max(6, h * 0.03), 0, 0, Math.PI * 2); c.fill(); c.restore(); }
+  c.save(); if (shadow !== "none") { c.shadowColor = shadow === "glow" ? "rgba(255,255,255,.35)" : "rgba(10,15,30,.28)"; c.shadowBlur = shadow === "glow" ? 40 : 28; c.shadowOffsetY = shadow === "glow" ? 0 : 16; }
+  c.drawImage(img, x, y, w, h); c.restore();
+}
+
+// ---------------- text stack: measure first, shrink to fit the zone, then draw ----------------
+function measure(c, i, maxW, k) {
+  const s = (i.size || 30) * k, after = (i.after || 0) * k, none = { h: 0, draw() {} };
+  if (i.kind === "gap") return { h: i.h * k, draw() {} };
+  if (i.kind === "text") {
+    if (!i.t) return none;
+    const fam = i.fam || F_MIX, wt = i.weight || 700, f = fit(c, i.t, wt, fam, s, Math.max(12, s * 0.62), maxW, i.lines || 1), lh = f.s * (i.lh || 1.32);
+    return { h: f.lines.length * lh + after, draw(x, y, al) { c.font = `${wt} ${f.s}px ${fam}`; c.fillStyle = i.color; c.textAlign = al; c.textBaseline = "middle"; if (i.spacing && "letterSpacing" in c) c.letterSpacing = i.spacing * f.s + "px"; f.lines.forEach((l, j) => c.fillText(l, x, y + lh * (j + 0.5))); if ("letterSpacing" in c) c.letterSpacing = "0px"; } };
+  }
+  if (i.kind === "price") { if (!i.d.priceN) return none; return { h: s * 1.0 + after, draw(x, y, al) { bigPrice(c, i.d, x, y + s * 0.84, s, i.color, maxW, al, i.fam); } }; }
+  if (i.kind === "old") { if (!i.t) return none; return { h: s * 1.45 + after, draw(x, y, al) { strike(c, i.t, x, y + s * 0.7, s, i.color, al); } }; }
+  if (i.kind === "chips") {
+    const list = (i.list || []).filter(Boolean); if (!list.length) return none;
+    let fs = s, ws; const gap = 10 * k;
+    const widths = () => { c.font = `${i.weight || 700} ${fs}px ${F_MIX}`; ws = list.map((t) => c.measureText(t).width + fs * 1.3); return ws.reduce((a, b) => a + b, 0) + gap * (list.length - 1); };
+    while (widths() > maxW && fs > 12) fs -= 1;
+    const tot = widths(), h = fs * 1.8;
+    return { h: h + after, draw(x, y, al) {
+      let cx = al === "left" ? x : al === "right" ? x - tot : x - tot / 2;
+      list.forEach((t, j) => { if (i.bg !== "none") { c.fillStyle = i.bg; rr(c, cx, y, ws[j], h, (i.r ?? 8) * k); c.fill(); } if (i.border) { c.strokeStyle = i.border; c.lineWidth = 2 * k; rr(c, cx + 1, y + 1, ws[j] - 2, h - 2, (i.r ?? 8) * k); c.stroke(); }
+        c.font = `${i.weight || 700} ${fs}px ${F_MIX}`; c.fillStyle = i.fg; c.textAlign = "center"; c.textBaseline = "middle"; c.fillText(t, cx + ws[j] / 2, y + h / 2 + fs * 0.04); cx += ws[j] + gap; });
+    } };
+  }
+  if (i.kind === "tag") {
+    if (!i.t) return none; c.font = `${i.weight || 800} ${s}px ${i.fam || F_MIX}`; const w = Math.min(maxW, c.measureText(i.t).width + s * 1.4), h = s * 1.75;
+    return { h: h + after, draw(x, y, al) { const cx = al === "left" ? x + w / 2 : al === "right" ? x - w / 2 : x; tag(c, i.t, cx, y + h / 2, { size: s, bg: i.bg, fg: i.fg, r: (i.r ?? 6) * k, weight: i.weight || 800, fam: i.fam || F_MIX, maxW }); } };
+  }
+  if (i.kind === "custom") return { h: i.h * k + after, draw: (x, y, al) => i.draw(x, y, al, k, maxW) };
+  return none;
+}
+function stack(c, items, z, { align = "center", valign = "center" } = {}) {
+  items = items.filter(Boolean);
+  let k = 1, plan = items.map((i) => measure(c, i, z.w, k)), tot = plan.reduce((a, p) => a + p.h, 0);
+  for (let n = 0; n < 8 && tot > z.h && k > 0.45; n++) { k *= Math.max(0.8, Math.min(0.97, z.h / tot)); plan = items.map((i) => measure(c, i, z.w, k)); tot = plan.reduce((a, p) => a + p.h, 0); }
+  let y = valign === "top" ? z.y : valign === "bottom" ? z.y + z.h - tot : z.y + (z.h - tot) / 2;
+  const x = align === "left" ? z.x : align === "right" ? z.x + z.w : z.x + z.w / 2;
+  plan.forEach((p) => { p.draw(x, y, align); y += p.h; });
+}
+const kindOf = (W, H) => (H / W >= 1.15 ? "tall" : H / W > 0.87 ? "sq" : "wide");
+
+// ---------------- the 10 templates ----------------
+const T = {};
+
+// 1. Clean Product: white studio, product on a floor shadow, quiet type, hairline frame.
+T.clean = (c, W, H, d, P) => {
+  const { u, kind, A } = P, m = 64 * u, ink = S.transparent ? "#ffffff" : "#15191e", soft = S.transparent ? "rgba(255,255,255,.82)" : "#69717a";
+  if (!S.transparent) { const g = c.createRadialGradient(W / 2, H * 0.36, 10, W / 2, H * 0.4, Math.max(W, H) * 0.8); g.addColorStop(0, "#ffffff"); g.addColorStop(1, "#e9ebee"); c.fillStyle = g; c.fillRect(0, 0, W, H);
+    c.strokeStyle = "rgba(20,30,40,.16)"; c.lineWidth = 2 * u; c.strokeRect(m * 0.5, m * 0.5, W - m, H - m); }
+  let pz, tz, al = "center";
+  if (kind === "tall") { pz = { x: m, y: H * 0.07, w: W - 2 * m, h: H * 0.55 }; tz = { x: m * 1.3, y: H * 0.65, w: W - 2.6 * m, h: H * 0.29 }; }
+  else if (kind === "sq") { pz = { x: m * 1.6, y: m * 0.9, w: W - 3.2 * m, h: H * 0.54 }; tz = { x: m * 1.6, y: H * 0.62, w: W - 3.2 * m, h: H * 0.32 }; }
+  else { pz = { x: m, y: m, w: W * 0.52, h: H - 2 * m }; tz = { x: W * 0.6, y: m * 1.4, w: W * 0.34, h: H - 2.8 * m }; al = "left"; }
+  product(c, pz, "floor");
+  stack(c, [
+    d.label && { kind: "text", t: d.label, size: 28 * u, weight: 700, color: A, spacing: 0.03, after: 8 * u },
+    { kind: "text", t: d.name, lines: P.kind === "tall" ? 2 : 3, size: 62 * u, weight: 600, color: ink, lh: 1.3, after: 6 * u },
+    d.sub && { kind: "text", t: d.sub, size: 30 * u, weight: 500, color: soft, after: 12 * u },
+    { kind: "chips", list: [d.size, d.colour, d.stock], size: 25 * u, bg: "none", border: S.transparent ? "rgba(255,255,255,.6)" : "rgba(20,30,40,.25)", fg: ink, r: 6, after: 18 * u },
+    { kind: "price", d, size: 104 * u, color: S.transparent ? "#ffffff" : A },
+    { kind: "old", t: d.old, size: 34 * u, color: soft, after: 4 * u },
+    { kind: "text", t: meta(d), size: 26 * u, weight: 600, color: soft },
+  ], tz, { align: al });
+};
+
+// 2. Flash Sale: yellow/red diagonal split, slanted black banner, price on a slanted red bar, rectangular % tag.
+T.flash = (c, W, H, d, P) => {
+  const { u, kind, A } = P, Y = "#ffd400", K = "#160b02", m = 56 * u;
+  if (!S.transparent) {
+    c.fillStyle = Y; c.fillRect(0, 0, W, H);
+    c.fillStyle = A; c.beginPath();
+    if (kind === "wide") { c.moveTo(0, 0); c.lineTo(W * 0.5, 0); c.lineTo(W * 0.38, H); c.lineTo(0, H); } else { c.moveTo(0, 0); c.lineTo(W, 0); c.lineTo(W, H * 0.2); c.lineTo(0, H * (kind === "tall" ? 0.33 : 0.42)); }
+    c.closePath(); c.fill();
+    c.strokeStyle = "rgba(0,0,0,.07)"; c.lineWidth = 12 * u; for (let i = -H; i < W + H; i += 64 * u) { c.beginPath(); c.moveTo(i, H); c.lineTo(i + H * 0.45, 0); c.stroke(); }
+  }
+  const banner = (x, y, w, h) => { c.fillStyle = K; c.beginPath(); c.moveTo(x + h * 0.4, y); c.lineTo(x + w, y); c.lineTo(x + w - h * 0.4, y + h); c.lineTo(x, y + h); c.closePath(); c.fill();
+    text(c, d.promo || "FLASH SALE", x + w / 2, y + h / 2 + 3 * u, { size: h * 0.56, weight: 900, fam: F_DISP, color: Y, maxW: w - h }); };
+  let pz, nz, bar, fz, al = "left";
+  if (kind === "tall") { banner(m, H * 0.045, W * 0.74, 112 * u); pz = { x: m, y: H * 0.13, w: W - 2 * m, h: H * 0.48 }; nz = { x: m, y: H * 0.62, w: W - 2 * m, h: H * 0.1 }; bar = { x: 0, y: H * 0.73, w: W, h: H * 0.145 }; fz = { x: m, y: H * 0.885, w: W - 2 * m, h: H * 0.09 }; al = "center"; }
+  else if (kind === "sq") { banner(m, m * 0.9, W * 0.58, 100 * u); pz = { x: m * 0.6, y: H * 0.17, w: W * 0.48, h: H * 0.78 }; nz = { x: W * 0.55, y: H * 0.18, w: W * 0.41, h: H * 0.28 }; bar = { x: W * 0.53, y: H * 0.5, w: W * 0.47, h: H * 0.21 }; fz = { x: W * 0.56, y: H * 0.75, w: W * 0.4, h: H * 0.2 }; }
+  else { banner(m, m, W * 0.38, 110 * u); pz = { x: m, y: H * 0.2, w: W * 0.4, h: H * 0.76 }; nz = { x: W * 0.5, y: H * 0.1, w: W * 0.45, h: H * 0.26 }; bar = { x: W * 0.47, y: H * 0.4, w: W * 0.53, h: H * 0.25 }; fz = { x: W * 0.52, y: H * 0.71, w: W * 0.43, h: H * 0.22 }; }
+  product(c, pz, "drop");
+  stack(c, [{ kind: "text", t: d.name, lines: P.kind === "tall" ? 2 : 3, size: 58 * u, weight: 800, color: K, lh: 1.25 }], nz, { align: al });
+  c.fillStyle = A; c.beginPath(); c.moveTo(bar.x, bar.y + bar.h * 0.16); c.lineTo(bar.x + bar.w, bar.y); c.lineTo(bar.x + bar.w, bar.y + bar.h * 0.84); c.lineTo(bar.x, bar.y + bar.h); c.closePath(); c.fill();
+  const tagW = d.off ? 200 * u : 0, px = bar.x + (kind === "tall" ? m : 40 * u);
+  if (d.old) strike(c, d.old, px, bar.y + bar.h * 0.3, 32 * u, "rgba(255,255,255,.85)");
+  bigPrice(c, d, px, bar.y + bar.h * (d.old ? 0.86 : 0.74), bar.h * (d.old ? 0.52 : 0.6), "#ffffff", bar.w - (px - bar.x) - tagW - 50 * u);
+  if (d.off) tag(c, "-" + d.off + "%", bar.x + bar.w - tagW / 2 - 34 * u, bar.y + bar.h * 0.5, { size: 54 * u, bg: Y, fg: K, r: 4 * u, rot: -0.07, weight: 900, maxW: tagW });
+  stack(c, [{ kind: "chips", list: [d.stock || d.label, d.size, d.colour], size: 26 * u, bg: K, fg: Y, r: 3, after: 10 * u }, { kind: "text", t: meta(d), size: 26 * u, weight: 700, color: K }], fz, { align: al });
+};
+
+// 3. Live Selling: a lower-third card for live video. With a background: the product big above the card.
+//    Transparent: only the LIVE tag and the card (product in a tile), so the camera shows through.
+T.live = (c, W, H, d, P) => {
+  const { u, kind, A } = P, m = 48 * u;
+  if (!S.transparent) { c.fillStyle = lin(c, 0, 0, W, H, "#2b2443", "#0e0c16"); c.fillRect(0, 0, W, H); const r = c.createRadialGradient(W * 0.5, H * 0.32, 10, W * 0.5, H * 0.32, Math.max(W, H) * 0.6); r.addColorStop(0, "rgba(255,255,255,.10)"); r.addColorStop(1, "rgba(255,255,255,0)"); c.fillStyle = r; c.fillRect(0, 0, W, H); }
+  // LIVE tag (square dot, rectangle) + label
+  c.font = `900 ${34 * u}px ${F_MIX}`; const lw = c.measureText("LIVE").width + 74 * u, th = 62 * u;
+  c.fillStyle = "#e5283f"; rr(c, m, m, lw, th, 8 * u); c.fill(); c.fillStyle = "#fff"; c.fillRect(m + 20 * u, m + th / 2 - 7 * u, 14 * u, 14 * u);
+  c.textAlign = "left"; c.textBaseline = "middle"; c.fillText("LIVE", m + 46 * u, m + th / 2 + 2 * u);
+  const lab = d.label || "កំពុងផ្សាយផ្ទាល់"; c.font = `700 ${28 * u}px ${F_MIX}`; const l2 = c.measureText(lab).width + 40 * u; c.fillStyle = "rgba(0,0,0,.55)"; rr(c, m + lw + 10 * u, m, l2, th, 8 * u); c.fill(); c.fillStyle = "#fff"; c.fillText(lab, m + lw + 30 * u, m + th / 2 + 2 * u);
+  const card = kind === "tall" ? { x: m, y: H - m - H * 0.25, w: W - 2 * m, h: H * 0.25 } : kind === "sq" ? { x: m, y: H - m - H * 0.36, w: W - 2 * m, h: H * 0.36 } : { x: m, y: H - m - H * 0.4, w: W * 0.6, h: H * 0.4 };
+  const tile = S.transparent;
+  if (!tile) { const pz = kind === "wide" ? { x: W * 0.64, y: m * 1.5, w: W * 0.33, h: H - 3 * m } : { x: m, y: m + th + 30 * u, w: W - 2 * m, h: card.y - (m + th + 30 * u) - 30 * u }; product(c, pz, "glow"); }
+  c.save(); c.shadowColor = "rgba(0,0,0,.35)"; c.shadowBlur = 30 * u; c.shadowOffsetY = 12 * u; c.fillStyle = "#ffffff"; rr(c, card.x, card.y, card.w, card.h, 26 * u); c.fill(); c.restore();
+  c.save(); rr(c, card.x, card.y, card.w, card.h, 26 * u); c.clip(); c.fillStyle = A; c.fillRect(card.x, card.y, 14 * u, card.h); c.restore();
+  const pad = Math.min(card.h * 0.1, 34 * u);
+  let tx = card.x + pad + 14 * u;
+  if (tile) { const t = { x: card.x + pad + 14 * u, y: card.y + pad, w: card.h - 2 * pad, h: card.h - 2 * pad }; c.fillStyle = "#f1f2f6"; rr(c, t.x, t.y, t.w, t.h, 18 * u); c.fill(); product(c, { x: t.x + t.w * 0.07, y: t.y + t.h * 0.07, w: t.w * 0.86, h: t.h * 0.86 }, "none"); tx = t.x + t.w + pad; }
+  const tz = { x: tx, y: card.y + pad * 0.7, w: card.x + card.w - tx - pad, h: card.h - pad * 1.4 };
+  // two columns inside the card when wide enough: name/chips left, code/price right
+  if (!tile && tz.w > 600 * u) {
+    const left = { x: tz.x, y: tz.y, w: tz.w * 0.55, h: tz.h }, right = { x: tz.x + tz.w * 0.6, y: tz.y, w: tz.w * 0.4, h: tz.h };
+    stack(c, [{ kind: "text", t: d.name, lines: P.kind === "tall" ? 2 : 3, size: 44 * u, weight: 700, color: "#15151d", lh: 1.25, after: 10 * u }, { kind: "chips", list: [d.size, d.colour, d.stock], size: 22 * u, bg: "#f1f2f6", fg: "#3b3f4a", r: 6, after: 8 * u }, d.phone && { kind: "text", t: "☎ " + d.phone, size: 24 * u, weight: 600, color: "#555b68" }], left, { align: "left" });
+    stack(c, [d.code && { kind: "tag", t: "CODE " + d.code, size: 30 * u, bg: A, fg: "#fff", r: 8, after: 10 * u }, { kind: "price", d, size: 80 * u, color: "#e5283f" }, { kind: "old", t: d.old, size: 28 * u, color: "#8a8f9c" }], right, { align: "right" });
+  } else {
+    stack(c, [d.code && { kind: "tag", t: "CODE " + d.code, size: 28 * u, bg: A, fg: "#fff", r: 8, after: 8 * u }, { kind: "text", t: d.name, lines: P.kind === "tall" ? 2 : 3, size: 40 * u, weight: 700, color: "#15151d", lh: 1.22, after: 4 * u },
+      { kind: "chips", list: [d.size, d.colour, d.stock], size: 20 * u, bg: "#f1f2f6", fg: "#3b3f4a", r: 6, after: 4 * u }, { kind: "price", d, size: 70 * u, color: "#e5283f" }, { kind: "old", t: d.old, size: 24 * u, color: "#8a8f9c" },
+      d.phone && { kind: "text", t: "☎ " + d.phone, size: 22 * u, weight: 600, color: "#555b68" }], tz, { align: "left" });
+  }
+};
+
+// 4. Luxury: warm black, gold double frame, product inside a gold arch, serif gold price, spaced small caps.
+T.lux = (c, W, H, d, P) => {
+  const { u, kind, A } = P, G = A, cream = "#f3ead8", muted = "rgba(243,234,216,.6)";
+  if (!S.transparent) { const g = c.createRadialGradient(W / 2, H * 0.4, 10, W / 2, H * 0.45, Math.max(W, H) * 0.8); g.addColorStop(0, "#2a2620"); g.addColorStop(1, "#0b0a08"); c.fillStyle = g; c.fillRect(0, 0, W, H); }
+  c.strokeStyle = G; c.lineWidth = 2.5 * u; c.strokeRect(30 * u, 30 * u, W - 60 * u, H - 60 * u); c.lineWidth = 1 * u; c.strokeRect(44 * u, 44 * u, W - 88 * u, H - 88 * u);
+  const a = kind === "tall" ? { x: W * 0.19, y: H * 0.09, w: W * 0.62, h: H * 0.52 } : kind === "sq" ? { x: W * 0.09, y: H * 0.11, w: W * 0.4, h: H * 0.78 } : { x: W * 0.09, y: H * 0.1, w: W * 0.3, h: H * 0.8 };
+  const arch = () => { const r = a.w / 2; c.beginPath(); c.moveTo(a.x, a.y + a.h); c.lineTo(a.x, a.y + r); c.arc(a.x + r, a.y + r, r, Math.PI, 0); c.lineTo(a.x + a.w, a.y + a.h); c.closePath(); };
+  arch(); c.fillStyle = lin(c, 0, a.y, 0, a.y + a.h, alpha(G, 0.2), alpha(G, 0.03)); c.fill(); c.strokeStyle = G; c.lineWidth = 2 * u; c.stroke();
+  product(c, { x: a.x + a.w * 0.08, y: a.y + a.w * 0.16, w: a.w * 0.84, h: a.h - a.w * 0.2 }, "drop");
+  const tz = kind === "tall" ? { x: W * 0.12, y: H * 0.645, w: W * 0.76, h: H * 0.29 } : kind === "sq" ? { x: W * 0.54, y: H * 0.14, w: W * 0.38, h: H * 0.72 } : { x: W * 0.46, y: H * 0.14, w: W * 0.44, h: H * 0.72 };
+  stack(c, [
+    { kind: "text", t: d.label || "PREMIUM COLLECTION", size: 24 * u, weight: 600, color: G, spacing: 0.22, after: 18 * u },
+    { kind: "text", t: d.name, lines: P.kind === "tall" ? 2 : 3, size: 54 * u, weight: 500, fam: F_KH, color: cream, lh: 1.35, after: 8 * u },
+    d.sub && { kind: "text", t: d.sub, size: 28 * u, weight: 400, fam: F_KH, color: muted, after: 6 * u },
+    { kind: "custom", h: 40 * u, draw: (x, y, al, k) => { const w = 120 * k, x0 = al === "center" ? x - w / 2 : x; c.strokeStyle = G; c.lineWidth = 1.5 * k; c.beginPath(); c.moveTo(x0, y + 20 * k); c.lineTo(x0 + w, y + 20 * k); c.stroke(); } },
+    { kind: "price", d, size: 100 * u, color: G, fam: F_LUX },
+    { kind: "old", t: d.old, size: 30 * u, color: muted, after: 6 * u },
+    { kind: "chips", list: [d.size, d.colour, d.stock], size: 22 * u, bg: "none", border: alpha(G, 0.7), fg: cream, r: 0, after: 10 * u },
+    { kind: "text", t: meta(d), size: 22 * u, weight: 600, color: muted, spacing: 0.1 },
+  ], tz, { align: "center" });
+};
+
+// 5. Modern: off-white, a big colour block the product overlaps, left-aligned heavy type, rule lines, square CTA.
+T.modern = (c, W, H, d, P) => {
+  const { u, kind, A } = P, m = 64 * u, K = S.transparent ? "#ffffff" : "#111111", soft = S.transparent ? "rgba(255,255,255,.8)" : "#5d6168";
+  if (!S.transparent) { c.fillStyle = "#f3f2ee"; c.fillRect(0, 0, W, H); }
+  let pz, tz;
+  if (kind === "tall") { c.fillStyle = A; c.fillRect(0, 0, W * 0.7, H * 0.56); pz = { x: W * 0.16, y: H * 0.06, w: W * 0.78, h: H * 0.52 }; tz = { x: m, y: H * 0.63, w: W - 2 * m, h: H * 0.32 }; c.fillStyle = K; c.fillRect(m, H * 0.605, W - 2 * m, 3 * u); }
+  else if (kind === "sq") { c.fillStyle = A; c.fillRect(0, 0, W * 0.42, H); pz = { x: W * 0.05, y: H * 0.1, w: W * 0.48, h: H * 0.8 }; tz = { x: W * 0.57, y: m, w: W * 0.39, h: H - 2 * m }; }
+  else { c.fillStyle = A; c.fillRect(0, 0, W * 0.38, H); pz = { x: W * 0.06, y: H * 0.08, w: W * 0.42, h: H * 0.84 }; tz = { x: W * 0.55, y: m * 1.2, w: W * 0.39, h: H - 2.4 * m }; }
+  product(c, pz, "drop");
+  stack(c, [
+    { kind: "text", t: d.label || "NEW SEASON", size: 26 * u, weight: 800, color: S.transparent ? "#fff" : A, spacing: 0.08, after: 12 * u },
+    { kind: "text", t: d.name, lines: P.kind === "tall" ? 3 : 4, size: 74 * u, weight: 800, color: K, lh: 1.16, after: 10 * u },
+    d.sub && { kind: "text", t: d.sub, size: 28 * u, weight: 500, color: soft, lines: 2, after: 14 * u },
+    { kind: "chips", list: [d.size, d.colour, d.stock], size: 24 * u, bg: "none", border: K, fg: K, r: 0, after: 20 * u },
+    { kind: "price", d, size: 92 * u, color: K },
+    { kind: "old", t: d.old, size: 30 * u, color: soft, after: 14 * u },
+    { kind: "custom", h: 74 * u, draw: (x, y, al, k, maxW) => {
+      let cx = x; const cta = d.cta || "កម្ម៉ង់ឥឡូវ"; c.font = `800 ${30 * k}px ${F_MIX}`; const w1 = Math.min(maxW * 0.55, c.measureText(cta).width + 60 * k);
+      c.fillStyle = K; c.fillRect(cx, y, w1, 64 * k); c.fillStyle = S.transparent ? "#111" : "#fff"; c.textAlign = "center"; c.textBaseline = "middle"; c.fillText(cta, cx + w1 / 2, y + 33 * k, w1 - 20 * k);
+      if (d.code) { cx += w1 + 14 * k; c.font = `700 ${26 * k}px ${F_MIX}`; const t = d.code, w2 = Math.min(maxW - w1 - 14 * k, c.measureText(t).width + 50 * k); c.strokeStyle = K; c.lineWidth = 3 * k; c.strokeRect(cx, y + 1.5 * k, w2, 61 * k); c.fillStyle = K; c.fillText(t, cx + w2 / 2, y + 33 * k, w2 - 16 * k); } } },
+    d.phone && { kind: "text", t: "☎ " + d.phone, size: 24 * u, weight: 600, color: soft },
+  ], tz, { align: "left" });
+};
+
+// 6. New Arrival: pastel wash, giant outline NEW behind the product, label tab, size/colour chips.
+T.new = (c, W, H, d, P) => {
+  const { u, kind, A } = P, m = 60 * u, ink = S.transparent ? "#ffffff" : "#1d1640", soft = S.transparent ? "rgba(255,255,255,.8)" : "#6a6488";
+  if (!S.transparent) { c.fillStyle = lin(c, 0, 0, W, H, shade(A, 0.86), "#ffffff"); c.fillRect(0, 0, W, H); }
+  let pz, tz, al = "left";
+  if (kind === "tall") { pz = { x: m, y: H * 0.1, w: W - 2 * m, h: H * 0.52 }; tz = { x: m, y: H * 0.655, w: W - 2 * m, h: H * 0.29 }; al = "center"; }
+  else if (kind === "sq") { pz = { x: m * 0.6, y: H * 0.15, w: W * 0.54, h: H * 0.78 }; tz = { x: W * 0.6, y: H * 0.15, w: W * 0.35, h: H * 0.75 }; }
+  else { pz = { x: W * 0.05, y: H * 0.12, w: W * 0.44, h: H * 0.8 }; tz = { x: W * 0.55, y: H * 0.14, w: W * 0.39, h: H * 0.74 }; }
+  // outline NEW behind the product
+  c.save(); let fs = pz.w * 0.5; c.font = `900 ${fs}px ${F_MIX}`; while (c.measureText("NEW").width > pz.w * 1.04 && fs > 40) { fs -= 4; c.font = `900 ${fs}px ${F_MIX}`; }
+  c.strokeStyle = alpha(A, 0.32); c.lineWidth = 4 * u; c.textAlign = "center"; c.textBaseline = "middle"; c.strokeText("NEW", pz.x + pz.w / 2, pz.y + pz.h * 0.45); c.restore();
+  // label tab at the top-left corner
+  const lab = d.label || "ទើបមកដល់"; c.font = `800 ${30 * u}px ${F_MIX}`; const lw = c.measureText(lab).width + 48 * u; c.fillStyle = A; rr(c, m, kind === "tall" ? m : m * 0.8, lw, 58 * u, 4 * u); c.fill();
+  c.fillStyle = "#fff"; c.textAlign = "center"; c.textBaseline = "middle"; c.fillText(lab, m + lw / 2, (kind === "tall" ? m : m * 0.8) + 30 * u);
+  product(c, pz, "floor");
+  const tokens = (t) => (t || "").split(/[\s,·/|]+/).filter(Boolean).slice(0, 6);
+  stack(c, [
+    { kind: "text", t: d.name, lines: P.kind === "tall" ? 2 : 3, size: 60 * u, weight: 700, color: ink, lh: 1.28, after: 8 * u },
+    d.sub && { kind: "text", t: d.sub, size: 28 * u, weight: 500, color: soft, after: 10 * u },
+    { kind: "chips", list: tokens(d.size), size: 24 * u, bg: "none", border: A, fg: ink, r: 6, after: 8 * u },
+    { kind: "chips", list: tokens(d.colour), size: 22 * u, bg: alpha(A, 0.14), fg: ink, r: 6, after: 14 * u },
+    { kind: "price", d, size: 94 * u, color: S.transparent ? "#fff" : A },
+    { kind: "old", t: d.old, size: 30 * u, color: soft, after: 8 * u },
+    d.stock && { kind: "tag", t: d.stock, size: 24 * u, bg: "#16a34a", fg: "#fff", r: 4, after: 8 * u },
+    { kind: "text", t: meta(d), size: 24 * u, weight: 600, color: soft },
+  ], tz, { align: al });
+};
+
+// 7. Special Offer: deep colour with stripes, product above, a coupon ticket (notches + perforation): offer left, price right.
+T.offer = (c, W, H, d, P) => {
+  const { u, kind, A } = P, m = 56 * u;
+  if (!S.transparent) { c.fillStyle = lin(c, 0, 0, W, H, A, shade(A, -0.5)); c.fillRect(0, 0, W, H); c.strokeStyle = "rgba(255,255,255,.05)"; c.lineWidth = 26 * u; for (let i = -H; i < W + H; i += 90 * u) { c.beginPath(); c.moveTo(i, 0); c.lineTo(i + H * 0.6, H); c.stroke(); } }
+  let pz, nz, cp;
+  if (kind === "tall") { pz = { x: m, y: H * 0.05, w: W - 2 * m, h: H * 0.5 }; nz = { x: m, y: H * 0.565, w: W - 2 * m, h: H * 0.1 }; cp = { x: m, y: H * 0.69, w: W - 2 * m, h: H * 0.24 }; }
+  else if (kind === "sq") { pz = { x: m, y: H * 0.04, w: W - 2 * m, h: H * 0.46 }; nz = { x: m, y: H * 0.515, w: W - 2 * m, h: H * 0.12 }; cp = { x: m, y: H * 0.65, w: W - 2 * m, h: H * 0.3 }; }
+  else { pz = { x: m, y: m, w: W * 0.42, h: H - 2 * m }; nz = { x: W * 0.5, y: H * 0.1, w: W * 0.45, h: H * 0.22 }; cp = { x: W * 0.49, y: H * 0.36, w: W * 0.47, h: H * 0.42 }; }
+  product(c, pz, "glow");
+  stack(c, [{ kind: "text", t: d.name, lines: P.kind === "tall" ? 2 : 3, size: 56 * u, weight: 800, color: "#ffffff", lh: 1.25 }], nz, { align: kind === "wide" ? "left" : "center" });
+  // coupon
+  const n = 26 * u, { x, y, w, h } = cp, cut = x + w * 0.44;
+  c.save(); c.shadowColor = "rgba(0,0,0,.3)"; c.shadowBlur = 30 * u; c.shadowOffsetY = 14 * u; c.fillStyle = "#ffffff";
+  c.beginPath(); c.moveTo(x + 16 * u, y); c.lineTo(cut - n, y); c.arc(cut, y, n, Math.PI, 0, true); c.lineTo(x + w - 16 * u, y); c.quadraticCurveTo(x + w, y, x + w, y + 16 * u);
+  c.lineTo(x + w, y + h - 16 * u); c.quadraticCurveTo(x + w, y + h, x + w - 16 * u, y + h); c.lineTo(cut + n, y + h); c.arc(cut, y + h, n, 0, Math.PI, true); c.lineTo(x + 16 * u, y + h); c.quadraticCurveTo(x, y + h, x, y + h - 16 * u); c.lineTo(x, y + 16 * u); c.quadraticCurveTo(x, y, x + 16 * u, y); c.closePath(); c.fill(); c.restore();
+  c.strokeStyle = "#c9d3e3"; c.lineWidth = 3 * u; c.setLineDash([12 * u, 10 * u]); c.beginPath(); c.moveTo(cut, y + n + 8 * u); c.lineTo(cut, y + h - n - 8 * u); c.stroke(); c.setLineDash([]);
+  const pad = 30 * u, L = { x: x + pad, y: y + pad * 0.8, w: cut - x - 2 * pad, h: h - pad * 1.6 }, R = { x: cut + pad, y: y + pad * 0.8, w: x + w - cut - 2 * pad, h: h - pad * 1.6 };
+  const offer = d.promo || (d.off ? "-" + d.off + "%" : "ការផ្ដល់ជូនពិសេស");
+  stack(c, [
+    { kind: "text", t: d.label || "SPECIAL OFFER", size: 22 * u, weight: 800, color: "#7a8599", spacing: 0.08, after: 6 * u },
+    { kind: "text", t: offer, size: 56 * u, weight: 900, color: A, lines: 2, lh: 1.15, after: 8 * u },
+    d.gift && { kind: "custom", h: 46 * u, draw: (xx, yy, al, k, maxW) => { giftIcon(c, xx + 18 * k, yy + 24 * k, 32 * k, A, "#e5283f"); text(c, d.gift, xx + 46 * k, yy + 24 * k, { size: 26 * k, weight: 700, color: "#2b3445", align: "left", maxW: maxW - 50 * k }); } },
+  ], L, { align: "left" });
+  stack(c, [
+    { kind: "old", t: d.old, size: 30 * u, color: "#8792a6" },
+    { kind: "price", d, size: 88 * u, color: "#111827", after: 8 * u },
+    d.code && { kind: "tag", t: d.cta || "CODE " + d.code, size: 24 * u, bg: A, fg: "#fff", r: 6 },
+    !d.code && d.cta && { kind: "tag", t: d.cta, size: 24 * u, bg: A, fg: "#fff", r: 6 },
+  ], R, { align: "left" });
+  const fy = kind === "wide" ? H * 0.86 : cp.y + cp.h + (H - cp.y - cp.h) / 2;
+  if (d.phone || d.size || d.colour || d.stock) text(c, [d.size, d.colour, d.stock, d.phone && "☎ " + d.phone].filter(Boolean).join("   ·   "), kind === "wide" ? cp.x : W / 2, fy, { size: 24 * u, weight: 600, color: "rgba(255,255,255,.85)", align: kind === "wide" ? "left" : "center", maxW: kind === "wide" ? cp.w : W - 2 * m });
+};
+
+// 8. Price Focus: the price is the hero, giant numerals on a solid block; savings label; product still clear above/left.
+T.price = (c, W, H, d, P) => {
+  const { u, kind, A } = P, m = 60 * u, Y = "#ffd23f";
+  if (!S.transparent) { c.fillStyle = lin(c, 0, 0, 0, H, "#f7f8fa", "#e7ebf0"); c.fillRect(0, 0, W, H); }
+  let pz, nz, blk;
+  if (kind === "tall") { pz = { x: m, y: H * 0.045, w: W - 2 * m, h: H * 0.47 }; nz = { x: m, y: H * 0.525, w: W - 2 * m, h: H * 0.1 }; blk = { x: 0, y: H * 0.64, w: W, h: H * 0.36 }; }
+  else if (kind === "sq") { pz = { x: m * 0.6, y: m, w: W * 0.47, h: H - 2 * m }; nz = null; blk = { x: W * 0.53, y: 0, w: W * 0.47, h: H }; }
+  else { pz = { x: m, y: m, w: W * 0.44, h: H - 2 * m }; nz = null; blk = { x: W * 0.52, y: 0, w: W * 0.48, h: H }; }
+  product(c, pz, "floor");
+  c.fillStyle = A; c.fillRect(blk.x, blk.y, blk.w, blk.h);
+  const inner = { x: blk.x + m, y: blk.y + (kind === "tall" ? 34 * u : m * 1.4), w: blk.w - 2 * m, h: blk.h - (kind === "tall" ? 60 * u : m * 2.8) };
+  if (nz) stack(c, [{ kind: "text", t: d.name, lines: P.kind === "tall" ? 2 : 3, size: 54 * u, weight: 800, color: S.transparent ? "#fff" : "#12161c", lh: 1.25 }], nz, { align: "left" });
+  stack(c, [
+    !nz && { kind: "text", t: d.name, lines: P.kind === "tall" ? 2 : 3, size: 50 * u, weight: 800, color: "#ffffff", lines: 3, lh: 1.22, after: 20 * u },
+    (d.old || d.save) && { kind: "custom", h: 58 * u, draw: (x, y, al, k, maxW) => { let cx = x; if (d.old) { strike(c, d.old, cx, y + 28 * k, 34 * k, "rgba(255,255,255,.8)"); c.font = `700 ${34 * k}px ${F_MIX}`; cx += c.measureText(d.old).width + 24 * k; }
+      if (d.save) { const t = "សន្សំ " + d.save; c.font = `800 ${28 * k}px ${F_MIX}`; const w = Math.min(maxW - (cx - x), c.measureText(t).width + 36 * k); c.fillStyle = Y; c.fillRect(cx, y + 2 * k, w, 52 * k); c.fillStyle = "#1a1400"; c.textAlign = "center"; c.textBaseline = "middle"; c.fillText(t, cx + w / 2, y + 29 * k, w - 10 * k); } } },
+    { kind: "price", d, size: (kind === "tall" ? 300 : 230) * u, color: "#ffffff", after: 10 * u },
+    { kind: "chips", list: [d.size, d.colour, d.stock], size: 22 * u, bg: "rgba(255,255,255,.16)", fg: "#fff", r: 4, after: 8 * u },
+    { kind: "text", t: meta(d), size: 24 * u, weight: 700, color: "rgba(255,255,255,.88)" },
+  ], inner, { align: "left" });
+};
+
+// 9. Comment / Order: Messenger style. Product on a white card, a mock comment with the code, a big comment CTA, phone.
+T.comment = (c, W, H, d, P) => {
+  const { u, kind, A } = P, m = 56 * u;
+  if (!S.transparent) { c.fillStyle = lin(c, 0, 0, W, H, A, shade(A, -0.45)); c.fillRect(0, 0, W, H); }
+  let card, tz;
+  if (kind === "tall") { card = { x: m, y: H * 0.045, w: W - 2 * m, h: H * 0.48 }; tz = { x: m, y: H * 0.55, w: W - 2 * m, h: H * 0.42 }; }
+  else if (kind === "sq") { card = { x: m * 0.8, y: m * 0.8, w: W * 0.47, h: H - 1.6 * m }; tz = { x: W * 0.55, y: m, w: W * 0.41, h: H - 2 * m }; }
+  else { card = { x: m, y: m, w: W * 0.42, h: H - 2 * m }; tz = { x: W * 0.5, y: m * 1.2, w: W * 0.45, h: H - 2.4 * m }; }
+  c.save(); c.shadowColor = "rgba(0,0,0,.3)"; c.shadowBlur = 30 * u; c.shadowOffsetY = 12 * u; c.fillStyle = "#ffffff"; rr(c, card.x, card.y, card.w, card.h, 34 * u); c.fill(); c.restore();
+  product(c, { x: card.x + card.w * 0.07, y: card.y + card.h * 0.06, w: card.w * 0.86, h: card.h * 0.88 }, "floor");
+  const code = d.code || "A-01", al = kind === "tall" ? "center" : "left";
+  stack(c, [
+    { kind: "text", t: d.name, lines: P.kind === "tall" ? 2 : 3, size: 52 * u, weight: 800, color: "#ffffff", lh: 1.25, after: 6 * u },
+    { kind: "price", d, size: 84 * u, color: "#ffffff" },
+    { kind: "old", t: d.old, size: 28 * u, color: "rgba(255,255,255,.75)", after: 14 * u },
+    { kind: "text", t: d.cta || "Comment លេខកូដ ដើម្បីកម្ម៉ង់", size: 34 * u, weight: 700, color: "#ffffff", lines: 2, after: 14 * u },
+    { kind: "custom", h: 128 * u, after: 14 * u, draw: (x, y, al2, k, maxW) => {   // mock comment: square avatar + grey bubble with the code
+      const bw = Math.min(maxW, 560 * k), x0 = al2 === "center" ? x - bw / 2 : x, av = 84 * k;
+      c.fillStyle = "rgba(255,255,255,.9)"; rr(c, x0, y + 10 * k, av, av, 18 * k); c.fill();
+      c.fillStyle = shade(A, -0.2); rr(c, x0 + av * 0.32, y + 10 * k + av * 0.2, av * 0.36, av * 0.32, av * 0.12); c.fill(); rr(c, x0 + av * 0.18, y + 10 * k + av * 0.58, av * 0.64, av * 0.32, av * 0.14); c.fill();
+      const bx = x0 + av + 16 * k, w2 = bw - av - 16 * k; c.fillStyle = "#f0f2f5"; rr(c, bx, y, w2, 118 * k, 26 * k); c.fill();
+      c.font = `600 ${22 * k}px ${F_MIX}`; c.fillStyle = "#65676b"; c.textAlign = "left"; c.textBaseline = "middle"; c.fillText("អតិថិជន · ឥឡូវនេះ", bx + 26 * k, y + 32 * k, w2 - 40 * k);
+      text(c, code, bx + 26 * k, y + 78 * k, { size: 50 * k, weight: 900, color: "#050505", align: "left", maxW: w2 - 50 * k }); } },
+    { kind: "chips", list: [d.size, d.colour, d.stock], size: 22 * u, bg: "rgba(255,255,255,.18)", fg: "#fff", r: 6, after: 8 * u },
+    d.phone && { kind: "tag", t: "☎ " + d.phone, size: 28 * u, bg: "#ffffff", fg: shade(A, -0.3), r: 999 },
+  ], tz, { align: al });
+};
+
+// 10. Bold Sale: black, yellow SALE tapes behind the product, giant outline type, price on a tape, red % tag. Made for Reels/TikTok.
+T.bold = (c, W, H, d, P) => {
+  const { u, kind, A } = P, m = 56 * u, Y = A, K = "#0b0b0b";
+  if (!S.transparent) { c.fillStyle = K; c.fillRect(0, 0, W, H); }
+  const tape = (cx, cy, len, h, rot, label, col = Y, fg = K) => { c.save(); c.translate(cx, cy); c.rotate(rot); c.fillStyle = col; c.fillRect(-len / 2, -h / 2, len, h); c.font = `400 ${h * 0.62}px ${F_DISP}`; c.fillStyle = fg; c.textAlign = "left"; c.textBaseline = "middle"; const unit = label + "     "; let x = -len / 2 + 10 * u; const w = c.measureText(unit).width || 100; while (x < len / 2) { c.fillText(label, x, h * 0.04); x += w; } c.restore(); };
+  let pz, tz;
+  if (kind === "tall") { pz = { x: m, y: H * 0.13, w: W - 2 * m, h: H * 0.5 }; tz = { x: m, y: H * 0.655, w: W - 2 * m, h: H * 0.31 }; }
+  else if (kind === "sq") { pz = { x: m * 0.6, y: H * 0.12, w: W * 0.5, h: H * 0.82 }; tz = { x: W * 0.56, y: m, w: W * 0.4, h: H - 2 * m }; }
+  else { pz = { x: m, y: H * 0.1, w: W * 0.42, h: H * 0.84 }; tz = { x: W * 0.5, y: m, w: W * 0.45, h: H - 2 * m }; }
+  // behind the product: outline SALE and two tapes
+  c.save(); let fs = pz.w * 0.42; c.font = `400 ${fs}px ${F_DISP}`; while (c.measureText("SALE").width > pz.w && fs > 40) { fs -= 4; c.font = `400 ${fs}px ${F_DISP}`; }
+  c.strokeStyle = alpha(Y === "#ffd400" ? "#ffd400" : Y, 0.85); c.lineWidth = 4 * u; c.textAlign = "center"; c.textBaseline = "middle"; c.strokeText("SALE", pz.x + pz.w / 2, pz.y + pz.h * 0.5); c.restore();
+  tape(W / 2, kind === "tall" ? H * 0.07 : H * 0.06, Math.hypot(W, H) * 1.1, 74 * u, -0.06, d.promo || "SALE");
+  product(c, pz, "glow");
+  stack(c, [
+    d.label && { kind: "tag", t: d.label, size: 26 * u, bg: "#e5283f", fg: "#fff", r: 0, after: 12 * u },
+    { kind: "text", t: d.name, lines: P.kind === "tall" ? 2 : 3, size: 70 * u, weight: 400, fam: F_DISP, color: "#ffffff", lh: 1.2, after: 16 * u },
+    { kind: "custom", h: 150 * u, after: 14 * u, draw: (x, y, al, k, maxW) => {   // price on a slanted yellow tape + red % tag
+      const w = Math.min(maxW, (kind === "tall" ? 820 : 560) * k), x0 = al === "center" ? x - w / 2 : x, tw = d.off ? 170 * k : 0;
+      c.save(); c.translate(x0 + w / 2, y + 75 * k); c.rotate(-0.035); c.fillStyle = Y; c.fillRect(-w / 2, -70 * k, w, 140 * k); c.restore();
+      bigPrice(c, d, x0 + 30 * k, y + 120 * k, 112 * k, K, w - tw - 70 * k);
+      if (d.off) tag(c, "-" + d.off + "%", x0 + w - tw / 2 - 20 * k, y + 70 * k, { size: 44 * k, bg: "#e5283f", fg: "#fff", r: 0, rot: 0.06, weight: 900, maxW: tw }); } },
+    d.old && { kind: "old", t: "តម្លៃដើម " + d.old, size: 28 * u, color: "rgba(255,255,255,.65)", after: 6 * u },
+    { kind: "chips", list: [d.size, d.colour, d.stock], size: 22 * u, bg: "none", border: Y, fg: Y, r: 0, after: 8 * u },
+    { kind: "text", t: meta(d), size: 24 * u, weight: 700, color: "rgba(255,255,255,.85)" },
+  ], tz, { align: kind === "tall" ? "center" : "left" });
+};
+
+// ---------------- the whole poster ----------------
+function draw(c, W, H, id, forPreview) {
+  c.clearRect(0, 0, W, H); REC = !!forPreview;
+  const t = TPLS.find((x) => x.id === id) || TPLS[0];
+  const kind = kindOf(W, H), P = { u: (Math.min(W, H) / 1080) * (kind === "wide" ? 1.18 : 1), kind, A: S.color || t.A };   // wide layouts have more room: larger type
+  T[t.id](c, W, H, data(), P);
+  REC = false;
+  if (S.credit) { const u = P.u; c.font = `700 ${20 * Math.max(1, u)}px ${F_MIX}`; c.textAlign = "right"; c.textBaseline = "alphabetic"; c.lineWidth = 4; c.strokeStyle = "rgba(0,0,0,.25)"; c.fillStyle = "rgba(255,255,255,.92)"; c.strokeText("adsbox.agency", W - 22, H - 12); c.fillText("adsbox.agency", W - 22, H - 12); }
+}
+
+// ---------------- background removal ----------------
+// 1) AI: U²-Net small (Apache-2.0), built into this page, runs on the device's graphics chip.
+let session = null, aiState = "idle";
+async function aiSession() {
+  if (session) return session;
+  if (!window.ort) throw new Error("no-runtime");
+  const res = await fetch("/assets/tools/u2netp.onnx"); if (!res.ok) throw new Error("model " + res.status);
+  session = await ort.InferenceSession.create(await res.arrayBuffer(), { executionProviders: ["webgl"] });
+  return session;
+}
+async function aiCut(src) {
+  const s = await aiSession(), z = 320;
+  const cv = document.createElement("canvas"); cv.width = cv.height = z; const x = cv.getContext("2d", { willReadFrequently: true }); x.drawImage(src, 0, 0, z, z);
+  const d = x.getImageData(0, 0, z, z).data, t = new Float32Array(3 * z * z), m = [0.485, 0.456, 0.406], sd = [0.229, 0.224, 0.225];
+  let mx = 1; for (let i = 0; i < z * z; i++) mx = Math.max(mx, d[i * 4], d[i * 4 + 1], d[i * 4 + 2]);
+  for (let i = 0; i < z * z; i++) for (let k = 0; k < 3; k++) t[k * z * z + i] = (d[i * 4 + k] / mx - m[k]) / sd[k];
+  const o = (await s.run({ [s.inputNames[0]]: new ort.Tensor("float32", t, [1, 3, z, z]) }))[s.outputNames[0]].data;
+  let lo = 1e9, hi = -1e9; for (const v of o) { if (v < lo) lo = v; if (v > hi) hi = v; }
+  const mc = document.createElement("canvas"); mc.width = mc.height = z; const mctx = mc.getContext("2d"), mi = mctx.createImageData(z, z);
+  for (let i = 0; i < z * z; i++) { const a = (o[i] - lo) / (hi - lo || 1); mi.data[i * 4 + 3] = Math.round(255 * Math.min(1, Math.max(0, (a - 0.22) / 0.56))); }
+  mctx.putImageData(mi, 0, 0);
+  const out = document.createElement("canvas"); out.width = src.width; out.height = src.height; const oc = out.getContext("2d");
+  oc.imageSmoothingEnabled = true; oc.imageSmoothingQuality = "high"; oc.drawImage(mc, 0, 0, src.width, src.height);
+  oc.globalCompositeOperation = "source-in"; oc.drawImage(src, 0, 0);
+  return crop(out);
+}
+// 2) Fast: flood fill from the photo edges (plain backgrounds), including enclosed holes.
+function fastCut(src, tol) {
+  const W = src.width, H = src.height, cv = document.createElement("canvas"); cv.width = W; cv.height = H;
+  const c = cv.getContext("2d", { willReadFrequently: true }); c.drawImage(src, 0, 0); const im = c.getImageData(0, 0, W, H), p = im.data, n = W * H;
+  const bg = new Uint8Array(n), q = new Int32Array(n); let qh = 0, qt = 0; const samples = [];
+  const dist = (a, b) => { const dr = a[0] - b[0], dg = a[1] - b[1], db = a[2] - b[2]; return Math.sqrt(0.3 * dr * dr + 0.59 * dg * dg + 0.11 * db * db) * 1.4; };
+  const take = (x, y) => { const i = (y * W + x) * 4, col = [p[i], p[i + 1], p[i + 2]]; if (!samples.some((s) => dist(s, col) < 30) && samples.length < 6) samples.push(col); };
+  for (let x = 0; x < W; x += Math.max(1, (W / 40) | 0)) { take(x, 0); take(x, H - 1); }
+  for (let y = 0; y < H; y += Math.max(1, (H / 40) | 0)) { take(0, y); take(W - 1, y); }
+  const near = (i) => { const col = [p[i * 4], p[i * 4 + 1], p[i * 4 + 2]]; let m = 1e9; for (const s of samples) m = Math.min(m, dist(s, col)); return m; };
+  const push = (i) => { if (!bg[i] && near(i) < tol) { bg[i] = 1; q[qt++] = i; } };
+  for (let x = 0; x < W; x++) { push(x); push((H - 1) * W + x); } for (let y = 0; y < H; y++) { push(y * W); push(y * W + W - 1); }
+  const step = Math.max(10, tol * 0.45);
+  while (qh < qt) { const i = q[qh++], x = i % W, y = (i / W) | 0, a = [p[i * 4], p[i * 4 + 1], p[i * 4 + 2]];
+    for (const j of [x > 0 ? i - 1 : -1, x < W - 1 ? i + 1 : -1, y > 0 ? i - W : -1, y < H - 1 ? i + W : -1]) { if (j < 0 || bg[j]) continue; const b = [p[j * 4], p[j * 4 + 1], p[j * 4 + 2]]; if (dist(a, b) < step && near(j) < tol * 1.25) { bg[j] = 1; q[qt++] = j; } } }
+  const seen = new Uint8Array(n), comp = new Int32Array(n), minArea = n * 0.0015;
+  for (let s0 = 0; s0 < n; s0++) { if (bg[s0] || seen[s0] || near(s0) >= tol * 0.8) continue; let h = 0, t2 = 0; comp[t2++] = s0; seen[s0] = 1;
+    while (h < t2) { const i = comp[h++], x = i % W, y = (i / W) | 0; for (const j of [x > 0 ? i - 1 : -1, x < W - 1 ? i + 1 : -1, y > 0 ? i - W : -1, y < H - 1 ? i + W : -1]) { if (j < 0 || bg[j] || seen[j] || near(j) >= tol * 0.8) continue; seen[j] = 1; comp[t2++] = j; } }
+    if (t2 >= minArea) for (let k = 0; k < t2; k++) bg[comp[k]] = 1; }
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) { const i = y * W + x; if (bg[i]) { p[i * 4 + 3] = 0; continue; } let k = 0; if (x > 0 && bg[i - 1]) k++; if (x < W - 1 && bg[i + 1]) k++; if (y > 0 && bg[i - W]) k++; if (y < H - 1 && bg[i + W]) k++; if (k) p[i * 4 + 3] = k >= 2 ? 120 : 190; }
+  c.putImageData(im, 0, 0); return crop(cv);
+}
+function crop(cv) {
+  const c = cv.getContext("2d", { willReadFrequently: true }), W = cv.width, H = cv.height, p = c.getImageData(0, 0, W, H).data;
+  let x0 = W, y0 = H, x1 = -1, y1 = -1;
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) if (p[(y * W + x) * 4 + 3] > 24) { if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
+  if (x1 < 0) return cv;
+  const o = document.createElement("canvas"); o.width = x1 - x0 + 1; o.height = y1 - y0 + 1; o.getContext("2d").drawImage(cv, x0, y0, o.width, o.height, 0, 0, o.width, o.height); return o;
+}
+function setStatus(msg, kind = "", busy = false) { const el = $("status"); el.className = "status " + kind; el.innerHTML = (busy ? '<span class="spin" aria-hidden="true"></span>' : "") + msg; }
+let job = 0;
+async function cutout(raw, mode = S.mode) {
+  if (mode === "none") return raw;
+  if (mode === "fast") return fastCut(raw, +$("tol").value);
+  try {
+    setStatus(session ? "AI កំពុងលុបផ្ទៃខាងក្រោយ…" : "កំពុងបើក AI (លើកដំបូងយូរបន្តិច)…", "", true);
+    const t0 = performance.now(); const out = await aiCut(raw);
+    setStatus(`✓ AI បានលុបផ្ទៃខាងក្រោយ (${((performance.now() - t0) / 1000).toFixed(1)} វិនាទី)`, "ok");
+    return out;
+  } catch (e) {
+    setStatus("ឧបករណ៍នេះមិនអាចដំណើរការ AI បាន ប្រើរបៀប «ផ្ទៃពណ៌តែមួយ» ជំនួស។", "warn");
+    return fastCut(raw, +$("tol").value);
+  }
+}
+async function processAll(mode) {
+  const my = ++job;
+  if (S.raw) { const p = await cutout(S.raw, mode); if (my !== job) return; S.product = p; }
+  if (S.giftRaw) { const g = await cutout(S.giftRaw, mode); if (my !== job) return; S.gift = g; showGift(); }
+  render();
+}
+function toCanvas(img) { const k = Math.min(1, 1400 / Math.max(img.width, img.height)), cv = document.createElement("canvas"); cv.width = Math.round(img.width * k); cv.height = Math.round(img.height * k); cv.getContext("2d").drawImage(img, 0, 0, cv.width, cv.height); return cv; }
+function loadImage(src, target, mode) {
+  const img = new Image();
+  img.onload = () => { const cv = toCanvas(img); if (target === "gift") S.giftRaw = cv; else { S.raw = cv; S.dx = 0; S.dy = 0; } processAll(mode); };
+  img.onerror = () => setStatus("មិនអាចបើករូបនេះបាន សូមសាករូប JPG ឬ PNG ផ្សេង។", "warn");
+  img.src = src;
+}
+function showGift() { $("giftThumb").innerHTML = S.gift ? "" : ""; if (S.gift) { const i = new Image(); i.src = S.gift.toDataURL(); i.alt = "រូបកាដូ"; $("giftThumb").appendChild(i); } $("giftClear").hidden = !S.gift; }
+// Sample: a skincare bottle on a grey studio background (drawn here, so the demo works offline).
+function samplePhoto() {
+  const cv = document.createElement("canvas"); cv.width = 900; cv.height = 1100; const c = cv.getContext("2d");
+  const g = c.createRadialGradient(450, 450, 60, 450, 550, 800); g.addColorStop(0, "#f4f4f4"); g.addColorStop(1, "#d6d8dc"); c.fillStyle = g; c.fillRect(0, 0, 900, 1100);
+  c.fillStyle = "rgba(0,0,0,.16)"; c.beginPath(); c.ellipse(450, 985, 230, 28, 0, 0, Math.PI * 2); c.fill();
+  const bg = c.createLinearGradient(260, 0, 640, 0); bg.addColorStop(0, "#1f7fb3"); bg.addColorStop(0.45, "#4fb3e0"); bg.addColorStop(1, "#16628c");
+  c.fillStyle = bg; rr(c, 260, 330, 380, 650, 70); c.fill();
+  c.fillStyle = "#2a6f8f"; rr(c, 330, 210, 240, 140, 24); c.fill(); c.fillStyle = "#e9f3f7"; rr(c, 395, 120, 110, 100, 18); c.fill(); c.fillRect(470, 150, 120, 26);
+  c.fillStyle = "#ffffff"; rr(c, 300, 470, 300, 260, 26); c.fill();
+  c.fillStyle = "#1f6f99"; c.font = "900 64px Arial"; c.textAlign = "center"; c.fillText("HYDRA", 450, 570); c.font = "700 28px Arial"; c.fillText("GEL CLEANSER", 450, 618);
+  c.fillStyle = "#7cc4e4"; rr(c, 350, 650, 200, 10, 5); c.fill(); c.font = "700 26px Arial"; c.fillStyle = "#e9f6fc"; c.fillText("473 ml", 450, 900);
+  return cv.toDataURL("image/png");
+}
+
+// ---------------- UI ----------------
+const FIELDS = ["name", "sub", "price", "old", "cur", "code", "psize", "pcolour", "stock", "phone", "label", "promo", "gift", "cta"];
+const pv = $("preview"), pctx = pv.getContext("2d");
+let raf = 0, tt = 0;
+function render() { cancelAnimationFrame(raf); raf = requestAnimationFrame(() => { draw(pctx, S.W, S.H, S.tpl, true); clearTimeout(tt); tt = setTimeout(thumbs, 160); save(); }); }
+function thumbs() { const tw = 240, th = Math.round(tw * S.H / S.W); document.querySelectorAll(".tpl canvas").forEach((cv) => { if (cv.width !== tw || cv.height !== th) { cv.width = tw; cv.height = th; } const c = cv.getContext("2d"); c.setTransform(1, 0, 0, 1, 0, 0); c.clearRect(0, 0, tw, th); c.scale(tw / S.W, th / S.H); draw(c, S.W, S.H, cv.dataset.t, false); }); }
+$("tpls").innerHTML = TPLS.map((s) => `<button type="button" class="tpl" data-id="${s.id}" aria-pressed="${s.id === S.tpl}"><canvas width="240" height="427" data-t="${s.id}"></canvas><span><b style="font-family:var(--f-num)">${s.name}</b><br>${s.kh}</span></button>`).join("");
+$("tpls").addEventListener("click", (e) => { const b = e.target.closest(".tpl"); if (!b) return; S.tpl = b.dataset.id; document.querySelectorAll(".tpl").forEach((x) => x.setAttribute("aria-pressed", x === b)); render(); });
+$("sizes").addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; const [w, h] = b.dataset.s.split("x").map(Number); S.W = w; S.H = h; pv.width = w; pv.height = h; $("dim").textContent = `${w} × ${h} px · PNG`; document.querySelectorAll("#sizes button").forEach((x) => x.setAttribute("aria-pressed", x === b)); render(); });
+$("mode").addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; S.mode = b.dataset.m; $("tolWrap").hidden = S.mode !== "fast"; document.querySelectorAll("#mode button").forEach((x) => x.setAttribute("aria-pressed", x === b)); if (S.mode !== "ai") setStatus(""); processAll(); });
+FIELDS.forEach((id) => $(id).addEventListener("input", () => { $("demoTag").hidden = true; render(); }));
+$("transp").addEventListener("change", (e) => { S.transparent = e.target.checked; render(); });
+$("credit").addEventListener("change", (e) => { S.credit = e.target.checked; render(); });
+$("scale").addEventListener("input", (e) => { S.scale = e.target.value / 100; render(); });
+$("color").addEventListener("input", (e) => { S.color = e.target.value; render(); });
+$("colorReset").addEventListener("click", () => { S.color = null; render(); });
+let tolT = 0; $("tol").addEventListener("input", () => { clearTimeout(tolT); tolT = setTimeout(() => processAll(), 150); });
+$("sample").addEventListener("click", () => loadImage(samplePhoto()));
+$("file").addEventListener("change", (e) => { const f = e.target.files && e.target.files[0]; if (f) { $("demoTag").hidden = true; loadImage(URL.createObjectURL(f)); } e.target.value = ""; });
+$("giftFile").addEventListener("change", (e) => { const f = e.target.files && e.target.files[0]; if (f) loadImage(URL.createObjectURL(f), "gift"); e.target.value = ""; });
+$("giftClear").addEventListener("click", () => { S.gift = null; S.giftRaw = null; showGift(); render(); });
+const drop = $("drop");
+["dragenter", "dragover"].forEach((ev) => drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.add("on"); }));
+["dragleave", "drop"].forEach((ev) => drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.remove("on"); }));
+drop.addEventListener("drop", (e) => { const f = e.dataTransfer.files && e.dataTransfer.files[0]; if (f && f.type.startsWith("image/")) { $("demoTag").hidden = true; loadImage(URL.createObjectURL(f)); } });
+drop.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); $("file").click(); } });
+window.addEventListener("paste", (e) => { const it = [...((e.clipboardData || {}).items || [])].find((i) => i.type.startsWith("image/")); if (it) loadImage(URL.createObjectURL(it.getAsFile())); });
+let dragging = null;
+pv.addEventListener("pointerdown", (e) => { if (!S.product || !S.box) return; dragging = { x: e.clientX, y: e.clientY, dx: S.dx, dy: S.dy }; pv.setPointerCapture(e.pointerId); pv.classList.add("drag"); });
+pv.addEventListener("pointermove", (e) => { if (!dragging) return; const r = pv.getBoundingClientRect(), k = S.W / r.width; S.dx = dragging.dx + ((e.clientX - dragging.x) * k) / S.box.w; S.dy = dragging.dy + ((e.clientY - dragging.y) * k) / S.box.h; render(); });
+["pointerup", "pointercancel"].forEach((ev) => pv.addEventListener(ev, () => { dragging = null; pv.classList.remove("drag"); }));
+// export and save
+let dls = null, lastBlob = null;
+if (window.claude && window.claude.use) window.claude.use("downloads").then((n) => { dls = n; }).catch(() => {});
+$("export").addEventListener("click", () => {
+  const cv = document.createElement("canvas"); cv.width = S.W; cv.height = S.H; draw(cv.getContext("2d"), S.W, S.H, S.tpl, false);
+  cv.toBlob((blob) => { lastBlob = blob; const url = URL.createObjectURL(blob); $("outImg").src = url; $("dl").href = url; $("dl").textContent = "⬇ រក្សាទុក PNG";
+    $("dl").download = `adsbox-${(val("code") || S.tpl).replace(/[^\w-]+/g, "") || "graphic"}-${S.W}x${S.H}.png`;
+    const dg = $("dlg"); if (dg.showModal) dg.showModal(); else dg.setAttribute("open", ""); }, "image/png");
+});
+$("dl").addEventListener("click", async (e) => {
+  if (!dls || !lastBlob) return;            // normal website: the link downloads
+  e.preventDefault();
+  try { await dls.save({ filename: $("dl").download, data: lastBlob }); $("dl").textContent = "✓ បានរក្សាទុក"; }
+  catch (err) { if (err && err.code !== "declined") $("dl").textContent = "ចុចសង្កត់លើរូប ដើម្បីរក្សាទុក"; }
+});
+$("close").addEventListener("click", () => $("dlg").close());
+function save() { try { localStorage.setItem("adsbox-graphic-3", JSON.stringify({ tpl: S.tpl, f: Object.fromEntries(FIELDS.map((k) => [k, $(k).value])) })); } catch (e) {} }
+
+// ---------------- start with a filled example ----------------
+const EX = { name: "ជែលលាងមុខ HYDRA 473ml", sub: "សម្រាប់ស្បែកខ្លាញ់ និងស្បែកចម្រុះ", price: "18.90", old: "24", cur: "USD", code: "HS-473", psize: "473ml", pcolour: "", stock: "មានស្តុក", phone: "012 345 678", label: "ពេញនិយម", promo: "", gift: "ថែមកាបូបតូច", cta: "" };
+let saved = null; try { saved = JSON.parse(localStorage.getItem("adsbox-graphic-3") || "null"); } catch (e) {}
+Object.entries(saved && saved.f ? saved.f : EX).forEach(([k, v]) => { if ($(k)) $(k).value = v; });
+if (saved) { S.tpl = saved.tpl || S.tpl; $("demoTag").hidden = true; document.querySelectorAll(".tpl").forEach((x) => x.setAttribute("aria-pressed", x.dataset.id === S.tpl)); }
+const fontsReady = document.fonts && document.fonts.load ? Promise.all(["900 40px 'Be Vietnam Pro'", "800 40px 'Be Vietnam Pro'", "700 40px 'Be Vietnam Pro'", "600 40px 'Be Vietnam Pro'", "700 40px 'Kantumruy Pro'", "600 40px 'Kantumruy Pro'", "500 40px 'Kantumruy Pro'", "400 40px Koulen", "800 40px 'Playfair Display'"].map((f) => document.fonts.load(f, "កA$1"))).catch(() => {}) : Promise.resolve();
+render();
+Promise.race([fontsReady, new Promise((r) => setTimeout(r, 2500))]).then(() => loadImage(samplePhoto(), null, "fast"));  // first view instant; uploads use AI
+})();
+</script>
+
+</body>
+</html>

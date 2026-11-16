@@ -190,7 +190,7 @@ for old, new in (json.load(open(_rp)) if os.path.exists(_rp) else {}).items():
           f'<link rel="canonical" href="{to}"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0; url=/knowledge/{new}/">'
           f'</head><body><p><a href="/knowledge/{new}/">{to}</a></p></body></html>')
 
-urls = [(f"{SITE}/", articles[0]["date"] if articles else None), (f"{SITE}/knowledge/", articles[0]["date"] if articles else None)] + [(f"{SITE}/knowledge/{a['id']}/", a.get("modified") or a["date"]) for a in articles]
+urls = [(f"{SITE}/", articles[0]["date"] if articles else None), (f"{SITE}/knowledge/", articles[0]["date"] if articles else None), (f"{SITE}/graphic-maker/", "2026-11-16")] + [(f"{SITE}/knowledge/{a['id']}/", a.get("modified") or a["date"]) for a in articles]
 sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(
     f"  <url><loc>{u}</loc>" + (f"<lastmod>{d}</lastmod>" if d else "") + "</url>\n" for u, d in urls) + "</urlset>\n"
 write("sitemap.xml", sm)
