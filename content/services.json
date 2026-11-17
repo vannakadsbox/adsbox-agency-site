@@ -16,11 +16,11 @@
         {
           "id": "boost-tiktok",
           "name": "សេវាកម្មគ្រប់គ្រងតិចតុក (Boost TikTok)",
-          "desc": "ផ្សព្វផ្សាយវីដេអូ TikTok ឲ្យដល់អ្នកមើលដែលត្រូវគោលដៅ និងបង្កើនអ្នកតាមដាន។",
+          "desc": "ផ្សព្វផ្សាយវីដេអូ TikTok ឲ្យដល់អ្នកមើលត្រូវគោលដៅ ថែមកាត់តវីដេអូសម្រាប់លក់ (x3) និងរបាយការណ៍ប៊ូស។",
           "emoji": "🎵 📱 🔥",
-          "price": "ចាប់ពី $99 / ខែ",
-          "poster": "/assets/uploads/photo_2025-07-10_08-34-20.jpg",
-          "popular": false
+          "price": "$120 / ខែ (ធម្មតា $150)",
+          "poster": "/assets/promo/promo-boost-tiktok.jpg",
+          "popular": true
         },
         {
           "id": "boost-live",
@@ -36,16 +36,18 @@
           "name": "សេវាកម្មចាក់ឡាយ",
           "desc": "មិនចាំបាច់ចំណាយពេលឡាយច្រើន រង់ចាំបិទការលក់ជាការស្រេច!",
           "emoji": "⚙️ 📺 📣 💬 📈",
-          "poster": "/assets/uploads/photo_2026-10-24_21-49-05.jpg",
+          "poster": "/assets/promo/promo-live-video.jpg",
           "popular": true,
-          "price": "ចាប់ពី $120 / ខែ"
+          "price": "ត្រឹមតែ $120"
         },
         {
           "id": "live-page-setup",
           "name": "សេវាកម្មតម្លើងផេកប៊ូសឡាយ",
-          "desc": "រៀបចំផេក និងគណនីផ្សាយពាណិជ្ជកម្មរបស់អ្នក ឲ្យរួចរាល់សម្រាប់ Boost Live។",
+          "desc": "ផេកប៊ូសឡាយ PAGE VIP ត្រឹមតែ 10ផេក ធានាជួសជុល 3ខែ ថែមសេវាកម្មប៊ូស $150។",
           "emoji": "⚙️ 📺 ✅",
-          "popular": false
+          "popular": false,
+          "price": "PAGE VIP $250",
+          "poster": "/assets/promo/promo-page-vip.jpg"
         }
       ]
     },
@@ -75,10 +77,10 @@
       "services": [
         {
           "id": "blue-verify",
-          "name": "សេវាកម្មស្នើសុំ Blue Verify",
-          "desc": "ជួយរៀបចំឯកសារ និងដាក់ពាក្យស្នើសុំសញ្ញាផ្ទៀងផ្ទាត់ពណ៌ខៀវ (Meta Verified) ឲ្យផេករបស់អ្នក។",
+          "name": "សេវាកម្មដំឡើងផេក VERIFIED",
+          "desc": "ដំឡើងផេកឲ្យមាន Verified ដើម្បីបង្កើនទំនុកចិត្តភ្ញៀវ និងការពារផេកពីការក្លែងបន្លំ។",
           "emoji": "🏅 🛡️ 📄",
-          "poster": "/assets/uploads/Blue Verify_Update2.png",
+          "poster": "/assets/promo/promo-page-verified.jpg",
           "popular": false
         },
         {

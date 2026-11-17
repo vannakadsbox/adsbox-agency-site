@@ -16,6 +16,39 @@
     "popup": true
   },
   {
+    "id": "page-vip",
+    "title": "ផេកប៊ូសឡាយ PAGE VIP",
+    "price": "$250",
+    "badge": "ត្រឹមតែ 10ផេក",
+    "points": [
+      "ប្រព័ន្ធតបសារដោយស្វ័យប្រវត្តិ (1ខែ)",
+      "ធានាជួសជុល (3ខែ)",
+      "កម្មវិធីសម្រាប់ ឡាយឲ្យស្អាត",
+      "Telegram Group មេរៀន",
+      "ថែមជូនសេវាកម្ម ប៊ូស ($150)",
+      "ប្រឹក្សាពីយុទ្ធសាស្ត្រនៃការ ឡាយ"
+    ],
+    "image": "/assets/promo/promo-page-vip.jpg",
+    "popup": true
+  },
+  {
+    "id": "boost-tiktok",
+    "title": "សេវាកម្មប៊ូស TikTok",
+    "price": "$120 (ធម្មតា $150)",
+    "badge": "Discount",
+    "points": [
+      "កាត់តវីដេអូសម្រាប់លក់ (x3)",
+      "គ្រប់គ្រងគណនី TikTok",
+      "រៀបចំឲ្យត្រូវស្តង់ដារ TikTok",
+      "ដោះស្រាយបញ្ហានានា",
+      "របាយការណ៍ប៊ូស",
+      "Telegram Group មេរៀន",
+      "ប្រឹក្សាយុទ្ធសាស្ត្រផលិតវីដេអូ"
+    ],
+    "image": "/assets/promo/promo-boost-tiktok.jpg",
+    "popup": true
+  },
+  {
     "id": "live-video",
     "title": "សេវាកម្ម ចាក់វីដេអូឡាយ",
     "price": "ត្រឹមតែ $120",
@@ -29,6 +62,19 @@
       "ប្រឹក្សាពីយុទ្ធសាស្ត្រនៃការ ឡាយ"
     ],
     "image": "/assets/promo/promo-live-video.jpg",
+    "popup": true
+  },
+  {
+    "id": "page-verified",
+    "title": "សេវាកម្ម ដំឡើងផេក VERIFIED",
+    "price": "សួរតម្លៃ",
+    "points": [
+      "ជួយបង្កើនទំនុកចិត្តដល់ភ្ញៀវ",
+      "បង្កើន Reach និង Engagement",
+      "ការពារផេកពីការក្លែងបន្លំ",
+      "ជំនួយផ្ទាល់ពី Meta និង BM Verify"
+    ],
+    "image": "/assets/promo/promo-page-verified.jpg",
     "popup": true
   },
   {

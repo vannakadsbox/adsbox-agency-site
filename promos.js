@@ -37,6 +37,80 @@ window.PROMOS = [
   "popup": true
  },
  {
+  "id": "page-vip",
+  "image": "assets/promo/promo-page-vip.jpg",
+  "thumb": "assets/promo/promo-page-vip-sm.jpg",
+  "badge": {
+   "kh": "ត្រឹមតែ 10ផេក",
+   "en": "ត្រឹមតែ 10ផេក"
+  },
+  "title": {
+   "kh": "ផេកប៊ូសឡាយ PAGE VIP",
+   "en": "ផេកប៊ូសឡាយ PAGE VIP"
+  },
+  "price": {
+   "kh": "$250",
+   "en": "$250"
+  },
+  "points": {
+   "kh": [
+    "ប្រព័ន្ធតបសារដោយស្វ័យប្រវត្តិ (1ខែ)",
+    "ធានាជួសជុល (3ខែ)",
+    "កម្មវិធីសម្រាប់ ឡាយឲ្យស្អាត",
+    "Telegram Group មេរៀន",
+    "ថែមជូនសេវាកម្ម ប៊ូស ($150)",
+    "ប្រឹក្សាពីយុទ្ធសាស្ត្រនៃការ ឡាយ"
+   ],
+   "en": [
+    "ប្រព័ន្ធតបសារដោយស្វ័យប្រវត្តិ (1ខែ)",
+    "ធានាជួសជុល (3ខែ)",
+    "កម្មវិធីសម្រាប់ ឡាយឲ្យស្អាត",
+    "Telegram Group មេរៀន",
+    "ថែមជូនសេវាកម្ម ប៊ូស ($150)",
+    "ប្រឹក្សាពីយុទ្ធសាស្ត្រនៃការ ឡាយ"
+   ]
+  },
+  "popup": true
+ },
+ {
+  "id": "boost-tiktok",
+  "image": "assets/promo/promo-boost-tiktok.jpg",
+  "thumb": "assets/promo/promo-boost-tiktok-sm.jpg",
+  "badge": {
+   "kh": "Discount",
+   "en": "Discount"
+  },
+  "title": {
+   "kh": "សេវាកម្មប៊ូស TikTok",
+   "en": "សេវាកម្មប៊ូស TikTok"
+  },
+  "price": {
+   "kh": "$120 (ធម្មតា $150)",
+   "en": "$120 (ធម្មតា $150)"
+  },
+  "points": {
+   "kh": [
+    "កាត់តវីដេអូសម្រាប់លក់ (x3)",
+    "គ្រប់គ្រងគណនី TikTok",
+    "រៀបចំឲ្យត្រូវស្តង់ដារ TikTok",
+    "ដោះស្រាយបញ្ហានានា",
+    "របាយការណ៍ប៊ូស",
+    "Telegram Group មេរៀន",
+    "ប្រឹក្សាយុទ្ធសាស្ត្រផលិតវីដេអូ"
+   ],
+   "en": [
+    "កាត់តវីដេអូសម្រាប់លក់ (x3)",
+    "គ្រប់គ្រងគណនី TikTok",
+    "រៀបចំឲ្យត្រូវស្តង់ដារ TikTok",
+    "ដោះស្រាយបញ្ហានានា",
+    "របាយការណ៍ប៊ូស",
+    "Telegram Group មេរៀន",
+    "ប្រឹក្សាយុទ្ធសាស្ត្រផលិតវីដេអូ"
+   ]
+  },
+  "popup": true
+ },
+ {
   "id": "live-video",
   "image": "assets/promo/promo-live-video.jpg",
   "thumb": "assets/promo/promo-live-video-sm.jpg",
@@ -68,6 +142,35 @@ window.PROMOS = [
     "ដោះស្រាយបញ្ហាផេកនានា",
     "Telegram Group មេរៀន",
     "ប្រឹក្សាពីយុទ្ធសាស្ត្រនៃការ ឡាយ"
+   ]
+  },
+  "popup": true
+ },
+ {
+  "id": "page-verified",
+  "image": "assets/promo/promo-page-verified.jpg",
+  "thumb": "assets/promo/promo-page-verified-sm.jpg",
+  "badge": null,
+  "title": {
+   "kh": "សេវាកម្ម ដំឡើងផេក VERIFIED",
+   "en": "សេវាកម្ម ដំឡើងផេក VERIFIED"
+  },
+  "price": {
+   "kh": "សួរតម្លៃ",
+   "en": "សួរតម្លៃ"
+  },
+  "points": {
+   "kh": [
+    "ជួយបង្កើនទំនុកចិត្តដល់ភ្ញៀវ",
+    "បង្កើន Reach និង Engagement",
+    "ការពារផេកពីការក្លែងបន្លំ",
+    "ជំនួយផ្ទាល់ពី Meta និង BM Verify"
+   ],
+   "en": [
+    "ជួយបង្កើនទំនុកចិត្តដល់ភ្ញៀវ",
+    "បង្កើន Reach និង Engagement",
+    "ការពារផេកពីការក្លែងបន្លំ",
+    "ជំនួយផ្ទាល់ពី Meta និង BM Verify"
    ]
   },
   "popup": true
