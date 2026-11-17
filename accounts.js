@@ -216,7 +216,7 @@ window.ACCOUNTS = {
    {
     "name": "មើលដ្រាម៉ា",
     "url": "https://www.facebook.com/profile.php?id=61593721724301",
-    "followers": 252,
+    "followers": 253,
     "picture": "assets/accounts/fb-61593721724301.webp",
     "cover": "assets/accounts/fb-61593721724301-cover.webp",
     "type": "ផេកខ្មែរ",
@@ -227,7 +227,7 @@ window.ACCOUNTS = {
    {
     "name": "36Drama",
     "url": "https://www.facebook.com/profile.php?id=61595198278530",
-    "followers": 75,
+    "followers": 77,
     "picture": "assets/accounts/fb-61595198278530.webp",
     "cover": "assets/accounts/fb-61595198278530-cover.webp",
     "type": "ផេកខ្មែរ",
@@ -315,7 +315,7 @@ window.ACCOUNTS = {
    {
     "name": "6Drama",
     "url": "https://www.facebook.com/profile.php?id=61595270993437",
-    "followers": 1041,
+    "followers": 1040,
     "picture": "assets/accounts/fb-61595270993437.webp",
     "cover": "assets/accounts/fb-61595270993437-cover.webp",
     "type": "ផេកខ្មែរ",
@@ -513,7 +513,7 @@ window.ACCOUNTS = {
    {
     "name": "អ្នកផុសរឿងAi",
     "url": "https://www.facebook.com/profile.php?id=61593831312583",
-    "followers": 4189,
+    "followers": 4188,
     "picture": "assets/accounts/fb-61593831312583.webp",
     "cover": "assets/opt/adsbox-cover-919002-1565780390.webp",
     "type": "ផេកខ្មែរ",
@@ -546,7 +546,7 @@ window.ACCOUNTS = {
    {
     "name": "Nito H Lim-ហ៊ា នីតូTopFan",
     "url": "https://www.facebook.com/profile.php?id=61592119824989",
-    "followers": 11299,
+    "followers": 11297,
     "picture": "assets/accounts/fb-61592119824989.webp",
     "cover": "assets/opt/adsbox-cover-e5c98d-1565780390.webp",
     "type": "ផេកខ្មែរ",
@@ -645,7 +645,7 @@ window.ACCOUNTS = {
    {
     "name": "Amazing DN28",
     "url": "https://www.facebook.com/profile.php?id=100067947746179",
-    "followers": 1905,
+    "followers": 1927,
     "picture": "assets/accounts/fb-100067947746179.webp",
     "cover": "assets/accounts/fb-100067947746179-cover.webp",
     "type": "ផេកខ្មែរ",
@@ -997,7 +997,7 @@ window.ACCOUNTS = {
    {
     "name": "NixKa Online Shop",
     "url": "https://www.facebook.com/profile.php?id=61580042356068&sk=reels_tab",
-    "followers": 12495,
+    "followers": 12531,
     "picture": "assets/accounts/fb-61580042356068.webp",
     "cover": "assets/opt/adsbox-cover-a69ac9-1565780390.webp",
     "type": "ផេកខ្មែរ",
