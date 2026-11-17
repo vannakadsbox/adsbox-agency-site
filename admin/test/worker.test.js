@@ -211,7 +211,7 @@ describe("saving content", () => {
 
 describe("articles", () => {
   test("unchanged article stays byte-identical", async () => {
-    for (const slug of ["sell-more-on-live", "split-monthly-ad-budget-test-scale-reserve", "caption-that-gets-messages", "page-restricted-what-to-do"]) {
+    for (const slug of [...gh.files.keys()].filter(p => /^content\/articles\/[a-z0-9-]+\.md$/.test(p)).map(p => p.slice(17, -3)).slice(0, 4)   // whatever articles exist now (articles get merged/renamed)) {
       const path = `content/articles/${slug}.md`;
       const before = gh.text(path);
       const a = (await call("writer", "GET", `/api/articles/${slug}`)).body;
