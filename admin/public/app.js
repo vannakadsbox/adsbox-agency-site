@@ -354,7 +354,7 @@ PAGES.accounts = async item => {
     const side = data[st.p];
     const rate = +side.price_per_1k || 0;
     const tabs = h("div", { class: "tabs", role: "group", "aria-label": "Platform" },
-      [["facebook", "📘 Facebook"], ["tiktok", "🎵 TikTok"]].map(([k, l]) => h("button", { class: "tab", type: "button", "aria-pressed": String(st.p === k), onclick: () => { st.p = k; draw(); } }, `${l} · ${data[k].items.length}`)));
+      [["facebook", "📘 Facebook"], ["tiktok", "🎵 TikTok"]].map(([k, l]) => h("button", { class: "tab", type: "button", "aria-pressed": String(st.p === k), onclick: () => { st.p = k; st.q = ""; draw(); } }, `${l} · ${data[k].items.length}`)));
     const linkIn = h("input", { class: "input", type: "url", id: "newlink", placeholder: st.p === "facebook" ? "https://www.facebook.com/…" : "https://www.tiktok.com/@…", style: "flex:1 1 280px" });
     const add = h("form", { class: "hero-add", onsubmit: e => {
       e.preventDefault();
@@ -374,12 +374,14 @@ PAGES.accounts = async item => {
       const fol = parseCount(it.followers) || c.followers || 0;
       const pic = c.picture ? imgSrc(c.picture) : "";
       const cover = it.cover ? imgSrc(it.cover) : c.cover ? imgSrc(c.cover) : "";
-      return h("article", { class: "acc" },
+      const del = () => { if (!confirm(`ដក «${name}» ចេញពីវេបសាយ?\n(ចុច «រក្សាទុក» បន្ទាប់ពីនេះ)`)) return; side.items.splice(i, 1); setDirty(); draw(); toast(`🗑️ បានដក «${name}» · ចុច «រក្សាទុក»`); };
+      return h("article", { class: "acc", "data-q": [name, it.name, c.name, it.url].filter(Boolean).join(" ").toLowerCase() },
         h("div", { class: "cv" }, cover ? h("img", { src: cover, alt: "", loading: "lazy" }) : null),
         h("div", { class: "bd" },
           h("div", { style: "display:flex;align-items:flex-end;gap:8px" },
             h("span", { class: "pic" }, pic ? h("img", { src: pic, alt: "", loading: "lazy" }) : name.charAt(0)),
-            h("span", { class: "pill " + (it.status === "sold" ? "hot" : "ok"), style: "margin-left:auto" }, it.status === "sold" ? "🔴 លក់រួច" : "🟢 នៅលក់")),
+            h("span", { class: "pill " + (it.status === "sold" ? "hot" : "ok"), style: "margin-left:auto" }, it.status === "sold" ? "🔴 លក់រួច" : "🟢 នៅលក់"),
+            edit ? h("button", { class: "btn small icon danger", type: "button", "aria-label": `ដក ${name} ចេញពីវេបសាយ`, title: "ដកចេញពីវេបសាយ (លក់រួច)", onclick: del }, "🗑️") : null),
           h("b", { style: "font-size:15.5px" }, name),
           h("a", { href: it.url, target: "_blank", rel: "noopener", style: "font-size:12.5px;word-break:break-all" }, it.url.replace(/^https:\/\/(www\.)?/, "")),
           h("div", { class: "stat2" },
@@ -398,8 +400,21 @@ PAGES.accounts = async item => {
               h("div", { class: "row", style: "gap:6px" },
                 h("button", { class: "btn small", type: "button", disabled: i === 0, onclick: () => { move(side.items, i, -1); draw(); } }, "← មុន"),
                 h("button", { class: "btn small", type: "button", disabled: i === side.items.length - 1, onclick: () => { move(side.items, i, 1); draw(); } }, "ក្រោយ →"),
-                h("button", { class: "btn small danger", type: "button", onclick: () => { if (!confirm(`ដក «${name}» ចេញ?`)) return; side.items.splice(i, 1); setDirty(); draw(); } }, "🗑️ ដកចេញ")))) : h("span", { class: "pill" + (it.type === "ផេកប៊ូសឡាយ" ? " violet" : "") }, it.type || "TikTok")));
+                h("button", { class: "btn small danger", type: "button", onclick: del }, "🗑️ ដកចេញ")))) : h("span", { class: "pill" + (it.type === "ផេកប៊ូសឡាយ" ? " violet" : "") }, it.type || "TikTok")));
     });
+
+    // search: type a Page name, link or ID; cards filter as you type (sold Page → search → 🗑️ → រក្សាទុក)
+    const grid = h("div", { class: "grid" }, cards);
+    const found = h("span", { class: "muted", style: "font-size:13px;white-space:nowrap" });
+    const noHit = h("div", { class: "empty", hidden: true }, "រកមិនឃើញផេកឈ្មោះនេះទេ");
+    const search = h("input", { class: "input", type: "search", id: "accsearch", placeholder: "🔍 ស្វែងរកឈ្មោះផេក ឬ Link…", value: st.q || "", autocomplete: "off", style: "flex:1 1 260px",
+      oninput: e => { st.q = e.target.value; filter(); } });
+    const filter = () => {
+      const q = (st.q || "").trim().toLowerCase(); let n = 0;
+      cards.forEach(el => { const show = !q || el.dataset.q.includes(q); el.hidden = !show; if (show) n++; });
+      found.textContent = q ? `រកឃើញ ${n} / ${cards.length}` : `${cards.length} ផេក`; noHit.hidden = !(q && !n);
+    };
+    filter();
 
     const settings = h("section", { class: "card stack" },
       h("h2", { style: "margin:0" }, "🧮 តម្លៃ និងឈ្មោះផ្ទាំង"),
@@ -408,7 +423,11 @@ PAGES.accounts = async item => {
       h("p", { class: "muted", style: "margin:0;font-size:13.5px" }, "ឧ. 10.4K Follower × $", h("span", { class: "rate num" }, rate || 0), " = ", h("b", { class: "ex num", style: "color:var(--ok)" }, "$" + fmtNum(Math.round(10.4 * rate)))));
 
     put(wrap, tabs, edit ? add : null, h("div", { class: "row" },
-      h("section", { class: "main" }, side.items.length ? h("div", { class: "grid" }, cards) : h("div", { class: "empty" }, "មិនទាន់មាន។ បិទភ្ជាប់ Link ខាងលើ ដើម្បីចាប់ផ្តើម។")),
+      h("section", { class: "main stack" },
+        side.items.length ? h("div", { class: "row", style: "gap:10px;align-items:center" },
+          h("label", { class: "sr", for: "accsearch" }, "ស្វែងរក"), search, found) : null,
+        side.items.length ? grid : h("div", { class: "empty" }, "មិនទាន់មាន។ បិទភ្ជាប់ Link ខាងលើ ដើម្បីចាប់ផ្តើម។"),
+        side.items.length ? noHit : null),
       h("div", { class: "aside stack" }, settings)));
   }
   draw.soon = () => { const r = +data[st.p].price_per_1k || 0; const a = wrap.querySelector(".rate"), b = wrap.querySelector(".ex"); if (a) a.textContent = r; if (b) b.textContent = "$" + fmtNum(Math.round(10.4 * r)); };

@@ -221,3 +221,4 @@ table.tbl td.c, table.tbl th.c { text-align: center; }
   .item .ctl .mv { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+[hidden] { display: none !important; }
