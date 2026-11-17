@@ -1,0 +1,186 @@
+{
+  "slug": "one-hour-live-plan-four-segments",
+  "video_title": "Comment ១២០ តែ Order ១២? រៀប Live ១ ម៉ោង ៤ វគ្គ",
+  "topic": "របៀបរៀបលំដាប់ទំនិញក្នុង Live ១ ម៉ោងជា ៤ វគ្គ ឲ្យ Comment ក្លាយជា Order ហើយវាស់ Order ក្នុងមួយម៉ោង និង Cost per Order។",
+  "thumbnail_text": "Comment ច្រើន តែ Order តិច?",
+  "description": "Live ២ ម៉ោង Comment ១២០ តែ Order ១២? (លេខគំរូ)\nរៀប Live ១ ម៉ោងជា ៤ វគ្គ បាន ១៨ Order ហើយ Cost per Order $0.56។\n#ADSBOX #លក់អនឡាញ #BoostLive #LiveSelling",
+  "facebook_caption": "Live ២ ម៉ោង Comment ច្រើន តែ Order តិច? 🤔\nសាករៀប Live ១ ម៉ោង ជា ៤ វគ្គ៖\n✅ បើកដោយឈុតលក់ដាច់ជាងគេ\n✅ ឈុតសំខាន់ ២–៣ មុខ\n✅ ឈុតផ្គូផ្គង\n✅ បិទដោយឈុតនៅសល់តិច\n✅ រំលឹករបៀបកុម្ម៉ង់ រៀងរាល់ ៥ នាទី\nLive ខ្លីជាងមុន តែ Order ច្រើនជាង។\nLive ហាងបង រៀបទំនិញមុនហើយឬនៅ? Comment «LIVE» មក 👇\n#ADSBOX #លក់អនឡាញ #BoostLive #LiveSelling",
+  "scenes": [
+    {
+      "role": "hook",
+      "lines": [
+        "Live ២ ម៉ោង Comment ចូល ១២០។",
+        "តែ Order បញ្ជាក់ បានតែ ១២…",
+        "Order ទៅណាអស់ហ្នឹងបង?"
+      ],
+      "voice": "Curious, surprised consultant talking to a shop owner, short pause after each number, natural",
+      "visual": {
+        "type": "question",
+        "title": "Order ទៅណាអស់?",
+        "bubbles": [
+          "ឈុតនេះប៉ុន្មាន?",
+          "មានទំហំ M អត់?",
+          "ឈុតមុនតម្លៃប៉ុន្មាន?",
+          "កុម្ម៉ង់យ៉ាងម៉េច?"
+        ]
+      }
+    },
+    {
+      "role": "problem",
+      "lines": [
+        "លេខគំរូ៖ Boost Live $10។",
+        "Comment សួរទិញ ១២០ តែ Order ១២។",
+        "Order មួយ អស់លុយ Boost $0.83។"
+      ],
+      "voice": "Sincerely asking the shop owner, not rushed, stress the 120 comments and only 12 orders",
+      "visual": {
+        "type": "vanish",
+        "host": false,
+        "expected_label": "Comment សួរទិញ",
+        "expected": "១២០",
+        "real_label": "Order (លេខគំរូ)",
+        "real": "១២",
+        "gap": "Order ទៅណាអស់?"
+      }
+    },
+    {
+      "role": "problem",
+      "lines": [
+        "ហេតុអី? ភ្ញៀវសួរតម្លៃឈុតមុន។",
+        "តែបងប្ដូរទៅអាវផ្សេងបាត់ហើយ។",
+        "ភ្ញៀវថ្មី មិនដឹងកុម្ម៉ង់យ៉ាងម៉េច។"
+      ],
+      "voice": "Understanding expert, calm, stress the old outfit and how to order",
+      "visual": {
+        "type": "chat",
+        "host": false,
+        "with": "ភ្ញៀវ Live",
+        "messages": [
+          {
+            "from": "customer",
+            "text": "ឈុតមុនតម្លៃប៉ុន្មាន?"
+          },
+          {
+            "from": "customer",
+            "text": "បងៗ កុម្ម៉ង់យ៉ាងម៉េច?"
+          },
+          {
+            "from": "customer",
+            "text": "ចាំយូរហើយ…"
+          }
+        ]
+      }
+    },
+    {
+      "role": "tip",
+      "lines": [
+        "កាត់ Live មក ១ ម៉ោង ចែកជា ៤ វគ្គ។",
+        "បើកដោយឈុតលក់ដាច់ជាងគេ។",
+        "បន្ទាប់ ឈុតសំខាន់ ២ ទៅ ៣ មុខ។",
+        "ឈុតផ្គូផ្គង ហើយបិទដោយឈុតនៅសល់តិច។"
+      ],
+      "voice": "Confident expert explaining a plan step by step, clear pause between each part",
+      "keyword": "Live ១ ម៉ោង ៤ វគ្គ",
+      "label": "ផែនការ Live",
+      "visual": {
+        "type": "flow",
+        "steps": [
+          {
+            "label": "នាទី ០–១០",
+            "text": "ឈុតលក់ដាច់ជាងគេ"
+          },
+          {
+            "label": "នាទី ១០–២៥",
+            "text": "ឈុតសំខាន់ ២–៣ មុខ"
+          },
+          {
+            "label": "នាទី ២៥–៤៥",
+            "text": "ឈុតផ្គូផ្គង"
+          },
+          {
+            "label": "នាទី ៤៥–៦០",
+            "text": "ឈុតនៅសល់តិច ហើយសរុប"
+          }
+        ]
+      }
+    },
+    {
+      "role": "tip",
+      "lines": [
+        "រៀងរាល់ ៥ នាទី រំលឹកម្ដង៖",
+        "កំពុងលក់អ្វី តម្លៃប៉ុន្មាន។",
+        "ហើយ Comment យ៉ាងម៉េចទើបបាន Order។"
+      ],
+      "voice": "Practical, friendly expert, energetic but clear, stress every five minutes",
+      "visual": {
+        "type": "checklist",
+        "host": false,
+        "bad": "លក់ឈុតណាក៏បាន",
+        "items": [
+          "រំលឹករៀងរាល់ ៥ នាទី",
+          "ឈុតនីមួយៗមានលេខកូដ",
+          "Admin Pin របៀបកុម្ម៉ង់",
+          "កត់ Order ជាមួយម៉ោង"
+        ]
+      }
+    },
+    {
+      "role": "example",
+      "lines": [
+        "Boost $10 ដដែល Comment តិចជាងមុន…",
+        "តែ Order បញ្ជាក់ ឡើងដល់ ១៨។",
+        "Order មួយ អស់លុយ Boost តែ $0.56។"
+      ],
+      "voice": "Calm expert, short pause before the final number, then strong clear emphasis on it",
+      "visual": {
+        "type": "compare",
+        "bad": "២ ម៉ោង · ១២ Order · $0.83",
+        "good": "១ ម៉ោង · ១៨ Order · $0.56"
+      }
+    },
+    {
+      "role": "summary",
+      "lines": [
+        "Live ខ្លីជាងមុន តែមានផែនការ…",
+        "បាន Order ច្រើនជាង ហើយថោកជាង។"
+      ],
+      "voice": "Warm, confident expert, slow and clear, emphasise the lesson",
+      "visual": {
+        "type": "takeaway",
+        "host": false,
+        "quote": "Live មានផែនការ ៤ វគ្គ\nOrder ច្រើន Cost ទាប",
+        "chips": [
+          "រៀបទំនិញមុន Live",
+          "លេខកូដគ្រប់ឈុត",
+          "រំលឹករាល់ ៥ នាទី"
+        ]
+      }
+    },
+    {
+      "role": "cta",
+      "lines": [
+        "Live ហាងបង រៀបទំនិញមុនហើយឬនៅ?",
+        "Comment ពាក្យ LIVE មក",
+        "ក្រុម ADS BOX រីករាយជួយបងគិត។"
+      ],
+      "voice": "Friendly, confident, helpful expert inviting the shop owner to comment, warm, not salesy",
+      "visual": {
+        "type": "cta2",
+        "question": "Live ហាងបង រៀបទំនិញមុនហើយឬនៅ?",
+        "comment": "LIVE",
+        "comment_line": 1,
+        "services": [
+          "Boost Live",
+          "ADS BOX System",
+          "Live studio setup"
+        ],
+        "url": "adsbox.agency"
+      }
+    }
+  ],
+  "article": {
+    "title": "យុទ្ធសាស្ត្រ Live ១ ម៉ោង ៤ វគ្គ៖ រៀបលំដាប់ទំនិញ ឲ្យ Comment ក្លាយជា Order",
+    "url": "https://adsbox.agency/knowledge/one-hour-live-plan-four-segments/"
+  },
+  "written_at": "2026-11-17T08:24:59+07:00"
+}
