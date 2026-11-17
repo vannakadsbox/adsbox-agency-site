@@ -22,6 +22,27 @@ window.ARTICLES = [
   ]
  },
  {
+  "id": "one-hour-live-plan-four-segments",
+  "date": "2026-11-17",
+  "tag": {
+   "kh": "Live → Order",
+   "en": "Live → Order"
+  },
+  "title": {
+   "kh": "យុទ្ធសាស្ត្រ Live ១ ម៉ោង ៤ វគ្គ៖ រៀបលំដាប់ទំនិញ ឲ្យ Comment ក្លាយជា Order",
+   "en": "យុទ្ធសាស្ត្រ Live ១ ម៉ោង ៤ វគ្គ៖ រៀបលំដាប់ទំនិញ ឲ្យ Comment ក្លាយជា Order"
+  },
+  "summary": {
+   "kh": "Live ២ ម៉ោង តែ Order តិច? រឿងឧទាហរណ៍ហាងខោអាវមួយ ដែលរៀប Live ១ ម៉ោងជា ៤ វគ្គ ហើយវាស់ Order ក្នុងមួយម៉ោង និង Cost per Order។",
+   "en": "Live ២ ម៉ោង តែ Order តិច? រឿងឧទាហរណ៍ហាងខោអាវមួយ ដែលរៀប Live ១ ម៉ោងជា ៤ វគ្គ ហើយវាស់ Order ក្នុងមួយម៉ោង និង Cost per Order។"
+  },
+  "emoji": [
+   "🎥",
+   "🗂️",
+   "🛍️"
+  ]
+ },
+ {
   "id": "max-cost-per-order-before-losing-money",
   "date": "2026-11-16",
   "tag": {

@@ -40,5 +40,6 @@
  "first-30-days-selling-on-facebook": "[\"ចាប់ផ្ដើមលក់អនឡាញតាម Facebook៖ ផែនការ ៣០ ថ្ងៃដំបូង សម្រាប់ហាងថ្មី\",\"Boost → Order → ចំណេញ\",[\"🗓️\",\"📱\",\"🛍️\"]]",
  "cod-order-confirmation-message-templates": "[\"បញ្ជាក់ Order មុនផ្ញើ (COD)៖ សារគំរូ Copy បាន សម្រាប់ ៥ ស្ថានភាពដែល Admin ជួបរាល់ថ្ងៃ\",\"ចំណេញពិត\",[\"💬\",\"✅\",\"📦\"]]",
  "max-cost-per-order-before-losing-money": "[\"រឿងហាងអាវ $20៖ Boost បានប៉ុន្មានទើបមិនខាត? គណនា Cost per Order អតិបរមា\",\"Boost → Order → ចំណេញ\",[\"👕\",\"🧮\",\"🎯\"]]",
- "how-much-to-spend-per-boost-live": "[\"Boost Live មួយដង គួរចាយប៉ុន្មាន? សំណួរ-ចម្លើយ ៧ ពីថវិកា ដល់ Cost per Order\",\"Live → Order\",[\"🎥\",\"💵\",\"🧮\"]]"
+ "how-much-to-spend-per-boost-live": "[\"Boost Live មួយដង គួរចាយប៉ុន្មាន? សំណួរ-ចម្លើយ ៧ ពីថវិកា ដល់ Cost per Order\",\"Live → Order\",[\"🎥\",\"💵\",\"🧮\"]]",
+ "one-hour-live-plan-four-segments": "[\"យុទ្ធសាស្ត្រ Live ១ ម៉ោង ៤ វគ្គ៖ រៀបលំដាប់ទំនិញ ឲ្យ Comment ក្លាយជា Order\",\"Live → Order\",[\"🎥\",\"🗂️\",\"🛍️\"]]"
 }
