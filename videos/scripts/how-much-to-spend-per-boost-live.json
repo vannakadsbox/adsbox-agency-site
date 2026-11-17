@@ -1,0 +1,261 @@
+{
+  "slug": "how-much-to-spend-per-boost-live",
+  "video_title": "Boost Live មួយដង គួរចាយប៉ុន្មាន? គិតថវិកាពី Cost per Order",
+  "topic": "របៀបកំណត់ថវិកា Boost Live ពីបន្ទាត់ខាត និង Cost per Order គោលដៅ ហើយវាស់ Cost per Order ក្រោយ Live នីមួយៗ។",
+  "thumbnail_text": "Boost Live មួយដង ចាយប៉ុន្មាន?",
+  "description": "Boost Live $10 ថ្ងៃនេះ $30 ថ្ងៃស្អែក ដោយទាយ? (លេខគំរូ)\nគិតបន្ទាត់ខាត $6 គោលដៅ $3 ហើយថវិកា ១០ × $3 = $30។\n#ADSBOX #លក់អនឡាញ #BoostLive #CostPerOrder",
+  "facebook_caption": "Boost Live មួយដង គួរចាយប៉ុន្មាន? 🤔\nកុំទាយទៀត គិតតាមនេះ៖\n✅ ដឹងបន្ទាត់ខាត មួយ Order\n✅ ដាក់ Cost per Order គោលដៅ ទាបជាងនោះ\n✅ ថវិកា = Order គោលដៅ × គោលដៅ\n✅ ក្រោយ Live រាប់តែ Order បញ្ជាក់\nដឹងច្បាស់ថា Live ណាចំណេញ Live ណាខាត។\nLive ហាងបង គួរ Boost ប៉ុន្មាន? Comment «BUDGET» មក 👇\n#ADSBOX #លក់អនឡាញ #BoostLive #CostPerOrder",
+  "scenes": [
+    {
+      "role": "hook",
+      "lines": [
+        "ថ្ងៃនេះ Boost Live $10។",
+        "ស្អែកឃើញអ្នកមើលតិច ដាក់ $30…",
+        "តែ Live មួយ គួរចាយប៉ុន្មានពិតៗ?"
+      ],
+      "voice": "Curious, surprised consultant talking to a shop owner, short pause after each price, natural",
+      "visual": {
+        "type": "question",
+        "title": "ចាយប៉ុន្មានល្មម?",
+        "bubbles": [
+          "យក ១ ឈុត",
+          "អាវនេះ $15 មែន?",
+          "មានពណ៌ខ្មៅអត់?"
+        ]
+      }
+    },
+    {
+      "role": "problem",
+      "lines": [
+        "លេខគំរូ៖ Live មួយ Boost $30។",
+        "អ្នកមើលច្រើន តែបាន ៤ Order។",
+        "មួយ Order អស់លុយ Boost $7.50។",
+        "ចំណេញ ឬខាត?"
+      ],
+      "voice": "Sincerely asking the shop owner, not rushed, stress the viewers and the four orders",
+      "visual": {
+        "type": "vanish",
+        "host": false,
+        "expected_label": "លុយ Boost Live មួយ",
+        "expected": "$30",
+        "real_label": "មួយ Order (លេខគំរូ)",
+        "real": "$7.50",
+        "gap": "ចំណេញ ឬខាត?"
+      }
+    },
+    {
+      "role": "example",
+      "lines": [
+        "អាវមួយឈុត លក់ $15។",
+        "ដកថ្លៃដើម $7។",
+        "ដកថ្លៃខ្ចប់ $0.50។",
+        "ដកថ្លៃដឹក $1.50។"
+      ],
+      "voice": "Expert explaining numbers slowly and clearly to a shop owner, each price distinct",
+      "visual": {
+        "type": "waterfall",
+        "host": false,
+        "start": {
+          "label": "តម្លៃលក់ ១ ឈុត",
+          "amount": 15
+        },
+        "show": 3,
+        "rows": [
+          {
+            "icon": "product",
+            "label": "ថ្លៃដើមអាវ",
+            "value": "$7",
+            "amount": 7,
+            "note": "ថ្លៃដើម ១ ឈុត",
+            "at": [
+              1,
+              0
+            ],
+            "note_at": [
+              1,
+              0.5
+            ]
+          },
+          {
+            "icon": "pack",
+            "label": "ថ្លៃខ្ចប់",
+            "value": "$0.50",
+            "amount": 0.5,
+            "note": "ក្នុងមួយ Order",
+            "at": [
+              2,
+              0
+            ],
+            "note_at": [
+              2,
+              0.5
+            ]
+          },
+          {
+            "icon": "ship",
+            "label": "ថ្លៃដឹក",
+            "value": "$1.50",
+            "amount": 1.5,
+            "note": "ហាងចេញ ក្នុងមួយ Order",
+            "at": [
+              3,
+              0
+            ],
+            "note_at": [
+              3,
+              0.5
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "role": "example",
+      "lines": [
+        "នៅសល់ មុនដកលុយ Boost…",
+        "$6 ក្នុងមួយ Order។",
+        "នេះហើយ គឺបន្ទាត់ខាត។",
+        "Boost $7.50 មួយ Order គឺខាតហើយ!"
+      ],
+      "voice": "Calm expert, short pause before the final number, then strong clear emphasis on it",
+      "visual": {
+        "type": "waterfall",
+        "start": {
+          "label": "តម្លៃលក់ ១ ឈុត",
+          "amount": 15
+        },
+        "done": 3,
+        "rows": [
+          {
+            "icon": "product",
+            "label": "ថ្លៃដើមអាវ",
+            "value": "$7",
+            "amount": 7,
+            "note": "ថ្លៃដើម ១ ឈុត"
+          },
+          {
+            "icon": "pack",
+            "label": "ថ្លៃខ្ចប់",
+            "value": "$0.50",
+            "amount": 0.5,
+            "note": "ក្នុងមួយ Order"
+          },
+          {
+            "icon": "ship",
+            "label": "ថ្លៃដឹក",
+            "value": "$1.50",
+            "amount": 1.5,
+            "note": "ហាងចេញ ក្នុងមួយ Order"
+          }
+        ],
+        "groups": [
+          {
+            "text": "ដកថ្លៃទាំងអស់ = −$9",
+            "at": [
+              0,
+              0.5
+            ]
+          }
+        ],
+        "result": {
+          "label": "បន្ទាត់ខាត មួយ Order",
+          "value": "$6",
+          "at": [
+            1,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "role": "tip",
+      "lines": [
+        "ដូច្នេះ ដាក់គោលដៅ $3 មួយ Order។",
+        "ចង់បាន ១០ Order ក្នុង Live មួយ…",
+        "ថវិកា Boost គឺ $30។"
+      ],
+      "voice": "Practical, friendly expert, clear pause after each number",
+      "keyword": "១០ Order × $3 = $30",
+      "label": "ថវិកា Live",
+      "visual": {
+        "type": "flow",
+        "host": false,
+        "steps": [
+          {
+            "label": "គោលដៅ",
+            "text": "$3 មួយ Order"
+          },
+          {
+            "label": "គុណ",
+            "text": "១០ Order"
+          },
+          {
+            "label": "ថវិកា Live",
+            "text": "$30"
+          }
+        ]
+      }
+    },
+    {
+      "role": "tip",
+      "lines": [
+        "ក្រោយ Live ចែកលុយ Boost នឹង Order។",
+        "រាប់តែ Order បញ្ជាក់ មិនមែន Comment។",
+        "Boost $20 បាន ៨ Order គឺ $2.50។",
+        "ទាបជាងគោលដៅ $3 Live នេះល្អ!"
+      ],
+      "voice": "Expert explaining numbers slowly and clearly to a shop owner, each price distinct",
+      "visual": {
+        "type": "compare",
+        "host": false,
+        "bad": "រាប់ Comment «យក» ជា Order",
+        "good": "$20 ÷ ៨ Order បញ្ជាក់ = $2.50"
+      }
+    },
+    {
+      "role": "summary",
+      "lines": [
+        "កុំទាយថវិកា Boost ទៀតណាបង។",
+        "យក Order គោលដៅ គុណ Cost per Order។",
+        "ហើយពិនិត្យរាល់ Live។"
+      ],
+      "voice": "Warm, confident expert, slow and clear, emphasise the lesson",
+      "visual": {
+        "type": "takeaway",
+        "host": false,
+        "quote": "ថវិកា Live មិនមែនទាយ\nOrder × Cost per Order",
+        "chips": [
+          "បន្ទាត់ខាត $6",
+          "គោលដៅ $3",
+          "១០ × $3 = $30"
+        ]
+      }
+    },
+    {
+      "role": "cta",
+      "lines": [
+        "Live ហាងបង គួរ Boost ប៉ុន្មាន?",
+        "Comment ពាក្យ BUDGET មក",
+        "ក្រុម ADS BOX រីករាយជួយបងគិត។"
+      ],
+      "voice": "Friendly, confident, helpful expert inviting the shop owner to comment, warm, not salesy",
+      "visual": {
+        "type": "cta2",
+        "question": "Live ហាងបង គួរ Boost ប៉ុន្មាន?",
+        "comment": "BUDGET",
+        "comment_line": 1,
+        "services": [
+          "Boost Live",
+          "Boost Post",
+          "Boost TikTok"
+        ],
+        "url": "adsbox.agency"
+      }
+    }
+  ],
+  "article": {
+    "title": "Boost Live មួយដង គួរចាយប៉ុន្មាន? សំណួរ-ចម្លើយ ៧ ពីថវិកា ដល់ Cost per Order",
+    "url": "https://adsbox.agency/knowledge/how-much-to-spend-per-boost-live/"
+  },
+  "written_at": "2026-11-17T07:24:53+07:00"
+}
