@@ -4444,9 +4444,124 @@
       "article_url": "https://adsbox.agency/knowledge/tiktok-views-vs-orders-myths/",
       "video_title": "TikTok View ៥ ម៉ឺន តែ Order ៤? មើល Cost per Order មិនមែន View",
       "hook": "Boost TikTok $20 បាន View ៥ ម៉ឺន! ត្រេកអរណាស់ មែនទេបង? តែរាប់ Order បានតែ ៤…",
-      "status": "scripted",
+      "status": "sent",
       "scripted_at": "2026-11-18T07:26:11+07:00",
-      "error": ""
+      "error": "",
+      "render_started_at": "2026-11-18T07:27:06+07:00",
+      "sent_at": "2026-11-18T07:31:15+07:00",
+      "rendered_at": "2026-11-18T07:31:15+07:00",
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/44207798240",
+      "duration": 55.87,
+      "size_mb": 9.1,
+      "render_seconds": 235,
+      "voice": "kiri:Arun",
+      "music": "adsbox-original-1.mp3",
+      "style": "custom animation only",
+      "visuals": [
+        "question",
+        "funnel",
+        "waterfall",
+        "waterfall",
+        "compare",
+        "takeaway",
+        "cta2"
+      ],
+      "resolution": "1080x1920",
+      "fps": 30,
+      "subtitle_sync": "transcript",
+      "footage": [],
+      "footage_share": 0,
+      "stock_footage": "none (removed)",
+      "telegram": {
+        "ok": true,
+        "message_id": 302,
+        "chat": "configured",
+        "at": "2026-11-18T07:31:15+07:00",
+        "file_id": "BAACAgUAAxkDAAIBLmr88cwJ79eswqMYjafpH2iQ98SUAAJzGgACLjboV7ZtDHg0EIIQPQQ",
+        "items": [
+          {
+            "item": "video",
+            "message_id": 302,
+            "file_name": "tiktok-views-vs-orders-myths.mp4",
+            "file_size": 9148733,
+            "width": 1080,
+            "height": 1920,
+            "file_id": "BAACAgUAAxkDAAIBLmr88cwJ79eswqMYjafpH2iQ98SUAAJzGgACLjboV7ZtDHg0EIIQPQQ"
+          },
+          {
+            "item": "facebook_caption",
+            "message_id": 303
+          },
+          {
+            "item": "thumbnail",
+            "message_id": 304,
+            "file_name": "tiktok-views-vs-orders-myths-thumbnail.jpg",
+            "file_size": 144185
+          }
+        ],
+        "sent_count": 3,
+        "local_sizes": {
+          "video": 9148733,
+          "thumbnail": 144185
+        }
+      },
+      "speech_match": [
+        0.944,
+        0.993,
+        1,
+        0.984,
+        1,
+        0.95,
+        0.993
+      ],
+      "scene_sync": [
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript"
+      ],
+      "archive": {
+        "assets": [
+          {
+            "id": 761223424,
+            "name": "tiktok-views-vs-orders-myths-thumb.jpg",
+            "size": 144185,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/tiktok-views-vs-orders-myths-thumb.jpg"
+          },
+          {
+            "id": 761223425,
+            "name": "tiktok-views-vs-orders-myths.mp4",
+            "size": 9148733,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/tiktok-views-vs-orders-myths.mp4"
+          }
+        ],
+        "release_id": 430382508
+      },
+      "quality": {
+        "width": 1080,
+        "height": 1920,
+        "fps": "30/1",
+        "duration": 55.87,
+        "video_codec": "h264",
+        "audio_codec": "aac",
+        "loudness": "-13.3 LUFS",
+        "decode_errors": false,
+        "visual_mix": {
+          "motion_graphics": 0.88,
+          "phone_chat": 0.12,
+          "illustrated": 0,
+          "product_dashboard": 0
+        }
+      },
+      "article_id": "tiktok-views-vs-orders-myths",
+      "video_id": 761223425,
+      "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/tiktok-views-vs-orders-myths.mp4",
+      "created_at": "2026-11-18T07:31:15+07:00",
+      "telegram_status": "delivered",
+      "production_status": "complete"
     }
   ]
 }
