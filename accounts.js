@@ -720,17 +720,6 @@ window.ACCOUNTS = {
     "updated": "2026-11-17"
    },
    {
-    "name": "ម៉ាក់ប៊ីលីលក់សាច់ក្រក",
-    "url": "https://www.facebook.com/profile.php?id=61593313087938",
-    "followers": 1193,
-    "picture": "assets/accounts/fb-61593313087938.webp",
-    "cover": "assets/accounts/fb-61593313087938-cover.webp",
-    "type": "ផេកខ្មែរ",
-    "sold": false,
-    "discount": 0,
-    "updated": "2026-11-17"
-   },
-   {
     "name": "មើលរឿងតាមទូរទស្សន៍Ai",
     "url": "https://www.facebook.com/profile.php?id=61593890489273",
     "followers": 455,
@@ -945,17 +934,6 @@ window.ACCOUNTS = {
     "followers": 19358,
     "picture": "assets/accounts/fb-61593329975440.webp",
     "cover": "assets/opt/adsbox-cover-df986e-1565780390.webp",
-    "type": "ផេកខ្មែរ",
-    "sold": false,
-    "discount": 0,
-    "updated": "2026-11-17"
-   },
-   {
-    "name": "រចនា Store",
-    "url": "https://www.facebook.com/profile.php?id=61581144403152&sk=reels_tab",
-    "followers": 12451,
-    "picture": "assets/accounts/fb-61581144403152.webp",
-    "cover": "assets/opt/adsbox-cover-672969-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
