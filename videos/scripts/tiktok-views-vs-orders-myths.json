@@ -1,0 +1,232 @@
+{
+  "slug": "tiktok-views-vs-orders-myths",
+  "video_title": "TikTok View ៥ ម៉ឺន តែ Order ៤? មើល Cost per Order មិនមែន View",
+  "topic": "ហេតុអី View ច្រើនលើ TikTok មិនមែនមានន័យថាចំណេញ និងរបៀបប្រៀបធៀបវីដេអូដោយ Cost per Order និងចំណេញពិត។",
+  "thumbnail_text": "View ៥ ម៉ឺន តែ Order តែ ៤?",
+  "description": "វីដេអូ A ៥០,០០០ View សល់ $8 វីដេអូ B ៨,០០០ View សល់ $50 (លេខគំរូ)។\nកុំមើលតែ View មើល Cost per Order និងចំណេញពិត។\n#ADSBOX #TikTok #លក់អនឡាញ #CostPerOrder",
+  "facebook_caption": "View ឡើងរាប់ម៉ឺន តែ Order តិចជាងគិត? 🤔\nវីដេអូ View ច្រើន មិនមែនលក់ដាច់ជាងគេទេ៖\n✅ កត់ View, Message, Order រាល់វីដេអូ\n✅ គិត Cost per Order = លុយ Boost ÷ Order\n✅ ដកថ្លៃដើម ខ្ចប់ ដឹក និង Boost\n✅ វីដេអូបង្ហាញទំនិញ ប្រាប់តម្លៃ\nដឹងច្បាស់ថាវីដេអូណា ពិតជានាំលុយចូល។\nវីដេអូហាងបង មួយ Order អស់ប៉ុន្មាន? Comment «ORDER» មក 👇\n#ADSBOX #TikTok #លក់អនឡាញ #CostPerOrder",
+  "scenes": [
+    {
+      "role": "hook",
+      "lines": [
+        "Boost TikTok $20 បាន View ៥ ម៉ឺន!",
+        "ត្រេកអរណាស់ មែនទេបង?",
+        "តែរាប់ Order បានតែ ៤…"
+      ],
+      "voice": "Curious, surprised consultant talking to a shop owner, short pause after each number, natural",
+      "visual": {
+        "type": "question",
+        "title": "View ៥ ម៉ឺន!",
+        "bubbles": [
+          "ស្អាតណាស់",
+          "ថ្លៃប៉ុន្មាន?",
+          "ចុចបេះដូង"
+        ]
+      }
+    },
+    {
+      "role": "problem",
+      "lines": [
+        "View គ្រាន់តែជាជំហានទីមួយ។",
+        "ពី View ទៅ Message ទៅ Order…",
+        "រាល់ជំហាន មនុស្សធ្លាក់ចេញ។"
+      ],
+      "voice": "Sincerely explaining to the shop owner, not rushed, stress the drop at each step",
+      "visual": {
+        "type": "funnel",
+        "host": false,
+        "title": "វីដេអូ A (លេខគំរូ)",
+        "steps": [
+          "លុយ Boost $20",
+          "View ៥០,០០០",
+          "Message ៤០",
+          "Order ៤",
+          "ចំណេញពិត?"
+        ]
+      }
+    },
+    {
+      "role": "example",
+      "lines": [
+        "លេខគំរូ៖ ក្រែម $15 លក់បាន $60។",
+        "ដកថ្លៃដើមក្រែម $24។",
+        "ដកថ្លៃខ្ចប់ $2។"
+      ],
+      "voice": "Expert explaining numbers slowly and clearly to a shop owner, each price distinct",
+      "visual": {
+        "type": "waterfall",
+        "host": false,
+        "start": {
+          "label": "៤ Order × $15",
+          "amount": 60
+        },
+        "show": 2,
+        "rows": [
+          {
+            "icon": "product",
+            "label": "ថ្លៃដើមក្រែម",
+            "value": "$24",
+            "amount": 24,
+            "note": "៤ × $6",
+            "at": [
+              1,
+              0
+            ],
+            "note_at": [
+              1,
+              0.5
+            ]
+          },
+          {
+            "icon": "pack",
+            "label": "ថ្លៃខ្ចប់",
+            "value": "$2",
+            "amount": 2,
+            "note": "៤ × $0.50",
+            "at": [
+              2,
+              0
+            ],
+            "note_at": [
+              2,
+              0.5
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "role": "example",
+      "lines": [
+        "ដកថ្លៃដឹក $6។",
+        "ដកលុយ Boost $20។",
+        "នៅសល់តែ…",
+        "$8 ប៉ុណ្ណោះ!"
+      ],
+      "voice": "Calm expert, short pause before the final number, then strong clear emphasis on it",
+      "visual": {
+        "type": "waterfall",
+        "start": {
+          "label": "៤ Order × $15",
+          "amount": 60
+        },
+        "done": 2,
+        "rows": [
+          {
+            "icon": "product",
+            "label": "ថ្លៃដើមក្រែម",
+            "value": "$24",
+            "amount": 24,
+            "note": "៤ × $6"
+          },
+          {
+            "icon": "pack",
+            "label": "ថ្លៃខ្ចប់",
+            "value": "$2",
+            "amount": 2,
+            "note": "៤ × $0.50"
+          },
+          {
+            "icon": "ship",
+            "label": "ថ្លៃដឹក",
+            "value": "$6",
+            "amount": 6,
+            "note": "៤ × $1.50",
+            "at": [
+              0,
+              0
+            ],
+            "note_at": [
+              0,
+              0.5
+            ]
+          },
+          {
+            "icon": "boost",
+            "label": "លុយ Boost",
+            "value": "$20",
+            "amount": 20,
+            "note": "វីដេអូ A",
+            "at": [
+              1,
+              0
+            ],
+            "note_at": [
+              1,
+              0.5
+            ]
+          }
+        ],
+        "result": {
+          "label": "ចំណេញ វីដេអូ A",
+          "value": "$8",
+          "at": [
+            3,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "role": "tip",
+      "lines": [
+        "វីដេអូ B លាបក្រែម ប្រាប់តម្លៃ។",
+        "View ៨,០០០ ប៉ុណ្ណោះ តែបាន Order ១០។",
+        "មួយ Order អស់ Boost តែ $2។",
+        "ចំណេញសល់ $50។"
+      ],
+      "voice": "Expert comparing two videos, clear and confident, short pause before each number",
+      "visual": {
+        "type": "compare",
+        "host": false,
+        "bad": "A៖ ៥០,០០០ View · សល់ $8",
+        "good": "B៖ ៨,០០០ View · សល់ $50"
+      }
+    },
+    {
+      "role": "summary",
+      "lines": [
+        "កុំមើលតែ View។",
+        "មើលថា មួយ Order អស់លុយប៉ុន្មាន។"
+      ],
+      "voice": "Warm, confident expert, slow and clear, emphasise the lesson",
+      "visual": {
+        "type": "takeaway",
+        "host": false,
+        "quote": "View ច្រើន មិនមែនចំណេញ\nមើល Cost per Order",
+        "chips": [
+          "View",
+          "Message",
+          "Order",
+          "ចំណេញ"
+        ]
+      }
+    },
+    {
+      "role": "cta",
+      "lines": [
+        "វីដេអូហាងបង មួយ Order អស់ប៉ុន្មាន?",
+        "Comment ពាក្យ ORDER មក",
+        "ADS BOX រីករាយជួយបងមើលលេខ។"
+      ],
+      "voice": "Friendly, confident, helpful expert inviting the shop owner to comment, warm, not salesy",
+      "visual": {
+        "type": "cta2",
+        "question": "វីដេអូ TikTok ហាងបង មួយ Order អស់ប៉ុន្មាន?",
+        "comment": "ORDER",
+        "comment_line": 1,
+        "services": [
+          "Boost TikTok",
+          "Boost Post",
+          "Boost Live"
+        ],
+        "url": "adsbox.agency"
+      }
+    }
+  ],
+  "article": {
+    "title": "View ច្រើនលើ TikTok តែ Order តិច? ការយល់ខុស ៤ ពី View ដល់ចំណេញ",
+    "url": "https://adsbox.agency/knowledge/tiktok-views-vs-orders-myths/"
+  },
+  "written_at": "2026-11-18T07:26:11+07:00"
+}
