@@ -426,6 +426,7 @@ footer.fine a{color:var(--muted)}
       <div class="opts">
         <label class="toggle">ផ្ទៃខាងក្រោយថ្លា (សម្រាប់ Live) <input type="checkbox" id="transp"></label>
         <label class="toggle">បង្ហាញ adsbox.agency តូចៗ <input type="checkbox" id="credit" checked></label>
+          <label class="toggle" id="fonlyWrap" hidden>តែស៊ុមទទេ (គ្មានរូបទំនិញ) <input type="checkbox" id="fonly"></label>
       </div>
     </section>
       <div class="stage-foot">
@@ -464,7 +465,7 @@ const F_DISP = '"Koulen","Be Vietnam Pro","MiSans Khmer","Kantumruy Pro",sans-se
 const F_LUX = '"Playfair Display","MiSans Khmer","Kantumruy Pro",serif';
 
 // ---------------- state ----------------
-const S = { tpl: "clean", W: 1080, H: 1920, transparent: false, credit: true, mode: "ai", color: null,
+const S = { tpl: "clean", W: 1080, H: 1920, transparent: false, fonly: false, credit: true, mode: "ai", color: null,
   raw: null, product: null, giftRaw: null, gift: null, scale: 1, dx: 0, dy: 0, box: null };
 let REC = false;   // true while drawing the on-screen preview: remembers where the product sits, for dragging
 
@@ -892,59 +893,20 @@ T.bold = (c, W, H, d, P) => {
 // and a bottom band with the price block and the offer banner. Each frame has its own shapes; all three sizes work.
 const offerOf = (d) => d.promo || (d.off ? "បញ្ចុះតម្លៃ " + d.off + "%" : "ការផ្ដល់ជូនពិសេស");
 const tabOf = (d) => d.label || (d.code ? "CODE " + d.code : "ការផ្ដល់ជូនពិសេស");
-const metaOf = (d) => [d.gift && !S.gift && (/^ថែម/.test(d.gift) ? d.gift : "ថែម " + d.gift), d.size, d.colour, d.stock, d.code && "CODE " + d.code, d.phone && "☎ " + d.phone, d.cta].filter(Boolean).join("   ·   ");
+const metaOf = (d) => [d.gift && (/^ថែម/.test(d.gift) ? d.gift : "ថែម " + d.gift), d.size, d.colour, d.stock, d.code && "CODE " + d.code, d.phone && "☎ " + d.phone, d.cta].filter(Boolean).join("   ·   ");
 function fgeo(W, H, P) {
   const { u, kind } = P, b = (kind === "wide" ? 30 : 38) * u;
   const bandH = kind === "tall" ? H * 0.165 : kind === "sq" ? H * 0.22 : H * 0.27;
   return { b, bandH, bandY: H - b - bandH, tabH: (kind === "wide" ? 66 : 76) * u, pw: kind === "tall" ? W * 0.45 : kind === "sq" ? W * 0.4 : W * 0.3 };
 }
-// Product standing on its zone's floor (bottom aligned), with user scale and drag like product().
-function standing(c, z, img = S.product, user = true) {
-  if (REC && user) S.box = z;
-  if (!img) return;
-  const sc = user ? S.scale : 1, k = Math.min(z.w / img.width, z.h / img.height) * sc, w = img.width * k, h = img.height * k;
-  const x = z.x + (z.w - w) / 2 + (user ? S.dx * z.w : 0), y = z.y + z.h - h + (user ? S.dy * z.h : 0);
-  c.save(); c.shadowColor = "rgba(10,15,30,.22)"; c.shadowBlur = 24; c.shadowOffsetY = 10; c.drawImage(img, x, y, w, h); c.restore();
-}
-function podium(c, cx, ty, rx, ry, h, top, side, rim) {
-  c.save();
-  c.fillStyle = "rgba(0,0,0,.16)"; c.filter = "blur(10px)"; c.beginPath(); c.ellipse(cx, ty + h + ry * 0.35, rx * 1.04, ry * 0.9, 0, 0, Math.PI * 2); c.fill(); c.filter = "none";
-  const g = c.createLinearGradient(cx - rx, 0, cx + rx, 0); g.addColorStop(0, shade(side, -0.18)); g.addColorStop(0.45, side); g.addColorStop(1, shade(side, -0.28));
-  c.fillStyle = g; c.beginPath(); c.moveTo(cx - rx, ty); c.lineTo(cx - rx, ty + h); c.ellipse(cx, ty + h, rx, ry, 0, Math.PI, 0, true); c.lineTo(cx + rx, ty); c.closePath(); c.fill();
-  if (rim) { c.strokeStyle = rim; c.lineWidth = Math.max(2, ry * 0.12); c.beginPath(); c.ellipse(cx, ty + h * 0.42, rx, ry, 0, 0, Math.PI); c.stroke(); }
-  const t = c.createLinearGradient(0, ty - ry, 0, ty + ry); t.addColorStop(0, shade(top, 0.25)); t.addColorStop(1, top);
-  c.fillStyle = t; c.beginPath(); c.ellipse(cx, ty, rx, ry, 0, 0, Math.PI * 2); c.fill();
-  c.restore();
-}
-// Scene: name under the tab, a main podium with the product, a small podium in front (holds the gift photo if any).
+// Frame only: the middle of the frame is left clean for the product photo (no podium, no extra text).
+// With "frame only" on, nothing is drawn in the middle; with a transparent background the middle is see-through.
 function scene(c, W, H, d, P, g, o) {
-  const { u, kind } = P, top = g.b + g.tabH + 6 * u, m = 46 * u;
-  const nz = { x: g.b + m, y: top, w: W - 2 * g.b - 2 * m, h: (kind === "tall" ? 150 : kind === "sq" ? 104 : 96) * u };
-  stack(c, [
-    { kind: "text", t: d.name, lines: kind === "tall" ? 2 : 1, size: (kind === "wide" ? 50 : 56) * u, weight: 800, color: o.ink, lh: 1.25, after: 4 * u },
-    d.sub && { kind: "text", t: d.sub, size: 26 * u, weight: 500, color: o.soft },
-  ], nz, { align: "center", valign: "top" });
-  const sceneB = g.bandY, floorY = sceneB - (sceneB - top) * (kind === "tall" ? 0.13 : 0.17);
-  if (o.floor && !S.transparent) { c.fillStyle = o.floor; c.fillRect(g.b, floorY, W - 2 * g.b, sceneB - floorY + 2); }
-  const rx = kind === "wide" ? H * 0.27 : W * (o.big ? 0.27 : 0.24), ry = rx * 0.19, ph = rx * 0.3;
-  const cx = kind === "wide" ? W * 0.52 : W * (o.left ? 0.44 : 0.56), ty = floorY - ph * 0.25;
-  const rx2 = rx * 0.58, ry2 = rx2 * 0.2, ph2 = ph * 0.7, cx2 = kind === "wide" ? W * 0.27 : W * (o.left ? 0.78 : 0.24), ty2 = floorY + ph * 0.42;
-  if (o.podium !== false) podium(c, cx, ty, rx, ry, ph, o.pTop, o.pSide, o.rim);
-  const pz = { x: Math.max(g.b + 10 * u, cx - rx * 1.15), y: nz.y + nz.h + 8 * u, w: Math.min(W - 2 * g.b - 20 * u, rx * 2.3), h: 0 };
-  pz.h = ty + ry * 0.25 - pz.y;
-  standing(c, pz);
-  if (o.podium !== false || S.gift) {
-    podium(c, cx2, ty2, rx2, ry2, ph2, o.pTop, o.pSide, o.rim);
-    if (S.gift) standing(c, { x: cx2 - rx2, y: ty2 - rx2 * 1.7, w: rx2 * 2, h: rx2 * 1.7 + ry2 * 0.2 }, S.gift, false);
-  }
-  if (d.gift && S.gift) {   // gift name above the gift photo on the small podium
-    const gy = ty2 - rx2 * 1.7 - 34 * u, gx = cx2;
-    c.font = `700 ${26 * u}px ${F_MIX}`; const tw = Math.min(c.measureText(d.gift).width + 80 * u, rx2 * 2.8);
-    c.fillStyle = o.giftBg; rr(c, gx - tw / 2, gy - 26 * u, tw, 52 * u, 26 * u); c.fill();
-    giftIcon(c, gx - tw / 2 + 30 * u, gy + 2 * u, 26 * u, o.giftFg, "#e5283f");
-    text(c, d.gift, gx + 18 * u, gy, { size: 24 * u, weight: 700, color: o.giftFg, maxW: tw - 80 * u });
-  }
-  return { top, floorY };
+  const { u } = P, top = g.b + g.tabH + 24 * u, m = 50 * u;
+  const pz = { x: g.b + m, y: top, w: W - 2 * g.b - 2 * m, h: g.bandY - top - 24 * u };
+  if (!S.fonly) product(c, pz, "floor");
+  if (!S.fonly && S.gift) product(c, { x: g.b + m * 0.6, y: g.bandY - pz.h * 0.42 - 10 * u, w: pz.w * 0.3, h: pz.h * 0.42 }, "drop", S.gift, false);
+  return { top };
 }
 const priceItems = (d, u, lab, big, col, soft, fam) => d.priceN ? [
   { kind: "text", t: lab, size: 26 * u, weight: 700, color: soft, after: 2 * u },
@@ -1091,12 +1053,11 @@ T.fbreak = (c, W, H, d, P) => {
   const hh = g.tabH + 30 * u; c.fillStyle = lin(c, 0, 0, 0, hh, shade(A, 0.08), shade(A, -0.12)); c.beginPath(); c.moveTo(0, 0); c.lineTo(W, 0); c.lineTo(W, hh * 0.6);
   c.bezierCurveTo(W * 0.78, hh * 0.6, W * 0.74, hh, W * 0.66, hh); c.lineTo(W * 0.34, hh); c.bezierCurveTo(W * 0.26, hh, W * 0.22, hh * 0.6, 0, hh * 0.6); c.closePath(); c.fill();
   text(c, tabOf(d), W / 2, hh * 0.48, { size: 40 * u, weight: 800, color: "#fff", maxW: W * 0.5 });
-  const nz = { x: g.b + 30 * u, y: hh + 16 * u, w: W - 2 * g.b - 60 * u, h: (kind === "tall" ? 140 : 96) * u };
-  stack(c, [{ kind: "text", t: d.name, lines: kind === "tall" ? 2 : 1, size: 54 * u, weight: 800, color: "#1d1d1f", lh: 1.25, after: 4 * u }, d.sub && { kind: "text", t: d.sub, size: 26 * u, weight: 500, color: "#6b6b70" }], nz, { valign: "top" });
+  const nz = { x: g.b + 30 * u, y: hh + 10 * u, w: W - 2 * g.b - 60 * u, h: 0 };
   const coupon = d.promo || d.gift || (d.off ? "-" + d.off + "%" : ""), y0 = H - b - g.bandH, top = nz.y + nz.h + 10 * u;
   const cw = kind === "wide" ? W * 0.24 : W * 0.32, ch = Math.min(cw * 0.7, (y0 - top) * 0.45);
   const pz = coupon ? { x: g.b, y: top, w: W - 2 * g.b - cw - 30 * u, h: y0 - top - 20 * u } : { x: g.b, y: top, w: W - 2 * g.b, h: y0 - top - 20 * u };
-  product(c, pz, "floor");
+  if (!S.fonly) product(c, pz, "floor");
   if (coupon) {
     const cx = W - g.b - cw, cy = top + (y0 - top - ch) / 2;
     c.save(); c.shadowColor = "rgba(160,20,20,.25)"; c.shadowBlur = 20 * u; c.fillStyle = lin(c, 0, cy, 0, cy + ch, "#fff3ea", "#ffd9c4"); rr(c, cx, cy, cw, ch, 18 * u); c.fill(); c.restore();
@@ -1242,6 +1203,7 @@ $("mode").addEventListener("click", (e) => { const b = e.target.closest("button"
 FIELDS.forEach((id) => $(id).addEventListener("input", () => { $("demoTag").hidden = true; render(); }));
 $("transp").addEventListener("change", (e) => { S.transparent = e.target.checked; render(); });
 $("credit").addEventListener("change", (e) => { S.credit = e.target.checked; render(); });
+$("fonly").addEventListener("change", (e) => { S.fonly = e.target.checked; render(); });
 $("scale").addEventListener("input", (e) => { S.scale = e.target.value / 100; render(); });
 $("color").addEventListener("input", (e) => { S.color = e.target.value; render(); });
 $("colorReset").addEventListener("click", () => { S.color = null; render(); });
@@ -1302,10 +1264,12 @@ Promise.race([fontsReady, new Promise((r) => setTimeout(r, 2500))]).then(() => l
   $("color").addEventListener("input", (e) => mark(e.target.value));
   $("colorReset").addEventListener("click", () => mark(""));
   $("mexport").addEventListener("click", () => $("export").click());
+  const fonlyVis = () => { const t = document.querySelector('.tpl[aria-pressed="true"]'); $("fonlyWrap").hidden = !(t && t.dataset.g === "frame"); };
+  $("tpls").addEventListener("click", () => setTimeout(fonlyVis));
   const showGroup = (gname) => { document.querySelectorAll("#tgroups button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.g === gname)); document.querySelectorAll(".tpl").forEach((t) => { t.hidden = t.dataset.g !== gname; }); };
   $("tgroups").addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) showGroup(b.dataset.g); });
   const cur = document.querySelector('.tpl[aria-pressed="true"]'); if (cur) showGroup(cur.dataset.g);
-  tplName(); sizeName();
+  tplName(); sizeName(); fonlyVis();
 })();
 </script>
 </body>
