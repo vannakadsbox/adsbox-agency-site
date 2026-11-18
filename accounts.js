@@ -885,17 +885,6 @@ window.ACCOUNTS = {
     "updated": "2026-11-17"
    },
    {
-    "name": "Sorphorn Online Shop",
-    "url": "https://www.facebook.com/profile.php?id=61594113096221",
-    "followers": 4976,
-    "picture": "assets/accounts/fb-61594113096221.webp",
-    "cover": "assets/accounts/fb-61594113096221-cover.webp",
-    "type": "ផេកខ្មែរ",
-    "sold": false,
-    "discount": 0,
-    "updated": "2026-11-17"
-   },
-   {
     "name": "Content Happy",
     "url": "https://www.facebook.com/profile.php?id=61565475212687",
     "followers": 906,
@@ -978,17 +967,6 @@ window.ACCOUNTS = {
     "followers": 12212,
     "picture": "assets/accounts/fb-61588652091475.webp",
     "cover": "assets/opt/adsbox-cover-7ff99d-1565780390.webp",
-    "type": "ផេកខ្មែរ",
-    "sold": false,
-    "discount": 0,
-    "updated": "2026-11-17"
-   },
-   {
-    "name": "RT Fashion Shop",
-    "url": "https://www.facebook.com/profile.php?id=61593510027475",
-    "followers": 11223,
-    "picture": "assets/accounts/fb-61593510027475.webp",
-    "cover": "assets/opt/adsbox-cover-ed4cb6-1565780390.webp",
     "type": "ផេកខ្មែរ",
     "sold": false,
     "discount": 0,
