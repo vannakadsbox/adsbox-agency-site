@@ -220,6 +220,82 @@ input[type=color]::-webkit-color-swatch-wrapper{padding:0}input[type=color]::-we
 .stage{gap:10px}
 @media (max-height:780px) and (min-width:861px){.stage{position:static}}
 @media (max-width:860px){#preview{max-height:56vh!important}}
+/* One-screen app layout on laptops and desktops: nothing on the page scrolls; every section stays visible.
+   Column 1: photo + product info. Column 2: templates. Column 3: preview, size & colour, download. */
+@media (min-width:1100px) and (min-height:640px){
+  html,body{height:100%;overflow:hidden}
+  body{display:flex;flex-direction:column;padding-bottom:0}
+  header.top{position:static;flex:none;padding-block:8px}
+  .brand img{height:22px}
+  .free{font-size:12px;padding:5px 11px}
+  .wrap{flex:1;min-height:0;display:flex;flex-direction:column;width:100%;max-width:1600px}
+  .hero{flex:none;grid-template-columns:auto minmax(0,1fr);gap:24px;align-items:center;padding-block:10px 10px}
+  h1{font-size:21px;line-height:1.3;max-width:520px}
+  h1 .sub{font-size:12px;margin-top:2px;line-height:1.45}
+  .trust{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;justify-self:end;max-width:760px}
+  .trust li{grid-template-columns:28px minmax(0,1fr);gap:8px;font-size:11.5px;line-height:1.35}
+  .trust b{font-size:12.5px}
+  .trust svg{width:28px;height:28px;padding:6px;border-radius:8px}
+  .bench{flex:1;min-height:0;grid-template-columns:minmax(0,1fr) clamp(380px,30vw,500px);gap:16px;padding-bottom:14px}
+  .controls{height:100%;min-height:0;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto;gap:14px}
+  .controls>[aria-labelledby="s1"]{grid-column:1;grid-row:1}
+  .controls>[aria-labelledby="s2"]{grid-column:1;grid-row:2/4}
+  .controls>[aria-labelledby="s3"]{grid-column:2;grid-row:1/3}
+  .controls>footer.fine{align-self:end}
+  .top-in{max-width:1600px}
+  .controls>[aria-labelledby="s3"]{align-self:start;max-height:100%}
+  .controls{grid-template-rows:auto minmax(0,1fr) auto}
+  .controls>footer.fine{grid-column:2;grid-row:3;margin:0;padding:6px 2px 0;border-top:0;font-size:11px;flex-direction:column;gap:2px}
+  .card{padding:12px 14px;border-radius:16px;overflow:auto;scrollbar-width:thin}
+  .card h2{font-size:14px;margin:0 0 2px;gap:8px}
+  .card h2 b{position:static;width:22px;height:22px;font-size:11px;box-shadow:0 0 0 3px var(--brand-soft)}
+  .card .lead{font-size:11.5px;margin:0 0 8px;line-height:1.45}
+  .drop{grid-template-columns:auto minmax(0,1fr);justify-items:start;text-align:left;gap:0 12px;padding:10px 14px;border-radius:12px}
+  .drop svg{grid-row:1/3;width:34px;height:34px;padding:7px}
+  .drop strong{font-size:13.5px}
+  .drop span{font-size:11.5px}
+  [aria-labelledby="s1"] .row{margin-top:8px!important;gap:8px}
+  .seg{padding:3px}.seg button{font-size:12.5px;padding:5px 10px}
+  .btn{font-size:12.5px;padding:6px 11px;border-radius:10px}
+  .status{margin:4px 0 0;min-height:18px;font-size:12px}
+  [aria-labelledby="s1"] .grid2{gap:8px 14px}
+  [aria-labelledby="s1"] label{font-size:11.5px;gap:0}
+  .thumbs img{width:34px;height:34px;border-radius:8px}
+  [aria-labelledby="s2"] .grid2{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px 8px}
+  [aria-labelledby="s2"] .full{grid-column:span 2}
+  .group-t{display:none}
+  label{font-size:11.5px;gap:2px;line-height:1.35}
+  label>input[type=text],label>input[type=number],label>input[type=tel],label>select{font-size:13px;padding:6px 9px;border-radius:9px}
+  .tpls{grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+  .tpl{padding:4px 4px 5px;border-radius:11px;font-size:10px;gap:3px;line-height:1.25}
+  .tpl b{font-size:10.5px}
+  .tpl[aria-pressed=true]::after{width:18px;height:18px;top:-6px;right:-6px;background-size:11px}
+  .stage{position:static;height:100%;min-height:0;display:flex;flex-direction:column;gap:10px}
+  .studio{flex:1;min-height:0;display:flex;flex-direction:column;padding:12px 14px 14px;border-radius:18px}
+  .studio-bar{margin-bottom:8px;font-size:11.5px}.studio-bar b{font-size:12.5px}
+  .view{flex:1;min-height:0}
+  #preview{max-height:100%!important;max-width:100%;position:absolute;inset:0;margin:auto}
+  .mini{flex:none;overflow:visible}
+  .stage-foot{flex:none;gap:4px}
+  .btn.big{padding:12px;font-size:15px}
+  .stage-foot .note{font-size:11px}
+  /* compact size & colour panel */
+  .mini{padding:10px 12px 6px}
+  .mini h2{margin:0 0 6px}
+  .mini .sizes{gap:5px}
+  .mini .sizes button{grid-template-columns:auto minmax(0,1fr);justify-items:start;align-items:center;text-align:left;gap:0 6px;padding:5px 7px;font-size:11px;line-height:1.2}
+  .mini .sizes button i{grid-row:1/3;height:16px!important;border-width:1.5px}
+  .mini .sizes button i[style*="width:11px"]{width:9px!important}.mini .sizes button i[style*="width:16px"]{width:13px!important}.mini .sizes button i[style*="width:20px"]{width:16px!important}
+  .mini .sizes button i[style*="width:30px"]{width:20px!important;height:11px!important;margin-block:2.5px!important}
+  .mini .sizes button span{font-size:9.5px}
+  .mini .swatches{margin-top:7px;gap:5px}
+  .mini .sw{width:20px;height:20px}.mini input[type=color]{width:22px;height:22px}
+  .mini .opts{grid-template-columns:minmax(0,1fr);margin-top:6px;padding-top:2px}
+  .mini .toggle{padding:3px 0;font-size:11.5px}
+  .hero{padding-block:6px 8px}
+  h1{font-size:19px}
+  .trust li{font-size:11px}
+}
 dialog{border:0;border-radius:22px;padding:0;max-width:min(560px,94vw);width:100%;background:var(--panel);color:var(--ink);box-shadow:0 40px 90px -30px rgba(0,0,0,.7)}
 dialog::backdrop{background:rgba(5,9,22,.72);backdrop-filter:blur(4px)}
 .dlg{display:grid;gap:14px;padding:20px}
@@ -314,6 +390,10 @@ footer.fine a{color:var(--muted)}
         <div class="tpls" id="tpls"></div>
       </section>
 
+      <footer class="fine">
+        <span>© ADS BOX · ឧបករណ៍ឥតគិតថ្លៃសម្រាប់អ្នកលក់អនឡាញ</span>
+        <a href="/#services">ត្រូវការជំនួយ Boost ផេក? មើលសេវាកម្ម ADS BOX</a>
+      </footer>
     </div>
 
     <aside class="stage" aria-label="មើលមុន">
@@ -352,10 +432,6 @@ footer.fine a{color:var(--muted)}
     </aside>
   </div>
 
-  <footer class="fine">
-    <span>© ADS BOX · ឧបករណ៍ឥតគិតថ្លៃសម្រាប់អ្នកលក់អនឡាញ</span>
-    <a href="/#services">ត្រូវការជំនួយ Boost ផេក? មើលសេវាកម្ម ADS BOX</a>
-  </footer>
 </div>
 
 <div class="mbar" aria-hidden="false">
