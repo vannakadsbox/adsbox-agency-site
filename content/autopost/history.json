@@ -739,6 +739,29 @@
       "status": "published",
       "published_at": "2026-11-18T06:58:14+07:00",
       "url": "https://adsbox.agency/knowledge/tiktok-views-vs-orders-myths/"
+    },
+    {
+      "date": "2026-11-19",
+      "slot": "morning",
+      "category": "page-care",
+      "angle": "សំណួរ-ចម្លើយ៖ ផេកខ្ញុំត្រៀមរួចសម្រាប់ Boost ហើយឬនៅ?",
+      "attempts": 1,
+      "generated_at": "2026-11-19T06:57:44+07:00",
+      "plan_day": "pc-health-before-boost",
+      "plan_id": "rotation",
+      "topic_id": "pc-health-before-boost",
+      "rotation_category": "page-care",
+      "format": "FAQ",
+      "notes": [],
+      "title": "ផេកត្រៀម Boost ហើយឬនៅ? សំណួរ-ចម្លើយ ៦ មុនចាយលុយ ពី Cost per Message ដល់ Order",
+      "slug": "is-my-page-ready-to-boost",
+      "summary": "Boost $20 បាន ៤០ Message ដូចគ្នា តែផេកមួយបាន ៨ Order ផេកមួយទៀតបាន ៤។ សំណួរ-ចម្លើយ ៦ ពិនិត្យផេកមុន Boost និងគណនា Cost per Message អតិបរមា។",
+      "primary_keyword": "ផេកត្រៀម Boost",
+      "tag": "Boost → Order → ចំណេញ",
+      "khmer_chars": 2598,
+      "status": "published",
+      "published_at": "2026-11-19T06:57:44+07:00",
+      "url": "https://adsbox.agency/knowledge/is-my-page-ready-to-boost/"
     }
   ]
 }
