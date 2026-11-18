@@ -199,6 +199,27 @@ input[type=color]::-webkit-color-swatch-wrapper{padding:0}input[type=color]::-we
   #preview{max-height:56vh}
 }
 
+.mini{padding:14px 16px 10px;border-radius:18px}
+.mini h2{font-size:14px;margin:0 0 10px}
+.mini h2 b{position:static;width:22px;height:22px;font-size:11px;box-shadow:0 0 0 3px var(--brand-soft)}
+.mini .sizes{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.mini .sizes button{padding:8px 4px 6px;gap:3px;font-size:11.5px;border-radius:11px}
+.mini .sizes button i{height:20px;border-width:1.5px;border-radius:3px}
+.mini .sizes button span{font-size:10px}
+.mini .swatches{gap:6px;margin-top:10px}
+.mini .sw{width:22px;height:22px}
+.mini input[type=color]{width:26px;height:26px;padding:2px}
+.mini .opts{margin-top:8px;padding-top:4px}
+.mini .toggle{padding:5px 0;font-size:13px}
+.mini .toggle input{width:36px;height:20px}.mini .toggle input::after{width:14px;height:14px}.mini .toggle input:checked::after{transform:translateX(16px)}
+.stage{max-height:none}
+#preview{max-height:max(300px,calc(100vh - 470px))!important}
+.studio{padding:16px 16px 18px}.studio-bar{margin-bottom:10px}
+.mini .opts{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:14px}
+.mini .toggle{font-size:12px;line-height:1.35}
+.stage{gap:10px}
+@media (max-height:780px) and (min-width:861px){.stage{position:static}}
+@media (max-width:860px){#preview{max-height:56vh!important}}
 dialog{border:0;border-radius:22px;padding:0;max-width:min(560px,94vw);width:100%;background:var(--panel);color:var(--ink);box-shadow:0 40px 90px -30px rgba(0,0,0,.7)}
 dialog::backdrop{background:rgba(5,9,22,.72);backdrop-filter:blur(4px)}
 .dlg{display:grid;gap:14px;padding:20px}
@@ -293,40 +314,37 @@ footer.fine a{color:var(--muted)}
         <div class="tpls" id="tpls"></div>
       </section>
 
-      <section class="card" aria-labelledby="s4">
-        <h2 id="s4"><b>4</b>ទំហំ និងពណ៌</h2>
-        <p class="lead">ជ្រើសតាមកន្លែងដែលអ្នកនឹងប៉ុស្ត៍។</p>
-        <div class="sizes" id="sizes" role="group" aria-label="ទំហំ">
-          <button type="button" data-s="1080x1920" aria-pressed="true"><i style="width:17px"></i>Story / Reel<span>9:16</span></button>
-          <button type="button" data-s="1080x1350" aria-pressed="false"><i style="width:24px"></i>Post<span>4:5</span></button>
-          <button type="button" data-s="1080x1080" aria-pressed="false"><i style="width:30px"></i>ការ៉េ<span>1:1</span></button>
-          <button type="button" data-s="1920x1080" aria-pressed="false"><i style="width:44px;height:25px;margin-block:2.5px"></i>Live / Cover<span>16:9</span></button>
-        </div>
-        <p class="sublabel">ពណ៌ស៊ុម</p>
-        <div class="swatches" id="swatches">
-          <button type="button" class="btn" id="colorReset" style="padding:6px 12px;font-size:13px">ពណ៌តាមគំរូ</button>
-          <button type="button" class="sw" data-c="#1d4aa6" style="background:#1d4aa6" aria-label="ខៀវ ADS BOX" aria-pressed="false"></button>
-          <button type="button" class="sw" data-c="#e5283f" style="background:#e5283f" aria-label="ក្រហម" aria-pressed="false"></button>
-          <button type="button" class="sw" data-c="#c9a55a" style="background:#c9a55a" aria-label="មាស" aria-pressed="false"></button>
-          <button type="button" class="sw" data-c="#0f766e" style="background:#0f766e" aria-label="បៃតង" aria-pressed="false"></button>
-          <button type="button" class="sw" data-c="#7a5af8" style="background:#7a5af8" aria-label="ស្វាយ" aria-pressed="false"></button>
-          <button type="button" class="sw" data-c="#d6336c" style="background:#d6336c" aria-label="ផ្កាឈូក" aria-pressed="false"></button>
-          <button type="button" class="sw" data-c="#111111" style="background:#111111" aria-label="ខ្មៅ" aria-pressed="false"></button>
-          <label title="ពណ៌ផ្សេងទៀត" style="display:inline-flex"><input type="color" id="color" value="#1f6bff" aria-label="ជ្រើសពណ៌ផ្សេងទៀត"></label>
-        </div>
-        <div class="opts">
-          <label class="toggle">ផ្ទៃខាងក្រោយថ្លា (សម្រាប់ដាក់លើវីដេអូ Live) <input type="checkbox" id="transp"></label>
-          <label class="toggle">បង្ហាញ adsbox.agency តូចៗ <input type="checkbox" id="credit" checked></label>
-        </div>
-      </section>
     </div>
 
     <aside class="stage" aria-label="មើលមុន">
       <div class="studio">
-        <div class="studio-bar"><span class="dot">មើលមុនផ្ទាល់</span><b id="tplName">Clean Product</b></div>
+        <div class="studio-bar"><span class="dot">អូសលើរូប ដើម្បីរំកិលទំនិញ</span><b id="tplName">Clean Product</b></div>
         <div class="view"><span class="tag" id="demoTag">ឧទាហរណ៍</span><canvas id="preview" width="1080" height="1920" aria-label="រូបមើលមុន"></canvas></div>
-        <p class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9l-3 3 3 3M9 5l3-3 3 3M15 19l-3 3-3-3M19 9l3 3-3 3M2 12h20M12 2v20"/></svg>អូសលើរូប ដើម្បីរំកិលទំនិញ</p>
       </div>
+    <section class="card mini" aria-labelledby="s4">
+      <h2 id="s4"><b>4</b>ទំហំ និងពណ៌</h2>
+              <div class="sizes" id="sizes" role="group" aria-label="ទំហំ">
+        <button type="button" data-s="1080x1920" aria-pressed="true"><i style="width:11px"></i>Story / Reel<span>9:16</span></button>
+        <button type="button" data-s="1080x1350" aria-pressed="false"><i style="width:16px"></i>Post<span>4:5</span></button>
+        <button type="button" data-s="1080x1080" aria-pressed="false"><i style="width:20px"></i>ការ៉េ<span>1:1</span></button>
+        <button type="button" data-s="1920x1080" aria-pressed="false"><i style="width:30px;height:17px;margin-block:1.5px"></i>Live / Cover<span>16:9</span></button>
+      </div>
+              <div class="swatches" id="swatches"><span class="sublabel" style="margin:0 4px 0 0">ពណ៌ស៊ុម</span>
+        <button type="button" class="btn" id="colorReset" style="padding:4px 10px;font-size:12px;border-radius:999px">ពណ៌តាមគំរូ</button>
+        <button type="button" class="sw" data-c="#1d4aa6" style="background:#1d4aa6" aria-label="ខៀវ ADS BOX" aria-pressed="false"></button>
+        <button type="button" class="sw" data-c="#e5283f" style="background:#e5283f" aria-label="ក្រហម" aria-pressed="false"></button>
+        <button type="button" class="sw" data-c="#c9a55a" style="background:#c9a55a" aria-label="មាស" aria-pressed="false"></button>
+        <button type="button" class="sw" data-c="#0f766e" style="background:#0f766e" aria-label="បៃតង" aria-pressed="false"></button>
+        <button type="button" class="sw" data-c="#7a5af8" style="background:#7a5af8" aria-label="ស្វាយ" aria-pressed="false"></button>
+        <button type="button" class="sw" data-c="#d6336c" style="background:#d6336c" aria-label="ផ្កាឈូក" aria-pressed="false"></button>
+        <button type="button" class="sw" data-c="#111111" style="background:#111111" aria-label="ខ្មៅ" aria-pressed="false"></button>
+        <label title="ពណ៌ផ្សេងទៀត" style="display:inline-flex"><input type="color" id="color" value="#1f6bff" aria-label="ជ្រើសពណ៌ផ្សេងទៀត"></label>
+      </div>
+      <div class="opts">
+        <label class="toggle">ផ្ទៃខាងក្រោយថ្លា (សម្រាប់ Live) <input type="checkbox" id="transp"></label>
+        <label class="toggle">បង្ហាញ adsbox.agency តូចៗ <input type="checkbox" id="credit" checked></label>
+      </div>
+    </section>
       <div class="stage-foot">
         <button class="btn gold big" type="button" id="export"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M7 11l5 5 5-5M4 20h16"/></svg>ទាញយក PNG</button>
         <p class="note"><span class="dim" id="dim">1080 × 1920 px · PNG</span> · គុណភាពខ្ពស់</p>
