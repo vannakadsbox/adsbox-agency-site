@@ -20,7 +20,13 @@
 <title>បង្កើតរូបប្រូម៉ូសិនទំនិញ ឥតគិតថ្លៃ · ADS BOX</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;600;700;800;900&family=Kantumruy+Pro:wght@400;500;600;700&family=Koulen&family=Playfair+Display:wght@700;800&display=swap">
+<link rel="preload" href="/assets/fonts/MiSansKhmer-Bold.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+@font-face{font-family:"MiSans Khmer";font-weight:400;font-display:swap;src:url(/assets/fonts/MiSansKhmer-Regular.woff2) format("woff2");unicode-range: U+1780-17FF, U+19E0-19FF, U+200C-200D, U+25CC;}
+@font-face{font-family:"MiSans Khmer";font-weight:500;font-display:swap;src:url(/assets/fonts/MiSansKhmer-Medium.woff2) format("woff2");unicode-range: U+1780-17FF, U+19E0-19FF, U+200C-200D, U+25CC;}
+@font-face{font-family:"MiSans Khmer";font-weight:600;font-display:swap;src:url(/assets/fonts/MiSansKhmer-Semibold.woff2) format("woff2");unicode-range: U+1780-17FF, U+19E0-19FF, U+200C-200D, U+25CC;}
+@font-face{font-family:"MiSans Khmer";font-weight:700;font-display:swap;src:url(/assets/fonts/MiSansKhmer-Bold.woff2) format("woff2");unicode-range: U+1780-17FF, U+19E0-19FF, U+200C-200D, U+25CC;}
+@font-face{font-family:"MiSans Khmer";font-weight:800 900;font-display:swap;src:url(/assets/fonts/MiSansKhmer-Heavy.woff2) format("woff2");unicode-range: U+1780-17FF, U+19E0-19FF, U+200C-200D, U+25CC;}
 /* Premium studio. The controls are a quiet, numbered rail on the left; the poster sits on a lit studio backdrop on the right
    (always dark, like a photo set), so every template reads as a finished product. Gold is spent on one thing: the download. */
 :root{
@@ -28,8 +34,8 @@
   --line:#e0e4ee; --line2:#cfd5e3; --brand:#1d4aa6; --brand-2:#2f62d6; --brand-soft:#e8eefc; --brand-ink:#ffffff;
   --gold:#ffd23f; --gold-2:#f5b81b; --gold-ink:#1d1500; --ok:#13854a; --warn:#b4540a;
   --check-a:#ffffff; --check-b:#e6e9f1; --shadow:0 1px 2px rgba(11,22,48,.05),0 12px 32px -18px rgba(11,22,48,.22);
-  --f-ui:"Kantumruy Pro","Noto Sans Khmer",system-ui,sans-serif;
-  --f-num:"Be Vietnam Pro","Kantumruy Pro",system-ui,sans-serif;
+  --f-ui:"MiSans Khmer","Kantumruy Pro","Noto Sans Khmer",system-ui,sans-serif;
+  --f-num:"Be Vietnam Pro","MiSans Khmer","Kantumruy Pro",system-ui,sans-serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#070b17; --bg2:#0a1020; --panel:#0e1426; --panel2:#121a30; --ink:#eef2fc; --muted:#a2acc6; --faint:#6f7a96;
@@ -355,10 +361,10 @@ const $ = (id) => document.getElementById(id);
 const seg = typeof Intl !== "undefined" && Intl.Segmenter ? new Intl.Segmenter("km", { granularity: "word" }) : null;
 
 // ---------------- fonts ----------------
-const F_KH = '"Kantumruy Pro","Noto Sans Khmer",sans-serif';
-const F_MIX = '"Be Vietnam Pro","Kantumruy Pro","Noto Sans Khmer",sans-serif';
-const F_DISP = '"Koulen","Be Vietnam Pro","Kantumruy Pro",sans-serif';
-const F_LUX = '"Playfair Display","Kantumruy Pro",serif';
+const F_KH = '"MiSans Khmer","Kantumruy Pro","Noto Sans Khmer",sans-serif';
+const F_MIX = '"Be Vietnam Pro","MiSans Khmer","Kantumruy Pro","Noto Sans Khmer",sans-serif';
+const F_DISP = '"Koulen","Be Vietnam Pro","MiSans Khmer","Kantumruy Pro",sans-serif';
+const F_LUX = '"Playfair Display","MiSans Khmer","Kantumruy Pro",serif';
 
 // ---------------- state ----------------
 const S = { tpl: "clean", W: 1080, H: 1920, transparent: false, credit: true, mode: "ai", color: null,
@@ -939,7 +945,7 @@ const EX = { name: "ជែលលាងមុខ HYDRA 473ml", sub: "សម្រ
 let saved = null; try { saved = JSON.parse(localStorage.getItem("adsbox-graphic-3") || "null"); } catch (e) {}
 Object.entries(saved && saved.f ? saved.f : EX).forEach(([k, v]) => { if ($(k)) $(k).value = v; });
 if (saved) { S.tpl = saved.tpl || S.tpl; $("demoTag").hidden = true; document.querySelectorAll(".tpl").forEach((x) => x.setAttribute("aria-pressed", x.dataset.id === S.tpl)); }
-const fontsReady = document.fonts && document.fonts.load ? Promise.all(["900 40px 'Be Vietnam Pro'", "800 40px 'Be Vietnam Pro'", "700 40px 'Be Vietnam Pro'", "600 40px 'Be Vietnam Pro'", "700 40px 'Kantumruy Pro'", "600 40px 'Kantumruy Pro'", "500 40px 'Kantumruy Pro'", "400 40px Koulen", "800 40px 'Playfair Display'"].map((f) => document.fonts.load(f, "កA$1"))).catch(() => {}) : Promise.resolve();
+const fontsReady = document.fonts && document.fonts.load ? Promise.all(["900 40px 'Be Vietnam Pro'", "800 40px 'Be Vietnam Pro'", "700 40px 'Be Vietnam Pro'", "600 40px 'Be Vietnam Pro'", "700 40px 'Kantumruy Pro'", "600 40px 'Kantumruy Pro'", "500 40px 'Kantumruy Pro'", "900 40px 'MiSans Khmer'", "800 40px 'MiSans Khmer'", "700 40px 'MiSans Khmer'", "600 40px 'MiSans Khmer'", "500 40px 'MiSans Khmer'", "400 40px 'MiSans Khmer'", "400 40px Koulen", "800 40px 'Playfair Display'"].map((f) => document.fonts.load(f, "កA$1"))).catch(() => {}) : Promise.resolve();
 render();
 Promise.race([fontsReady, new Promise((r) => setTimeout(r, 2500))]).then(() => loadImage(samplePhoto(), null, "fast"));  // first view instant; uploads use AI
 })();
