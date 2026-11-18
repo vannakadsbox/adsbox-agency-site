@@ -351,7 +351,7 @@ footer.fine a{color:var(--muted)}
         <p class="status" id="status" role="status"></p>
         <div class="grid2">
           <label id="tolWrap" hidden>កម្រិតលុបផ្ទៃ <input type="range" id="tol" min="10" max="120" value="46"></label>
-          <label>ទំហំទំនិញ <input type="range" id="scale" min="50" max="160" value="100"></label>
+          <label>ទំហំទំនិញ <input type="range" id="scale" min="40" max="400" value="100"></label>
         </div>
         <div class="row" style="margin-top:14px">
           <div class="thumbs" id="giftThumb" aria-live="polite"></div>
@@ -914,18 +914,26 @@ const priceItems = (d, u, lab, big, col, soft, fam) => d.priceN ? [
   d.old && { kind: "old", t: d.old, size: 28 * u, color: soft },
 ] : [{ kind: "text", t: d.cta || "សួរតម្លៃតាម Inbox", lines: 2, size: 40 * u, weight: 800, color: col }];
 // inner panel cut-out helper: paint the scene or punch it out for transparent posters
-function panel(c, path, paint) { c.save(); path(); if (S.transparent) { c.globalCompositeOperation = "destination-out"; c.fillStyle = "#000"; c.fill(); } else { c.fillStyle = paint; c.fill(); } c.restore(); }
+// The frame sits on top of the photo: copy the frame colour already painted, cut its window out,
+// paint the scene, draw the photo (it may grow past the window), then lay the frame back on top.
+function panel(c, path, paint, under) {
+  const cv = c.canvas, oc = document.createElement("canvas"); oc.width = cv.width; oc.height = cv.height;
+  const o = oc.getContext("2d"); o.drawImage(cv, 0, 0); o.setTransform(c.getTransform()); path(o); o.globalCompositeOperation = "destination-out"; o.fillStyle = "#000"; o.fill();
+  c.save(); c.setTransform(1, 0, 0, 1, 0, 0); c.clearRect(0, 0, cv.width, cv.height); c.restore();
+  if (!S.transparent) { c.save(); c.fillStyle = paint; c.fillRect(-1e4, -1e4, 3e4, 3e4); c.restore(); }
+  if (under) under();
+  c.save(); c.setTransform(1, 0, 0, 1, 0, 0); c.drawImage(oc, 0, 0); c.restore();
+}
 
 // 11. Teal & Gold: notched top-right tab, gold bar for the offer, gold coin for the price.
 T.fteal = (c, W, H, d, P) => {
   const { u, kind, A } = P, g = fgeo(W, H, P), tw = kind === "wide" ? W * 0.24 : W * 0.4, s = 34 * u, G1 = "#f6e7b8", G2 = "#d8b86c";
   c.fillStyle = lin(c, 0, 0, W, H, shade(A, 0.08), shade(A, -0.12)); c.fillRect(0, 0, W, H);
-  const path = () => { c.beginPath(); c.moveTo(g.b + 22 * u, g.b); c.lineTo(W - g.b - tw - s, g.b); c.bezierCurveTo(W - g.b - tw, g.b, W - g.b - tw, g.b + g.tabH, W - g.b - tw + s, g.b + g.tabH);
+  const path = (c) => { c.beginPath(); c.moveTo(g.b + 22 * u, g.b); c.lineTo(W - g.b - tw - s, g.b); c.bezierCurveTo(W - g.b - tw, g.b, W - g.b - tw, g.b + g.tabH, W - g.b - tw + s, g.b + g.tabH);
     c.lineTo(W - g.b, g.b + g.tabH); c.lineTo(W - g.b, H - g.b); c.lineTo(g.b, H - g.b); c.lineTo(g.b, g.b + 22 * u); c.quadraticCurveTo(g.b, g.b, g.b + 22 * u, g.b); c.closePath(); };
   const bg = c.createLinearGradient(0, g.b, 0, H); bg.addColorStop(0, "#ffffff"); bg.addColorStop(1, "#eef5f3");
-  panel(c, path, bg);
+  panel(c, path, bg, () =>scene(c, W, H, d, P, g, { ink: "#0f2f2a", soft: "#55716b", floor: "#e3eeeb", pTop: "#ffffff", pSide: "#eef2f1", rim: G2, giftBg: "#ffffff", giftFg: "#0f2f2a" }));
   text(c, tabOf(d), W - g.b - tw / 2 + s / 2, g.b + g.tabH / 2, { size: 32 * u, weight: 800, color: "#fff", maxW: tw - s * 2 });
-  scene(c, W, H, d, P, g, { ink: "#0f2f2a", soft: "#55716b", floor: "#e3eeeb", pTop: "#ffffff", pSide: "#eef2f1", rim: G2, giftBg: "#ffffff", giftFg: "#0f2f2a" });
   // gold coin (price) bottom-right, gold bar (offer) bottom-left
   const R = kind === "tall" ? W * 0.2 : kind === "sq" ? W * 0.17 : H * 0.24, ccx = W - g.b - R * 0.82, ccy = H - g.b - R * 0.6;
   const barY = g.bandY + g.bandH * 0.18, barR = ccx - R - 14 * u;
@@ -945,10 +953,9 @@ T.fcream = (c, W, H, d, P) => {
   const { u, kind, A } = P, g = fgeo(W, H, P), tw = kind === "wide" ? W * 0.26 : W * 0.44;
   c.fillStyle = lin(c, 0, 0, 0, H, shade(A, 0.12), shade(A, -0.1)); c.fillRect(0, 0, W, H);
   const bg = c.createRadialGradient(W * 0.42, H * 0.38, 10, W * 0.5, H * 0.45, Math.max(W, H) * 0.7); bg.addColorStop(0, "#fffaf0"); bg.addColorStop(1, "#f7d6a8");
-  panel(c, () => { rr(c, g.b, g.b, W - 2 * g.b, H - 2 * g.b, 18 * u); }, bg);
+  panel(c, (c) => { rr(c, g.b, g.b, W - 2 * g.b, H - 2 * g.b, 18 * u); }, bg, () => scene(c, W, H, d, P, { ...g, tabH: g.tabH + 10 * u }, { ink: "#4a1d0e", soft: "#8a5a3a", floor: "rgba(226,190,140,.45)", pTop: "#fff6e8", pSide: "#f3e3c8", rim: "#e6b35a", giftBg: "#ffffff", giftFg: "#4a1d0e" }));
   c.fillStyle = lin(c, 0, g.b, 0, g.b + g.tabH, shade(A, 0.05), shade(A, -0.15)); c.beginPath(); c.moveTo(W / 2 - tw / 2 - 30 * u, g.b - 2); c.lineTo(W / 2 + tw / 2 + 30 * u, g.b - 2); c.lineTo(W / 2 + tw / 2, g.b + g.tabH); c.lineTo(W / 2 - tw / 2, g.b + g.tabH); c.closePath(); c.fill();
   text(c, tabOf(d), W / 2, g.b + g.tabH / 2, { size: 34 * u, weight: 800, color: "#fff", maxW: tw - 20 * u });
-  scene(c, W, H, d, P, { ...g, tabH: g.tabH + 10 * u }, { ink: "#4a1d0e", soft: "#8a5a3a", floor: "rgba(226,190,140,.45)", pTop: "#fff6e8", pSide: "#f3e3c8", rim: "#e6b35a", giftBg: "#ffffff", giftFg: "#4a1d0e" });
   const y0 = g.bandY, s = g.bandH * 0.32;
   c.fillStyle = lin(c, 0, y0, g.pw, H, shade(A, 0.1), shade(A, -0.15)); c.beginPath(); c.moveTo(0, y0); c.lineTo(g.pw - s, y0); c.lineTo(g.pw + s, H); c.lineTo(0, H); c.closePath(); c.fill();
   stack(c, priceItems(d, u, "តម្លៃត្រឹមតែ", (kind === "wide" ? 120 : 132) * u, "#ffffff", "rgba(255,255,255,.85)"), { x: g.b + 14 * u, y: y0 + 14 * u, w: g.pw - g.b - s - 10 * u, h: g.bandH - 10 * u }, { align: "left" });
@@ -965,11 +972,10 @@ T.fcrimson = (c, W, H, d, P) => {
   const { u, kind, A } = P, g = fgeo(W, H, P), GO = "#efcd85", tw = kind === "wide" ? W * 0.24 : W * 0.4;
   c.fillStyle = shade(A, -0.25); c.fillRect(0, 0, W, H);
   const bg = c.createRadialGradient(W / 2, H * 0.32, 10, W / 2, H * 0.4, Math.max(W, H) * 0.7); bg.addColorStop(0, shade(A, 0.08)); bg.addColorStop(1, shade(A, -0.4));
-  panel(c, () => { rr(c, g.b, g.b, W - 2 * g.b, H - 2 * g.b, 22 * u); }, bg);
+  panel(c, (c) => { rr(c, g.b, g.b, W - 2 * g.b, H - 2 * g.b, 22 * u); }, bg, () => scene(c, W, H, d, P, { ...g, tabH: g.tabH + 20 * u }, { ink: "#ffffff", soft: "rgba(255,255,255,.75)", floor: alpha(shade(A, -0.45), 0.55), pTop: shade(A, 0.05), pSide: shade(A, -0.1), rim: GO, giftBg: "rgba(255,255,255,.92)", giftFg: shade(A, -0.4) }));
   const i = 16 * u; c.strokeStyle = GO; c.lineWidth = 3 * u; c.beginPath(); c.moveTo(g.b + i, g.b + i + g.tabH * 0.4); c.lineTo(W / 2 - tw / 2 - 20 * u, g.b + i + g.tabH * 0.4); c.moveTo(W / 2 + tw / 2 + 20 * u, g.b + i + g.tabH * 0.4); c.lineTo(W - g.b - i, g.b + i + g.tabH * 0.4); c.lineTo(W - g.b - i, g.bandY + g.bandH * 0.4); c.moveTo(g.b + i, g.b + i + g.tabH * 0.4); c.lineTo(g.b + i, g.bandY + g.bandH * 0.3); c.stroke();
   c.fillStyle = lin(c, 0, g.b, 0, g.b + g.tabH, shade(A, 0.12), shade(A, -0.2)); rr(c, W / 2 - tw / 2, g.b - 20 * u, tw, g.tabH + 20 * u, 18 * u); c.fill(); c.strokeStyle = GO; c.lineWidth = 2.5 * u; c.stroke();
   text(c, tabOf(d), W / 2, g.b + g.tabH / 2 - 4 * u, { size: 34 * u, weight: 800, color: GO, maxW: tw - 30 * u });
-  scene(c, W, H, d, P, { ...g, tabH: g.tabH + 20 * u }, { ink: "#ffffff", soft: "rgba(255,255,255,.75)", floor: alpha(shade(A, -0.45), 0.55), pTop: shade(A, 0.05), pSide: shade(A, -0.1), rim: GO, giftBg: "rgba(255,255,255,.92)", giftFg: shade(A, -0.4) });
   const y0 = g.bandY + 8 * u, cw = g.pw + 40 * u;
   c.fillStyle = lin(c, 0, y0, cw, H, "#fff1df", "#f6d7b2"); c.beginPath(); c.moveTo(g.b, y0 + 20 * u); c.quadraticCurveTo(g.b, y0, g.b + 20 * u, y0); c.lineTo(cw - 90 * u, y0); c.bezierCurveTo(cw, y0, cw - 40 * u, H - g.b, cw + 40 * u, H - g.b); c.lineTo(g.b, H - g.b); c.closePath(); c.fill();
   stack(c, priceItems(d, u, "តម្លៃត្រឹមតែ", (kind === "wide" ? 118 : 128) * u, shade(A, -0.1), shade(A, -0.3)), { x: g.b + 30 * u, y: y0 + 12 * u, w: cw - g.b - 110 * u, h: H - g.b - y0 - 24 * u }, { align: "left" });
@@ -986,9 +992,8 @@ T.fgold = (c, W, H, d, P) => {
   const { u, kind, A } = P, g = fgeo(W, H, P), tw = kind === "wide" ? W * 0.26 : W * 0.44, K = "#1c1c1e", Y = "#ffd24a";
   c.fillStyle = lin(c, 0, 0, W, H, shade(A, 0.35), A); c.fillRect(0, 0, W, H);
   const bg = c.createRadialGradient(W * 0.35, H * 0.3, 10, W * 0.45, H * 0.4, Math.max(W, H) * 0.7); bg.addColorStop(0, "#fffdf3"); bg.addColorStop(1, "#f1e4b6");
-  panel(c, () => { c.beginPath(); c.moveTo(g.b, g.b); c.lineTo(W - g.b - tw - 50 * u, g.b); c.lineTo(W - g.b - tw, g.b + g.tabH); c.lineTo(W - g.b, g.b + g.tabH); c.lineTo(W - g.b, H - g.b); c.lineTo(g.b, H - g.b); c.closePath(); }, bg);
+  panel(c, (c) => { c.beginPath(); c.moveTo(g.b, g.b); c.lineTo(W - g.b - tw - 50 * u, g.b); c.lineTo(W - g.b - tw, g.b + g.tabH); c.lineTo(W - g.b, g.b + g.tabH); c.lineTo(W - g.b, H - g.b); c.lineTo(g.b, H - g.b); c.closePath(); }, bg, () => scene(c, W, H, d, P, g, { ink: "#2a2205", soft: "#7a6a35", floor: "rgba(230,205,130,.4)", pTop: shade(A, 0.3), pSide: A, rim: "#fff3c4", giftBg: K, giftFg: Y, left: true }));
   text(c, tabOf(d), W - g.b - tw / 2 + 10 * u, g.b + g.tabH / 2, { size: 34 * u, weight: 900, color: K, maxW: tw - 40 * u });
-  scene(c, W, H, d, P, g, { ink: "#2a2205", soft: "#7a6a35", floor: "rgba(230,205,130,.4)", pTop: shade(A, 0.3), pSide: A, rim: "#fff3c4", giftBg: K, giftFg: Y, left: true });
   const ax = W - g.b - g.pw, y0 = g.bandY, by = y0 + g.bandH * 0.36;
   c.fillStyle = K; c.fillRect(g.b, by, ax + 30 * u - g.b, H - g.b - by);
   c.fillStyle = "#e0661b"; c.beginPath(); c.moveTo(g.b, by); c.lineTo(g.b + 34 * u, y0 + 10 * u); c.lineTo(g.b + 34 * u, by); c.closePath(); c.fill();
@@ -1005,11 +1010,10 @@ T.fnoir = (c, W, H, d, P) => {
   const { u, kind, A } = P, g = fgeo(W, H, P), tw = kind === "wide" ? W * 0.24 : W * 0.4;
   c.fillStyle = "#121112"; c.fillRect(0, 0, W, H);
   const bg = c.createRadialGradient(W / 2, H * 0.3, 10, W / 2, H * 0.4, Math.max(W, H) * 0.7); bg.addColorStop(0, "#3a3134"); bg.addColorStop(1, "#151314");
-  panel(c, () => { c.beginPath(); c.rect(g.b, g.b, W - 2 * g.b, H - 2 * g.b); }, bg);
+  panel(c, (c) => { c.beginPath(); c.rect(g.b, g.b, W - 2 * g.b, H - 2 * g.b); }, bg, () => scene(c, W, H, d, P, g, { ink: "#ffffff", soft: "rgba(255,255,255,.7)", floor: "rgba(70,66,68,.55)", pTop: "#3a3739", pSide: "#232123", rim: A, giftBg: A, giftFg: "#151314" }));
   const i = 18 * u, sx = W - g.b - tw; c.strokeStyle = A; c.lineWidth = 3 * u; c.beginPath(); c.moveTo(g.b + i, g.bandY + g.bandH * 0.2); c.lineTo(g.b + i, g.b + i); c.lineTo(sx - 30 * u, g.b + i); c.quadraticCurveTo(sx, g.b + i, sx + 10 * u, g.b + g.tabH); c.lineTo(W - g.b - i, g.b + g.tabH); c.lineTo(W - g.b - i, g.bandY); c.stroke();
   c.fillStyle = "#121112"; c.beginPath(); c.moveTo(sx - 26 * u, g.b); c.lineTo(W - g.b, g.b); c.lineTo(W - g.b, g.b + g.tabH - 8 * u); c.lineTo(sx + 14 * u, g.b + g.tabH - 8 * u); c.quadraticCurveTo(sx + 2 * u, g.b, sx - 26 * u, g.b); c.fill();
   text(c, tabOf(d), sx + tw / 2, g.b + g.tabH / 2 - 4 * u, { size: 34 * u, weight: 800, color: "#fff", maxW: tw - 40 * u });
-  scene(c, W, H, d, P, g, { ink: "#ffffff", soft: "rgba(255,255,255,.7)", floor: "rgba(70,66,68,.55)", pTop: "#3a3739", pSide: "#232123", rim: A, giftBg: A, giftFg: "#151314" });
   const y0 = g.bandY + 6 * u, pw = g.pw + 20 * u;
   c.fillStyle = "#0c0c0d"; c.beginPath(); c.moveTo(g.b, y0); c.lineTo(pw - 80 * u, y0); c.quadraticCurveTo(pw - 20 * u, y0, pw, y0 + 60 * u); c.lineTo(pw + 60 * u, H - g.b); c.lineTo(g.b, H - g.b); c.closePath(); c.fill();
   stack(c, priceItems(d, u, "តម្លៃ", (kind === "wide" ? 120 : 132) * u, "#ffffff", "rgba(255,255,255,.7)"), { x: g.b + 30 * u, y: y0 + 12 * u, w: pw - g.b - 60 * u, h: H - g.b - y0 - 24 * u }, { align: "left" });
@@ -1025,11 +1029,10 @@ T.fpink = (c, W, H, d, P) => {
   const { u, kind, A } = P, g = fgeo(W, H, P), tw = kind === "wide" ? W * 0.26 : W * 0.44;
   c.fillStyle = lin(c, 0, 0, W, H, shade(A, 0.25), shade(A, -0.05)); c.fillRect(0, 0, W, H);
   const bg = c.createLinearGradient(0, g.b, 0, H); bg.addColorStop(0, "#fff6f8"); bg.addColorStop(1, "#ffd6df");
-  panel(c, () => { rr(c, g.b, g.b, W - 2 * g.b, H - 2 * g.b, 34 * u); }, bg);
+  panel(c, (c) => { rr(c, g.b, g.b, W - 2 * g.b, H - 2 * g.b, 34 * u); }, bg, () => scene(c, W, H, d, P, { ...g, tabH: g.tabH + 6 * u, bandY: g.bandY - 46 * u }, { ink: "#5a1426", soft: "#9a5a6a", floor: null, pTop: "#ffffff", pSide: "#ffe3ea", rim: alpha(A, 0.6), giftBg: "#ffffff", giftFg: shade(A, -0.35), big: true }));
   if (!S.transparent) { c.fillStyle = alpha(A, 0.12); c.beginPath(); c.arc(W - g.b - 90 * u, g.bandY - 160 * u, 60 * u, 0, Math.PI * 2); c.fill(); c.beginPath(); c.arc(g.b + 80 * u, g.b + g.tabH + 220 * u, 36 * u, 0, Math.PI * 2); c.fill(); }
   c.fillStyle = lin(c, 0, g.b, 0, g.b + g.tabH, shade(A, 0.1), shade(A, -0.1)); rr(c, W / 2 - tw / 2, g.b - 30 * u, tw, g.tabH + 30 * u, 30 * u); c.fill();
   text(c, tabOf(d), W / 2, g.b + g.tabH / 2 - 6 * u, { size: 36 * u, weight: 900, color: "#fff", maxW: tw - 40 * u });
-  scene(c, W, H, d, P, { ...g, tabH: g.tabH + 6 * u, bandY: g.bandY - 46 * u }, { ink: "#5a1426", soft: "#9a5a6a", floor: null, pTop: "#ffffff", pSide: "#ffe3ea", rim: alpha(A, 0.6), giftBg: "#ffffff", giftFg: shade(A, -0.35), big: true });
   const y0 = g.bandY + g.bandH * 0.22, wv = 26 * u;
   c.fillStyle = lin(c, 0, y0, 0, H, shade(A, 0.12), shade(A, -0.08)); c.beginPath(); c.moveTo(g.b, y0 + wv);
   for (let x = g.b; x <= W - g.b; x += 8 * u) c.lineTo(x, y0 + wv * Math.sin((x - g.b) / (W - 2 * g.b) * Math.PI * 2.2));
@@ -1049,15 +1052,14 @@ T.fpink = (c, W, H, d, P) => {
 T.fbreak = (c, W, H, d, P) => {
   const { u, kind, A } = P, g = fgeo(W, H, P), b = 16 * u;
   c.fillStyle = A; c.fillRect(0, 0, W, H);
-  panel(c, () => { c.beginPath(); c.rect(b, b, W - 2 * b, H - 2 * b); }, lin(c, 0, 0, 0, H, "#ffffff", "#f5f5f6"));
-  const hh = g.tabH + 30 * u; c.fillStyle = lin(c, 0, 0, 0, hh, shade(A, 0.08), shade(A, -0.12)); c.beginPath(); c.moveTo(0, 0); c.lineTo(W, 0); c.lineTo(W, hh * 0.6);
-  c.bezierCurveTo(W * 0.78, hh * 0.6, W * 0.74, hh, W * 0.66, hh); c.lineTo(W * 0.34, hh); c.bezierCurveTo(W * 0.26, hh, W * 0.22, hh * 0.6, 0, hh * 0.6); c.closePath(); c.fill();
-  text(c, tabOf(d), W / 2, hh * 0.48, { size: 40 * u, weight: 800, color: "#fff", maxW: W * 0.5 });
+  const hh = g.tabH + 30 * u;
   const nz = { x: g.b + 30 * u, y: hh + 10 * u, w: W - 2 * g.b - 60 * u, h: 0 };
   const coupon = d.promo || d.gift || (d.off ? "-" + d.off + "%" : ""), y0 = H - b - g.bandH, top = nz.y + nz.h + 10 * u;
   const cw = kind === "wide" ? W * 0.24 : W * 0.32, ch = Math.min(cw * 0.7, (y0 - top) * 0.45);
   const pz = coupon ? { x: g.b, y: top, w: W - 2 * g.b - cw - 30 * u, h: y0 - top - 20 * u } : { x: g.b, y: top, w: W - 2 * g.b, h: y0 - top - 20 * u };
-  if (!S.fonly) product(c, pz, "floor");
+  panel(c, (c) => { c.beginPath(); c.rect(b, b, W - 2 * b, H - 2 * b); }, lin(c, 0, 0, 0, H, "#ffffff", "#f5f5f6"), () => { if (!S.fonly) product(c, pz, "floor"); }); c.fillStyle = lin(c, 0, 0, 0, hh, shade(A, 0.08), shade(A, -0.12)); c.beginPath(); c.moveTo(0, 0); c.lineTo(W, 0); c.lineTo(W, hh * 0.6);
+  c.bezierCurveTo(W * 0.78, hh * 0.6, W * 0.74, hh, W * 0.66, hh); c.lineTo(W * 0.34, hh); c.bezierCurveTo(W * 0.26, hh, W * 0.22, hh * 0.6, 0, hh * 0.6); c.closePath(); c.fill();
+  text(c, tabOf(d), W / 2, hh * 0.48, { size: 40 * u, weight: 800, color: "#fff", maxW: W * 0.5 });
   if (coupon) {
     const cx = W - g.b - cw, cy = top + (y0 - top - ch) / 2;
     c.save(); c.shadowColor = "rgba(160,20,20,.25)"; c.shadowBlur = 20 * u; c.fillStyle = lin(c, 0, cy, 0, cy + ch, "#fff3ea", "#ffd9c4"); rr(c, cx, cy, cw, ch, 18 * u); c.fill(); c.restore();
