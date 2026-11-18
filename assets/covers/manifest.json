@@ -42,5 +42,6 @@
  "max-cost-per-order-before-losing-money": "[\"រឿងហាងអាវ $20៖ Boost បានប៉ុន្មានទើបមិនខាត? គណនា Cost per Order អតិបរមា\",\"Boost → Order → ចំណេញ\",[\"👕\",\"🧮\",\"🎯\"]]",
  "how-much-to-spend-per-boost-live": "[\"Boost Live មួយដង គួរចាយប៉ុន្មាន? សំណួរ-ចម្លើយ ៧ ពីថវិកា ដល់ Cost per Order\",\"Live → Order\",[\"🎥\",\"💵\",\"🧮\"]]",
  "one-hour-live-plan-four-segments": "[\"យុទ្ធសាស្ត្រ Live ១ ម៉ោង ៤ វគ្គ៖ រៀបលំដាប់ទំនិញ ឲ្យ Comment ក្លាយជា Order\",\"Live → Order\",[\"🎥\",\"🗂️\",\"🛍️\"]]",
- "tiktok-views-vs-orders-myths": "[\"View ច្រើនលើ TikTok តែ Order តិច? ការយល់ខុស ៤ ពី View ដល់ចំណេញ\",\"Boost → Order → ចំណេញ\",[\"👀\",\"📉\",\"💰\"]]"
+ "tiktok-views-vs-orders-myths": "[\"View ច្រើនលើ TikTok តែ Order តិច? ការយល់ខុស ៤ ពី View ដល់ចំណេញ\",\"Boost → Order → ចំណេញ\",[\"👀\",\"📉\",\"💰\"]]",
+ "is-my-page-ready-to-boost": "[\"ផេកត្រៀម Boost ហើយឬនៅ? សំណួរ-ចម្លើយ ៦ មុនចាយលុយ ពី Cost per Message ដល់ Order\",\"Boost → Order → ចំណេញ\",[\"✅\",\"📱\",\"💬\"]]"
 }
