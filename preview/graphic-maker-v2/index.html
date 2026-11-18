@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="km">
+<html lang="km" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex">
@@ -30,7 +30,7 @@
 /* Premium studio. The controls are a quiet, numbered rail on the left; the poster sits on a lit studio backdrop on the right
    (always dark, like a photo set), so every template reads as a finished product. Gold is spent on one thing: the download. */
 :root{
-  --bg:#eef0f5; --bg2:#e6e9f1; --panel:#ffffff; --panel2:#f6f7fb; --ink:#0b1630; --muted:#5d6880; --faint:#8a93a8;
+  --bg:#ffffff; --bg2:#f6f7fb; --panel:#ffffff; --panel2:#f7f8fb; --ink:#0b1630; --muted:#5d6880; --faint:#8a93a8;
   --line:#e0e4ee; --line2:#cfd5e3; --brand:#1d4aa6; --brand-2:#2f62d6; --brand-soft:#e8eefc; --brand-ink:#ffffff;
   --gold:#ffd23f; --gold-2:#f5b81b; --gold-ink:#1d1500; --ok:#13854a; --warn:#b4540a;
   --check-a:#ffffff; --check-b:#e6e9f1; --shadow:0 1px 2px rgba(11,22,48,.05),0 12px 32px -18px rgba(11,22,48,.22);
@@ -50,7 +50,7 @@
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px;
-  background-image:radial-gradient(1200px 520px at 85% -10%,color-mix(in srgb,var(--brand) 14%,transparent),transparent 70%)}
+  background-image:radial-gradient(1200px 520px at 85% -10%,color-mix(in srgb,var(--brand) 7%,transparent),transparent 70%)}
 .wrap{max-width:1240px;margin:0 auto}
 a{color:inherit}
 
@@ -172,19 +172,19 @@ input[type=color]::-webkit-color-swatch-wrapper{padding:0}input[type=color]::-we
 /* studio stage */
 .stage{position:sticky;top:76px;display:grid;gap:12px}
 .studio{position:relative;border-radius:24px;overflow:hidden;isolation:isolate;padding:22px 22px 26px;
-  background:radial-gradient(120% 70% at 50% -5%,#33497f 0%,#18234a 38%,#0b1124 70%,#060913 100%);
-  border:1px solid rgba(255,255,255,.08);box-shadow:0 30px 70px -30px rgba(6,10,25,.7)}
-.studio::before{content:"";position:absolute;inset:auto 10% 4% 10%;height:60px;border-radius:50%;background:radial-gradient(closest-side,rgba(120,150,255,.28),transparent);z-index:-1}
-.studio-bar{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:14px;color:rgba(255,255,255,.7);font-size:12.5px}
-.studio-bar b{color:#fff;font-weight:700;font-size:13.5px;font-family:var(--f-num)}
+  background:radial-gradient(120% 70% at 50% -5%,#ffffff 0%,#f3f5fa 45%,#e7ebf3 100%);
+  border:1px solid var(--line);box-shadow:0 30px 70px -36px rgba(11,22,48,.35)}
+.studio::before{content:"";position:absolute;inset:auto 10% 4% 10%;height:60px;border-radius:50%;background:radial-gradient(closest-side,rgba(29,74,166,.14),transparent);z-index:-1}
+.studio-bar{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:14px;color:var(--muted);font-size:12.5px}
+.studio-bar b{color:var(--ink);font-weight:700;font-size:13.5px;font-family:var(--f-num)}
 .dot{display:inline-flex;align-items:center;gap:6px}
 .dot::before{content:"";width:7px;height:7px;border-radius:50%;background:#41c785;box-shadow:0 0 0 3px rgba(65,199,133,.2)}
 .view{position:relative;display:grid;place-items:center;min-height:200px}
 #preview{max-width:100%;max-height:min(64vh,720px);width:auto;height:auto;display:block;touch-action:none;cursor:grab;border-radius:10px;
-  background:repeating-conic-gradient(#1e2846 0 25%,#18213c 0 50%) 0 0/16px 16px;box-shadow:0 2px 0 rgba(255,255,255,.06),0 34px 60px -24px rgba(0,0,0,.85),0 0 0 1px rgba(255,255,255,.06)}
+  background:repeating-conic-gradient(#ffffff 0 25%,#e9edf4 0 50%) 0 0/16px 16px;box-shadow:0 30px 50px -26px rgba(11,22,48,.45),0 0 0 1px rgba(11,22,48,.06)}
 #preview.drag{cursor:grabbing}
-.tag{position:absolute;left:8px;top:8px;z-index:2;font-size:11px;font-weight:700;background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:2px 10px;backdrop-filter:blur(6px)}
-.hint{font-size:12px;color:rgba(255,255,255,.6);text-align:center;margin:14px 0 0;display:flex;justify-content:center;gap:6px;align-items:center}
+.tag{position:absolute;left:8px;top:8px;z-index:2;font-size:11px;font-weight:700;background:rgba(255,255,255,.9);color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:2px 10px;backdrop-filter:blur(6px)}
+.hint{font-size:12px;color:var(--muted);text-align:center;margin:14px 0 0;display:flex;justify-content:center;gap:6px;align-items:center}
 .hint svg{width:14px;height:14px}
 .dim{font-family:var(--f-num);font-weight:600}
 .stage-foot{display:grid;gap:8px}
