@@ -1,0 +1,198 @@
+{
+  "slug": "is-my-page-ready-to-boost",
+  "video_title": "Boost $20 បាន ៤០ Message ដូចគ្នា ហេតុអីផេកមួយខាត? ពិនិត្យផេកមុន Boost",
+  "topic": "ហេតុអីផេកត្រៀមរួច និងផេកមិនទាន់ត្រៀម Boost លុយដូចគ្នា តែចំណេញខុសគ្នា និងរបៀបគណនា Cost per Message អតិបរមា មុនចាយលុយ។",
+  "thumbnail_text": "ផេកបងត្រៀម Boost ហើយឬនៅ?",
+  "description": "ផេកពីរ Boost $20 បាន ៤០ Message ដូចគ្នា តែមួយចំណេញ $16 មួយទៀតខាត $2 (លេខគំរូ)។\nគណនា Cost per Message អតិបរមា ហើយពិនិត្យផេកមុនចុច Boost។\n#ADSBOX #លក់អនឡាញ #BoostPost #CostPerMessage",
+  "facebook_caption": "Boost $20 បាន ៤០ Message តែ Order តិច? 🤔\nប្រហែលបញ្ហាមិននៅ Boost ទេ គឺនៅផេក។ មុនចុច Boost ពិនិត្យ៖\n✅ ផេក និងគណនីផ្សាយ គ្មានការព្រមាន\n✅ Caption មានតម្លៃ និងថ្លៃដឹក\n✅ មានអ្នកឆ្លើយសារលឿន\n✅ មានស្តុកគ្រប់\n✅ ដឹង Cost per Message អតិបរមា\nចាយលុយ Boost ដូចគ្នា តែបាន Order ច្រើនជាង។\nផេកបងត្រៀម Boost ហើយឬនៅ? Comment «READY» មក 👇\n#ADSBOX #លក់អនឡាញ #BoostPost #CostPerMessage",
+  "scenes": [
+    {
+      "role": "hook",
+      "lines": [
+        "ផេកពីរ ចាយ Boost $20 ដូចគ្នា។",
+        "បាន ៤០ Message ដូចគ្នាទៀត។",
+        "តែផេកមួយ Order ៨ ផេកមួយទៀតបានតែ ៤!"
+      ],
+      "voice": "Curious, surprised consultant talking to a shop owner, short pause after each number, natural",
+      "visual": {
+        "type": "question",
+        "title": "Message ដូចគ្នា!",
+        "bubbles": [
+          "ឈុតនេះប៉ុន្មាន?",
+          "ដឹកខេត្តបានអត់?",
+          "នៅមានស្តុកទេ?"
+        ]
+      }
+    },
+    {
+      "role": "problem",
+      "lines": [
+        "លេខគំរូ៖ ហាងលក់ឈុតថែស្បែក $10។",
+        "ផេកត្រៀមរួច ចំណេញ $16។",
+        "ផេកមិនទាន់ត្រៀម…",
+        "ខាត $2។ ហេតុអីខុសគ្នាម្ល៉េះ?"
+      ],
+      "voice": "Sincerely asking the shop owner, not rushed, stress the loss",
+      "visual": {
+        "type": "vanish",
+        "host": false,
+        "expected_label": "ផេកត្រៀមរួច",
+        "expected": "$16",
+        "real_label": "មិនត្រៀម (លេខគំរូ)",
+        "real": "-$2",
+        "gap": "$18 បាត់ទៅណា?"
+      }
+    },
+    {
+      "role": "example",
+      "lines": [
+        "លក់ ១ ឈុត បាន $10។",
+        "ដកថ្លៃដើម $4។",
+        "ដកថ្លៃខ្ចប់ $0.50 ថ្លៃដឹក $1។",
+        "នៅសល់មុនដកលុយ Boost…"
+      ],
+      "voice": "Expert explaining numbers slowly and clearly to a shop owner, each price distinct",
+      "visual": {
+        "type": "waterfall",
+        "host": false,
+        "start": {
+          "label": "លក់ ១ ឈុត",
+          "amount": 10
+        },
+        "rows": [
+          {
+            "icon": "product",
+            "label": "ថ្លៃដើម",
+            "value": "$4",
+            "amount": 4,
+            "note": "ថ្លៃដើម ១ ឈុត",
+            "at": [
+              1,
+              0
+            ],
+            "note_at": [
+              1,
+              0.5
+            ]
+          },
+          {
+            "icon": "pack",
+            "label": "ថ្លៃខ្ចប់",
+            "value": "$0.50",
+            "amount": 0.5,
+            "note": "ក្នុង ១ Order",
+            "at": [
+              2,
+              0
+            ],
+            "note_at": [
+              2,
+              0.3
+            ]
+          },
+          {
+            "icon": "ship",
+            "label": "ថ្លៃដឹក",
+            "value": "$1",
+            "amount": 1,
+            "note": "ហាងចេញ ក្នុង ១ Order",
+            "at": [
+              2,
+              0.6
+            ],
+            "note_at": [
+              2,
+              0.8
+            ]
+          }
+        ],
+        "result": {
+          "label": "សល់មុនដក Boost",
+          "value": "$4.50",
+          "at": [
+            3,
+            0.8
+          ]
+        }
+      }
+    },
+    {
+      "role": "example",
+      "lines": [
+        "$4.50 ចែកនឹង Message ដែលបាន ១ Order។",
+        "ផេកឆ្លើយយឺត ១០ Message អតិបរមា $0.45។",
+        "ផេកត្រៀមរួច ៥ Message អតិបរមា $0.90។",
+        "Boost $0.50 ផេកមិនត្រៀម ខាតហើយ!"
+      ],
+      "voice": "Calm expert, short pause before each final number, then strong clear emphasis on it",
+      "visual": {
+        "type": "compare",
+        "bad": "មិនត្រៀម · អតិបរមា $0.45",
+        "good": "ត្រៀមរួច · អតិបរមា $0.90"
+      }
+    },
+    {
+      "role": "tip",
+      "lines": [
+        "មុនចុច Boost ពិនិត្យផេកសិន។",
+        "ផេកគ្មានការព្រមាន។",
+        "Caption មានតម្លៃ និងថ្លៃដឹក។",
+        "មានអ្នកឆ្លើយសារ និងមានស្តុក។"
+      ],
+      "voice": "Practical, friendly expert, clear and steady, one point at a time",
+      "visual": {
+        "type": "checklist",
+        "host": false,
+        "items": [
+          "ផេកគ្មានការព្រមាន",
+          "Caption មានតម្លៃ ថ្លៃដឹក",
+          "មានអ្នកឆ្លើយសារលឿន",
+          "មានស្តុកគ្រប់"
+        ]
+      }
+    },
+    {
+      "role": "summary",
+      "lines": [
+        "Boost នាំ Message មក។",
+        "តែផេកទេ ដែលប្ដូរ Message ជា Order។"
+      ],
+      "voice": "Warm, confident expert, slow and clear, emphasise the lesson",
+      "visual": {
+        "type": "takeaway",
+        "host": false,
+        "quote": "Boost នាំ Message\nផេកបិទ Order",
+        "chips": [
+          "ឆ្លើយលឿន",
+          "មានតម្លៃ",
+          "មានស្តុក"
+        ]
+      }
+    },
+    {
+      "role": "cta",
+      "lines": [
+        "ផេកបងត្រៀម Boost ហើយឬនៅ?",
+        "Comment ពាក្យ READY មក",
+        "ក្រុម ADS BOX រីករាយជួយពិនិត្យជាមួយបង។"
+      ],
+      "voice": "Friendly, confident, helpful expert inviting the shop owner to comment, warm, not salesy",
+      "visual": {
+        "type": "cta2",
+        "question": "ផេកបងត្រៀម Boost ហើយឬនៅ?",
+        "comment": "READY",
+        "comment_line": 1,
+        "services": [
+          "Boost Post",
+          "Boost Live"
+        ],
+        "url": "adsbox.agency"
+      }
+    }
+  ],
+  "article": {
+    "title": "ផេកត្រៀម Boost ហើយឬនៅ? សំណួរ-ចម្លើយ ៦ មុនចាយលុយ ពី Cost per Message ដល់ Order",
+    "url": "https://adsbox.agency/knowledge/is-my-page-ready-to-boost/"
+  },
+  "written_at": "2026-11-19T07:25:15+07:00"
+}
