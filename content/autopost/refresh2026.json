@@ -1,0 +1,613 @@
+{
+ "name": "2026 Knowledge Refresh",
+ "decided_by": "COO",
+ "received": "2026-11-19",
+ "start": "2026-11-19",
+ "end": "2026-12-31",
+ "articles_per_day": 1,
+ "approval_required": true,
+ "how_it_works": "Each date publishes only the draft file in 'draft' after the COO approves it (approved_by + approved_at filled). No approved draft = nothing is published that day and the owner gets a Telegram note. The weekly rotation is not used in this period. From 1 Jan 2027 a new content system will be planned separately.",
+ "styles": [
+  "Problem Story",
+  "One Big Question",
+  "Numbers First",
+  "Compare Two Sellers",
+  "Decision Scenario",
+  "Find the Mistake",
+  "Checklist / Self Audit"
+ ],
+ "days": [
+  {
+   "date": "2026-11-19",
+   "topic": "Ads ចំណាយដូចមុន តែ Order មិនកើន",
+   "style": "Problem Story",
+   "tag": "Boost → Order → ចំណេញ",
+   "category": "boost-post",
+   "overlaps": [],
+   "overlap_risk": "slot-used",
+   "recommendation": "The 19 Nov slot was already filled at 06:58 by the weekly rotation (is-my-page-ready-to-boost) before this plan arrived. Recommend: publish this topic on 20 Nov.",
+   "draft": "",
+   "status": "slot used — is-my-page-ready-to-boost published 06:58 (weekly rotation) before this plan; topic proposed for 20 Nov"
+  },
+  {
+   "date": "2026-11-20",
+   "topic": "Cost/Order តើមានន័យអ្វី?",
+   "style": "One Big Question",
+   "tag": "Boost → Order → ចំណេញ",
+   "category": "boost-post",
+   "overlaps": [
+    "cost-per-message-vs-cost-per-order",
+    "max-cost-per-order-before-losing-money",
+    "real-profit-per-order"
+   ],
+   "overlap_risk": "high",
+   "recommendation": "Cost per Order is already explained in 3 live articles. Recommend: drop this topic and use 20 Nov for the moved 19 Nov topic.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-11-20.json",
+   "status": "draft ready — waiting for COO approval (proposed: uses the moved 19 Nov topic)",
+   "proposed_topic": "Ads ចំណាយដូចមុន តែ Order មិនកើន",
+   "proposed_style": "Problem Story"
+  },
+  {
+   "date": "2026-11-21",
+   "topic": "Message ច្រើន តែ Order តិច",
+   "style": "Numbers First",
+   "tag": "Boost → Order → ចំណេញ",
+   "category": "boost-post",
+   "overlaps": [
+    "turn-customer-questions-into-orders",
+    "organize-messenger-inbox-reply-fast"
+   ],
+   "overlap_risk": "medium",
+   "recommendation": "Same problem as turn-customer-questions-into-orders. New angle: split 100 messages into 5 funnel steps and find the step with the biggest loss.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-11-21.json",
+   "status": "draft ready — waiting for COO approval"
+  },
+  {
+   "date": "2026-11-22",
+   "topic": "Seller A vs Seller B",
+   "style": "Compare Two Sellers",
+   "tag": "Boost → Order → ចំណេញ",
+   "category": "boost-post",
+   "overlaps": [
+    "cost-per-message-vs-cost-per-order"
+   ],
+   "overlap_risk": "low",
+   "recommendation": "Angle: same $20/day; Seller A chases cheap Cost per Message, Seller B watches Cost per Order and profit.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-11-22.json",
+   "status": "draft ready — waiting for COO approval"
+  },
+  {
+   "date": "2026-11-23",
+   "topic": "Ads មិនបាន Order 3 ថ្ងៃ",
+   "style": "Decision Scenario",
+   "tag": "Boost → Order → ចំណេញ",
+   "category": "decision",
+   "overlaps": [
+    "when-to-raise-or-cut-boost-budget"
+   ],
+   "overlap_risk": "medium",
+   "recommendation": "Keep as a decision scenario (A/B/C/D). 1 Dec is almost the same question; see 1 Dec.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-11-23.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-11-24",
+   "topic": "5 កំហុសដែលធ្វើឲ្យ Ads ខាត",
+   "style": "Find the Mistake",
+   "tag": "Boost → Order → ចំណេញ",
+   "category": "decision",
+   "overlaps": [
+    "max-cost-per-order-before-losing-money"
+   ],
+   "overlap_risk": "low",
+   "recommendation": "OK.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-11-24.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-11-25",
+   "topic": "មុនបង្កើន Budget Check 7 ចំណុច",
+   "style": "Checklist / Self Audit",
+   "tag": "Boost → Order → ចំណេញ",
+   "category": "decision",
+   "overlaps": [
+    "when-to-raise-or-cut-boost-budget",
+    "is-my-page-ready-to-boost"
+   ],
+   "overlap_risk": "high",
+   "recommendation": "when-to-raise-or-cut-boost-budget already asks 5 questions before changing budget. New angle: can the shop handle more Orders (stock, reply capacity, packing, cash)?",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-11-25.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "topic": "Boost Post: តើអ្វីធ្វើឲ្យ Post មួយលក់បាន?",
+   "style": "Problem Story",
+   "tag": "Boost → Order → ចំណេញ",
+   "category": "boost-post",
+   "overlaps": [
+    "choose-which-post-to-boost",
+    "test-two-boost-posts-clothing-shop",
+    "caption-answers-questions-first",
+    "product-photos-that-sell-before-after"
+   ],
+   "overlap_risk": "high",
+   "recommendation": "4 live articles cover post choice, testing, caption and photos. Keep only as a story that links them; do not repeat their tips.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-11-26.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-11-27",
+   "topic": "Views ច្រើន ≠ Order ច្រើន?",
+   "style": "One Big Question",
+   "tag": "Boost → Order → ចំណេញ",
+   "category": "boost-post",
+   "overlaps": [
+    "tiktok-views-vs-orders-myths"
+   ],
+   "overlap_risk": "high",
+   "recommendation": "Views vs Orders is also 9 Dec, 16 Dec, 17 Dec and the live tiktok-views-vs-orders-myths. Recommend 27 Nov: Facebook Post Reach/Like vs Order only.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-11-27.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-11-28",
+   "topic": "$50 Ads បាន 10 Orders — ចំណេញឬខាត?",
+   "style": "Numbers First",
+   "tag": "ចំណេញពិត",
+   "category": "profit",
+   "overlaps": [
+    "max-cost-per-order-before-losing-money",
+    "real-profit-per-order"
+   ],
+   "overlap_risk": "medium",
+   "recommendation": "Keep, with new numbers; link the break-even article instead of re-teaching it.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-11-28.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-11-29",
+   "topic": "Seller ដែល Boost ដូចគ្នា ប៉ុន្តែលទ្ធផលខុសគ្នា",
+   "style": "Compare Two Sellers",
+   "tag": "Boost → Order → ចំណេញ",
+   "category": "decision",
+   "overlaps": [],
+   "overlap_risk": "high",
+   "recommendation": "Same idea as 22 Nov. Recommend: Seller A ships Phnom Penh, Seller B ships provinces — same Cost per Order, different profit (delivery, refused parcels).",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-11-29.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-11-30",
+   "topic": "តើពេលណាគួរ Stop Ads?",
+   "style": "Decision Scenario",
+   "tag": "Boost → Order → ចំណេញ",
+   "category": "decision",
+   "overlaps": [
+    "when-to-raise-or-cut-boost-budget"
+   ],
+   "overlap_risk": "medium",
+   "recommendation": "Also close to 26 Dec. Keep 30 Nov on stop signals (no Orders); 26 Dec on Orders that lose money.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-11-30.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-12-01",
+   "topic": "Ads មិនបាន Order តើបញ្ហានៅណា?",
+   "style": "Find the Mistake",
+   "tag": "Boost → Order → ចំណេញ",
+   "category": "boost-post",
+   "overlaps": [],
+   "overlap_risk": "high",
+   "recommendation": "Almost the same as 23 Nov. Recommend: «Ads បាន Message តែ Order បាត់មុនដឹក — រកកំហុស» (refused / unconfirmed Orders).",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-12-01.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-12-02",
+   "topic": "7 ចំណុចត្រូវ Check មុន Boost",
+   "style": "Checklist / Self Audit",
+   "tag": "Boost → Order → ចំណេញ",
+   "category": "boost-post",
+   "overlaps": [
+    "is-my-page-ready-to-boost",
+    "choose-which-post-to-boost"
+   ],
+   "overlap_risk": "high",
+   "recommendation": "is-my-page-ready-to-boost (19 Nov) is the same checklist. Recommend: check the Post itself (photo, price, offer, CTA, stock) — or merge with 25 Nov.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-12-02.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-12-03",
+   "topic": "Product ល្អ តែ Ads មិនល្អ",
+   "style": "Problem Story",
+   "tag": "Boost → Order → ចំណេញ",
+   "category": "boost-post",
+   "overlaps": [],
+   "overlap_risk": "low",
+   "recommendation": "OK.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-12-03.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-12-04",
+   "topic": "តើ Ads ថ្លៃ ឬ Product ចំណេញតិច?",
+   "style": "One Big Question",
+   "tag": "ចំណេញពិត",
+   "category": "profit",
+   "overlaps": [
+    "max-cost-per-order-before-losing-money"
+   ],
+   "overlap_risk": "medium",
+   "recommendation": "Keep as a diagnosis question; link the break-even article.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-12-04.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-12-05",
+   "topic": "$100 Ads → ត្រូវការ Order ប៉ុន្មាន?",
+   "style": "Numbers First",
+   "tag": "ចំណេញពិត",
+   "category": "profit",
+   "overlaps": [
+    "max-cost-per-order-before-losing-money"
+   ],
+   "overlap_risk": "medium",
+   "recommendation": "Close to 28 Nov; use it for the break-even Order count.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-12-05.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-12-06",
+   "topic": "Product A vs Product B",
+   "style": "Compare Two Sellers",
+   "tag": "ចំណេញពិត",
+   "category": "profit",
+   "overlaps": [],
+   "overlap_risk": "low",
+   "recommendation": "OK — which product to Boost by profit per Order.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-12-06.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-12-07",
+   "topic": "បើ Budget មានតែ $10/ថ្ងៃ តើធ្វើអ្វីមុន?",
+   "style": "Decision Scenario",
+   "tag": "Boost → Order → ចំណេញ",
+   "category": "decision",
+   "overlaps": [
+    "split-monthly-ad-budget-test-scale-reserve"
+   ],
+   "overlap_risk": "medium",
+   "recommendation": "Keep as decision; link the budget-split article.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-12-07.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-12-08",
+   "topic": "Live មានអ្នកមើល តែគ្មាន Order",
+   "style": "Problem Story",
+   "tag": "Live → Order",
+   "category": "boost-live",
+   "overlaps": [
+    "sell-more-on-live",
+    "one-hour-live-plan-four-segments"
+   ],
+   "overlap_risk": "high",
+   "recommendation": "sell-more-on-live has nearly the same title. New angle: who the Boost brought into the Live (wrong viewers).",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-12-08.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-12-09",
+   "topic": "Views ច្រើនមានប្រយោជន៍អ្វី បើគ្មានអ្នកទិញ?",
+   "style": "One Big Question",
+   "tag": "Live → Order",
+   "category": "boost-live",
+   "overlaps": [
+    "tiktok-views-vs-orders-myths"
+   ],
+   "overlap_risk": "medium",
+   "recommendation": "Keep for Live only.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-12-09.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-12-10",
+   "topic": "Live 1 ម៉ោងបាន X Orders — តើលទ្ធផលល្អទេ?",
+   "style": "Numbers First",
+   "tag": "Live → Order",
+   "category": "boost-live",
+   "overlaps": [
+    "one-hour-live-plan-four-segments",
+    "how-much-to-spend-per-boost-live"
+   ],
+   "overlap_risk": "medium",
+   "recommendation": "Keep; compare with the shop's own past Lives and Cost per Order.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-12-10.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-12-11",
+   "topic": "Live Seller A vs Seller B",
+   "style": "Compare Two Sellers",
+   "tag": "Live → Order",
+   "category": "boost-live",
+   "overlaps": [],
+   "overlap_risk": "low",
+   "recommendation": "OK.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-12-11.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-12-12",
+   "topic": "Live ស្ងាត់ តើគួរ Stop ឬបន្ត?",
+   "style": "Decision Scenario",
+   "tag": "Live → Order",
+   "category": "boost-live",
+   "overlaps": [],
+   "overlap_risk": "low",
+   "recommendation": "OK — publish on 12.12 sale day.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-12-12.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-12-13",
+   "topic": "5 កំហុសពេល Boost Live",
+   "style": "Find the Mistake",
+   "tag": "Live → Order",
+   "category": "boost-live",
+   "overlaps": [
+    "facebook-live-selling-myths",
+    "how-much-to-spend-per-boost-live"
+   ],
+   "overlap_risk": "medium",
+   "recommendation": "Focus on Boost Live settings and budget mistakes, not Live hosting.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-12-13.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-12-14",
+   "topic": "Live មុន Boost: 8 ចំណុចត្រូវ Check",
+   "style": "Checklist / Self Audit",
+   "tag": "Live → Order",
+   "category": "boost-live",
+   "overlaps": [
+    "sell-more-on-live"
+   ],
+   "overlap_risk": "high",
+   "recommendation": "sell-more-on-live has a before-Live checklist. Make it Boost-specific (audience, budget, timing, stock, codes).",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-12-14.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-12-15",
+   "topic": "Video មាន Views តែមិនលក់",
+   "style": "Problem Story",
+   "tag": "Boost → Order → ចំណេញ",
+   "category": "boost-tiktok",
+   "overlaps": [
+    "tiktok-views-vs-orders-myths"
+   ],
+   "overlap_risk": "high",
+   "recommendation": "Same as tiktok-views-vs-orders-myths. New angle: a video with no price and no next step.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-12-15.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-12-16",
+   "topic": "Viral Video តើមានន័យថាលក់បានទេ?",
+   "style": "One Big Question",
+   "tag": "Boost → Order → ចំណេញ",
+   "category": "boost-tiktok",
+   "overlaps": [
+    "tiktok-views-vs-orders-myths"
+   ],
+   "overlap_risk": "high",
+   "recommendation": "4th views-vs-orders topic. Recommend: «Video ណាគួរ Boost? Video Organic ល្អ ≠ Video Boost ល្អ».",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-12-16.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-12-17",
+   "topic": "100,000 Views vs 100 Orders",
+   "style": "Numbers First",
+   "tag": "Boost → Order → ចំណេញ",
+   "category": "boost-tiktok",
+   "overlaps": [
+    "tiktok-views-vs-orders-myths"
+   ],
+   "overlap_risk": "medium",
+   "recommendation": "Keep as the numbers piece for TikTok.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-12-17.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-12-18",
+   "topic": "Video A vs Video B",
+   "style": "Compare Two Sellers",
+   "tag": "Boost → Order → ចំណេញ",
+   "category": "boost-tiktok",
+   "overlaps": [],
+   "overlap_risk": "low",
+   "recommendation": "OK.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-12-18.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-12-19",
+   "topic": "TikTok Video មិនបាន Order — តើប្តូរអ្វីមុន?",
+   "style": "Decision Scenario",
+   "tag": "Boost → Order → ចំណេញ",
+   "category": "boost-tiktok",
+   "overlaps": [
+    "should-facebook-sellers-start-tiktok"
+   ],
+   "overlap_risk": "low",
+   "recommendation": "OK.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-12-19.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-12-20",
+   "topic": "6 កំហុសដែល Seller ធ្វើជាមួយ Short Video",
+   "style": "Find the Mistake",
+   "tag": "Boost → Order → ចំណេញ",
+   "category": "boost-tiktok",
+   "overlaps": [
+    "tiktok-views-vs-orders-myths"
+   ],
+   "overlap_risk": "medium",
+   "recommendation": "Avoid the 4 myths already published.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-12-20.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-12-21",
+   "topic": "មុន Boost TikTok Check 7 ចំណុច",
+   "style": "Checklist / Self Audit",
+   "tag": "Boost → Order → ចំណេញ",
+   "category": "boost-tiktok",
+   "overlaps": [
+    "should-facebook-sellers-start-tiktok"
+   ],
+   "overlap_risk": "low",
+   "recommendation": "OK.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-12-21.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-12-22",
+   "topic": "លក់បានច្រើន តែហេតុអ្វីលុយមិនសល់?",
+   "style": "Problem Story",
+   "tag": "ចំណេញពិត",
+   "category": "profit",
+   "overlaps": [
+    "cost-per-message-vs-cost-per-order"
+   ],
+   "overlap_risk": "high",
+   "recommendation": "cost-per-message-vs-cost-per-order is the same question. New angle: cash stuck in COD, stock and refused parcels.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-12-22.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-12-23",
+   "topic": "Revenue ខុសពី Profit យ៉ាងដូចម្តេច?",
+   "style": "One Big Question",
+   "tag": "ចំណេញពិត",
+   "category": "profit",
+   "overlaps": [
+    "real-profit-per-order"
+   ],
+   "overlap_risk": "high",
+   "recommendation": "New angle: the 4 money levels for a whole month, not per Order.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-12-23.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-12-24",
+   "topic": "Order មួយចំណេញ $3 — Ads គួរចំណាយប៉ុន្មាន?",
+   "style": "Numbers First",
+   "tag": "ចំណេញពិត",
+   "category": "profit",
+   "overlaps": [
+    "max-cost-per-order-before-losing-money"
+   ],
+   "overlap_risk": "high",
+   "recommendation": "Same as max-cost-per-order-before-losing-money. Recommend: «ចំណេញ $3/Order — ចង់បាន $300/ខែ ត្រូវ Order និង Ads ប៉ុន្មាន?»",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-12-24.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-12-25",
+   "topic": "Seller A លក់ច្រើន vs Seller B ចំណេញច្រើន",
+   "style": "Compare Two Sellers",
+   "tag": "ចំណេញពិត",
+   "category": "profit",
+   "overlaps": [],
+   "overlap_risk": "low",
+   "recommendation": "OK.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-12-25.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-12-26",
+   "topic": "Ads បាន Order តែខាត — Continue ឬ Stop?",
+   "style": "Decision Scenario",
+   "tag": "ចំណេញពិត",
+   "category": "profit",
+   "overlaps": [
+    "when-to-raise-or-cut-boost-budget"
+   ],
+   "overlap_risk": "medium",
+   "recommendation": "See 30 Nov; keep on Orders that lose money.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-12-26.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-12-27",
+   "topic": "7 កំហុសដែលធ្វើឲ្យ Seller គិតថាខ្លួនចំណេញ",
+   "style": "Find the Mistake",
+   "tag": "ចំណេញពិត",
+   "category": "profit",
+   "overlaps": [
+    "real-profit-per-order"
+   ],
+   "overlap_risk": "low",
+   "recommendation": "OK.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-12-27.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-12-28",
+   "topic": "Profit Audit: ពិនិត្យអាជីវកម្មក្នុង 10 នាទី",
+   "style": "Checklist / Self Audit",
+   "tag": "ចំណេញពិត",
+   "category": "profit",
+   "overlaps": [
+    "daily-spend-and-order-report"
+   ],
+   "overlap_risk": "low",
+   "recommendation": "OK.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-12-28.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-12-29",
+   "topic": "តើឆ្នាំ 2026 អ្នកចំណាយ Ads ប៉ុន្មាន ដើម្បីរកបាន 1 Order?",
+   "style": "Numbers First",
+   "tag": "ចំណេញពិត",
+   "category": "profit",
+   "overlaps": [],
+   "overlap_risk": "low",
+   "recommendation": "OK — the reader works out their own year number.",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-12-29.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-12-30",
+   "topic": "បើចាប់ផ្តើមឆ្នាំ 2026 ម្តងទៀត តើអ្នកនឹងធ្វើអ្វីខុសពីមុន?",
+   "style": "Problem Story",
+   "tag": "Boost → Order → ចំណេញ",
+   "category": "decision",
+   "overlaps": [],
+   "overlap_risk": "low",
+   "recommendation": "OK (reflection).",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-12-30.json",
+   "status": "pending"
+  },
+  {
+   "date": "2026-12-31",
+   "topic": "7 ចំណុចដែលម្ចាស់អាជីវកម្មគួរដឹង មុនចូលឆ្នាំ 2027",
+   "style": "Checklist / Self Audit",
+   "tag": "ចំណេញពិត",
+   "category": "profit",
+   "overlaps": [],
+   "overlap_risk": "low",
+   "recommendation": "OK (year-end checklist).",
+   "draft": "content/autopost/prewritten/refresh-2026/2026-12-31.json",
+   "status": "pending"
+  }
+ ]
+}

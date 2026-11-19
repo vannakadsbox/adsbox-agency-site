@@ -52,6 +52,21 @@ def new_failures(old_path):
     return ok
 
 
+def refresh_waiting(date):
+    """2026 Knowledge Refresh: the title/topic of a planned day whose draft is missing or not yet COO-approved, else None."""
+    cal = C.load_json("refresh2026.json", None)
+    if not cal or not (cal["start"] <= date <= cal["end"]):
+        return None
+    day = next((d for d in cal["days"] if d["date"] == date), None)
+    if not day:
+        return None
+    path = os.path.join(C.ROOT, day.get("draft") or "")
+    d = json.load(open(path, encoding="utf-8")) if day.get("draft") and os.path.exists(path) else {}
+    if d.get("approved_by") and d.get("approved_at"):
+        return None
+    return d.get("title") or day.get("proposed_topic") or day["topic"]
+
+
 def watchdog(now_iso=None):
     s, h = C.settings(), C.history()
     now = C.now_local(now_iso)
@@ -67,6 +82,11 @@ def watchdog(now_iso=None):
             print(f"{slot}: done."); continue
         if C.slot_record(h, now.date().isoformat(), slot, ("failed",)):
             print(f"{slot}: failure already alerted."); continue
+        waiting = refresh_waiting(now.date().isoformat())
+        if waiting:
+            ok &= send(f"📝 ADS BOX: អត្ថបទថ្ងៃ {now.date()} «{waiting}» នៅរង់ចាំ COO យល់ព្រម ដូច្នេះមិនទាន់ចេញទេ។\n"
+                       "2026 Knowledge Refresh: today's draft is waiting for COO approval; nothing was published.")
+            continue
         ok &= send(f"⚠️ ADS BOX: មិនទាន់មានអត្ថបទ{SLOT_KH[slot]} ថ្ងៃ {now.date()} ទេ (ម៉ោង {s[slot]['time']})។\n"
                    f"No {slot} knowledge article was recorded {s['alert_after_minutes']} minutes after its scheduled time. "
                    f"The Claude scheduled task may not have run (paused, needs approval, or usage limit). Check the task in Claude and {RUNS_URL}")
