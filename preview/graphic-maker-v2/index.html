@@ -143,6 +143,8 @@ input[type=color]::-webkit-color-swatch-wrapper{padding:0}input[type=color]::-we
 
 /* templates */
 .tgroups{margin-bottom:10px}
+.bgup{margin:0 0 10px 8px;font-size:12.5px;padding:6px 12px}
+.bgup[hidden]{display:none}
 .tpls{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
 @media (max-width:1100px){.tpls{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media (max-width:640px){.tpls{grid-template-columns:repeat(3,minmax(0,1fr))}}
@@ -453,7 +455,8 @@ footer.fine a{color:var(--muted)}
 
       <section class="card" aria-labelledby="s3">
       <h2 id="s3"><b>2</b>ជ្រើសគំរូ</h2>
-      <div class="seg tgroups" id="tgroups" role="group" aria-label="ប្រភេទគំរូ"><button type="button" data-g="style" aria-pressed="true">ម៉ូដប៉ូស្ទ័រ (10)</button><button type="button" data-g="frame" aria-pressed="false">ស៊ុមលក់ (16)</button></div>
+      <div class="seg tgroups" id="tgroups" role="group" aria-label="ប្រភេទគំរូ"><button type="button" data-g="style" aria-pressed="true">ម៉ូដប៉ូស្ទ័រ (10)</button><button type="button" data-g="frame" aria-pressed="false">ស៊ុមលក់ (16)</button><button type="button" data-g="bg" aria-pressed="false">Background (5)</button></div>
+      <label class="btn bgup" id="bgUp" for="bgFile" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>បង្ហោះរូប Background</label><input type="file" id="bgFile" accept="image/*" hidden>
       <div class="tpls" id="tpls"></div>
       </section>
     </div>
@@ -584,7 +587,7 @@ const F_LUX = '"Playfair Display","MiSans Khmer","Kantumruy Pro",serif';
 
 // ---------------- state ----------------
 const S = { tpl: "clean", W: 1080, H: 1080, transparent: false, fonly: false, credit: true, mode: "ai", color: null,
-  raw: null, product: null, giftRaw: null, gift: null, scale: 1, ts: 1, es: {}, sel: null, dx: 0, dy: 0, box: null };
+  bgImg: null, raw: null, product: null, giftRaw: null, gift: null, scale: 1, ts: 1, es: {}, sel: null, dx: 0, dy: 0, box: null };
 let REC = false;
 // Click-to-resize: every text element records where it was drawn (preview only); each one has its own size.
 let HITS = [], NOSCALE = false;
@@ -626,6 +629,11 @@ const TPLS = [
   { id: "ckraft", g: "frame", name: "Kraft Tag", kh: "ស្លាកតម្លៃ", A: "#9a6a3c" },
   { id: "cgiftcard", g: "frame", name: "Gift Card", kh: "កាតកាដូថែម", A: "#1d7fe0" },
   { id: "ccatalog", g: "frame", name: "Catalog Card", kh: "កាតកាតាឡុក", A: "#3a2f8f" },
+  { id: "bgcream", g: "bg", name: "Cream Studio", kh: "បន្ទប់ក្រែម", A: "#b8862f" },
+  { id: "bglav", g: "bg", name: "Lavender Room", kh: "បន្ទប់ស្វាយ", A: "#e0457b" },
+  { id: "bgdark", g: "bg", name: "Dark Showroom", kh: "ស្ទូឌីយោខ្មៅ", A: "#e0262f" },
+  { id: "bgpearl", g: "bg", name: "Pearl Arches", kh: "ទ្វារក្លោងគុជ", A: "#c0773a" },
+  { id: "bgphoto", g: "bg", name: "Your Photo", kh: "រូបផ្ទាល់ខ្លួន", A: "#0059e0" },
 ];
 function shade(hex, k) { const n = parseInt(hex.slice(1), 16); const r = n >> 16, g = (n >> 8) & 255, b = n & 255; const f = (v) => Math.max(0, Math.min(255, Math.round(k < 0 ? v * (1 + k) : v + (255 - v) * k))); return "#" + [f(r), f(g), f(b)].map((v) => v.toString(16).padStart(2, "0")).join(""); }
 function alpha(hex, a) { const n = parseInt(hex.slice(1), 16); return `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},${a})`; }
@@ -1452,6 +1460,110 @@ T.ccatalog = (c, W, H, d, P) => {
   if (d.label) tag(c, d.label, W - b - 140 * u, b + 40 * u, { size: 28 * u, bg: A, fg: "#fff", r: 20 * u });
 };
 
+// ---------------- backgrounds (Background tab) ----------------
+// A studio scene behind the product: background, then the photo standing on the counter, then the text on top.
+// Scenes are drawn here (no stock photos); "Your Photo" uses a background the customer uploads.
+function bgLayout(W, H, kind, u) {
+  if (kind === "wide") return { title: { x: 70 * u, y: 70 * u, w: W * 0.4, h: H * 0.34 }, price: { x: 70 * u, y: H * 0.44, w: W * 0.34, h: H * 0.26 }, tiles: { x: 70 * u, y: H - 190 * u, w: W * 0.4, h: 130 * u }, prod: { x: W * 0.46, y: 60 * u, w: W * 0.46, h: H * 0.72 - 60 * u }, floor: H * 0.72 };
+  if (kind === "sq") return { title: { x: 60 * u, y: 50 * u, w: W - 120 * u, h: 170 * u }, price: { x: W - 380 * u, y: 250 * u, w: 330 * u, h: 210 * u }, tiles: { x: 50 * u, y: H - 160 * u, w: W - 100 * u, h: 120 * u }, prod: { x: 90 * u, y: 230 * u, w: W - 180 * u, h: H * 0.74 - 230 * u }, floor: H * 0.74 };
+  return { title: { x: 60 * u, y: 70 * u, w: W - 120 * u, h: 300 * u }, price: { x: W * 0.18, y: 400 * u, w: W * 0.64, h: 250 * u }, tiles: { x: 50 * u, y: H - 230 * u, w: W - 100 * u, h: 160 * u }, prod: { x: 110 * u, y: 690 * u, w: W - 220 * u, h: H * 0.8 - 690 * u }, floor: H * 0.8 };
+}
+function bgTiles(c, d, z, u, o) {
+  const items = [d.stock, d.gift && (/^ថែម/.test(d.gift) ? d.gift : "ថែម " + d.gift), d.size, d.code && "CODE " + d.code, d.phone && "☎ " + d.phone, d.cta].filter(Boolean).slice(0, 3);
+  if (!items.length) return;
+  const gap = 18 * u, w = (z.w - gap * (items.length - 1)) / items.length;
+  items.forEach((t, j) => {
+    const x = z.x + j * (w + gap);
+    c.save(); c.shadowColor = "rgba(20,20,40,.18)"; c.shadowBlur = 18 * u; c.shadowOffsetY = 6 * u; c.fillStyle = o.tileBg; rr(c, x, z.y, w, z.h, 20 * u); c.fill(); c.restore();
+    c.strokeStyle = o.tileLine; c.lineWidth = 2 * u; rr(c, x + 6 * u, z.y + 6 * u, w - 12 * u, z.h - 12 * u, 16 * u); c.stroke();
+    text(c, t, x + w / 2, z.y + z.h / 2, { size: 34 * u, weight: 800, color: o.tileFg, maxW: w - 40 * u, lines: 2, lh: 1.15 });
+  });
+}
+function bgPrice(c, d, z, u, o) {
+  c.save(); c.shadowColor = "rgba(20,20,40,.22)"; c.shadowBlur = 26 * u; c.shadowOffsetY = 10 * u; c.fillStyle = o.cardBg; rr(c, z.x, z.y, z.w, z.h, 26 * u); c.fill(); c.restore();
+  c.fillStyle = o.cardBar; rr(c, z.x, z.y, z.w, 44 * u, 26 * u); c.fill(); c.fillRect(z.x, z.y + 22 * u, z.w, 22 * u);
+  [0, 1, 2].forEach((k) => { c.fillStyle = ["#ff6159", "#ffbd2e", "#28c941"][k]; c.beginPath(); c.arc(z.x + (28 + k * 26) * u, z.y + 22 * u, 8 * u, 0, Math.PI * 2); c.fill(); });
+  if (d.label) text(c, d.label, z.x + z.w / 2 + 30 * u, z.y + 22 * u, { size: 24 * u, weight: 800, color: o.barFg, maxW: z.w - 160 * u });
+  stack(c, [d.off && { kind: "tag", t: "បញ្ចុះ " + d.off + "%", size: 26 * u, bg: o.accent, fg: "#fff", r: 8, after: 6 * u }, { kind: "old", t: d.old, size: 32 * u, color: o.soft },
+    { kind: "price", d, size: 120 * u, color: o.accent }, !d.priceN && { kind: "text", t: d.cta || "សួរតម្លៃតាម Inbox", lines: 2, size: 42 * u, weight: 800, color: o.accent }],
+    { x: z.x + 30 * u, y: z.y + 56 * u, w: z.w - 60 * u, h: z.h - 70 * u });
+}
+function bgTitle(c, d, z, u, o, align = "center") {
+  stack(c, [d.date && { kind: "text", t: d.date, size: 28 * u, weight: 700, color: o.soft, after: 6 * u },
+    { kind: "text", t: d.promo || d.name, lines: 2, size: 76 * u, weight: 900, color: o.ink, lh: 1.15, after: 8 * u },
+    d.promo && { kind: "text", t: d.name, size: 34 * u, weight: 700, color: o.ink2, after: 4 * u },
+    d.sub && { kind: "text", t: d.sub, size: 28 * u, weight: 500, color: o.soft }], z, { align, valign: "top" });
+}
+function bgPoster(c, W, H, d, P, scene, o) {
+  const { u, kind } = P, L = bgLayout(W, H, kind, u); o = { ...o, accent: S.color || o.accent };
+  if (!S.transparent) scene(L);
+  product(c, L.prod, "floor");
+  bgTitle(c, d, L.title, u, o, kind === "wide" ? "left" : "center");
+  bgPrice(c, d, L.price, u, o);
+  bgTiles(c, d, L.tiles, u, o);
+}
+const fluted = (c, x, y, w, h, a, b, step) => { for (let i = 0; i < w; i += step) { c.fillStyle = (i / step) % 2 < 1 ? a : b; c.fillRect(x + i, y, Math.min(step / 2, w - i), h); } };
+
+// B1. Cream Studio: curved cream walls, fluted centre panel, wavy counter.
+T.bgcream = (c, W, H, d, P) => bgPoster(c, W, H, d, P, (L) => {
+  const { u } = P;
+  c.fillStyle = lin(c, 0, 0, 0, H, "#fbf6ee", "#efe4d3"); c.fillRect(0, 0, W, H);
+  fluted(c, W * 0.3, H * 0.12, W * 0.4, L.floor - H * 0.12, "#f3e9da", "#e8dbc6", 14 * u);
+  c.fillStyle = lin(c, 0, 0, W * 0.3, 0, "#f9f2e6", "#efe3d0"); c.beginPath(); c.moveTo(0, H * 0.08); c.quadraticCurveTo(W * 0.32, H * 0.06, W * 0.32, H * 0.2); c.lineTo(W * 0.32, L.floor); c.lineTo(0, L.floor); c.fill();
+  c.fillStyle = lin(c, W, 0, W * 0.7, 0, "#f9f2e6", "#efe3d0"); c.beginPath(); c.moveTo(W, H * 0.08); c.quadraticCurveTo(W * 0.68, H * 0.06, W * 0.68, H * 0.2); c.lineTo(W * 0.68, L.floor); c.lineTo(W, L.floor); c.fill();
+  c.strokeStyle = "rgba(255,255,255,.9)"; c.lineWidth = 4 * u; [0.3, 0.45, 0.6].forEach((k) => { c.beginPath(); c.moveTo(0, L.floor * k + H * 0.05); c.quadraticCurveTo(W * 0.2, L.floor * k, W * 0.3, L.floor * k + H * 0.04); c.stroke(); });
+  c.fillStyle = lin(c, 0, L.floor, 0, H, "#fffaf2", "#eadcc6"); c.beginPath(); c.moveTo(0, L.floor - 20 * u); c.bezierCurveTo(W * 0.3, L.floor - 50 * u, W * 0.7, L.floor + 10 * u, W, L.floor - 30 * u); c.lineTo(W, H); c.lineTo(0, H); c.fill();
+  fluted(c, 0, L.floor + 60 * u, W, H - L.floor - 60 * u, "rgba(232,218,196,.6)", "rgba(255,255,255,.5)", 12 * u);
+}, { ink: "#4a3a25", ink2: "#6b5638", soft: "#8a7558", accent: "#b8862f", cardBg: "#fffdf8", cardBar: "#efe3cf", barFg: "#6b5638", tileBg: "rgba(255,252,246,.92)", tileLine: "rgba(184,134,47,.35)", tileFg: "#5a4528" });
+
+// B2. Lavender Room: soft purple wall, round window, desk with a curved purple front.
+T.bglav = (c, W, H, d, P) => bgPoster(c, W, H, d, P, (L) => {
+  const { u } = P;
+  c.fillStyle = lin(c, 0, 0, 0, H, "#f4f0fb", "#e6def6"); c.fillRect(0, 0, W, H);
+  c.strokeStyle = "rgba(170,150,220,.18)"; c.lineWidth = 2 * u; for (let y = 0; y < L.floor; y += 40 * u) for (let x = 0; x < W * 0.38; x += 40 * u) { c.beginPath(); c.arc(x, y, 2.5 * u, 0, Math.PI * 2); c.stroke(); }
+  const r = Math.min(W, H) * 0.2; c.fillStyle = "#ddd3f2"; c.beginPath(); c.arc(W * 0.92, H * 0.3, r + 22 * u, 0, Math.PI * 2); c.fill();
+  c.fillStyle = lin(c, 0, H * 0.3 - r, 0, H * 0.3 + r, "#8b7fd0", "#c7bdf0"); c.beginPath(); c.arc(W * 0.92, H * 0.3, r, 0, Math.PI * 2); c.fill();
+  c.strokeStyle = "#ddd3f2"; c.lineWidth = 12 * u; c.beginPath(); c.moveTo(W * 0.92, H * 0.3 - r); c.lineTo(W * 0.92, H * 0.3 + r); c.moveTo(W * 0.92 - r, H * 0.3); c.lineTo(W * 0.92 + r, H * 0.3); c.stroke();
+  c.fillStyle = "#fff"; c.beginPath(); c.arc(W * 0.88, H * 0.24, 24 * u, 0.6, Math.PI * 1.7); c.arc(W * 0.89, H * 0.235, 20 * u, Math.PI * 1.7, 0.6, true); c.fill();
+  c.fillStyle = "#f7f4fc"; c.fillRect(0, L.floor - 30 * u, W, 50 * u);
+  c.fillStyle = lin(c, 0, L.floor, 0, H, "#b9a6ea", "#8b6fd6"); c.beginPath(); c.moveTo(0, L.floor + 20 * u); c.quadraticCurveTo(W / 2, L.floor + 110 * u, W, L.floor + 20 * u); c.lineTo(W, H); c.lineTo(0, H); c.fill();
+  c.strokeStyle = "rgba(255,255,255,.6)"; c.lineWidth = 5 * u; c.beginPath(); c.moveTo(0, L.floor + 34 * u); c.quadraticCurveTo(W / 2, L.floor + 124 * u, W, L.floor + 34 * u); c.stroke();
+}, { ink: "#5a3fb0", ink2: "#4b3a7a", soft: "#7c6aa8", accent: "#e0457b", cardBg: "#ffffff", cardBar: "#ece6fa", barFg: "#5a3fb0", tileBg: "rgba(245,241,253,.94)", tileLine: "rgba(124,95,214,.4)", tileFg: "#5a3fb0" });
+
+// B3. Dark Showroom: black studio, soft white curve, silver podium under a spotlight.
+T.bgdark = (c, W, H, d, P) => bgPoster(c, W, H, d, P, (L) => {
+  const { u } = P;
+  c.fillStyle = lin(c, 0, 0, 0, H, "#0d0d10", "#2a2a30"); c.fillRect(0, 0, W, H);
+  const PX = L.prod.x + L.prod.w / 2, g = c.createRadialGradient(PX, L.prod.y, 10, PX, L.prod.y + L.prod.h * 0.4, Math.max(W, H) * 0.6); g.addColorStop(0, "rgba(255,255,255,.22)"); g.addColorStop(1, "rgba(255,255,255,0)"); c.fillStyle = g; c.fillRect(0, 0, W, H);
+  c.strokeStyle = "rgba(255,255,255,.1)"; c.lineWidth = 60 * u; c.beginPath(); c.arc(W * 0.95, H * 0.15, W * 0.55, Math.PI * 0.55, Math.PI * 1.05); c.stroke();
+  c.fillStyle = lin(c, 0, L.floor, 0, H, "#eeeeef", "#9a9aa2"); c.fillRect(0, L.floor + 30 * u, W, H);
+  const rx = Math.min(L.prod.w * 0.55, W * 0.4), ry = rx * 0.14;
+  c.fillStyle = lin(c, PX - rx, 0, PX + rx, 0, "#8c8c94", "#f2f2f4"); c.beginPath(); c.ellipse(PX, L.floor + 30 * u, rx, ry, 0, 0, Math.PI); c.lineTo(PX - rx, L.floor); c.ellipse(PX, L.floor, rx, ry, 0, Math.PI, 0, true); c.fill();
+  c.fillStyle = lin(c, 0, L.floor - ry, 0, L.floor + ry, "#ffffff", "#c9c9cf"); c.beginPath(); c.ellipse(PX, L.floor, rx, ry, 0, 0, Math.PI * 2); c.fill();
+}, { ink: "#ffffff", ink2: "#e6e6ea", soft: "#b9b9c2", accent: "#e0262f", cardBg: "#ffffff", cardBar: "#ececef", barFg: "#2a2a30", tileBg: "rgba(255,255,255,.92)", tileLine: "rgba(0,0,0,.12)", tileFg: "#1c1c22" });
+
+// B4. Pearl Arches: pale blue fluted arches, cream ceiling halo, gold-trimmed counter.
+T.bgpearl = (c, W, H, d, P) => bgPoster(c, W, H, d, P, (L) => {
+  const { u } = P, GO = "#d9b46a";
+  c.fillStyle = lin(c, 0, 0, 0, H, "#fbf8f3", "#f1ece3"); c.fillRect(0, 0, W, H);
+  [[0.02, 0.3], [0.68, 0.3]].forEach(([x0, w0]) => { const x = W * x0, w = W * w0, top = H * 0.18; c.save(); c.beginPath(); c.moveTo(x, L.floor); c.lineTo(x, top + w / 2); c.arc(x + w / 2, top + w / 2, w / 2, Math.PI, 0); c.lineTo(x + w, L.floor); c.closePath(); c.clip();
+    c.fillStyle = lin(c, 0, top, 0, L.floor, "#e3f0fb", "#bcd8f2"); c.fillRect(x, top, w, L.floor - top); fluted(c, x, top, w, L.floor - top, "rgba(255,255,255,.35)", "rgba(255,255,255,0)", 16 * u); c.restore();
+    c.strokeStyle = "#ffffff"; c.lineWidth = 10 * u; c.beginPath(); c.moveTo(x, L.floor); c.lineTo(x, top + w / 2); c.arc(x + w / 2, top + w / 2, w / 2, Math.PI, 0); c.lineTo(x + w, L.floor); c.stroke(); });
+  const hg = c.createRadialGradient(W / 2, 0, 10, W / 2, 0, W * 0.5); hg.addColorStop(0, "rgba(255,236,200,.9)"); hg.addColorStop(1, "rgba(255,236,200,0)"); c.fillStyle = hg; c.fillRect(0, 0, W, H * 0.4);
+  c.fillStyle = lin(c, 0, L.floor, 0, H, "#fbf7f0", "#e9e0d0"); c.fillRect(0, L.floor, W, H - L.floor);
+  c.fillStyle = GO; c.fillRect(0, L.floor, W, 8 * u); c.fillRect(0, L.floor + 70 * u, W, 4 * u);
+  c.fillStyle = lin(c, 0, L.floor - 40 * u, 0, L.floor, "#ffffff", "#efe6d6"); c.beginPath(); c.moveTo(W * 0.1, L.floor); c.lineTo(W * 0.14, L.floor - 34 * u); c.lineTo(W * 0.86, L.floor - 34 * u); c.lineTo(W * 0.9, L.floor); c.fill();
+}, { ink: "#6b4c1f", ink2: "#5c4a2e", soft: "#8a7656", accent: "#c0773a", cardBg: "#ffffff", cardBar: "#f3ead9", barFg: "#6b4c1f", tileBg: "rgba(255,255,255,.92)", tileLine: "rgba(217,180,106,.6)", tileFg: "#5c4a2e" });
+
+// B5. Your Photo: the customer's own background, cover-fitted and slightly dimmed at top and bottom for the text.
+T.bgphoto = (c, W, H, d, P) => bgPoster(c, W, H, d, P, (L) => {
+  const { u } = P, img = S.bgImg;
+  if (img) { const k = Math.max(W / img.width, H / img.height), w = img.width * k, h = img.height * k; c.drawImage(img, (W - w) / 2, (H - h) / 2, w, h); }
+  else { c.fillStyle = lin(c, 0, 0, 0, H, "#eef2fb", "#dfe6f5"); c.fillRect(0, 0, W, H); c.strokeStyle = "#b9c6e4"; c.setLineDash([18 * u, 12 * u]); c.lineWidth = 4 * u; rr(c, 40 * u, 40 * u, W - 80 * u, H - 80 * u, 30 * u); c.stroke(); c.setLineDash([]);
+    if (!S.product) text(c, "+ Background", W / 2, H / 2, { size: 60 * u, weight: 800, color: "#7d8bb0" }); }
+  const t = c.createLinearGradient(0, 0, 0, H); t.addColorStop(0, "rgba(255,255,255,.55)"); t.addColorStop(0.3, "rgba(255,255,255,0)"); t.addColorStop(0.75, "rgba(255,255,255,0)"); t.addColorStop(1, "rgba(255,255,255,.5)"); c.fillStyle = t; c.fillRect(0, 0, W, H);
+}, { ink: "#0c1430", ink2: "#1d2a4a", soft: "#4a5675", accent: "#0059e0", cardBg: "#ffffff", cardBar: "#e8eefb", barFg: "#1c4b9b", tileBg: "rgba(255,255,255,.92)", tileLine: "rgba(0,89,224,.3)", tileFg: "#1c4b9b" });
+
 // ---------------- the whole poster ----------------
 function draw(c, W, H, id, forPreview) {
   c.clearRect(0, 0, W, H); REC = !!forPreview; if (forPreview) HITS = [];
@@ -1568,7 +1680,7 @@ const pv = $("preview"), pctx = pv.getContext("2d");
 let raf = 0, tt = 0;
 function render() { cancelAnimationFrame(raf); raf = requestAnimationFrame(() => { draw(pctx, S.W, S.H, S.tpl, true); clearTimeout(tt); tt = setTimeout(thumbs, 160); save(); }); }
 function thumbs() { const tw = 240, th = Math.round(tw * S.H / S.W); document.querySelectorAll(".tpl canvas").forEach((cv) => { if (cv.width !== tw || cv.height !== th) { cv.width = tw; cv.height = th; } const c = cv.getContext("2d"); c.setTransform(1, 0, 0, 1, 0, 0); c.clearRect(0, 0, tw, th); c.scale(tw / S.W, th / S.H); draw(c, S.W, S.H, cv.dataset.t, false); }); }
-$("tpls").innerHTML = TPLS.map((s) => `<button type="button" class="tpl" data-g="${s.g || "style"}"${s.g === "frame" ? " hidden" : ""} data-id="${s.id}" aria-pressed="${s.id === S.tpl}"><canvas width="240" height="427" data-t="${s.id}"></canvas><span><b style="font-family:var(--f-num)" title="${s.kh}">${s.name}</b></span></button>`).join("");
+$("tpls").innerHTML = TPLS.map((s) => `<button type="button" class="tpl" data-g="${s.g || "style"}"${s.g === "frame" || s.g === "bg" ? " hidden" : ""} data-id="${s.id}" aria-pressed="${s.id === S.tpl}"><canvas width="240" height="427" data-t="${s.id}"></canvas><span><b style="font-family:var(--f-num)" title="${s.kh}">${s.name}</b></span></button>`).join("");
 $("tpls").addEventListener("click", (e) => { const b = e.target.closest(".tpl"); if (!b) return; S.tpl = b.dataset.id; document.querySelectorAll(".tpl").forEach((x) => x.setAttribute("aria-pressed", x === b)); render(); });
 $("sizes").addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; const [w, h] = b.dataset.s.split("x").map(Number); S.W = w; S.H = h; pv.width = w; pv.height = h; $("dim").textContent = `${w} × ${h} px · PNG`; document.querySelectorAll("#sizes button").forEach((x) => x.setAttribute("aria-pressed", x === b)); render(); });
 $("mode").addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; S.mode = b.dataset.m; $("tolWrap").hidden = S.mode !== "fast"; document.querySelectorAll("#mode button").forEach((x) => x.setAttribute("aria-pressed", x === b)); if (S.mode !== "ai") setStatus(""); processAll(); });
@@ -1593,6 +1705,8 @@ $("colorReset").addEventListener("click", () => { S.color = null; render(); });
 let tolT = 0; $("tol").addEventListener("input", () => { clearTimeout(tolT); tolT = setTimeout(() => processAll(), 150); });
 $("sample").addEventListener("click", () => loadImage(samplePhoto()));
 $("file").addEventListener("change", (e) => { const f = e.target.files && e.target.files[0]; if (f) { $("demoTag").hidden = true; loadImage(URL.createObjectURL(f)); } e.target.value = ""; });
+$("bgFile").addEventListener("change", (e) => { const f = e.target.files && e.target.files[0]; e.target.value = ""; if (!f) return; const im = new Image(); im.onload = () => { S.bgImg = im; S.tpl = "bgphoto"; document.querySelectorAll(".tpl").forEach((x) => x.setAttribute("aria-pressed", x.dataset.id === "bgphoto")); render(); }; im.src = URL.createObjectURL(f); });
+$("tpls").addEventListener("click", (e) => { const b = e.target.closest(".tpl"); if (b && b.dataset.id === "bgphoto" && !S.bgImg) $("bgFile").click(); });
 $("giftFile").addEventListener("change", (e) => { const f = e.target.files && e.target.files[0]; if (f) loadImage(URL.createObjectURL(f), "gift"); e.target.value = ""; });
 $("giftClear").addEventListener("click", () => { S.gift = null; S.giftRaw = null; showGift(); render(); });
 const drop = $("drop");
@@ -1657,7 +1771,7 @@ Promise.race([fontsReady, new Promise((r) => setTimeout(r, 2500))]).then(() => l
   $("mexport").addEventListener("click", () => $("export").click());
   const fonlyVis = () => { const t = document.querySelector('.tpl[aria-pressed="true"]'); $("fonlyWrap").hidden = true; };
   $("tpls").addEventListener("click", () => setTimeout(fonlyVis));
-  const showGroup = (gname) => { document.querySelectorAll("#tgroups button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.g === gname)); document.querySelectorAll(".tpl").forEach((t) => { t.hidden = t.dataset.g !== gname && t.dataset.g !== "all"; }); };
+  const showGroup = (gname) => { $("bgUp").hidden = gname !== "bg"; document.querySelectorAll("#tgroups button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.g === gname)); document.querySelectorAll(".tpl").forEach((t) => { t.hidden = t.dataset.g !== gname && t.dataset.g !== "all"; }); };
   $("tgroups").addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) showGroup(b.dataset.g); });
   const cur = document.querySelector('.tpl[aria-pressed="true"]'); if (cur) showGroup(cur.dataset.g);
   tplName(); sizeName(); fonlyVis();
