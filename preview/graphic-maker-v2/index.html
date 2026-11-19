@@ -267,7 +267,7 @@ input[type=color]::-webkit-color-swatch-wrapper{padding:0}input[type=color]::-we
   .group-t{display:none}
   label{font-size:11.5px;gap:2px;line-height:1.35}
   label>input[type=text],label>input[type=number],label>input[type=tel],label>select{font-size:13px;padding:6px 9px;border-radius:9px}
-  .tpls{grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+  .tpls{grid-template-columns:repeat(6,minmax(0,1fr));gap:7px}
   .tpl{padding:4px 4px 5px;border-radius:11px;font-size:10px;gap:3px;line-height:1.25}
   .tpl b{font-size:10.5px}
   .tpl[aria-pressed=true]::after{width:18px;height:18px;top:-6px;right:-6px;background-size:11px}
@@ -389,7 +389,7 @@ footer.fine a{color:var(--muted)}
       <section class="card" aria-labelledby="s3">
         <h2 id="s3"><b>3</b>ជ្រើសគំរូ</h2>
         <p class="lead">២៦ គំរូខុសៗគ្នា។ រូបតូចៗបង្ហាញទំនិញរបស់អ្នកផ្ទាល់។</p>
-        <div class="seg tgroups" id="tgroups" role="group" aria-label="ប្រភេទគំរូ"><button type="button" data-g="style" aria-pressed="true">ម៉ូដប៉ូស្ទ័រ (10)</button><button type="button" data-g="frame" aria-pressed="false">ស៊ុមលក់ (7)</button><button type="button" data-g="card" aria-pressed="false">ស៊ុមកាត (9)</button></div>
+        <div class="seg tgroups" id="tgroups" role="group" aria-label="ប្រភេទគំរូ"><button type="button" data-g="style" aria-pressed="true">ម៉ូដប៉ូស្ទ័រ (10)</button><button type="button" data-g="frame" aria-pressed="false">ស៊ុមលក់ (16)</button></div>
         <div class="tpls" id="tpls"></div>
       </section>
 
@@ -489,15 +489,15 @@ const TPLS = [
   { id: "fnoir", g: "frame", name: "Noir & Gold", kh: "ស៊ុមខ្មៅប្រណីត", A: "#c9a55a" },
   { id: "fpink", g: "frame", name: "Pink Wave", kh: "ស៊ុមផ្កាឈូក", A: "#ff4d6d" },
   { id: "fbreak", g: "frame", name: "Price Breakdown", kh: "ស៊ុមបំបែកតម្លៃ", A: "#e0262f" },
-  { id: "cgrid", g: "card", name: "Playful Grid", kh: "ក្រដាសក្រឡា", A: "#6f7cf0" },
-  { id: "croyal", g: "card", name: "Royal Purple", kh: "ស្វាយប្រណីត", A: "#3b2a8f" },
-  { id: "csky", g: "card", name: "Sky Arch", kh: "ខៀវមេឃ", A: "#2aa7e8" },
-  { id: "cchalk", g: "card", name: "Chalkboard", kh: "ក្ដារខៀន", A: "#1f7a3c" },
-  { id: "cbubble", g: "card", name: "Sale Bubble", kh: "ពពុះបញ្ចុះតម្លៃ", A: "#1f6b66" },
-  { id: "cmono", g: "card", name: "Mono Price Bar", kh: "របារតម្លៃខ្មៅ", A: "#2f3133" },
-  { id: "ckraft", g: "card", name: "Kraft Tag", kh: "ស្លាកតម្លៃ", A: "#9a6a3c" },
-  { id: "cgiftcard", g: "card", name: "Gift Card", kh: "កាតកាដូថែម", A: "#1d7fe0" },
-  { id: "ccatalog", g: "card", name: "Catalog Card", kh: "កាតកាតាឡុក", A: "#3a2f8f" },
+  { id: "cgrid", g: "frame", name: "Playful Grid", kh: "ក្រដាសក្រឡា", A: "#6f7cf0" },
+  { id: "croyal", g: "frame", name: "Royal Purple", kh: "ស្វាយប្រណីត", A: "#3b2a8f" },
+  { id: "csky", g: "frame", name: "Sky Arch", kh: "ខៀវមេឃ", A: "#2aa7e8" },
+  { id: "cchalk", g: "frame", name: "Chalkboard", kh: "ក្ដារខៀន", A: "#1f7a3c" },
+  { id: "cbubble", g: "frame", name: "Sale Bubble", kh: "ពពុះបញ្ចុះតម្លៃ", A: "#1f6b66" },
+  { id: "cmono", g: "frame", name: "Mono Price Bar", kh: "របារតម្លៃខ្មៅ", A: "#2f3133" },
+  { id: "ckraft", g: "frame", name: "Kraft Tag", kh: "ស្លាកតម្លៃ", A: "#9a6a3c" },
+  { id: "cgiftcard", g: "frame", name: "Gift Card", kh: "កាតកាដូថែម", A: "#1d7fe0" },
+  { id: "ccatalog", g: "frame", name: "Catalog Card", kh: "កាតកាតាឡុក", A: "#3a2f8f" },
 ];
 function shade(hex, k) { const n = parseInt(hex.slice(1), 16); const r = n >> 16, g = (n >> 8) & 255, b = n & 255; const f = (v) => Math.max(0, Math.min(255, Math.round(k < 0 ? v * (1 + k) : v + (255 - v) * k))); return "#" + [f(r), f(g), f(b)].map((v) => v.toString(16).padStart(2, "0")).join(""); }
 function alpha(hex, a) { const n = parseInt(hex.slice(1), 16); return `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},${a})`; }
@@ -1093,7 +1093,7 @@ T.fbreak = (c, W, H, d, P) => {
   if (top2) text(c, top2, (rx + W) / 2, (y0 + ry) / 2, { size: 24 * u, weight: 700, color: A, maxW: W - rx - 40 * u });
 };
 
-// ---------------- card frames (ស៊ុមកាត) ----------------
+// ---------------- more sale frames ----------------
 // Same rules as the sale frames: background, then the photo, then the frame and all text on top.
 function otext(c, t, x, y, { size = 80, maxW = 9999, fill = "#fff", stroke = "#111", sw = 10, align = "left", weight = 900, lines = 1, lh = 1.12 } = {}) {
   if (!t) return 0;
