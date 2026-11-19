@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="description" content="បង្កើតរូបប្រូម៉ូសិនទំនិញឥតគិតថ្លៃ៖ AI លុបផ្ទៃខាងក្រោយ គំរូ ២៧ ម៉ូដ សម្រាប់ Post, Story, Live ទាញយក PNG។ មិនចាំបាច់ចុះឈ្មោះ។">
 <link rel="canonical" href="https://adsbox.agency/graphic-maker/">
 <meta property="og:type" content="website">
@@ -48,6 +48,10 @@
   --ok:#41c785; --warn:#f0a35a; --check-a:#141b31; --check-b:#10162a; --shadow:0 1px 0 rgba(255,255,255,.03) inset,0 18px 40px -24px rgba(0,0,0,.8);
   color-scheme:dark}
 *{box-sizing:border-box}
+/* No page zoom: no pinch, no double-tap, no zoom when a field gets focus (iOS zooms fields under 16px). */
+html,body{touch-action:pan-x pan-y;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+button,a,label,input,select,.tpl,.drop{touch-action:manipulation}
+@media (max-width:1099px),(max-height:639px){input[type=text],input[type=number],input[type=tel],select{font-size:16px!important}}
 body{background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px;
   background-image:radial-gradient(1200px 520px at 85% -10%,color-mix(in srgb,var(--brand) 7%,transparent),transparent 70%)}
@@ -1550,6 +1554,18 @@ Promise.race([fontsReady, new Promise((r) => setTimeout(r, 2500))]).then(() => l
   $("tgroups").addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) showGroup(b.dataset.g); });
   const cur = document.querySelector('.tpl[aria-pressed="true"]'); if (cur) showGroup(cur.dataset.g);
   tplName(); sizeName(); fonlyVis();
+})();
+</script>
+<script>
+// Stop pinch and double-tap zoom (iOS Safari ignores user-scalable=no on its own).
+(() => {
+  const stop = (e) => e.preventDefault();
+  ["gesturestart", "gesturechange", "gestureend"].forEach((t) => document.addEventListener(t, stop, { passive: false }));
+  document.addEventListener("touchmove", (e) => { if (e.touches.length > 1 || (e.scale && e.scale !== 1)) e.preventDefault(); }, { passive: false });
+  let last = 0;
+  document.addEventListener("touchend", (e) => { const now = Date.now(); if (now - last < 320 && !e.target.closest("input,select,textarea")) e.preventDefault(); last = now; }, { passive: false });
+  document.addEventListener("wheel", (e) => { if (e.ctrlKey) e.preventDefault(); }, { passive: false });
+  document.addEventListener("keydown", (e) => { if ((e.ctrlKey || e.metaKey) && ["+", "=", "-", "_", "0"].includes(e.key)) e.preventDefault(); });
 })();
 </script>
 </body>
