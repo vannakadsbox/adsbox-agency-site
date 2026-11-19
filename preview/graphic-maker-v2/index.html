@@ -410,15 +410,15 @@ footer.fine a{color:var(--muted)}
     <aside class="stage" aria-label="មើលមុន">
       <div class="studio">
         <div class="studio-bar"><span class="dot">អូសដើម្បីរំកិលទំនិញ · ចុចលើអក្សរ ដើម្បីប្តូរទំហំ</span><b id="tplName">Clean Product</b></div>
-        <div class="view"><span class="tag" id="demoTag">ឧទាហរណ៍</span><canvas id="preview" width="1080" height="1920" aria-label="រូបមើលមុន"></canvas></div>
+        <div class="view"><span class="tag" id="demoTag">ឧទាហរណ៍</span><canvas id="preview" width="1080" height="1080" aria-label="រូបមើលមុន"></canvas></div>
         <div class="tsize" id="tsize"><label for="ts" id="tsLabel" class="sr">ទំហំអក្សរទាំងអស់</label><span class="tsm" aria-hidden="true">A</span><input type="range" id="ts" min="70" max="140" step="5" value="100" aria-describedby="tsv"><span class="tsl" aria-hidden="true">A</span><output id="tsv" for="ts">100%</output><button type="button" id="tsReset" class="btn">ដើម</button><button type="button" id="tsDone" class="btn" hidden aria-label="ឈប់ជ្រើស">✓</button></div>
       </div>
     <section class="card mini" aria-labelledby="s4">
       <h2 id="s4"><b>4</b>ទំហំ និងពណ៌</h2>
               <div class="sizes" id="sizes" role="group" aria-label="ទំហំ">
-        <button type="button" data-s="1080x1920" title="Story / Reel" aria-label="Story / Reel 1080x1920" aria-pressed="true"><i style="width:11px"></i><span>9:16</span></button>
+        <button type="button" data-s="1080x1920" title="Story / Reel" aria-label="Story / Reel 1080x1920" aria-pressed="false"><i style="width:11px"></i><span>9:16</span></button>
         <button type="button" data-s="1080x1350" title="Post" aria-label="Post 1080x1350" aria-pressed="false"><i style="width:16px"></i><span>4:5</span></button>
-        <button type="button" data-s="1080x1080" title="ការ៉េ" aria-label="ការ៉េ 1080x1080" aria-pressed="false"><i style="width:20px"></i><span>1:1</span></button>
+        <button type="button" data-s="1080x1080" title="ការ៉េ" aria-label="ការ៉េ 1080x1080" aria-pressed="true"><i style="width:20px"></i><span>1:1</span></button>
         <button type="button" data-s="1920x1080" title="Live / Cover" aria-label="Live / Cover 1920x1080" aria-pressed="false"><i style="width:30px;height:17px;margin-block:1.5px"></i><span>16:9</span></button>
       </div>
               <div class="swatches" id="swatches"><span class="sublabel" style="margin:0 4px 0 0">ពណ៌ស៊ុម</span>
@@ -440,7 +440,7 @@ footer.fine a{color:var(--muted)}
     </section>
       <div class="stage-foot">
         <button class="btn gold big" type="button" id="export"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M7 11l5 5 5-5M4 20h16"/></svg>ទាញយក PNG</button>
-        <p class="note"><span class="dim" id="dim">1080 × 1920 px · PNG</span> · គុណភាពខ្ពស់</p>
+        <p class="note"><span class="dim" id="dim">1080 × 1080 px · PNG</span> · គុណភាពខ្ពស់</p>
       </div>
     </aside>
   </div>
@@ -448,7 +448,7 @@ footer.fine a{color:var(--muted)}
 </div>
 
 <div class="mbar" aria-hidden="false">
-  <span class="mdim" id="mdim">9:16</span>
+  <span class="mdim" id="mdim">1:1</span>
   <button class="btn gold" type="button" id="mexport"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:18px;height:18px"><path d="M12 4v12M7 11l5 5 5-5M4 20h16"/></svg>ទាញយក PNG</button>
 </div>
 
@@ -474,7 +474,7 @@ const F_DISP = '"Koulen","Be Vietnam Pro","MiSans Khmer","Kantumruy Pro",sans-se
 const F_LUX = '"Playfair Display","MiSans Khmer","Kantumruy Pro",serif';
 
 // ---------------- state ----------------
-const S = { tpl: "clean", W: 1080, H: 1920, transparent: false, fonly: false, credit: true, mode: "ai", color: null,
+const S = { tpl: "clean", W: 1080, H: 1080, transparent: false, fonly: false, credit: true, mode: "ai", color: null,
   raw: null, product: null, giftRaw: null, gift: null, scale: 1, ts: 1, es: {}, sel: null, dx: 0, dy: 0, box: null };
 let REC = false;
 // Click-to-resize: every text element records where it was drawn (preview only); each one has its own size.
