@@ -203,6 +203,7 @@ input[type=color]::-webkit-color-swatch-wrapper{padding:0}input[type=color]::-we
 .tsize{display:flex;align-items:center;gap:10px;margin-top:12px;padding:8px 12px;border-radius:12px;background:rgba(255,255,255,.75);border:1px solid var(--line);font-size:12.5px;font-weight:600;color:var(--ink)}
 .sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .tsize label{white-space:nowrap;max-width:46%;overflow:hidden;text-overflow:ellipsis}
+.tsize .tp{display:none;vertical-align:middle}.tsize.prod .tp{display:inline}.tsize.prod .ta{display:none}.tsize b{font-weight:800}
 .tsize.on{border-color:#ffd23f;box-shadow:0 0 0 3px rgba(255,210,63,.35)}
 .tsize input{flex:1;min-width:0}
 .tsize .tsm{font-size:11px;color:var(--muted);font-weight:800}.tsize .tsl{font-size:17px;color:var(--muted);font-weight:800}
@@ -359,7 +360,7 @@ footer.fine a{color:var(--muted)}
         <p class="status" id="status" role="status"></p>
         <div class="grid2">
           <label id="tolWrap" hidden>កម្រិតលុបផ្ទៃ <input type="range" id="tol" min="10" max="120" value="46"></label>
-          <label>ទំហំទំនិញ <input type="range" id="scale" min="40" max="400" value="100"></label>
+          <input type="range" id="scale" min="40" max="400" value="100" hidden aria-hidden="true" tabindex="-1">
         </div>
         <div class="row" style="margin-top:14px">
           <div class="thumbs" id="giftThumb" aria-live="polite"></div>
@@ -409,9 +410,9 @@ footer.fine a{color:var(--muted)}
 
     <aside class="stage" aria-label="មើលមុន">
       <div class="studio">
-        <div class="studio-bar"><span class="dot">អូសដើម្បីរំកិលទំនិញ · ចុចលើអក្សរ ដើម្បីប្តូរទំហំ</span><b id="tplName">Clean Product</b></div>
+        <div class="studio-bar"><span class="dot">ចុចលើរូប ឬអក្សរ ដើម្បីប្តូរទំហំ · អូសដើម្បីរំកិល</span><b id="tplName">Clean Product</b></div>
         <div class="view"><span class="tag" id="demoTag">ឧទាហរណ៍</span><canvas id="preview" width="1080" height="1080" aria-label="រូបមើលមុន"></canvas></div>
-        <div class="tsize" id="tsize"><label for="ts" id="tsLabel" class="sr">ទំហំអក្សរទាំងអស់</label><span class="tsm" aria-hidden="true">A</span><input type="range" id="ts" min="70" max="140" step="5" value="100" aria-describedby="tsv"><span class="tsl" aria-hidden="true">A</span><output id="tsv" for="ts">100%</output><button type="button" id="tsReset" class="btn">ដើម</button><button type="button" id="tsDone" class="btn" hidden aria-label="ឈប់ជ្រើស">✓</button></div>
+        <div class="tsize" id="tsize"><label for="ts" id="tsLabel" class="sr">ទំហំអក្សរទាំងអស់</label><span class="tsm" aria-hidden="true"><b class="ta">A</b><svg class="tp" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 16l5-5 4 4 3-3 4 4"/></svg></span><input type="range" id="ts" min="70" max="140" step="5" value="100" aria-describedby="tsv"><span class="tsl" aria-hidden="true"><b class="ta">A</b><svg class="tp" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 16l5-5 4 4 3-3 4 4"/></svg></span><output id="tsv" for="ts">100%</output><button type="button" id="tsReset" class="btn">ដើម</button><button type="button" id="tsDone" class="btn" hidden aria-label="ឈប់ជ្រើស">✓</button></div>
       </div>
     <section class="card mini" aria-labelledby="s4">
       <h2 id="s4"><b>4</b>ទំហំ និងពណ៌</h2>
@@ -615,6 +616,7 @@ function product(c, z, shadow = "floor", img = S.product, user = true) {
   if (shadow === "floor") { c.save(); c.fillStyle = "rgba(15,20,30,.18)"; c.filter = "blur(12px)"; c.beginPath(); c.ellipse(x + w / 2, y + h - 2, w * 0.36, Math.max(6, h * 0.03), 0, 0, Math.PI * 2); c.fill(); c.restore(); }
   c.save(); if (shadow !== "none") { c.shadowColor = shadow === "glow" ? "rgba(255,255,255,.35)" : "rgba(10,15,30,.28)"; c.shadowBlur = shadow === "glow" ? 40 : 28; c.shadowOffsetY = shadow === "glow" ? 0 : 16; }
   c.drawImage(img, x, y, w, h); c.restore();
+  if (user) hit(c, "#product", x, y, w, h);
 }
 
 // ---------------- text stack: measure first, shrink to fit the zone, then draw ----------------
@@ -1467,13 +1469,14 @@ $("transp").addEventListener("change", (e) => { S.transparent = e.target.checked
 $("credit").addEventListener("change", (e) => { S.credit = e.target.checked; render(); });
 $("fonly").addEventListener("change", (e) => { S.fonly = e.target.checked; render(); });
 $("scale").addEventListener("input", (e) => { S.scale = e.target.value / 100; render(); });
-const selName = (k) => (k === "#price" ? "តម្លៃ" : k === "#old" ? "តម្លៃដើម" : k.length > 16 ? k.slice(0, 15) + "…" : k);
+const selName = (k) => (k === "#product" ? "រូបទំនិញ" : k === "#price" ? "តម្លៃ" : k === "#old" ? "តម្លៃដើម" : k.length > 16 ? k.slice(0, 15) + "…" : k);
 function syncTs() {
-  const sel = S.sel, v = Math.round((sel ? S.es[sel] || 1 : S.ts) * 100), r = $("ts");
-  r.min = sel ? 50 : 70; r.max = sel ? 200 : 140; r.value = v; $("tsv").textContent = v + "%";
+  const sel = S.sel, prod = sel === "#product", v = Math.round((prod ? S.scale : sel ? S.es[sel] || 1 : S.ts) * 100), r = $("ts");
+  r.min = prod ? 40 : sel ? 50 : 70; r.max = prod ? 400 : sel ? 200 : 140; r.value = v; $("tsv").textContent = v + "%";
+  $("tsize").classList.toggle("prod", prod);
   $("tsLabel").textContent = sel ? "ទំហំ «" + selName(sel) + "»" : "ទំហំអក្សរទាំងអស់"; $("tsDone").hidden = !sel; $("tsize").classList.toggle("on", !!sel);
 }
-const setTs = (v) => { if (S.sel) S.es[S.sel] = v / 100; else S.ts = v / 100; syncTs(); render(); };
+const setTs = (v) => { if (S.sel === "#product") { S.scale = v / 100; $("scale").value = v; } else if (S.sel) S.es[S.sel] = v / 100; else S.ts = v / 100; syncTs(); render(); };
 $("ts").addEventListener("input", (e) => setTs(+e.target.value));
 $("tsReset").addEventListener("click", () => setTs(100));
 $("tsDone").addEventListener("click", () => { S.sel = null; syncTs(); render(); });
