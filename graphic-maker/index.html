@@ -341,6 +341,10 @@ input[type=color]::-webkit-color-swatch-wrapper{padding:0}input[type=color]::-we
   .bench{display:grid;flex:1;min-height:0;grid-template-columns:minmax(0,1.12fr) minmax(0,1fr) clamp(320px,27vw,440px);grid-template-rows:minmax(0,1fr);gap:14px;padding-bottom:14px}
   .col{display:flex;flex-direction:column;gap:12px;min-height:0;height:100%}
   .col>*{order:0!important}
+  /* middle: preview first, photo upload under it; right: banner, then size & colour and download, then the info */
+  .c2 .studio{order:1!important}.c2 [aria-labelledby="s1"]{order:2!important}
+  [aria-labelledby="s1"] .status:empty{display:none}[aria-labelledby="s1"] .grid2:not(:has(label:not([hidden]))){display:none}
+  .c3 .ads-slot{order:1!important}.c3 .mini{order:2!important}.c3 .stage-foot{order:3!important}.c3 .about{order:4!important}.c3 footer.fine{order:5!important}
   .c1 [aria-labelledby="s2"]{flex:none;display:block}
   .c1 [aria-labelledby="s3"]{flex:1;min-height:0;max-height:none;align-self:stretch}
   .c2 [aria-labelledby="s1"]{flex:none}
