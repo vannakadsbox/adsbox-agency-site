@@ -6,6 +6,7 @@ data policy (no auto-written case studies / invented processes), duplicate guard
 Works on a temporary copy of content/, so nothing in the real site changes.
 """
 import copy, json, os, shutil, sys, tempfile, unittest
+import os; os.environ["ADSBOX_IGNORE_REFRESH"] = "1"  # these tests cover the weekly rotation, not the 2026 Refresh period
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)

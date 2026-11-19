@@ -121,7 +121,7 @@ def _prewritten_ok(t):
 def refresh_topic(date):
     """content/autopost/refresh2026.json — the COO's "2026 Knowledge Refresh" (19 Nov – 31 Dec 2026).
     Inside the period a day publishes ONLY its COO-approved draft. Returns (topic or None, message or None, in_period)."""
-    cal = C.load_json("refresh2026.json", None)
+    cal = None if os.environ.get("ADSBOX_IGNORE_REFRESH") else C.load_json("refresh2026.json", None)  # tests of the weekly rotation
     if not cal or not (cal["start"] <= date <= cal["end"]):
         return None, None, False
     day = next((d for d in cal["days"] if d["date"] == date), None)
