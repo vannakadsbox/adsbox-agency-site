@@ -102,7 +102,9 @@ def validate(d, brief, s, existing=None, history=None):
         if len(paras) < 5: errs.append("body: too few paragraphs/blocks for a full article")
         if any(len(p) > 900 and not re.match(r"\s*(?:[-*]|\d+[.)])", p) for p in paras): errs.append("body: a paragraph is too long for mobile; split it")
         tail = "\n".join(paras[-2:])
-        if not re.search(r"ADS BOX|/#services|/#adsbox-system|t\.me/vannakdm|adsbox\.biz", tail):
+        # 2026 Knowledge Refresh (COO, 19 Nov 2026): an approved draft may close with an internal Knowledge link instead of a sales CTA.
+        refresh = (brief.get("plan_topic") or {}).get("plan_id") == "refresh-2026"
+        if not re.search(r"ADS BOX|/#services|/#adsbox-system|t\.me/vannakdm|adsbox\.biz" + (r"|\]\(/knowledge/[a-z0-9-]+/\)" if refresh else ""), tail):
             errs.append("body: end with a short call to action that mentions ADS BOX or links to /#services or Telegram")
         for m in re.finditer(r"\]\(([^)\s]+)\)", body):
             if not ALLOWED_LINK.match(m.group(1)): errs.append(f"body: link not allowed: {m.group(1)}")
