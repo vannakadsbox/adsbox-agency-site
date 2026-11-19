@@ -363,6 +363,13 @@ input[type=color]::-webkit-color-swatch-wrapper{padding:0}input[type=color]::-we
 .adpop-time i{display:block;height:100%;width:100%;background:#0059e0;transform-origin:left;transform:scaleX(1)}
 .adpop.run .adpop-time i{transition:transform linear;transform:scaleX(0)}
 @media (prefers-reduced-motion:reduce){.adpop,.adpop-box{transition:none}}
+/* Phones/tablets: the bottom bar is the only download button; size buttons show the shape only. */
+@media (max-width:1099px),(max-height:639px){
+  .c3 .stage-foot{display:none}
+  .mbar .mdim{display:none}
+  .sizes button span{display:none}
+  .sizes button{padding:12px 6px;align-content:center;justify-items:center}
+}
 dialog{border:0;border-radius:22px;padding:0;max-width:min(560px,94vw);width:100%;background:var(--panel);color:var(--ink);box-shadow:0 40px 90px -30px rgba(0,0,0,.7)}
 dialog::backdrop{background:rgba(5,9,22,.72);backdrop-filter:blur(4px)}
 .dlg{display:grid;gap:14px;padding:20px}
