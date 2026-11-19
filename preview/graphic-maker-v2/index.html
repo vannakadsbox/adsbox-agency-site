@@ -936,9 +936,9 @@ const offerOf = (d) => d.promo || (d.off ? "បញ្ចុះតម្លៃ " 
 const tabOf = (d) => d.label || (d.code ? "CODE " + d.code : "ការផ្ដល់ជូនពិសេស");
 const metaOf = (d) => [d.gift && (/^ថែម/.test(d.gift) ? d.gift : "ថែម " + d.gift), d.size, d.colour, d.stock, d.code && "CODE " + d.code, d.phone && "☎ " + d.phone, d.cta].filter(Boolean).join("   ·   ");
 function fgeo(W, H, P) {
-  const { u, kind } = P, b = (kind === "wide" ? 30 : 38) * u;
-  const t = S.ts, bandH = (kind === "tall" ? H * 0.165 : kind === "sq" ? H * 0.22 : H * 0.27) * Math.min(t, 1.4);
-  return { b, bandH, bandY: H - b - bandH, tabH: (kind === "wide" ? 66 : 76) * u * t, pw: Math.min(W * 0.62, (kind === "tall" ? W * 0.45 : kind === "sq" ? W * 0.4 : W * 0.3) * t) };
+  const { u, kind } = P, b = (kind === "wide" ? 16 : 20) * u;
+  const t = S.ts, bandH = (kind === "tall" ? H * 0.13 : kind === "sq" ? H * 0.17 : H * 0.21) * Math.min(t, 1.4);
+  return { b, bandH, bandY: H - b - bandH, tabH: (kind === "wide" ? 50 : 56) * u * t, pw: Math.min(W * 0.6, (kind === "tall" ? W * 0.4 : kind === "sq" ? W * 0.35 : W * 0.26) * t) };
 }
 // Frame only: the middle of the frame is left clean for the product photo (no podium, no extra text).
 // With "frame only" on, nothing is drawn in the middle; with a transparent background the middle is see-through.
@@ -1091,7 +1091,7 @@ T.fpink = (c, W, H, d, P) => {
 
 // 17. Price Breakdown: white frame, red curved header, coupon card, final price block and a row of price facts.
 T.fbreak = (c, W, H, d, P) => {
-  const { u, kind, A } = P, g = fgeo(W, H, P), b = 16 * u;
+  const { u, kind, A } = P, g = fgeo(W, H, P), b = 9 * u;
   c.fillStyle = A; c.fillRect(0, 0, W, H);
   const hh = g.tabH + 30 * u;
   const nz = { x: g.b + 30 * u, y: hh + 10 * u, w: W - 2 * g.b - 60 * u, h: 0 };
@@ -1146,7 +1146,7 @@ const under = (c, z, sh = "floor") => () => { if (!S.fonly) product(c, z, sh); }
 
 // 18. Playful Grid: grid-paper border, sticker title top-left, scalloped price badge top-right.
 T.cgrid = (c, W, H, d, P) => {
-  const { u, kind, A } = P, b = 44 * u, PK = "#ff7eb6", tH = (kind === "tall" ? 250 : kind === "sq" ? 200 : 180) * u * S.ts, sx = kind === "wide" ? W * 0.42 : W * 0.6;
+  const { u, kind, A } = P, b = 22 * u, PK = "#ff7eb6", tH = (kind === "tall" ? 200 : kind === "sq" ? 160 : 140) * u * S.ts, sx = kind === "wide" ? W * 0.42 : W * 0.6;
   c.fillStyle = A; c.fillRect(0, 0, W, H);
   c.strokeStyle = "rgba(255,255,255,.22)"; c.lineWidth = 2 * u; for (let x = 0; x < W; x += 58 * u) { c.beginPath(); c.moveTo(x, 0); c.lineTo(x, H); c.stroke(); } for (let y = 0; y < H; y += 58 * u) { c.beginPath(); c.moveTo(0, y); c.lineTo(W, y); c.stroke(); }
   c.fillStyle = PK; c.beginPath(); c.arc(-40 * u, -60 * u, 220 * u, 0, Math.PI * 2); c.fill(); c.beginPath(); c.arc(W + 20 * u, H + 40 * u, 230 * u, 0, Math.PI * 2); c.fill();
@@ -1161,7 +1161,7 @@ T.cgrid = (c, W, H, d, P) => {
   c.restore();
   sparkle(c, sx - 10 * u, b + 6 * u, 22 * u, "#ffe680"); sparkle(c, b + 30 * u, b + tH - 20 * u, 14 * u, "#151515");
   // price cloud
-  const R = (kind === "wide" ? 150 : 170) * u * S.ts, cx = W - b - R * 0.85, cy = b + R * 0.75;
+  const R = (kind === "wide" ? 120 : 135) * u * S.ts, cx = W - b - R * 0.85, cy = b + R * 0.75;
   c.save(); c.shadowColor = "rgba(0,0,0,.25)"; c.shadowOffsetY = 8 * u; cloud(c, cx, cy, R, PK); c.restore();
   stack(c, priceItems(d, u, d.off ? "បញ្ចុះ " + d.off + "%" : "តម្លៃ", R * 0.6, "#ffffff", "#ffe680"), { x: cx - R * 0.66, y: cy - R * 0.58, w: R * 1.32, h: R * 1.16 });
   // name + details on a white pill over the bottom edge
@@ -1213,7 +1213,7 @@ T.csky = (c, W, H, d, P) => {
 
 // 21. Chalkboard: green frame, chalkboard price with a wooden border, white date pill, a stack of books.
 T.cchalk = (c, W, H, d, P) => {
-  const { u, kind, A } = P, g = fgeo(W, H, P), b = 22 * u, WD = "#c08a4e";
+  const { u, kind, A } = P, g = fgeo(W, H, P), b = 12 * u, WD = "#c08a4e";
   c.fillStyle = A; c.fillRect(0, 0, W, H);
   panel(c, (c) => rr(c, b, b, W - 2 * b, H - 2 * b, 14 * u), lin(c, 0, 0, 0, H, "#ffffff", "#f1f4f1"), under(c, { x: b + 60 * u, y: b + 50 * u, w: W - 2 * b - 120 * u, h: g.bandY - b - 70 * u }));
   const y0 = g.bandY + g.bandH * 0.42, pw = g.pw;
@@ -1235,7 +1235,7 @@ T.cchalk = (c, W, H, d, P) => {
 
 // 22. Minimal Bubble: thin teal line, edge tabs and corner leaves, a speech-bubble sale badge.
 T.cbubble = (c, W, H, d, P) => {
-  const { u, kind, A } = P, b = 18 * u, A2 = shade(A, 0.35), L = "#f6f7f7";
+  const { u, kind, A } = P, b = 9 * u, A2 = shade(A, 0.35), L = "#f6f7f7";
   c.fillStyle = A; c.fillRect(0, 0, W, H);
   panel(c, (c) => { c.beginPath(); c.rect(b, b, W - 2 * b, H - 2 * b); }, L, under(c, { x: b + 80 * u, y: b + 80 * u, w: W - 2 * b - 160 * u, h: H - 2 * b - (kind === "tall" ? 480 : 440) * u }));
   c.fillStyle = A; rr(c, -40 * u, H * 0.12, 90 * u, H * 0.12, 40 * u); c.fill(); rr(c, W - 50 * u, H * 0.5, 90 * u, H * 0.12, 40 * u); c.fill(); rr(c, W * 0.1, H - 50 * u, W * 0.12, 90 * u, 40 * u); c.fill();
@@ -1295,7 +1295,7 @@ T.ckraft = (c, W, H, d, P) => {
 
 // 25. Gift Card: blue-edged card, title on top, a gift panel showing the free gift, price slant and a buy button.
 T.cgiftcard = (c, W, H, d, P) => {
-  const { u, kind, A } = P, b = 20 * u, g = fgeo(W, H, P), hasGift = !!(S.gift || d.gift);
+  const { u, kind, A } = P, b = 10 * u, g = fgeo(W, H, P), hasGift = !!(S.gift || d.gift);
   c.fillStyle = lin(c, 0, 0, 0, H, shade(A, 0.1), shade(A, -0.1)); c.fillRect(0, 0, W, H);
   const hh = (kind === "tall" ? 170 : 130) * u, gw = hasGift ? (kind === "wide" ? W * 0.3 : W * 0.42) : 0, y0 = g.bandY + 10 * u;
   panel(c, (c) => rr(c, b, b, W - 2 * b, H - 2 * b, 24 * u), lin(c, 0, 0, W, H, "#ffffff", "#e9eef6"), under(c, { x: b + 40 * u, y: b + hh + 10 * u, w: W - 2 * b - gw - 80 * u, h: y0 - b - hh - 20 * u }));
@@ -1323,7 +1323,7 @@ T.cgiftcard = (c, W, H, d, P) => {
 
 // 26. Catalog Card: white card on a soft sky, name and coloured detail bullets, navy price tab with the old price above.
 T.ccatalog = (c, W, H, d, P) => {
-  const { u, kind, A } = P, b = 36 * u, wide = kind === "wide";
+  const { u, kind, A } = P, b = 18 * u, wide = kind === "wide";
   c.fillStyle = lin(c, 0, 0, W, H, "#cfe3fa", "#eef5fd"); c.fillRect(0, 0, W, H);
   if (!S.transparent) { c.fillStyle = "rgba(255,255,255,.6)"; c.beginPath(); c.ellipse(W * 0.2, H * 0.08, W * 0.3, 60 * u, 0, 0, Math.PI * 2); c.fill(); c.beginPath(); c.ellipse(W * 0.85, H * 0.95, W * 0.25, 50 * u, 0, 0, Math.PI * 2); c.fill(); }
   const nx = b + 40 * u, nw = (wide ? W * 0.42 : W - 2 * b - 80 * u) - (d.label && !wide ? 240 * u : 0), pz = wide ? { x: W * 0.46, y: b + 40 * u, w: W * 0.5 - b, h: H - 2 * b - 80 * u } : { x: W * 0.38, y: (kind === "tall" ? H * 0.3 : H * 0.36), w: W * 0.62 - b - 30 * u, h: (kind === "tall" ? H * 0.58 : H * 0.56) };
