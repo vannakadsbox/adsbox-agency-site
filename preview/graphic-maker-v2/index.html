@@ -356,7 +356,7 @@ input[type=color]::-webkit-color-swatch-wrapper{padding:0}input[type=color]::-we
 .adpop-box{position:relative;width:min(440px,92vw);background:#fff;border-radius:20px;padding:10px;box-shadow:0 30px 80px -20px rgba(0,0,0,.55);transform:translateY(12px) scale(.97);transition:transform .3s}
 .adpop.show .adpop-box{transform:none}
 .ads-slot{display:none}
-@media (min-width:1100px) and (min-height:640px){.c3 .about{margin-top:auto}}
+@media (min-width:1100px) and (min-height:640px){.c3 .ads-slot{display:flex;flex:1 1 0;min-height:0}.ads-slot .ads{flex:1;min-height:0;aspect-ratio:auto;max-width:none;align-self:stretch}}
 .adpop .ads{aspect-ratio:1/1;max-width:none;flex:none;border:0;border-radius:14px}
 .adpop-x{position:absolute;top:-12px;right:-12px;z-index:3;width:34px;height:34px;border-radius:50%;border:0;background:#0c1430;color:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.3)}
 .adpop-time{height:4px;margin:8px 4px 2px;border-radius:4px;background:#e6eaf3;overflow:hidden}
@@ -1659,7 +1659,7 @@ Promise.race([fontsReady, new Promise((r) => setTimeout(r, 2500))]).then(() => l
   ];
   const track = document.getElementById("adsTrack"), dots = document.getElementById("adsDots"), box = document.getElementById("ads");
   if (!track) return;
-  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches, SMALL = matchMedia("all");   // pop-up on every screen size
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches, SMALL = matchMedia("(max-width: 1099px), (max-height: 639px)");   // pop-up on phones/tablets; computers show the banner in the page
   let i = 0, timer = null, n = 0, hover = false;
   const small = (src) => /^\/assets\/promo\/[\w-]+\.jpg$/.test(src) ? src.replace(/\.jpg$/, "-sm.jpg") : src;
   function go(k) { const sl = track.children; if (!n) return; i = (k + n) % n; [...sl].forEach((el, j) => { el.classList.toggle("on", j === i); el.setAttribute("aria-hidden", j !== i); el.tabIndex = j === i ? 0 : -1; }); [...dots.children].forEach((d, j) => d.setAttribute("aria-selected", j === i)); }
