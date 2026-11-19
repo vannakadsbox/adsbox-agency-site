@@ -382,6 +382,18 @@ input[type=color]::-webkit-color-swatch-wrapper{padding:0}input[type=color]::-we
   .card{padding:16px}
   .card h2{margin-bottom:12px}
   .card h2 b{display:none}
+  /* product photo card: compact, one-line upload */
+  [aria-labelledby="s1"] .drop{grid-template-columns:auto minmax(0,1fr);justify-items:start;text-align:left;gap:0 12px;padding:12px 14px;border-radius:14px}
+  [aria-labelledby="s1"] .drop svg{grid-row:1/3;width:36px;height:36px;padding:8px;border-radius:10px}
+  [aria-labelledby="s1"] .drop strong{font-size:14px;line-height:1.4}
+  [aria-labelledby="s1"] .drop span{font-size:11.5px}
+  [aria-labelledby="s1"] .row{margin-top:10px!important;gap:8px;flex-wrap:nowrap}
+  [aria-labelledby="s1"] .seg{padding:3px;flex:1;min-width:0;justify-content:space-between}
+  [aria-labelledby="s1"] .seg button{font-size:12.5px;padding:6px 9px}
+  [aria-labelledby="s1"] #sample{font-size:12.5px;padding:7px 11px;flex:none}
+  [aria-labelledby="s1"] .status:empty{display:none}
+  [aria-labelledby="s1"] .grid2:not(:has(label:not([hidden]))){display:none}
+  [aria-labelledby="s1"] .row[hidden]{display:none}
 }
 dialog{border:0;border-radius:22px;padding:0;max-width:min(560px,94vw);width:100%;background:var(--panel);color:var(--ink);box-shadow:0 40px 90px -30px rgba(0,0,0,.7)}
 dialog::backdrop{background:rgba(5,9,22,.72);backdrop-filter:blur(4px)}
