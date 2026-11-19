@@ -200,6 +200,12 @@ input[type=color]::-webkit-color-swatch-wrapper{padding:0}input[type=color]::-we
   #preview{max-height:56vh}
 }
 
+.tsize{display:flex;align-items:center;gap:10px;margin-top:12px;padding:8px 12px;border-radius:12px;background:rgba(255,255,255,.75);border:1px solid var(--line);font-size:12.5px;font-weight:600;color:var(--ink)}
+.tsize label{white-space:nowrap}
+.tsize input{flex:1;min-width:0}
+.tsize .tsm{font-size:11px;color:var(--muted);font-weight:800}.tsize .tsl{font-size:17px;color:var(--muted);font-weight:800}
+.tsize output{font-family:var(--f-num);font-size:12px;min-width:40px;text-align:right;color:var(--muted)}
+.tsize .btn{padding:3px 10px;font-size:12px;border-radius:999px}
 .mini{padding:14px 16px 10px;border-radius:18px}
 .mini h2{font-size:14px;margin:0 0 10px}
 .mini h2 b{position:static;width:22px;height:22px;font-size:11px;box-shadow:0 0 0 3px var(--brand-soft)}
@@ -403,6 +409,7 @@ footer.fine a{color:var(--muted)}
       <div class="studio">
         <div class="studio-bar"><span class="dot">អូសលើរូប ដើម្បីរំកិលទំនិញ</span><b id="tplName">Clean Product</b></div>
         <div class="view"><span class="tag" id="demoTag">ឧទាហរណ៍</span><canvas id="preview" width="1080" height="1920" aria-label="រូបមើលមុន"></canvas></div>
+        <div class="tsize"><label for="ts">ទំហំអក្សរ</label><span class="tsm" aria-hidden="true">A</span><input type="range" id="ts" min="70" max="140" step="5" value="100" aria-describedby="tsv"><span class="tsl" aria-hidden="true">A</span><output id="tsv" for="ts">100%</output><button type="button" id="tsReset" class="btn">ដើម</button></div>
       </div>
     <section class="card mini" aria-labelledby="s4">
       <h2 id="s4"><b>4</b>ទំហំ និងពណ៌</h2>
@@ -466,7 +473,7 @@ const F_LUX = '"Playfair Display","MiSans Khmer","Kantumruy Pro",serif';
 
 // ---------------- state ----------------
 const S = { tpl: "clean", W: 1080, H: 1920, transparent: false, fonly: false, credit: true, mode: "ai", color: null,
-  raw: null, product: null, giftRaw: null, gift: null, scale: 1, dx: 0, dy: 0, box: null };
+  raw: null, product: null, giftRaw: null, gift: null, scale: 1, ts: 1, dx: 0, dy: 0, box: null };
 let REC = false;   // true while drawing the on-screen preview: remembers where the product sits, for dragging
 
 // ---------------- 10 template concepts ----------------
@@ -536,6 +543,7 @@ function fit(c, text, weight, family, size, min, maxW, maxLines) {
 }
 function text(c, t, x, y, { size = 40, weight = 800, fam = F_MIX, color = "#fff", align = "center", maxW = 9999, lines = 1, lh = 1.28 } = {}) {
   if (!t) return 0;
+  size *= S.ts;
   const f = fit(c, t, weight, fam, size, Math.max(12, size * 0.55), maxW, lines);
   c.font = `${weight} ${f.s}px ${fam}`; c.fillStyle = color; c.textAlign = align; c.textBaseline = "middle";
   const step = f.s * lh, top = y - ((f.lines.length - 1) * step) / 2;
@@ -570,6 +578,7 @@ function bigPrice(c, d, x, base, size, color, maxW, align = "left", fam = F_MIX)
 // Rectangular tag (never round): optional rotation.
 function tag(c, t, cx, cy, { size = 30, bg = "#111", fg = "#fff", r = 6, rot = 0, padX = 0.7, weight = 800, fam = F_MIX, maxW = 9999 } = {}) {
   if (!t) return 0;
+  size *= S.ts;
   let s = size; c.font = `${weight} ${s}px ${fam}`; while (c.measureText(t).width + s * padX * 2 > maxW && s > 12) { s -= 1; c.font = `${weight} ${s}px ${fam}`; }
   const w = c.measureText(t).width + s * padX * 2, h = s * 1.75;
   c.save(); c.translate(cx, cy); if (rot) c.rotate(rot); c.fillStyle = bg; rr(c, -w / 2, -h / 2, w, h, r); c.fill();
@@ -593,7 +602,7 @@ function product(c, z, shadow = "floor", img = S.product, user = true) {
 
 // ---------------- text stack: measure first, shrink to fit the zone, then draw ----------------
 function measure(c, i, maxW, k) {
-  const s = (i.size || 30) * k, after = (i.after || 0) * k, none = { h: 0, draw() {} };
+  const s = (i.size || 30) * k * S.ts, after = (i.after || 0) * k, none = { h: 0, draw() {} };
   if (i.kind === "gap") return { h: i.h * k, draw() {} };
   if (i.kind === "text") {
     if (!i.t) return none;
@@ -905,8 +914,8 @@ const tabOf = (d) => d.label || (d.code ? "CODE " + d.code : "ការផ្ដ
 const metaOf = (d) => [d.gift && (/^ថែម/.test(d.gift) ? d.gift : "ថែម " + d.gift), d.size, d.colour, d.stock, d.code && "CODE " + d.code, d.phone && "☎ " + d.phone, d.cta].filter(Boolean).join("   ·   ");
 function fgeo(W, H, P) {
   const { u, kind } = P, b = (kind === "wide" ? 30 : 38) * u;
-  const bandH = kind === "tall" ? H * 0.165 : kind === "sq" ? H * 0.22 : H * 0.27;
-  return { b, bandH, bandY: H - b - bandH, tabH: (kind === "wide" ? 66 : 76) * u, pw: kind === "tall" ? W * 0.45 : kind === "sq" ? W * 0.4 : W * 0.3 };
+  const t = S.ts, bandH = (kind === "tall" ? H * 0.165 : kind === "sq" ? H * 0.22 : H * 0.27) * Math.min(t, 1.4);
+  return { b, bandH, bandY: H - b - bandH, tabH: (kind === "wide" ? 66 : 76) * u * t, pw: Math.min(W * 0.62, (kind === "tall" ? W * 0.45 : kind === "sq" ? W * 0.4 : W * 0.3) * t) };
 }
 // Frame only: the middle of the frame is left clean for the product photo (no podium, no extra text).
 // With "frame only" on, nothing is drawn in the middle; with a transparent background the middle is see-through.
@@ -1097,6 +1106,7 @@ T.fbreak = (c, W, H, d, P) => {
 // Same rules as the sale frames: background, then the photo, then the frame and all text on top.
 function otext(c, t, x, y, { size = 80, maxW = 9999, fill = "#fff", stroke = "#111", sw = 10, align = "left", weight = 900, lines = 1, lh = 1.12 } = {}) {
   if (!t) return 0;
+  size *= S.ts;
   const f = fit(c, t, weight, F_MIX, size, size * 0.45, maxW, lines); c.font = `${weight} ${f.s}px ${F_MIX}`; c.textAlign = align; c.textBaseline = "middle"; c.lineJoin = "round";
   f.lines.forEach((l, j) => { const yy = y + j * f.s * lh; c.strokeStyle = stroke; c.lineWidth = sw; c.strokeText(l, x, yy); c.fillStyle = fill; c.fillText(l, x, yy); });
   return f.lines.length * f.s * lh;
@@ -1112,7 +1122,7 @@ const under = (c, z, sh = "floor") => () => { if (!S.fonly) product(c, z, sh); }
 
 // 18. Playful Grid: grid-paper border, sticker title top-left, scalloped price badge top-right.
 T.cgrid = (c, W, H, d, P) => {
-  const { u, kind, A } = P, b = 44 * u, PK = "#ff7eb6", tH = (kind === "tall" ? 250 : kind === "sq" ? 200 : 180) * u, sx = kind === "wide" ? W * 0.42 : W * 0.6;
+  const { u, kind, A } = P, b = 44 * u, PK = "#ff7eb6", tH = (kind === "tall" ? 250 : kind === "sq" ? 200 : 180) * u * S.ts, sx = kind === "wide" ? W * 0.42 : W * 0.6;
   c.fillStyle = A; c.fillRect(0, 0, W, H);
   c.strokeStyle = "rgba(255,255,255,.22)"; c.lineWidth = 2 * u; for (let x = 0; x < W; x += 58 * u) { c.beginPath(); c.moveTo(x, 0); c.lineTo(x, H); c.stroke(); } for (let y = 0; y < H; y += 58 * u) { c.beginPath(); c.moveTo(0, y); c.lineTo(W, y); c.stroke(); }
   c.fillStyle = PK; c.beginPath(); c.arc(-40 * u, -60 * u, 220 * u, 0, Math.PI * 2); c.fill(); c.beginPath(); c.arc(W + 20 * u, H + 40 * u, 230 * u, 0, Math.PI * 2); c.fill();
@@ -1127,7 +1137,7 @@ T.cgrid = (c, W, H, d, P) => {
   c.restore();
   sparkle(c, sx - 10 * u, b + 6 * u, 22 * u, "#ffe680"); sparkle(c, b + 30 * u, b + tH - 20 * u, 14 * u, "#151515");
   // price cloud
-  const R = (kind === "wide" ? 150 : 170) * u, cx = W - b - R * 0.85, cy = b + R * 0.75;
+  const R = (kind === "wide" ? 150 : 170) * u * S.ts, cx = W - b - R * 0.85, cy = b + R * 0.75;
   c.save(); c.shadowColor = "rgba(0,0,0,.25)"; c.shadowOffsetY = 8 * u; cloud(c, cx, cy, R, PK); c.restore();
   stack(c, priceItems(d, u, d.off ? "បញ្ចុះ " + d.off + "%" : "តម្លៃ", R * 0.6, "#ffffff", "#ffe680"), { x: cx - R * 0.66, y: cy - R * 0.58, w: R * 1.32, h: R * 1.16 });
   // name + details on a white pill over the bottom edge
@@ -1431,6 +1441,9 @@ $("transp").addEventListener("change", (e) => { S.transparent = e.target.checked
 $("credit").addEventListener("change", (e) => { S.credit = e.target.checked; render(); });
 $("fonly").addEventListener("change", (e) => { S.fonly = e.target.checked; render(); });
 $("scale").addEventListener("input", (e) => { S.scale = e.target.value / 100; render(); });
+const setTs = (v) => { S.ts = v / 100; $("ts").value = v; $("tsv").textContent = v + "%"; render(); };
+$("ts").addEventListener("input", (e) => setTs(+e.target.value));
+$("tsReset").addEventListener("click", () => setTs(100));
 $("color").addEventListener("input", (e) => { S.color = e.target.value; render(); });
 $("colorReset").addEventListener("click", () => { S.color = null; render(); });
 let tolT = 0; $("tol").addEventListener("input", () => { clearTimeout(tolT); tolT = setTimeout(() => processAll(), 150); });
