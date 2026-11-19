@@ -201,6 +201,7 @@ input[type=color]::-webkit-color-swatch-wrapper{padding:0}input[type=color]::-we
 }
 
 .tsize{display:flex;align-items:center;gap:10px;margin-top:12px;padding:8px 12px;border-radius:12px;background:rgba(255,255,255,.75);border:1px solid var(--line);font-size:12.5px;font-weight:600;color:var(--ink)}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .tsize label{white-space:nowrap;max-width:46%;overflow:hidden;text-overflow:ellipsis}
 .tsize.on{border-color:#ffd23f;box-shadow:0 0 0 3px rgba(255,210,63,.35)}
 .tsize input{flex:1;min-width:0}
@@ -291,11 +292,11 @@ input[type=color]::-webkit-color-swatch-wrapper{padding:0}input[type=color]::-we
   .mini{padding:10px 12px 6px}
   .mini h2{margin:0 0 6px}
   .mini .sizes{gap:5px}
-  .mini .sizes button{grid-template-columns:auto minmax(0,1fr);justify-items:start;align-items:center;text-align:left;gap:0 6px;padding:5px 7px;font-size:11px;line-height:1.2}
-  .mini .sizes button i{grid-row:1/3;height:16px!important;border-width:1.5px}
+  .mini .sizes button{grid-template-columns:auto auto;justify-content:center;align-items:center;gap:0 8px;padding:9px 6px;font-size:11px;line-height:1.2}
+  .mini .sizes button i{height:16px!important;border-width:1.5px}
   .mini .sizes button i[style*="width:11px"]{width:9px!important}.mini .sizes button i[style*="width:16px"]{width:13px!important}.mini .sizes button i[style*="width:20px"]{width:16px!important}
   .mini .sizes button i[style*="width:30px"]{width:20px!important;height:11px!important;margin-block:2.5px!important}
-  .mini .sizes button span{font-size:9.5px}
+  .mini .sizes button span{font-size:12px;font-weight:800}
   .mini .swatches{margin-top:7px;gap:5px}
   .mini .sw{width:20px;height:20px}.mini input[type=color]{width:22px;height:22px}
   .mini .opts{grid-template-columns:minmax(0,1fr);margin-top:6px;padding-top:2px}
@@ -410,15 +411,15 @@ footer.fine a{color:var(--muted)}
       <div class="studio">
         <div class="studio-bar"><span class="dot">អូសដើម្បីរំកិលទំនិញ · ចុចលើអក្សរ ដើម្បីប្តូរទំហំ</span><b id="tplName">Clean Product</b></div>
         <div class="view"><span class="tag" id="demoTag">ឧទាហរណ៍</span><canvas id="preview" width="1080" height="1920" aria-label="រូបមើលមុន"></canvas></div>
-        <div class="tsize" id="tsize"><label for="ts" id="tsLabel">ទំហំអក្សរទាំងអស់</label><span class="tsm" aria-hidden="true">A</span><input type="range" id="ts" min="70" max="140" step="5" value="100" aria-describedby="tsv"><span class="tsl" aria-hidden="true">A</span><output id="tsv" for="ts">100%</output><button type="button" id="tsReset" class="btn">ដើម</button><button type="button" id="tsDone" class="btn" hidden aria-label="ឈប់ជ្រើស">✓</button></div>
+        <div class="tsize" id="tsize"><label for="ts" id="tsLabel" class="sr">ទំហំអក្សរទាំងអស់</label><span class="tsm" aria-hidden="true">A</span><input type="range" id="ts" min="70" max="140" step="5" value="100" aria-describedby="tsv"><span class="tsl" aria-hidden="true">A</span><output id="tsv" for="ts">100%</output><button type="button" id="tsReset" class="btn">ដើម</button><button type="button" id="tsDone" class="btn" hidden aria-label="ឈប់ជ្រើស">✓</button></div>
       </div>
     <section class="card mini" aria-labelledby="s4">
       <h2 id="s4"><b>4</b>ទំហំ និងពណ៌</h2>
               <div class="sizes" id="sizes" role="group" aria-label="ទំហំ">
-        <button type="button" data-s="1080x1920" aria-pressed="true"><i style="width:11px"></i>Story / Reel<span>9:16</span></button>
-        <button type="button" data-s="1080x1350" aria-pressed="false"><i style="width:16px"></i>Post<span>4:5</span></button>
-        <button type="button" data-s="1080x1080" aria-pressed="false"><i style="width:20px"></i>ការ៉េ<span>1:1</span></button>
-        <button type="button" data-s="1920x1080" aria-pressed="false"><i style="width:30px;height:17px;margin-block:1.5px"></i>Live / Cover<span>16:9</span></button>
+        <button type="button" data-s="1080x1920" title="Story / Reel" aria-label="Story / Reel 1080x1920" aria-pressed="true"><i style="width:11px"></i><span>9:16</span></button>
+        <button type="button" data-s="1080x1350" title="Post" aria-label="Post 1080x1350" aria-pressed="false"><i style="width:16px"></i><span>4:5</span></button>
+        <button type="button" data-s="1080x1080" title="ការ៉េ" aria-label="ការ៉េ 1080x1080" aria-pressed="false"><i style="width:20px"></i><span>1:1</span></button>
+        <button type="button" data-s="1920x1080" title="Live / Cover" aria-label="Live / Cover 1920x1080" aria-pressed="false"><i style="width:30px;height:17px;margin-block:1.5px"></i><span>16:9</span></button>
       </div>
               <div class="swatches" id="swatches"><span class="sublabel" style="margin:0 4px 0 0">ពណ៌ស៊ុម</span>
         <button type="button" class="btn" id="colorReset" style="padding:4px 10px;font-size:12px;border-radius:999px">ពណ៌តាមគំរូ</button>
