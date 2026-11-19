@@ -350,6 +350,17 @@ input[type=color]::-webkit-color-swatch-wrapper{padding:0}input[type=color]::-we
   .c3 footer.fine{flex:none;margin:0;padding:0 2px;border:0;font-size:11px;flex-direction:column;gap:0}
   .c1 [aria-labelledby="s2"] .grid2{grid-template-columns:repeat(4,minmax(0,1fr))}
 }
+.adpop{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:16px;background:rgba(8,14,32,.45);opacity:0;transition:opacity .3s}
+.adpop.show{opacity:1}
+.adpop[hidden]{display:none}
+.adpop-box{position:relative;width:min(440px,92vw);background:#fff;border-radius:20px;padding:10px;box-shadow:0 30px 80px -20px rgba(0,0,0,.55);transform:translateY(12px) scale(.97);transition:transform .3s}
+.adpop.show .adpop-box{transform:none}
+.adpop .ads{aspect-ratio:1/1;max-width:none;flex:none;border:0;border-radius:14px}
+.adpop-x{position:absolute;top:-12px;right:-12px;z-index:3;width:34px;height:34px;border-radius:50%;border:0;background:#0c1430;color:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.adpop-time{height:4px;margin:8px 4px 2px;border-radius:4px;background:#e6eaf3;overflow:hidden}
+.adpop-time i{display:block;height:100%;width:100%;background:#0059e0;transform-origin:left;transform:scaleX(1)}
+.adpop.run .adpop-time i{transition:transform linear;transform:scaleX(0)}
+@media (prefers-reduced-motion:reduce){.adpop,.adpop-box{transition:none}}
 dialog{border:0;border-radius:22px;padding:0;max-width:min(560px,94vw);width:100%;background:var(--panel);color:var(--ink);box-shadow:0 40px 90px -30px rgba(0,0,0,.7)}
 dialog::backdrop{background:rgba(5,9,22,.72);backdrop-filter:blur(4px)}
 .dlg{display:grid;gap:14px;padding:20px}
@@ -477,12 +488,6 @@ footer.fine a{color:var(--muted)}
       <button class="btn gold big" type="button" id="export"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M7 11l5 5 5-5M4 20h16"/></svg>ទាញយក PNG</button>
       <p class="note"><span class="dim" id="dim">1080 × 1080 px · PNG</span> · គុណភាពខ្ពស់</p>
       </div>
-      <section class="ads" id="ads" aria-roledescription="carousel" aria-label="សេវាកម្ម ADS BOX">
-        <div class="ads-track" id="adsTrack"></div>
-        <button type="button" class="ads-nav prev" id="adsPrev" aria-label="មុន"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
-        <button type="button" class="ads-nav next" id="adsNext" aria-label="បន្ទាប់"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
-        <div class="ads-dots" id="adsDots" role="tablist"></div>
-      </section>
       <div class="about">
       <p class="about-t">បង្ហោះរូបទំនិញ AI លុបផ្ទៃខាងក្រោយឲ្យ ដាក់ឈ្មោះ តម្លៃ និងកាដូថែម ហើយទាញយក PNG សម្រាប់ Facebook Post, Live ឬ Story។</p>
       <ul class="trust">
@@ -498,6 +503,19 @@ footer.fine a{color:var(--muted)}
     </div>
   </div>
 
+</div>
+
+<div class="adpop" id="adpop" hidden>
+  <div class="adpop-box" role="dialog" aria-modal="false" aria-label="សេវាកម្ម ADS BOX">
+    <button type="button" class="adpop-x" id="adpopX" aria-label="បិទ"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <section class="ads" id="ads" aria-roledescription="carousel" aria-label="សេវាកម្ម ADS BOX">
+      <div class="ads-track" id="adsTrack"></div>
+      <button type="button" class="ads-nav prev" id="adsPrev" aria-label="មុន"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+      <button type="button" class="ads-nav next" id="adsNext" aria-label="បន្ទាប់"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+      <div class="ads-dots" id="adsDots" role="tablist"></div>
+    </section>
+    <div class="adpop-time"><i id="adpopBar"></i></div>
+  </div>
 </div>
 
 <div class="mbar" aria-hidden="false">
@@ -1635,9 +1653,9 @@ Promise.race([fontsReady, new Promise((r) => setTimeout(r, 2500))]).then(() => l
   let i = 0, timer = null, n = 0, hover = false;
   const small = (src) => /^\/assets\/promo\/[\w-]+\.jpg$/.test(src) ? src.replace(/\.jpg$/, "-sm.jpg") : src;
   function go(k) { const sl = track.children; if (!n) return; i = (k + n) % n; [...sl].forEach((el, j) => { el.classList.toggle("on", j === i); el.setAttribute("aria-hidden", j !== i); el.tabIndex = j === i ? 0 : -1; }); [...dots.children].forEach((d, j) => d.setAttribute("aria-selected", j === i)); }
-  function play() { clearInterval(timer); if (!reduce && !hover && n > 1) timer = setInterval(() => go(i + 1), 4500); }
+  function play() { clearInterval(timer); if (!reduce && !hover && n > 1 && !document.getElementById("adpop").hidden) timer = setInterval(() => go(i + 1), 4500); }
   function build(list) {
-    list = list.filter((p) => p && p.image).slice(0, 8); n = list.length; if (!n) { box.hidden = true; return; }
+    list = list.filter((p) => p && p.image).slice(0, 8); n = list.length; if (!n) { pop.remove(); return; }
     track.innerHTML = list.map((p, j) => `<a class="ads-slide" href="/#services" aria-label="${(p.title || "ADS BOX").replace(/"/g, "&quot;")}"><img src="${encodeURI(small(p.image))}" alt="${(p.title || "").replace(/"/g, "&quot;")}" ${j ? 'loading="lazy"' : ""} onerror="if(!this.dataset.f){this.dataset.f=1;this.src='${encodeURI(p.image)}'}"></a>`).join("");
     dots.innerHTML = list.map((p, j) => `<button type="button" role="tab" aria-label="${j + 1}"></button>`).join("");
     [...dots.children].forEach((d, j) => d.addEventListener("click", () => { go(j); play(); }));
@@ -1648,6 +1666,25 @@ Promise.race([fontsReady, new Promise((r) => setTimeout(r, 2500))]).then(() => l
   box.addEventListener("mouseenter", () => { hover = true; clearInterval(timer); });
   box.addEventListener("mouseleave", () => { hover = false; play(); });
   document.addEventListener("visibilitychange", () => (document.hidden ? clearInterval(timer) : play()));
+  box.hidden = false;
+  // Pop-up timing: first after 2 minutes on the page, then every 2 minutes; each stays 10 seconds.
+  const pop = document.getElementById("adpop"), bar = document.getElementById("adpopBar");
+  const fast = /[?&]ads=fast\b/.test(location.search), EVERY = fast ? 8000 : 120000, SHOW = fast ? 4000 : 10000;
+  let visibleMs = 0, last = Date.now(), hideT = null, open = false;
+  function show() {
+    const dlg = document.getElementById("dlg");
+    if (open || !n || document.hidden || (dlg && dlg.open)) return;
+    open = true; pop.hidden = false; go(i + (pop.dataset.seen ? 1 : 0)); pop.dataset.seen = 1; play();
+    bar.style.transitionDuration = SHOW + "ms";
+    requestAnimationFrame(() => requestAnimationFrame(() => pop.classList.add("show", "run")));
+    hideT = setTimeout(hide, SHOW);
+  }
+  function hide() { clearTimeout(hideT); if (!open) return; open = false; clearInterval(timer); pop.classList.remove("show", "run"); setTimeout(() => { if (!open) pop.hidden = true; }, 300); }
+  setInterval(() => { const now = Date.now(); if (!document.hidden && !open) visibleMs += now - last; last = now; if (visibleMs >= EVERY) { visibleMs = 0; show(); } }, 500);
+  document.getElementById("adpopX").addEventListener("click", hide);
+  pop.addEventListener("click", (e) => { if (e.target === pop) hide(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") hide(); });
+  box.addEventListener("click", (e) => { if (e.target.closest(".ads-slide")) hide(); });
   fetch("/content/promos.json", { cache: "no-cache" }).then((r) => (r.ok ? r.json() : Promise.reject())).then((d) => build(Array.isArray(d) && d.length ? d : FALLBACK)).catch(() => build(FALLBACK));
 })();
 </script>
