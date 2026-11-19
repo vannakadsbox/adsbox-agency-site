@@ -4,7 +4,7 @@ slug: "split-monthly-ad-budget-test-scale-reserve"
 summary: "កុំចាក់ថវិកាទាំងអស់លើ Post តែមួយ។ ចែកជា សាកល្បង ពង្រីក និងបម្រុង ជាមួយផែនការគំរូសម្រាប់ $5, $10, $20 និង $30 ក្នុងមួយថ្ងៃ និងវិធីចាប់ផ្ដើមសម្រាប់ផេកថ្មី។"
 tag: "Boost → Order → ចំណេញ"
 date: 2026-10-25
-updated: 2026-11-12
+updated: 2026-11-16
 emoji: "💵 🧪 📈"
 cover: ""
 seo_title: "តម្លៃ Boost ប៉ុន្មានក្នុងមួយថ្ងៃ? ចែកថវិកា $5 $10 $20 $30"
@@ -88,4 +88,4 @@ draft: false
 
 **អត្ថបទពាក់ព័ន្ធ៖** [Boost Post មួយណាឲ្យចំ?](/knowledge/choose-which-post-to-boost/) · [របៀបសាកល្បង Boost Post ពីរ](/knowledge/test-two-boost-posts-clothing-shop/) · [របាយការណ៍ Boost ប្រចាំថ្ងៃ](/knowledge/daily-spend-and-order-report/)
 
-បើបងចង់មានក្រុមជួយចែកថវិកា និងតាមដានលទ្ធផលរាល់ថ្ងៃ ក្រុម ADS BOX មានសេវាគ្រប់គ្រងផេក Boost Post ($79 / ខែ) ដែលកំណត់គោលដៅ ថវិកា និងផ្ញើរបាយការណ៍លុយចាយ និងចំនួន Order រៀងរាល់ថ្ងៃ។ ផ្ញើ Link ផេកមកតាម [Telegram](https://t.me/vannakdm)។
+ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ? ក្រុម ADS BOX មានសេវាគ្រប់គ្រងផេក Boost Post ($79 / ខែ) ដែលកត់លុយចាយ និង Order រាល់ថ្ងៃ។ មើល [សេវាកម្មរបស់យើង](/#services) ឬឆាតមក [Telegram](https://t.me/vannakdm)។

@@ -4,7 +4,7 @@ slug: "stop-customers-refusing-parcels"
 summary: "Order មិនទទួលមួយ ខាតច្រើនជាងថ្លៃដឹក។ គណនាថ្លៃពិតរបស់វា តាមដានអត្រាដឹកជោគជ័យ ហើយប្រើវិធី ៤ ការពារ Order បោះបង់មុនខ្ចប់។"
 tag: "ចំណេញពិត"
 date: 2026-11-08
-updated: 2026-11-12
+updated: 2026-11-16
 emoji: "📦 🚚 ❌"
 cover: ""
 seo_title: "ភ្ញៀវមិនទទួលឥវ៉ាន់ COD៖ គណនាខាត និងវិធីការពារ Order បោះបង់"
@@ -109,4 +109,4 @@ Order ដែលភ្ញៀវបញ្ជាក់មុនខ្ចប់ គ�
 
 **អត្ថបទពាក់ព័ន្ធ៖** [គណនាពីលុយចាយ Boost ដល់ចំណេញពិត](/knowledge/cost-per-message-vs-cost-per-order/) · [តាមដាន Order ពីសារដល់ដៃអតិថិជន](/knowledge/track-orders-from-message-to-delivery/) · [ឆ្លើយសារយឺត ១ ម៉ោង បាត់ Order ប៉ុន្មាន?](/knowledge/organize-messenger-inbox-reply-fast/) · [របាយការណ៍ Boost ប្រចាំថ្ងៃ](/knowledge/daily-spend-and-order-report/)
 
-បើការកត់ Order ពី Comment និង Messenger ធ្វើឲ្យ Admin រវល់ពេក រហូតភ្លេចបញ្ជាក់ ADS BOX System អាចជួយចាប់ Order ពី Comment Live ឆ្លើយ Messenger និងបោះពុម្ពស្ទីគ័រដឹក ក្នុងប្រព័ន្ធតែមួយ។ មានគម្រោងឥតគិតថ្លៃ ហើយគម្រោងបង់ប្រាក់ចាប់ពី $29 ក្នុងមួយខែ។ [ចុះឈ្មោះនៅ adsbox.biz](https://adsbox.biz/) ឬ [សួរតាម Telegram](https://t.me/vannakdm)។
+បើ Order ច្រើនរហូតកត់មិនទាន់ សាក ADS BOX System ដើម្បីគ្រប់គ្រង Order ពី Comment Live និង Messenger ឥតគិតថ្លៃ (គម្រោងបង់ប្រាក់ចាប់ពី $29 / ខែ) នៅ [adsbox.biz](https://adsbox.biz/)។

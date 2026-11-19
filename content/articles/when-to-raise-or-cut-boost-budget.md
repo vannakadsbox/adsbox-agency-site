@@ -4,7 +4,7 @@ slug: "when-to-raise-or-cut-boost-budget"
 summary: "កុំប្ដូរថវិកា Boost តាមអារម្មណ៍។ កំណត់បន្ទាត់ក្រហមពី Cost per Delivered Order មើលលេខឲ្យគ្រប់ថ្ងៃ ហើយដើរតាមសំណួរ ៥ ដើម្បីដឹងថាគួរបន្ថែម រក្សា កែ ឬផ្អាក។"
 tag: "Boost → Order → ចំណេញ"
 date: 2026-11-02
-updated: 2026-11-12
+updated: 2026-11-16
 emoji: "📈 🧭 📉"
 cover: ""
 seo_title: "គួរបង្កើនថវិកា Boost ឬអត់? វិធីសម្រេចចិត្តតាមលេខ"
@@ -132,4 +132,4 @@ Boost បានល្អពីរថ្ងៃ ក៏បន្ថែមលុយ�
 
 **អត្ថបទពាក់ព័ន្ធ៖** [Boost Post មួយណាឲ្យចំ?](/knowledge/choose-which-post-to-boost/) · [ការពារ Order បោះបង់មុនផ្ញើ](/knowledge/stop-customers-refusing-parcels/) · [ឆ្លើយសារ Messenger លឿន មិនឲ្យបាត់ Order](/knowledge/organize-messenger-inbox-reply-fast/)
 
-បើបងចង់មានអ្នកជួយមើលលេខទាំងនេះរាល់ថ្ងៃ ហើយប្ដូរថវិកាឲ្យទាន់ពេល ក្រុម ADS BOX មានសេវាគ្រប់គ្រងផេក Boost Post ($79 / ខែ)៖ កំណត់គោលដៅ ថវិកា និងតាមដានលទ្ធផលគិតជា Order។ ADS BOX មិនសន្យាចំនួន Order ទេ ព្រោះវាអាស្រ័យលើទំនិញ តម្លៃ និងរូបថត តែក្រុមពិនិត្យរាល់ថ្ងៃ ហើយកែលឿន។ ផ្ញើ Link ផេកមកតាម [Telegram](https://t.me/vannakdm)។
+ចង់ឲ្យក្រុម ADS BOX តាមដាន Boost រាល់ថ្ងៃ? ក្រុម ADS BOX មានសេវាគ្រប់គ្រងផេក Boost Post ($79 / ខែ) ដែលកត់លុយចាយ និង Order រាល់ថ្ងៃ។ មើល [សេវាកម្មរបស់យើង](/#services) ឬឆាតមក [Telegram](https://t.me/vannakdm)។

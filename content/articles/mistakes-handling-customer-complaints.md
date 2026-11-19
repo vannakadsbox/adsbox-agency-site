@@ -4,7 +4,7 @@ slug: "mistakes-handling-customer-complaints"
 summary: "ទំនិញខូច ផ្ញើយឺត ឬផ្ញើខុស អាចកើតឡើងគ្រប់ហាង។ អ្វីដែលសំខាន់គឺរបៀបឆ្លើយតប។ ស្វែងយល់ពីកំហុស ៥ ដែលគួរជៀសវាង និងវិធីកែ។"
 tag: "ចំណេញពិត"
 date: 2026-10-30
-updated: 2026-11-12
+updated: 2026-11-16
 emoji: "💬 🛠️ 🤝"
 cover: ""
 seo_title: "កំហុសឆ្លើយតបអតិថិជនត្អូញត្អែរ សម្រាប់អ្នកលក់អនឡាញ"
@@ -64,4 +64,6 @@ draft: false
 
 **បន្ទាប់ក្នុងផ្លូវរៀន៖** [សារក្រោយការលក់ ឲ្យភ្ញៀវទិញម្ដងទៀត](/knowledge/after-sale-messages-repeat-customers/)
 
-**អត្ថបទពាក់ព័ន្ធ៖** [សារច្រើន តែ Order តិច?](/knowledge/turn-customer-questions-into-orders/) · [ភ្ញៀវចាស់ទិញម្ដងទៀត = Order ដែលមិនចាំបាច់ចាយ Boost ម្ដងទៀត](/knowledge/after-sale-messages-repeat-customers/) · [តាមដាន Order ពីសារដល់ដៃអតិថិជន](/knowledge/track-orders-from-message-to-delivery/)
+**អត្ថបទពាក់ព័ន្ធ៖** [សារច្រើន តែ Order តិច?](/knowledge/turn-customer-questions-into-orders/) · [តាមដាន Order ពីសារដល់ដៃអតិថិជន](/knowledge/track-orders-from-message-to-delivery/)
+
+សាកគណនា Cost per Order របស់អ្នកមើល។ ចង់ដឹងបន្ថែម សូមអានអត្ថបទ ADS BOX [ភ្ញៀវចាស់ទិញម្ដងទៀត](/knowledge/after-sale-messages-repeat-customers/)។

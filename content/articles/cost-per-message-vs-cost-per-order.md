@@ -4,7 +4,7 @@ slug: "cost-per-message-vs-cost-per-order"
 summary: "Order មិនមែនជាចំណេញទេ។ រៀនតាមដានលុយចាយ → Message → Order → Confirmed → Delivered → Paid → Profit ហើយគណនាថា Boost មួយណាពិតជានៅសល់លុយ។"
 tag: "Boost → Order → ចំណេញ"
 date: 2026-10-26
-updated: 2026-11-12
+updated: 2026-11-16
 emoji: "💬 📦 💵"
 cover: ""
 seo_title: "Cost per Order មិនគ្រប់គ្រាន់៖ គណនាចំណេញពិតពី Boost Facebook"
@@ -169,8 +169,18 @@ Cost per Delivered Order នៅក្រោមបន្ទាត់ក្រហ�
 - ☐ សួរក្រុមហ៊ុនដឹក៖ សប្ដាហ៍មុន ដឹកដល់ប៉ុន្មាន មិនទទួលប៉ុន្មាន
 - ☐ គណនា Cost per Delivered Order របស់ Post ដែលចាយច្រើនជាងគេ
 
+## អានបន្តក្នុងប្រធានបទ «Boost → Order → ចំណេញ»
+
+- [អាន Ads Manager ក្នុង ៥ នាទីរាល់ព្រឹក](/knowledge/read-ads-manager-in-5-minutes/)
+- [Boost Post មួយណាទើបបាន Order?](/knowledge/choose-which-post-to-boost/)
+- [Caption ដែលធ្វើឲ្យ Cost per Message ថោក ហើយសារក្លាយជា Order](/knowledge/caption-answers-questions-first/)
+- [សារច្រើន តែ Order តិច?](/knowledge/turn-customer-questions-into-orders/)
+- [ឆ្លើយសារយឺត ១ ម៉ោង បាត់ Order ប៉ុន្មាន?](/knowledge/organize-messenger-inbox-reply-fast/)
+- [Boost $10/ថ្ងៃ គួរបន្ថែម កាត់ ឬបិទ?](/knowledge/when-to-raise-or-cut-boost-budget/)
+- [Boost $5, $10, $20 ឬ $30 ក្នុងមួយថ្ងៃ](/knowledge/split-monthly-ad-budget-test-scale-reserve/)
+
 **បន្ទាប់ក្នុងផ្លូវរៀន៖** [ឆ្លើយសារយ៉ាងណា ឲ្យ «តម្លៃប៉ុន្មាន?» ក្លាយជា Order](/knowledge/turn-customer-questions-into-orders/)
 
 **អត្ថបទពាក់ព័ន្ធ៖** [អានលទ្ធផល Ads Manager ក្នុង ៥ នាទី](/knowledge/read-ads-manager-in-5-minutes/) · [របាយការណ៍ Boost ប្រចាំថ្ងៃ](/knowledge/daily-spend-and-order-report/) · [ចែកថវិកាប្រចាំខែ](/knowledge/split-monthly-ad-budget-test-scale-reserve/)
 
-បើបងយល់ពីលេខទាំងនេះហើយ តែគ្មានពេលតាមដាន Boost រាល់ថ្ងៃ ក្រុម ADS BOX មានសេវាគ្រប់គ្រងផេក Boost Post ($79 / ខែ) ដែលកំណត់គោលដៅ ថវិកា និងផ្ញើរបាយការណ៍លុយចាយ និងចំនួន Order រៀងរាល់ថ្ងៃ។ ផ្ញើ Link ផេកមកតាម [Telegram](https://t.me/vannakdm) ដើម្បីពិភាក្សាថាគួរចាប់ផ្ដើមពីណា។
+ផ្ញើតម្លៃផលិតផល + Margin មកក្រុម ADS BOX ដើម្បីពិនិត្យថា Cost per Order ប៉ុន្មានទើបសមរម្យ សម្រាប់ទំនិញរបស់បង។ ឆាតមក [Telegram](https://t.me/vannakdm)។
