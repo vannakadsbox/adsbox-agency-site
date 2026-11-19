@@ -201,7 +201,8 @@ input[type=color]::-webkit-color-swatch-wrapper{padding:0}input[type=color]::-we
 }
 
 .tsize{display:flex;align-items:center;gap:10px;margin-top:12px;padding:8px 12px;border-radius:12px;background:rgba(255,255,255,.75);border:1px solid var(--line);font-size:12.5px;font-weight:600;color:var(--ink)}
-.tsize label{white-space:nowrap}
+.tsize label{white-space:nowrap;max-width:46%;overflow:hidden;text-overflow:ellipsis}
+.tsize.on{border-color:#ffd23f;box-shadow:0 0 0 3px rgba(255,210,63,.35)}
 .tsize input{flex:1;min-width:0}
 .tsize .tsm{font-size:11px;color:var(--muted);font-weight:800}.tsize .tsl{font-size:17px;color:var(--muted);font-weight:800}
 .tsize output{font-family:var(--f-num);font-size:12px;min-width:40px;text-align:right;color:var(--muted)}
@@ -407,9 +408,9 @@ footer.fine a{color:var(--muted)}
 
     <aside class="stage" aria-label="មើលមុន">
       <div class="studio">
-        <div class="studio-bar"><span class="dot">អូសលើរូប ដើម្បីរំកិលទំនិញ</span><b id="tplName">Clean Product</b></div>
+        <div class="studio-bar"><span class="dot">អូសដើម្បីរំកិលទំនិញ · ចុចលើអក្សរ ដើម្បីប្តូរទំហំ</span><b id="tplName">Clean Product</b></div>
         <div class="view"><span class="tag" id="demoTag">ឧទាហរណ៍</span><canvas id="preview" width="1080" height="1920" aria-label="រូបមើលមុន"></canvas></div>
-        <div class="tsize"><label for="ts">ទំហំអក្សរ</label><span class="tsm" aria-hidden="true">A</span><input type="range" id="ts" min="70" max="140" step="5" value="100" aria-describedby="tsv"><span class="tsl" aria-hidden="true">A</span><output id="tsv" for="ts">100%</output><button type="button" id="tsReset" class="btn">ដើម</button></div>
+        <div class="tsize" id="tsize"><label for="ts" id="tsLabel">ទំហំអក្សរទាំងអស់</label><span class="tsm" aria-hidden="true">A</span><input type="range" id="ts" min="70" max="140" step="5" value="100" aria-describedby="tsv"><span class="tsl" aria-hidden="true">A</span><output id="tsv" for="ts">100%</output><button type="button" id="tsReset" class="btn">ដើម</button><button type="button" id="tsDone" class="btn" hidden aria-label="ឈប់ជ្រើស">✓</button></div>
       </div>
     <section class="card mini" aria-labelledby="s4">
       <h2 id="s4"><b>4</b>ទំហំ និងពណ៌</h2>
@@ -473,8 +474,17 @@ const F_LUX = '"Playfair Display","MiSans Khmer","Kantumruy Pro",serif';
 
 // ---------------- state ----------------
 const S = { tpl: "clean", W: 1080, H: 1920, transparent: false, fonly: false, credit: true, mode: "ai", color: null,
-  raw: null, product: null, giftRaw: null, gift: null, scale: 1, ts: 1, dx: 0, dy: 0, box: null };
-let REC = false;   // true while drawing the on-screen preview: remembers where the product sits, for dragging
+  raw: null, product: null, giftRaw: null, gift: null, scale: 1, ts: 1, es: {}, sel: null, dx: 0, dy: 0, box: null };
+let REC = false;
+// Click-to-resize: every text element records where it was drawn (preview only); each one has its own size.
+let HITS = [], NOSCALE = false;
+const esz = (k) => S.ts * ((k && S.es[k]) || 1);
+function hit(c, k, x, y, w, h) {
+  if (!REC || !k) return;
+  const m = c.getTransform(), pts = [[x, y], [x + w, y], [x, y + h], [x + w, y + h]].map(([a, b]) => [m.a * a + m.c * b + m.e, m.b * a + m.d * b + m.f]);
+  const xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]);
+  HITS.push({ k, x: Math.min(...xs), y: Math.min(...ys), w: Math.max(...xs) - Math.min(...xs), h: Math.max(...ys) - Math.min(...ys) });
+}   // true while drawing the on-screen preview: remembers where the product sits, for dragging
 
 // ---------------- 10 template concepts ----------------
 // Each one has its own layout, type, shapes and price/CTA area, and its own layout for tall (9:16, 4:5), square and wide (16:9).
@@ -544,17 +554,20 @@ function fit(c, text, weight, family, size, min, maxW, maxLines) {
 }
 function text(c, t, x, y, { size = 40, weight = 800, fam = F_MIX, color = "#fff", align = "center", maxW = 9999, lines = 1, lh = 1.28 } = {}) {
   if (!t) return 0;
-  size *= S.ts;
+  size *= esz(t);
   const f = fit(c, t, weight, fam, size, Math.max(12, size * 0.55), maxW, lines);
   c.font = `${weight} ${f.s}px ${fam}`; c.fillStyle = color; c.textAlign = align; c.textBaseline = "middle";
   const step = f.s * lh, top = y - ((f.lines.length - 1) * step) / 2;
   f.lines.forEach((l, i) => c.fillText(l, x, top + i * step));
+  if (REC) { const w = Math.max(...f.lines.map((l) => c.measureText(l).width)); hit(c, t, align === "center" ? x - w / 2 : align === "right" ? x - w : x, top - step / 2, w, step * f.lines.length); }
   return f.lines.length * step;
 }
 function strike(c, t, x, y, size, color, align = "left") {
   if (!t) return;
+  if (!NOSCALE) size *= esz("#old");
   c.font = `700 ${size}px ${F_MIX}`; c.fillStyle = color; c.textAlign = align; c.textBaseline = "middle"; c.fillText(t, x, y);
   const w = c.measureText(t).width, x0 = align === "left" ? x : align === "center" ? x - w / 2 : x - w;
+  hit(c, "#old", x0, y - size * 0.62, w, size * 1.24);
   c.strokeStyle = color; c.lineWidth = Math.max(2, size / 11); c.beginPath(); c.moveTo(x0 - 3, y + size * 0.05); c.lineTo(x0 + w + 3, y + size * 0.05); c.stroke();
 }
 // Price: big main number, small raised decimals (or ,000 for riel), unit below them.
@@ -567,6 +580,7 @@ function priceParts(d) {
 function priceWidth(c, p, s, fam) { c.font = `900 ${s * 0.56}px ${fam}`; const a = c.measureText(p.pre).width; c.font = `900 ${s}px ${fam}`; const b = c.measureText(p.main).width; c.font = `800 ${s * 0.44}px ${fam}`; const e = Math.max(c.measureText(p.sup).width, p.unit ? s * 0.32 : 0); return [a, b, e, a + b + e + s * 0.04]; }
 function bigPrice(c, d, x, base, size, color, maxW, align = "left", fam = F_MIX) {
   const p = priceParts(d); if (!p) return 0;
+  if (!NOSCALE) size *= esz("#price");
   let s = size, w = priceWidth(c, p, s, fam); while (w[3] > maxW && s > 20) { s -= 2; w = priceWidth(c, p, s, fam); }
   let cx = align === "center" ? x - w[3] / 2 : align === "right" ? x - w[3] : x;
   c.fillStyle = color; c.textAlign = "left"; c.textBaseline = "alphabetic";
@@ -574,16 +588,17 @@ function bigPrice(c, d, x, base, size, color, maxW, align = "left", fam = F_MIX)
   c.font = `900 ${s}px ${fam}`; c.fillText(p.main, cx, base); cx += w[1] + s * 0.04;
   c.font = `800 ${s * 0.44}px ${fam}`; c.fillText(p.sup, cx, base - s * 0.42);
   if (p.unit) { c.font = `700 ${s * 0.32}px ${F_KH}`; c.fillText(p.unit, cx, base - s * 0.02); }
+  const x0 = align === "center" ? x - w[3] / 2 : align === "right" ? x - w[3] : x; hit(c, "#price", x0, base - s * 0.9, w[3], s * 1.0);
   return s;
 }
 // Rectangular tag (never round): optional rotation.
 function tag(c, t, cx, cy, { size = 30, bg = "#111", fg = "#fff", r = 6, rot = 0, padX = 0.7, weight = 800, fam = F_MIX, maxW = 9999 } = {}) {
   if (!t) return 0;
-  size *= S.ts;
+  if (!NOSCALE) size *= esz(t);
   let s = size; c.font = `${weight} ${s}px ${fam}`; while (c.measureText(t).width + s * padX * 2 > maxW && s > 12) { s -= 1; c.font = `${weight} ${s}px ${fam}`; }
   const w = c.measureText(t).width + s * padX * 2, h = s * 1.75;
   c.save(); c.translate(cx, cy); if (rot) c.rotate(rot); c.fillStyle = bg; rr(c, -w / 2, -h / 2, w, h, r); c.fill();
-  c.fillStyle = fg; c.textAlign = "center"; c.textBaseline = "middle"; c.fillText(t, 0, s * 0.05); c.restore();
+  c.fillStyle = fg; c.textAlign = "center"; c.textBaseline = "middle"; c.fillText(t, 0, s * 0.05); hit(c, t, -w / 2, -h / 2, w, h); c.restore();
   return w;
 }
 function giftIcon(c, cx, cy, s, col, rib) {
@@ -603,15 +618,16 @@ function product(c, z, shadow = "floor", img = S.product, user = true) {
 
 // ---------------- text stack: measure first, shrink to fit the zone, then draw ----------------
 function measure(c, i, maxW, k) {
-  const s = (i.size || 30) * k * S.ts, after = (i.after || 0) * k, none = { h: 0, draw() {} };
+  const key = i.kind === "price" ? "#price" : i.kind === "old" ? "#old" : (i.kind === "text" || i.kind === "tag") ? i.t : null;
+  const s = (i.size || 30) * k * (i.kind === "custom" || i.kind === "gap" ? 1 : esz(key)), after = (i.after || 0) * k, none = { h: 0, draw() {} };
   if (i.kind === "gap") return { h: i.h * k, draw() {} };
   if (i.kind === "text") {
     if (!i.t) return none;
     const fam = i.fam || F_MIX, wt = i.weight || 700, f = fit(c, i.t, wt, fam, s, Math.max(12, s * 0.62), maxW, i.lines || 1), lh = f.s * (i.lh || 1.32);
-    return { h: f.lines.length * lh + after, draw(x, y, al) { c.font = `${wt} ${f.s}px ${fam}`; c.fillStyle = i.color; c.textAlign = al; c.textBaseline = "middle"; if (i.spacing && "letterSpacing" in c) c.letterSpacing = i.spacing * f.s + "px"; f.lines.forEach((l, j) => c.fillText(l, x, y + lh * (j + 0.5))); if ("letterSpacing" in c) c.letterSpacing = "0px"; } };
+    return { h: f.lines.length * lh + after, draw(x, y, al) { c.font = `${wt} ${f.s}px ${fam}`; c.fillStyle = i.color; c.textAlign = al; c.textBaseline = "middle"; if (i.spacing && "letterSpacing" in c) c.letterSpacing = i.spacing * f.s + "px"; f.lines.forEach((l, j) => c.fillText(l, x, y + lh * (j + 0.5))); if (REC) { const w = Math.max(...f.lines.map((l) => c.measureText(l).width)); hit(c, i.t, al === "center" ? x - w / 2 : al === "right" ? x - w : x, y, w, lh * f.lines.length); } if ("letterSpacing" in c) c.letterSpacing = "0px"; } };
   }
-  if (i.kind === "price") { if (!i.d.priceN) return none; return { h: s * 1.0 + after, draw(x, y, al) { bigPrice(c, i.d, x, y + s * 0.84, s, i.color, maxW, al, i.fam); } }; }
-  if (i.kind === "old") { if (!i.t) return none; return { h: s * 1.45 + after, draw(x, y, al) { strike(c, i.t, x, y + s * 0.7, s, i.color, al); } }; }
+  if (i.kind === "price") { if (!i.d.priceN) return none; return { h: s * 1.0 + after, draw(x, y, al) { NOSCALE = true; bigPrice(c, i.d, x, y + s * 0.84, s, i.color, maxW, al, i.fam); NOSCALE = false; } }; }
+  if (i.kind === "old") { if (!i.t) return none; return { h: s * 1.45 + after, draw(x, y, al) { NOSCALE = true; strike(c, i.t, x, y + s * 0.7, s, i.color, al); NOSCALE = false; } }; }
   if (i.kind === "chips") {
     const list = (i.list || []).filter(Boolean); if (!list.length) return none;
     let fs = s, ws; const gap = 10 * k;
@@ -626,7 +642,7 @@ function measure(c, i, maxW, k) {
   }
   if (i.kind === "tag") {
     if (!i.t) return none; c.font = `${i.weight || 800} ${s}px ${i.fam || F_MIX}`; const w = Math.min(maxW, c.measureText(i.t).width + s * 1.4), h = s * 1.75;
-    return { h: h + after, draw(x, y, al) { const cx = al === "left" ? x + w / 2 : al === "right" ? x - w / 2 : x; tag(c, i.t, cx, y + h / 2, { size: s, bg: i.bg, fg: i.fg, r: (i.r ?? 6) * k, weight: i.weight || 800, fam: i.fam || F_MIX, maxW }); } };
+    return { h: h + after, draw(x, y, al) { const cx = al === "left" ? x + w / 2 : al === "right" ? x - w / 2 : x; NOSCALE = true; tag(c, i.t, cx, y + h / 2, { size: s, bg: i.bg, fg: i.fg, r: (i.r ?? 6) * k, weight: i.weight || 800, fam: i.fam || F_MIX, maxW }); NOSCALE = false; } };
   }
   if (i.kind === "custom") return { h: i.h * k + after, draw: (x, y, al) => i.draw(x, y, al, k, maxW) };
   return none;
@@ -1112,8 +1128,9 @@ T.fbreak = (c, W, H, d, P) => {
 // Same rules as the sale frames: background, then the photo, then the frame and all text on top.
 function otext(c, t, x, y, { size = 80, maxW = 9999, fill = "#fff", stroke = "#111", sw = 10, align = "left", weight = 900, lines = 1, lh = 1.12 } = {}) {
   if (!t) return 0;
-  size *= S.ts;
+  size *= esz(t);
   const f = fit(c, t, weight, F_MIX, size, size * 0.45, maxW, lines); c.font = `${weight} ${f.s}px ${F_MIX}`; c.textAlign = align; c.textBaseline = "middle"; c.lineJoin = "round";
+  if (REC) { const w = Math.max(...f.lines.map((l) => c.measureText(l).width)); hit(c, t, align === "center" ? x - w / 2 : align === "right" ? x - w : x, y - f.s * 0.6, w, f.lines.length * f.s * lh); }
   f.lines.forEach((l, j) => { const yy = y + j * f.s * lh; c.strokeStyle = stroke; c.lineWidth = sw; c.strokeText(l, x, yy); c.fillStyle = fill; c.fillText(l, x, yy); });
   return f.lines.length * f.s * lh;
 }
@@ -1326,12 +1343,14 @@ T.ccatalog = (c, W, H, d, P) => {
 
 // ---------------- the whole poster ----------------
 function draw(c, W, H, id, forPreview) {
-  c.clearRect(0, 0, W, H); REC = !!forPreview;
+  c.clearRect(0, 0, W, H); REC = !!forPreview; if (forPreview) HITS = [];
   const t = TPLS.find((x) => x.id === id) || TPLS[0];
   const kind = kindOf(W, H), P = { u: (Math.min(W, H) / 1080) * (kind === "wide" ? 1.18 : 1), kind, A: S.color || t.A };   // wide layouts have more room: larger type
   T[t.id](c, W, H, data(), P);
   REC = false;
   if (S.credit) { const u = P.u; c.font = `700 ${20 * Math.max(1, u)}px ${F_MIX}`; c.textAlign = "right"; c.textBaseline = "alphabetic"; c.lineWidth = 4; c.strokeStyle = "rgba(0,0,0,.25)"; c.fillStyle = "rgba(255,255,255,.92)"; c.strokeText("adsbox.agency", W - 22, H - 12); c.fillText("adsbox.agency", W - 22, H - 12); }
+  if (forPreview && S.sel) { const hs = HITS.filter((h) => h.k === S.sel); if (!hs.length) { S.sel = null; syncTs(); }
+    hs.forEach((h) => { c.save(); c.setTransform(1, 0, 0, 1, 0, 0); c.lineWidth = Math.max(3, W / 300); c.setLineDash([12, 8]); c.strokeStyle = "#ffd23f"; c.strokeRect(h.x - 8, h.y - 6, h.w + 16, h.h + 12); c.strokeStyle = "rgba(0,0,0,.55)"; c.lineDashOffset = 10; c.strokeRect(h.x - 8, h.y - 6, h.w + 16, h.h + 12); c.restore(); }); }
 }
 
 // ---------------- background removal ----------------
@@ -1447,9 +1466,16 @@ $("transp").addEventListener("change", (e) => { S.transparent = e.target.checked
 $("credit").addEventListener("change", (e) => { S.credit = e.target.checked; render(); });
 $("fonly").addEventListener("change", (e) => { S.fonly = e.target.checked; render(); });
 $("scale").addEventListener("input", (e) => { S.scale = e.target.value / 100; render(); });
-const setTs = (v) => { S.ts = v / 100; $("ts").value = v; $("tsv").textContent = v + "%"; render(); };
+const selName = (k) => (k === "#price" ? "តម្លៃ" : k === "#old" ? "តម្លៃដើម" : k.length > 16 ? k.slice(0, 15) + "…" : k);
+function syncTs() {
+  const sel = S.sel, v = Math.round((sel ? S.es[sel] || 1 : S.ts) * 100), r = $("ts");
+  r.min = sel ? 50 : 70; r.max = sel ? 200 : 140; r.value = v; $("tsv").textContent = v + "%";
+  $("tsLabel").textContent = sel ? "ទំហំ «" + selName(sel) + "»" : "ទំហំអក្សរទាំងអស់"; $("tsDone").hidden = !sel; $("tsize").classList.toggle("on", !!sel);
+}
+const setTs = (v) => { if (S.sel) S.es[S.sel] = v / 100; else S.ts = v / 100; syncTs(); render(); };
 $("ts").addEventListener("input", (e) => setTs(+e.target.value));
 $("tsReset").addEventListener("click", () => setTs(100));
+$("tsDone").addEventListener("click", () => { S.sel = null; syncTs(); render(); });
 $("color").addEventListener("input", (e) => { S.color = e.target.value; render(); });
 $("colorReset").addEventListener("click", () => { S.color = null; render(); });
 let tolT = 0; $("tol").addEventListener("input", () => { clearTimeout(tolT); tolT = setTimeout(() => processAll(), 150); });
@@ -1464,7 +1490,15 @@ drop.addEventListener("drop", (e) => { const f = e.dataTransfer.files && e.dataT
 drop.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); $("file").click(); } });
 window.addEventListener("paste", (e) => { const it = [...((e.clipboardData || {}).items || [])].find((i) => i.type.startsWith("image/")); if (it) loadImage(URL.createObjectURL(it.getAsFile())); });
 let dragging = null;
-pv.addEventListener("pointerdown", (e) => { if (!S.product || !S.box) return; dragging = { x: e.clientX, y: e.clientY, dx: S.dx, dy: S.dy }; pv.setPointerCapture(e.pointerId); pv.classList.add("drag"); });
+let down = null;
+pv.addEventListener("pointerdown", (e) => { down = { x: e.clientX, y: e.clientY }; if (!S.product || !S.box) return; dragging = { x: e.clientX, y: e.clientY, dx: S.dx, dy: S.dy }; pv.setPointerCapture(e.pointerId); pv.classList.add("drag"); });
+pv.addEventListener("pointerup", (e) => {
+  if (!down || Math.hypot(e.clientX - down.x, e.clientY - down.y) > 6) { down = null; return; }
+  down = null; if (dragging) { S.dx = dragging.dx; S.dy = dragging.dy; }
+  const r = pv.getBoundingClientRect(), px = (e.clientX - r.left) * (pv.width / r.width), py = (e.clientY - r.top) * (pv.height / r.height);
+  const on = HITS.filter((h) => px >= h.x - 10 && px <= h.x + h.w + 10 && py >= h.y - 10 && py <= h.y + h.h + 10).sort((a, b) => a.w * a.h - b.w * b.h)[0];
+  S.sel = on ? on.k : null; syncTs(); render();
+});
 pv.addEventListener("pointermove", (e) => { if (!dragging) return; const r = pv.getBoundingClientRect(), k = S.W / r.width; S.dx = dragging.dx + ((e.clientX - dragging.x) * k) / S.box.w; S.dy = dragging.dy + ((e.clientY - dragging.y) * k) / S.box.h; render(); });
 ["pointerup", "pointercancel"].forEach((ev) => pv.addEventListener(ev, () => { dragging = null; pv.classList.remove("drag"); }));
 // export and save
