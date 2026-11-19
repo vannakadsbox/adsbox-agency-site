@@ -1403,7 +1403,7 @@ function draw(c, W, H, id, forPreview) {
   const kind = kindOf(W, H), P = { u: (Math.min(W, H) / 1080) * (kind === "wide" ? 1.18 : 1), kind, A: S.color || t.A };   // wide layouts have more room: larger type
   T[t.id](c, W, H, data(), P);
   REC = false;
-  if (S.credit) { const u = P.u; c.font = `700 ${20 * Math.max(1, u)}px ${F_MIX}`; c.textAlign = "right"; c.textBaseline = "alphabetic"; c.lineWidth = 4; c.strokeStyle = "rgba(0,0,0,.25)"; c.fillStyle = "rgba(255,255,255,.92)"; c.strokeText("adsbox.agency", W - 22, H - 12); c.fillText("adsbox.agency", W - 22, H - 12); }
+  if (S.credit) { const u = P.u; c.font = `700 ${24 * Math.max(1, u)}px ${F_MIX}`; c.textAlign = "right"; c.textBaseline = "alphabetic"; c.lineWidth = 4; c.strokeStyle = "rgba(0,0,0,.25)"; c.fillStyle = "rgba(255,255,255,.92)"; c.strokeText("adsbox.agency", W - 22, H - 12); c.fillText("adsbox.agency", W - 22, H - 12); }
   if (forPreview && S.sel) { const hs = HITS.filter((h) => h.k === S.sel); if (!hs.length) { S.sel = null; syncTs(); }
     hs.forEach((h) => { c.save(); c.setTransform(1, 0, 0, 1, 0, 0); c.lineWidth = Math.max(3, W / 300); c.setLineDash([12, 8]); c.strokeStyle = "#ffd23f"; c.strokeRect(h.x - 8, h.y - 6, h.w + 16, h.h + 12); c.strokeStyle = "rgba(0,0,0,.55)"; c.lineDashOffset = 10; c.strokeRect(h.x - 8, h.y - 6, h.w + 16, h.h + 12); c.restore(); }); }
 }
