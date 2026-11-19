@@ -27,12 +27,16 @@
    "overlap_risk": "slot-used",
    "recommendation": "The 19 Nov slot was already filled at 06:58 by the weekly rotation (is-my-page-ready-to-boost) before this plan arrived. Recommend: publish this topic on 20 Nov.",
    "draft": "",
-   "status": "slot used — is-my-page-ready-to-boost published 06:58 (weekly rotation) before this plan; topic proposed for 20 Nov"
+   "status": "used (weekly rotation)",
+   "original_topic": "Ads ចំណាយដូចមុន តែ Order មិនកើន",
+   "final_topic": "— (ថ្ងៃនេះប្រើរួច៖ «ផេកត្រៀម Boost ហើយឬនៅ?» ចេញម៉ោង 06:58)",
+   "new_angle": "Slot already used by the weekly rotation before the Refresh plan arrived; its topic moved to 20 Nov.",
+   "topic_source": "used"
   },
   {
    "date": "2026-11-20",
    "topic": "Cost/Order តើមានន័យអ្វី?",
-   "style": "One Big Question",
+   "style": "Problem Story",
    "tag": "Boost → Order → ចំណេញ",
    "category": "boost-post",
    "overlaps": [
@@ -43,9 +47,11 @@
    "overlap_risk": "high",
    "recommendation": "Cost per Order is already explained in 3 live articles. Recommend: drop this topic and use 20 Nov for the moved 19 Nov topic.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-11-20.json",
-   "status": "draft ready — waiting for COO approval (proposed: uses the moved 19 Nov topic)",
-   "proposed_topic": "Ads ចំណាយដូចមុន តែ Order មិនកើន",
-   "proposed_style": "Problem Story"
+   "status": "approved by COO (minor edits applied)",
+   "original_topic": "Cost/Order តើមានន័យអ្វី?",
+   "final_topic": "Ads ចំណាយដូចមុន តែ Order មិនកើន",
+   "new_angle": "Moved from 19 Nov; replaces «Cost/Order មានន័យអ្វី?» (already explained in 3 live articles). Story + diagnosis: split the drop into Cost per Message vs close rate; the leak is in the Inbox, not the Ads.",
+   "topic_source": "coo-approved"
   },
   {
    "date": "2026-11-21",
@@ -60,7 +66,11 @@
    "overlap_risk": "medium",
    "recommendation": "Same problem as turn-customer-questions-into-orders. New angle: split 100 messages into 5 funnel steps and find the step with the biggest loss.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-11-21.json",
-   "status": "draft ready — waiting for COO approval"
+   "status": "approved by COO (minor edits applied)",
+   "original_topic": "Message ច្រើន តែ Order តិច",
+   "final_topic": "សារ ១០០ បាន Order តែ ៨៖ Order បាត់នៅជំហានណា?",
+   "new_angle": "Numbers + funnel: 100 messages split into 5 steps; find the biggest loss (reply speed) and recalculate Cost per Order.",
+   "topic_source": "coo-approved"
   },
   {
    "date": "2026-11-22",
@@ -74,7 +84,11 @@
    "overlap_risk": "low",
    "recommendation": "Angle: same $20/day; Seller A chases cheap Cost per Message, Seller B watches Cost per Order and profit.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-11-22.json",
-   "status": "draft ready — waiting for COO approval"
+   "status": "approved by COO (minor edits applied)",
+   "original_topic": "Seller A vs Seller B",
+   "final_topic": "Boost $20/ថ្ងៃដូចគ្នា៖ Seller A ដេញសារថោក Seller B មើល Order",
+   "new_angle": "Comparison + business economics: cheap messages vs cheaper Orders; Contribution Profit over 7 days.",
+   "topic_source": "coo-approved"
   },
   {
    "date": "2026-11-23",
@@ -88,7 +102,11 @@
    "overlap_risk": "medium",
    "recommendation": "Keep as a decision scenario (A/B/C/D). 1 Dec is almost the same question; see 1 Dec.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-11-23.json",
-   "status": "pending"
+   "status": "draft ready — waiting for COO review",
+   "original_topic": "Ads មិនបាន Order 3 ថ្ងៃ",
+   "final_topic": "Boost ៣ ថ្ងៃ គ្មាន Order សោះ — បងជ្រើស A, B, C ឬ D?",
+   "new_angle": "Decision with a stop line set before boosting (from profit before ads); pause and check messages, offer and stock before touching budget.",
+   "topic_source": "claude"
   },
   {
    "date": "2026-11-24",
@@ -102,7 +120,11 @@
    "overlap_risk": "low",
    "recommendation": "OK.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-11-24.json",
-   "status": "pending"
+   "status": "draft ready — waiting for COO review",
+   "original_topic": "5 កំហុសដែលធ្វើឲ្យ Ads ខាត",
+   "final_topic": "រកកំហុស៖ ៥ ប្រយោគដែលអ្នកលក់និយាយ ពេល Ads កំពុងខាត",
+   "new_angle": "Interactive: 5 short seller statements; the reader finds the mistake before the answer (counting undelivered Orders, CPO above profit, scaling on one good day, comparing with other shops, discount that doubles Orders but cuts profit).",
+   "topic_source": "claude"
   },
   {
    "date": "2026-11-25",
@@ -117,7 +139,12 @@
    "overlap_risk": "high",
    "recommendation": "when-to-raise-or-cut-boost-budget already asks 5 questions before changing budget. New angle: can the shop handle more Orders (stock, reply capacity, packing, cash)?",
    "draft": "content/autopost/prewritten/refresh-2026/2026-11-25.json",
-   "status": "pending"
+   "status": "angle changed (🔴) — needs COO OK before drafting",
+   "original_topic": "មុនបង្កើន Budget Check 7 ចំណុច",
+   "final_topic": "Ads ដើរល្អ ចង់បង្កើន Budget — ហាងទទួល Order បន្ថែមបានទេ?",
+   "new_angle": "Changed (🔴): not ad metrics (already in when-to-raise-or-cut-boost-budget) but the shop's capacity to handle 2× Orders: stock, reply capacity, packing, delivery, cash, margin at a higher Cost per Order.",
+   "topic_source": "claude-changed",
+   "overlap_after_change": "resolved by new question"
   },
   {
    "date": "2026-11-26",
@@ -134,7 +161,12 @@
    "overlap_risk": "high",
    "recommendation": "4 live articles cover post choice, testing, caption and photos. Keep only as a story that links them; do not repeat their tips.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-11-26.json",
-   "status": "pending"
+   "status": "angle changed (🔴) — needs COO OK before drafting",
+   "original_topic": "Boost Post: តើអ្វីធ្វើឲ្យ Post មួយលក់បាន?",
+   "final_topic": "Post ដដែល Boost ពីរដង លទ្ធផលខុសគ្នា — អ្វីប្ដូរ ក្រៅពី Post?",
+   "new_angle": "Changed (🔴): not «what makes a post sell» (4 live articles) but factors outside the post: payday timing, sizes out of stock, reply staff, audience seeing it again.",
+   "topic_source": "claude-changed",
+   "overlap_after_change": "resolved by new question"
   },
   {
    "date": "2026-11-27",
@@ -148,7 +180,12 @@
    "overlap_risk": "high",
    "recommendation": "Views vs Orders is also 9 Dec, 16 Dec, 17 Dec and the live tiktok-views-vs-orders-myths. Recommend 27 Nov: Facebook Post Reach/Like vs Order only.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-11-27.json",
-   "status": "pending"
+   "status": "topic changed by COO — not drafted",
+   "original_topic": "Views ច្រើន ≠ Order ច្រើន?",
+   "final_topic": "Facebook Reach និង Like ច្រើន តែមិនមាន Order — តើលេខណាគួរមើល?",
+   "new_angle": "COO change: Facebook only; which numbers lead to Orders and which only look good.",
+   "topic_source": "coo-changed",
+   "overlap_after_change": "resolved by new question"
   },
   {
    "date": "2026-11-28",
@@ -163,7 +200,11 @@
    "overlap_risk": "medium",
    "recommendation": "Keep, with new numbers; link the break-even article instead of re-teaching it.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-11-28.json",
-   "status": "pending"
+   "status": "angle set — not drafted",
+   "original_topic": "$50 Ads បាន 10 Orders — ចំណេញឬខាត?",
+   "final_topic": "$50 Ads បាន 10 Orders — ចំណេញឬខាត?",
+   "new_angle": "Same $50 and 10 Orders for 3 different products: profitable for one, break-even for one, loss for one (Contribution Profit).",
+   "topic_source": "claude"
   },
   {
    "date": "2026-11-29",
@@ -175,7 +216,12 @@
    "overlap_risk": "high",
    "recommendation": "Same idea as 22 Nov. Recommend: Seller A ships Phnom Penh, Seller B ships provinces — same Cost per Order, different profit (delivery, refused parcels).",
    "draft": "content/autopost/prewritten/refresh-2026/2026-11-29.json",
-   "status": "pending"
+   "status": "topic changed by COO — not drafted",
+   "original_topic": "Seller ដែល Boost ដូចគ្នា ប៉ុន្តែលទ្ធផលខុសគ្នា",
+   "final_topic": "Cost per Order ដូចគ្នា តែ Seller ម្នាក់ចំណេញជាងម្នាក់ — ហេតុអ្វី?",
+   "new_angle": "COO change: Phnom Penh vs province delivery and refused Orders.",
+   "topic_source": "coo-changed",
+   "overlap_after_change": "resolved by new question"
   },
   {
    "date": "2026-11-30",
@@ -189,7 +235,11 @@
    "overlap_risk": "medium",
    "recommendation": "Also close to 26 Dec. Keep 30 Nov on stop signals (no Orders); 26 Dec on Orders that lose money.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-11-30.json",
-   "status": "pending"
+   "status": "angle set — not drafted",
+   "original_topic": "តើពេលណាគួរ Stop Ads?",
+   "final_topic": "តើពេលណាគួរ Stop Ads?",
+   "new_angle": "4 situations: stop, pause, fix or continue — signals when there are no Orders (Orders that lose money are on 26 Dec).",
+   "topic_source": "claude"
   },
   {
    "date": "2026-12-01",
@@ -201,7 +251,12 @@
    "overlap_risk": "high",
    "recommendation": "Almost the same as 23 Nov. Recommend: «Ads បាន Message តែ Order បាត់មុនដឹក — រកកំហុស» (refused / unconfirmed Orders).",
    "draft": "content/autopost/prewritten/refresh-2026/2026-12-01.json",
-   "status": "pending"
+   "status": "topic changed by COO — not drafted",
+   "original_topic": "Ads មិនបាន Order តើបញ្ហានៅណា?",
+   "final_topic": "Ads បាន Message តែ Order បាត់មុនដឹក — តើបាត់នៅជំហានណា?",
+   "new_angle": "COO change: Message → Confirm → Address → Delivery → Received (21 Nov covers the reply step; this one starts after «យក»).",
+   "topic_source": "coo-changed",
+   "overlap_after_change": "resolved by new question"
   },
   {
    "date": "2026-12-02",
@@ -216,7 +271,12 @@
    "overlap_risk": "high",
    "recommendation": "is-my-page-ready-to-boost (19 Nov) is the same checklist. Recommend: check the Post itself (photo, price, offer, CTA, stock) — or merge with 25 Nov.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-12-02.json",
-   "status": "pending"
+   "status": "topic changed by COO — not drafted",
+   "original_topic": "7 ចំណុចត្រូវ Check មុន Boost",
+   "final_topic": "Post មួយត្រូវ Check អ្វីខ្លះ មុនយកលុយទៅ Boost?",
+   "new_angle": "COO change: post-level checklist only — photo/video, price, offer, CTA, stock, delivery info. Not the Page readiness checklist.",
+   "topic_source": "coo-changed",
+   "overlap_after_change": "resolved by new question"
   },
   {
    "date": "2026-12-03",
@@ -228,7 +288,11 @@
    "overlap_risk": "low",
    "recommendation": "OK.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-12-03.json",
-   "status": "pending"
+   "status": "angle set — not drafted",
+   "original_topic": "Product ល្អ តែ Ads មិនល្អ",
+   "final_topic": "Product ល្អ តែ Ads មិនល្អ",
+   "new_angle": "A product that sells well to old customers but not through Boost: the ad shows it wrongly or to the wrong people.",
+   "topic_source": "claude"
   },
   {
    "date": "2026-12-04",
@@ -242,7 +306,11 @@
    "overlap_risk": "medium",
    "recommendation": "Keep as a diagnosis question; link the break-even article.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-12-04.json",
-   "status": "pending"
+   "status": "angle set — not drafted",
+   "original_topic": "តើ Ads ថ្លៃ ឬ Product ចំណេញតិច?",
+   "final_topic": "តើ Ads ថ្លៃ ឬ Product ចំណេញតិច?",
+   "new_angle": "Two root causes that look the same; a 3-question test to tell them apart and different fixes for each.",
+   "topic_source": "claude"
   },
   {
    "date": "2026-12-05",
@@ -256,7 +324,11 @@
    "overlap_risk": "medium",
    "recommendation": "Close to 28 Nov; use it for the break-even Order count.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-12-05.json",
-   "status": "pending"
+   "status": "angle set — not drafted",
+   "original_topic": "$100 Ads → ត្រូវការ Order ប៉ុន្មាន?",
+   "final_topic": "$100 Ads → ត្រូវការ Order ប៉ុន្មាន?",
+   "new_angle": "Break-even Order count for 3 margins, worked out before spending.",
+   "topic_source": "claude"
   },
   {
    "date": "2026-12-06",
@@ -268,7 +340,11 @@
    "overlap_risk": "low",
    "recommendation": "OK — which product to Boost by profit per Order.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-12-06.json",
-   "status": "pending"
+   "status": "angle set — not drafted",
+   "original_topic": "Product A vs Product B",
+   "final_topic": "Product A vs Product B",
+   "new_angle": "Cheap-to-sell product vs high-margin product: which one deserves the Boost money.",
+   "topic_source": "claude"
   },
   {
    "date": "2026-12-07",
@@ -282,7 +358,11 @@
    "overlap_risk": "medium",
    "recommendation": "Keep as decision; link the budget-split article.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-12-07.json",
-   "status": "pending"
+   "status": "angle set — not drafted",
+   "original_topic": "បើ Budget មានតែ $10/ថ្ងៃ តើធ្វើអ្វីមុន?",
+   "final_topic": "បើ Budget មានតែ $10/ថ្ងៃ តើធ្វើអ្វីមុន?",
+   "new_angle": "4 options (one post, three posts, Live, old customers) and why one comes first.",
+   "topic_source": "claude"
   },
   {
    "date": "2026-12-08",
@@ -297,7 +377,12 @@
    "overlap_risk": "high",
    "recommendation": "sell-more-on-live has nearly the same title. New angle: who the Boost brought into the Live (wrong viewers).",
    "draft": "content/autopost/prewritten/refresh-2026/2026-12-08.json",
-   "status": "pending"
+   "status": "topic changed by COO — not drafted",
+   "original_topic": "Live មានអ្នកមើល តែគ្មាន Order",
+   "final_topic": "Boost នាំមនុស្សចូល Live ច្រើន តែជាមនុស្សដែលមិនមែនជាអតិថិជនគោលដៅឬ?",
+   "new_angle": "COO change: audience quality — who the Boost brought in, how to tell from comments, and what to change.",
+   "topic_source": "coo-changed",
+   "overlap_after_change": "resolved by new question"
   },
   {
    "date": "2026-12-09",
@@ -311,7 +396,11 @@
    "overlap_risk": "medium",
    "recommendation": "Keep for Live only.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-12-09.json",
-   "status": "pending"
+   "status": "angle set — not drafted",
+   "original_topic": "Views ច្រើនមានប្រយោជន៍អ្វី បើគ្មានអ្នកទិញ?",
+   "final_topic": "Views ច្រើនក្នុង Live មានប្រយោជន៍អ្វី បើគ្មានអ្នកទិញ?",
+   "new_angle": "Live only: when views are an asset (people to follow up later) and when they are only cost.",
+   "topic_source": "claude"
   },
   {
    "date": "2026-12-10",
@@ -326,7 +415,11 @@
    "overlap_risk": "medium",
    "recommendation": "Keep; compare with the shop's own past Lives and Cost per Order.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-12-10.json",
-   "status": "pending"
+   "status": "angle set — not drafted",
+   "original_topic": "Live 1 ម៉ោងបាន X Orders — តើលទ្ធផលល្អទេ?",
+   "final_topic": "Live 1 ម៉ោងបាន X Orders — តើលទ្ធផលល្អទេ?",
+   "new_angle": "Judge against the shop's own past Lives, Cost per Order and team capacity — no universal good number.",
+   "topic_source": "claude"
   },
   {
    "date": "2026-12-11",
@@ -338,7 +431,11 @@
    "overlap_risk": "low",
    "recommendation": "OK.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-12-11.json",
-   "status": "pending"
+   "status": "angle set — not drafted",
+   "original_topic": "Live Seller A vs Seller B",
+   "final_topic": "Live Seller A vs Seller B",
+   "new_angle": "Short daily Live vs one long weekly Live with the same monthly budget.",
+   "topic_source": "claude"
   },
   {
    "date": "2026-12-12",
@@ -350,7 +447,11 @@
    "overlap_risk": "low",
    "recommendation": "OK — publish on 12.12 sale day.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-12-12.json",
-   "status": "pending"
+   "status": "angle set — not drafted",
+   "original_topic": "Live ស្ងាត់ តើគួរ Stop ឬបន្ត?",
+   "final_topic": "Live ស្ងាត់ តើគួរ Stop ឬបន្ត?",
+   "new_angle": "12.12 sale day: decision during a quiet Live.",
+   "topic_source": "claude"
   },
   {
    "date": "2026-12-13",
@@ -365,7 +466,11 @@
    "overlap_risk": "medium",
    "recommendation": "Focus on Boost Live settings and budget mistakes, not Live hosting.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-12-13.json",
-   "status": "pending"
+   "status": "angle set — not drafted",
+   "original_topic": "5 កំហុសពេល Boost Live",
+   "final_topic": "5 កំហុសពេល Boost Live",
+   "new_angle": "Boost settings and budget mistakes only (Live hosting myths are already live).",
+   "topic_source": "claude"
   },
   {
    "date": "2026-12-14",
@@ -379,7 +484,12 @@
    "overlap_risk": "high",
    "recommendation": "sell-more-on-live has a before-Live checklist. Make it Boost-specific (audience, budget, timing, stock, codes).",
    "draft": "content/autopost/prewritten/refresh-2026/2026-12-14.json",
-   "status": "pending"
+   "status": "angle changed (🔴) — needs COO OK before drafting",
+   "original_topic": "Live មុន Boost: 8 ចំណុចត្រូវ Check",
+   "final_topic": "មុនចុច Boost Live៖ ៨ ចំណុចក្នុងការរៀបចំ Boost និងថវិកា",
+   "new_angle": "Changed (🔴): Boost-specific (goal, who to reach, budget limit, start time, stop rule, codes ready, admin ready, tracking sheet) — not the general before-Live checklist.",
+   "topic_source": "claude-changed",
+   "overlap_after_change": "resolved by new question"
   },
   {
    "date": "2026-12-15",
@@ -393,7 +503,12 @@
    "overlap_risk": "high",
    "recommendation": "Same as tiktok-views-vs-orders-myths. New angle: a video with no price and no next step.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-12-15.json",
-   "status": "pending"
+   "status": "topic changed by COO — not drafted",
+   "original_topic": "Video មាន Views តែមិនលក់",
+   "final_topic": "Video មានអ្នកមើល ប៉ុន្តែគ្មានហេតុផលឲ្យ Customer បន្តទៅជំហានទិញ",
+   "new_angle": "COO change: no price, no offer, no CTA, no next step.",
+   "topic_source": "coo-changed",
+   "overlap_after_change": "resolved by new question"
   },
   {
    "date": "2026-12-16",
@@ -407,7 +522,12 @@
    "overlap_risk": "high",
    "recommendation": "4th views-vs-orders topic. Recommend: «Video ណាគួរ Boost? Video Organic ល្អ ≠ Video Boost ល្អ».",
    "draft": "content/autopost/prewritten/refresh-2026/2026-12-16.json",
-   "status": "pending"
+   "status": "topic changed by COO — not drafted",
+   "original_topic": "Viral Video តើមានន័យថាលក់បានទេ?",
+   "final_topic": "Video Organic ដែលល្បី មិនប្រាកដថាជា Video ដែលគួរ Boost",
+   "new_angle": "COO change: why organic and paid performance differ.",
+   "topic_source": "coo-changed",
+   "overlap_after_change": "resolved by new question"
   },
   {
    "date": "2026-12-17",
@@ -421,7 +541,11 @@
    "overlap_risk": "medium",
    "recommendation": "Keep as the numbers piece for TikTok.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-12-17.json",
-   "status": "pending"
+   "status": "angle set — not drafted",
+   "original_topic": "100,000 Views vs 100 Orders",
+   "final_topic": "100,000 Views vs 100 Orders",
+   "new_angle": "Two example videos: many views/few Orders vs few views/many Orders; Cost per Order and profit.",
+   "topic_source": "claude"
   },
   {
    "date": "2026-12-18",
@@ -433,7 +557,11 @@
    "overlap_risk": "low",
    "recommendation": "OK.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-12-18.json",
-   "status": "pending"
+   "status": "angle set — not drafted",
+   "original_topic": "Video A vs Video B",
+   "final_topic": "Video A vs Video B",
+   "new_angle": "Demo video vs entertaining video for the same product.",
+   "topic_source": "claude"
   },
   {
    "date": "2026-12-19",
@@ -447,7 +575,11 @@
    "overlap_risk": "low",
    "recommendation": "OK.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-12-19.json",
-   "status": "pending"
+   "status": "angle set — not drafted",
+   "original_topic": "TikTok Video មិនបាន Order — តើប្តូរអ្វីមុន?",
+   "final_topic": "TikTok Video មិនបាន Order — តើប្តូរអ្វីមុន?",
+   "new_angle": "Order of fixes: offer, product shown, hook, CTA, audience.",
+   "topic_source": "claude"
   },
   {
    "date": "2026-12-20",
@@ -461,7 +593,11 @@
    "overlap_risk": "medium",
    "recommendation": "Avoid the 4 myths already published.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-12-20.json",
-   "status": "pending"
+   "status": "angle set — not drafted",
+   "original_topic": "6 កំហុសដែល Seller ធ្វើជាមួយ Short Video",
+   "final_topic": "6 កំហុសដែល Seller ធ្វើជាមួយ Short Video",
+   "new_angle": "Shooting and editing mistakes that cost Orders; not the 4 published myths.",
+   "topic_source": "claude"
   },
   {
    "date": "2026-12-21",
@@ -475,7 +611,11 @@
    "overlap_risk": "low",
    "recommendation": "OK.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-12-21.json",
-   "status": "pending"
+   "status": "angle set — not drafted",
+   "original_topic": "មុន Boost TikTok Check 7 ចំណុច",
+   "final_topic": "មុន Boost TikTok Check 7 ចំណុច",
+   "new_angle": "TikTok-specific readiness.",
+   "topic_source": "claude"
   },
   {
    "date": "2026-12-22",
@@ -489,7 +629,12 @@
    "overlap_risk": "high",
    "recommendation": "cost-per-message-vs-cost-per-order is the same question. New angle: cash stuck in COD, stock and refused parcels.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-12-22.json",
-   "status": "pending"
+   "status": "topic changed by COO — not drafted",
+   "original_topic": "លក់បានច្រើន តែហេតុអ្វីលុយមិនសល់?",
+   "final_topic": "លក់បានហើយ តែលុយជាប់នៅស្តុក និង COD — តើ Profit នៅឯណា?",
+   "new_angle": "COO change: cash flow, stock and refused COD Orders.",
+   "topic_source": "coo-changed",
+   "overlap_after_change": "resolved by new question"
   },
   {
    "date": "2026-12-23",
@@ -503,7 +648,12 @@
    "overlap_risk": "high",
    "recommendation": "New angle: the 4 money levels for a whole month, not per Order.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-12-23.json",
-   "status": "pending"
+   "status": "topic changed by COO — not drafted",
+   "original_topic": "Revenue ខុសពី Profit យ៉ាងដូចម្តេច?",
+   "final_topic": "លុយពីការលក់មួយខែ ឆ្លងកាត់ 4 ជំហាន មុនដឹងថាចំណេញប៉ុន្មាន",
+   "new_angle": "COO change: monthly money flow Revenue → Gross → Contribution → Net.",
+   "topic_source": "coo-changed",
+   "overlap_after_change": "resolved by new question"
   },
   {
    "date": "2026-12-24",
@@ -517,7 +667,12 @@
    "overlap_risk": "high",
    "recommendation": "Same as max-cost-per-order-before-losing-money. Recommend: «ចំណេញ $3/Order — ចង់បាន $300/ខែ ត្រូវ Order និង Ads ប៉ុន្មាន?»",
    "draft": "content/autopost/prewritten/refresh-2026/2026-12-24.json",
-   "status": "pending"
+   "status": "topic changed by COO — not drafted",
+   "original_topic": "Order មួយចំណេញ $3 — Ads គួរចំណាយប៉ុន្មាន?",
+   "final_topic": "បើចង់បាន Profit $300/ខែ — តើត្រូវការ Order និង Ads ប៉ុន្មាន?",
+   "new_angle": "COO change: reverse calculation from the profit target.",
+   "topic_source": "coo-changed",
+   "overlap_after_change": "resolved by new question"
   },
   {
    "date": "2026-12-25",
@@ -529,7 +684,11 @@
    "overlap_risk": "low",
    "recommendation": "OK.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-12-25.json",
-   "status": "pending"
+   "status": "angle set — not drafted",
+   "original_topic": "Seller A លក់ច្រើន vs Seller B ចំណេញច្រើន",
+   "final_topic": "Seller A លក់ច្រើន vs Seller B ចំណេញច្រើន",
+   "new_angle": "Discount-driven volume vs fewer Orders at a healthy margin.",
+   "topic_source": "claude"
   },
   {
    "date": "2026-12-26",
@@ -543,7 +702,11 @@
    "overlap_risk": "medium",
    "recommendation": "See 30 Nov; keep on Orders that lose money.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-12-26.json",
-   "status": "pending"
+   "status": "angle set — not drafted",
+   "original_topic": "Ads បាន Order តែខាត — Continue ឬ Stop?",
+   "final_topic": "Ads បាន Order តែខាត — Continue ឬ Stop?",
+   "new_angle": "Orders with negative Contribution Profit: fix price/bundle/cost or stop.",
+   "topic_source": "claude"
   },
   {
    "date": "2026-12-27",
@@ -557,7 +720,11 @@
    "overlap_risk": "low",
    "recommendation": "OK.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-12-27.json",
-   "status": "pending"
+   "status": "angle set — not drafted",
+   "original_topic": "7 កំហុសដែលធ្វើឲ្យ Seller គិតថាខ្លួនចំណេញ",
+   "final_topic": "7 កំហុសដែលធ្វើឲ្យ Seller គិតថាខ្លួនចំណេញ",
+   "new_angle": "Find the mistake on a month-end report.",
+   "topic_source": "claude"
   },
   {
    "date": "2026-12-28",
@@ -571,7 +738,11 @@
    "overlap_risk": "low",
    "recommendation": "OK.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-12-28.json",
-   "status": "pending"
+   "status": "angle set — not drafted",
+   "original_topic": "Profit Audit: ពិនិត្យអាជីវកម្មក្នុង 10 នាទី",
+   "final_topic": "Profit Audit: ពិនិត្យអាជីវកម្មក្នុង 10 នាទី",
+   "new_angle": "10-minute self audit with the 4 money levels.",
+   "topic_source": "claude"
   },
   {
    "date": "2026-12-29",
@@ -583,7 +754,11 @@
    "overlap_risk": "low",
    "recommendation": "OK — the reader works out their own year number.",
    "draft": "content/autopost/prewritten/refresh-2026/2026-12-29.json",
-   "status": "pending"
+   "status": "angle set — not drafted",
+   "original_topic": "តើឆ្នាំ 2026 អ្នកចំណាយ Ads ប៉ុន្មាន ដើម្បីរកបាន 1 Order?",
+   "final_topic": "តើឆ្នាំ 2026 អ្នកចំណាយ Ads ប៉ុន្មាន ដើម្បីរកបាន 1 Order?",
+   "new_angle": "The reader works out their own year number step by step.",
+   "topic_source": "claude"
   },
   {
    "date": "2026-12-30",
@@ -595,7 +770,11 @@
    "overlap_risk": "low",
    "recommendation": "OK (reflection).",
    "draft": "content/autopost/prewritten/refresh-2026/2026-12-30.json",
-   "status": "pending"
+   "status": "angle set — not drafted",
+   "original_topic": "បើចាប់ផ្តើមឆ្នាំ 2026 ម្តងទៀត តើអ្នកនឹងធ្វើអ្វីខុសពីមុន?",
+   "final_topic": "បើចាប់ផ្តើមឆ្នាំ 2026 ម្តងទៀត តើអ្នកនឹងធ្វើអ្វីខុសពីមុន?",
+   "new_angle": "Reflection story.",
+   "topic_source": "claude"
   },
   {
    "date": "2026-12-31",
@@ -607,7 +786,12 @@
    "overlap_risk": "low",
    "recommendation": "OK (year-end checklist).",
    "draft": "content/autopost/prewritten/refresh-2026/2026-12-31.json",
-   "status": "pending"
+   "status": "angle set — not drafted",
+   "original_topic": "7 ចំណុចដែលម្ចាស់អាជីវកម្មគួរដឹង មុនចូលឆ្នាំ 2027",
+   "final_topic": "7 ចំណុចដែលម្ចាស់អាជីវកម្មគួរដឹង មុនចូលឆ្នាំ 2027",
+   "new_angle": "Year-end checklist.",
+   "topic_source": "claude"
   }
- ]
+ ],
+ "coo_decision": "19 Nov 2026 22:37: APPROVE WITH CHANGES — continue; 🔴 topics must change the question itself; soft CTA only when relevant; no service prices unless relevant; drafts wait for COO review."
 }
