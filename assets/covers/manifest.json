@@ -46,5 +46,6 @@
  "is-my-page-ready-to-boost": "[\"ផេកត្រៀម Boost ហើយឬនៅ? សំណួរ-ចម្លើយ ៦ មុនចាយលុយ ពី Cost per Message ដល់ Order\",\"Boost → Order → ចំណេញ\",[\"✅\",\"📱\",\"💬\"]]",
  "facebook-reach-likes-no-orders-which-number": "[\"Facebook Reach និង Like ច្រើន តែមិនមាន Order — តើលេខណាគួរមើល?\",\"Boost → Order → ចំណេញ\",[\"👍\",\"🪜\",\"🛒\"]]",
  "ready-to-handle-more-orders-before-scaling": "[\"Ads ដើរល្អ ចង់បង្កើន Budget៖ ហាងទទួល Order បន្ថែមបានទេ? ពិនិត្យខ្លួនឯង ៧ ចំណុច\",\"Boost → Order → ចំណេញ\",[\"📈\",\"📦\",\"✅\"]]",
- "same-post-boosted-twice-different-results": "[\"Post ដដែល Boost ពីរដង លទ្ធផលខុសគ្នា៖ អ្វីប្ដូរ ក្រៅពី Post?\",\"Boost → Order → ចំណេញ\",[\"👗\",\"🔁\",\"🧐\"]]"
+ "same-post-boosted-twice-different-results": "[\"Post ដដែល Boost ពីរដង លទ្ធផលខុសគ្នា៖ អ្វីប្ដូរ ក្រៅពី Post?\",\"Boost → Order → ចំណេញ\",[\"👗\",\"🔁\",\"🧐\"]]",
+ "same-ad-spend-fewer-orders": "[\"Ads ចំណាយដូចមុន តែ Order ធ្លាក់៖ ហាងស្បែកជើងមួយ រកឃើញថាលុយមិនបាត់នៅ Ads ទេ\",\"Boost → Order → ចំណេញ\",[\"👟\",\"📉\",\"🔍\"]]"
 }
