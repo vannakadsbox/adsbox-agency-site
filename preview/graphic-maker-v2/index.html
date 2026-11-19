@@ -319,6 +319,37 @@ input[type=color]::-webkit-color-swatch-wrapper{padding:0}input[type=color]::-we
 .about .trust li{grid-template-columns:30px minmax(0,1fr);gap:8px;font-size:12px}
 .about .trust svg{width:30px;height:30px;padding:6px}
 @media (max-width:560px){.about .trust{grid-template-columns:minmax(0,1fr)}}
+/* ---- 3-column layout: info + templates | photo + preview | size, download, ADS BOX banner ---- */
+.bench{display:flex;flex-direction:column;gap:16px}
+.col{display:contents}
+.c2 .studio{order:1}.c3 .mini{order:2}.c3 .stage-foot{order:3}.c2 [aria-labelledby="s1"]{order:4}.c1 [aria-labelledby="s2"]{order:5}.c1 [aria-labelledby="s3"]{order:6}.c3 .ads{order:7}.c3 .about{order:8}.c3 footer.fine{order:9}
+.c3 .about{margin-top:0;padding:14px 16px;border:1px solid var(--line);border-radius:16px;background:var(--panel)}
+.ads{position:relative;border-radius:16px;overflow:hidden;background:#eef2fb;border:1px solid var(--line);aspect-ratio:1/1;max-width:560px;width:100%;justify-self:center;align-self:center}
+.ads-track{position:absolute;inset:0}
+.ads-slide{position:absolute;inset:0;display:block;opacity:0;visibility:hidden;transition:opacity .6s ease,visibility .6s}
+.ads-slide.on{opacity:1;visibility:visible}
+.ads-slide img{width:100%;height:100%;object-fit:contain;display:block}
+.ads-nav{position:absolute;top:50%;transform:translateY(-50%);width:30px;height:30px;border-radius:50%;border:0;background:rgba(255,255,255,.88);color:#0c1430;display:grid;place-items:center;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:0;transition:opacity .2s}
+.ads:hover .ads-nav,.ads:focus-within .ads-nav{opacity:1}
+.ads-nav.prev{left:8px}.ads-nav.next{right:8px}
+.ads-dots{position:absolute;left:0;right:0;bottom:8px;display:flex;justify-content:center;gap:6px}
+.ads-dots button{width:7px;height:7px;padding:0;border:0;border-radius:999px;background:rgba(255,255,255,.65);box-shadow:0 0 0 1px rgba(0,0,0,.15);cursor:pointer;transition:width .25s,background-color .25s}
+.ads-dots button[aria-selected=true]{width:20px;background:#0059e0}
+@media (prefers-reduced-motion:reduce){.ads-slide{transition:none}}
+@media (min-width:1100px) and (min-height:640px){
+  .bench{display:grid;flex:1;min-height:0;grid-template-columns:minmax(0,1.12fr) minmax(0,1fr) clamp(320px,27vw,440px);grid-template-rows:minmax(0,1fr);gap:14px;padding-bottom:14px}
+  .col{display:flex;flex-direction:column;gap:12px;min-height:0;height:100%}
+  .col>*{order:0!important}
+  .c1 [aria-labelledby="s2"]{flex:none;display:block}
+  .c1 [aria-labelledby="s3"]{flex:1;min-height:0;max-height:none;align-self:stretch}
+  .c2 [aria-labelledby="s1"]{flex:none}
+  .c2 .studio{flex:1;min-height:0}
+  .c3 .ads{flex:1 1 0;min-height:0;aspect-ratio:auto;max-width:none;align-self:stretch}
+  .c3 .about{flex:none;padding:10px 12px}
+  .c3 .about .trust{gap:6px}
+  .c3 footer.fine{flex:none;margin:0;padding:0 2px;border:0;font-size:11px;flex-direction:column;gap:0}
+  .c1 [aria-labelledby="s2"] .grid2{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
 dialog{border:0;border-radius:22px;padding:0;max-width:min(560px,94vw);width:100%;background:var(--panel);color:var(--ink);box-shadow:0 40px 90px -30px rgba(0,0,0,.7)}
 dialog::backdrop{background:rgba(5,9,22,.72);backdrop-filter:blur(4px)}
 .dlg{display:grid;gap:14px;padding:20px}
@@ -347,116 +378,124 @@ footer.fine a{color:var(--muted)}
   </section>
 
   <div class="bench">
-    <div class="controls">
-      <section class="card" aria-labelledby="s1">
-        <h2 id="s1"><b>1</b>រូបទំនិញ</h2>
-        <label class="drop" id="drop" for="file" tabindex="0">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
-          <strong>អូសរូបមកទីនេះ ឬចុចដើម្បីជ្រើស</strong>
-          <span>JPG · PNG · WEBP</span>
-        </label>
-        <input type="file" id="file" accept="image/*" hidden>
-        <div class="row" style="margin-top:14px;justify-content:space-between">
-          <div class="seg" id="mode" role="group" aria-label="របៀបលុបផ្ទៃខាងក្រោយ">
-            <button type="button" data-m="ai" aria-pressed="true">✨ AI លុបផ្ទៃ</button>
-            <button type="button" data-m="fast" aria-pressed="false">ផ្ទៃពណ៌តែមួយ</button>
-            <button type="button" data-m="none" aria-pressed="false">មិនលុប</button>
-          </div>
-          <button class="btn" type="button" id="sample">ប្រើរូបគំរូ</button>
-        </div>
-        <p class="status" id="status" role="status"></p>
-        <div class="grid2">
-          <label id="tolWrap" hidden>កម្រិតលុបផ្ទៃ <input type="range" id="tol" min="10" max="120" value="46"></label>
-          <input type="range" id="scale" min="40" max="400" value="100" hidden aria-hidden="true" tabindex="-1">
-        </div>
-        <div class="row" style="margin-top:14px" hidden>
-          <div class="thumbs" id="giftThumb" aria-live="polite"></div>
-          <label class="btn" for="giftFile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>រូបកាដូថែម (មិនបង្ខំ)</label>
-          <input type="file" id="giftFile" accept="image/*" hidden>
-          <button class="btn" type="button" id="giftClear" hidden>ដករូបកាដូ</button>
-        </div>
-      </section>
-
+    <div class="col c1">
       <section class="card" aria-labelledby="s2">
-        <h2 id="s2"><b>2</b>ព័ត៌មានទំនិញ</h2>
-        <div class="grid2">
-          <label class="full">ឈ្មោះទំនិញ <input type="text" id="name" maxlength="70"></label>
-          <label>ពិពណ៌នាខ្លី <input type="text" id="sub" maxlength="50"></label>
-          <label>ថ្ងៃប្រូម៉ូសិន <input type="text" id="pdate" maxlength="30" placeholder="9/11 - 19/11"></label>
-          <p class="group-t">តម្លៃ</p>
-          <label>តម្លៃលក់ <input type="number" id="price" min="0" step="0.01" inputmode="decimal"></label>
-          <label>តម្លៃដើម (ឆូតចោល) <input type="number" id="old" min="0" step="0.01" inputmode="decimal"></label>
-          <label>រូបិយប័ណ្ណ <select id="cur"><option value="USD">ដុល្លារ ($)</option><option value="KHR">រៀល (៛)</option></select></label>
-          <label>លេខកូដ / SKU <input type="text" id="code" maxlength="14"></label>
-          <p class="group-t">ព័ត៌មានលម្អិត</p>
-          <label>ទំហំ <input type="text" id="psize" maxlength="30" placeholder="S M L XL"></label>
-          <label>ពណ៌ <input type="text" id="pcolour" maxlength="30" placeholder="ខ្មៅ ស"></label>
-          <label>ស្តុក <select id="stock"><option value="">មិនបង្ហាញ</option><option>មានស្តុក</option><option>ជិតអស់ស្តុក</option><option>ចំនួនមានកំណត់</option><option>កម្ម៉ង់មុន</option></select></label>
-          <label>លេខទូរស័ព្ទ <input type="tel" id="phone" maxlength="20"></label>
-          <p class="group-t">ប្រូម៉ូសិន</p>
-          <label>ស្លាក (Label) <input type="text" id="label" maxlength="22"></label>
-          <label>ចំណងជើងប្រូម៉ូសិន <input type="text" id="promo" maxlength="26"></label>
-          <label>កាដូថែម <input type="text" id="gift" maxlength="30"></label>
-          <label>អក្សរ CTA / ប៊ូតុង <input type="text" id="cta" maxlength="30"></label>
-        </div>
-        <div class="about">
-          <p class="about-t">បង្ហោះរូបទំនិញ AI លុបផ្ទៃខាងក្រោយឲ្យ ដាក់ឈ្មោះ តម្លៃ និងកាដូថែម ហើយទាញយក PNG សម្រាប់ Facebook Post, Live ឬ Story។</p>
-          <ul class="trust">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12v8H4v-8M2 7h20v5H2zM12 22V7M12 7C10 3 6 3 6 6s6 1 6 1zm0 0c2-4 6-4 6-1s-6 1-6 1z"/></svg><span><b>ឥតគិតថ្លៃ ១០០%</b></span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg><span><b>រូបមិនចេញពីឧបករណ៍អ្នក</b></span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="12" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="14" width="8" height="7" rx="1.5"/></svg><span><b>គំរូ ២៧ ម៉ូដ · ៤ ទំហំ</b></span></li>
-          </ul>
-        </div>
+      <h2 id="s2"><b>1</b>ព័ត៌មានទំនិញ</h2>
+      <div class="grid2">
+      <label class="full">ឈ្មោះទំនិញ <input type="text" id="name" maxlength="70"></label>
+      <label>ពិពណ៌នាខ្លី <input type="text" id="sub" maxlength="50"></label>
+      <label>ថ្ងៃប្រូម៉ូសិន <input type="text" id="pdate" maxlength="30" placeholder="9/11 - 19/11"></label>
+      <p class="group-t">តម្លៃ</p>
+      <label>តម្លៃលក់ <input type="number" id="price" min="0" step="0.01" inputmode="decimal"></label>
+      <label>តម្លៃដើម (ឆូតចោល) <input type="number" id="old" min="0" step="0.01" inputmode="decimal"></label>
+      <label>រូបិយប័ណ្ណ <select id="cur"><option value="USD">ដុល្លារ ($)</option><option value="KHR">រៀល (៛)</option></select></label>
+      <label>លេខកូដ / SKU <input type="text" id="code" maxlength="14"></label>
+      <p class="group-t">ព័ត៌មានលម្អិត</p>
+      <label>ទំហំ <input type="text" id="psize" maxlength="30" placeholder="S M L XL"></label>
+      <label>ពណ៌ <input type="text" id="pcolour" maxlength="30" placeholder="ខ្មៅ ស"></label>
+      <label>ស្តុក <select id="stock"><option value="">មិនបង្ហាញ</option><option>មានស្តុក</option><option>ជិតអស់ស្តុក</option><option>ចំនួនមានកំណត់</option><option>កម្ម៉ង់មុន</option></select></label>
+      <label>លេខទូរស័ព្ទ <input type="tel" id="phone" maxlength="20"></label>
+      <p class="group-t">ប្រូម៉ូសិន</p>
+      <label>ស្លាក (Label) <input type="text" id="label" maxlength="22"></label>
+      <label>ចំណងជើងប្រូម៉ូសិន <input type="text" id="promo" maxlength="26"></label>
+      <label>កាដូថែម <input type="text" id="gift" maxlength="30"></label>
+      <label>អក្សរ CTA / ប៊ូតុង <input type="text" id="cta" maxlength="30"></label>
+      </div>
       </section>
 
       <section class="card" aria-labelledby="s3">
-        <h2 id="s3"><b>3</b>ជ្រើសគំរូ</h2>
-        <div class="seg tgroups" id="tgroups" role="group" aria-label="ប្រភេទគំរូ"><button type="button" data-g="style" aria-pressed="true">ម៉ូដប៉ូស្ទ័រ (10)</button><button type="button" data-g="frame" aria-pressed="false">ស៊ុមលក់ (16)</button></div>
-        <div class="tpls" id="tpls"></div>
+      <h2 id="s3"><b>2</b>ជ្រើសគំរូ</h2>
+      <div class="seg tgroups" id="tgroups" role="group" aria-label="ប្រភេទគំរូ"><button type="button" data-g="style" aria-pressed="true">ម៉ូដប៉ូស្ទ័រ (10)</button><button type="button" data-g="frame" aria-pressed="false">ស៊ុមលក់ (16)</button></div>
+      <div class="tpls" id="tpls"></div>
       </section>
-
-      <footer class="fine">
-        <span>© ADS BOX · ឧបករណ៍ឥតគិតថ្លៃសម្រាប់អ្នកលក់អនឡាញ</span>
-        <a href="/#services">ត្រូវការជំនួយ Boost ផេក? មើលសេវាកម្ម ADS BOX</a>
-      </footer>
     </div>
 
-    <aside class="stage" aria-label="មើលមុន">
+    <div class="col c2" aria-label="មើលមុន">
+      <section class="card" aria-labelledby="s1">
+      <h2 id="s1"><b>3</b>រូបទំនិញ</h2>
+      <label class="drop" id="drop" for="file" tabindex="0">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
+      <strong>អូសរូបមកទីនេះ ឬចុចដើម្បីជ្រើស</strong>
+      <span>JPG · PNG · WEBP</span>
+      </label>
+      <input type="file" id="file" accept="image/*" hidden>
+      <div class="row" style="margin-top:14px;justify-content:space-between">
+      <div class="seg" id="mode" role="group" aria-label="របៀបលុបផ្ទៃខាងក្រោយ">
+      <button type="button" data-m="ai" aria-pressed="true">✨ AI លុបផ្ទៃ</button>
+      <button type="button" data-m="fast" aria-pressed="false">ផ្ទៃពណ៌តែមួយ</button>
+      <button type="button" data-m="none" aria-pressed="false">មិនលុប</button>
+      </div>
+      <button class="btn" type="button" id="sample">ប្រើរូបគំរូ</button>
+      </div>
+      <p class="status" id="status" role="status"></p>
+      <div class="grid2">
+      <label id="tolWrap" hidden>កម្រិតលុបផ្ទៃ <input type="range" id="tol" min="10" max="120" value="46"></label>
+      <input type="range" id="scale" min="40" max="400" value="100" hidden aria-hidden="true" tabindex="-1">
+      </div>
+      <div class="row" style="margin-top:14px" hidden>
+      <div class="thumbs" id="giftThumb" aria-live="polite"></div>
+      <label class="btn" for="giftFile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>រូបកាដូថែម (មិនបង្ខំ)</label>
+      <input type="file" id="giftFile" accept="image/*" hidden>
+      <button class="btn" type="button" id="giftClear" hidden>ដករូបកាដូ</button>
+      </div>
+      </section>
+
       <div class="studio">
-        <div class="studio-bar"><span class="dot">ចុចលើរូប ឬអក្សរ ដើម្បីប្តូរទំហំ · អូសដើម្បីរំកិល</span><b id="tplName">Clean Product</b></div>
-        <div class="view"><span class="tag" id="demoTag">ឧទាហរណ៍</span><canvas id="preview" width="1080" height="1080" aria-label="រូបមើលមុន"></canvas></div>
-        <div class="tsize" id="tsize"><label for="ts" id="tsLabel" class="sr">ទំហំអក្សរទាំងអស់</label><span class="tsm" aria-hidden="true"><b class="ta">A</b><svg class="tp" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 16l5-5 4 4 3-3 4 4"/></svg></span><input type="range" id="ts" min="70" max="140" step="5" value="100" aria-describedby="tsv"><span class="tsl" aria-hidden="true"><b class="ta">A</b><svg class="tp" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 16l5-5 4 4 3-3 4 4"/></svg></span><output id="tsv" for="ts">100%</output><button type="button" id="tsReset" class="btn">ដើម</button><button type="button" id="tsDone" class="btn" hidden aria-label="ឈប់ជ្រើស">✓</button></div>
+      <div class="studio-bar"><span class="dot">ចុចលើរូប ឬអក្សរ ដើម្បីប្តូរទំហំ · អូសដើម្បីរំកិល</span><b id="tplName">Clean Product</b></div>
+      <div class="view"><span class="tag" id="demoTag">ឧទាហរណ៍</span><canvas id="preview" width="1080" height="1080" aria-label="រូបមើលមុន"></canvas></div>
+      <div class="tsize" id="tsize"><label for="ts" id="tsLabel" class="sr">ទំហំអក្សរទាំងអស់</label><span class="tsm" aria-hidden="true"><b class="ta">A</b><svg class="tp" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 16l5-5 4 4 3-3 4 4"/></svg></span><input type="range" id="ts" min="70" max="140" step="5" value="100" aria-describedby="tsv"><span class="tsl" aria-hidden="true"><b class="ta">A</b><svg class="tp" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 16l5-5 4 4 3-3 4 4"/></svg></span><output id="tsv" for="ts">100%</output><button type="button" id="tsReset" class="btn">ដើម</button><button type="button" id="tsDone" class="btn" hidden aria-label="ឈប់ជ្រើស">✓</button></div>
       </div>
-    <section class="card mini" aria-labelledby="s4">
+    </div>
+
+    <div class="col c3">
+      <section class="card mini" aria-labelledby="s4">
       <h2 id="s4"><b>4</b>ទំហំ និងពណ៌</h2>
-              <div class="sizes" id="sizes" role="group" aria-label="ទំហំ">
-        <button type="button" data-s="1080x1920" title="Story / Reel" aria-label="Story / Reel 1080x1920" aria-pressed="false"><i style="width:11px"></i><span>9:16</span></button>
-        <button type="button" data-s="1080x1350" title="Post" aria-label="Post 1080x1350" aria-pressed="false"><i style="width:16px"></i><span>4:5</span></button>
-        <button type="button" data-s="1080x1080" title="ការ៉េ" aria-label="ការ៉េ 1080x1080" aria-pressed="true"><i style="width:20px"></i><span>1:1</span></button>
-        <button type="button" data-s="1920x1080" title="Live / Cover" aria-label="Live / Cover 1920x1080" aria-pressed="false"><i style="width:30px;height:17px;margin-block:1.5px"></i><span>16:9</span></button>
+      <div class="sizes" id="sizes" role="group" aria-label="ទំហំ">
+      <button type="button" data-s="1080x1920" title="Story / Reel" aria-label="Story / Reel 1080x1920" aria-pressed="false"><i style="width:11px"></i><span>9:16</span></button>
+      <button type="button" data-s="1080x1350" title="Post" aria-label="Post 1080x1350" aria-pressed="false"><i style="width:16px"></i><span>4:5</span></button>
+      <button type="button" data-s="1080x1080" title="ការ៉េ" aria-label="ការ៉េ 1080x1080" aria-pressed="true"><i style="width:20px"></i><span>1:1</span></button>
+      <button type="button" data-s="1920x1080" title="Live / Cover" aria-label="Live / Cover 1920x1080" aria-pressed="false"><i style="width:30px;height:17px;margin-block:1.5px"></i><span>16:9</span></button>
       </div>
-              <div class="swatches" id="swatches"><span class="sublabel" style="margin:0 4px 0 0">ពណ៌ស៊ុម</span>
-        <button type="button" class="btn" id="colorReset" style="padding:4px 10px;font-size:12px;border-radius:999px">ពណ៌តាមគំរូ</button>
-        <button type="button" class="sw" data-c="#1d4aa6" style="background:#1d4aa6" aria-label="ខៀវ ADS BOX" aria-pressed="false"></button>
-        <button type="button" class="sw" data-c="#e5283f" style="background:#e5283f" aria-label="ក្រហម" aria-pressed="false"></button>
-        <button type="button" class="sw" data-c="#c9a55a" style="background:#c9a55a" aria-label="មាស" aria-pressed="false"></button>
-        <button type="button" class="sw" data-c="#0f766e" style="background:#0f766e" aria-label="បៃតង" aria-pressed="false"></button>
-        <button type="button" class="sw" data-c="#7a5af8" style="background:#7a5af8" aria-label="ស្វាយ" aria-pressed="false"></button>
-        <button type="button" class="sw" data-c="#d6336c" style="background:#d6336c" aria-label="ផ្កាឈូក" aria-pressed="false"></button>
-        <button type="button" class="sw" data-c="#111111" style="background:#111111" aria-label="ខ្មៅ" aria-pressed="false"></button>
-        <label title="ពណ៌ផ្សេងទៀត" style="display:inline-flex"><input type="color" id="color" value="#1f6bff" aria-label="ជ្រើសពណ៌ផ្សេងទៀត"></label>
+      <div class="swatches" id="swatches"><span class="sublabel" style="margin:0 4px 0 0">ពណ៌ស៊ុម</span>
+      <button type="button" class="btn" id="colorReset" style="padding:4px 10px;font-size:12px;border-radius:999px">ពណ៌តាមគំរូ</button>
+      <button type="button" class="sw" data-c="#1d4aa6" style="background:#1d4aa6" aria-label="ខៀវ ADS BOX" aria-pressed="false"></button>
+      <button type="button" class="sw" data-c="#e5283f" style="background:#e5283f" aria-label="ក្រហម" aria-pressed="false"></button>
+      <button type="button" class="sw" data-c="#c9a55a" style="background:#c9a55a" aria-label="មាស" aria-pressed="false"></button>
+      <button type="button" class="sw" data-c="#0f766e" style="background:#0f766e" aria-label="បៃតង" aria-pressed="false"></button>
+      <button type="button" class="sw" data-c="#7a5af8" style="background:#7a5af8" aria-label="ស្វាយ" aria-pressed="false"></button>
+      <button type="button" class="sw" data-c="#d6336c" style="background:#d6336c" aria-label="ផ្កាឈូក" aria-pressed="false"></button>
+      <button type="button" class="sw" data-c="#111111" style="background:#111111" aria-label="ខ្មៅ" aria-pressed="false"></button>
+      <label title="ពណ៌ផ្សេងទៀត" style="display:inline-flex"><input type="color" id="color" value="#1f6bff" aria-label="ជ្រើសពណ៌ផ្សេងទៀត"></label>
       </div>
       <div class="opts">
-        <label class="toggle" hidden>ផ្ទៃខាងក្រោយថ្លា (សម្រាប់ Live) <input type="checkbox" id="transp"></label>
-        <label class="toggle">បង្ហាញ adsbox.agency តូចៗ <input type="checkbox" id="credit" checked></label>
-          <label class="toggle" id="fonlyWrap" hidden>តែស៊ុមទទេ (គ្មានរូបទំនិញ) <input type="checkbox" id="fonly"></label>
+      <label class="toggle" hidden>ផ្ទៃខាងក្រោយថ្លា (សម្រាប់ Live) <input type="checkbox" id="transp"></label>
+      <label class="toggle">បង្ហាញ adsbox.agency តូចៗ <input type="checkbox" id="credit" checked></label>
+      <label class="toggle" id="fonlyWrap" hidden>តែស៊ុមទទេ (គ្មានរូបទំនិញ) <input type="checkbox" id="fonly"></label>
       </div>
-    </section>
+      </section>
       <div class="stage-foot">
-        <button class="btn gold big" type="button" id="export"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M7 11l5 5 5-5M4 20h16"/></svg>ទាញយក PNG</button>
-        <p class="note"><span class="dim" id="dim">1080 × 1080 px · PNG</span> · គុណភាពខ្ពស់</p>
+      <button class="btn gold big" type="button" id="export"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M7 11l5 5 5-5M4 20h16"/></svg>ទាញយក PNG</button>
+      <p class="note"><span class="dim" id="dim">1080 × 1080 px · PNG</span> · គុណភាពខ្ពស់</p>
       </div>
-    </aside>
+      <section class="ads" id="ads" aria-roledescription="carousel" aria-label="សេវាកម្ម ADS BOX">
+        <div class="ads-track" id="adsTrack"></div>
+        <button type="button" class="ads-nav prev" id="adsPrev" aria-label="មុន"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <button type="button" class="ads-nav next" id="adsNext" aria-label="បន្ទាប់"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+        <div class="ads-dots" id="adsDots" role="tablist"></div>
+      </section>
+      <div class="about">
+      <p class="about-t">បង្ហោះរូបទំនិញ AI លុបផ្ទៃខាងក្រោយឲ្យ ដាក់ឈ្មោះ តម្លៃ និងកាដូថែម ហើយទាញយក PNG សម្រាប់ Facebook Post, Live ឬ Story។</p>
+      <ul class="trust">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12v8H4v-8M2 7h20v5H2zM12 22V7M12 7C10 3 6 3 6 6s6 1 6 1zm0 0c2-4 6-4 6-1s-6 1-6 1z"/></svg><span><b>ឥតគិតថ្លៃ ១០០%</b></span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg><span><b>រូបមិនចេញពីឧបករណ៍អ្នក</b></span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="12" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="14" width="8" height="7" rx="1.5"/></svg><span><b>គំរូ ២៧ ម៉ូដ · ៤ ទំហំ</b></span></li>
+      </ul>
+      </div>
+      <footer class="fine">
+      <span>© ADS BOX · ឧបករណ៍ឥតគិតថ្លៃសម្រាប់អ្នកលក់អនឡាញ</span>
+      <a href="/#services">ត្រូវការជំនួយ Boost ផេក? មើលសេវាកម្ម ADS BOX</a>
+      </footer>
+    </div>
   </div>
 
 </div>
@@ -1578,6 +1617,38 @@ Promise.race([fontsReady, new Promise((r) => setTimeout(r, 2500))]).then(() => l
   document.addEventListener("touchend", (e) => { const now = Date.now(); if (now - last < 320 && !e.target.closest("input,select,textarea")) e.preventDefault(); last = now; }, { passive: false });
   document.addEventListener("wheel", (e) => { if (e.ctrlKey) e.preventDefault(); }, { passive: false });
   document.addEventListener("keydown", (e) => { if ((e.ctrlKey || e.metaKey) && ["+", "=", "-", "_", "0"].includes(e.key)) e.preventDefault(); });
+})();
+</script>
+<script>
+// ADS BOX banner: the service posters from the site's own offers list, as a slideshow that links to the services.
+(() => {
+  const FALLBACK = [
+    { title: "សេវាកម្ម ប៊ូស៍ផេក", image: "/assets/promo/promo-boost-page.jpg" },
+    { title: "ផេកប៊ូសឡាយ PAGE VIP", image: "/assets/promo/promo-page-vip.jpg" },
+    { title: "សេវាកម្មប៊ូស TikTok", image: "/assets/promo/promo-boost-tiktok.jpg" },
+    { title: "សេវាកម្ម ចាក់វីដេអូឡាយ", image: "/assets/promo/promo-live-video.jpg" },
+    { title: "សេវាកម្ម ដំឡើងផេក VERIFIED", image: "/assets/promo/promo-page-verified.jpg" },
+  ];
+  const track = document.getElementById("adsTrack"), dots = document.getElementById("adsDots"), box = document.getElementById("ads");
+  if (!track) return;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let i = 0, timer = null, n = 0, hover = false;
+  const small = (src) => /^\/assets\/promo\/[\w-]+\.jpg$/.test(src) ? src.replace(/\.jpg$/, "-sm.jpg") : src;
+  function go(k) { const sl = track.children; if (!n) return; i = (k + n) % n; [...sl].forEach((el, j) => { el.classList.toggle("on", j === i); el.setAttribute("aria-hidden", j !== i); el.tabIndex = j === i ? 0 : -1; }); [...dots.children].forEach((d, j) => d.setAttribute("aria-selected", j === i)); }
+  function play() { clearInterval(timer); if (!reduce && !hover && n > 1) timer = setInterval(() => go(i + 1), 4500); }
+  function build(list) {
+    list = list.filter((p) => p && p.image).slice(0, 8); n = list.length; if (!n) { box.hidden = true; return; }
+    track.innerHTML = list.map((p, j) => `<a class="ads-slide" href="/#services" aria-label="${(p.title || "ADS BOX").replace(/"/g, "&quot;")}"><img src="${encodeURI(small(p.image))}" alt="${(p.title || "").replace(/"/g, "&quot;")}" ${j ? 'loading="lazy"' : ""} onerror="if(!this.dataset.f){this.dataset.f=1;this.src='${encodeURI(p.image)}'}"></a>`).join("");
+    dots.innerHTML = list.map((p, j) => `<button type="button" role="tab" aria-label="${j + 1}"></button>`).join("");
+    [...dots.children].forEach((d, j) => d.addEventListener("click", () => { go(j); play(); }));
+    go(0); play();
+  }
+  document.getElementById("adsPrev").addEventListener("click", () => { go(i - 1); play(); });
+  document.getElementById("adsNext").addEventListener("click", () => { go(i + 1); play(); });
+  box.addEventListener("mouseenter", () => { hover = true; clearInterval(timer); });
+  box.addEventListener("mouseleave", () => { hover = false; play(); });
+  document.addEventListener("visibilitychange", () => (document.hidden ? clearInterval(timer) : play()));
+  fetch("/content/promos.json", { cache: "no-cache" }).then((r) => (r.ok ? r.json() : Promise.reject())).then((d) => build(Array.isArray(d) && d.length ? d : FALLBACK)).catch(() => build(FALLBACK));
 })();
 </script>
 </body>
