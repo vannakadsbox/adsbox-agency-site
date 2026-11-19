@@ -115,17 +115,6 @@ window.ACCOUNTS = {
     "updated": "2026-11-19"
    },
    {
-    "name": "U Drama",
-    "url": "https://www.facebook.com/profile.php?id=61588652091475",
-    "followers": 11499,
-    "picture": "assets/accounts/fb-61588652091475.webp",
-    "cover": "assets/accounts/fb-61588652091475-cover.webp",
-    "type": "ផេកខ្មែរ",
-    "sold": false,
-    "discount": 0,
-    "updated": "2026-11-19"
-   },
-   {
     "name": "DayDrama",
     "url": "https://www.facebook.com/profile.php?id=61593316146500",
     "followers": 11336,
