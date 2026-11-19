@@ -253,7 +253,10 @@ input[type=color]::-webkit-color-swatch-wrapper{padding:0}input[type=color]::-we
   .bench{flex:1;min-height:0;grid-template-columns:minmax(0,1fr) clamp(380px,30vw,500px);gap:16px;padding-bottom:14px}
   .controls{height:100%;min-height:0;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto;gap:14px}
   .controls>[aria-labelledby="s1"]{grid-column:1;grid-row:1}
-  .controls>[aria-labelledby="s2"]{grid-column:1;grid-row:2/4}
+  .controls>[aria-labelledby="s2"]{grid-column:1;grid-row:2/4;display:flex;flex-direction:column}
+  [aria-labelledby="s2"] .about{margin-top:auto}
+  .about-t{font-size:11.5px}
+  .hero{grid-template-columns:minmax(0,1fr)}
   .controls>[aria-labelledby="s3"]{grid-column:2;grid-row:1/3}
   .controls>footer.fine{align-self:end}
   .top-in{max-width:1600px}
@@ -310,6 +313,12 @@ input[type=color]::-webkit-color-swatch-wrapper{padding:0}input[type=color]::-we
   h1{font-size:19px}
   .trust li{font-size:11px}
 }
+.about{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);display:grid;gap:12px}
+.about-t{margin:0;font-size:13px;line-height:1.55;color:var(--muted)}
+.about .trust{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;max-width:none;justify-self:stretch}
+.about .trust li{grid-template-columns:30px minmax(0,1fr);gap:8px;font-size:12px}
+.about .trust svg{width:30px;height:30px;padding:6px}
+@media (max-width:560px){.about .trust{grid-template-columns:minmax(0,1fr)}}
 dialog{border:0;border-radius:22px;padding:0;max-width:min(560px,94vw);width:100%;background:var(--panel);color:var(--ink);box-shadow:0 40px 90px -30px rgba(0,0,0,.7)}
 dialog::backdrop{background:rgba(5,9,22,.72);backdrop-filter:blur(4px)}
 .dlg{display:grid;gap:14px;padding:20px}
@@ -334,12 +343,7 @@ footer.fine a{color:var(--muted)}
 
 <div class="wrap">
   <section class="hero">
-    <h1>បង្កើតរូបប្រូម៉ូសិនទំនិញ ក្នុង ១ នាទី<span class="sub">បង្ហោះរូបទំនិញ AI លុបផ្ទៃខាងក្រោយឲ្យ ដាក់ឈ្មោះ តម្លៃ និងកាដូថែម ហើយទាញយក PNG សម្រាប់ Facebook Post, Live ឬ Story។</span></h1>
-    <ul class="trust">
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12v8H4v-8M2 7h20v5H2zM12 22V7M12 7C10 3 6 3 6 6s6 1 6 1zm0 0c2-4 6-4 6-1s-6 1-6 1z"/></svg><span><b>ឥតគិតថ្លៃ ១០០%</b></span></li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg><span><b>រូបមិនចេញពីឧបករណ៍អ្នក</b></span></li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="12" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="14" width="8" height="7" rx="1.5"/></svg><span><b>គំរូ ២៧ ម៉ូដ · ៤ ទំហំ</b></span></li>
-    </ul>
+    <h1>បង្កើតរូបប្រូម៉ូសិនទំនិញ ក្នុង ១ នាទី</h1>
   </section>
 
   <div class="bench">
@@ -394,6 +398,14 @@ footer.fine a{color:var(--muted)}
           <label>ចំណងជើងប្រូម៉ូសិន <input type="text" id="promo" maxlength="26"></label>
           <label>កាដូថែម <input type="text" id="gift" maxlength="30"></label>
           <label>អក្សរ CTA / ប៊ូតុង <input type="text" id="cta" maxlength="30"></label>
+        </div>
+        <div class="about">
+          <p class="about-t">បង្ហោះរូបទំនិញ AI លុបផ្ទៃខាងក្រោយឲ្យ ដាក់ឈ្មោះ តម្លៃ និងកាដូថែម ហើយទាញយក PNG សម្រាប់ Facebook Post, Live ឬ Story។</p>
+          <ul class="trust">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12v8H4v-8M2 7h20v5H2zM12 22V7M12 7C10 3 6 3 6 6s6 1 6 1zm0 0c2-4 6-4 6-1s-6 1-6 1z"/></svg><span><b>ឥតគិតថ្លៃ ១០០%</b></span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg><span><b>រូបមិនចេញពីឧបករណ៍អ្នក</b></span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="12" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="14" width="8" height="7" rx="1.5"/></svg><span><b>គំរូ ២៧ ម៉ូដ · ៤ ទំហំ</b></span></li>
+          </ul>
         </div>
       </section>
 
