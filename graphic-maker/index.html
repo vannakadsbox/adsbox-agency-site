@@ -142,6 +142,7 @@ input[type=color]::-webkit-color-swatch-wrapper{padding:0}input[type=color]::-we
 
 /* templates */
 .tgroups{margin-bottom:10px}
+#sizes button:disabled{opacity:.38;cursor:not-allowed;filter:grayscale(1)}
 .bgup{margin:0 0 10px 8px;font-size:12.5px;padding:6px 12px}
 .bgup[hidden]{display:none}
 .tpls{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
@@ -458,8 +459,7 @@ footer.fine a{color:var(--muted)}
 
       <section class="card" aria-labelledby="s3">
       <h2 id="s3"><b>2</b>ជ្រើសគំរូ</h2>
-      <div class="seg tgroups" id="tgroups" role="group" aria-label="ប្រភេទគំរូ"><button type="button" data-g="style" aria-pressed="true">ម៉ូដប៉ូស្ទ័រ (10)</button><button type="button" data-g="frame" aria-pressed="false">ស៊ុមលក់ (16)</button><button type="button" data-g="bg" aria-pressed="false">Background (5)</button></div>
-      <label class="btn bgup" id="bgUp" for="bgFile" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>បង្ហោះរូប Background</label><input type="file" id="bgFile" accept="image/*" hidden>
+      <div class="seg tgroups" id="tgroups" role="group" aria-label="ប្រភេទគំរូ"><button type="button" data-g="style" aria-pressed="true">ម៉ូដប៉ូស្ទ័រ (10)</button><button type="button" data-g="frame" aria-pressed="false">ស៊ុមលក់ (16)</button><button type="button" data-g="bg" aria-pressed="false">Background (5)</button></div><input type="file" id="bgFile" accept="image/*" hidden>
       <div class="tpls" id="tpls"></div>
       </section>
     </div>
@@ -1708,7 +1708,13 @@ $("colorReset").addEventListener("click", () => { S.color = null; render(); });
 let tolT = 0; $("tol").addEventListener("input", () => { clearTimeout(tolT); tolT = setTimeout(() => processAll(), 150); });
 $("sample").addEventListener("click", () => loadImage(samplePhoto()));
 $("file").addEventListener("change", (e) => { const f = e.target.files && e.target.files[0]; if (f) { $("demoTag").hidden = true; loadImage(URL.createObjectURL(f)); } e.target.value = ""; });
-$("bgFile").addEventListener("change", (e) => { const f = e.target.files && e.target.files[0]; e.target.value = ""; if (!f) return; const im = new Image(); im.onload = () => { S.bgImg = im; S.tpl = "bgphoto"; document.querySelectorAll(".tpl").forEach((x) => x.setAttribute("aria-pressed", x.dataset.id === "bgphoto")); render(); }; im.src = URL.createObjectURL(f); });
+function lockSizes() {
+  const t = TPLS.find((x) => x.id === S.tpl), bg = !!(t && t.g === "bg");
+  document.querySelectorAll("#sizes button").forEach((b) => { const off = bg && b.dataset.s !== "1080x1920"; b.disabled = off; b.title = off ? "Background ប្រើបានតែទំហំ 9:16" : (b.getAttribute("aria-label") || "").replace(/ \d+x\d+$/, ""); });
+  if (bg && S.W + "x" + S.H !== "1080x1920") document.querySelector('#sizes button[data-s="1080x1920"]').click();
+}
+$("tpls").addEventListener("click", () => setTimeout(lockSizes));
+$("bgFile").addEventListener("change", (e) => { const f = e.target.files && e.target.files[0]; e.target.value = ""; if (!f) return; const im = new Image(); im.onload = () => { S.bgImg = im; S.tpl = "bgphoto"; document.querySelectorAll(".tpl").forEach((x) => x.setAttribute("aria-pressed", x.dataset.id === "bgphoto")); lockSizes(); render(); }; im.src = URL.createObjectURL(f); });
 $("tpls").addEventListener("click", (e) => { const b = e.target.closest(".tpl"); if (b && b.dataset.id === "bgphoto" && !S.bgImg) $("bgFile").click(); });
 $("giftFile").addEventListener("change", (e) => { const f = e.target.files && e.target.files[0]; if (f) loadImage(URL.createObjectURL(f), "gift"); e.target.value = ""; });
 $("giftClear").addEventListener("click", () => { S.gift = null; S.giftRaw = null; showGift(); render(); });
@@ -1774,7 +1780,7 @@ Promise.race([fontsReady, new Promise((r) => setTimeout(r, 2500))]).then(() => l
   $("mexport").addEventListener("click", () => $("export").click());
   const fonlyVis = () => { const t = document.querySelector('.tpl[aria-pressed="true"]'); $("fonlyWrap").hidden = true; };
   $("tpls").addEventListener("click", () => setTimeout(fonlyVis));
-  const showGroup = (gname) => { $("bgUp").hidden = gname !== "bg"; document.querySelectorAll("#tgroups button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.g === gname)); document.querySelectorAll(".tpl").forEach((t) => { t.hidden = t.dataset.g !== gname && t.dataset.g !== "all"; }); };
+  const showGroup = (gname) => { document.querySelectorAll("#tgroups button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.g === gname)); document.querySelectorAll(".tpl").forEach((t) => { t.hidden = t.dataset.g !== gname && t.dataset.g !== "all"; }); };
   $("tgroups").addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) showGroup(b.dataset.g); });
   const cur = document.querySelector('.tpl[aria-pressed="true"]'); if (cur) showGroup(cur.dataset.g);
   tplName(); sizeName(); fonlyVis();
