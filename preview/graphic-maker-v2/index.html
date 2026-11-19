@@ -394,6 +394,9 @@ input[type=color]::-webkit-color-swatch-wrapper{padding:0}input[type=color]::-we
   [aria-labelledby="s1"] .status:empty{display:none}
   [aria-labelledby="s1"] .grid2:not(:has(label:not([hidden]))){display:none}
   [aria-labelledby="s1"] .row[hidden]{display:none}
+  .mini .opts{display:grid;grid-template-columns:minmax(0,1fr)}
+  .mini .toggle{display:flex;width:100%;justify-content:space-between;align-items:center;gap:12px}
+  .mini .swatches{flex-wrap:nowrap;gap:5px;justify-content:space-between}.mini .swatches .sublabel{display:none}.mini .sw{width:24px!important;height:24px!important;flex:none}.mini input[type=color]{width:26px;height:26px;padding:2px}.mini #colorReset{padding:4px 10px!important;font-size:12px!important;flex:none}
 }
 dialog{border:0;border-radius:22px;padding:0;max-width:min(560px,94vw);width:100%;background:var(--panel);color:var(--ink);box-shadow:0 40px 90px -30px rgba(0,0,0,.7)}
 dialog::backdrop{background:rgba(5,9,22,.72);backdrop-filter:blur(4px)}
