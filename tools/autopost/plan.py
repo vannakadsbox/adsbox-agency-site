@@ -118,6 +118,29 @@ def _prewritten_ok(t):
     return True
 
 
+def refresh_topic(date):
+    """content/autopost/refresh2026.json — the COO's "2026 Knowledge Refresh" (19 Nov – 31 Dec 2026).
+    Inside the period a day publishes ONLY its COO-approved draft. Returns (topic or None, message or None, in_period)."""
+    cal = None if os.environ.get("ADSBOX_IGNORE_REFRESH") else C.load_json("refresh2026.json", None)  # tests of the weekly rotation
+    if not cal or not (cal["start"] <= date <= cal["end"]):
+        return None, None, False
+    day = next((d for d in cal["days"] if d["date"] == date), None)
+    if not day:
+        return None, f"2026 Knowledge Refresh: no article is planned for {date}.", True
+    path = day.get("draft") or ""
+    full = os.path.join(C.ROOT, path) if path else ""
+    if not full or not os.path.exists(full):
+        return None, f"2026 Knowledge Refresh: the draft for {date} («{day['topic']}») is not written yet; nothing is published.", True
+    d = read_json_safe(full)
+    if not (d.get("approved_by") and d.get("approved_at")):
+        return None, f"2026 Knowledge Refresh: the draft for {date} («{d.get('title') or day['topic']}») is waiting for COO approval; nothing is published.", True
+    t = dict(topic_id=f"refresh-{date}", category=day["category"], topic=d.get("title") or day["topic"], pillar=day["tag"],
+             tag=day["tag"], format=day.get("proposed_style") or day["style"], series="", prewritten=path,
+             plan_id="refresh-2026", day=date, title_idea=d.get("title") or day["topic"], rotation_category=day["category"],
+             related=day.get("overlaps", []), requires_coo_approval=True)
+    return t, None, True
+
+
 def rotation_topic(date, hist, arts, s):
     """content/autopost/rotation.json (owner-approved weekly rotation, 16 Nov 2026).
     Returns (topic or None, notes, message)."""
@@ -232,7 +255,13 @@ def main():
     arts = C.existing_articles()
     camp = campaign_for(date)
     notes = []
-    if C.load_json("rotation.json", None):
+    r_topic, r_msg, in_refresh = refresh_topic(date)
+    if in_refresh:
+        # COO decision (19 Nov 2026): 19 Nov - 31 Dec 2026 publishes only COO-approved refresh drafts; no rotation, no auto-writing.
+        if not r_topic:
+            print(r_msg); return 3
+        topic = r_topic
+    elif C.load_json("rotation.json", None):
         topic, notes, msg = rotation_topic(date, h, arts, s)
         if not topic:
             print(msg); return 3
