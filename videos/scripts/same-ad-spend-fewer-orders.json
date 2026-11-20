@@ -1,0 +1,146 @@
+{
+  "slug": "same-ad-spend-fewer-orders",
+  "video_title": "Boost ដូចមុន តែ Order ធ្លាក់? ចែកជាលេខពីរ រកកន្លែងខូចពិត",
+  "topic": "ពេលលុយ Boost នៅដដែល តែ Order ធ្លាក់ ចែកបញ្ហាជាពីរ៖ ថ្លៃមួយសារ (Ads) និងអត្រាបិទ Order (Inbox) ដើម្បីកែឲ្យត្រូវកន្លែង។",
+  "thumbnail_text": "Ads ខុស ឬ Inbox ខុស?",
+  "description": "Boost $105 មួយសប្ដាហ៍ដូចគ្នា តែ Order ធ្លាក់ពី ៦៣ មក ៤២ (លេខគំរូ)។\nចែកជាលេខពីរ៖ ថ្លៃមួយសារ និងអត្រាបិទ Order ដើម្បីដឹងថាខូចនៅ Ads ឬ Inbox។\n#ADSBOX #លក់អនឡាញ #BoostPost #CostPerOrder",
+  "facebook_caption": "Boost ដូចមុន តែ Order ធ្លាក់? 🤔\nកុំទាន់បិទ Boost! ចែកជាលេខពីរសិន៖\n✅ ថ្លៃមួយសារ ឡើងទេ? (រឿង Ads)\n✅ អត្រាបិទ Order ធ្លាក់ទេ? (រឿង Inbox)\n✅ លេខណាធ្លាក់ខ្លាំងជាង កែនោះមុន\nកែត្រូវកន្លែង មិនខាតលុយ Boost ចោល។\nហាងបងធ្លាក់លេខមួយណា? Comment «INBOX» មក 👇\n#ADSBOX #លក់អនឡាញ #BoostPost #CostPerOrder",
+  "scenes": [
+    {
+      "role": "hook",
+      "lines": [
+        "ម៉ោង ៩ យប់ ហាងស្បែកជើងរាប់ Order…",
+        "បានតែ ៦ គូ។ ខែមុន ៩ គូ!",
+        "Boost $15 មួយថ្ងៃ ដដែលទៀត។"
+      ],
+      "voice": "Curious, surprised consultant telling a short shop story, short pause after each number",
+      "visual": {
+        "type": "question",
+        "title": "Order ធ្លាក់!",
+        "bubbles": [
+          "លេខ ៣៨ មានអត់?",
+          "លេខ ៣៩ នៅទេបង?",
+          "ពណ៌នេះនៅមានទេ?"
+        ]
+      }
+    },
+    {
+      "role": "problem",
+      "lines": [
+        "លុយ Boost $105 មួយសប្ដាហ៍ដូចគ្នា។",
+        "សប្ដាហ៍ទី ១ បាន ៦៣ Order។",
+        "សប្ដាហ៍ទី ៤ សល់តែ…",
+        "៤២ Order! កុំទាន់បន្ទោស Ads។"
+      ],
+      "voice": "Sincerely asking the shop owner, not rushed, stress the drop in orders",
+      "visual": {
+        "type": "vanish",
+        "host": false,
+        "expected_label": "សប្ដាហ៍ទី ១",
+        "expected": "៦៣ Order",
+        "real_label": "សប្ដាហ៍៤ (លេខគំរូ)",
+        "real": "៤២ Order",
+        "gap": "Order បាត់ទៅណា?"
+      }
+    },
+    {
+      "role": "example",
+      "lines": [
+        "ចែកជាលេខពីរ។ ថ្លៃមួយសារ…",
+        "ពី $0.60 ឡើង $0.70។",
+        "អត្រាបិទ Order ធ្លាក់ពី ៣៦% មក ២៨%។"
+      ],
+      "voice": "Expert explaining numbers slowly and clearly to a shop owner, each number distinct",
+      "visual": {
+        "type": "flow",
+        "host": false,
+        "steps": [
+          {
+            "label": "Ads",
+            "text": "ថ្លៃមួយសារ $0.60 → $0.70"
+          },
+          {
+            "label": "Inbox",
+            "text": "បិទ Order ៣៦% → ២៨%"
+          }
+        ]
+      }
+    },
+    {
+      "role": "example",
+      "lines": [
+        "បើបិទបាន ៣៦% ដូចមុន សារ ១៥០…",
+        "បាន ៥៤ Order។ ថ្លៃមួយ Order ត្រឹម $1.94។",
+        "Order ភាគច្រើន បាត់នៅ Inbox!"
+      ],
+      "voice": "Calm expert, short pause before the final number, then strong clear emphasis on it",
+      "visual": {
+        "type": "compare",
+        "bad": "ពិត៖ ៤២ Order · $2.50",
+        "good": "បើបិទ ៣៦%៖ ៥៤ Order · $1.94"
+      }
+    },
+    {
+      "role": "tip",
+      "lines": [
+        "គាត់កែ Inbox មុនប៉ះ Boost។",
+        "លេខ ៣៨ ៣៩ ទិញចូលបន្ថែម។",
+        "ម្នាក់ឆ្លើយសារល្ងាច ម្នាក់ខ្ចប់។",
+        "សារគំរូ កែឲ្យត្រូវស្តុករាល់ព្រឹក។"
+      ],
+      "voice": "Practical, friendly expert, clear and steady, one point at a time",
+      "visual": {
+        "type": "checklist",
+        "host": false,
+        "bad": "បិទ Boost ប្ដូរ Post",
+        "items": [
+          "ទិញលេខ ៣៨ ៣៩ ចូលបន្ថែម",
+          "ម្នាក់ឆ្លើយសារ ម្នាក់ខ្ចប់",
+          "សារគំរូ ត្រូវស្តុករាល់ព្រឹក"
+        ]
+      }
+    },
+    {
+      "role": "summary",
+      "lines": [
+        "ដូច្នេះសួរពីរ៖ សារថ្លៃជាងមុនទេ?",
+        "ឬបិទ Order បានតិចជាងមុន?"
+      ],
+      "voice": "Warm, confident expert, slow and clear, emphasise the two questions",
+      "visual": {
+        "type": "takeaway",
+        "host": false,
+        "quote": "លេខណាធ្លាក់ខ្លាំងជាង\nកែនោះមុន",
+        "chips": [
+          "ថ្លៃមួយសារ",
+          "អត្រាបិទ Order"
+        ]
+      }
+    },
+    {
+      "role": "cta",
+      "lines": [
+        "សប្ដាហ៍នេះ ហាងបងធ្លាក់លេខមួយណា?",
+        "Comment ពាក្យ INBOX មក",
+        "ក្រុម ADS BOX រីករាយជួយមើលលេខជាមួយបង។"
+      ],
+      "voice": "Friendly, confident, helpful expert inviting the shop owner to comment, warm, not salesy",
+      "visual": {
+        "type": "cta2",
+        "question": "ហាងបងធ្លាក់លេខមួយណា?",
+        "comment": "INBOX",
+        "comment_line": 1,
+        "services": [
+          "Boost Post",
+          "Boost Live"
+        ],
+        "url": "adsbox.agency"
+      }
+    }
+  ],
+  "article": {
+    "title": "Ads ចំណាយដូចមុន តែ Order ធ្លាក់៖ ហាងស្បែកជើងមួយ រកឃើញថាលុយមិនបាត់នៅ Ads ទេ",
+    "url": "https://adsbox.agency/knowledge/same-ad-spend-fewer-orders/"
+  },
+  "written_at": "2026-11-20T07:25:13+07:00"
+}

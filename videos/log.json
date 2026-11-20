@@ -4687,6 +4687,16 @@
       "created_at": "2026-11-19T07:48:25+07:00",
       "telegram_status": "delivered",
       "production_status": "complete"
+    },
+    {
+      "slug": "same-ad-spend-fewer-orders",
+      "article_title": "Ads ចំណាយដូចមុន តែ Order ធ្លាក់៖ ហាងស្បែកជើងមួយ រកឃើញថាលុយមិនបាត់នៅ Ads ទេ",
+      "article_url": "https://adsbox.agency/knowledge/same-ad-spend-fewer-orders/",
+      "video_title": "Boost ដូចមុន តែ Order ធ្លាក់? ចែកជាលេខពីរ រកកន្លែងខូចពិត",
+      "hook": "ម៉ោង ៩ យប់ ហាងស្បែកជើងរាប់ Order… បានតែ ៦ គូ។ ខែមុន ៩ គូ! Boost $15 មួយថ្ងៃ ដដែលទៀត។",
+      "status": "scripted",
+      "scripted_at": "2026-11-20T07:25:13+07:00",
+      "error": ""
     }
   ]
 }
