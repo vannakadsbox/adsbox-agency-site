@@ -1978,6 +1978,9 @@ function lockSizes() {
   const t = TPLS.find((x) => x.id === S.tpl), tab = document.querySelector('#tgroups button[aria-pressed="true"]'), bg = !!(t && t.g === "bg") || !!(tab && tab.dataset.g === "bg");
   document.querySelectorAll("#sizes button").forEach((b) => { const off = bg && b.dataset.s !== "1080x1920"; b.disabled = off; b.title = off ? "Background ប្រើបានតែទំហំ 9:16" : (b.getAttribute("aria-label") || "").replace(/ \d+x\d+$/, ""); });
   if (bg && S.W + "x" + S.H !== "1080x1920") document.querySelector('#sizes button[data-s="1080x1920"]').click();
+  // coming back from Background to posters / sale frames: return to the default 1:1
+  if (!bg && lockSizes.wasBg && S.W + "x" + S.H !== "1080x1080") document.querySelector('#sizes button[data-s="1080x1080"]').click();
+  lockSizes.wasBg = bg;
 }
 $("tpls").addEventListener("click", () => setTimeout(lockSizes));
 window.lockSizes = lockSizes;
