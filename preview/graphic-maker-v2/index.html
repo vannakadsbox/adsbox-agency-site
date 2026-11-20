@@ -2127,7 +2127,7 @@ Object.entries(saved && saved.f ? saved.f : EX).forEach(([k, v]) => { if ($(k)) 
 if (saved) { S.tpl = saved.tpl || S.tpl; $("demoTag").hidden = true; document.querySelectorAll(".tpl").forEach((x) => x.setAttribute("aria-pressed", x.dataset.id === S.tpl)); }
 const fontsReady = document.fonts && document.fonts.load ? Promise.all(["900 40px 'Be Vietnam Pro'", "800 40px 'Be Vietnam Pro'", "700 40px 'Be Vietnam Pro'", "600 40px 'Be Vietnam Pro'", "700 40px 'Kantumruy Pro'", "600 40px 'Kantumruy Pro'", "500 40px 'Kantumruy Pro'", "900 40px 'MiSans Khmer'", "800 40px 'MiSans Khmer'", "700 40px 'MiSans Khmer'", "600 40px 'MiSans Khmer'", "500 40px 'MiSans Khmer'", "400 40px 'MiSans Khmer'", "400 40px Koulen", "800 40px 'Playfair Display'"].map((f) => document.fonts.load(f, "កA$1"))).catch(() => {}) : Promise.resolve();
 render();
-Promise.race([fontsReady, new Promise((r) => setTimeout(r, 2500))]).then(() => loadImage(samplePhoto(), null, "fast"));  // first view instant; uploads use AI
+Promise.race([fontsReady, new Promise((r) => setTimeout(r, 2500))]).then(() => render());  // no sample product on first view (owner request); the user uploads their own, or taps «ប្រើរូបគំរូ»
 })();
 </script>
 
