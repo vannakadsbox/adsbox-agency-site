@@ -216,6 +216,7 @@ input[type=color]::-webkit-color-swatch-wrapper{padding:0}input[type=color]::-we
 .tsize .tsm{font-size:11px;color:var(--muted);font-weight:800}.tsize .tsl{font-size:17px;color:var(--muted);font-weight:800}
 .tsize output{font-family:var(--f-num);font-size:12px;min-width:40px;text-align:right;color:var(--muted)}
 .tsize .btn{padding:3px 10px;font-size:12px;border-radius:999px}
+.tsize .tsdel{color:#e5283f;border-color:rgba(229,40,63,.35);padding:3px 8px;display:inline-grid;place-items:center}.tsize .tsdel[hidden]{display:none}.tsize .tsdel:hover{background:#fff0f2}
 .mini{padding:14px 16px 10px;border-radius:18px}
 .mini h2{font-size:14px;margin:0 0 10px}
 .mini h2 b{position:static;width:22px;height:22px;font-size:11px;box-shadow:0 0 0 3px var(--brand-soft)}
@@ -561,7 +562,7 @@ footer.fine a{color:var(--muted)}
       <div class="studio">
       <div class="studio-bar"><span class="dot">ចុចលើរូប ឬអក្សរ ដើម្បីប្តូរទំហំ · អូសដើម្បីរំកិល</span><b id="tplName">Clean Product</b></div>
       <div class="view"><span class="tag" id="demoTag">ឧទាហរណ៍</span><canvas id="preview" width="1080" height="1080" aria-label="រូបមើលមុន"></canvas></div>
-      <div class="tsize" id="tsize"><label for="ts" id="tsLabel" class="sr">ទំហំអក្សរទាំងអស់</label><span class="tsm" aria-hidden="true"><b class="ta">A</b><svg class="tp" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 16l5-5 4 4 3-3 4 4"/></svg></span><input type="range" id="ts" min="70" max="140" step="5" value="100" aria-describedby="tsv"><span class="tsl" aria-hidden="true"><b class="ta">A</b><svg class="tp" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 16l5-5 4 4 3-3 4 4"/></svg></span><output id="tsv" for="ts">100%</output><button type="button" id="tsReset" class="btn">ដើម</button><button type="button" id="tsDone" class="btn" hidden aria-label="ឈប់ជ្រើស">✓</button></div>
+      <div class="tsize" id="tsize"><label for="ts" id="tsLabel" class="sr">ទំហំអក្សរទាំងអស់</label><span class="tsm" aria-hidden="true"><b class="ta">A</b><svg class="tp" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 16l5-5 4 4 3-3 4 4"/></svg></span><input type="range" id="ts" min="70" max="140" step="5" value="100" aria-describedby="tsv"><span class="tsl" aria-hidden="true"><b class="ta">A</b><svg class="tp" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 16l5-5 4 4 3-3 4 4"/></svg></span><output id="tsv" for="ts">100%</output><button type="button" id="tsReset" class="btn">ដើម</button><button type="button" id="tsDel" class="btn tsdel" hidden aria-label="លុប" title="លុប"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 7V4h6v3"/></svg></button><button type="button" id="tsDone" class="btn" hidden aria-label="ឈប់ជ្រើស">✓</button></div>
       </div>
     </div>
 
@@ -1570,9 +1571,12 @@ function bgPoster(c, W, H, d, P, scene, o) {
   product(c, L.prod, "floor");
   drawEls(c, W, H, d, P, "front");
   const sh = S.bgShow || {};
-  if (sh.title !== false) bgTitle(c, d, L.title, u, o, kind === "wide" ? "left" : "center");
-  if (sh.price !== false) bgPrice(c, d, L.price, u, o);
-  if (sh.tiles !== false) bgTiles(c, d, L.tiles, u, o);
+  const blk = (key, z, fn) => { const t = (S.bgT && S.bgT[key]) || { x: 0, y: 0, s: 1 }, zx = z.x + z.w / 2, zy = z.y + z.h / 2, cx = zx + t.x * W, cy = zy + t.y * H;
+    c.save(); c.translate(cx, cy); c.scale(t.s, t.s); c.translate(-zx, -zy); fn(); c.restore();
+    if (REC) ELH.push({ i: "b:" + key, cx, cy, w: z.w * t.s, h: z.h * t.s, rot: 0 }); };
+  if (sh.title !== false) blk("title", L.title, () => bgTitle(c, d, L.title, u, o, kind === "wide" ? "left" : "center"));
+  if (sh.price !== false) blk("price", L.price, () => bgPrice(c, d, L.price, u, o));
+  if (sh.tiles !== false) blk("tiles", L.tiles, () => bgTiles(c, d, L.tiles, u, o));
 }
 const fluted = (c, x, y, w, h, a, b, step) => { for (let i = 0; i < w; i += step) { c.fillStyle = (i / step) % 2 < 1 ? a : b; c.fillRect(x + i, y, Math.min(step / 2, w - i), h); } };
 
@@ -1932,7 +1936,13 @@ $("transp").addEventListener("change", (e) => { S.transparent = e.target.checked
 $("fonly").addEventListener("change", (e) => { S.fonly = e.target.checked; render(); });
 $("scale").addEventListener("input", (e) => { S.scale = e.target.value / 100; render(); });
 const selName = (k) => (k === "#product" ? "រូបទំនិញ" : k === "#price" ? "តម្លៃ" : k === "#old" ? "តម្លៃដើម" : k.length > 16 ? k.slice(0, 15) + "…" : k);
+const BLK_NAME = { title: "ចំណងជើងដើម", price: "កាតតម្លៃ", tiles: "ប្រអប់ព័ត៌មាន" };
+const curBlk = () => (typeof S.esel === "string" && S.esel.startsWith("b:") ? S.esel.slice(2) : null);
+const blkT = (k) => { S.bgT = S.bgT || {}; return (S.bgT[k] = S.bgT[k] || { x: 0, y: 0, s: 1 }); };
 function syncTs() {
+  const bk = curBlk(); $("tsDel").hidden = S.esel == null;
+  if (bk) { const r = $("ts"), v = Math.round(blkT(bk).s * 100); r.min = 30; r.max = 250; r.value = v; $("tsv").textContent = v + "%"; $("tsize").classList.remove("prod");
+    $("tsLabel").textContent = "ទំហំ «" + BLK_NAME[bk] + "»"; $("tsDone").hidden = false; $("tsize").classList.add("on"); return; }
   const se = S.els && S.esel != null ? S.els[S.esel] : null;
   if (se) { const r = $("ts"), v = Math.round(se.w * 100); r.min = 5; r.max = 160; r.value = v; $("tsv").textContent = v + "%"; $("tsize").classList.remove("prod");
     $("tsLabel").textContent = "ទំហំ «" + EL[se.k].name + "»"; $("tsDone").hidden = false; $("tsize").classList.add("on"); return; }
@@ -1941,9 +1951,10 @@ function syncTs() {
   $("tsize").classList.toggle("prod", prod);
   $("tsLabel").textContent = sel ? "ទំហំ «" + selName(sel) + "»" : "ទំហំអក្សរទាំងអស់"; $("tsDone").hidden = !sel; $("tsize").classList.toggle("on", !!sel);
 }
-const setTs = (v) => { const se = S.els && S.esel != null ? S.els[S.esel] : null; if (se) { se.w = v / 100; syncTs(); render(); return; } if (S.sel === "#product") { S.scale = v / 100; $("scale").value = v; } else if (S.sel) S.es[S.sel] = v / 100; else S.ts = v / 100; syncTs(); render(); };
+const setTs = (v) => { const bk = curBlk(); if (bk) { blkT(bk).s = v / 100; syncTs(); render(); return; } const se = S.els && S.esel != null ? S.els[S.esel] : null; if (se) { se.w = v / 100; syncTs(); render(); return; } if (S.sel === "#product") { S.scale = v / 100; $("scale").value = v; } else if (S.sel) S.es[S.sel] = v / 100; else S.ts = v / 100; syncTs(); render(); };
 $("ts").addEventListener("input", (e) => setTs(+e.target.value));
-$("tsReset").addEventListener("click", () => setTs(100));
+$("tsReset").addEventListener("click", () => { const bk = curBlk(); if (bk) { S.bgT[bk] = { x: 0, y: 0, s: 1 }; syncTs(); render(); return; } setTs(100); });
+$("tsDel").addEventListener("click", () => { if (window.elDel) window.elDel(); });
 $("tsDone").addEventListener("click", () => { S.sel = null; S.esel = null; if (window.elSync) window.elSync(); syncTs(); render(); });
 $("color").addEventListener("input", (e) => { S.color = e.target.value; render(); });
 $("colorReset").addEventListener("click", () => { S.color = null; render(); });
@@ -2026,7 +2037,9 @@ $("elRot").addEventListener("input", (ev) => { const e = curEl(); if (e) { e.rot
 $("elHole").addEventListener("change", (ev) => { const e = curEl(); if (e) { e.hole = ev.target.checked; if (e.hole) e.img = null; elSync(); render(); } });
 $("elImgFile").addEventListener("change", (ev) => { const f = ev.target.files && ev.target.files[0], e = curEl(); ev.target.value = ""; if (!f || !e) return; const im = new Image(); im.onload = () => { e.img = im; e.hole = false; elSync(); render(); }; im.src = URL.createObjectURL(f); });
 $("elImgClr").addEventListener("click", () => { const e = curEl(); if (e) { e.img = null; elSync(); render(); } });
-const elDel = () => { if (S.esel == null) return; S.els.splice(S.esel, 1); S.esel = null; elSync(); syncTs(); render(); };
+const elDel = () => { if (S.esel == null) return; const bk = curBlk();
+  if (bk) { S.bgShow[bk] = false; const cb = document.querySelector('#elBuiltin input[data-b="' + bk + '"]'); if (cb) cb.checked = false; S.esel = null; elSync(); syncTs(); render(); return; }
+  S.els.splice(S.esel, 1); S.esel = null; elSync(); syncTs(); render(); };
 $("elDel").addEventListener("click", elDel);
 $("elDup").addEventListener("click", () => { const e = curEl(); if (!e) return; S.els.push({ ...e, x: Math.min(0.95, e.x + 0.04), y: Math.min(0.95, e.y + 0.04) }); S.esel = S.els.length - 1; elSync(); render(); });
 $("elUp").addEventListener("click", () => { const i = S.esel; if (i == null || i >= S.els.length - 1) return; [S.els[i], S.els[i + 1]] = [S.els[i + 1], S.els[i]]; S.esel = i + 1; render(); });
@@ -2046,20 +2059,21 @@ pv.addEventListener("pointerdown", (ev) => {
   const sel = S.esel == null ? null : ELH.find((q) => q.i === S.esel);
   if (sel) { const [lx, ly] = toLocal(sel, px, py), hx = sel.w / 2 + 8 * u, hy = sel.h / 2 + 8 * u;
     if (Math.hypot(lx - hx, ly + hy) < pad) { ev.stopImmediatePropagation(); elDel(); return; }
-    if (Math.hypot(lx - hx, ly - hy) < pad) { ev.stopImmediatePropagation(); const e = curEl(); elDrag = { mode: "size", w: e.w, d0: Math.hypot(px - sel.cx, py - sel.cy) || 1, cx: sel.cx, cy: sel.cy }; pv.setPointerCapture(ev.pointerId); return; } }
+    if (Math.hypot(lx - hx, ly - hy) < pad) { ev.stopImmediatePropagation(); const bk = curBlk(), e = curEl(); elDrag = { mode: "size", bk, w: bk ? blkT(bk).s : e.w, d0: Math.hypot(px - sel.cx, py - sel.cy) || 1, cx: sel.cx, cy: sel.cy }; pv.setPointerCapture(ev.pointerId); return; } }
   const hitQ = [...ELH].reverse().find((q) => { const [lx, ly] = toLocal(q, px, py); return Math.abs(lx) <= q.w / 2 + 6 * u && Math.abs(ly) <= q.h / 2 + 6 * u; });
   if (!hitQ) { if (S.esel != null) { S.esel = null; elSync(); syncTs(); render(); } return; }
-  ev.stopImmediatePropagation(); S.esel = hitQ.i; S.sel = null; const e = curEl(); pickKind = e.k;
-  elDrag = { mode: "move", x0: px, y0: py, ex: e.x, ey: e.y }; pv.setPointerCapture(ev.pointerId); pv.classList.add("drag"); elSync(); syncTs(); render();
+  ev.stopImmediatePropagation(); S.esel = hitQ.i; S.sel = null; const bk = curBlk(), e = bk ? blkT(bk) : curEl(); if (!bk) pickKind = e.k; else pickKind = null;
+  elDrag = { mode: "move", bk, x0: px, y0: py, ex: e.x, ey: e.y }; pv.setPointerCapture(ev.pointerId); pv.classList.add("drag"); elSync(); syncTs(); render();
 }, { capture: true });
 pv.addEventListener("pointermove", (ev) => {
-  if (!elDrag) return; ev.stopImmediatePropagation(); const e = curEl(); if (!e) return; const [px, py] = pvPt(ev);
-  if (elDrag.mode === "move") { e.x = Math.min(1.1, Math.max(-0.1, elDrag.ex + (px - elDrag.x0) / S.W)); e.y = Math.min(1.1, Math.max(-0.1, elDrag.ey + (py - elDrag.y0) / S.H)); }
-  else e.w = Math.min(1.6, Math.max(0.05, (elDrag.w * Math.hypot(px - elDrag.cx, py - elDrag.cy)) / elDrag.d0));
+  if (!elDrag) return; ev.stopImmediatePropagation(); const bk = elDrag.bk, e = bk ? blkT(bk) : curEl(); if (!e) return; const [px, py] = pvPt(ev);
+  const lo = bk ? -1 : -0.1, hi = bk ? 1 : 1.1;
+  if (elDrag.mode === "move") { e.x = Math.min(hi, Math.max(lo, elDrag.ex + (px - elDrag.x0) / S.W)); e.y = Math.min(hi, Math.max(lo, elDrag.ey + (py - elDrag.y0) / S.H)); }
+  else { const v = (elDrag.w * Math.hypot(px - elDrag.cx, py - elDrag.cy)) / elDrag.d0; if (bk) e.s = Math.min(2.5, Math.max(0.3, v)); else e.w = Math.min(1.6, Math.max(0.05, v)); }
   syncTs(); render();
 }, { capture: true });
 ["pointerup", "pointercancel"].forEach((t) => pv.addEventListener(t, (ev) => { if (!elDrag) return; ev.stopImmediatePropagation(); elDrag = null; pv.classList.remove("drag"); }, { capture: true }));
-window.elPanelSync = elPanelSync; window.__gmEls = () => S.els.map((e) => ({ k: e.k, s: e.s, x: +e.x.toFixed(3), y: +e.y.toFixed(3), w: +e.w.toFixed(3) })); window.__gmSel = () => S.esel; window.elSync = elSync;
+window.elPanelSync = elPanelSync; window.__gmEls = () => S.els.map((e) => ({ k: e.k, s: e.s, x: +e.x.toFixed(3), y: +e.y.toFixed(3), w: +e.w.toFixed(3) })); window.__gmSel = () => S.esel; window.elSync = elSync; window.elDel = elDel; window.__gmBgT = () => JSON.parse(JSON.stringify(S.bgT || {}));
 elPanelSync(); elSync();
 // export and save
 let dls = null, lastBlob = null;
