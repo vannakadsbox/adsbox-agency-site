@@ -1711,12 +1711,14 @@ $("colorReset").addEventListener("click", () => { S.color = null; render(); });
 let tolT = 0; $("tol").addEventListener("input", () => { clearTimeout(tolT); tolT = setTimeout(() => processAll(), 150); });
 $("sample").addEventListener("click", () => loadImage(samplePhoto()));
 $("file").addEventListener("change", (e) => { const f = e.target.files && e.target.files[0]; if (f) { $("demoTag").hidden = true; loadImage(URL.createObjectURL(f)); } e.target.value = ""; });
+// Background: 9:16 only. Locked while the Background tab is open or a background is chosen.
 function lockSizes() {
-  const t = TPLS.find((x) => x.id === S.tpl), bg = !!(t && t.g === "bg");
+  const t = TPLS.find((x) => x.id === S.tpl), tab = document.querySelector('#tgroups button[aria-pressed="true"]'), bg = !!(t && t.g === "bg") || !!(tab && tab.dataset.g === "bg");
   document.querySelectorAll("#sizes button").forEach((b) => { const off = bg && b.dataset.s !== "1080x1920"; b.disabled = off; b.title = off ? "Background ប្រើបានតែទំហំ 9:16" : (b.getAttribute("aria-label") || "").replace(/ \d+x\d+$/, ""); });
   if (bg && S.W + "x" + S.H !== "1080x1920") document.querySelector('#sizes button[data-s="1080x1920"]').click();
 }
 $("tpls").addEventListener("click", () => setTimeout(lockSizes));
+window.lockSizes = lockSizes;
 $("bgFile").addEventListener("change", (e) => { const f = e.target.files && e.target.files[0]; e.target.value = ""; if (!f) return; const im = new Image(); im.onload = () => { S.bgImg = im; S.tpl = "bgphoto"; document.querySelectorAll(".tpl").forEach((x) => x.setAttribute("aria-pressed", x.dataset.id === "bgphoto")); lockSizes(); render(); }; im.src = URL.createObjectURL(f); });
 $("tpls").addEventListener("click", (e) => { const b = e.target.closest(".tpl"); if (b && b.dataset.id === "bgphoto" && !S.bgImg) $("bgFile").click(); });
 $("giftFile").addEventListener("change", (e) => { const f = e.target.files && e.target.files[0]; if (f) loadImage(URL.createObjectURL(f), "gift"); e.target.value = ""; });
@@ -1783,7 +1785,7 @@ Promise.race([fontsReady, new Promise((r) => setTimeout(r, 2500))]).then(() => l
   $("mexport").addEventListener("click", () => $("export").click());
   const fonlyVis = () => { const t = document.querySelector('.tpl[aria-pressed="true"]'); $("fonlyWrap").hidden = true; };
   $("tpls").addEventListener("click", () => setTimeout(fonlyVis));
-  const showGroup = (gname) => { document.querySelectorAll("#tgroups button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.g === gname)); document.querySelectorAll(".tpl").forEach((t) => { t.hidden = t.dataset.g !== gname && t.dataset.g !== "all"; }); };
+  const showGroup = (gname) => { setTimeout(() => window.lockSizes && window.lockSizes()); document.querySelectorAll("#tgroups button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.g === gname)); document.querySelectorAll(".tpl").forEach((t) => { t.hidden = t.dataset.g !== gname && t.dataset.g !== "all"; }); };
   $("tgroups").addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) showGroup(b.dataset.g); });
   const cur = document.querySelector('.tpl[aria-pressed="true"]'); if (cur) showGroup(cur.dataset.g);
   tplName(); sizeName(); fonlyVis();
