@@ -1,0 +1,197 @@
+{
+  "slug": "same-post-boosted-twice-different-results",
+  "video_title": "Post ដដែល Boost ពីរដង ហេតុអី Order ធ្លាក់? ៤ រឿងក្រៅ Post",
+  "topic": "Post ដដែល Boost ម្ដងទៀត តែ Order ធ្លាក់ មិនមែនមកពី Post ខូចទេ។ បងរៀនពិនិត្យ ៤ រឿងជុំវិញ Post មុន Boost ម្ដងទៀត។",
+  "thumbnail_text": "Post ដដែល ហេតុអី Order ធ្លាក់?",
+  "description": "Post រ៉ូបដដែល Boost $30 ដដែល ខែមុនបាន Order ១៨ ខែនេះបានតែ ៧ (លេខគំរូ)។\nមុនបន្ទោស Post ពិនិត្យ ៤ រឿងនេះសិន៖ ពេល Boost ស្តុក អ្នកឆ្លើយសារ និងអ្នកធ្លាប់ឃើញរួច។\n#ADSBOX #BoostPost #លក់Online #CostPerOrder",
+  "facebook_caption": "Post ធ្លាប់លក់ដាច់ Boost ម្ដងទៀត ហេតុអី Order ធ្លាក់? 🤔\nមុនបន្ទោស Post ពិនិត្យ ៤ រឿងនេះសិនបង៖\n✅ ពេល Boost (ថ្ងៃបើកប្រាក់ខែ ឬកណ្ដាលខែ)\n✅ ទំហំដែលភ្ញៀវសួរ នៅមានអត់\n✅ អ្នកណាឆ្លើយសារ\n✅ ភ្ញៀវធ្លាប់ឃើញ Post នេះរួចហើយ\nពិនិត្យមុន ទើបលុយ Boost មិនខ្ជះខ្ជាយ។\nPost ចាស់បង គួរ Boost ម្ដងទៀតអត់? Comment ពាក្យ BOOST មក 👇\n#ADSBOX #BoostPost #លក់Online #ហាងរ៉ូប",
+  "scenes": [
+    {
+      "role": "hook",
+      "lines": [
+        "Post រ៉ូបដដែល Boost $30 ដដែល។",
+        "ខែមុនបាន Order ១៨…",
+        "ខែនេះ បានតែ ៧! ហេតុអីបង?"
+      ],
+      "voice": "Curious, surprised consultant talking to a shop owner, short pause after each number, natural",
+      "keyword": "Order ១៨ → ៧?",
+      "visual": {
+        "type": "question",
+        "title": "Post ដដែល ហេតុអី?",
+        "bubbles": [
+          "ចាំចុងខែសិនបង",
+          "មាន M ទេបង?",
+          "ឃើញខែមុនហើយ"
+        ]
+      }
+    },
+    {
+      "role": "problem",
+      "lines": [
+        "សារចូលស្ទើរតែដូចគ្នា ៦០ និង ៥៥។",
+        "តែថ្លៃមួយ Order ឡើងពី $1.67…",
+        "ទៅ $4.29!"
+      ],
+      "voice": "Expert explaining numbers slowly and clearly, short pause before the last price, stress it",
+      "keyword": "$1.67 → $4.29",
+      "label": "លេខគំរូ",
+      "visual": {
+        "type": "dashboard",
+        "host": false,
+        "title": "Boost លើកទី ២ (លេខគំរូ)",
+        "metrics": [
+          {
+            "label": "Boost",
+            "value": "$30"
+          },
+          {
+            "label": "សារ",
+            "value": "៥៥"
+          },
+          {
+            "label": "Order",
+            "value": "៧"
+          }
+        ],
+        "alert": "មួយ Order $4.29"
+      }
+    },
+    {
+      "role": "problem",
+      "lines": [
+        "កុំទាន់បន្ទោស Post!",
+        "រូបដដែល Caption ដដែល។",
+        "អ្វីដែលប្ដូរ គឺនៅជុំវិញ Post។"
+      ],
+      "voice": "Sincerely talking to the shop owner, not rushed, stress the words around the post",
+      "keyword": "ប្ដូរជុំវិញ Post",
+      "visual": {
+        "type": "compare",
+        "host": false,
+        "bad": "Post ខូចហើយ?",
+        "good": "អ្វីប្ដូរជុំវិញ Post?"
+      }
+    },
+    {
+      "role": "tip",
+      "lines": [
+        "ទី១ ពេល Boost។",
+        "កណ្ដាលខែ ភ្ញៀវចាំបើកប្រាក់ខែសិន។",
+        "ទី២ ស្តុក។ ទំហំ M និង L អស់បាត់។"
+      ],
+      "voice": "Confident expert explaining clearly, small pause after each point number",
+      "keyword": "ពេល Boost និងស្តុក",
+      "label": "ពិនិត្យ ៤ រឿង",
+      "visual": {
+        "type": "checklist",
+        "items": [
+          "ពេល Boost៖ កណ្ដាលខែ",
+          "ស្តុក៖ M និង L អស់"
+        ]
+      }
+    },
+    {
+      "role": "tip",
+      "lines": [
+        "ទី៣ អ្នកឆ្លើយសារ។ Admin ឆ្លើយលឿន ឈប់។",
+        "ទី៤ ភ្ញៀវខ្លះឃើញ Post នេះរួចហើយ។",
+        "អ្នកចង់ទិញ ទិញតាំងពីលើកមុន។"
+      ],
+      "voice": "Natural consultant, conversational, stress Admin and already seen",
+      "keyword": "អ្នកឆ្លើយសារ",
+      "visual": {
+        "type": "chat",
+        "host": false,
+        "with": "ភ្ញៀវ",
+        "messages": [
+          {
+            "from": "customer",
+            "text": "មាន M ទេបង?"
+          },
+          {
+            "from": "shop",
+            "text": "សុំទោសបង អស់ហើយ"
+          },
+          {
+            "from": "customer",
+            "text": "ឃើញខែមុនហើយ មានពណ៌ថ្មីទេ?"
+          }
+        ]
+      }
+    },
+    {
+      "role": "tip",
+      "lines": [
+        "ដូច្នេះ ចាំស្តុកមកដល់ សឹម Boost។",
+        "Boost ចំថ្ងៃបើកប្រាក់ខែ។",
+        "ធ្វើ Post ពណ៌ថ្មី ហើយមានអ្នកឆ្លើយសារ។"
+      ],
+      "voice": "Energetic, practical expert giving clear steps, short pause between each",
+      "keyword": "ធ្វើថ្ងៃនេះ",
+      "visual": {
+        "type": "flow",
+        "host": false,
+        "steps": [
+          {
+            "text": "ចាំស្តុក M និង L"
+          },
+          {
+            "text": "Boost ថ្ងៃបើកប្រាក់ខែ"
+          },
+          {
+            "text": "Post ពណ៌ថ្មី"
+          },
+          {
+            "text": "មានអ្នកឆ្លើយសារ"
+          }
+        ]
+      }
+    },
+    {
+      "role": "summary",
+      "lines": [
+        "Post ធ្លាប់លក់ដាច់ មិនមែនសំណាងរហូតទេ។",
+        "ពិនិត្យ ៤ រឿងនេះ មុន Boost ម្ដងទៀត។"
+      ],
+      "voice": "Calm expert, slower, strong clear emphasis on the lesson",
+      "keyword": "ពិនិត្យ ៤ រឿងមុន",
+      "visual": {
+        "type": "takeaway",
+        "host": false,
+        "quote": "Post ធ្លាប់ល្អ\nមិនមែនសំណាងរហូតទេ",
+        "chips": [
+          "ពេល Boost",
+          "ស្តុក",
+          "អ្នកឆ្លើយសារ",
+          "អ្នកធ្លាប់ឃើញ"
+        ]
+      }
+    },
+    {
+      "role": "cta",
+      "lines": [
+        "Post ចាស់បង គួរ Boost ម្ដងទៀតអត់?",
+        "Comment ពាក្យ BOOST មក។",
+        "ក្រុម ADS BOX រីករាយជួយពិនិត្យជាមួយបង។"
+      ],
+      "voice": "Friendly, confident, helpful expert inviting the shop owner to comment, warm, not salesy",
+      "visual": {
+        "type": "cta2",
+        "question": "Post ចាស់ គួរ Boost ម្ដងទៀតអត់?",
+        "comment": "BOOST",
+        "comment_line": 1,
+        "services": [
+          "Boost Post",
+          "Boost Live",
+          "Design"
+        ],
+        "url": "adsbox.agency"
+      }
+    }
+  ],
+  "article": {
+    "title": "Post ដដែល Boost ពីរដង លទ្ធផលខុសគ្នា៖ អ្វីប្ដូរ ក្រៅពី Post?",
+    "url": "https://adsbox.agency/knowledge/same-post-boosted-twice-different-results/"
+  },
+  "written_at": "2026-11-20T08:24:33+07:00"
+}

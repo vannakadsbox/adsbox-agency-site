@@ -4812,6 +4812,16 @@
       "created_at": "2026-11-20T07:33:00+07:00",
       "telegram_status": "delivered",
       "production_status": "complete"
+    },
+    {
+      "slug": "same-post-boosted-twice-different-results",
+      "article_title": "Post ដដែល Boost ពីរដង លទ្ធផលខុសគ្នា៖ អ្វីប្ដូរ ក្រៅពី Post?",
+      "article_url": "https://adsbox.agency/knowledge/same-post-boosted-twice-different-results/",
+      "video_title": "Post ដដែល Boost ពីរដង ហេតុអី Order ធ្លាក់? ៤ រឿងក្រៅ Post",
+      "hook": "Post រ៉ូបដដែល Boost $30 ដដែល។ ខែមុនបាន Order ១៨… ខែនេះ បានតែ ៧! ហេតុអីបង?",
+      "status": "scripted",
+      "scripted_at": "2026-11-20T08:24:33+07:00",
+      "error": ""
     }
   ]
 }
