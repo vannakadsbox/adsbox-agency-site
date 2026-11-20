@@ -122,6 +122,9 @@ def refresh_topic(date):
     """content/autopost/refresh2026.json — the COO's "2026 Knowledge Refresh" (19 Nov – 31 Dec 2026).
     Inside the period a day publishes ONLY its COO-approved draft. Returns (topic or None, message or None, in_period)."""
     cal = None if os.environ.get("ADSBOX_IGNORE_REFRESH") else C.load_json("refresh2026.json", None)  # tests of the weekly rotation
+    if cal and date > cal["end"] and cal.get("after_end") == "pause":
+        # COO: the 2027 Knowledge system is planned separately; do not fall back to the old rotation.
+        return None, f"2026 Knowledge Refresh ended on {cal['end']}; the 2027 Knowledge system is not set up yet, so nothing is published.", True
     if not cal or not (cal["start"] <= date <= cal["end"]):
         return None, None, False
     day = next((d for d in cal["days"] if d["date"] == date), None)

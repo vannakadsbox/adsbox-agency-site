@@ -82,6 +82,9 @@ def watchdog(now_iso=None):
             print(f"{slot}: done."); continue
         if C.slot_record(h, now.date().isoformat(), slot, ("failed",)):
             print(f"{slot}: failure already alerted."); continue
+        cal = C.load_json("refresh2026.json", None)
+        if cal and now.date().isoformat() > cal["end"] and cal.get("after_end") == "pause":
+            continue  # Refresh ended; the 2027 system is not set up yet, so no article is expected
         waiting = refresh_waiting(now.date().isoformat())
         if waiting:
             ok &= send(f"📝 ADS BOX: អត្ថបទថ្ងៃ {now.date()} «{waiting}» នៅរង់ចាំ COO យល់ព្រម ដូច្នេះមិនទាន់ចេញទេ។\n"
