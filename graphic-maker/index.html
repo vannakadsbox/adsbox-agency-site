@@ -404,6 +404,9 @@ input[type=color]::-webkit-color-swatch-wrapper{padding:0}input[type=color]::-we
   .mini .toggle{display:flex;width:100%;justify-content:space-between;align-items:center;gap:12px}
   .mini .swatches{flex-wrap:nowrap;gap:5px;justify-content:space-between}.mini .swatches .sublabel{display:none}.mini .sw{width:24px!important;height:24px!important;flex:none}.mini input[type=color]{width:26px;height:26px;padding:2px}.mini #colorReset{padding:4px 10px!important;font-size:12px!important;flex:none}
 }
+.toggle.locked{cursor:not-allowed;color:var(--muted)}
+.toggle.locked input,.toggle.locked input:checked{background:#c3c9d6;cursor:not-allowed;opacity:1}
+.toggle.locked input::after{box-shadow:none}
 dialog{border:0;border-radius:22px;padding:0;max-width:min(560px,94vw);width:100%;background:var(--panel);color:var(--ink);box-shadow:0 40px 90px -30px rgba(0,0,0,.7)}
 dialog::backdrop{background:rgba(5,9,22,.72);backdrop-filter:blur(4px)}
 .dlg{display:grid;gap:14px;padding:20px}
@@ -523,7 +526,7 @@ footer.fine a{color:var(--muted)}
       </div>
       <div class="opts">
       <label class="toggle" hidden>ផ្ទៃខាងក្រោយថ្លា (សម្រាប់ Live) <input type="checkbox" id="transp"></label>
-      <label class="toggle" hidden>បង្ហាញ adsbox.agency តូចៗ <input type="checkbox" id="credit" checked disabled></label>
+      <label class="toggle locked" title="adsbox.agency បង្ហាញជានិច្ច">បង្ហាញ adsbox.agency តូចៗ <input type="checkbox" id="credit" checked disabled aria-disabled="true"></label>
       <label class="toggle" id="fonlyWrap" hidden>តែស៊ុមទទេ (គ្មានរូបទំនិញ) <input type="checkbox" id="fonly"></label>
       </div>
       </section>
