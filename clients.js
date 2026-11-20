@@ -3,21 +3,21 @@ window.CLIENTS = [
  {
   "name": "ផ្ទះ បង្អែមព្រិលត្រចៀកកាំ",
   "url": "https://web.facebook.com/profile.php?id=100088869350470",
-  "followers": 32745,
+  "followers": 32788,
   "picture": "assets/accounts/fb-100088869350470.webp",
   "category": "ម្ហូបអាហារ"
  },
  {
   "name": "World of Shopping",
   "url": "https://web.facebook.com/worldofshopping168",
-  "followers": 6187,
+  "followers": 6190,
   "picture": "assets/accounts/fb-worldofshopping168.webp",
   "category": "ហាងលក់អនឡាញ"
  },
  {
   "name": "មានលាភ999 លក់គ្រាប់ធញជាតិ ដំណាប់ ផ្លែឈើ",
   "url": "https://web.facebook.com/profile.php?id=61550509391405",
-  "followers": 6658,
+  "followers": 6663,
   "picture": "assets/accounts/fb-61550509391405.webp",
   "category": "ម្ហូបអាហារ"
  },
@@ -31,14 +31,14 @@ window.CLIENTS = [
  {
   "name": "Healthy Glow | Phnom Penh",
   "url": "https://web.facebook.com/profile.php?id=100083063480749",
-  "followers": 17840,
+  "followers": 17838,
   "picture": "assets/accounts/fb-100083063480749.webp",
   "category": "សម្ផស្ស"
  },
  {
   "name": "Jenna online shop",
   "url": "https://web.facebook.com/profile.php?id=100075488185463",
-  "followers": 8285,
+  "followers": 8284,
   "picture": "assets/accounts/fb-100075488185463.webp",
   "category": "ហាងលក់អនឡាញ"
  },
@@ -52,7 +52,7 @@ window.CLIENTS = [
  {
   "name": "Borey ChhayLy | Phnom Penh",
   "url": "https://web.facebook.com/BoreyChhayly168",
-  "followers": 48433,
+  "followers": 48427,
   "picture": "assets/accounts/fb-boreychhayly168.webp",
   "category": ""
  }
