@@ -2149,7 +2149,12 @@ Promise.race([fontsReady, new Promise((r) => setTimeout(r, 2500))]).then(() => r
   $("mexport").addEventListener("click", () => $("export").click());
   const fonlyVis = () => { const t = document.querySelector('.tpl[aria-pressed="true"]'); $("fonlyWrap").hidden = true; };
   $("tpls").addEventListener("click", () => setTimeout(fonlyVis));
-  const showGroup = (gname) => { setTimeout(() => window.lockSizes && window.lockSizes()); document.querySelectorAll("#tgroups button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.g === gname)); document.querySelectorAll(".tpl").forEach((t) => { t.hidden = t.dataset.g !== gname && !(t.dataset.g === "all" && gname !== "bg"); }); };
+  // remember the last poster / frame picked, so leaving Background brings it back straight away (at 1:1)
+  const lastTpl = {}; $("tpls").addEventListener("click", (e) => { const b = e.target.closest(".tpl"); if (b && b.dataset.g !== "bg") lastTpl[b.dataset.g === "all" ? "style" : b.dataset.g] = b.dataset.id; });
+  const showGroup = (gname) => {
+    const curT = document.querySelector('.tpl[aria-pressed="true"]');
+    if (gname !== "bg" && curT && curT.dataset.g === "bg") { const want = document.querySelector(`.tpl[data-id="${lastTpl[gname] || ""}"]`) || document.querySelector(`.tpl[data-g="${gname}"]`); if (want) setTimeout(() => want.click()); }
+    setTimeout(() => window.lockSizes && window.lockSizes()); document.querySelectorAll("#tgroups button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.g === gname)); document.querySelectorAll(".tpl").forEach((t) => { t.hidden = t.dataset.g !== gname && !(t.dataset.g === "all" && gname !== "bg"); }); };
   $("tgroups").addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) showGroup(b.dataset.g); });
   const cur = document.querySelector('.tpl[aria-pressed="true"]'); if (cur) showGroup(cur.dataset.g);
   tplName(); sizeName(); fonlyVis();
