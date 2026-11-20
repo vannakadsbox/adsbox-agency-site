@@ -410,7 +410,7 @@ input[type=color]::-webkit-color-swatch-wrapper{padding:0}input[type=color]::-we
 .toggle.locked{cursor:not-allowed;color:var(--muted)}
 .toggle.locked input,.toggle.locked input:checked{background:#c3c9d6;cursor:not-allowed;opacity:1}
 .toggle.locked input::after{box-shadow:none}
-.tpls.bgmode{grid-template-columns:repeat(8,minmax(0,1fr))!important;gap:5px!important}
+.tpls.bgmode{grid-template-columns:repeat(7,minmax(0,1fr))!important;gap:5px!important}
 .tpls.bgmode .tpl{font-size:9.5px;padding:3px 3px 4px}.tpls.bgmode .tpl b{font-size:9.5px}
 @media (max-width:640px){.tpls.bgmode{grid-template-columns:repeat(4,minmax(0,1fr))!important}}
 .elp-pick{grid-template-columns:repeat(5,minmax(0,1fr))!important}
@@ -1568,7 +1568,7 @@ function bgPoster(c, W, H, d, P, scene, o) {
   const { u, kind } = P, L = bgLayout(W, H, kind, u); o = { ...o, accent: S.color || o.accent };
   if (!S.transparent) scene(L);
   drawEls(c, W, H, d, P, "back");
-  product(c, L.prod, "floor");
+  // Background designs carry no product photo (owner request): only the scene, the added items and the info parts.
   drawEls(c, W, H, d, P, "front");
   const sh = S.bgShow || {};
   const blk = (key, z, fn) => { const t = (S.bgT && S.bgT[key]) || { x: 0, y: 0, s: 1 }, zx = z.x + z.w / 2, zy = z.y + z.h / 2, cx = zx + t.x * W, cy = zy + t.y * H;
@@ -1636,7 +1636,7 @@ T.bgphoto = (c, W, H, d, P) => bgPoster(c, W, H, d, P, (L) => {
   const { u } = P, img = S.bgImg;
   if (img) { const k = Math.max(W / img.width, H / img.height), w = img.width * k, h = img.height * k; c.drawImage(img, (W - w) / 2, (H - h) / 2, w, h); }
   else { c.fillStyle = lin(c, 0, 0, 0, H, "#eef2fb", "#dfe6f5"); c.fillRect(0, 0, W, H); c.strokeStyle = "#b9c6e4"; c.setLineDash([18 * u, 12 * u]); c.lineWidth = 4 * u; rr(c, 40 * u, 40 * u, W - 80 * u, H - 80 * u, 30 * u); c.stroke(); c.setLineDash([]);
-    if (!S.product) text(c, "+ Background", W / 2, H / 2, { size: 60 * u, weight: 800, color: "#7d8bb0" }); }
+    text(c, "+ Background", W / 2, H / 2, { size: 60 * u, weight: 800, color: "#7d8bb0" }); }
   const t = c.createLinearGradient(0, 0, 0, H); t.addColorStop(0, "rgba(255,255,255,.55)"); t.addColorStop(0.3, "rgba(255,255,255,0)"); t.addColorStop(0.75, "rgba(255,255,255,0)"); t.addColorStop(1, "rgba(255,255,255,.5)"); c.fillStyle = t; c.fillRect(0, 0, W, H);
 }, { ink: "#0c1430", ink2: "#1d2a4a", soft: "#4a5675", accent: "#0059e0", cardBg: "#ffffff", cardBar: "#e8eefb", barFg: "#1c4b9b", tileBg: "rgba(255,255,255,.92)", tileLine: "rgba(0,89,224,.3)", tileFg: "#1c4b9b" });
 
@@ -2119,7 +2119,7 @@ Promise.race([fontsReady, new Promise((r) => setTimeout(r, 2500))]).then(() => l
   $("mexport").addEventListener("click", () => $("export").click());
   const fonlyVis = () => { const t = document.querySelector('.tpl[aria-pressed="true"]'); $("fonlyWrap").hidden = true; };
   $("tpls").addEventListener("click", () => setTimeout(fonlyVis));
-  const showGroup = (gname) => { setTimeout(() => window.lockSizes && window.lockSizes()); document.querySelectorAll("#tgroups button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.g === gname)); document.querySelectorAll(".tpl").forEach((t) => { t.hidden = t.dataset.g !== gname && t.dataset.g !== "all"; }); };
+  const showGroup = (gname) => { setTimeout(() => window.lockSizes && window.lockSizes()); document.querySelectorAll("#tgroups button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.g === gname)); document.querySelectorAll(".tpl").forEach((t) => { t.hidden = t.dataset.g !== gname && !(t.dataset.g === "all" && gname !== "bg"); }); };
   $("tgroups").addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) showGroup(b.dataset.g); });
   const cur = document.querySelector('.tpl[aria-pressed="true"]'); if (cur) showGroup(cur.dataset.g);
   tplName(); sizeName(); fonlyVis();
