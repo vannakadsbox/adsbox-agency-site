@@ -1657,7 +1657,7 @@ T.bgphoto = (c, W, H, d, P) => bgPoster(c, W, H, d, P, (L) => {
 //                 rot (degrees), t, t2 (texts), img (photo inside a screen), hole (see-through screen) }.
 // Layers: background scene → stands and screens → product photo → titles and stickers → built-in texts.
 const EL = {
-  title: { name: "ចំណងជើង", styles: ["Blue Gradient", "Gold Luxury", "Neon Glow", "Ribbon", "Sticker", "3D Shadow", "Minimal", "Pill"] },
+  title: { name: "ចំណងជើង", styles: ["Blue Gradient", "Gold Luxury", "Neon Glow", "Ribbon", "Sticker", "3D Shadow", "Minimal", "Pill", "Candy 3D", "Sticker Pop", "Retro Stack", "Bubble", "Rainbow", "Comic Burst", "Badge Banner", "Collage", "Halftone Pop", "Crayon"] },
   screen: { name: "ស៊ុមវីដេអូ", styles: ["Wall TV", "Monitor", "Phone", "Laptop", "Round"] },
   stand: { name: "ជើងតាំង", styles: ["Blue Podium", "Silver Podium", "Gold Podium", "Glass Counter", "Two Steps", "Light Shelf"] },
   sticker: { name: "ស្ទីកឃ័រ", styles: ["Sale Burst", "Price Tag", "Free Delivery", "COD", "Voucher", "NEW", "Sparkle"] },
@@ -1665,12 +1665,13 @@ const EL = {
 const EL_ASPECT = { screen: [0.58, 0.78, 2.0, 0.66, 1], stand: [0.42, 0.42, 0.42, 0.46, 0.6, 0.14], sticker: [1, 0.66, 0.66, 0.66, 0.66, 1, 1] };
 const EL_TEXT = { sticker: ["SALE", "", "ដឹកជញ្ជូនឥតគិតថ្លៃ", "ទូទាត់ពេលទទួល", "Voucher បញ្ចុះបន្ថែម", "NEW", ""] };
 let ELH = [];
-const elH = (e) => e.k === "title" ? e.w * (e.t2 ? 0.36 : 0.24) : e.w * EL_ASPECT[e.k][e.s];
+const elH = (e) => e.k === "title" ? e.w * (e.s >= 8 ? (e.t2 ? 0.5 : 0.3) : e.t2 ? 0.36 : 0.24) : e.w * EL_ASPECT[e.k][e.s];
 function elRound(c, x, y, w, h, r) { c.beginPath(); c.roundRect ? c.roundRect(x, y, w, h, r) : rr(c, x, y, w, h, r); }
 function elFitText(c, t, weight, size, maxW, lines = 2) { const f = fit(c, t, weight, F_MIX, size, Math.max(10, size * 0.3), maxW, lines); c.font = `${weight} ${f.s}px ${F_MIX}`; return f; }
 function elLines(c, f, y, fn) { const step = f.s * 1.12, top = y - ((f.lines.length - 1) * step) / 2; f.lines.forEach((l, i) => fn(l, top + i * step)); }
 
 function elTitle(c, e, w, h, A) {
+  if (e.s >= 8) return elTitleFx(c, e, w, h, A);
   const main = e.t || "ចំណងជើងរបស់អ្នក", sub = e.t2, mh = sub ? h * 0.64 : h, my = -h / 2 + mh / 2;
   c.textAlign = "center"; c.textBaseline = "middle"; c.lineJoin = "round";
   const f = elFitText(c, main, 900, mh * 0.62, w * 0.94);
@@ -1700,6 +1701,103 @@ function elTitle(c, e, w, h, A) {
   }
 }
 
+// ---- Fun title effects (styles 8–17): sticker outlines, 3D extrusion, colourful letters, small decorations.
+// Original drawings in the spirit of popular "text effect" templates; Khmer is split by syllable so each colour lands on a whole cluster.
+function kmClusters(t) {
+  const out = [];
+  for (const ch of t) {
+    const cp = ch.codePointAt(0), last = out.length ? out[out.length - 1] : "", lc = last ? last.codePointAt(last.length - 1) : 0;
+    const join = last && ((cp >= 0x17b4 && cp <= 0x17dd) || lc === 0x17d2 || (cp >= 0x300 && cp <= 0x36f)) && last.trim();
+    if (join) out[out.length - 1] += ch; else out.push(ch);
+  }
+  return out;
+}
+// draw one line cluster by cluster (centred at 0,y); fn(cluster, x, i) draws it with left alignment
+function fxEach(c, l, y, fn) {
+  const cl = kmClusters(l), ws = cl.map((q) => c.measureText(q).width), tot = c.measureText(l).width, k = tot / (ws.reduce((a, b) => a + b, 0) || 1);
+  let x = -tot / 2, n = 0; c.save(); c.textAlign = "left";
+  cl.forEach((q, i) => { if (q.trim()) { fn(q, x, n, ws[i] * k); n++; } x += ws[i] * k; }); c.restore();
+}
+function fxSpark(c, x, y, r, fill, line) { c.beginPath(); for (let i = 0; i < 8; i++) { const a = (i * Math.PI) / 4, rr2 = i % 2 ? r * 0.28 : r; c.lineTo(x + Math.cos(a) * rr2, y + Math.sin(a) * rr2); } c.closePath(); if (line) { c.lineWidth = r * 0.22; c.strokeStyle = line; c.stroke(); } c.fillStyle = fill; c.fill(); }
+function fxStar(c, x, y, r, fill, rot = 0) { c.beginPath(); for (let i = 0; i < 10; i++) { const a = rot - Math.PI / 2 + (i * Math.PI) / 5, q = i % 2 ? r * 0.45 : r; c.lineTo(x + Math.cos(a) * q, y + Math.sin(a) * q); } c.closePath(); c.fillStyle = fill; c.fill(); }
+function fxDash(c, x, y, len, ang, col, lw) { c.save(); c.strokeStyle = col; c.lineWidth = lw; c.lineCap = "round"; c.beginPath(); c.moveTo(x, y); c.lineTo(x + Math.cos(ang) * len, y + Math.sin(ang) * len); c.stroke(); c.restore(); }
+const FX_PAT = {};
+function fxDots(c, base, dot, s) { const key = base + dot + Math.round(s); if (!FX_PAT[key]) { const p = document.createElement("canvas"), n = Math.max(4, Math.round(s)); p.width = p.height = n; const q = p.getContext("2d"); q.fillStyle = base; q.fillRect(0, 0, n, n); q.fillStyle = dot; q.beginPath(); q.arc(n / 2, n / 2, n * 0.26, 0, Math.PI * 2); q.fill(); FX_PAT[key] = p; } return c.createPattern(FX_PAT[key], "repeat"); }
+const FX_COL = { rainbow: ["#e8423f", "#f59a23", "#22a7e0", "#8e44ad", "#27ae60", "#ff5c9a"], pastel: ["#c4b0f3", "#ffd36e", "#ff9fc0", "#86dcc9", "#9cc3ff"], collage: ["#ff3b4f", "#1d2b53", "#3d9bff", "#ffcf33"], crayon: ["#df3434", "#f2881d", "#1d5f8e", "#6b2b7d", "#1f8a4c"] };
+
+function elTitleFx(c, e, w, h, A) {
+  const s = e.s, main = e.t || "ចំណងជើងរបស់អ្នក", sub = e.t2;
+  c.textAlign = "center"; c.textBaseline = "middle"; c.lineJoin = "round"; c.miterLimit = 2;
+  const mh = sub ? h * 0.56 : h * 0.86, ph = sub ? h * 0.36 : 0, my = sub ? -h / 2 + h * 0.06 + mh / 2 : 0, py = h / 2 - h * 0.04 - ph / 2;
+  // behind-the-text shapes
+  if (s === 13) { // comic burst
+    const R = Math.min(w * 0.5, h * 0.62), n = 18; const burst = (dx, dy, fill, line) => { c.beginPath(); for (let i = 0; i < n * 2; i++) { const a = (i * Math.PI) / n, q = i % 2 ? 0.78 : 1; c.lineTo(dx + Math.cos(a) * R * 0.98 * q, dy + Math.sin(a) * R * 0.62 * q); } c.closePath(); c.fillStyle = fill; c.fill(); if (line) { c.lineWidth = R * 0.025; c.strokeStyle = line; c.stroke(); } };
+    burst(R * 0.04, R * 0.05, "#ffc2d4"); burst(0, 0, fxDots(c, "#fffaf6", "#f6dbe6", R * 0.07), "#2a2a4a");
+    fxStar(c, -w * 0.46, -h * 0.32, h * 0.08, "#8fe0cf", 0.2); fxStar(c, w * 0.45, h * 0.3, h * 0.07, "#ffd36e", -0.3); fxStar(c, w * 0.42, -h * 0.36, h * 0.05, "#ff9fc0");
+    fxDash(c, -w * 0.47, h * 0.3, h * 0.12, -0.6, "#ffcc4d", h * 0.035); fxDash(c, w * 0.47, -h * 0.05, h * 0.1, 0.2, "#c4b0f3", h * 0.03);
+  }
+  if (s === 14 && sub) { // banner plate under the second line
+    c.font = `900 ${ph * 0.6}px ${F_MIX}`; const bw = Math.min(w * 0.98, Math.max(w * 0.6, c.measureText(sub).width + ph * 1.2)), r = ph * 0.18;
+    c.fillStyle = "#151515"; elRound(c, -bw / 2 + ph * 0.07, py - ph / 2 + ph * 0.1, bw, ph, r); c.fill();
+    c.fillStyle = "#e8333d"; elRound(c, -bw / 2, py - ph / 2, bw, ph, r); c.fill(); c.lineWidth = ph * 0.07; c.strokeStyle = "#151515"; c.stroke();
+    c.lineWidth = ph * 0.04; c.strokeStyle = "rgba(255,255,255,.55)"; elRound(c, -bw / 2 + ph * 0.1, py - ph / 2 + ph * 0.1, bw - ph * 0.2, ph - ph * 0.2, r * 0.6); c.stroke();
+  }
+  const line = (txt, y, box, isSub) => {
+    // prefer one big line; wrap to two only when one line would get too small, and keep both lines inside the box
+    let f = elFitText(c, txt, 900, box * (isSub ? 0.66 : 0.6), w * (isSub ? 0.8 : 0.84), 1);
+    if (!isSub && f.s < box * 0.36) f = elFitText(c, txt, 900, box * 0.4, w * 0.84, 2);
+    c.font = `900 ${f.s}px ${F_MIX}`; const step = f.s * 1.04, top = y - ((f.lines.length - 1) * step) / 2;
+    f.lines.forEach((l, i) => fxLine(c, s, l, top + i * step, f.s, isSub, A));
+    return f;
+  };
+  c.save(); if (s === 10) c.rotate(-0.06); if (s === 9 || s === 11) c.rotate(-0.03);
+  line(main, my, mh, false); if (sub) line(sub, py, ph, true); c.restore();
+  // decorations in front
+  if (s === 9) { fxSpark(c, -w * 0.46, -h * 0.3, h * 0.09, "#ffffff", "#1d3f86"); fxSpark(c, w * 0.46, -h * 0.36, h * 0.07, "#ffffff", "#1d3f86"); fxSpark(c, w * 0.44, h * 0.3, h * 0.06, "#ffffff", "#1d3f86"); fxSpark(c, -w * 0.4, h * 0.36, h * 0.05, "#ffffff", "#1d3f86"); }
+  if (s === 10) { fxSpark(c, -w * 0.45, -h * 0.28, h * 0.07, "#ffcf33", "#1f2a6b"); fxSpark(c, w * 0.45, h * 0.28, h * 0.06, "#ffffff", "#1f2a6b"); }
+  if (s === 11) { fxStar(c, -w * 0.1, -h * 0.46, h * 0.07, "#4caf5f", 0.3); fxStar(c, w * 0.47, h * 0.12, h * 0.08, "#ff6b3d", -0.2); c.fillStyle = "#ffcd4f"; c.beginPath(); c.arc(-w * 0.2, h * 0.44, h * 0.025, 0, 7); c.fill(); c.fillStyle = "#ffb3cf"; c.beginPath(); c.arc(w * 0.4, -h * 0.2, h * 0.025, 0, 7); c.fill();
+    fxDash(c, w * 0.3, -h * 0.44, h * 0.09, -0.7, "#ffcd4f", h * 0.03); fxDash(c, w * 0.36, -h * 0.42, h * 0.06, -0.7, "#ffcd4f", h * 0.03);
+    c.save(); c.strokeStyle = "#e8553d"; c.lineWidth = h * 0.025; c.lineCap = "round"; c.beginPath(); for (let i = 0; i <= 30; i++) { const t = i / 30, x = -w * 0.48 + t * w * 0.14, yy = -h * 0.42 + Math.sin(t * 12) * h * 0.035 - t * h * 0.02; i ? c.lineTo(x, yy) : c.moveTo(x, yy); } c.stroke(); c.restore(); }
+  if (s === 14) { fxSpark(c, w * 0.44, -h * 0.4, h * 0.06, "#ffffff", "#151515"); fxSpark(c, -w * 0.45, h * 0.12, h * 0.05, "#ffffff", "#151515"); fxStar(c, w * 0.36, -h * 0.47, h * 0.05, "#ffc928"); }
+  if (s === 17) { [[-1, 0], [1, Math.PI]].forEach(([k, a0]) => [-0.5, 0, 0.5].forEach((d) => fxDash(c, k * w * 0.5, my + d * h * 0.18, h * 0.08, a0 + d * 0.6 + (k < 0 ? Math.PI : -Math.PI), "#f2881d", h * 0.028))); }
+}
+function fxLine(c, s, l, y, fs, isSub, A) {
+  const d = Math.max(1, fs * 0.03);
+  if (s === 8) { // candy 3D
+    for (let k = 6; k >= 1; k--) { c.lineWidth = fs * 0.34; c.strokeStyle = "#0a2f66"; c.strokeText(l, 0, y + k * d); }
+    c.lineWidth = fs * 0.34; c.strokeStyle = "#dff3ff"; c.strokeText(l, 0, y); c.lineWidth = fs * 0.18; c.strokeStyle = "#0d3a7a"; c.strokeText(l, 0, y);
+    const g = c.createLinearGradient(0, y - fs / 2, 0, y + fs / 2); if (isSub) { g.addColorStop(0, "#fff36b"); g.addColorStop(1, "#ff9a1f"); } else { g.addColorStop(0, "#ffffff"); g.addColorStop(1, "#7fd0ff"); } c.fillStyle = g; c.fillText(l, 0, y);
+  } else if (s === 9) { // sticker pop
+    c.lineWidth = fs * 0.5; c.strokeStyle = "#13336e"; c.strokeText(l, d * 1.4, y + d * 2); c.strokeStyle = "#fff1bd"; c.strokeText(l, 0, y);
+    c.lineWidth = fs * 0.26; c.strokeStyle = "#13336e"; c.strokeText(l, 0, y); const g = c.createLinearGradient(0, y - fs / 2, 0, y + fs / 2); g.addColorStop(0.5, "#ffffff"); g.addColorStop(1, "#d6eaff"); c.fillStyle = g; c.fillText(l, 0, y);
+  } else if (s === 10) { // retro stack
+    [["#e8336d", 3], ["#ffd23f", 1.6]].forEach(([col, k]) => { c.lineWidth = fs * 0.22; c.strokeStyle = col; c.strokeText(l, k * d, y + k * d); c.fillStyle = col; c.fillText(l, k * d, y + k * d); });
+    c.lineWidth = fs * 0.22; c.strokeStyle = "#1f2a6b"; c.strokeText(l, 0, y); c.fillStyle = "#ffffff"; c.fillText(l, 0, y);
+  } else if (s === 11) { // bubble
+    c.lineWidth = fs * 0.36; c.strokeStyle = "#4a63b0"; c.strokeText(l, 0, y); c.fillStyle = isSub ? "#ffffff" : "#ffcd4f"; c.fillText(l, 0, y);
+  } else if (s === 12) { // rainbow letters
+    c.lineWidth = fs * 0.34; c.strokeStyle = "#ffffff"; c.strokeText(l, 0, y); c.lineWidth = fs * 0.2; c.strokeStyle = "#1d2340"; c.strokeText(l, 0, y);
+    fxEach(c, l, y, (q, x, i) => { c.fillStyle = FX_COL.rainbow[(i + (isSub ? 3 : 0)) % 6]; c.fillText(q, x, y); });
+  } else if (s === 13) { // comic
+    c.lineWidth = fs * 0.2; c.strokeStyle = "#ffb3c7"; c.strokeText(l, d * 1.5, y + d * 1.5); c.strokeStyle = "#2a2a4a"; c.lineWidth = fs * 0.16; c.strokeText(l, 0, y);
+    fxEach(c, l, y, (q, x, i) => { c.fillStyle = FX_COL.pastel[(i + (isSub ? 2 : 0)) % 5]; c.fillText(q, x, y); });
+  } else if (s === 14) { // badge banner
+    const col = isSub ? "#fff3d6" : "#ffffff"; for (let k = 4; k >= 1; k--) { c.lineWidth = fs * 0.2; c.strokeStyle = "#151515"; c.strokeText(l, k * d * 0.7, y + k * d); c.fillStyle = "#151515"; c.fillText(l, k * d * 0.7, y + k * d); }
+    if (!isSub) { c.lineWidth = fs * 0.3; c.strokeStyle = "#ffffff"; c.strokeText(l, 0, y); } c.lineWidth = fs * 0.16; c.strokeStyle = "#151515"; c.strokeText(l, 0, y); c.fillStyle = isSub ? col : "#151515"; c.fillText(l, 0, y);
+    if (!isSub) { c.fillStyle = "rgba(255,255,255,.18)"; c.fillText(l, 0, y - d * 0.6); }
+  } else if (s === 15) { // collage letters
+    c.save(); c.shadowColor = "rgba(0,0,0,.9)"; c.shadowOffsetX = d * 1.2; c.shadowOffsetY = d * 1.6; c.lineWidth = fs * 0.42; c.strokeStyle = "#ffffff"; c.strokeText(l, 0, y); c.restore(); c.lineWidth = fs * 0.42; c.strokeStyle = "#ffffff"; c.strokeText(l, 0, y);
+    fxEach(c, l, y, (q, x, i, qw) => { c.save(); c.translate(x + qw / 2, y + (i % 2 ? fs * 0.05 : -fs * 0.04)); c.rotate(i % 3 === 0 ? -0.08 : i % 3 === 1 ? 0.06 : -0.02); c.textAlign = "center"; c.fillStyle = FX_COL.collage[(i + (isSub ? 1 : 0)) % 4]; c.fillText(q, 0, 0); c.restore(); });
+  } else if (s === 16) { // halftone pop
+    for (let k = 5; k >= 1; k--) { c.lineWidth = fs * 0.2; c.strokeStyle = "#111"; c.strokeText(l, k * d * 0.8, y + k * d * 0.8); }
+    c.lineWidth = fs * 0.22; c.strokeStyle = "#111"; c.strokeText(l, 0, y); c.lineWidth = fs * 0.1; c.strokeStyle = "#ffffff"; c.strokeText(l, 0, y);
+    c.fillStyle = isSub ? fxDots(c, "#f7a640", "#e2861a", fs * 0.12) : fxDots(c, "#46b8f0", "#1e90d0", fs * 0.12); c.fillText(l, 0, y);
+  } else { // 17 crayon
+    fxEach(c, l, y, (q, x, i, qw) => { const col = FX_COL.crayon[(i + (isSub ? 2 : 0)) % 5]; c.save(); c.translate(x + qw / 2, y + (i % 2 ? fs * 0.03 : -fs * 0.02)); c.rotate(i % 2 ? 0.04 : -0.05); c.textAlign = "center"; c.fillStyle = col;
+      c.globalAlpha = 0.35; c.fillText(q, fs * 0.012, fs * 0.012); c.fillText(q, -fs * 0.01, fs * 0.008); c.globalAlpha = 1; c.fillText(q, 0, 0);
+      c.globalAlpha = 0.25; c.strokeStyle = "#ffffff"; c.lineWidth = Math.max(1, fs * 0.012); c.strokeText(q, 0, 0); c.restore(); });
+  }
+}
 function elScreenInner(c, e, path, ix, iy, iw, ih) {
   c.save(); path();
   if (e.img) { c.clip(); const k = Math.max(iw / e.img.width, ih / e.img.height), w = e.img.width * k, h = e.img.height * k; c.drawImage(e.img, ix + (iw - w) / 2, iy + (ih - h) / 2, w, h); }
@@ -2018,7 +2116,7 @@ function elPickRender() {
   box.querySelectorAll("canvas").forEach((cv, s) => {
     const c = cv.getContext("2d"), e = { k: pickKind, s, w: 0, t: pickKind === "title" ? "ចំណងជើង" : "", t2: pickKind === "title" ? "Subtitle" : "" };
     const ar = elH({ ...e, w: 1 }), fw = Math.min(130, 92 / ar); e.w = fw;
-    c.fillStyle = pickKind === "title" && (s === 0 || s === 2 || s === 1) ? "#6f8fd6" : "#eef2f9"; c.fillRect(0, 0, 150, 110);
+    c.fillStyle = pickKind !== "title" ? "#eef2f9" : s <= 2 ? "#6f8fd6" : [8, 9, 14, 15, 16].includes(s) ? "#5fb3f2" : s === 10 ? "#fff6e8" : s === 11 ? "#ffffff" : "#eef2f9"; c.fillRect(0, 0, 150, 110);
     c.save(); c.translate(75, 55); const A = S.color || "#0059e0";
     if (e.k === "title") elTitle(c, e, fw, fw * ar, A); else if (e.k === "screen") elScreen(c, e, fw, fw * ar); else if (e.k === "stand") elStand(c, e, fw, fw * ar); else elSticker(c, e, fw, fw * ar, A, data());
     c.restore();
@@ -2103,7 +2201,7 @@ pv.addEventListener("pointermove", (ev) => {
   syncTs(); render();
 }, { capture: true });
 ["pointerup", "pointercancel"].forEach((t) => pv.addEventListener(t, (ev) => { if (!elDrag) return; ev.stopImmediatePropagation(); elDrag = null; pv.classList.remove("drag"); }, { capture: true }));
-window.elPanelSync = elPanelSync; window.__gmEls = () => S.els.map((e) => ({ k: e.k, s: e.s, x: +e.x.toFixed(3), y: +e.y.toFixed(3), w: +e.w.toFixed(3) })); window.__gmSel = () => S.esel; window.__gmBox = () => { const q = ELH.find((z) => z.i === S.esel); return q && { cx: Math.round(q.cx), cy: Math.round(q.cy), w: Math.round(q.w), h: Math.round(q.h) }; }; window.elSync = elSync; window.elDel = elDel; window.__gmBgT = () => JSON.parse(JSON.stringify(S.bgT || {}));
+window.elPanelSync = elPanelSync; window.__gmEls = () => S.els.map((e) => ({ k: e.k, s: e.s, x: +e.x.toFixed(3), y: +e.y.toFixed(3), w: +e.w.toFixed(3) })); window.__gmSel = () => S.esel; window.__fxTest = (c, e, w, h) => elTitle(c, e, w, h, S.color || "#0059e0"); window.__gmBox = () => { const q = ELH.find((z) => z.i === S.esel); return q && { cx: Math.round(q.cx), cy: Math.round(q.cy), w: Math.round(q.w), h: Math.round(q.h) }; }; window.elSync = elSync; window.elDel = elDel; window.__gmBgT = () => JSON.parse(JSON.stringify(S.bgT || {}));
 elPanelSync(); elSync();
 // export and save
 let dls = null, lastBlob = null;
