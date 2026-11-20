@@ -216,6 +216,11 @@ input[type=color]::-webkit-color-swatch-wrapper{padding:0}input[type=color]::-we
 .tsize .tsm{font-size:11px;color:var(--muted);font-weight:800}.tsize .tsl{font-size:17px;color:var(--muted);font-weight:800}
 .tsize output{font-family:var(--f-num);font-size:12px;min-width:40px;text-align:right;color:var(--muted)}
 .tsize .btn{padding:3px 10px;font-size:12px;border-radius:999px}
+.alignbar{display:flex;align-items:center;gap:4px;margin-top:8px;padding:6px 10px;border-radius:12px;background:rgba(255,255,255,.75);border:1px solid var(--line);font-size:12px;font-weight:700;color:var(--ink)}
+.alignbar[hidden]{display:none}.al-lbl{margin-right:4px}.al-sep{width:1px;height:20px;background:var(--line);margin:0 4px}
+.alignbar button{display:inline-grid;place-items:center;width:32px;height:30px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);cursor:pointer;padding:0}
+.alignbar button:hover:not(:disabled){border-color:var(--brand);color:var(--brand);background:#f2f6ff}.alignbar button:disabled{opacity:.35;cursor:default}
+.al-hint{margin-left:auto;font-size:11px;font-weight:500;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.alignbar.on .al-hint{display:none}
 .tsize .tsdel{color:#e5283f;border-color:rgba(229,40,63,.35);padding:3px 8px;display:inline-grid;place-items:center}.tsize .tsdel[hidden]{display:none}.tsize .tsdel:hover{background:#fff0f2}
 .mini{padding:14px 16px 10px;border-radius:18px}
 .mini h2{font-size:14px;margin:0 0 10px}
@@ -563,6 +568,7 @@ footer.fine a{color:var(--muted)}
       <div class="studio-bar"><span class="dot">ចុចលើរូប ឬអក្សរ ដើម្បីប្តូរទំហំ · អូសដើម្បីរំកិល</span><b id="tplName">Clean Product</b></div>
       <div class="view"><span class="tag" id="demoTag">ឧទាហរណ៍</span><canvas id="preview" width="1080" height="1080" aria-label="រូបមើលមុន"></canvas></div>
       <div class="tsize" id="tsize"><label for="ts" id="tsLabel" class="sr">ទំហំអក្សរទាំងអស់</label><span class="tsm" aria-hidden="true"><b class="ta">A</b><svg class="tp" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 16l5-5 4 4 3-3 4 4"/></svg></span><input type="range" id="ts" min="70" max="140" step="5" value="100" aria-describedby="tsv"><span class="tsl" aria-hidden="true"><b class="ta">A</b><svg class="tp" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 16l5-5 4 4 3-3 4 4"/></svg></span><output id="tsv" for="ts">100%</output><button type="button" id="tsReset" class="btn">ដើម</button><button type="button" id="tsDel" class="btn tsdel" hidden aria-label="លុប" title="លុប"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 7V4h6v3"/></svg></button><button type="button" id="tsDone" class="btn" hidden aria-label="ឈប់ជ្រើស">✓</button></div>
+      <div class="alignbar" id="alignBar" hidden><span class="al-lbl">តម្រឹម</span><button type="button" data-a="l" title="តម្រឹមឆ្វេង" aria-label="តម្រឹមឆ្វេង" disabled><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 3v18"/><rect x="7" y="6" width="12" height="4" rx="1"/><rect x="7" y="14" width="7" height="4" rx="1"/></svg></button><button type="button" data-a="c" title="តម្រឹមកណ្តាល (ផ្តេក)" aria-label="តម្រឹមកណ្តាល (ផ្តេក)" disabled><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v18"/><rect x="5" y="6" width="14" height="4" rx="1"/><rect x="8" y="14" width="8" height="4" rx="1"/></svg></button><button type="button" data-a="r" title="តម្រឹមស្តាំ" aria-label="តម្រឹមស្តាំ" disabled><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 3v18"/><rect x="5" y="6" width="12" height="4" rx="1"/><rect x="10" y="14" width="7" height="4" rx="1"/></svg></button><i class="al-sep" aria-hidden="true"></i><button type="button" data-a="t" title="តម្រឹមលើ" aria-label="តម្រឹមលើ" disabled><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 4h18"/><rect x="6" y="7" width="4" height="12" rx="1"/><rect x="14" y="7" width="4" height="7" rx="1"/></svg></button><button type="button" data-a="m" title="តម្រឹមកណ្តាល (បញ្ឈរ)" aria-label="តម្រឹមកណ្តាល (បញ្ឈរ)" disabled><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h18"/><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="8" width="4" height="8" rx="1"/></svg></button><button type="button" data-a="b" title="តម្រឹមក្រោម" aria-label="តម្រឹមក្រោម" disabled><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 20h18"/><rect x="6" y="5" width="4" height="12" rx="1"/><rect x="14" y="10" width="4" height="7" rx="1"/></svg></button><span class="al-hint" id="alHint">ជ្រើសរើសធាតុមួយលើរូបជាមុន</span></div>
       </div>
     </div>
 
@@ -1940,6 +1946,7 @@ const BLK_NAME = { title: "ចំណងជើងដើម", price: "កាតត
 const curBlk = () => (typeof S.esel === "string" && S.esel.startsWith("b:") ? S.esel.slice(2) : null);
 const blkT = (k) => { S.bgT = S.bgT || {}; return (S.bgT[k] = S.bgT[k] || { x: 0, y: 0, s: 1 }); };
 function syncTs() {
+  if (typeof alignSync === "function") alignSync();
   const bk = curBlk(); $("tsDel").hidden = S.esel == null;
   if (bk) { const r = $("ts"), v = Math.round(blkT(bk).s * 100); r.min = 30; r.max = 250; r.value = v; $("tsv").textContent = v + "%"; $("tsize").classList.remove("prod");
     $("tsLabel").textContent = "ទំហំ «" + BLK_NAME[bk] + "»"; $("tsDone").hidden = false; $("tsize").classList.add("on"); return; }
@@ -2047,7 +2054,17 @@ $("elDown").addEventListener("click", () => { const i = S.esel; if (!i) return; 
 document.querySelectorAll("#elBuiltin input").forEach((cb) => cb.addEventListener("change", () => { S.bgShow[cb.dataset.b] = cb.checked; render(); }));
 document.addEventListener("keydown", (ev) => { if ((ev.key === "Delete" || ev.key === "Backspace") && S.esel != null && !/^(INPUT|SELECT|TEXTAREA)$/.test(document.activeElement.tagName)) { ev.preventDefault(); elDel(); } });
 // panel only in the Background tab
-const elPanelSync = () => { const tab = document.querySelector('#tgroups button[aria-pressed="true"]'); const on = !!(tab && tab.dataset.g === "bg"); $("elPanel").hidden = !on; $("tpls").classList.toggle("bgmode", on); };
+const elPanelSync = () => { const tab = document.querySelector('#tgroups button[aria-pressed="true"]'); const on = !!(tab && tab.dataset.g === "bg"); $("elPanel").hidden = !on; $("alignBar").hidden = !on; $("tpls").classList.toggle("bgmode", on); };
+// align the selected item (added item or built-in part) to the poster edges or centre; keeps a small safe margin
+function alignSync() { const t = TPLS.find((x) => x.id === S.tpl), on = S.esel != null && !!(t && t.g === "bg"); if (!document.getElementById("alignBar")) return; document.getElementById("alignBar").classList.toggle("on", on); document.querySelectorAll("#alignBar button").forEach((b) => (b.disabled = !on)); }
+$("alignBar").addEventListener("click", (ev) => { const b = ev.target.closest("button"); if (!b || S.esel == null) return;
+  const q = ELH.find((z) => z.i === S.esel); if (!q) return; const W = S.W, H = S.H, m = 40 * (W / 1080), a = b.dataset.a;
+  const r = ((q.rot || 0) * Math.PI) / 180, bw = Math.abs(q.w * Math.cos(r)) + Math.abs(q.h * Math.sin(r)), bh = Math.abs(q.w * Math.sin(r)) + Math.abs(q.h * Math.cos(r));
+  let cx = q.cx, cy = q.cy;
+  if (a === "l") cx = m + bw / 2; else if (a === "c") cx = W / 2; else if (a === "r") cx = W - m - bw / 2;
+  else if (a === "t") cy = m + bh / 2; else if (a === "m") cy = H / 2; else if (a === "b") cy = H - m - bh / 2;
+  const bk = curBlk(); if (bk) { const t = blkT(bk); t.x += (cx - q.cx) / W; t.y += (cy - q.cy) / H; } else { const e = curEl(); if (!e) return; e.x = cx / W; e.y = cy / H; }
+  render(); });
 $("tgroups").addEventListener("click", () => setTimeout(elPanelSync)); $("tpls").addEventListener("click", () => setTimeout(elPanelSync));
 
 // canvas: elements get the pointer first (capture), everything else falls through to product drag / text select
@@ -2073,7 +2090,7 @@ pv.addEventListener("pointermove", (ev) => {
   syncTs(); render();
 }, { capture: true });
 ["pointerup", "pointercancel"].forEach((t) => pv.addEventListener(t, (ev) => { if (!elDrag) return; ev.stopImmediatePropagation(); elDrag = null; pv.classList.remove("drag"); }, { capture: true }));
-window.elPanelSync = elPanelSync; window.__gmEls = () => S.els.map((e) => ({ k: e.k, s: e.s, x: +e.x.toFixed(3), y: +e.y.toFixed(3), w: +e.w.toFixed(3) })); window.__gmSel = () => S.esel; window.elSync = elSync; window.elDel = elDel; window.__gmBgT = () => JSON.parse(JSON.stringify(S.bgT || {}));
+window.elPanelSync = elPanelSync; window.__gmEls = () => S.els.map((e) => ({ k: e.k, s: e.s, x: +e.x.toFixed(3), y: +e.y.toFixed(3), w: +e.w.toFixed(3) })); window.__gmSel = () => S.esel; window.__gmBox = () => { const q = ELH.find((z) => z.i === S.esel); return q && { cx: Math.round(q.cx), cy: Math.round(q.cy), w: Math.round(q.w), h: Math.round(q.h) }; }; window.elSync = elSync; window.elDel = elDel; window.__gmBgT = () => JSON.parse(JSON.stringify(S.bgT || {}));
 elPanelSync(); elSync();
 // export and save
 let dls = null, lastBlob = null;
