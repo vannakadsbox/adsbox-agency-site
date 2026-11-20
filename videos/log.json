@@ -4819,9 +4819,127 @@
       "article_url": "https://adsbox.agency/knowledge/same-post-boosted-twice-different-results/",
       "video_title": "Post ដដែល Boost ពីរដង ហេតុអី Order ធ្លាក់? ៤ រឿងក្រៅ Post",
       "hook": "Post រ៉ូបដដែល Boost $30 ដដែល។ ខែមុនបាន Order ១៨… ខែនេះ បានតែ ៧! ហេតុអីបង?",
-      "status": "scripted",
+      "status": "sent",
       "scripted_at": "2026-11-20T08:24:33+07:00",
-      "error": ""
+      "error": "",
+      "render_started_at": "2026-11-20T08:25:18+07:00",
+      "sent_at": "2026-11-20T08:30:41+07:00",
+      "rendered_at": "2026-11-20T08:30:41+07:00",
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/44653406802",
+      "duration": 72.1,
+      "size_mb": 11.1,
+      "render_seconds": 310,
+      "voice": "kiri:Arun",
+      "music": "adsbox-original-1.mp3",
+      "style": "custom animation only",
+      "visuals": [
+        "question",
+        "dashboard",
+        "compare",
+        "checklist",
+        "chat",
+        "flow",
+        "takeaway",
+        "cta2"
+      ],
+      "resolution": "1080x1920",
+      "fps": 30,
+      "subtitle_sync": "transcript",
+      "footage": [],
+      "footage_share": 0,
+      "stock_footage": "none (removed)",
+      "telegram": {
+        "ok": true,
+        "message_id": 319,
+        "chat": "configured",
+        "at": "2026-11-20T08:30:41+07:00",
+        "file_id": "BAACAgUAAxkDAAIBP2r_orrAoj_pU7I6TmI-XEuWWabCAALhJgACOqf4VxUAAbh3t_fsbD0E",
+        "items": [
+          {
+            "item": "video",
+            "message_id": 319,
+            "file_name": "same-post-boosted-twice-different-results.mp4",
+            "file_size": 11058211,
+            "width": 1080,
+            "height": 1920,
+            "file_id": "BAACAgUAAxkDAAIBP2r_orrAoj_pU7I6TmI-XEuWWabCAALhJgACOqf4VxUAAbh3t_fsbD0E"
+          },
+          {
+            "item": "facebook_caption",
+            "message_id": 320
+          },
+          {
+            "item": "thumbnail",
+            "message_id": 321,
+            "file_name": "same-post-boosted-twice-different-results-thumbnail.jpg",
+            "file_size": 150095
+          }
+        ],
+        "sent_count": 3,
+        "local_sizes": {
+          "video": 11058211,
+          "thumbnail": 150095
+        }
+      },
+      "speech_match": [
+        0.956,
+        0.986,
+        0.992,
+        1,
+        1,
+        0.982,
+        1,
+        1
+      ],
+      "scene_sync": [
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript"
+      ],
+      "archive": {
+        "assets": [
+          {
+            "id": 769985305,
+            "name": "same-post-boosted-twice-different-results-thumb.jpg",
+            "size": 150095,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/same-post-boosted-twice-different-results-thumb.jpg"
+          },
+          {
+            "id": 769985308,
+            "name": "same-post-boosted-twice-different-results.mp4",
+            "size": 11058211,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/same-post-boosted-twice-different-results.mp4"
+          }
+        ],
+        "release_id": 430382508
+      },
+      "quality": {
+        "width": 1080,
+        "height": 1920,
+        "fps": "30/1",
+        "duration": 72.1,
+        "video_codec": "h264",
+        "audio_codec": "aac",
+        "loudness": "-13.0 LUFS",
+        "decode_errors": false,
+        "visual_mix": {
+          "motion_graphics": 0.55,
+          "phone_chat": 0.28,
+          "illustrated": 0,
+          "product_dashboard": 0.17
+        }
+      },
+      "article_id": "same-post-boosted-twice-different-results",
+      "video_id": 769985308,
+      "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/same-post-boosted-twice-different-results.mp4",
+      "created_at": "2026-11-20T08:30:41+07:00",
+      "telegram_status": "delivered",
+      "production_status": "complete"
     }
   ]
 }
