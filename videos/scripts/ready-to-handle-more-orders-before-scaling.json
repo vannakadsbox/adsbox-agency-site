@@ -1,0 +1,194 @@
+{
+  "slug": "ready-to-handle-more-orders-before-scaling",
+  "video_title": "ចង់ចាក់ Budget ទ្វេ? សួរថា ហាងទ្រាំ Order បន្ថែមបានអត់សិន",
+  "topic": "មុនបង្កើនថវិកា Boost ទ្វេដង ត្រូវពិនិត្យថាហាងទ្រាំបាន៖ ស្តុក ការឆ្លើយសារ ការខ្ចប់ និងលុយទិញស្តុក។ មានឧទាហរណ៍គណនាលេខគំរូ។",
+  "thumbnail_text": "Budget ទ្វេ ហាងបងទ្រាំបានអត់?",
+  "description": "Boost ដើរល្អ ចង់ចាក់ទ្វេដង?\nសួរសិនថា ហាងទ្រាំ Order បន្ថែមបានអត់៖ ស្តុក សារ ខ្ចប់ និងលុយទិញស្តុក។\nComment ពាក្យ BUDGET មក!\n#ADSBOX #BoostPost #លក់អនឡាញ #ចំណេញពិត",
+  "facebook_caption": "Boost ដើរល្អ ចង់ចាក់ Budget ទ្វេដងមែនទេបង? 🤔\nពិនិត្យហាងសិន មុនបង្កើនថវិកា៖\n✅ ស្តុកគ្រប់ ៧ ថ្ងៃ\n✅ ឆ្លើយសារទាន់\n✅ ខ្ចប់ និងដឹកទាន់\n✅ មានលុយទិញស្តុក ពេលលុយ COD មិនទាន់ចូល\n✅ Cost per Order ឡើងបន្តិច នៅតែចំណេញ\nហាងត្រៀមរួច ទើប Order បន្ថែមក្លាយជាចំណេញពិត 💪\nហាងបងទ្រាំ Order ទ្វេបានអត់? Comment ពាក្យ BUDGET មក!\n#ADSBOX #BoostPost #លក់អនឡាញ #ចំណេញពិត",
+  "scenes": [
+    {
+      "role": "hook",
+      "lines": [
+        "Boost ដើរល្អ ចង់ចាក់ទ្វេដងមែនទេបង?",
+        "ចាំសិន! កុំសួរថា Ads ទ្រាំបានអត់…",
+        "សួរថា ហាងបងទ្រាំបានអត់?"
+      ],
+      "voice": "Curious, surprised consultant talking to a shop owner, short pause before the last question",
+      "visual": {
+        "type": "question",
+        "title": "ចាក់ទ្វេ ហាងទ្រាំ?",
+        "bubbles": [
+          "បង នៅមានស្តុកអត់?",
+          "ឆ្លើយសារផងបង!",
+          "ពេលណាដឹកដល់?",
+          "ចាំយូរណាស់បង"
+        ]
+      }
+    },
+    {
+      "role": "problem",
+      "lines": [
+        "Order ទ្វេ មិនមែនមានតែលុយទ្វេទេ។",
+        "សារចូលទ្វេ ខ្ចប់ក៏ទ្វេ…",
+        "ស្តុកអស់លឿន លុយជាប់ COD ច្រើន។"
+      ],
+      "voice": "Sincerely warning the shop owner, not rushed, stress double and COD",
+      "visual": {
+        "type": "flow",
+        "host": false,
+        "steps": [
+          {
+            "text": "សារចូលទ្វេ"
+          },
+          {
+            "text": "ខ្ចប់ទ្វេ"
+          },
+          {
+            "text": "ស្តុកអស់លឿន"
+          },
+          {
+            "text": "លុយជាប់ COD ច្រើន"
+          }
+        ]
+      }
+    },
+    {
+      "role": "example",
+      "lines": [
+        "លេខគំរូ៖ Boost $18 មួយថ្ងៃ បាន Order ១២។",
+        "ចាក់ $36 Cost per Order ឡើងដល់ $1.80។",
+        "Order បានប្រហែល…",
+        "២០ Order។"
+      ],
+      "voice": "Expert explaining numbers slowly and clearly to a shop owner, each price distinct",
+      "visual": {
+        "type": "dashboard",
+        "host": false,
+        "title": "លេខគំរូ៖ ចាក់ទ្វេ",
+        "metrics": [
+          {
+            "label": "Boost/ថ្ងៃ",
+            "value": "$36"
+          },
+          {
+            "label": "Cost/Order",
+            "value": "$1.80"
+          },
+          {
+            "label": "Order/ថ្ងៃ",
+            "value": "20"
+          }
+        ],
+        "alert": "$36 ÷ $1.80 = 20 Order"
+      }
+    },
+    {
+      "role": "example",
+      "lines": [
+        "Order មួយ មុនដក Boost សល់ $6។",
+        "ដកថ្លៃ Boost $1.80។",
+        "នៅសល់ $4.20 គុណ ២០ Order…",
+        "បាន $84 មួយថ្ងៃ ធៀបមុន $54។"
+      ],
+      "voice": "Calm expert, slow on each number, short pause before the final number, then strong emphasis",
+      "visual": {
+        "type": "waterfall",
+        "start": {
+          "label": "សល់ ១ Order មុន Boost",
+          "amount": 6
+        },
+        "rows": [
+          {
+            "icon": "boost",
+            "label": "ថ្លៃ Boost ក្នុង ១ Order",
+            "value": "$1.80",
+            "amount": 1.8,
+            "note": "$36 ÷ 20 Order = $1.80",
+            "at": [
+              1,
+              0.3
+            ],
+            "note_at": [
+              1,
+              0.7
+            ]
+          }
+        ],
+        "result": {
+          "label": "សល់ពិត (លេខគំរូ)",
+          "value": "$4.20 × 20 = $84",
+          "at": [
+            3,
+            0.4
+          ]
+        }
+      }
+    },
+    {
+      "role": "tip",
+      "lines": [
+        "តែលុយនេះ លុះត្រាហាងធ្វើទាន់។",
+        "ឆ្លើយសារ ៨០ ខ្ចប់ ២០ កញ្ចប់រាល់ថ្ងៃ។",
+        "ស្តុក ៧ ថ្ងៃ ត្រូវការ ១៤០ មុខ។",
+        "ថ្លៃដើម $5 ត្រូវលុយទិញស្តុក $700។"
+      ],
+      "voice": "Practical expert checking a list with the shop owner, clear pause after each number",
+      "visual": {
+        "type": "checklist",
+        "host": false,
+        "items": [
+          "ឆ្លើយសារ ៨០ ក្នុងមួយថ្ងៃ",
+          "ខ្ចប់ ២០ កញ្ចប់ ក្នុងមួយថ្ងៃ",
+          "ស្តុក ១៤០ មុខ ក្នុងមួយសប្ដាហ៍",
+          "លុយទិញស្តុក $700 (លេខគំរូ)"
+        ]
+      }
+    },
+    {
+      "role": "summary",
+      "lines": [
+        "ចំណុចណាមួយអត់ទាន់ កែសិន។",
+        "រួចបង្កើនជាជំហាន $18 ទៅ $27 សិន។",
+        "ចាំណា៖ ហាងត្រៀមរួច ទើបចាក់ Budget ធំ។"
+      ],
+      "voice": "Warm, confident advice, slow and clear on the final sentence",
+      "visual": {
+        "type": "takeaway",
+        "host": false,
+        "quote": "ហាងត្រៀមរួច\nទើបបង្កើន Budget",
+        "chips": [
+          "ស្តុក",
+          "ឆ្លើយសារ",
+          "ខ្ចប់ និងដឹក",
+          "លុយទិញស្តុក"
+        ]
+      }
+    },
+    {
+      "role": "cta",
+      "lines": [
+        "ហាងបងទ្រាំ Order ទ្វេបានអត់?",
+        "Comment ពាក្យ BUDGET មក។",
+        "ADS BOX ជួយមើលលេខ Boost ជាមួយបងបាន។"
+      ],
+      "voice": "Friendly, confident, helpful expert inviting the shop owner to comment, warm, not salesy",
+      "visual": {
+        "type": "cta2",
+        "question": "ហាងបងទ្រាំ Order ទ្វេបានអត់?",
+        "comment": "BUDGET",
+        "comment_line": 1,
+        "services": [
+          "Boost Post",
+          "Boost Live",
+          "Boost TikTok"
+        ],
+        "url": "adsbox.agency"
+      }
+    }
+  ],
+  "article": {
+    "title": "Ads ដើរល្អ ចង់បង្កើន Budget៖ ហាងទទួល Order បន្ថែមបានទេ? ពិនិត្យខ្លួនឯង ៧ ចំណុច",
+    "url": "https://adsbox.agency/knowledge/ready-to-handle-more-orders-before-scaling/"
+  },
+  "written_at": "2026-11-21T08:25:27+07:00"
+}
