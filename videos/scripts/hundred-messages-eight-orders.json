@@ -1,0 +1,150 @@
+{
+  "slug": "hundred-messages-eight-orders",
+  "video_title": "សារចូល ១០០ តែ Order ៨? រកជំហានដែលភ្ញៀវបាត់ច្រើនជាងគេ",
+  "topic": "ចែកសារ ១០០ ជា ៥ ជំហាន ពីសារចូលដល់ភ្ញៀវបង់លុយ ដើម្បីឃើញថា Order បាត់ច្រើនបំផុតនៅការឆ្លើយសារយឺត ហើយកែជំហាននេះ Cost per Order អាចធ្លាក់ពី $5.00 មកប្រហែល $3.33។",
+  "thumbnail_text": "សារ ១០០ តែ Order ៨? បាត់នៅណា?",
+  "description": "Boost $40 បានសារ ១០០ តែ Order ៨ (លេខគំរូ)។\nរាប់សារជា ៥ ជំហាន ហើយបងនឹងឃើញថា Order បាត់នៅណាច្រើនជាងគេ។\nComment ពាក្យ INBOX មក។\n#ADSBOX #BoostPost #លក់អនឡាញ #CostPerOrder",
+  "facebook_caption": "💬 សារចូល ១០០ តែ Order បានតែ ៨? បាត់ទៅណាខ្លះបង?\n\nសាករាប់សារ ៥០–១០០ ចុងក្រោយ ជា ៥ ជំហាន៖\n✅ ឆ្លើយក្នុង ១០ នាទី\n✅ ភ្ញៀវប្រាប់ទំហំ ឬពណ៌\n✅ ភ្ញៀវថា «យក»\n✅ ផ្ញើព័ត៌មានដឹកគ្រប់\n✅ ដឹកដល់ ហើយបានលុយ\n\nក្នុងឧទាហរណ៍នេះ បាត់ច្រើនជាងគេ គឺការឆ្លើយសារយឺត។ កែតែជំហាននេះ លុយ Boost ដដែល តែ Cost per Order ធ្លាក់ពី $5.00 មកប្រហែល $3.33 (លេខគំរូ)។\n\nហាងបងបាត់នៅជំហានណា? Comment ពាក្យ INBOX មក 👇\n\n#ADSBOX #BoostPost #លក់អនឡាញ #CostPerOrder",
+  "scenes": [
+    {
+      "role": "hook",
+      "lines": [
+        "Boost $40 បានសារចូល ១០០។",
+        "តែ Order ដឹកដល់ បានតែ…",
+        "៨ ប៉ុណ្ណោះ! សារទៅណាអស់?"
+      ],
+      "voice": "Curious, surprised consultant talking to a shop owner, short pause before the 8, natural",
+      "visual": {
+        "type": "question",
+        "title": "សារ ១០០ Order ៨?",
+        "bubbles": [
+          "អាវនេះនៅទេបង?",
+          "តម្លៃប៉ុន្មាន?",
+          "មានពណ៌ខ្មៅអត់?",
+          "ហេតុអីអត់ឆ្លើយ?"
+        ]
+      }
+    },
+    {
+      "role": "problem",
+      "lines": [
+        "មួយសារ $0.40 មើលទៅថោក។",
+        "តែគិតជា Order វិញ គឺ $5.00។",
+        "ភ្ញៀវបាត់នៅណាខ្លះ?"
+      ],
+      "voice": "Sincerely asking the shop owner, not rushed, stress the two prices",
+      "visual": {
+        "type": "vanish",
+        "expected_label": "Cost per Message",
+        "expected": "$0.40",
+        "real_label": "Cost/Order (គំរូ)",
+        "real": "$5.00",
+        "gap": "ភ្ញៀវបាត់នៅណា?",
+        "host": false
+      }
+    },
+    {
+      "role": "example",
+      "lines": [
+        "រាប់សារ ១០០ ឡើងវិញ…",
+        "ឆ្លើយទាន់ក្នុង ១០ នាទី មានតែ ៥៥។",
+        "ប្រាប់ទំហំ ឬពណ៌ ៣០។ ថាយក ១៤។",
+        "ផ្ញើព័ត៌មានគ្រប់ ១០។ ដឹកដល់ ៨។"
+      ],
+      "voice": "Expert explaining numbers slowly and clearly to a shop owner, each number distinct",
+      "visual": {
+        "type": "funnel",
+        "title": "សារ ១០០ ជា ៥ ជំហាន (លេខគំរូ)",
+        "steps": [
+          "សារចូល ១០០",
+          "ឆ្លើយទាន់ ៥៥",
+          "ប្រាប់ទំហំ/ពណ៌ ៣០",
+          "ថា «យក» ១៤",
+          "ព័ត៌មានគ្រប់ ១០",
+          "ដឹកដល់ បានលុយ ៨"
+        ],
+        "host": false
+      }
+    },
+    {
+      "role": "tip",
+      "lines": [
+        "បាត់ច្រើនជាងគេ គឺជំហានទីមួយ…",
+        "ឆ្លើយសារយឺត បាត់ភ្ញៀវ ៤៥។",
+        "លុយ Boost បង់រួចហើយ",
+        "តែគ្មាននរណាឆ្លើយទាន់ទេ។"
+      ],
+      "voice": "Calm expert, short pause before 45, then strong clear emphasis on it",
+      "keyword": "ឆ្លើយយឺត បាត់ ៤៥",
+      "visual": {
+        "type": "checklist",
+        "items": [
+          "ឆ្លើយសារ៖ បាត់ ៤៥",
+          "សួរទំនិញ៖ បាត់ ២៥",
+          "សម្រេចចិត្ត៖ បាត់ ១៦",
+          "ព័ត៌មាន និងដឹក៖ បាត់ ៦"
+        ]
+      }
+    },
+    {
+      "role": "example",
+      "lines": [
+        "បើឆ្លើយទាន់បាន ៨៥ សារវិញ…",
+        "Order ឡើងមកប្រហែល ១២។",
+        "Cost per Order ធ្លាក់មកប្រហែល $3.33។",
+        "លុយ Boost ដដែល $40។"
+      ],
+      "voice": "Expert explaining slowly, pause before each estimate, clear emphasis on $3.33",
+      "visual": {
+        "type": "compare",
+        "bad": "ឆ្លើយទាន់ ៥៥៖ $5.00/Order",
+        "good": "ឆ្លើយទាន់ ៨៥៖ ≈$3.33/Order",
+        "host": false
+      }
+    },
+    {
+      "role": "summary",
+      "lines": [
+        "ដូច្នេះ កែការឆ្លើយសារមុនសិន",
+        "មុននឹងប្ដូរ Post ឬបន្ថែមលុយ Boost។",
+        "ស្អែក សាកកត់តែបីលេខនេះ។"
+      ],
+      "voice": "Warm, confident advice to remember, slower on the last line",
+      "visual": {
+        "type": "takeaway",
+        "quote": "កែការឆ្លើយសារមុន\nមុនបន្ថែមលុយ Boost",
+        "chips": [
+          "សារចូល",
+          "ឆ្លើយក្នុង ១០ នាទី",
+          "Order ព័ត៌មានគ្រប់"
+        ],
+        "host": false
+      }
+    },
+    {
+      "role": "cta",
+      "lines": [
+        "ហាងបង បាត់ភ្ញៀវនៅជំហានណាច្រើន?",
+        "Comment ពាក្យ INBOX មក។",
+        "ADS BOX រីករាយជួយមើលជាមួយបង។"
+      ],
+      "voice": "Friendly, confident, helpful expert inviting the shop owner to comment, warm, not salesy",
+      "visual": {
+        "type": "cta2",
+        "question": "ហាងបង បាត់ភ្ញៀវនៅជំហានណាច្រើនជាងគេ?",
+        "comment": "INBOX",
+        "comment_line": 1,
+        "services": [
+          "Boost Post",
+          "ADS BOX System"
+        ],
+        "url": "adsbox.agency"
+      }
+    }
+  ],
+  "article": {
+    "title": "សារ ១០០ បាន Order តែ ៨៖ ចែកលេខជា ៥ ជំហាន រកកន្លែងដែល Order បាត់",
+    "url": "https://adsbox.agency/knowledge/hundred-messages-eight-orders/"
+  },
+  "written_at": "2026-11-21T07:25:27+07:00"
+}
