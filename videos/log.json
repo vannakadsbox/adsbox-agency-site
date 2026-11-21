@@ -5072,9 +5072,124 @@
       "article_url": "https://adsbox.agency/knowledge/ready-to-handle-more-orders-before-scaling/",
       "video_title": "ចង់ចាក់ Budget ទ្វេ? សួរថា ហាងទ្រាំ Order បន្ថែមបានអត់សិន",
       "hook": "Boost ដើរល្អ ចង់ចាក់ទ្វេដងមែនទេបង? ចាំសិន! កុំសួរថា Ads ទ្រាំបានអត់… សួរថា ហាងបងទ្រាំបានអត់?",
-      "status": "scripted",
+      "status": "sent",
       "scripted_at": "2026-11-21T08:25:27+07:00",
-      "error": ""
+      "error": "",
+      "render_started_at": "2026-11-21T08:26:24+07:00",
+      "sent_at": "2026-11-21T08:32:25+07:00",
+      "rendered_at": "2026-11-21T08:32:25+07:00",
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/44850096700",
+      "duration": 80.5,
+      "size_mb": 11.6,
+      "render_seconds": 344,
+      "voice": "kiri:Arun",
+      "music": "adsbox-original-1.mp3",
+      "style": "custom animation only",
+      "visuals": [
+        "question",
+        "flow",
+        "dashboard",
+        "waterfall",
+        "checklist",
+        "takeaway",
+        "cta2"
+      ],
+      "resolution": "1080x1920",
+      "fps": 30,
+      "subtitle_sync": "transcript",
+      "footage": [],
+      "footage_share": 0,
+      "stock_footage": "none (removed)",
+      "telegram": {
+        "ok": true,
+        "message_id": 329,
+        "chat": "configured",
+        "at": "2026-11-21T08:32:25+07:00",
+        "file_id": "BAACAgUAAxkDAAIBSWsAAfSgip4gQ4NBzljMgeHM5s5WLwACByMAAmr9CVQJQj9cc26tzD0E",
+        "items": [
+          {
+            "item": "video",
+            "message_id": 329,
+            "file_name": "ready-to-handle-more-orders-before-scaling.mp4",
+            "file_size": 11639038,
+            "width": 1080,
+            "height": 1920,
+            "file_id": "BAACAgUAAxkDAAIBSWsAAfSgip4gQ4NBzljMgeHM5s5WLwACByMAAmr9CVQJQj9cc26tzD0E"
+          },
+          {
+            "item": "facebook_caption",
+            "message_id": 330
+          },
+          {
+            "item": "thumbnail",
+            "message_id": 331,
+            "file_name": "ready-to-handle-more-orders-before-scaling-thumbnail.jpg",
+            "file_size": 152416
+          }
+        ],
+        "sent_count": 3,
+        "local_sizes": {
+          "video": 11639038,
+          "thumbnail": 152416
+        }
+      },
+      "speech_match": [
+        0.994,
+        0.981,
+        0.986,
+        0.974,
+        1,
+        0.958,
+        1
+      ],
+      "scene_sync": [
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript"
+      ],
+      "archive": {
+        "assets": [
+          {
+            "id": 774019820,
+            "name": "ready-to-handle-more-orders-before-scaling-thumb.jpg",
+            "size": 152416,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/ready-to-handle-more-orders-before-scaling-thumb.jpg"
+          },
+          {
+            "id": 774019827,
+            "name": "ready-to-handle-more-orders-before-scaling.mp4",
+            "size": 11639038,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/ready-to-handle-more-orders-before-scaling.mp4"
+          }
+        ],
+        "release_id": 430382508
+      },
+      "quality": {
+        "width": 1080,
+        "height": 1920,
+        "fps": "30/1",
+        "duration": 80.5,
+        "video_codec": "h264",
+        "audio_codec": "aac",
+        "loudness": "-13.2 LUFS",
+        "decode_errors": false,
+        "visual_mix": {
+          "motion_graphics": 0.73,
+          "phone_chat": 0.11,
+          "illustrated": 0,
+          "product_dashboard": 0.16
+        }
+      },
+      "article_id": "ready-to-handle-more-orders-before-scaling",
+      "video_id": 774019827,
+      "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/ready-to-handle-more-orders-before-scaling.mp4",
+      "created_at": "2026-11-21T08:32:25+07:00",
+      "telegram_status": "delivered",
+      "production_status": "complete"
     }
   ]
 }
