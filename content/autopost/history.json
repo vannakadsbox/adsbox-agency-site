@@ -883,6 +883,29 @@
       "status": "published",
       "published_at": "2026-11-21T06:56:37+07:00",
       "url": "https://adsbox.agency/knowledge/hundred-messages-eight-orders/"
+    },
+    {
+      "date": "2026-11-22",
+      "slot": "morning",
+      "category": "boost-post",
+      "angle": "Boost $20 ក្នុងមួយថ្ងៃដូចគ្នា៖ Seller A ដេញសារថោក Seller B មើល Order — អ្នកណាចំណេញ?",
+      "attempts": 1,
+      "generated_at": "2026-11-22T06:57:26+07:00",
+      "plan_day": "2026-11-22",
+      "plan_id": "refresh-2026",
+      "topic_id": "refresh-2026-11-22",
+      "rotation_category": "boost-post",
+      "format": "Compare Two Sellers",
+      "notes": [],
+      "title": "Boost $20 ក្នុងមួយថ្ងៃដូចគ្នា៖ Seller A ដេញសារថោក Seller B មើល Order — អ្នកណាចំណេញ?",
+      "slug": "seller-a-vs-seller-b-same-boost",
+      "summary": "អ្នកលក់ពីរនាក់ Boost $140 ក្នុងមួយសប្ដាហ៍ដូចគ្នា។ ម្នាក់ជ្រើស Post ដែលសារថោក ម្នាក់ជ្រើស Post ដែលបាន Order។ មើលថាអ្នកណានៅសល់លុយច្រើនជាង។",
+      "primary_keyword": "Boost ដូចគ្នា ចំណេញខុសគ្នា",
+      "tag": "Boost → Order → ចំណេញ",
+      "khmer_chars": 1631,
+      "status": "published",
+      "published_at": "2026-11-22T06:57:26+07:00",
+      "url": "https://adsbox.agency/knowledge/seller-a-vs-seller-b-same-boost/"
     }
   ]
 }
