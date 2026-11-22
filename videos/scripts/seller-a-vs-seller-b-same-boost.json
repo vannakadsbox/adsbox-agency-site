@@ -1,0 +1,345 @@
+{
+  "slug": "seller-a-vs-seller-b-same-boost",
+  "video_title": "Boost $140 ដូចគ្នា សារ ៥៦០ ទល់ ២៨០ ហេតុអីអ្នកសារតិចចំណេញជាង?",
+  "topic": "អ្នកលក់ពីរនាក់ចាយ Boost ដូចគ្នា តែម្នាក់ជ្រើស Post សារថោក ម្នាក់ជ្រើស Post បាន Order។ រៀនគណនា Cost per Order និងលុយដែលនៅសល់ពិត។",
+  "thumbnail_text": "សារច្រើន តែលុយសល់តិច?",
+  "description": "Boost $140 ដូចគ្នា៖ Seller A បានសារ ៥៦០ សល់ $98។ Seller B បានសារ ២៨០ សល់ $157.50 (លេខគំរូ)។\nមើល Order ថោក មិនមែនសារថោក។\n#ADSBOX #លក់អនឡាញ #BoostPost #CostPerOrder",
+  "facebook_caption": "សារចូលច្រើនណាស់… តែហេតុអីលុយមិនសល់? 🤔\nអ្នកលក់ពីរនាក់ Boost $140 ដូចគ្នា (លេខគំរូ)៖\n✅ Seller A៖ សារ ៥៦០ Order ២៨ សល់ $98\n✅ Seller B៖ សារ ២៨០ Order ៣៥ សល់ $157.50\nB ដាក់តម្លៃ ថ្លៃដឹក និងរបៀបកុម្ម៉ង់ច្បាស់ក្នុង Caption។\nកុំសួរ Post ណាសារថោក សួរ Post ណា Order ថោក! 💡\nហាងបងធ្វើដូច A ឬ B? Comment «ORDER» 👇\n#ADSBOX #លក់អនឡាញ #BoostPost #CostPerOrder",
+  "scenes": [
+    {
+      "role": "hook",
+      "lines": [
+        "Boost $20 មួយថ្ងៃ ដូចគ្នា។",
+        "ម្នាក់បានសារ ៥៦០…",
+        "ម្នាក់ទៀតបានតែ ២៨០។ អ្នកណាចំណេញ?"
+      ],
+      "voice": "Curious, surprised consultant talking to a shop owner, short pause after each number",
+      "visual": {
+        "type": "question",
+        "title": "អ្នកណាចំណេញ?",
+        "bubbles": [
+          "តម្លៃប៉ុន្មាន?",
+          "Serum នេះប៉ុន្មាន?",
+          "ដឹកដល់ពេលណា?"
+        ]
+      }
+    },
+    {
+      "role": "problem",
+      "lines": [
+        "Seller A សប្បាយចិត្ត ព្រោះសារចូលច្រើន។",
+        "តែ ៧ ថ្ងៃ លុយសល់តែ $98។",
+        "Seller B សារតិចជាង សល់ $157.50។",
+        "$59.50 បាត់ទៅណា?"
+      ],
+      "voice": "Sincerely asking the shop owner, not rushed, stress the two amounts and the gap",
+      "visual": {
+        "type": "vanish",
+        "host": false,
+        "expected_label": "A គិតថាឈ្នះ",
+        "expected": "៥៦០ សារ",
+        "real_label": "A សល់ពិត (លេខគំរូ)",
+        "real": "$98",
+        "gap": "$59.50 បាត់ទៅណា?"
+      }
+    },
+    {
+      "role": "tip",
+      "lines": [
+        "A ជ្រើស Post ដែលសារថោក $0.25។",
+        "Caption អត់ដាក់តម្លៃ។",
+        "B ដាក់តម្លៃ ថ្លៃដឹក របៀបកុម្ម៉ង់ច្បាស់។",
+        "សារថ្លៃជាង គឺ $0.50។"
+      ],
+      "voice": "Clear expert comparing two choices, a small pause between Seller A and Seller B",
+      "visual": {
+        "type": "compare",
+        "host": false,
+        "bad": "A: Post សារថោក $0.25 អត់តម្លៃ",
+        "good": "B: តម្លៃ ដឹក កុម្ម៉ង់ច្បាស់"
+      }
+    },
+    {
+      "role": "example",
+      "lines": [
+        "Seller A លក់ $18 បាន Order ២៨។",
+        "ដកថ្លៃដើម ខ្ចប់ ដឹក Order មិនទទួល $9.50។",
+        "ដក Boost $140 ចែក ២៨ គឺ $5។",
+        "សល់មួយ Order $3.50។"
+      ],
+      "voice": "Expert explaining numbers slowly and clearly to a shop owner, each price distinct",
+      "visual": {
+        "type": "waterfall",
+        "host": false,
+        "start": {
+          "label": "Seller A · លក់មួយ Order",
+          "amount": 18
+        },
+        "rows": [
+          {
+            "icon": "product",
+            "label": "ថ្លៃដើម Serum",
+            "value": "$7",
+            "amount": 7,
+            "at": [
+              1,
+              0
+            ]
+          },
+          {
+            "icon": "pack",
+            "label": "ថ្លៃខ្ចប់",
+            "value": "$0.50",
+            "amount": 0.5,
+            "at": [
+              1,
+              0.3
+            ]
+          },
+          {
+            "icon": "ship",
+            "label": "ថ្លៃដឹក (ហាងចេញ)",
+            "value": "$1.50",
+            "amount": 1.5,
+            "at": [
+              1,
+              0.5
+            ]
+          },
+          {
+            "icon": "refused",
+            "label": "ខាត Order មិនទទួល",
+            "value": "$0.50",
+            "amount": 0.5,
+            "note": "ជាមធ្យមក្នុងមួយ Order",
+            "at": [
+              1,
+              0.75
+            ]
+          },
+          {
+            "icon": "boost",
+            "label": "លុយ Boost មួយ Order",
+            "value": "$5",
+            "amount": 5.0,
+            "note": "$140 ÷ 28 Order = $5.00",
+            "at": [
+              2,
+              0
+            ],
+            "note_at": [
+              2,
+              0.5
+            ]
+          }
+        ],
+        "groups": [
+          {
+            "text": "ថ្លៃដើម + ខ្ចប់ + ដឹក + មិនទទួល = −$9.50",
+            "at": [
+              1,
+              0.95
+            ]
+          }
+        ],
+        "result": {
+          "label": "A សល់មួយ Order",
+          "value": "$3.50",
+          "at": [
+            3,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "role": "example",
+      "lines": [
+        "Seller B សារតិចជាង តែបាន Order ៣៥។",
+        "ចំណាយដដែល $9.50។",
+        "Boost $140 ចែក ៣៥ គឺ $4។",
+        "ចុងក្រោយ សល់មួយ Order…"
+      ],
+      "voice": "Calm expert, slow on each number, short pause at the end before the reveal",
+      "visual": {
+        "type": "waterfall",
+        "host": false,
+        "start": {
+          "label": "Seller B · លក់មួយ Order",
+          "amount": 18
+        },
+        "rows": [
+          {
+            "icon": "product",
+            "label": "ថ្លៃដើម Serum",
+            "value": "$7",
+            "amount": 7,
+            "at": [
+              1,
+              0
+            ]
+          },
+          {
+            "icon": "pack",
+            "label": "ថ្លៃខ្ចប់",
+            "value": "$0.50",
+            "amount": 0.5,
+            "at": [
+              1,
+              0.3
+            ]
+          },
+          {
+            "icon": "ship",
+            "label": "ថ្លៃដឹក (ហាងចេញ)",
+            "value": "$1.50",
+            "amount": 1.5,
+            "at": [
+              1,
+              0.5
+            ]
+          },
+          {
+            "icon": "refused",
+            "label": "ខាត Order មិនទទួល",
+            "value": "$0.50",
+            "amount": 0.5,
+            "note": "ជាមធ្យមក្នុងមួយ Order",
+            "at": [
+              1,
+              0.75
+            ]
+          },
+          {
+            "icon": "boost",
+            "label": "លុយ Boost មួយ Order",
+            "value": "$4",
+            "amount": 4.0,
+            "note": "$140 ÷ 35 Order = $4.00",
+            "at": [
+              2,
+              0
+            ],
+            "note_at": [
+              2,
+              0.5
+            ]
+          }
+        ],
+        "groups": [
+          {
+            "text": "ថ្លៃដើម + ខ្ចប់ + ដឹក + មិនទទួល = −$9.50",
+            "at": [
+              1,
+              0.95
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "role": "example",
+      "lines": [
+        "$4.50 ច្រើនជាង A។",
+        "៧ ថ្ងៃ B សល់ $157.50។",
+        "A សល់តែ $98។"
+      ],
+      "voice": "Calm expert, strong clear emphasis on the final numbers, a little proud",
+      "visual": {
+        "type": "waterfall",
+        "start": {
+          "label": "Seller B · លក់មួយ Order",
+          "amount": 18
+        },
+        "done": 5,
+        "rows": [
+          {
+            "icon": "product",
+            "label": "ថ្លៃដើម Serum",
+            "value": "$7",
+            "amount": 7
+          },
+          {
+            "icon": "pack",
+            "label": "ថ្លៃខ្ចប់",
+            "value": "$0.50",
+            "amount": 0.5
+          },
+          {
+            "icon": "ship",
+            "label": "ថ្លៃដឹក (ហាងចេញ)",
+            "value": "$1.50",
+            "amount": 1.5
+          },
+          {
+            "icon": "refused",
+            "label": "ខាត Order មិនទទួល",
+            "value": "$0.50",
+            "amount": 0.5,
+            "note": "ជាមធ្យមក្នុងមួយ Order"
+          },
+          {
+            "icon": "boost",
+            "label": "លុយ Boost មួយ Order",
+            "value": "$4",
+            "amount": 4.0,
+            "note": "$140 ÷ 35 Order = $4.00"
+          }
+        ],
+        "result": {
+          "label": "B សល់មួយ Order",
+          "value": "$4.50",
+          "at": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "role": "summary",
+      "lines": [
+        "A ឈ្នះលេខដែលមើលទៅល្អ។",
+        "B ឈ្នះលេខដែលចូលហោប៉ៅ។",
+        "កុំសួរ Post ណាសារថោក។",
+        "សួរ Post ណាបាន Order ថោក។"
+      ],
+      "voice": "Warm, confident, slower, the lesson to remember, stress Order",
+      "visual": {
+        "type": "takeaway",
+        "host": false,
+        "quote": "កុំមើលតែសារថោក\nមើល Order ថោក",
+        "chips": [
+          "Cost per Order",
+          "លុយសល់ពិត"
+        ]
+      }
+    },
+    {
+      "role": "cta",
+      "lines": [
+        "ហាងបងកំពុងធ្វើដូច Seller A ឬ B?",
+        "Comment ពាក្យ ORDER មក",
+        "ក្រុម ADS BOX រីករាយជួយបងមើល។"
+      ],
+      "voice": "Friendly, confident, helpful expert inviting the shop owner to comment, warm, not salesy",
+      "visual": {
+        "type": "cta2",
+        "question": "ហាងបងកំពុងធ្វើដូច Seller A ឬ B?",
+        "comment": "ORDER",
+        "comment_line": 1,
+        "services": [
+          "Boost Post",
+          "Boost Live",
+          "ADS BOX System"
+        ],
+        "url": "adsbox.agency"
+      }
+    }
+  ],
+  "article": {
+    "title": "Boost $20 ក្នុងមួយថ្ងៃដូចគ្នា៖ Seller A ដេញសារថោក Seller B មើល Order — អ្នកណាចំណេញ?",
+    "url": "https://adsbox.agency/knowledge/seller-a-vs-seller-b-same-boost/"
+  },
+  "written_at": "2026-11-22T07:25:38+07:00"
+}

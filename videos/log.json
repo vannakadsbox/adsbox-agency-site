@@ -5190,6 +5190,16 @@
       "created_at": "2026-11-21T08:32:25+07:00",
       "telegram_status": "delivered",
       "production_status": "complete"
+    },
+    {
+      "slug": "seller-a-vs-seller-b-same-boost",
+      "article_title": "Boost $20 ក្នុងមួយថ្ងៃដូចគ្នា៖ Seller A ដេញសារថោក Seller B មើល Order — អ្នកណាចំណេញ?",
+      "article_url": "https://adsbox.agency/knowledge/seller-a-vs-seller-b-same-boost/",
+      "video_title": "Boost $140 ដូចគ្នា សារ ៥៦០ ទល់ ២៨០ ហេតុអីអ្នកសារតិចចំណេញជាង?",
+      "hook": "Boost $20 មួយថ្ងៃ ដូចគ្នា។ ម្នាក់បានសារ ៥៦០… ម្នាក់ទៀតបានតែ ២៨០។ អ្នកណាចំណេញ?",
+      "status": "scripted",
+      "scripted_at": "2026-11-22T07:25:38+07:00",
+      "error": ""
     }
   ]
 }
