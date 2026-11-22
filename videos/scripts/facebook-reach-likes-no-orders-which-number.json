@@ -1,0 +1,185 @@
+{
+  "slug": "facebook-reach-likes-no-orders-which-number",
+  "video_title": "Reach ២០,០០០ តែ Order ៣? លេខណាប្រាប់ពីលុយពិត",
+  "topic": "Post ដែល Reach និង Like ច្រើន មិនប្រាកដថាបាន Order ច្រើនទេ។ រៀនមើល Order និង Cost per Order មុនគេ ហើយប្រើ Reach និង Like ដើម្បីរកកំហុស។",
+  "thumbnail_text": "Like ច្រើន តែ Order ទៅណា?",
+  "description": "Boost $20 ដូចគ្នា៖ Post A Reach ២០,០០០ បាន Order ៣។ Post B Reach ៦,០០០ បាន Order ១៤ (លេខគំរូ)។\nមើល Order និង Cost per Order មុនគេ។\n#ADSBOX #លក់អនឡាញ #BoostPost #CostPerOrder",
+  "facebook_caption": "Like ច្រើនណាស់… តែ Order ទៅណាអស់? 🤔\nBoost $20 ដូចគ្នា (លេខគំរូ)៖\n✅ Post A៖ Reach ២០,០០០ Order ៣ ≈ $6.67/Order\n✅ Post B៖ Reach ៦,០០០ Order ១៤ ≈ $1.43/Order\n✅ មើល Order និង Cost per Order មុនគេ\n✅ Reach និង Like ប្រើរកកំហុស\nកុំមើលតែ Like មើលលុយពិត! 💡\nPost បងមួយណាបាន Order ថោកជាង? Comment «REACH» 👇\n#ADSBOX #លក់អនឡាញ #BoostPost #CostPerOrder",
+  "scenes": [
+    {
+      "role": "hook",
+      "lines": [
+        "Reach ២០,០០០ Like ៩០០…",
+        "តែ Order បានតែ ៣។",
+        "បងៗ លេខណាប្រាប់ពីលុយពិត?"
+      ],
+      "voice": "Curious, surprised consultant talking to a shop owner, short pause after each number",
+      "visual": {
+        "type": "question",
+        "title": "Order ទៅណា?",
+        "bubbles": [
+          "ស្អាតណាស់!",
+          "Like ហើយបង",
+          "ចង់បានដែរ…"
+        ]
+      }
+    },
+    {
+      "role": "problem",
+      "lines": [
+        "ឧទាហរណ៍ ហាងកាបូប Boost $20 ពីរ Post។",
+        "Post A រូបស្អាត Reach ២០,០០០។",
+        "តែ Order បានតែ ៣ ប៉ុណ្ណោះ។"
+      ],
+      "voice": "Sincerely asking the shop owner, not rushed, stress Reach and the tiny order count",
+      "visual": {
+        "type": "dashboard",
+        "host": false,
+        "title": "Post A · Boost $20",
+        "metrics": [
+          {
+            "label": "Reach",
+            "value": "២០,០០០"
+          },
+          {
+            "label": "Like",
+            "value": "៩០០"
+          },
+          {
+            "label": "Order",
+            "value": "៣"
+          }
+        ],
+        "alert": "Like ច្រើន តែ Order តិច",
+        "next": "មើល Cost per Order"
+      }
+    },
+    {
+      "role": "example",
+      "lines": [
+        "Post B ជាវីដេអូបើកកាបូប ប្រាប់តម្លៃ។",
+        "Reach តែ ៦,០០០។",
+        "តែសារចូល ៤០ បាន Order ១៤។"
+      ],
+      "voice": "Clear expert, a little excited, stress the message and order numbers",
+      "visual": {
+        "type": "chat",
+        "host": false,
+        "with": "Post B",
+        "messages": [
+          {
+            "from": "customer",
+            "text": "កាបូបនេះយកមួយបង"
+          },
+          {
+            "from": "shop",
+            "text": "បាទ ផ្ញើលេខទូរស័ព្ទមកបង"
+          },
+          {
+            "from": "customer",
+            "text": "យកពណ៌ខ្មៅ ១"
+          }
+        ]
+      }
+    },
+    {
+      "role": "example",
+      "lines": [
+        "Post A $20 ចែក Order ៣…",
+        "ប្រហែល $6.67 មួយ Order។",
+        "Post B $20 ចែក Order ១៤…",
+        "ប្រហែល $1.43 មួយ Order។"
+      ],
+      "voice": "Expert explaining numbers slowly and clearly to a shop owner, each price distinct",
+      "keyword": "Cost per Order",
+      "visual": {
+        "type": "compare",
+        "bad": "Post A: $20 ÷ 3 ≈ $6.67",
+        "good": "Post B: $20 ÷ 14 ≈ $1.43"
+      }
+    },
+    {
+      "role": "tip",
+      "lines": [
+        "មើលលេខតាមជណ្ដើរ។",
+        "Reach Like Message ហើយ Order។",
+        "កាំខ្ពស់ជាងគេ គឺ Order ដែលភ្ញៀវបង់លុយ។"
+      ],
+      "voice": "Calm expert explaining step by step, slow and clear, stress the top step",
+      "visual": {
+        "type": "funnel",
+        "host": false,
+        "title": "ជណ្ដើរលេខ",
+        "steps": [
+          "Reach",
+          "Like / Engagement",
+          "Message",
+          "Order",
+          "Order បង់លុយ"
+        ]
+      }
+    },
+    {
+      "role": "tip",
+      "lines": [
+        "Like ច្រើន តែសារតិច?",
+        "កែតម្លៃ និងប្រាប់ឲ្យឆាតមក។",
+        "សារច្រើន តែ Order តិច? កែការឆ្លើយសារ។"
+      ],
+      "voice": "Friendly expert giving practical fixes, short pause after each question",
+      "visual": {
+        "type": "checklist",
+        "host": false,
+        "items": [
+          "Like ច្រើន សារតិច: កែតម្លៃ",
+          "សារច្រើន Order តិច: កែការឆ្លើយ",
+          "Reach តូច: ពិនិត្យថវិកា"
+        ]
+      }
+    },
+    {
+      "role": "summary",
+      "lines": [
+        "Like ជួយរកកំហុស។",
+        "តែ Order និង Cost per Order…",
+        "ទើបប្រាប់ពីលុយពិត។"
+      ],
+      "voice": "Warm, confident, slower, the lesson to remember, stress Order",
+      "visual": {
+        "type": "takeaway",
+        "host": false,
+        "quote": "Like ជួយរកកំហុស\nOrder ប្រាប់ពីលុយ",
+        "chips": [
+          "Order",
+          "Cost per Order"
+        ]
+      }
+    },
+    {
+      "role": "cta",
+      "lines": [
+        "Post បងមួយណា បាន Order ថោកជាង?",
+        "Comment ពាក្យ REACH មក",
+        "ក្រុម ADS BOX រីករាយជួយបងមើលលេខ។"
+      ],
+      "voice": "Friendly, confident, helpful expert inviting the shop owner to comment, warm, not salesy",
+      "visual": {
+        "type": "cta2",
+        "question": "Post បងមួយណា បាន Order ថោកជាង?",
+        "comment": "REACH",
+        "comment_line": 1,
+        "services": [
+          "Boost Post",
+          "Boost Live",
+          "ADS BOX System"
+        ],
+        "url": "adsbox.agency"
+      }
+    }
+  ],
+  "article": {
+    "title": "Facebook Reach និង Like ច្រើន តែមិនមាន Order — តើលេខណាគួរមើល?",
+    "url": "https://adsbox.agency/knowledge/facebook-reach-likes-no-orders-which-number/"
+  },
+  "written_at": "2026-11-22T08:24:51+07:00"
+}
