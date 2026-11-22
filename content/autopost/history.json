@@ -906,6 +906,29 @@
       "status": "published",
       "published_at": "2026-11-22T06:57:26+07:00",
       "url": "https://adsbox.agency/knowledge/seller-a-vs-seller-b-same-boost/"
+    },
+    {
+      "date": "2026-11-23",
+      "slot": "morning",
+      "category": "decision",
+      "angle": "Boost ៣ ថ្ងៃ គ្មាន Order សោះ៖ បងនឹងជ្រើស A, B, C ឬ D?",
+      "attempts": 1,
+      "generated_at": "2026-11-23T06:57:22+07:00",
+      "plan_day": "2026-11-23",
+      "plan_id": "refresh-2026",
+      "topic_id": "refresh-2026-11-23",
+      "rotation_category": "decision",
+      "format": "Decision Scenario",
+      "notes": [],
+      "title": "Boost ៣ ថ្ងៃ គ្មាន Order សោះ៖ បងនឹងជ្រើស A, B, C ឬ D?",
+      "slug": "three-days-boost-no-orders-decision",
+      "summary": "Boost $8 ក្នុងមួយថ្ងៃ អស់ $24 មានសារ ៣០ តែគ្មាន Order មួយ។ បង្កើនថវិកា កាត់ បិទ ឬពិនិត្យមុន? សាកជ្រើសខ្លួនឯង មុនអានចម្លើយ។",
+      "primary_keyword": "Boost ៣ ថ្ងៃ គ្មាន Order",
+      "tag": "Boost → Order → ចំណេញ",
+      "khmer_chars": 1565,
+      "status": "published",
+      "published_at": "2026-11-23T06:57:22+07:00",
+      "url": "https://adsbox.agency/knowledge/three-days-boost-no-orders-decision/"
     }
   ]
 }
