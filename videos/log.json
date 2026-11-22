@@ -5325,9 +5325,127 @@
       "article_url": "https://adsbox.agency/knowledge/facebook-reach-likes-no-orders-which-number/",
       "video_title": "Reach ២០,០០០ តែ Order ៣? លេខណាប្រាប់ពីលុយពិត",
       "hook": "Reach ២០,០០០ Like ៩០០… តែ Order បានតែ ៣។ បងៗ លេខណាប្រាប់ពីលុយពិត?",
-      "status": "scripted",
+      "status": "sent",
       "scripted_at": "2026-11-22T08:24:51+07:00",
-      "error": ""
+      "error": "",
+      "render_started_at": "2026-11-22T08:25:34+07:00",
+      "sent_at": "2026-11-22T08:31:34+07:00",
+      "rendered_at": "2026-11-22T08:31:34+07:00",
+      "run": "https://github.com/vannakadsbox/adsbox-agency-site/actions/runs/44971353560",
+      "duration": 72.53,
+      "size_mb": 11.1,
+      "render_seconds": 344,
+      "voice": "kiri:Arun",
+      "music": "adsbox-original-1.mp3",
+      "style": "custom animation only",
+      "visuals": [
+        "question",
+        "dashboard",
+        "chat",
+        "compare",
+        "funnel",
+        "checklist",
+        "takeaway",
+        "cta2"
+      ],
+      "resolution": "1080x1920",
+      "fps": 30,
+      "subtitle_sync": "transcript",
+      "footage": [],
+      "footage_share": 0,
+      "stock_footage": "none (removed)",
+      "telegram": {
+        "ok": true,
+        "message_id": 336,
+        "chat": "configured",
+        "at": "2026-11-22T08:31:34+07:00",
+        "file_id": "BAACAgUAAxkDAAIBUGsCRe5cVgOqAvXDMZjbt_FWBMyVAAIcKQACpf4YVPzNoJxe62rAPQQ",
+        "items": [
+          {
+            "item": "video",
+            "message_id": 336,
+            "file_name": "facebook-reach-likes-no-orders-which-number.mp4",
+            "file_size": 11111885,
+            "width": 1080,
+            "height": 1920,
+            "file_id": "BAACAgUAAxkDAAIBUGsCRe5cVgOqAvXDMZjbt_FWBMyVAAIcKQACpf4YVPzNoJxe62rAPQQ"
+          },
+          {
+            "item": "facebook_caption",
+            "message_id": 337
+          },
+          {
+            "item": "thumbnail",
+            "message_id": 338,
+            "file_name": "facebook-reach-likes-no-orders-which-number-thumbnail.jpg",
+            "file_size": 144821
+          }
+        ],
+        "sent_count": 3,
+        "local_sizes": {
+          "video": 11111885,
+          "thumbnail": 144821
+        }
+      },
+      "speech_match": [
+        1,
+        0.97,
+        1,
+        0.98,
+        1,
+        1,
+        0.927,
+        1
+      ],
+      "scene_sync": [
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript",
+        "transcript"
+      ],
+      "archive": {
+        "assets": [
+          {
+            "id": 777475931,
+            "name": "facebook-reach-likes-no-orders-which-number-thumb.jpg",
+            "size": 144821,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/facebook-reach-likes-no-orders-which-number-thumb.jpg"
+          },
+          {
+            "id": 777475932,
+            "name": "facebook-reach-likes-no-orders-which-number.mp4",
+            "size": 11111885,
+            "url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/facebook-reach-likes-no-orders-which-number.mp4"
+          }
+        ],
+        "release_id": 430382508
+      },
+      "quality": {
+        "width": 1080,
+        "height": 1920,
+        "fps": "30/1",
+        "duration": 72.53,
+        "video_codec": "h264",
+        "audio_codec": "aac",
+        "loudness": "-13.2 LUFS",
+        "decode_errors": false,
+        "visual_mix": {
+          "motion_graphics": 0.67,
+          "phone_chat": 0.22,
+          "illustrated": 0,
+          "product_dashboard": 0.11
+        }
+      },
+      "article_id": "facebook-reach-likes-no-orders-which-number",
+      "video_id": 777475932,
+      "video_url": "https://github.com/vannakadsbox/adsbox-agency-site/releases/download/untagged-fe330001088aa0810c49/facebook-reach-likes-no-orders-which-number.mp4",
+      "created_at": "2026-11-22T08:31:34+07:00",
+      "telegram_status": "delivered",
+      "production_status": "complete"
     }
   ]
 }
