@@ -1,0 +1,246 @@
+{
+  "slug": "three-days-boost-no-orders-decision",
+  "video_title": "Boost ៣ ថ្ងៃ អស់ $24 តែ Order ០៖ ពេលណាត្រូវផ្អាក?",
+  "topic": "ពេល Boost គ្មាន Order កុំសម្រេចដោយអារម្មណ៍។ កំណត់ខ្សែបញ្ឈប់ពីលុយដែល Order មួយនៅសល់ ហើយដល់ខ្សែ ផ្អាក ពិនិត្យសារ ការផ្ដល់ជូន និងស្តុកសិន។",
+  "thumbnail_text": "Boost ៣ ថ្ងៃ Order ០ ធ្វើអីបង?",
+  "description": "Boost ៣ ថ្ងៃ អស់ $24 សារ ៣០ តែ Order ០។ បងនឹងបង្កើនថវិកា កាត់ បិទ ឬផ្អាកពិនិត្យ?\nរៀនកំណត់ខ្សែបញ្ឈប់ ពីលុយដែល Order មួយនៅសល់ (លេខគំរូ)។\n#ADSBOX #BoostPost #លក់អនឡាញ #FacebookAds",
+  "facebook_caption": "Boost ៣ ថ្ងៃ គ្មាន Order សោះ បងធ្វើអីមុនគេ? 🤔\nកុំទាន់បង្កើនលុយ ឬបិទភ្លាម! សាកធ្វើបែបនេះ៖\n✅ កំណត់ខ្សែបញ្ឈប់មុន Boost\n✅ ដល់ខ្សែ ផ្អាកសិន\n✅ អានសារ មើលភ្ញៀវសួរអី\n✅ ពិនិត្យការផ្ដល់ជូន និងស្តុក\nលុយ Boost មិនហូរចោល ដោយសារការសម្រេចប្រញាប់។\nចង់ដឹងខ្សែបញ្ឈប់ហាងបង? Comment ពាក្យ STOP មក 👇\n#ADSBOX #BoostPost #លក់អនឡាញ #FacebookAds",
+  "scenes": [
+    {
+      "role": "hook",
+      "lines": [
+        "Boost ៣ ថ្ងៃ អស់ $24។",
+        "សារចូល ៣០… តែ Order សូន្យ!",
+        "បងៗ នឹងធ្វើអីមុនគេ?"
+      ],
+      "voice": "Curious, surprised consultant talking to a shop owner, short pause after each number",
+      "visual": {
+        "type": "question",
+        "title": "Order ០ ទៀតហើយ!",
+        "bubbles": [
+          "តម្លៃប៉ុន្មាន?",
+          "ថ្លៃម្ល៉េះ…",
+          "ចាំគិតសិន"
+        ]
+      }
+    },
+    {
+      "role": "problem",
+      "lines": [
+        "A បង្កើនទៅ $16 មួយថ្ងៃ?",
+        "B កាត់មក $4 ហើយរង់ចាំ?",
+        "C បិទ ប្ដូរ Post ថ្មី?",
+        "D ផ្អាក រកមូលហេតុសិន?"
+      ],
+      "voice": "Sincerely asking the shop owner, playful quiz tone, short pause after each choice",
+      "visual": {
+        "type": "checklist",
+        "host": false,
+        "items": [
+          "A. បង្កើនទៅ $16 មួយថ្ងៃ",
+          "B. កាត់មក $4 ហើយរង់ចាំ",
+          "C. បិទ ប្ដូរ Post ថ្មី",
+          "D. ផ្អាក ពិនិត្យមូលហេតុ"
+        ]
+      }
+    },
+    {
+      "role": "example",
+      "lines": [
+        "ក្រែមមួយលក់ $20 ដកថ្លៃដើម $6។",
+        "ដកខ្ចប់ $0.50 និងដឹក $1.50។",
+        "ដក Order មិនទទួល $0.50 ទៀត…",
+        "Order មួយនៅសល់ $11.50។"
+      ],
+      "voice": "Expert explaining numbers slowly and clearly to a shop owner, each price distinct",
+      "visual": {
+        "type": "waterfall",
+        "host": false,
+        "start": {
+          "label": "ក្រែមមួយលក់ (លេខគំរូ)",
+          "amount": 20
+        },
+        "rows": [
+          {
+            "icon": "product",
+            "label": "ថ្លៃដើម",
+            "value": "$6",
+            "amount": 6,
+            "at": [
+              0,
+              0.7
+            ]
+          },
+          {
+            "icon": "pack",
+            "label": "ខ្ចប់",
+            "value": "$0.50",
+            "amount": 0.5,
+            "at": [
+              1,
+              0.3
+            ]
+          },
+          {
+            "icon": "ship",
+            "label": "ដឹក",
+            "value": "$1.50",
+            "amount": 1.5,
+            "at": [
+              1,
+              0.8
+            ]
+          },
+          {
+            "icon": "refused",
+            "label": "Order មិនទទួល",
+            "value": "$0.50",
+            "amount": 0.5,
+            "note": "ការខាតជាមធ្យម ក្នុងមួយ Order",
+            "at": [
+              2,
+              0.5
+            ]
+          }
+        ],
+        "result": {
+          "label": "Order មួយនៅសល់ មុនដកលុយ Boost",
+          "value": "$11.50",
+          "at": [
+            3,
+            0.6
+          ]
+        }
+      }
+    },
+    {
+      "role": "tip",
+      "lines": [
+        "មុន Boost កំណត់ខ្សែបញ្ឈប់។",
+        "២ ដងនៃ $11.50 គឺ $23។",
+        "ចាយ $24 ហើយ នៅគ្មាន Order…",
+        "ដល់ពេលផ្អាក! ចម្លើយគឺ D។"
+      ],
+      "voice": "Calm expert, short pause before the final answer, then strong clear emphasis on D",
+      "keyword": "ខ្សែបញ្ឈប់ $23",
+      "visual": {
+        "type": "delivery",
+        "rows": [
+          {
+            "label": "Order មួយនៅសល់",
+            "value": "$11.50"
+          },
+          {
+            "label": "ខ្សែបញ្ឈប់ 2 × $11.50",
+            "value": "$23"
+          },
+          {
+            "label": "ចាយរួច 3 × $8",
+            "value": "$24"
+          }
+        ],
+        "total": {
+          "label": "ចម្លើយ D",
+          "value": "ផ្អាកសិន"
+        }
+      }
+    },
+    {
+      "role": "example",
+      "lines": [
+        "អានសារទាំង ៣០ មើល។",
+        "២២ នាក់សួរតម្លៃ ឮ $20 ហើយស្ងាត់។",
+        "ព្រោះ Post មិនបង្ហាញតម្លៃ។"
+      ],
+      "voice": "Clear expert, a little surprised, stress twenty-two and the silence",
+      "visual": {
+        "type": "chat",
+        "host": false,
+        "with": "ភ្ញៀវ Inbox",
+        "messages": [
+          {
+            "from": "customer",
+            "text": "តម្លៃប៉ុន្មានបង?"
+          },
+          {
+            "from": "shop",
+            "text": "$20 បង ពណ៌ថ្មី"
+          },
+          {
+            "from": "customer",
+            "text": "អូ… ចាំគិតសិន"
+          }
+        ]
+      }
+    },
+    {
+      "role": "tip",
+      "lines": [
+        "កែ Caption ដាក់តម្លៃ $20។",
+        "ប្រាប់ពណ៌ថ្មីល្អជាងត្រង់ណា។",
+        "Boost $8 ដដែល ខ្សែបញ្ឈប់ $23។"
+      ],
+      "voice": "Friendly expert giving a practical fix, confident, stress the price and the stop line",
+      "visual": {
+        "type": "caption",
+        "host": false,
+        "page": "ហាងក្រែមមុខ",
+        "lines": [
+          "ក្រែមលាបមុខ ពណ៌ថ្មី",
+          "តម្លៃ $20",
+          "ល្អជាងពណ៌ចាស់ត្រង់…",
+          "Inbox កុម្ម៉ង់បាន"
+        ],
+        "highlight": [
+          "$20"
+        ],
+        "stamp": "លេខគំរូ"
+      }
+    },
+    {
+      "role": "summary",
+      "lines": [
+        "Boost គ្មាន Order កុំសម្រេចតាមចិត្ត។",
+        "ដល់ខ្សែបញ្ឈប់ ផ្អាកសិន។",
+        "ពិនិត្យសារ ការផ្ដល់ជូន ស្តុក។"
+      ],
+      "voice": "Warm, confident, slower, the lesson to remember, stress pause first",
+      "visual": {
+        "type": "takeaway",
+        "host": false,
+        "quote": "ដល់ខ្សែបញ្ឈប់\nផ្អាក ពិនិត្យ ទើបសម្រេច",
+        "chips": [
+          "សារ",
+          "ការផ្ដល់ជូន",
+          "ស្តុក"
+        ]
+      }
+    },
+    {
+      "role": "cta",
+      "lines": [
+        "ខ្សែបញ្ឈប់ហាងបង គួរប៉ុន្មាន?",
+        "Comment ពាក្យ STOP មក",
+        "ក្រុម ADS BOX រីករាយជួយបងគិត។"
+      ],
+      "voice": "Friendly, confident, helpful expert inviting the shop owner to comment, warm, not salesy",
+      "visual": {
+        "type": "cta2",
+        "question": "ខ្សែបញ្ឈប់ហាងបង គួរប៉ុន្មាន?",
+        "comment": "STOP",
+        "comment_line": 1,
+        "services": [
+          "Boost Post",
+          "Boost Live",
+          "Boost TikTok"
+        ],
+        "url": "adsbox.agency"
+      }
+    }
+  ],
+  "article": {
+    "title": "Boost ៣ ថ្ងៃ គ្មាន Order សោះ៖ បងនឹងជ្រើស A, B, C ឬ D?",
+    "url": "https://adsbox.agency/knowledge/three-days-boost-no-orders-decision/"
+  },
+  "written_at": "2026-11-23T07:24:59+07:00"
+}
