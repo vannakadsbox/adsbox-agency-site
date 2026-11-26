@@ -4,6 +4,7 @@ slug: "real-profit-per-order"
 summary: "លក់អាវ $12 ថ្លៃដើម $6 មិនមែនចំណេញ $6 ទេ។ រូបមន្ត និងឧទាហរណ៍គណនាចំណេញមួយ Order ពិត ក្រោយដកថ្លៃខ្ចប់ ដឹក លុយ Boost និង Order មិនទទួល។"
 tag: "ចំណេញពិត"
 date: 2026-11-13
+updated: 2026-11-16
 emoji: "🧮 📦 💵"
 cover: ""
 seo_title: "ចំណេញមួយ Order ពិតប៉ុន្មាន? របៀបគណនាសម្រាប់ហាងអនឡាញ"
@@ -85,8 +86,17 @@ Order មួយ មិនទាន់ជាលុយទេ។ វាត្រូ
 - ☐ ប្រៀបធៀបជាមួយ «ចំណេញក្នុងក្បាល» ដែលបងធ្លាប់គិត
 - ☐ ជ្រើសផ្នែកមួយ ដែលស៊ីចំណេញច្រើនជាងគេ ហើយកែវាសប្ដាហ៍នេះ
 
+## អានបន្តក្នុងប្រធានបទ «ចំណេញពិត»
+
+- [សារថោក Order ច្រើន តែចុងខែលុយមិនសល់?](/knowledge/cost-per-message-vs-cost-per-order/)
+- [ទិញ ២ ថែម ១ ឬ ទិញ ៥ ថែម ២](/knowledge/price-promotion-without-losing-profit/)
+- [Order ធំជាងមុន ដោយមិនបាច់ Boost បន្ថែម](/knowledge/increase-order-size-with-add-ons/)
+- [ភ្ញៀវចាស់ទិញម្ដងទៀត = Order ដែលមិនចាំបាច់ចាយ Boost ម្ដងទៀត](/knowledge/after-sale-messages-repeat-customers/)
+- [ភ្ញៀវកុម្ម៉ង់ហើយ ដល់ពេលដឹកមិនទទួល](/knowledge/stop-customers-refusing-parcels/)
+- [ថ្ងៃ Sale ធំជិតមកដល់ (12.12, ចូលឆ្នាំ…)](/knowledge/prepare-big-sale-day-promotion-without-losing-profit/)
+
 **បន្ទាប់ក្នុងផ្លូវរៀន៖** [គណនាពីលុយចាយ Boost ដល់ចំណេញពិត](/knowledge/cost-per-message-vs-cost-per-order/)
 
 **អត្ថបទពាក់ព័ន្ធ៖** [Boost គួរបន្ថែម កាត់ ឬបិទ?](/knowledge/when-to-raise-or-cut-boost-budget/) · [របាយការណ៍ Boost ប្រចាំថ្ងៃ](/knowledge/daily-spend-and-order-report/) · [ចែកថវិកាប្រចាំខែ](/knowledge/split-monthly-ad-budget-test-scale-reserve/)
 
-បើបងអនុវត្តរួច តែមិនមានពេលតាមដានលុយ Boost និង Order រាល់ថ្ងៃ ក្រុម ADS BOX មានសេវាគ្រប់គ្រងផេក Boost Post ($79 / ខែ) ដែលកំណត់គោលដៅ ថវិកា និងផ្ញើរបាយការណ៍លុយចាយ និងចំនួន Order រៀងរាល់ថ្ងៃ។ ផ្ញើ Link ផេកមកតាម [Telegram](https://t.me/vannakdm)។
+ផ្ញើតម្លៃផលិតផល + Margin មកក្រុម ADS BOX ដើម្បីពិនិត្យថា Cost per Order ប៉ុន្មានទើបសមរម្យ សម្រាប់ទំនិញរបស់បង។ ឆាតមក [Telegram](https://t.me/vannakdm)។
