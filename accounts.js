@@ -500,17 +500,6 @@ window.ACCOUNTS = {
     "updated": "2026-11-27"
    },
    {
-    "name": "យឹម សុជាតា",
-    "url": "https://www.facebook.com/profile.php?id=61580094211894",
-    "followers": 5612,
-    "picture": "assets/accounts/fb-61580094211894.webp",
-    "cover": "assets/accounts/fb-61580094211894-cover.webp",
-    "type": "ផេកខ្មែរ",
-    "sold": false,
-    "discount": 0,
-    "updated": "2026-11-27"
-   },
-   {
     "name": "សាន សុភ័ក្រ",
     "url": "https://www.facebook.com/profile.php?id=61579777127821",
     "followers": 655,
