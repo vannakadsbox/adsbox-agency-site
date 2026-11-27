@@ -115,28 +115,6 @@ window.ACCOUNTS = {
     "updated": "2026-11-27"
    },
    {
-    "name": "DayDrama",
-    "url": "https://www.facebook.com/profile.php?id=61593316146500",
-    "followers": 11229,
-    "picture": "assets/accounts/fb-61593316146500.webp",
-    "cover": "assets/accounts/fb-61593316146500-cover.webp",
-    "type": "ផេកខ្មែរ",
-    "sold": false,
-    "discount": 0,
-    "updated": "2026-11-27"
-   },
-   {
-    "name": "Drama24TV",
-    "url": "https://www.facebook.com/profile.php?id=61593444931873",
-    "followers": 11241,
-    "picture": "assets/accounts/fb-61593444931873.webp",
-    "cover": "assets/accounts/fb-61593444931873-cover.webp",
-    "type": "ផេកខ្មែរ",
-    "sold": false,
-    "discount": 0,
-    "updated": "2026-11-27"
-   },
-   {
     "name": "MovieAi",
     "url": "https://www.facebook.com/profile.php?id=61593478680825",
     "followers": 12,
